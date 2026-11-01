@@ -716,3 +716,9 @@ Closed-ink tests at150/175 reject this graphic; do not join the arrow gaps.
 Report circulation-arrow spans only, not current-speed contours, diameter,
 principal width or a physical boundary. Media prose supplies no numeric input.
 Preserve all first428 evidence records and CSV rows/header.
+
+Nansen June 10, 2001 uses the unchanged named-source speed-core method and
+fixed outward reporting increments. Approximate center and map date are
+source references, not physical identity or formation/lifetime verification.
+Core contours do not establish outer eddy dimensions or seasonal bounds.
+Preserve all first 430 evidence records and CSV rows/header.

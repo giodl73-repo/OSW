@@ -279,7 +279,7 @@ def run():
             checks.append('Sukhumi and Kerch-origin model sizes, vertical reach and distinct velocity phases; bathymetry configuration dependence, source access and migrated size location retained; no dated observation or state containment inferred')
             page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','')
             page.select_option('#eddy-filter','size-class');assert page.locator('#eddy-rows tr').count()==15
-            assert '7 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
+            assert '6 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
             page.screenshot(path=str(OUT/'source-size-class-filter.png'))
             page.fill('#eddy-search','QE-2')
             qe=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');qe.locator('summary').click()
@@ -775,6 +775,20 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-cardone-provider-arrow-'+component+'.png')))
             row.locator('summary').screenshot(path=str(OUT/'cardone-provider-arrow-summary.png'))
             checks.append('Cardone explicit provider graphic: two circulation-arrow spans, unknown observation date distinct from publication/screenshot, rejected closure and no physical-boundary inference, displayed-grid reading sensitivity; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-37-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-37-primary"]');text=row.inner_text()
+            for value in ['10,000–15,000 km²','50–60 km','100–125 km','0.5–0.55 m/s','2001-06-10 snapshot only','60 / 60 native gridpoints','registry April separation','not physical uncertainty or a seasonal range','speed-core estimate']:
+                assert value in text,value
+            assert 'Size reference needed' not in text and 'Model calculation: undefined' not in text
+            assert 'Deviant / LC ring D' not in text and '1997-03-24 snapshot only' not in text
+            for component in ['area','radius','east-west','speed']:
+                card=page.locator('[data-evidence-id="nansen-2001-06-10-speed-core-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('nansen-speed-core-'+component+'.png')))
+                if component=='speed':
+                    page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                    card.screenshot(path=str(OUT/'mobile-nansen-speed-core-speed.png'))
+            checks.append('Nansen dated named-source speed core: five numerical references, approximate center, distinct formation/map definitions, no physical or annual extent promotion; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
