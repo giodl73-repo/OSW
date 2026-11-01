@@ -1,0 +1,130 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 426,
+  "baseline_evidence_sha256": "79ec78e28b143827fcf50ed161961c85e5f7dc10dfed8fae7573c733239d4935",
+  "baseline_measurement_csv_sha256": "bff2525dc6d26cd1995012f7a017e7abf5f2dd2ece9850b29ed1ef307dd0bbce",
+  "sources": {
+    "hamilton-2015-nelson-chart": {
+      "url": "https://espis.boem.gov/final%20reports/5471.pdf",
+      "citation": "Hamilton, Donohue, Hall, Leben, Quian, Sheinbaum and Watts (2015), Observations and Dynamics of the Loop Current, BOEM2015-006, February2015.",
+      "original": {
+        "url": "https://espis.boem.gov/final%20reports/5471.pdf",
+        "bytes": 54579667,
+        "sha256": "9138b23ed8e702b7180018203ce2f1d57167046b93a1377a49272d7b037963fe",
+        "pages": 420
+      },
+      "access": "Original BOEM report SHA-verified; Figure5.2-6(p), printed253/PDF283, its extracted original1092x898 chart and Table5.2-2 printed255/PDF285 actual pixels reviewed. Explicit Nelson label. Mixed solid/dashed frontal-analysis extent read manually; inner drifter tracks excluded. Source raster, placement, published axis boxes and chart-data week verified on one idle local CPU.",
+      "source_review_file": "research/eddy-nelson-frontal-chart-source-review-v1.json",
+      "source_review_sha256": "5896d9fce9a5aeca407c4ebdb4c96d4c23e62618ba9f288bcc375f8d1378b78c",
+      "original_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "id": "nelson-1989-august-september-frontal-chart-east-west",
+      "entity_id": "eddy:horizon:loop-11-primary",
+      "source_id": "hamilton-2015-nelson-chart",
+      "category": "size",
+      "metric": "source_named_frontal_chart_east_west_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        375,
+        425
+      ],
+      "range_kind": "manual_frontal_chart_reading_sensitivity_not_physical_uncertainty",
+      "period_start": "1989-08-26",
+      "period_end": "1989-09-01",
+      "period_precision": "source_chart_data_week_not_simultaneous_observation",
+      "period_label": "EddyWatch chart data26August-1September1989; report separation date and registry initial separation remain separate",
+      "case_label": "Nelson explicitly named historical frontal-analysis chart; physical identity unverified",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "BOEM2015-006 Figure5.2-6(p), printed253/PDF283; Table5.2-2, printed255/PDF285 gives26August-1September1989 chart-data range. Original embedded chart explicitly labels Nelson Eddy.",
+      "definition": "Geographic east–west bounding span of the manually read outer Nelson frontal-analysis envelope, including the original dashed western front and excluding inner drifter tracks and the separate Loop Current.",
+      "scope": "Historical source-chart frontal-analysis extent, not a verified full physical eddy boundary. No principal width, diameter, radius or area inferred.",
+      "qualification": "Mixed solid/dashed original front read manually; original dashed segments are not repaired and no closed topology inferred. Six native raster pixels per extremum and fixed25km outward reporting are reading sensitivity only. Frontal-analysis error, line interpretation, scan/axis distortion and physical uncertainty remain unquantified. Source chart-data week is not an exact simultaneous observation. Report1September1989 separation and registry24February1989 initial separation remain unreconciled. Inner drifter tracks, Loop Current continuation and local ADCP current-phase measurements do not supply these bounds. No footprint, state containment, ranking, annual range or seasonal playback inferred.",
+      "calculation": {
+        "method": "source_named_nelson_frontal_chart_spans_v1",
+        "component": "east_west",
+        "source_case_name": "Nelson",
+        "phase": "source_separation_week_frontal_analysis",
+        "source_week": [
+          "1989-08-26",
+          "1989-09-01"
+        ],
+        "audit_span_km": 403.383169,
+        "audit_reading_interval_km": [
+          383.357706,
+          423.437239
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          375,
+          425
+        ],
+        "reading_allowance_native_pixels": 6,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-nelson-frontal-chart-source-review-v1.json",
+        "report_sha256": "5896d9fce9a5aeca407c4ebdb4c96d4c23e62618ba9f288bcc375f8d1378b78c"
+      }
+    },
+    {
+      "id": "nelson-1989-august-september-frontal-chart-north-south",
+      "entity_id": "eddy:horizon:loop-11-primary",
+      "source_id": "hamilton-2015-nelson-chart",
+      "category": "size",
+      "metric": "source_named_frontal_chart_north_south_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        450,
+        500
+      ],
+      "range_kind": "manual_frontal_chart_reading_sensitivity_not_physical_uncertainty",
+      "period_start": "1989-08-26",
+      "period_end": "1989-09-01",
+      "period_precision": "source_chart_data_week_not_simultaneous_observation",
+      "period_label": "EddyWatch chart data26August-1September1989; report separation date and registry initial separation remain separate",
+      "case_label": "Nelson explicitly named historical frontal-analysis chart; physical identity unverified",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "BOEM2015-006 Figure5.2-6(p), printed253/PDF283; Table5.2-2, printed255/PDF285 gives26August-1September1989 chart-data range. Original embedded chart explicitly labels Nelson Eddy.",
+      "definition": "Geographic north–south bounding span of the manually read outer Nelson frontal-analysis envelope, including the original dashed western front and excluding inner drifter tracks and the separate Loop Current.",
+      "scope": "Historical source-chart frontal-analysis extent, not a verified full physical eddy boundary. No principal width, diameter, radius or area inferred.",
+      "qualification": "Mixed solid/dashed original front read manually; original dashed segments are not repaired and no closed topology inferred. Six native raster pixels per extremum and fixed25km outward reporting are reading sensitivity only. Frontal-analysis error, line interpretation, scan/axis distortion and physical uncertainty remain unquantified. Source chart-data week is not an exact simultaneous observation. Report1September1989 separation and registry24February1989 initial separation remain unreconciled. Inner drifter tracks, Loop Current continuation and local ADCP current-phase measurements do not supply these bounds. No footprint, state containment, ranking, annual range or seasonal playback inferred.",
+      "calculation": {
+        "method": "source_named_nelson_frontal_chart_spans_v1",
+        "component": "north_south",
+        "source_case_name": "Nelson",
+        "phase": "source_separation_week_frontal_analysis",
+        "source_week": [
+          "1989-08-26",
+          "1989-09-01"
+        ],
+        "audit_span_km": 473.814488,
+        "audit_reading_interval_km": [
+          454.474213,
+          493.154763
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          450,
+          500
+        ],
+        "reading_allowance_native_pixels": 6,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-nelson-frontal-chart-source-review-v1.json",
+        "report_sha256": "5896d9fce9a5aeca407c4ebdb4c96d4c23e62618ba9f288bcc375f8d1378b78c"
+      }
+    }
+  ]
+}

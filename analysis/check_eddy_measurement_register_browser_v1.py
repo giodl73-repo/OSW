@@ -635,7 +635,7 @@ def run():
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-11-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-11-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
-            for needle in ['< 0.4 knots','1.4 knots','2.2–2.7 knots','3.6 knots','2.6 knots','Instrument depth: 45 m','1989-09-25','most sampled sites','not an eddy-wide speed limit','500–1,000 m are seabed contours','not sampling depth','Exact sampling depth unspecified','do not form a seasonal range','Size reference needed']:
+            for needle in ['< 0.4 knots','1.4 knots','2.2–2.7 knots','3.6 knots','2.6 knots','Instrument depth: 45 m','1989-09-25','most sampled sites','not an eddy-wide speed limit','500–1,000 m are seabed contours','not sampling depth','Exact sampling depth unspecified','do not form a seasonal range']:
                 assert needle in row.inner_text(),needle
             assert row.locator('[data-evidence-id^="nelson-koch-1991-"]').count()==5
             assert row.inner_text().count('Nelson local current phase')==5, 'Exactly one diagnostic heading per Nelson source card'
@@ -643,7 +643,7 @@ def run():
             for key in ['post-severe-45m-bound','september-25-45m-maximum','august-surface-band','early-september-local-maximum','final-phase-local-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'nelson-{key}.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for key in ['post-severe-45m-bound','september-25-45m-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'mobile-nelson-{key}.png'))
-            checks.append('Nelson local current phases: strict below-0.4 knots at most sites and 1.4 knots maximum at 45 m, distinct surface band and depth-unspecified 3.6/2.6 maxima; seabed contours not sampling depth, no seasonal pooling/profile/shear and size gap retained; desktop/mobile')
+            checks.append('Nelson local current phases: strict below-0.4 knots at most sites and 1.4 knots maximum at 45 m, distinct surface band and depth-unspecified 3.6/2.6 maxima; seabed contours not sampling depth, no seasonal pooling/profile/shear; separate chart extents do not change current diagnostics; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-76-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-76-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
@@ -749,6 +749,19 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-hot-core-frontal-lobe-'+component+'.png')))
             row.locator('summary').screenshot(path=str(OUT/'hot-core-frontal-lobe-summary.png'))
             checks.append('Hot Core explicit named chart pre-detachment lobe: two landmark spans, eastern neck and parent-current exclusion, no closed-boundary/detached dimensions, source week and registry date distinction; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-11-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-11-primary"]')
+            for needle in ['375–425 km · frontal chart estimate','450–500 km · frontal chart estimate','Nelson historical frontal analysis','original dashed western segment','Inner drifter tracks','1989-08-26 to 1989-09-01','24 February 1989','reading sensitivity only','not diameter, radius, area or principal width']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text() and 'Model calculation: undefined' not in row.inner_text()
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="nelson-1989-august-september-frontal-chart-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('nelson-frontal-chart-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-nelson-frontal-chart-'+component+'.png')))
+            row.locator('summary').screenshot(path=str(OUT/'nelson-frontal-chart-summary.png'))
+            checks.append('Nelson explicitly named historical chart: two manual frontal extents, original dashed front retained, drifter/Loop Current exclusions, source-table week, no closed physical boundary, earlier local current cards preserved; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

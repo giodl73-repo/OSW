@@ -691,3 +691,14 @@ interpretation, scan/axis distortion and physical-front error remain unquantifie
 never describe this interval as their uncertainty bound. Retain registry initial
 separation and the report final-separation definition separately. Preserve the
 first 424 evidence records and CSV rows/header.
+
+Named historical frontal-analysis charts may supply qualified geographic spans
+of an explicitly identified source feature. Preserve original solid/dashed line
+styles; exclude inner drifter tracks and the separate parent current. Manual
+landmarks do not verify closed topology or full physical boundaries. Retain
+source raster/placement, published axes, per-extremum six-native-pixel reading
+allowance and outward25km reporting. These are reading sensitivity only, not
+physical uncertainty or annual extrema. Obtain chart-data periods from the
+source table instead of substituting the report separation date. Nelson uses
+26August-1September1989 from Table5.2-2, separately from registry24February1989.
+Preserve the first426 evidence records and CSV rows/header.
