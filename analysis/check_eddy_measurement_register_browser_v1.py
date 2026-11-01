@@ -644,6 +644,19 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for key in ['post-severe-45m-bound','september-25-45m-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'mobile-nelson-{key}.png'))
             checks.append('Nelson local current phases: strict below-0.4 knots at most sites and 1.4 knots maximum at 45 m, distinct surface band and depth-unspecified 3.6/2.6 maxima; seabed contours not sampling depth, no seasonal pooling/profile/shear and size gap retained; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-76-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-76-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['300–425 km','100–225 km','Qualified Atwater image-patch estimate','not whole-eddy dimensions','0.75 m','0.70/0.80 m','Field datum and exact HYCOM product/export unverified','384 scenarios','not physical uncertainty or a seasonal range','not peer-reviewed','original author GIF pixels verified','image has no Atwater label']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="atwater-hu-2026-author-ssh-patch-"]').count()==2
+            assert 'Size reference needed' not in row.inner_text()
+            page.set_viewport_size({'width':1440,'height':1000})
+            for axis in ['east-west','north-south']:page.locator(f'[data-evidence-id="atwater-hu-2026-author-ssh-patch-{axis}-span"]').screenshot(path=str(OUT/f'atwater-author-patch-{axis}.png'))
+            row.locator('summary').screenshot(path=str(OUT/'atwater-author-patch-summary.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for axis in ['east-west','north-south']:page.locator(f'[data-evidence-id="atwater-hu-2026-author-ssh-patch-{axis}-span"]').screenshot(path=str(OUT/f'mobile-atwater-author-patch-{axis}.png'))
+            checks.append('Atwater original-author-image diagnostic patch: dated frame, qualified unnamed-image association and preprint status; literal metre legend without datum/product promotion, 384 selection/calibration/reading scenarios; not whole-eddy size, seasonal range or footprint; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

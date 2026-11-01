@@ -557,3 +557,30 @@ or eddy thickness. Unknown depths stay unknown even when another phase supplies
 a depth. Do not pool differing phase maxima into a seasonal envelope or infer a
 simultaneous vertical profile, shear, or eddy death from the return of local
 background currents.
+
+## Dated author-animation SSH patch references
+
+For Atwater, retain only the first frame of the pinned author GIF, visibly dated
+30 July 2023. The four-frame GIF cannot use frame indices from different export
+code. Keep the primary preprint and unlabelled map association qualified; exact
+field generation, product version, SSH datum and physical crosswalk remain
+unverified. Related code and a metre legend do not establish absolute ADT,
+anomaly reference or a direct observation. Do not transfer station profile
+values or the other warm eddy to Atwater. Source images remain private cache.
+
+A diagnostic patch uses OSW-chosen 0.75 m on the literal SSH (m) legend, with
+0.70/0.80 m sensitivity. It is not the author ring boundary. Read every coloured
+legend pixel at native x=1737, y=71..844; deduplicate RGB at the lowest level.
+Use nearest RGB with squared distance <=900 and lowest-level ties. Select the
+largest eight-connected component, >1000 pixels and >10 times runner-up, with
+six-pixel clearance; no hole filling, smoothing or gap repair. Pin pixels,
+palette, components, axes, dates, original SHA and commit.
+
+For each colour selection use independent +/-2 pixel shifts of all six labelled
+axis anchors and both piecewise linear degree and Mercator latitude interpolation
+(384 scenarios), with six-pixel extent allowances, a 6371 km sphere and outward
+25 km rounding. Preserve east-west parallel and north-south meridional spans
+as separate map-patch diagnostics. These margins describe only image reading
+and choices. No whole-eddy diameter, physical width/area, seasonal extrema,
+confidence interval, state containment, ranking or playback is inferred. Keep
+all 401 preceding evidence and CSV rows byte/canonically identical.

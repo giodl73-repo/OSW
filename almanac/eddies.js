@@ -103,7 +103,14 @@
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
 
-      if(c.method==='source_bold_ssh_isoline_spans_v1'){
+      if(c.method==='source_author_animation_ssh_patch_v1'){
+        add('strong','Qualified Atwater image-patch estimate · not whole-eddy dimensions.',add('p',undefined,box));
+        add('p','Original author animation, 30 July 2023, first of four frames. The image has no Atwater label; the primary preprint names Atwater southwest of the transect. Candidate association and registry physical crosswalk remain unverified.',box);
+        add('p','OSW-chosen 0.75 m level on the literal SSH (m) legend; 0.70/0.80 m selection sensitivity. Field datum and exact HYCOM product/export unverified: no absolute ADT or anomaly conversion.',box);
+        add('p',`${m.component==='east_west'?'East–west parallel arc at bounding midlatitude':'North–south meridional arc'}; ${m.calculation.total_scenarios} scenarios across level choice, degree/Mercator latitude interpolation, ±2 pixel grid anchors and six-pixel extent allowance. Rounded outward to 25 km.`,box);
+        add('p','Largest connected matching colour patch; no hole filling or gap repair. Image-reading sensitivity only, not physical uncertainty or a seasonal range. No diameter, principal width, area, footprint, ranking or state containment inferred.',box);
+        add('p','2026 primary preprint, not peer-reviewed. Original paper PDF unavailable; original author GIF pixels verified at a pinned repository commit. Related code does not reproduce this exact export.',box);
+      }else if(c.method==='source_bold_ssh_isoline_spans_v1'){
         add('strong','Source 17 cm SSH isoline span · not principal width or diameter.',add('p',undefined,box));
         add('p',`Zodiac · published map label ${c.date}. Bold closed line supplied by Robert Leben / CCAR; source SSH reference and exact composite/acquisition times unspecified.`,box);
         add('p',`${m.component==='east_west'?'East–west parallel arc at the bounding mid-latitude':'North–south meridional arc'} on a ${c.earth_radius_km} km sphere. This is not an SST warm-patch size or the OSW gridded contour operator.`,box);
