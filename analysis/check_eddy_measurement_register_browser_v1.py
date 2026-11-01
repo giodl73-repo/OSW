@@ -487,6 +487,7 @@ def run():
                 assert 'undefined km' not in row.inner_text() and 'Glider profile diagnostic' not in row.inner_text()
                 assert ('Size reference needed' in row.inner_text())==(name=='wilde')
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'-cls-reference.png')))
+                if name=='verne':page.locator('[data-evidence-id="verne-cls-2021-local-maximum-current"]').screenshot(path=str(OUT/'verne-cls-local-maximum.png'))
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-cls-reference.png')))
             checks.append('Verne source-chart scale-bar equivalents retain unknown projection and contour definition, date and unquantified geographic scale error; Verne/Wilde local operational ADCP maxima retain native knots and unspecified sample depths; Wilde size gap remains; desktop/mobile')
@@ -500,6 +501,16 @@ def run():
             assert not any('.wasm' in u or 'query-packet' in u or '/release/' in u for u in requests)
             checks.append('CSV/source bytes, deep link, unverified identity crosswalk, no JS errors or runtime packet load')
             result={'status':'PASS','source_commit':os.environ['GITHUB_SHA'],'counts':document['counts'],'checks':checks,'source_assets_checked':len(assets),'input_sha256':preflight['input_sha256'],'browser_scope':'Lightweight register only; card href identities verified, destinations not executed.','runtime_loaded':False,'full_goal_complete':False}
+            generated={p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in sorted(OUT.glob('*.png'))}
+            selected=request.get('review_screenshot_names')
+            if selected is not None:
+                assert isinstance(selected,list) and selected and len(selected)==len(set(selected))
+                assert set(selected)<=set(generated) and all(Path(name).name==name for name in selected)
+                result['screenshots_generated']=generated
+                result['screenshots_retained']=sorted(selected)
+                result['screenshot_retention']='All regression assertions and screenshot captures executed; retain selected current-batch PNGs plus the complete generated-image hash/byte inventory.'
+                for p in OUT.glob('*.png'):
+                    if p.name not in selected:p.unlink()
             (OUT/'result.json').write_bytes((json.dumps(result,indent=2)+'\n').encode())
             print(json.dumps(result));browser.close()
     finally:server.shutdown();server.server_close()

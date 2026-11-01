@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "830b497942f489354bee9987aa44267ca4da740fe6fc0511ffb8ac36164c425a",
-  "generator_sha256": "7c64f29acdc6bec8441f43dbbb3a8a33ebf33b3e18e391f9b2265a9d802bb5d4",
+  "rules_sha256": "4f3a7be58a08c925245a8863dd7c171d469ba9196591894212870f8fde519741",
+  "generator_sha256": "41960957032bff926fda35eda515bf17d00487aa5622291582cf86787934c7fb",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "1119378421c77f20b9fdb0919aa51c2fcedcfa62dc86bbea8cd925f9a051b789",
+    "research/eddy-measurement-batches-v1.json": "b64be03b3db645cd33dd2c918ec86cb17b108b868a191c800e57fab12c5b1fc2",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -52,7 +52,9 @@
     "research/eddy-measurement-register-additions-v25.json": "948bc3faa0ecf0fcb4af590b7d2db1eaa2a4bf7e5873c70d2c6ace88abfb5558",
     "research/eddy-height-profile-source-verification-v1.json": "59ee39d5c81445928c9cabd64360a2e4a6ea0c14da836188ce2876a65db41500",
     "research/eddy-measurement-register-additions-v26.json": "2dd0e3b0f9a500faba8569200d85f180291cfd53a0eebf461b7b2a7fd07170d4",
-    "research/eddy-measurement-register-additions-v27.json": "289c4d8881a9dd4886a9b00dd681cd77a3ba5022a34e6f85b6b2f8672e63f8bc"
+    "research/eddy-measurement-register-additions-v27.json": "289c4d8881a9dd4886a9b00dd681cd77a3ba5022a34e6f85b6b2f8672e63f8bc",
+    "research/eddy-measurement-register-additions-v28.json": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
+    "research/eddy-scale-bar-source-verification-v1.json": "ca3d1e2c8a6c2e9638467c874c4c5dbd35c8ba8fbbe06c024ed10a36a3e25b22"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
@@ -60,7 +62,8 @@
     "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994",
     "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9",
     "analysis/eddy_pdf_line_spans_v1.py": "a341c3527e78650801ad6d55d824ccb474df2594d415b5bd59077e76906ecd48",
-    "analysis/eddy_height_profiles_v1.py": "94bd3af3f64998f908fad69efb6eeae9b8bc4a30c35406914e6d73e77972d4dc"
+    "analysis/eddy_height_profiles_v1.py": "94bd3af3f64998f908fad69efb6eeae9b8bc4a30c35406914e6d73e77972d4dc",
+    "analysis/eddy_scale_bar_spans_v1.py": "9792593f29653ca90cafba1bd190b7dc527fb5d85ad1fc5852b6adfd9c9e5125"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -214,6 +217,12 @@
       "baseline_count": 343,
       "preserved_baseline_sha256": "6ed1fffb41ff86c4808d6af30e19a9e2f49efa8d186db4aae53a6e9bd59b27c9",
       "added": 5
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v28.json",
+      "baseline_count": 348,
+      "preserved_baseline_sha256": "4d18fadcf8415fd7f008d7a305dc15ed8ee74d493f26424491107d1855d404a1",
+      "added": 4
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -224,13 +233,13 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 348,
-    "size_records": 126,
-    "size_owners": 78,
+    "evidence_records": 352,
+    "size_records": 128,
+    "size_owners": 79,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 14,
-    "kinematics_owners": 70,
+    "kinematics_owners": 72,
     "non_registry_entries": 40,
     "non_registry_entries_with_references": 40,
     "registry_entries_with_own_references": 80,
@@ -1581,10 +1590,12 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/12",
       "evidence_ids": [
-        "eddy:horizon:loop-72-primary-registry-calendar-span"
+        "eddy:horizon:loop-72-primary-registry-calendar-span",
+        "wilde-cls-2021-local-maximum-current"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "kinematics"
       ],
       "size_classification_ids": [],
       "size_gap": true,
@@ -1636,7 +1647,8 @@
         "name": "Wilde",
         "url": "eddies.html?id=eddy:horizon:loop-72-primary",
         "evidence_ids": [
-          "eddy:horizon:loop-72-primary-registry-calendar-span"
+          "eddy:horizon:loop-72-primary-registry-calendar-span",
+          "wilde-cls-2021-local-maximum-current"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -1666,13 +1678,18 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/14",
       "evidence_ids": [
-        "eddy:horizon:loop-71-primary-registry-calendar-span"
+        "eddy:horizon:loop-71-primary-registry-calendar-span",
+        "verne-cls-2021-scale-bar-horizontal-span",
+        "verne-cls-2021-scale-bar-vertical-span",
+        "verne-cls-2021-local-maximum-current"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "kinematics",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -46254,6 +46271,662 @@
         "physical_crosswalk_verified": false,
         "separation_conventions_reconciled": false,
         "other_eddy_values_inherited": false
+      }
+    },
+    {
+      "id": "verne-cls-2021-scale-bar-horizontal-span",
+      "entity_id": "eddy:horizon:loop-71-primary",
+      "category": "size",
+      "metric": "source_scale_bar_equivalent_horizontal_span",
+      "metric_label": "source scale bar equivalent horizontal span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2021-11-23",
+      "period_end": "2021-11-23",
+      "period_label": "2021-11-23 black chart line; other dates excluded",
+      "definition": "Horizontal source-image bounding span expressed at the displayed 300 km scale bar. Nominal chart-scale equivalent, not a calibrated geodesic span.",
+      "scope": "One named operational-chart line. Registry physical identity association remains unverified.",
+      "qualification": "Map projection and contour threshold unspecified. A remote scale bar may not give the same physical scale at the eddy; that systematic error is unquantified. Six-pixel extent allowance, two-pixel scale-anchor shifts and two ink gates cover image-reading choices only, not geographic accuracy. No diameter, radius, physical footprint, state containment or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://energies-and-infrastructures-monitoring.groupcls.com/active-loop-current-drives-stellar-2021-fast-eddy-season/",
+      "source_locator": "LC activity over a 4-month period chart; lower-left closed line labeled Eddy Verne, black 23-Nov-2021 legend entry; lower-right 0–300 km scale bar.",
+      "source_file": "research/eddy-measurement-register-additions-v28.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
+      "raw_record": {
+        "id": "verne-cls-2021-scale-bar-horizontal-span",
+        "entity_id": "eddy:horizon:loop-71-primary",
+        "category": "size",
+        "metric": "source_scale_bar_equivalent_horizontal_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          125,
+          225
+        ],
+        "range_kind": "source_scale_bar_reading_sensitivity_not_geodesic_uncertainty",
+        "source_id": "cls-2021",
+        "source_locator": "LC activity over a 4-month period chart; lower-left closed line labeled Eddy Verne, black 23-Nov-2021 legend entry; lower-right 0–300 km scale bar.",
+        "case_label": "Verne, provider chart 23 November 2021",
+        "period_start": "2021-11-23",
+        "period_end": "2021-11-23",
+        "period_precision": "day_as_plotted",
+        "period_label": "2021-11-23 black chart line; other dates excluded",
+        "definition": "Horizontal source-image bounding span expressed at the displayed 300 km scale bar. Nominal chart-scale equivalent, not a calibrated geodesic span.",
+        "scope": "One named operational-chart line. Registry physical identity association remains unverified.",
+        "qualification": "Map projection and contour threshold unspecified. A remote scale bar may not give the same physical scale at the eddy; that systematic error is unquantified. Six-pixel extent allowance, two-pixel scale-anchor shifts and two ink gates cover image-reading choices only, not geographic accuracy. No diameter, radius, physical footprint, state containment or seasonal envelope inferred.",
+        "scale_bar_case_index": 0,
+        "scale_bar_component": "horizontal",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original provider article HTML and its full-size 800×640 chart acquired and SHA-verified. Actual chart pixels and the separate 800×419 Verne ADCP transect image visually reviewed. Contour threshold and map projection unspecified; raw ADCP profiles and chart georeferencing not acquired.",
+      "source_id": "cls-2021",
+      "period_precision": "day_as_plotted",
+      "case_label": "Verne, provider chart 23 November 2021",
+      "range_value": [
+        125,
+        225
+      ],
+      "range_kind": "source_scale_bar_reading_sensitivity_not_geodesic_uncertainty",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_image_scale_bar_equivalent_spans_v1",
+          "owner_id": "eddy:horizon:loop-71-primary",
+          "source_name": "Verne",
+          "date": "2021-11-23",
+          "coordinate_system": "source_image_pixels_scale_bar_equivalent_not_geodesic",
+          "scale_bar_km": 300,
+          "reading_allowance_pixels": 6,
+          "axis_sensitivity_pixels": 2,
+          "round_outward_km": 25,
+          "roi_xyxy_inclusive": [
+            85,
+            345,
+            181,
+            429
+          ],
+          "source_raster": {
+            "width": 800,
+            "height": 640,
+            "components": 3,
+            "samples_sha256": "c5e0725e0cd1d0a771a979aaa928544f970ffe2d8026fd8b1b43385adebda941"
+          },
+          "readings": [
+            {
+              "outline": {
+                "maximum_rgb_channel": 75,
+                "bbox_xyxy": [
+                  98,
+                  357,
+                  167,
+                  416
+                ],
+                "selected_pixels": 909,
+                "selected_pixels_sha256": "cfb88775dfba97694fa403073d76b95beb15ea796f8e665866f12bfccdecd132",
+                "enclosed_background_pixels": 2169,
+                "other_component_sizes": []
+              },
+              "ticks": [
+                {
+                  "value_km": 0,
+                  "window_xyxy": [
+                    635,
+                    579,
+                    645,
+                    583
+                  ],
+                  "coordinate_x": 640,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "3665d36ca693e523afd1c01076748e4e72750416de4dd28e969f19d14ed8f380"
+                },
+                {
+                  "value_km": 100,
+                  "window_xyxy": [
+                    674,
+                    579,
+                    685,
+                    583
+                  ],
+                  "coordinate_x": 679,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "063d55357ae687c33c79a0ff6e6553467a420252343837002ebdb9a575b0d735"
+                },
+                {
+                  "value_km": 200,
+                  "window_xyxy": [
+                    713,
+                    579,
+                    724,
+                    583
+                  ],
+                  "coordinate_x": 718,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "6cd802d91bcd023ec826b45c782444e3c5cc1e30b5eea6a7fa3aeee21fa1ce77"
+                },
+                {
+                  "value_km": 300,
+                  "window_xyxy": [
+                    752,
+                    579,
+                    763,
+                    583
+                  ],
+                  "coordinate_x": 756,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "830dafe777b70a549b8393dbcf2176f5f95b159134565ae69c7b9804b0d41f32"
+                }
+              ]
+            },
+            {
+              "outline": {
+                "maximum_rgb_channel": 100,
+                "bbox_xyxy": [
+                  98,
+                  356,
+                  167,
+                  417
+                ],
+                "selected_pixels": 969,
+                "selected_pixels_sha256": "c5626badf789337fc1edd27de88d164c377d5b63fd1acc84ca6290e948e9a71b",
+                "enclosed_background_pixels": 2150,
+                "other_component_sizes": []
+              },
+              "ticks": [
+                {
+                  "value_km": 0,
+                  "window_xyxy": [
+                    635,
+                    579,
+                    645,
+                    583
+                  ],
+                  "coordinate_x": 640,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "3665d36ca693e523afd1c01076748e4e72750416de4dd28e969f19d14ed8f380"
+                },
+                {
+                  "value_km": 100,
+                  "window_xyxy": [
+                    674,
+                    579,
+                    685,
+                    583
+                  ],
+                  "coordinate_x": 679,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "063d55357ae687c33c79a0ff6e6553467a420252343837002ebdb9a575b0d735"
+                },
+                {
+                  "value_km": 200,
+                  "window_xyxy": [
+                    713,
+                    579,
+                    724,
+                    583
+                  ],
+                  "coordinate_x": 718.0,
+                  "ink_pixels": 6,
+                  "pixels_sha256": "bc024897db0519b40c5b7f1bde73d60671ef9f00eac740cb814424bb6a590c3e"
+                },
+                {
+                  "value_km": 300,
+                  "window_xyxy": [
+                    752,
+                    579,
+                    763,
+                    583
+                  ],
+                  "coordinate_x": 756.0,
+                  "ink_pixels": 8,
+                  "pixels_sha256": "d44f4904f91df7cae9aa09824769fa626eb5e2599c9b0d1c4b47c95fce1b0242"
+                }
+              ]
+            }
+          ],
+          "boundary_description": "Closed black chart line labeled Eddy Verne; black legend entry is 23-Nov-2021. Manual feature/date/curve selection; contour threshold unspecified.",
+          "projection_known": false,
+          "contour_threshold_known": false,
+          "geodesic_distance_inferred": false,
+          "physical_footprint_admitted": false,
+          "physical_state_join_eligible": false,
+          "association_is_verified": false,
+          "rights_screened_release_eligible": false,
+          "missing_ink_reconstructed": false
+        },
+        "component": "horizontal",
+        "calculation": {
+          "audit_scale_bar_equivalent_km": 178.448276,
+          "audit_reading_interval_km": [
+            142.5,
+            216.964286
+          ],
+          "range_km": [
+            125,
+            225
+          ],
+          "total_scenarios": 8,
+          "systematic_projection_error_quantified": false
+        }
+      }
+    },
+    {
+      "id": "verne-cls-2021-scale-bar-vertical-span",
+      "entity_id": "eddy:horizon:loop-71-primary",
+      "category": "size",
+      "metric": "source_scale_bar_equivalent_vertical_span",
+      "metric_label": "source scale bar equivalent vertical span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2021-11-23",
+      "period_end": "2021-11-23",
+      "period_label": "2021-11-23 black chart line; other dates excluded",
+      "definition": "Vertical source-image bounding span expressed at the displayed 300 km scale bar. Nominal chart-scale equivalent, not a calibrated geodesic span.",
+      "scope": "One named operational-chart line. Registry physical identity association remains unverified.",
+      "qualification": "Map projection and contour threshold unspecified. A remote scale bar may not give the same physical scale at the eddy; that systematic error is unquantified. Six-pixel extent allowance, two-pixel scale-anchor shifts and two ink gates cover image-reading choices only, not geographic accuracy. No diameter, radius, physical footprint, state containment or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://energies-and-infrastructures-monitoring.groupcls.com/active-loop-current-drives-stellar-2021-fast-eddy-season/",
+      "source_locator": "LC activity over a 4-month period chart; lower-left closed line labeled Eddy Verne, black 23-Nov-2021 legend entry; lower-right 0–300 km scale bar.",
+      "source_file": "research/eddy-measurement-register-additions-v28.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
+      "raw_record": {
+        "id": "verne-cls-2021-scale-bar-vertical-span",
+        "entity_id": "eddy:horizon:loop-71-primary",
+        "category": "size",
+        "metric": "source_scale_bar_equivalent_vertical_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          100,
+          200
+        ],
+        "range_kind": "source_scale_bar_reading_sensitivity_not_geodesic_uncertainty",
+        "source_id": "cls-2021",
+        "source_locator": "LC activity over a 4-month period chart; lower-left closed line labeled Eddy Verne, black 23-Nov-2021 legend entry; lower-right 0–300 km scale bar.",
+        "case_label": "Verne, provider chart 23 November 2021",
+        "period_start": "2021-11-23",
+        "period_end": "2021-11-23",
+        "period_precision": "day_as_plotted",
+        "period_label": "2021-11-23 black chart line; other dates excluded",
+        "definition": "Vertical source-image bounding span expressed at the displayed 300 km scale bar. Nominal chart-scale equivalent, not a calibrated geodesic span.",
+        "scope": "One named operational-chart line. Registry physical identity association remains unverified.",
+        "qualification": "Map projection and contour threshold unspecified. A remote scale bar may not give the same physical scale at the eddy; that systematic error is unquantified. Six-pixel extent allowance, two-pixel scale-anchor shifts and two ink gates cover image-reading choices only, not geographic accuracy. No diameter, radius, physical footprint, state containment or seasonal envelope inferred.",
+        "scale_bar_case_index": 0,
+        "scale_bar_component": "vertical",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original provider article HTML and its full-size 800×640 chart acquired and SHA-verified. Actual chart pixels and the separate 800×419 Verne ADCP transect image visually reviewed. Contour threshold and map projection unspecified; raw ADCP profiles and chart georeferencing not acquired.",
+      "source_id": "cls-2021",
+      "period_precision": "day_as_plotted",
+      "case_label": "Verne, provider chart 23 November 2021",
+      "range_value": [
+        100,
+        200
+      ],
+      "range_kind": "source_scale_bar_reading_sensitivity_not_geodesic_uncertainty",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_image_scale_bar_equivalent_spans_v1",
+          "owner_id": "eddy:horizon:loop-71-primary",
+          "source_name": "Verne",
+          "date": "2021-11-23",
+          "coordinate_system": "source_image_pixels_scale_bar_equivalent_not_geodesic",
+          "scale_bar_km": 300,
+          "reading_allowance_pixels": 6,
+          "axis_sensitivity_pixels": 2,
+          "round_outward_km": 25,
+          "roi_xyxy_inclusive": [
+            85,
+            345,
+            181,
+            429
+          ],
+          "source_raster": {
+            "width": 800,
+            "height": 640,
+            "components": 3,
+            "samples_sha256": "c5e0725e0cd1d0a771a979aaa928544f970ffe2d8026fd8b1b43385adebda941"
+          },
+          "readings": [
+            {
+              "outline": {
+                "maximum_rgb_channel": 75,
+                "bbox_xyxy": [
+                  98,
+                  357,
+                  167,
+                  416
+                ],
+                "selected_pixels": 909,
+                "selected_pixels_sha256": "cfb88775dfba97694fa403073d76b95beb15ea796f8e665866f12bfccdecd132",
+                "enclosed_background_pixels": 2169,
+                "other_component_sizes": []
+              },
+              "ticks": [
+                {
+                  "value_km": 0,
+                  "window_xyxy": [
+                    635,
+                    579,
+                    645,
+                    583
+                  ],
+                  "coordinate_x": 640,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "3665d36ca693e523afd1c01076748e4e72750416de4dd28e969f19d14ed8f380"
+                },
+                {
+                  "value_km": 100,
+                  "window_xyxy": [
+                    674,
+                    579,
+                    685,
+                    583
+                  ],
+                  "coordinate_x": 679,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "063d55357ae687c33c79a0ff6e6553467a420252343837002ebdb9a575b0d735"
+                },
+                {
+                  "value_km": 200,
+                  "window_xyxy": [
+                    713,
+                    579,
+                    724,
+                    583
+                  ],
+                  "coordinate_x": 718,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "6cd802d91bcd023ec826b45c782444e3c5cc1e30b5eea6a7fa3aeee21fa1ce77"
+                },
+                {
+                  "value_km": 300,
+                  "window_xyxy": [
+                    752,
+                    579,
+                    763,
+                    583
+                  ],
+                  "coordinate_x": 756,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "830dafe777b70a549b8393dbcf2176f5f95b159134565ae69c7b9804b0d41f32"
+                }
+              ]
+            },
+            {
+              "outline": {
+                "maximum_rgb_channel": 100,
+                "bbox_xyxy": [
+                  98,
+                  356,
+                  167,
+                  417
+                ],
+                "selected_pixels": 969,
+                "selected_pixels_sha256": "c5626badf789337fc1edd27de88d164c377d5b63fd1acc84ca6290e948e9a71b",
+                "enclosed_background_pixels": 2150,
+                "other_component_sizes": []
+              },
+              "ticks": [
+                {
+                  "value_km": 0,
+                  "window_xyxy": [
+                    635,
+                    579,
+                    645,
+                    583
+                  ],
+                  "coordinate_x": 640,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "3665d36ca693e523afd1c01076748e4e72750416de4dd28e969f19d14ed8f380"
+                },
+                {
+                  "value_km": 100,
+                  "window_xyxy": [
+                    674,
+                    579,
+                    685,
+                    583
+                  ],
+                  "coordinate_x": 679,
+                  "ink_pixels": 5,
+                  "pixels_sha256": "063d55357ae687c33c79a0ff6e6553467a420252343837002ebdb9a575b0d735"
+                },
+                {
+                  "value_km": 200,
+                  "window_xyxy": [
+                    713,
+                    579,
+                    724,
+                    583
+                  ],
+                  "coordinate_x": 718.0,
+                  "ink_pixels": 6,
+                  "pixels_sha256": "bc024897db0519b40c5b7f1bde73d60671ef9f00eac740cb814424bb6a590c3e"
+                },
+                {
+                  "value_km": 300,
+                  "window_xyxy": [
+                    752,
+                    579,
+                    763,
+                    583
+                  ],
+                  "coordinate_x": 756.0,
+                  "ink_pixels": 8,
+                  "pixels_sha256": "d44f4904f91df7cae9aa09824769fa626eb5e2599c9b0d1c4b47c95fce1b0242"
+                }
+              ]
+            }
+          ],
+          "boundary_description": "Closed black chart line labeled Eddy Verne; black legend entry is 23-Nov-2021. Manual feature/date/curve selection; contour threshold unspecified.",
+          "projection_known": false,
+          "contour_threshold_known": false,
+          "geodesic_distance_inferred": false,
+          "physical_footprint_admitted": false,
+          "physical_state_join_eligible": false,
+          "association_is_verified": false,
+          "rights_screened_release_eligible": false,
+          "missing_ink_reconstructed": false
+        },
+        "component": "vertical",
+        "calculation": {
+          "audit_scale_bar_equivalent_km": 157.758621,
+          "audit_reading_interval_km": [
+            117.5,
+            195.535714
+          ],
+          "range_km": [
+            100,
+            200
+          ],
+          "total_scenarios": 8,
+          "systematic_projection_error_quantified": false
+        }
+      }
+    },
+    {
+      "id": "verne-cls-2021-local-maximum-current",
+      "entity_id": "eddy:horizon:loop-71-primary",
+      "category": "kinematics",
+      "metric": "source_reported_operational_local_maximum_current_speed",
+      "metric_label": "source reported operational local maximum current speed",
+      "value": 3.5,
+      "unit": "knots",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Beginning of September 2021 context; exact sample dates unspecified",
+      "definition": "Provider-reported maximum measured current speed near a client site in Verne.",
+      "scope": "Named operational source case; finite local ADCP sampling, not a whole-eddy maximum. Registry physical crosswalk unverified.",
+      "qualification": "Exact observation dates, sample depth, averaging interval, raw profiles and source measurement uncertainty unspecified. Native knots retained. Service sampling-depth range is not assigned as eddy depth; no surface maximum, whole-lifetime or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://energies-and-infrastructures-monitoring.groupcls.com/active-loop-current-drives-stellar-2021-fast-eddy-season/",
+      "source_locator": "2021 Loop Current Eddies, first paragraph; maximum near a client site around final Verne separation.",
+      "source_file": "research/eddy-measurement-register-additions-v28.json",
+      "source_pointer": "/records/2",
+      "source_sha256": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
+      "raw_record": {
+        "id": "verne-cls-2021-local-maximum-current",
+        "entity_id": "eddy:horizon:loop-71-primary",
+        "source_id": "cls-2021",
+        "category": "kinematics",
+        "metric": "source_reported_operational_local_maximum_current_speed",
+        "value": 3.5,
+        "unit": "knots",
+        "case_label": "Verne, 2021 FAST Eddy operational report",
+        "period_start": null,
+        "period_end": null,
+        "period_label": "Beginning of September 2021 context; exact sample dates unspecified",
+        "source_locator": "2021 Loop Current Eddies, first paragraph; maximum near a client site around final Verne separation.",
+        "definition": "Provider-reported maximum measured current speed near a client site in Verne.",
+        "scope": "Named operational source case; finite local ADCP sampling, not a whole-eddy maximum. Registry physical crosswalk unverified.",
+        "qualification": "Exact observation dates, sample depth, averaging interval, raw profiles and source measurement uncertainty unspecified. Native knots retained. Service sampling-depth range is not assigned as eddy depth; no surface maximum, whole-lifetime or seasonal envelope inferred.",
+        "profile_context": {
+          "method": "source_reported_operational_adcp_maximum",
+          "phase": "early_september_2021_verne",
+          "sample_depth_m": null,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "is_eddy_vertical_extent": false,
+          "window_is_lifetime": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original provider article HTML and its full-size 800×640 chart acquired and SHA-verified. Actual chart pixels and the separate 800×419 Verne ADCP transect image visually reviewed. Contour threshold and map projection unspecified; raw ADCP profiles and chart georeferencing not acquired.",
+      "source_id": "cls-2021",
+      "case_label": "Verne, 2021 FAST Eddy operational report",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_operational_adcp_maximum",
+        "phase": "early_september_2021_verne",
+        "sample_depth_m": null,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "is_eddy_vertical_extent": false,
+        "window_is_lifetime": false,
+        "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "wilde-cls-2021-local-maximum-current",
+      "entity_id": "eddy:horizon:loop-72-primary",
+      "category": "kinematics",
+      "metric": "source_reported_operational_local_maximum_current_speed",
+      "metric_label": "source reported operational local maximum current speed",
+      "value": 4.25,
+      "unit": "knots",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "October 2021; exact sample dates unspecified",
+      "definition": "Provider-reported maximum measured current speed in the western front of Wilde.",
+      "scope": "Named operational source case; finite local ADCP sampling, not a whole-eddy maximum. Registry physical crosswalk unverified.",
+      "qualification": "Exact observation dates, sample depth, averaging interval, raw profiles and source measurement uncertainty unspecified. Native knots retained. Service sampling-depth range is not assigned as eddy depth; no surface maximum, whole-lifetime or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://energies-and-infrastructures-monitoring.groupcls.com/active-loop-current-drives-stellar-2021-fast-eddy-season/",
+      "source_locator": "2021 Loop Current Eddies, second paragraph; maximum observed in western front of Wilde.",
+      "source_file": "research/eddy-measurement-register-additions-v28.json",
+      "source_pointer": "/records/3",
+      "source_sha256": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
+      "raw_record": {
+        "id": "wilde-cls-2021-local-maximum-current",
+        "entity_id": "eddy:horizon:loop-72-primary",
+        "source_id": "cls-2021",
+        "category": "kinematics",
+        "metric": "source_reported_operational_local_maximum_current_speed",
+        "value": 4.25,
+        "unit": "knots",
+        "case_label": "Wilde, 2021 FAST Eddy operational report",
+        "period_start": null,
+        "period_end": null,
+        "period_label": "October 2021; exact sample dates unspecified",
+        "source_locator": "2021 Loop Current Eddies, second paragraph; maximum observed in western front of Wilde.",
+        "definition": "Provider-reported maximum measured current speed in the western front of Wilde.",
+        "scope": "Named operational source case; finite local ADCP sampling, not a whole-eddy maximum. Registry physical crosswalk unverified.",
+        "qualification": "Exact observation dates, sample depth, averaging interval, raw profiles and source measurement uncertainty unspecified. Native knots retained. Service sampling-depth range is not assigned as eddy depth; no surface maximum, whole-lifetime or seasonal envelope inferred.",
+        "profile_context": {
+          "method": "source_reported_operational_adcp_maximum",
+          "phase": "october_2021_wilde",
+          "sample_depth_m": null,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "is_eddy_vertical_extent": false,
+          "window_is_lifetime": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original provider article HTML and its full-size 800×640 chart acquired and SHA-verified. Actual chart pixels and the separate 800×419 Verne ADCP transect image visually reviewed. Contour threshold and map projection unspecified; raw ADCP profiles and chart georeferencing not acquired.",
+      "source_id": "cls-2021",
+      "case_label": "Wilde, 2021 FAST Eddy operational report",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_operational_adcp_maximum",
+        "phase": "october_2021_wilde",
+        "sample_depth_m": null,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "is_eddy_vertical_extent": false,
+        "window_is_lifetime": false,
+        "physical_crosswalk_verified": false
       }
     }
   ],
