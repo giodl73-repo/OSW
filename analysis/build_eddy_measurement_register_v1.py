@@ -70,6 +70,16 @@ def validate_numeric_interval(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_airborne_temperature_diagnostic':
+        assert row['entity_id']=='eddy:horizon:loop-31-primary'
+        assert c['phase']=='single_mission_temperature_transect' and c['thermal_reference_celsius']==20
+        assert c['aggregation']=='maximum_sampled_isotherm_depth'
+        assert row['metric']=='source_reported_sampled_maximum_20c_isotherm_depth'
+        assert row['category']=='structure' and row['unit']=='m' and row['value']==200
+        assert row['period_start']==row['period_end']=='1999-08-03'
+        assert row['evidence_role']=='qualified_indexed_reference' and row['rights_screened_release_eligible'] is False
+        assert all(c[k] is False for k in ['is_eddy_vertical_extent','window_is_lifetime','eddy_total_heat_inferred','raw_profiles_acquired','physical_crosswalk_verified'])
+        return
     assert c['method']=='source_reported_glider_diagnostic'
     assert all(c[k] is False for k in ['is_eddy_vertical_extent','window_is_lifetime','eddy_total_heat_inferred','raw_profiles_acquired','physical_crosswalk_verified'])
     assert row['entity_id']=='eddy:horizon:loop-61-primary'
@@ -93,6 +103,26 @@ def validate_profile_context(row):
             assert row['category']=='structure' and row['unit']=='kJ/cm2' and row['value'] is None
             assert row['lower_bound']==100 and row['lower_bound_exclusive'] is True
             assert c['thermal_reference_celsius']==26 and c['quantity_support']=='local_water_column'
+
+
+def validate_fast_alias_reference(row):
+    a=row['case_alias_association']
+    assert row['entity_id']=='eddy:horizon:loop-03-primary'
+    assert (a['source_label'],a['published_alias'],a['registry_name'],a['registry_source_number'])==('Eddy B','Fast Eddy','Fast',3)
+    assert a['registry_initial_separation']=='1985-05-31' and a['report_separation_context']=='early July 1985'
+    assert a['alias_reference_source_id']=='hamilton-1999'
+    assert all(a[k] is False for k in ['physical_crosswalk_verified','separation_conventions_reconciled','other_eddy_values_inherited'])
+    assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
+    kinds={'source_reported_center_westward_translation_distance':('travel','km'),
+           'source_reported_approximate_center_translation_speed':('kinematics','km/day'),
+           'source_reported_sampled_drifter_orbit_diameter':('size','km'),
+           'source_reported_sampled_drifter_orbit_radius':('size','km'),
+           'source_reported_hydrographic_radius_lower_bound':('size','km'),
+           'source_reported_drifter_inferred_flow_radius_lower_bound':('size','km')}
+    assert row['metric'] in kinds and (row['category'],row['unit'])==kinds[row['metric']]
+    if row['metric'].endswith('_lower_bound'):
+        assert row['value'] is None and row['lower_bound']>0 and row['lower_bound_exclusive'] is False
+    else:assert row['value']>0 and row.get('lower_bound') is None
 
 
 def station_distance_interval(c):
@@ -255,6 +285,11 @@ def build():
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('case_alias_association'):
+                validate_fast_alias_reference(r)
+                association=r['case_alias_association'];original=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==association['registry_source_number'])
+                assert (association['registry_name'],association['registry_initial_separation'])==(original['name'],original['initial_separation'])
+                assert association['alias_reference_source_id'] in batch['sources']
             map_values={}
             if r.get('pdf_line_case_index') is not None:
                 assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index'])
@@ -405,7 +440,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index','detection_context','profile_context'] if k in r},**map_values)
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index','detection_context','profile_context','case_alias_association'] if k in r},**map_values)
         class_legacy={v['source_number']:v for v in read('research/named-loop-current-eddies.json')['entries']} if batch.get('size_classifications') else {}
         for n,c in enumerate(batch.get('size_classifications',[])):
             owner=c['entity_id'];assert owner in identities and not any(v['id']==c['id'] for v in classifications)

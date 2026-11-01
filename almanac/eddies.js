@@ -19,8 +19,13 @@
     if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
+    if(r.case_alias_association){
+      const a=r.case_alias_association;
+      add('strong',`Published alias: ${a.published_alias} / ${a.source_label} · registry physical crosswalk unverified.`,add('p',undefined,box));
+      add('p',`Registry initial separation: ${a.registry_initial_separation}; report context: ${a.report_separation_context}. Separation conventions remain unreconciled.`,box);
+    }
     if(r.profile_context){
-      add('strong','Glider profile diagnostic · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
       if(c.vertical_averaging_interval_m)add('p',`Depth averaging: ${c.vertical_averaging_interval_m.join('–')} m; averaging axis: depth.`,box);
       if(c.thermal_reference_celsius!==undefined)add('p',`Thermal reference: ${c.thermal_reference_celsius}°C isotherm.`,box);

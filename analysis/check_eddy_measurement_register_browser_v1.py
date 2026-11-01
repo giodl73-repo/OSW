@@ -418,6 +418,28 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.locator('[data-evidence-id="berek-bower-2024-native-frontal-east-west-span"]').screenshot(path=str(OUT/'mobile-berek-native-frontal.png'))
             checks.append('Berek source-native frontal line spans retain exact source path, source threshold, unknown contour observation date separate from dated SSH background and no reconstructed gaps; no secondary inheritance or physical footprint inference; mobile layout')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-03-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-03-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['280 km','4.6 km/day','130 km','40 km','≥ 180 km','≥ 200 km','Published alias: Fast Eddy / Eddy B','early July 1985','1985-05-31','conventions remain unreconciled','does not indicate eddy size','not an outer radius','Different methods and dates do not define growth']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            page.locator('[data-evidence-id="fast-saic-1988-october-deeper-isotherm-radius-lower-bound"]').screenshot(path=str(OUT/'fast-hydrographic-radius-bound.png'))
+            page.locator('[data-evidence-id="fast-saic-1988-october-drifter-orbit-radius"]').screenshot(path=str(OUT/'fast-sampled-drifter-radius.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="fast-saic-1988-november-drifter-flow-radius-lower-bound"]').screenshot(path=str(OUT/'mobile-fast-flow-radius-bound.png'))
+            checks.append('Fast / Eddy B alias retains unverified registry identity and different separation conventions; orbit radius/diameter stay distinct from hydrographic and flow-radius inclusive bounds, center translation differs from orbit speed; mobile layout')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-31-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-31-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['200 m','Airborne temperature diagnostic','20°C isotherm','1999-08-03','finite sampling','HTTP 403','full methods not independently reviewed']:
+                assert needle in row.inner_text(),needle
+            assert 'Glider profile diagnostic' not in row.inner_text() and 'Size reference needed' in row.inner_text()
+            page.locator('[data-evidence-id="haskell-noaa-1999-20c-isotherm-maximum-depth"]').screenshot(path=str(OUT/'haskell-airborne-isotherm-depth.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            checks.append('Haskell NOAA airborne mission retains sampled maximum depth of the 20°C isotherm, flight date and qualified original-figure access; no other feature values or whole-eddy depth inferred; size gap remains')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
