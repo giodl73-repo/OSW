@@ -1,0 +1,28 @@
+{
+  "schema": "osw.eddy-altimetry-source-audit-request.v1",
+  "execute": true,
+  "revision": 1,
+  "maximum_cloud_jobs": 1,
+  "maximum_local_heavy_jobs": 0,
+  "field_values_read_permitted": false,
+  "measurement_admission_permitted": false,
+  "native_build_permitted": false,
+  "wasm_build_permitted": false,
+  "runtime_installation_permitted": false,
+  "source": {
+    "doi": "10.7266/5j651zn1",
+    "udi": "U2.x856.000:0001",
+    "url": "https://data.griidc.org/api/file/download/947138",
+    "file_name": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_19930101_20191231.nc",
+    "expected_bytes": 757416604,
+    "metadata_url": "https://data.griidc.org/data/U2.x856.000:0001/metadata",
+    "file_list_url": "https://data.griidc.org/api/files_dataset_submission/19379?path=",
+    "checksum_policy": "Compute original NetCDF SHA256 in the cloud. The /download/5194 checksum describes the dataset download and has not been established as the individual NetCDF checksum."
+  },
+  "scope": "Header and bounded coordinate arrays only. No ADT array read, contour selection, name/date join, size admission, state join, runtime changes or release installation.",
+  "input_sha256": {
+    "analysis/inspect_eddy_altimetry_source_v1.py": "1a4db79fbabb4b905ce2ed396bf8a0b10fa456d82c65481e983d26573107be31",
+    "analysis/test_eddy_altimetry_source_audit_v1.py": "1c4cdb08e78469c8c98f5500842dcefd63acb21cea4677277940065eae5c46f2",
+    ".github/workflows/eddy-altimetry-source-audit-v1.yml": "0882c74db5f5ec9867bc581214b43b00a6f19e43869a4f508db3333b20ff670a"
+  }
+}
