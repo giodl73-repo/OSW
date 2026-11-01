@@ -109,6 +109,22 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_quiet_sst_ellipse_axes':
+        assert row['entity_id']=='eddy:horizon:loop-14-primary' and row['category']=='size' and row['unit']=='km'
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert row['period_start'] is None and row['period_end'] is None and row['period_precision']=='source_two_image_dates_no_per_image_assignment'
+        assert row.get('depth_m') is None and row.get('lower_bound') is None and row.get('upper_bound') is None
+        assert c['source_feature']=='Quiet Eddy' and c['image_dates']==['1990-08-12','1990-08-19']
+        assert c['source_method']=='NOAA_11_AVHRR_multichannel_SST_interpretation_with_drifter_context' and c['source_front_gradient_celsius']==0.5
+        assert all(c[k] is False for k in ['source_uncertainty_quantified','per_image_axis_values_known','continuous_observation_interval_inferred','strict_bound_inferred','mathematical_ellipse_fit_verified','raw_sst_images_acquired','is_eddy_vertical_extent','ellipse_area_derived','outer_boundary_operator_known','physical_crosswalk_verified','separation_conventions_reconciled','annual_extrema_inferred'])
+        assert c['axis'] in ['major','minor'] and row['metric']=='source_reported_sst_ellipse_'+c['axis']+'_axis_length'
+        if c['axis']=='major':
+            assert row['value']==400 and row.get('range_value') is None
+            assert (c['orientation_as_reported'],c['approximation_as_reported'])==('northward','nearly')
+        else:
+            assert row['value'] is None and row['range_value']==[250,300] and row['range_kind']=='source_reported_approximate_axis_interval_not_seasonal_range'
+            assert (c['orientation_as_reported'],c['approximation_as_reported'])==('east_west','about')
+        return
     if c['method']=='source_reported_k_2000_mooring_current':
         assert row['entity_id']=='eddy:horizon:loop-34-primary' and row['category']=='kinematics' and row['unit']=='cm/s'
         assert row['metric']=='source_reported_local_interaction_current_speed' and row.get('range_value') is None
@@ -450,6 +466,15 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_quiet_sst_ellipse_axes':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='QUIET_SOURCE_REPORTED_SST_AXES_VERIFIED'
+                a=report['accepted'];c=r['profile_context'];assert a['image_dates']==c['image_dates']
+                assert (r['value'] if c['axis']=='major' else r['range_value'])==a['major_axis_km' if c['axis']=='major' else 'minor_axis_range_km']
+                assert report['source_identity']['source_name']=='Quiet Eddy' and report['source_identity']['physical_crosswalk_verified'] is False
+                legacy=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==14)
+                assert (legacy['name'],legacy['initial_separation'])==('Quiet',report['source_identity']['registry_initial_separation'])
+
             if r.get('profile_context',{}).get('method')=='source_reported_k_2000_mooring_current':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 assert report['status']=='QUALIFIED_KINETIC_2000_INTERACTION_SITE_CURRENTS_VERIFIED'

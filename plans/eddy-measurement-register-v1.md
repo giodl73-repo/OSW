@@ -536,3 +536,14 @@ The June 2026 manuscript is a preprint. Original PDF/figure retrieval returned H
 Thermal-level area rule: retain each source survey and each depth contour of a specified temperature surface separately. A contour depth is neither instrument depth nor eddy thickness; its enclosed area is not the whole outer boundary. Preserve native tabular units and record unit conversion. Source zero values and unclosed/dashed cells remain explicit in the source audit and are not interpolated or promoted into disappearance claims. Survey-month labels do not imply exact sample dates, annual envelopes or complete lifetimes.
 
 Dated bold SSH-isoline charts: pin original bytes and decoded pixels, read labeled axes, require a dominant closed stroke wholly inside the selection window, and test ink/axis/extent sensitivity. Preserve the source SSH level and unknown reference; matching a numeric level does not equate it to an OSW gridded operator. Report bounding parallel and meridional spans, not principal widths, diameter, area, geometry or seasonal extrema. Use the original map label when source prose has a conflicting year, retaining both facts.
+
+## Source-described SST ellipse axes
+
+Keep source-reported ellipse-axis approximations distinct from fitted ellipses,
+outer contours and diameter. Preserve directional wording and approximate
+qualifiers: nearly is not a strict upper bound. When a source discusses two image
+dates together without assigning dimensions to each, retain both dates as support;
+do not invent daily pairs, interpolate a time series or treat the axis interval as
+a seasonal range. An SST edge contrast is not a prescribed closed isotherm or
+measurement uncertainty. Do not calculate ellipse area or physical geometry from
+these scalars. Keep the named source case separate from unverified registry joins.

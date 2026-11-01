@@ -1,0 +1,123 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 394,
+  "baseline_evidence_sha256": "5ff3eccd802196f038a600689147037f51202b2de19b25258d7944ebc7fa274b",
+  "baseline_measurement_csv_sha256": "61ecf7037930825d5baa770ca7ac006f61d7d35a97d99af32b90827426c72cbd",
+  "sources": {
+    "hawkins-1991-quiet": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-3c0484ad4c3557605c44d392eac57017/pdf/GOVPUB-I-3c0484ad4c3557605c44d392eac57017.pdf",
+      "citation": "Hawkins, May, Pickett and Abell (1991), Benefits of NOAA-11 Channel #3 in Detection of Mesoscale Eddies in the Gulf of Mexico During Summer, pp. 356–360, in Proceedings: Eleventh Annual Gulf of Mexico Information Transfer Meeting, November 1990. OCS Study MMS 91-0040, published October 1991.",
+      "access": "Original proceedings PDF acquired; actual PDF pages 345–347 / printed pages 356–358 reviewed. Authors explicitly identify Quiet in the same discussion. The dimensions are printed source approximations from August 12 and 19 imagery, not OSW graph or map readings.",
+      "original": {
+        "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-3c0484ad4c3557605c44d392eac57017/pdf/GOVPUB-I-3c0484ad4c3557605c44d392eac57017.pdf",
+        "bytes": 39785325,
+        "sha256": "ccd1c689ac8003dfa49f4dfe76a0c280fe8f134b4346c89ba5c9a62e0bc58252",
+        "pages": 504
+      },
+      "reviewed_page_png_sha256": {
+        "345": "a118cff0669f39490310ea0bb918ee23026218905e37a9cd4c4f99ab45d67cb0",
+        "346": "8fe05d91edab4ad708fa39bd2dcf87734cdd1ccd8d852013a022208e9f2cd13e",
+        "347": "b44ebc4b5bd66f31dce271b0b465ceb83b74d35973ec04f712567bbc9fab485c"
+      },
+      "source_review_file": "research/eddy-quiet-avhrr-source-review-v1.json",
+      "source_review_sha256": "7dfa204ebd82e7487223c1e2456bcd8be055444d3ec63122a8ab9da3adbe3d05"
+    }
+  },
+  "records": [
+    {
+      "id": "quiet-hawkins-1991-sst-major-axis",
+      "entity_id": "eddy:horizon:loop-14-primary",
+      "source_id": "hawkins-1991-quiet",
+      "category": "size",
+      "metric": "source_reported_sst_ellipse_major_axis_length",
+      "value": 400,
+      "unit": "km",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Quiet Eddy, August 1990 source SST interpretation",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "source_two_image_dates_no_per_image_assignment",
+      "period_label": "1990-08-12 and 1990-08-19 source images; dimensions not assigned separately to each image",
+      "source_locator": "Hawkins et al., printed page 358 / PDF page 347, August imagery paragraph and Quiet identification; methods on printed pages 356–357.",
+      "definition": "Source-described north-oriented major axis, nearly 400 km.",
+      "scope": "Individual named Quiet source case during August 1990 separation. Registry physical identity crosswalk and differing separation conventions remain unverified.",
+      "qualification": "Approximate SST expression interpreted from multi-channel AVHRR imagery, with drifting-buoy context. Source discusses an approximately 0.5 degree Celsius edge contrast, not a prescribed closed isotherm. No exact per-image dimensions, fitted ellipse, physical outer boundary or quantified measurement uncertainty established. The two image dates are not a continuous observation window or seasonal minimum/maximum. Nearly 400 km is not a strict bound. No diameter, ellipse area, geometry, lifetime, state containment, ranking or seasonal playback derived.",
+      "profile_context": {
+        "method": "source_reported_quiet_sst_ellipse_axes",
+        "axis": "major",
+        "orientation_as_reported": "northward",
+        "approximation_as_reported": "nearly",
+        "image_dates": [
+          "1990-08-12",
+          "1990-08-19"
+        ],
+        "source_feature": "Quiet Eddy",
+        "source_method": "NOAA_11_AVHRR_multichannel_SST_interpretation_with_drifter_context",
+        "source_front_gradient_celsius": 0.5,
+        "source_uncertainty_quantified": false,
+        "per_image_axis_values_known": false,
+        "continuous_observation_interval_inferred": false,
+        "strict_bound_inferred": false,
+        "mathematical_ellipse_fit_verified": false,
+        "raw_sst_images_acquired": false,
+        "is_eddy_vertical_extent": false,
+        "ellipse_area_derived": false,
+        "outer_boundary_operator_known": false,
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "annual_extrema_inferred": false
+      }
+    },
+    {
+      "id": "quiet-hawkins-1991-sst-minor-axis",
+      "entity_id": "eddy:horizon:loop-14-primary",
+      "source_id": "hawkins-1991-quiet",
+      "category": "size",
+      "metric": "source_reported_sst_ellipse_minor_axis_length",
+      "value": null,
+      "unit": "km",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Quiet Eddy, August 1990 source SST interpretation",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "source_two_image_dates_no_per_image_assignment",
+      "period_label": "1990-08-12 and 1990-08-19 source images; dimensions not assigned separately to each image",
+      "source_locator": "Hawkins et al., printed page 358 / PDF page 347, August imagery paragraph and Quiet identification; methods on printed pages 356–357.",
+      "definition": "Source-described east–west minor axis, about 250–300 km.",
+      "scope": "Individual named Quiet source case during August 1990 separation. Registry physical identity crosswalk and differing separation conventions remain unverified.",
+      "qualification": "Approximate SST expression interpreted from multi-channel AVHRR imagery, with drifting-buoy context. Source discusses an approximately 0.5 degree Celsius edge contrast, not a prescribed closed isotherm. No exact per-image dimensions, fitted ellipse, physical outer boundary or quantified measurement uncertainty established. The two image dates are not a continuous observation window or seasonal minimum/maximum. Nearly 400 km is not a strict bound. No diameter, ellipse area, geometry, lifetime, state containment, ranking or seasonal playback derived.",
+      "profile_context": {
+        "method": "source_reported_quiet_sst_ellipse_axes",
+        "axis": "minor",
+        "orientation_as_reported": "east_west",
+        "approximation_as_reported": "about",
+        "image_dates": [
+          "1990-08-12",
+          "1990-08-19"
+        ],
+        "source_feature": "Quiet Eddy",
+        "source_method": "NOAA_11_AVHRR_multichannel_SST_interpretation_with_drifter_context",
+        "source_front_gradient_celsius": 0.5,
+        "source_uncertainty_quantified": false,
+        "per_image_axis_values_known": false,
+        "continuous_observation_interval_inferred": false,
+        "strict_bound_inferred": false,
+        "mathematical_ellipse_fit_verified": false,
+        "raw_sst_images_acquired": false,
+        "is_eddy_vertical_extent": false,
+        "ellipse_area_derived": false,
+        "outer_boundary_operator_known": false,
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "annual_extrema_inferred": false
+      },
+      "range_value": [
+        250,
+        300
+      ],
+      "range_kind": "source_reported_approximate_axis_interval_not_seasonal_range"
+    }
+  ]
+}

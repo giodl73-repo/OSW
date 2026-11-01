@@ -619,6 +619,19 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for part in ['near-surface','755m']:page.locator(f'[data-evidence-id="kinetic-mckone-2007-november-{part}-current"]').screenshot(path=str(OUT/f'mobile-kinetic-{part}-interaction-current.png'))
             checks.append('Kinetic qualified interaction-site currents: near-surface reached value and 755 m local maximum, phase rather than invented sample dates, no simultaneous profile/shear/thickness, cross-report association unverified, size gap retained; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-14-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-14-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['400 km','250–300 km','Nearly 400 km','north-oriented major axis','east–west minor axis','12 and 19 August 1990','No separate axis pair','not a strict upper bound','No ellipse area','physical crosswalk unverified']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            assert row.locator('[data-evidence-id^="quiet-hawkins-1991-"]').count()==2
+            page.set_viewport_size({'width':1440,'height':1000})
+            for axis in ['major','minor']:page.locator(f'[data-evidence-id="quiet-hawkins-1991-sst-{axis}-axis"]').screenshot(path=str(OUT/f'quiet-sst-{axis}-axis.png'))
+            row.locator('summary').screenshot(path=str(OUT/'quiet-sst-reference-summary.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for axis in ['major','minor']:page.locator(f'[data-evidence-id="quiet-hawkins-1991-sst-{axis}-axis"]').screenshot(path=str(OUT/f'mobile-quiet-sst-{axis}-axis.png'))
+            checks.append('Quiet source-reported SST axes: nearly 400 km major and about 250–300 km minor; paired image-date support without daily values or seasonal bounds, no strict upper bound, fitted ellipse/area or geometry; named size gap closed; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
