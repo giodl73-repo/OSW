@@ -138,7 +138,7 @@ class EddyRegister(unittest.TestCase):
             if r['entity_id'].startswith('eddy:horizon:'):
                 self.assertTrue(r['entity_id'].endswith('-primary') or r.get('independent_named_case'))
                 self.assertFalse(r['rights_screened_release_eligible'])
-                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference','graph_digitized_named_case_reference','map_read_named_case_reference','map_read_circulation_arrow_reference','map_read_native_frontal_line_reference','qualified_osw_gridded_source_case_reference','qualified_indexed_model_case_reference'])
+                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference','graph_digitized_named_case_reference','map_read_named_case_reference','map_read_circulation_arrow_reference','map_read_native_frontal_line_reference','qualified_osw_gridded_source_case_reference','qualified_indexed_model_case_reference','qualified_author_image_patch_reference'])
                 if r['category']=='duration' and r['evidence_role']=='registry_source_reference':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
 
 
