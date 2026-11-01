@@ -520,6 +520,19 @@ def run():
             for part in ['area','north-south']:
                 page.locator('[data-evidence-id="kraken-2013-03-31-gridded-'+part+'"]').screenshot(path=str(OUT/('mobile-kraken-gridded-'+part+'.png')))
             checks.append('Kraken source-case comparison retains original daily gridded area, equivalent diameter and bounding spans as six-scenario method sensitivity, registry/date conflict, later reattachments and no inherited physical identity; desktop/mobile')
+            for number,name,values in [(56,'galileo',['100–300 km','100–325 km','2011-06-21']),(57,'hadal',['400–625 km','2011-08-01','caption says shed by 30 July','Hadal II inherits no values'])]:
+                page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-'+str(number)+'-primary')
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="eddy:horizon:loop-'+str(number)+'-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+                page.set_viewport_size({'width':1440,'height':1000})
+                for needle in values+['operational chart estimate','low-resolution chart','303 × 240 pixels','128 sensitivity cases','no missing ink or closed boundary reconstructed','separate gridded comparison did not qualify']:
+                    assert needle in row.inner_text(),needle
+                assert 'Size reference needed' not in row.inner_text()
+                page.locator('[data-evidence-id="'+name+'-brickley-2012-operational-chart-east-west-span"]').screenshot(path=str(OUT/(name+'-operational-chart-east-west.png')))
+                if number==57:page.locator('[data-evidence-id="hadal-brickley-2012-operational-chart-north-south-span"]').screenshot(path=str(OUT/'hadal-operational-chart-north-south.png'))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                page.locator('[data-evidence-id="'+name+'-brickley-2012-operational-chart-east-west-span"]').screenshot(path=str(OUT/('mobile-'+name+'-operational-chart-east-west.png')))
+            checks.append('Galileo and Hadal retain low-resolution operational chart line spans, native map dates and Hadal caption/date discrepancy, pixel/axis sensitivity and no gridded or secondary inheritance; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

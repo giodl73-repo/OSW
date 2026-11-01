@@ -6,7 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_operational_chart_visible_line_spans_v1'?'operational chart estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
@@ -57,7 +57,13 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
-      if(c.method==='source_visible_model_front_meridional_span_v1'){
+      if(c.method==='source_operational_chart_visible_line_spans_v1'){
+        add('strong','Visible operational frontal-line span · low-resolution chart.',add('p',undefined,box));
+        add('p',`Printed map date: ${c.date}; ${c.source_name}. Native panel: 303 × 240 pixels. Selected visible segments only; no missing ink or closed boundary reconstructed.`,box);
+        add('p',`Reading method: two neutral-ink gates, six-pixel extent allowance, ±2 pixel axis anchors and ${m.calculation.total_scenarios} sensitivity cases; rounded outward to 25 km. This is reading sensitivity, not measured uncertainty or a seasonal range.`,box);
+        add('p','Chart threshold and physical-front error are unspecified. No area, diameter, principal axes or physical footprint inferred; the separate gridded comparison did not qualify.',box);
+        if(c.source_name==='Hadal')add('p','The caption says shed by 30 July; this panel is dated 1 August 2011. These dates remain separate. Hadal II inherits no values.',box);
+      }else if(c.method==='source_visible_model_front_meridional_span_v1'){
         add('strong','Visible model-inferred front · eastern side clipped.',add('p',undefined,box));
         add('p','Only the visible north–south plotted extent is measured. This does not establish the full front, observed eddy boundary, diameter or east–west width.',box);
         add('p',`Source date: ${c.date}; northern post-split Quantum I. Reading method: ${c.reading_allowance_pixels} pixels at each selected extremum, ±${c.axis_sensitivity_pixels} pixel latitude-anchor shifts, two ink gates and ${m.calculation.total_scenarios} sensitivity cases; rounded outward to ${c.round_outward_km} km. Model/front error is unspecified.`,box);
