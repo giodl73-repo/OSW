@@ -528,6 +528,29 @@ def validate_station_distance(row):
     assert row['range_value']==station_distance_interval(c)
 
 
+def validate_source_clarification(note,report,evidence):
+    assert note['entity_id']=='eddy:horizon:loop-44-secondary'
+    assert note['physical_identity_verified'] is False and note['numeric_values_changed'] is False
+    assert report['status']=='SOURCE_REFERENCE_CLARIFIED_DURATION_CONFLICT_UNRESOLVED'
+    assert report['original']['sha256']=='50030c1f603cae0eb853458ec3e9e6ea6b36145fca7f6772ecfb46134cf28f3d'
+    assert report['new_numeric_measurements']==0
+    if note['kind']=='source_reference_clarification':
+        assert note['id']=='u2-source-ssh-reference-clarified' and note['source_reference']=='GSFC00.1_MSS'
+        ids=[r['id'] for r in evidence if r.get('profile_context',{}).get('method')=='source_reported_u2_10cm_contour_area']
+        assert len(ids)==3 and note['evidence_ids']==ids==report['source_reference']['affected_area_evidence_ids']
+        assert report['source_reference']['name']=='GSFC00.1_MSS' and report['source_reference']['area_values_or_dates_changed'] is False
+        assert report['source_reference']['equated_to_modern_native_adt'] is False
+    else:
+        assert note['kind']=='unresolved_duration_source_conflict' and note['id']=='u2-source-duration-conflict' and note['evidence_ids']==[]
+        c=report['duration_audit']
+        assert (c['table_split_date'],c['parent_separation_date'],c['figure_last_tracked_date'])==('2004-12-13','2004-08-23','2005-11-06')
+        assert (c['table_lifespan_from_split_days'],c['table_lifespan_including_parent_days'])==(216,328)
+        assert c['calendar_elapsed_from_split_days']==(date.fromisoformat(c['figure_last_tracked_date'])-date.fromisoformat(c['table_split_date'])).days==328
+        assert c['calendar_elapsed_from_parent_days']==(date.fromisoformat(c['figure_last_tracked_date'])-date.fromisoformat(c['parent_separation_date'])).days==440
+        assert c['chosen_individual_lifetime_days'] is None
+        assert all(c[k] is False for k in ['table_and_figure_reconciled','values_collapsed_to_uncertainty_range','duration_measurement_admitted'])
+
+
 def build():
     pins={}
     def read(path):
@@ -1084,6 +1107,16 @@ def build():
             classifications.append({**c,'source_url':source['url'],'source_access':source['access'],
                 'source_file':path,'source_pointer':f'/size_classifications/{n}','source_sha256':pins[path],'raw_record':c})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
+    clarifications_path='research/eddy-source-clarifications-v1.json';ledger=read(clarifications_path)
+    assert ledger['schema']=='osw.eddy-source-clarifications.v1' and ledger['new_numeric_measurements']==0
+    source_notes=[]
+    for n,note in enumerate(ledger['entries']):
+        report=read(note['review_file']);assert pins[note['review_file']]==note['review_sha256']
+        prior=read(report['prior_source_review_file']);assert pins[report['prior_source_review_file']]==report['prior_source_review_sha256']
+        assert prior['original']==report['original']
+        validate_source_clarification(note,report,evidence)
+        assert not any(v['id']==note['id'] for v in source_notes)
+        source_notes.append({**note,'source_file':clarifications_path,'source_pointer':f'/entries/{n}','source_sha256':pins[clarifications_path]})
     records=[]
     for identifier,current in identities.items():
         owned=[r for r in evidence if r['entity_id']==identifier]
@@ -1101,6 +1134,7 @@ def build():
             'source_url':current['source_url'],'source_pointer':'/entries/'+str(inventory['entries'].index(current)),
             'evidence_ids':[r['id'] for r in owned],'categories':sorted({r['category'] for r in owned}),
             'size_classification_ids':[c['id'] for c in classifications if c['entity_id']==identifier],
+            **({'source_clarification_ids':[n['id'] for n in source_notes if n['entity_id']==identifier]} if any(n['entity_id']==identifier for n in source_notes) else {}),
             'size_gap':not any(r['category']=='size' for r in owned),
             'duration_gap':not any(r['category']=='duration' for r in owned),
             'status':'has_measurements' if owned else 'linked_primary_context' if linked_primary else 'needs_measurements',
@@ -1142,6 +1176,7 @@ def build():
             'owners_with_numeric_size_gap':sum(bool(r['size_classification_ids']) and r['size_gap'] for r in records),
             'labels':{label:sum(c['label']==label for c in classifications) for label in sorted({c['label'] for c in classifications})}},
         'size_classifications':classifications,
+        'source_clarifications':source_notes,
         'records':records,'evidence':evidence,'runtime_changed':False,'full_goal_complete':False}
 
 

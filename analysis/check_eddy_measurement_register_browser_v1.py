@@ -843,6 +843,26 @@ def run():
                     card.screenshot(path=str(OUT/('mobile-u2-contour-area-'+date+'.png')))
             page.set_viewport_size({'width':1440,'height':1000})
             checks.append('U2 three source-reported 10 cm SSH-anomaly areas: named northern branch, source-defined composite path, pre-split/southern exclusions, no primary inheritance, diameter/annual range/physical boundary inferred; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-44-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.source_clarifications?.length===2')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-44-secondary"]')
+            assert row.locator('[data-source-clarification-id="u2-source-ssh-reference-clarified"]').count()==3
+            conflict=row.locator('[data-source-clarification-id="u2-source-duration-conflict"]')
+            for value in ['216 days from the split','328 days including the parent interval','November 6, 2005','328 elapsed days','440','No preferred lifespan','duration-reference gap remains open']:
+                assert value in conflict.inner_text(),value
+            for date in ['2005-01-01','2005-04-14']:
+                card=row.locator('[data-evidence-id="u2-donohue-2008-'+date+'-10cm-contour-area"]')
+                text=card.inner_text();assert 'Source reference clarified: GSFC00.1_MSS' in text and 'scalar uncertainty is unspecified' in text
+                assert 'The SSH reference and scalar uncertainty are unspecified.' not in text
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('u2-reference-clarification-'+date+'.png')))
+                if date=='2005-01-01':
+                    page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                    card.screenshot(path=str(OUT/'mobile-u2-reference-clarification.png'))
+            page.set_viewport_size({'width':1440,'height':1000});conflict.screenshot(path=str(OUT/'u2-duration-source-conflict.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            conflict.screenshot(path=str(OUT/'mobile-u2-duration-source-conflict.png'))
+            page.set_viewport_size({'width':1440,'height':1000})
+            checks.append('Later U2 methods review clarifies GSFC00.1_MSS on all three area cards; original numeric records preserved; table/figure duration disagreement remains visible and unmeasured; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

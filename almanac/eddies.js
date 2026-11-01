@@ -15,12 +15,20 @@
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
   }
   function link(label,url,parent){const a=add('a',label,parent);a.href=url;return a;}
+  let sourceNotes=[];
   function showRecord(r,parent){
+    const sourceNote=sourceNotes.find(n=>n.kind==='source_reference_clarification'&&n.evidence_ids.includes(r.id));
+    const qualification=sourceNote?r.qualification.replace('The SSH reference and scalar uncertainty are unspecified.','The source SSH anomalies are referenced to GSFC00.1_MSS; scalar uncertainty is unspecified.'):r.qualification;
     const box=add('section',undefined,parent);box.className='eddy-record';box.dataset.evidenceId=r.id;
     add('h3',quantity(r),box).className=r.value_conflict?'eddy-value eddy-conflict':'eddy-value';
     add('p',r.metric_label,box);
     if(r.component_label)add('strong','Source component: '+r.component_label+(r.component_label==='Northern post-split Quantum I source case'?' · no pre-split parent or Quantum II values inferred.':' · no post-merger radius inferred.'),add('p',undefined,box));
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
+    if(sourceNote){
+      const note=add('aside',undefined,box);note.dataset.sourceClarificationId=sourceNote.id;
+      add('strong',sourceNote.title,note);add('p',sourceNote.text,note);add('p',sourceNote.source_locator,note);
+      link('Source-method review','../'+sourceNote.review_file,note);
+    }
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
     if(r.case_alias_association){
       const a=r.case_alias_association;
@@ -202,7 +210,7 @@
       add('p',`Input: ${c.product}, ${c.spatial_grid_degrees.join('° × ')}° grid, every ${c.cadence_days} days. Regional weekly mean removed: ${c.regional_weekly_mean_removed}.`,box);
       add('p','Track convention: '+c.source_case_label+'. Physical name crosswalk unverified.',box);
     }
-    for(const [label,value] of [['Definition',r.definition],['Scope',r.scope],['Period',r.period_label||(r.period_start?`${r.period_start} to ${r.period_end}`:null)],['Qualification',r.qualification]])if(value)add('p',`${label}: ${value}`,box);
+    for(const [label,value] of [['Definition',r.definition],['Scope',r.scope],['Period',r.period_label||(r.period_start?`${r.period_start} to ${r.period_end}`:null)],['Qualification',qualification]])if(value)add('p',`${label}: ${value}`,box);
     if(r.sample_count!==null)add('p',`Table sample count: ${r.sample_count}. Standard deviation describes population spread; measurement uncertainty is unspecified.`,box);
     if(r.right_censored)add('strong','Track still present at the final study snapshot; disappearance date unknown.',box);
     if(r.period_precision)add('p','Date precision: '+r.period_precision.replaceAll('_',' '),box);
@@ -277,6 +285,7 @@
   try{
     const response=await fetch('../research/eddy-measurement-register-v1.json');if(!response.ok)throw Error('Eddy register unavailable');const data=await response.json();
     if(data.schema!=='osw.eddy-measurement-register.v1'||data.records.length!==136||new Set(data.records.map(r=>r.entity_id)).size!==136)throw Error('Incomplete eddy identity inventory');
+    sourceNotes=data.source_clarifications||[];
     const byId=new Map(data.evidence.map(r=>[r.id,r])),classById=new Map(data.size_classifications.map(r=>[r.id,r])),c=data.counts;
     $('eddy-summary').textContent=`${c.identities} source identities · ${c.evidence_records} evidence records across ${c.identities_with_measurements} entries · ${c.identities_without_measurements} entries still without numeric measurements`;
     const requested=new URLSearchParams(location.search).get('id');
@@ -311,6 +320,12 @@
         if(row.identity_note)add('p',row.identity_note,details);
         if(row.possible_same_ring_as){const p=add('p','Possible name crosswalk · identity unverified: ',details);link(row.possible_same_ring_as,'eddies.html?id='+encodeURIComponent('eddy:'+row.possible_same_ring_as),p);}
         for(const r of evidence)showRecord(r,details);
+        for(const entry of sourceNotes.filter(n=>n.entity_id===row.entity_id&&n.kind==='unresolved_duration_source_conflict')){
+          const box=add('section',undefined,details);box.className='eddy-record';box.dataset.sourceClarificationId=entry.id;
+          add('h3',entry.title,box);add('p',entry.text,box);add('p',entry.source_locator,box);
+          link('Source-conflict review','../'+entry.review_file,box);
+        }
+
         for(const entry of classes){
           const box=add('section',undefined,details);box.className='eddy-record';box.dataset.classificationId=entry.id;
           add('h3',entry.label+' · qualitative source size class',box);

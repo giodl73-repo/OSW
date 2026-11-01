@@ -1706,4 +1706,34 @@ class EddyRegister(unittest.TestCase):
         wrong=copy.deepcopy(raw);wrong['independent_named_case']['primary_values_inherited']=True
         with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
 
+    def test_u2_later_method_clarification_preserves_all_numeric_data(self):
+        d=register.build();notes=d['source_clarifications'];self.assertEqual(len(notes),2)
+        ledger=json.loads((register.ROOT/'research/eddy-source-clarifications-v1.json').read_bytes())
+        report=json.loads((register.ROOT/notes[0]['review_file']).read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),report['original_444_evidence_sha256'])
+        self.assertEqual(hashlib.sha256((register.ROOT/register.CSV_PATH).read_bytes()).hexdigest(),report['original_measurement_csv_sha256'])
+        for raw,note in zip(ledger['entries'],notes):
+            register.validate_source_clarification(raw,report,d['evidence'])
+            self.assertEqual(register.pointer(ledger,note['source_pointer']),raw)
+            self.assertEqual(note['source_sha256'],hashlib.sha256((register.ROOT/note['source_file']).read_bytes()).hexdigest())
+        self.assertEqual(notes[0]['source_reference'],'GSFC00.1_MSS')
+        self.assertEqual(len(notes[0]['evidence_ids']),3)
+        owner=next(v for v in d['records'] if v['entity_id']=='eddy:horizon:loop-44-secondary')
+        self.assertEqual(owner['source_clarification_ids'],[n['id'] for n in notes]);self.assertTrue(owner['duration_gap'])
+        self.assertIsNone(owner['whole_lifetime_days']);self.assertFalse(any(r['entity_id']==owner['entity_id'] and r['category']=='duration' for r in d['evidence']))
+        self.assertEqual((report['duration_audit']['calendar_elapsed_from_split_days'],report['duration_audit']['calendar_elapsed_from_parent_days']),(328,440))
+
+    def test_u2_clarification_rejects_datum_equivalence_and_resolved_lifetime(self):
+        import copy
+        d=register.build();notes=d['source_clarifications'];report=json.loads((register.ROOT/notes[0]['review_file']).read_bytes())
+        wrong=copy.deepcopy(notes[0]);wrong['source_reference']='native_daily_ADT'
+        with self.assertRaises(AssertionError):register.validate_source_clarification(wrong,report,d['evidence'])
+        wrong=copy.deepcopy(report);wrong['source_reference']['equated_to_modern_native_adt']=True
+        with self.assertRaises(AssertionError):register.validate_source_clarification(notes[0],wrong,d['evidence'])
+        for key,value in [('chosen_individual_lifetime_days',216),('table_and_figure_reconciled',True),('values_collapsed_to_uncertainty_range',True),('duration_measurement_admitted',True),('calendar_elapsed_from_split_days',216)]:
+            wrong=copy.deepcopy(report);wrong['duration_audit'][key]=value
+            with self.assertRaises(AssertionError):register.validate_source_clarification(notes[1],wrong,d['evidence'])
+        wrong=copy.deepcopy(notes[0]);wrong['numeric_values_changed']=True
+        with self.assertRaises(AssertionError):register.validate_source_clarification(wrong,report,d['evidence'])
+
 if __name__=='__main__':unittest.main()

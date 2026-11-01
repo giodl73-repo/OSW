@@ -763,3 +763,13 @@ areas for January 1, February 1 and April 14, 2005, without interpreting the lev
 as a modern native-ADT or maximum-speed boundary. Unspecified source uncertainty
 stays unknown. No equivalent radius, width, diameter, material footprint or annual
 range is inferred. Preserve all first 441 evidence records and CSV rows/header.
+
+Later source-method reviews may clarify earlier transcriptions without rewriting
+their immutable numeric evidence or CSV provenance. Retain a separate, pinned
+clarification ledger with affected evidence IDs and explicit source locators;
+show the updated qualification on cards while retaining original source records.
+The U2 area reference is now clarified as GSFC00.1_MSS from section 3.1.5.
+Do not equate that reference to modern native ADT. Source table/figure duration
+disagreements remain separate claims; do not choose a lifespan, turn disagreement
+into an uncertainty interval, or close the duration gap. Preserve all 444 numeric
+evidence records and the complete measurement CSV byte for byte semantically.
