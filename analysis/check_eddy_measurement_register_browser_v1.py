@@ -789,6 +789,19 @@ def run():
                     page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                     card.screenshot(path=str(OUT/'mobile-nansen-speed-core-speed.png'))
             checks.append('Nansen dated named-source speed core: five numerical references, approximate center, distinct formation/map definitions, no physical or annual extent promotion; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ageography%3Abosphorus-eddy-region')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:geography:bosphorus-eddy-region"]');text=row.inner_text()
+            for value in ['Generally < 200 cm²/s²','> 500 cm²/s²','Regional residual kinetic energy per unit mass','not current speed','not an absolute upper bound','Joint Bosphorus–Sakarya','no square-root conversion','2003-08 to 2003-10','2008-12 to 2009-01','Size reference needed']:
+                assert value in text,value
+            assert 'Glider profile diagnostic' not in text and 'Model calculation: undefined' not in text
+            for key,evidence in [('typical','bosphorus-menna-2014-generally-below-residual-ke'),('interaction','bosphorus-sakarya-menna-2014-interaction-residual-ke')]:
+                card=page.locator('[data-evidence-id="'+evidence+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('bosphorus-ke-'+key+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-bosphorus-ke-'+key+'.png')))
+            page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'bosphorus-ke-summary.png'))
+            checks.append('Bosphorus regional residual KE: typical qualifier is not an absolute bound, joint interaction not individual speed, four disjoint month windows, unchanged size gap; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

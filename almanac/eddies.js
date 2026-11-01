@@ -1,9 +1,10 @@
 "use strict";
 (async()=>{
   const $=id=>document.getElementById(id),add=(tag,text,parent)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(parent)parent.append(n);return n;};
-  const units={'kJ/cm2':'kJ/cm²',km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
+  const units={'cm2/s2':'cm²/s²','kJ/cm2':'kJ/cm²',km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
   function quantity(r){
     if(r.value_conflict)return 'Unresolved source values';
+    if(r.profile_context?.method==='source_reported_bosphorus_residual_ke'&&r.profile_context.quantity==='typical_reference')return `Generally < ${num(r.value)} cm²/s² · residual energy`;
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
     if(r.calendar_support?.method==='source_narrative_nautilus_ii_calendar_span')return `${r.range_value.map(num).join('–')} days · calendar bounds`;
@@ -29,7 +30,14 @@
         add('strong',r.metric==='source_reported_sampled_drifter_axes_length_extrema'?'Sampled drifter-axis change · not a seasonal size range.':r.metric.includes('sampled_drifter_ellipse')?'Sampled ellipse dimension · the drifter need not follow the eddy front.':r.metric==='source_reported_baroclinic_radius_of_influence'?'Baroclinic radius of influence · 8°C temperature-surface diagnostic.':'Source-reported diameter · boundary and observation date unspecified.',add('p',undefined,box));
       }
     }
-    if(r.profile_context?.method==='source_reported_laura_survey_ssh_anomaly'){
+    if(r.profile_context?.method==='source_reported_bosphorus_residual_ke'){
+      const c=r.profile_context;
+      add('strong','Regional residual kinetic energy per unit mass · not current speed.',add('p',undefined,box));
+      add('p','Mean flow removed before squaring velocity residuals. Source Hovmoller values are meridionally averaged over 41–42.5°N; no square-root conversion to total or swirl speed.',box);
+      add('p',c.quantity==='typical_reference'?'Generally below 200 cm²/s² is a typical source comparison, not an absolute upper bound or every-day maximum.':'Joint Bosphorus–Sakarya interaction signal > 500 cm²/s²; not apportioned to either eddy or counted as two independent observations.',box);
+      if(c.joint_interaction)add('p','Separate interaction month windows: '+c.month_windows.map(v=>v.join(' to ')).join('; ')+'. These are not one continuous lifetime.',box);
+      add('p','Numeric references come from source prose; saturated figure colors supply no upper bound. No size, depth, seasonal envelope, physical boundary or playback inferred.',box);
+    }else if(r.profile_context?.method==='source_reported_laura_survey_ssh_anomaly'){
       add('strong','Laura sea-surface-height anomaly · not eddy depth.',add('p',undefined,box));
       add('p','Source reports about +40 cm maximum SSH anomaly at the time of MARE-1, March 2000. Exact altimeter acquisition/composite time and anomaly reference unspecified.',box);
       add('p','Hydrographic and SSH centers differ; Laura was not surveyed completely. This is not a full-life or annual maximum, vertical thickness, contour threshold or physical footprint.',box);

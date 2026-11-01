@@ -722,3 +722,10 @@ fixed outward reporting increments. Approximate center and map date are
 source references, not physical identity or formation/lifetime verification.
 Core contours do not establish outer eddy dimensions or seasonal bounds.
 Preserve all first 430 evidence records and CSV rows/header.
+
+Residual kinetic energy references retain native energy-per-mass units and
+the source removal of mean flow and meridional averaging. Never take their
+square root to invent a total or swirl speed. Generally-below references are
+not absolute bounds. Joint interaction excesses are not allocated to either
+eddy independently. Disjoint month windows remain disjoint; they establish
+no lifetime or seasonal envelope. Preserve first435 evidence and CSV rows.

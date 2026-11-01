@@ -212,6 +212,25 @@ def validate_wilde_provisional_map(row,case):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_bosphorus_residual_ke':
+        assert row['entity_id']=='eddy:geography:bosphorus-eddy-region' and row['category']=='kinematics' and row['unit']=='cm2/s2'
+        assert row['evidence_role']=='qualified_published_regional_residual_energy_reference' and row['rights_screened_release_eligible'] is False
+        assert c['residual_definition']=='KE = 0.5 * (u_residual^2 + v_residual^2)' and c['mean_flow_removed'] is True
+        assert c['meridional_average_latitude_deg']==[41,42.5] and c['study_years']==[1999,2009] and c['energy_per_unit_mass'] is True
+        assert all(c[k] is False for k in ['speed_conversion_performed','individual_eddy_value_inferred','physical_crosswalk_verified'])
+        assert row.get('range_value') is None and row.get('upper_bound') is None and row.get('depth_m') is None
+        if c['quantity']=='typical_reference':
+            assert row['metric']=='source_reported_generally_below_regional_residual_ke_reference' and row['value']==200 and row.get('lower_bound') is None
+            assert c['relation']=='generally_below_not_absolute_upper_bound' and c['longitude_context_deg']==[28,29]
+            assert c['joint_interaction'] is False and c['month_windows']==[]
+            assert (row['period_start'],row['period_end'],row['period_precision'])==('1999-01-01','2009-12-31','study_year_bounds_not_eddy_lifetime')
+        else:
+            assert c['quantity']=='joint_interaction_exceedance' and row['metric']=='source_reported_joint_interaction_regional_residual_ke_lower_bound'
+            assert row['value'] is None and row['lower_bound']==500 and row['lower_bound_exclusive'] is True
+            assert c['relation']=='strict_lower_bound_in_reported_interactions' and c['joint_interaction'] is True
+            assert c['participants']==['Bosphorus','Sakarya'] and c['month_windows']==[['2003-08','2003-10'],['2005-10','2005-10'],['2006-01','2006-01'],['2008-12','2009-01']]
+            assert row['period_start'] is row['period_end'] is None and row['period_precision']=='disjoint_source_month_windows'
+        return
     if c['method']=='source_reported_laura_survey_ssh_anomaly':
         validate_laura_ssh_record(row);return
     if c['method']=='source_reported_nelson_1989_local_current_phases':
@@ -594,6 +613,12 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_bosphorus_residual_ke':
+                c=r['profile_context'];report=read(c['source_review_file'])
+                assert pins[c['source_review_file']]==c['source_review_sha256']==source['source_review_sha256']
+                assert report['status']=='REVIEWED_PRIMARY_SOURCE_RESIDUAL_ENERGY_REFERENCES' and report['original']==source['original']
+                assert report['reviewed_pdf_pages']==[1,4,5,8] and report['source_figure_color_scale_is_not_prose_upper_bound'] is True
+
             if r.get('profile_context',{}).get('method')=='source_reported_nelson_1989_local_current_phases':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 assert report['status']=='NELSON_1989_LOCAL_CURRENT_PHASES_VERIFIED' and report['new_size_measurements']==0
