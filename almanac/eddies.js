@@ -29,8 +29,15 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_assimilative_analysis_parent_extent'?'Assimilative model-analysis extent':r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_k_2000_mooring_current'?'Interaction-site mooring current':r.profile_context.method==='source_reported_assimilative_analysis_parent_extent'?'Assimilative model-analysis extent':r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_k_2000_mooring_current'){
+        add('strong',c.sample_depth_m===null?'Near-surface reached value · exact depth unspecified.':'Local sampled maximum at 755 m · not whole-eddy maximum.',add('p',undefined,box));
+        add('p','First two weeks of November 2000 at the LSU Sigsbee mooring, between WCE K and a cyclone. The 3 November map is context, not the exact current sample time.',box);
+        add('p','The earlier field report explicitly names Kinetic / Eddy K. The cross-report event association and registry physical crosswalk remain unverified.',box);
+        add('p','Interaction-site currents, not isolated eddy swirl. No simultaneous vertical profile, shear, eddy thickness or seasonal range inferred.',box);
+      }
+
       if(c.method==='source_reported_assimilative_analysis_parent_extent'){
         add('strong','Approximate parent zonal extent · model analysis, not directly observed length.',add('p',undefined,box));
         add('p','Thor before near-splitting · analysis dated 24 February 2020. Weekly ensemble-mean verifying analysis from NCOM / NCODA / COAMPS, with 3 km model resolution and 32 members.',box);

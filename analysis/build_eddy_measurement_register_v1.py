@@ -109,6 +109,21 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_k_2000_mooring_current':
+        assert row['entity_id']=='eddy:horizon:loop-34-primary' and row['category']=='kinematics' and row['unit']=='cm/s'
+        assert row['metric']=='source_reported_local_interaction_current_speed' and row.get('range_value') is None
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert row['period_start'] is None and row['period_end'] is None and row['period_precision']=='source_event_phase_not_exact_sample_dates'
+        assert (c['source_event_label'],c['published_alias'],c['alias_reference_source_id'])==('WCE K','Kinetic / Eddy K','hamilton-2003-k-alias')
+        assert c['source_phase']=='first_two_weeks_november_2000' and c['source_map_context_date']=='2000-11-03'
+        assert c['station']=='LSU Sigsbee mooring, deployments 1–2' and c['interaction_context']=='mooring_between_WCE_K_and_cyclone'
+        assert c['event_flow_direction_as_reported']=='westward'
+        assert all(c[k] is False for k in ['exact_sample_dates_known','map_date_is_sample_time','cross_report_case_association_verified','physical_crosswalk_verified','simultaneous_vertical_profile_inferred','vertical_shear_computed','whole_eddy_maximum_inferred','is_eddy_vertical_extent','source_uncertainty_quantified','raw_current_time_series_acquired'])
+        if c['sample_depth_m'] is None:
+            assert row.get('depth_m') is None and row['value']==50 and c['statistic']=='source_reached_site_value'
+        else:
+            assert c['sample_depth_m']==row['depth_m']==755 and row['value']==30 and c['statistic']=='source_local_sampled_maximum'
+        return
     if c['method']=='source_reported_assimilative_analysis_parent_extent':
         assert row['entity_id']=='eddy:published:thor-2020' and row['category']=='size' and row['unit']=='km'
         assert row['metric']=='source_reported_assimilative_analysis_parent_zonal_extent' and row['value']==550
@@ -435,6 +450,15 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_k_2000_mooring_current':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='QUALIFIED_KINETIC_2000_INTERACTION_SITE_CURRENTS_VERIFIED'
+                a=report['source_case_association'];assert a['registry_source_number']==34 and a['year']==2000
+                assert a['physical_crosswalk_verified'] is False and a['cross_report_case_association_verified'] is False
+                assert r['profile_context']['alias_reference_source_id'] in batch['sources']
+                legacy=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==34)
+                assert (legacy['name'],legacy['initial_separation'])==('Kinetic',a['registry_initial_separation'])
+
             if r.get('profile_context',{}).get('method')=='source_reported_assimilative_analysis_parent_extent':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 assert report['status']=='ORIGINAL_THOR_PARENT_ANALYSIS_EXTENT_VERIFIED' and report['owner_id']==r['entity_id']

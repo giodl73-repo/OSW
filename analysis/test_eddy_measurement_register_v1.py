@@ -12,7 +12,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),392)
+        self.assertEqual(len(d['evidence']),394)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -62,7 +62,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),392)
+        self.assertEqual(len(rows),394)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -335,7 +335,7 @@ class EddyRegister(unittest.TestCase):
             reader=csv.DictReader(stream);fields=[k for k in reader.fieldnames if k not in ['detection_context_json','source_map_estimate_json','profile_context_json']];prior_rows=list(reader)[:299]
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
-        self.assertEqual(len(d['evidence']),392)
+        self.assertEqual(len(d['evidence']),394)
         self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
         self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(86,121,15))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),50)
@@ -1164,5 +1164,31 @@ class EddyRegister(unittest.TestCase):
         for key,value in [('analysis_is_direct_observation',True),('forecast_member_value',True),('principal_width_inferred',True),('diameter_inferred',True),('child_values_inherited',True),('registry_values_inherited',True),('annual_extrema_inferred',True),('source_boundary_threshold','0.17 m OSW contour'),('phase','post_split_child')]:
             wrong=copy.deepcopy(row);wrong['profile_context'][key]=value
             with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+
+
+    def test_kinetic_interaction_currents_preserve_prefix_and_do_not_close_size(self):
+        d=register.build();b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v37.json').read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:392],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),b['baseline_evidence_sha256'])
+        rows=d['evidence'][392:394];self.assertEqual([r['value'] for r in rows],[50,30])
+        self.assertEqual([r.get('depth_m') for r in rows],[None,755])
+        for r in rows:register.validate_profile_context(r);self.assertFalse(r['rank_eligible']);self.assertIsNone(r['geometry'])
+        self.assertTrue(next(r for r in d['records'] if r['entity_id']=='eddy:horizon:loop-34-primary')['size_gap'])
+        self.assertEqual((d['counts']['size_owners'],sum(r['size_gap'] for r in d['records'])),(86,50))
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:392])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),b['baseline_measurement_csv_sha256'])
+        self.assertEqual([json.loads(r['profile_context_json']) for r in exports[392:394]],[r['profile_context'] for r in rows])
+
+    def test_kinetic_currents_reject_time_depth_statistic_and_identity_promotions(self):
+        import copy
+        b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v37.json').read_bytes())
+        for row in b['records']:
+            for key,value in [('entity_id','eddy:horizon:loop-33-primary'),('value',60),('period_start','2000-11-03'),('depth_m',600),('rights_screened_release_eligible',True)]:
+                wrong=copy.deepcopy(row);wrong[key]=value
+                with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+            for key,value in [('physical_crosswalk_verified',True),('cross_report_case_association_verified',True),('simultaneous_vertical_profile_inferred',True),('vertical_shear_computed',True),('whole_eddy_maximum_inferred',True),('map_date_is_sample_time',True),('is_eddy_vertical_extent',True),('interaction_context','isolated_eddy'),('source_phase','january_2001'),('statistic','whole_eddy_maximum')]:
+                wrong=copy.deepcopy(row);wrong['profile_context'][key]=value
+                with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
 
 if __name__=='__main__':unittest.main()

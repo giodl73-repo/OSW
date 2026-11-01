@@ -607,6 +607,18 @@ def run():
             page.locator('[data-evidence-id="thor-thoppil-2025-parent-analysis-zonal-extent"]').screenshot(path=str(OUT/'mobile-thor-parent-analysis-extent.png'))
             page.locator('[data-evidence-id="thor-2020-event-stage-interval"]').screenshot(path=str(OUT/'mobile-thor-existing-event-interval.png'))
             checks.append('Published Thor pre-near-split parent extent: source scalar, assimilative verifying analysis, not direct observation/forecast member/diameter, no child or registry inheritance; prior event interval preserved; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-34-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-34-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['50 cm/s','30 cm/s','755 m','Near-surface reached value','exact depth unspecified','First two weeks of November 2000','not the exact current sample time','cross-report event association','remain unverified','not isolated eddy swirl','Size reference needed']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="kinetic-mckone-2007-"]').count()==2
+            page.set_viewport_size({'width':1440,'height':1000})
+            for part in ['near-surface','755m']:page.locator(f'[data-evidence-id="kinetic-mckone-2007-november-{part}-current"]').screenshot(path=str(OUT/f'kinetic-{part}-interaction-current.png'))
+            row.locator('summary').screenshot(path=str(OUT/'kinetic-current-reference-summary.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for part in ['near-surface','755m']:page.locator(f'[data-evidence-id="kinetic-mckone-2007-november-{part}-current"]').screenshot(path=str(OUT/f'mobile-kinetic-{part}-interaction-current.png'))
+            checks.append('Kinetic qualified interaction-site currents: near-surface reached value and 755 m local maximum, phase rather than invented sample dates, no simultaneous profile/shear/thickness, cross-report association unverified, size gap retained; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
