@@ -4,6 +4,7 @@
   const units={'cm2/s2':'cm²/s²','kJ/cm2':'kJ/cm²',km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
   function quantity(r){
     if(r.value_conflict)return 'Unresolved source values';
+    if(r.profile_context?.method==='source_reported_donohue_2008_altimetry_tracking_span')return `${num(r.value)} days · source tracking span`;
     if(r.profile_context?.method==='source_reported_bosphorus_residual_ke'&&r.profile_context.quantity==='typical_reference')return `Generally < ${num(r.value)} cm²/s² · residual energy`;
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
@@ -38,7 +39,15 @@
         add('strong',r.metric==='source_reported_sampled_drifter_axes_length_extrema'?'Sampled drifter-axis change · not a seasonal size range.':r.metric.includes('sampled_drifter_ellipse')?'Sampled ellipse dimension · the drifter need not follow the eddy front.':r.metric==='source_reported_baroclinic_radius_of_influence'?'Baroclinic radius of influence · 8°C temperature-surface diagnostic.':'Source-reported diameter · boundary and observation date unspecified.',add('p',undefined,box));
       }
     }
-    if(r.profile_context?.method==='source_reported_u2_10cm_contour_area'){
+    if(r.profile_context?.method==='source_reported_donohue_2008_altimetry_tracking_span'){
+      const c=r.profile_context;
+      add('strong','Altimetry tracking span · not verified physical lifetime.',add('p',undefined,box));
+      add('p',`Source endpoints: ${c.source_start_date} to ${c.source_last_tracked_date}. The reported Lifespan-column value matches elapsed calendar days between the source separation label and last trackable date.`,box);
+      add('p','Tracking used adaptive SSH-anomaly contours and manual assistance through interactions. The mean-surface reference is GSFC00.1_MSS; the terminal contour level for this individual track is unspecified.',box);
+      if(c.source_split_date)add('p',`Split context: ${c.source_split_date}; the separate source from-split column gives ${c.source_days_from_split_comparison} days. The named southern branch retains its pre-split interval. No secondary inherits this parent span.`,box);
+      add('p',`Registry context remains separate: initial separation ${c.registry_initial_separation}; dissipation label ${c.registry_dissipation_label}. Source names and dates do not verify a physical crosswalk.`,box);
+      add('p','U2 is excluded because its table and endpoint figure disagree. Source endpoints do not prove physical birth/death, material coherence, complete daily sampling or a volume history. No whole lifetime, seasonal range, physical footprint or state join inferred.',box);
+    }else if(r.profile_context?.method==='source_reported_u2_10cm_contour_area'){
       const c=r.profile_context;
       add('strong','U2 northern branch · area within a 10 cm SSH-anomaly contour.',add('p',undefined,box));
       add('p',`Source analysis date: ${c.source_analysis_date}. Exact simultaneous sampling time and scalar uncertainty are unspecified. Values are reported by the authors, not measured from chart pixels.`,box);

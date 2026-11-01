@@ -773,3 +773,13 @@ Do not equate that reference to modern native ADT. Source table/figure duration
 disagreements remain separate claims; do not choose a lifespan, turn disagreement
 into an uncertainty interval, or close the duration gap. Preserve all 444 numeric
 evidence records and the complete measurement CSV byte for byte semantically.
+
+Source-reported altimetry tracking spans may be retained when named table values
+match independent calendar arithmetic from their source separation and last-trackable
+date labels. Preserve adaptive contour methods, manual tracking assistance and
+source mean surface; do not interpret track termination as physical death. Keep
+registry dates separate. For split primary tracks, retain branch conventions and
+the pre-split interval; never assign the parent span to an independent secondary.
+The Donohue 2008 U2 duration disagreement remains excluded. Preserve the first 444
+numeric evidence records and CSV rows/header. Generated JSON uses zero indentation
+to stay within the existing publication byte limit; no records or precision removed.

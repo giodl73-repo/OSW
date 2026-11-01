@@ -12,7 +12,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),444)
+        self.assertEqual(len(d['evidence']),461)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -62,7 +62,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),444)
+        self.assertEqual(len(rows),461)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -336,7 +336,7 @@ class EddyRegister(unittest.TestCase):
             reader=csv.DictReader(stream);fields=[k for k in reader.fieldnames if k not in ['detection_context_json','source_map_estimate_json','profile_context_json']];prior_rows=list(reader)[:299]
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
-        self.assertEqual(len(d['evidence']),444)
+        self.assertEqual(len(d['evidence']),461)
         self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':5,'labels':{'Huge':6,'Medium':2,'Small':7}})
         self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(100,125,11))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),36)
@@ -1710,8 +1710,11 @@ class EddyRegister(unittest.TestCase):
         d=register.build();notes=d['source_clarifications'];self.assertEqual(len(notes),2)
         ledger=json.loads((register.ROOT/'research/eddy-source-clarifications-v1.json').read_bytes())
         report=json.loads((register.ROOT/notes[0]['review_file']).read_bytes())
-        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),report['original_444_evidence_sha256'])
-        self.assertEqual(hashlib.sha256((register.ROOT/register.CSV_PATH).read_bytes()).hexdigest(),report['original_measurement_csv_sha256'])
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:444],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),report['original_444_evidence_sha256'])
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:444])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),report['original_measurement_csv_sha256'])
         for raw,note in zip(ledger['entries'],notes):
             register.validate_source_clarification(raw,report,d['evidence'])
             self.assertEqual(register.pointer(ledger,note['source_pointer']),raw)
@@ -1735,5 +1738,36 @@ class EddyRegister(unittest.TestCase):
             with self.assertRaises(AssertionError):register.validate_source_clarification(notes[1],wrong,d['evidence'])
         wrong=copy.deepcopy(notes[0]);wrong['numeric_values_changed']=True
         with self.assertRaises(AssertionError):register.validate_source_clarification(wrong,report,d['evidence'])
+
+    def test_17_primary_tracking_spans_preserve_prior_records_and_source_dates(self):
+        d=register.build();b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v58.json').read_bytes());rows=d['evidence'][444:461]
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:444],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),b['baseline_evidence_sha256'])
+        self.assertEqual([r['value'] for r in rows],[178,188,216,371,493,153,395,601,136,370,333,84,391,161,266,237,193])
+        self.assertEqual(len({r['entity_id'] for r in rows}),17)
+        for raw,r in zip(b['records'],rows):
+            register.validate_profile_context(raw)
+            self.assertEqual(r['category'],'duration');self.assertEqual(r['metric'],'source_track_elapsed_span')
+            self.assertEqual(r['value'],(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days)
+            self.assertFalse(r['whole_lifetime_inferred']);self.assertIsNone(r['geometry']);self.assertFalse(r['rank_eligible']);self.assertFalse(r['physical_state_join_eligible']);self.assertFalse(r['seasonal_playback_eligible'])
+        u2=next(v for v in d['records'] if v['entity_id']=='eddy:horizon:loop-44-secondary');self.assertTrue(u2['duration_gap']);self.assertIsNone(u2['whole_lifetime_days'])
+        self.assertFalse(any(v['entity_id'].endswith('-secondary') for v in rows))
+        self.assertEqual(d['counts']['source_track_spans'],23)
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:444])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),b['baseline_measurement_csv_sha256'])
+        self.assertEqual([json.loads(r['profile_context_json']) for r in exports[444:461]],[r['profile_context'] for r in rows])
+
+    def test_primary_tracking_spans_reject_lifetime_and_secondary_promotions(self):
+        import copy
+        b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v58.json').read_bytes());raw=b['records'][0]
+        for key,value in [('entity_id','eddy:horizon:loop-44-secondary'),('value',179),('unit','month'),('period_start','1993-06-18'),('rights_screened_release_eligible',True)]:
+            wrong=copy.deepcopy(raw);wrong[key]=value
+            with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+        for key,value in [('source_table_column','Lifespan From Split'),('source_reference','native_daily_ADT'),('specific_terminal_contour_cm',5),('physical_lifetime_verified',True),('registry_dates_replaced',True),('complete_daily_sampling_inferred',True),('secondary_values_inherited',True),('volume_history_inferred',True)]:
+            wrong=copy.deepcopy(raw);wrong['profile_context'][key]=value
+            with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+        wrong=copy.deepcopy(b['records'][1]);wrong['profile_context']['branch_convention']='northern_after_split'
+        with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
 
 if __name__=='__main__':unittest.main()

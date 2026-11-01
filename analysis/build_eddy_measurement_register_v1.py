@@ -243,6 +243,24 @@ def validate_wilde_provisional_map(row,case):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_donohue_2008_altimetry_tracking_span':
+        expected={19:'Whopper',20:'Xtra',21:'Yucatan',22:'Zapp',23:'Aggie',24:'Biloxi',25:'Creole',28:'El Dorado',29:'Fourchon',33:'Juggernaut',36:'Millennium',39:'Pelagic',40:'Quick',42:'Sargassum',43:'Titanic',44:'Ulysses',45:'Vortex'}
+        number=c['registry_source_number'];assert number in expected and c['source_name']==expected[number]
+        assert row['entity_id']==f'eddy:horizon:loop-{number:02}-primary'
+        assert row['category']=='duration' and row['metric']=='source_track_elapsed_span' and row['unit']=='day'
+        assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
+        assert row['period_start']==c['source_start_date'] and row['period_end']==c['source_last_tracked_date']
+        assert row['value']==(date.fromisoformat(row['period_end'])-date.fromisoformat(row['period_start'])).days>0
+        assert row['period_precision']=='source_tracking_endpoint_labels_not_physical_birth_or_death'
+        assert c['source_table_column']=='Lifespan' and c['source_reference']=='GSFC00.1_MSS'
+        splits={20:('1993-12-26',81),33:('2000-04-06',183),44:('2004-12-13',125)}
+        assert (c['source_split_date'],c['source_days_from_split_comparison'])==splits.get(number,(None,None))
+        assert c['branch_convention']==('southern_after_split' if number in splits else 'source_named_track')
+        assert all(c[k] is True for k in ['tracking_contour_is_adaptive','tracking_required_manual_assistance','table_value_matches_endpoint_arithmetic'])
+        assert c['specific_terminal_contour_cm'] is None
+        assert all(c[k] is False for k in ['physical_lifetime_verified','physical_crosswalk_verified','registry_dates_replaced','complete_daily_sampling_inferred','secondary_values_inherited','volume_history_inferred'])
+        assert row.get('range_value') is None and row.get('depth_m') is None
+        return
     if c['method']=='source_reported_u2_10cm_contour_area':
         assert row['entity_id']=='eddy:horizon:loop-44-secondary' and row['category']=='size' and row['unit']=='km2'
         assert row['metric']=='source_reported_named_branch_ssh_anomaly_contour_area'
@@ -681,6 +699,15 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_donohue_2008_altimetry_tracking_span':
+                c=r['profile_context'];report=read(c['source_review_file'])
+                assert pins[c['source_review_file']]==c['source_review_sha256']==source['source_review_sha256']
+                assert report['status']=='REVIEWED_17_SOURCE_TRACKING_SPANS_WITH_ENDPOINT_ARITHMETIC' and report['original']==source['original']
+                source_row=next(v for v in report['accepted_rows'] if v['registry_source_number']==c['registry_source_number'])
+                assert (source_row['source_start_date'],source_row['source_last_tracked_date'],source_row['table_elapsed_days'])==(r['period_start'],r['period_end'],r['value'])
+                legacy=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==c['registry_source_number'])
+                assert (c['source_name'],c['registry_initial_separation'],c['registry_dissipation_label'])==(legacy['name'],legacy['initial_separation'],legacy['dissipation_as_reported'])
+
             if r.get('profile_context',{}).get('method')=='source_reported_u2_10cm_contour_area':
                 c=r['profile_context'];report=read(c['source_review_file'])
                 assert pins[c['source_review_file']]==c['source_review_sha256']==source['source_review_sha256']
@@ -1181,7 +1208,7 @@ def build():
 
 
 def main():
-    document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=1,ensure_ascii=False)+'\n').encode())
+    document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=0,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json','detection_context_json','source_map_estimate_json','profile_context_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()

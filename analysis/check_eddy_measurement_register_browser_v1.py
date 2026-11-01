@@ -863,6 +863,22 @@ def run():
             conflict.screenshot(path=str(OUT/'mobile-u2-duration-source-conflict.png'))
             page.set_viewport_size({'width':1440,'height':1000})
             checks.append('Later U2 methods review clarifies GSFC00.1_MSS on all three area cards; original numeric records preserved; table/figure duration disagreement remains visible and unmeasured; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            for number,name,value in [(19,'Whopper',178),(20,'Xtra',188),(21,'Yucatan',216),(22,'Zapp',371),(23,'Aggie',493),(24,'Biloxi',153),(25,'Creole',395),(28,'El Dorado',601),(29,'Fourchon',136),(33,'Juggernaut',370),(36,'Millennium',333),(39,'Pelagic',84),(40,'Quick',391),(42,'Sargassum',161),(43,'Titanic',266),(44,'Ulysses',237),(45,'Vortex',193)]:
+                page.fill('#eddy-search',name)
+                row=page.locator(f'tr[data-eddy-id="eddy:horizon:loop-{number:02}-primary"]');row.locator('summary').click()
+                card=row.locator(f'[data-evidence-id="loop-{number:02}-donohue-2008-altimetry-tracking-span"]');text=card.inner_text()
+                for needle in [str(value)+' days · source tracking span','not verified physical lifetime','adaptive SSH-anomaly contours','GSFC00.1_MSS','Registry context remains separate','U2 is excluded','not proof of physical lifetime']:
+                    assert needle in text,(name,needle)
+                assert 'Glider profile diagnostic' not in text
+                if number in [19,20,28]:
+                    page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('primary-tracking-'+str(number)+'.png')))
+                if number in [20,28]:
+                    page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                    card.screenshot(path=str(OUT/('mobile-primary-tracking-'+str(number)+'.png')))
+                    page.set_viewport_size({'width':1440,'height':1000})
+            checks.append('17 source-reported primary altimetry tracking spans: table values and dated endpoints, adaptive contours, preserved registry dates, southern split branches, no physical lifetime/volume inference or U2 inheritance; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
