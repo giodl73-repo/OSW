@@ -109,6 +109,28 @@ def validate_model_event_contrast(row):
     assert all(c[k] is False for k in ['observed_lifetime_inferred','observed_causal_effect_inferred','physical_crosswalk_verified','contrasts_are_additive','raw_model_fields_acquired','source_figure_pixels_reviewed'])
 
 
+def validate_nautilus_calendar_reference(row):
+    c=row['calendar_support'];a=row['independent_named_case']
+    assert row['entity_id']=='eddy:horizon:loop-63-secondary' and row['category']=='duration' and row['unit']=='day'
+    assert row['metric']=='source_narrative_formation_to_dissipation_calendar_span' and row['value'] is None
+    assert row['period_start'] is None and row['period_end'] is None and row['period_precision']=='month_to_two_possible_months'
+    assert row['range_kind']=='source_month_precision_calendar_bounds_not_measured_lifespan'
+    assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
+    assert c['method']=='source_narrative_nautilus_ii_calendar_span'
+    assert (c['start_month'],c['end_month_min'],c['end_month_max'])==('2015-05','2015-12','2016-01')
+    assert (c['start_precision'],c['end_precision'])==('month','two_possible_months') and c['chronology_conditioned'] is False
+    def bounds(month):
+        year,number=map(int,month.split('-'));return date(year,number,1),date(year,number,calendar.monthrange(year,number)[1])
+    start_min,start_max=bounds(c['start_month']);end_min,_=bounds(c['end_month_min']);_,end_max=bounds(c['end_month_max'])
+    assert [c[k] for k in ['start_date_min','start_date_max','end_date_min','end_date_max']]==[v.isoformat() for v in [start_min,start_max,end_min,end_max]]
+    assert row['range_value']==c['unconditioned_elapsed_day_range']==[(end_min-start_max).days,(end_max-start_min).days]
+    assert a['method']=='source_narrative_secondary_calendar_case' and a['source_name']=='Nautilus II' and a['source_year']==2015
+    assert a['source_formation_label']=='May 2015' and a['source_dissipation_label']=='between December 2015 and January 2016'
+    assert a['source_narrative_reconnections_to']=='Nautilus'
+    assert all(a[k] is False for k in ['association_is_verified','primary_values_inherited','exact_split_event_identified','continuous_identity_across_reconnections_verified','whole_physical_lifetime_verified','shared_figure_contour_is_child_boundary','parent_registry_dates_used'])
+    assert row.get('depth_m') is None and row.get('source_map_estimate') is None
+
+
 def validate_profile_context(row):
     c=row['profile_context']
     if c['method']=='source_reported_laura_survey_ssh_anomaly':
@@ -540,6 +562,19 @@ def build():
                 lead=report['verified_numeric_source_lead'];assert lead['source_pixels_reviewed'] is True and lead['positive_numeric_cells']==17
                 c=r['profile_context'];source_row=next(v for v in lead['source_rows'] if v['survey_month']==c['survey_label'])
                 assert source_row['values'][lead['depth_contours_m'].index(c['temperature_surface_depth_contour_m'])]==c['source_table_value']
+
+            if r['metric']=='source_narrative_formation_to_dissipation_calendar_span':
+                validate_nautilus_calendar_reference(r)
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='ORIGINAL_NAUTILUS_II_MONTH_PRECISION_NARRATIVE_VERIFIED'
+                assert report['owner_id']==r['entity_id'] and report['calendar_support']==r['calendar_support'] and report['source_case']==r['independent_named_case']
+                assert report['source']['original']==source['original'] and report['source_pages_actual_pixels_reviewed']==[1,54,55]
+                assert source['original']['sha256']=='14cdf509d2c52f789f7593a30ea7392ba1a1819c92dd4c45ba994320564eaca9'
+                assert report['new_size_reference_owners']==report['measurements_inherited_from_primary']==0
+                assert report['whole_lifetime_inferred'] is False and report['physical_state_join_eligible'] is False
+                primary=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==63)
+                assert (primary['name'],primary['initial_separation'],primary['dissipation_as_reported'])==('Nautilus','2015-05-01','11/2015')
+                assert report['excluded_parent_context']['used_as_numeric_inputs'] is False
 
             if r.get('case_alias_association'):
                 if r['case_alias_association'].get('method')=='source_reported_1988_letter_case_reference':validate_year5_alias_reference(r)

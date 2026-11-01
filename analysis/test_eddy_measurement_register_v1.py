@@ -12,7 +12,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),406)
+        self.assertEqual(len(d['evidence']),407)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -48,7 +48,7 @@ class EddyRegister(unittest.TestCase):
             self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' or e['evidence_role']=='map_read_editorial_candidate_reference' or (name=='thor-2020' and e in analysis_rows and e['evidence_role']=='published_model_case_reference') for e in own))
         for r in d['records']:
             self.assertFalse(r['candidate_crosswalk_is_verified']);self.assertIsNone(r['whole_lifetime_days'])
-            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id']!='eddy:horizon:loop-66-secondary':self.assertFalse(r['evidence_ids'])
+            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id'] not in ['eddy:horizon:loop-66-secondary','eddy:horizon:loop-63-secondary']:self.assertFalse(r['evidence_ids'])
         for r in d['evidence']:
             if r['metric'] in ['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval']:
                 self.assertEqual(r['value'],(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days)
@@ -62,7 +62,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),406)
+        self.assertEqual(len(rows),407)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -118,9 +118,9 @@ class EddyRegister(unittest.TestCase):
         batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v4.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:77],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        self.assertEqual(d['counts']['registry_entries_with_own_references'],81)
-        self.assertEqual(d['counts']['identities_with_measurements'],121)
-        self.assertEqual(d['counts']['linked_primary_context_entries'],14)
+        self.assertEqual(d['counts']['registry_entries_with_own_references'],82)
+        self.assertEqual(d['counts']['identities_with_measurements'],122)
+        self.assertEqual(d['counts']['linked_primary_context_entries'],13)
         self.assertEqual(d['counts']['entries_without_numeric_or_primary_context'],1)
         self.assertEqual(sum(r['metric']=='registry_reported_maximum_surface_current' for r in d['evidence']),60)
         self.assertEqual(sum(r['metric']=='registry_separation_to_dissipation_calendar_span' for r in d['evidence']),77)
@@ -133,7 +133,7 @@ class EddyRegister(unittest.TestCase):
             if r['entity_id']=='eddy:horizon:loop-81-primary':
                 self.assertFalse(r['evidence_ids']);self.assertFalse(r['registry_context']['active_label_is_current_status'])
             if r['entity_id'].endswith('-secondary'):
-                self.assertEqual(len(r['evidence_ids']),2 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 0);self.assertIsNone(r['registry_context'])
+                self.assertEqual(len(r['evidence_ids']),2 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 1 if r['entity_id']=='eddy:horizon:loop-63-secondary' else 0);self.assertIsNone(r['registry_context'])
                 self.assertTrue(r['linked_primary_context']['evidence_ids'])
         for r in d['evidence']:
             if r['entity_id'].startswith('eddy:horizon:'):
@@ -209,7 +209,7 @@ class EddyRegister(unittest.TestCase):
         self.assertFalse(sample['independent_named_case']['primary_values_inherited'])
         self.assertFalse(sample['independent_named_case']['association_is_verified'])
         self.assertEqual(rows['poseidon-meunier-2018-glider-span']['value'],102)
-        self.assertEqual(d['counts']['secondary_entries_with_own_references'],1)
+        self.assertEqual(d['counts']['secondary_entries_with_own_references'],2)
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:csvrows=list(csv.DictReader(stream))
         exported=next(r for r in csvrows if r['id']==sample['id'])
         self.assertEqual(json.loads(exported['independent_named_case_json']),sample['independent_named_case'])
@@ -266,7 +266,7 @@ class EddyRegister(unittest.TestCase):
         self.assertTrue(all(not r['measurement_assigned_to_another_name'] for r in batch['unmapped_named_source_rows']))
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[270:285]
         self.assertEqual([json.loads(r['model_context_json']) for r in exports],[r['model_context'] for r in rows])
-        self.assertEqual(d['counts']['duration_owners'],100);self.assertEqual(d['counts']['kinematics_owners'],73)
+        self.assertEqual(d['counts']['duration_owners'],101);self.assertEqual(d['counts']['kinematics_owners'],73)
 
 
     def test_latakia_opposite_rotation_cases_keep_distinct_map_support(self):
@@ -336,9 +336,9 @@ class EddyRegister(unittest.TestCase):
             reader=csv.DictReader(stream);fields=[k for k in reader.fieldnames if k not in ['detection_context_json','source_map_estimate_json','profile_context_json']];prior_rows=list(reader)[:299]
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
-        self.assertEqual(len(d['evidence']),406)
+        self.assertEqual(len(d['evidence']),407)
         self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
-        self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(89,121,15))
+        self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(89,122,14))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),47)
         classes=d['size_classifications'];self.assertEqual(len(classes),15)
         self.assertEqual([(r['source_name'],r['label']) for r in classes],[('Titantic','Huge'),('Sargassum','Huge'),('Rebel','Small'),('QE-2','Small'),('Quick','Huge'),('Pelagic','Huge'),('Odessa','Medium'),('Nansen','Medium'),('Millenium','Huge'),('Lazy','Small'),('Kinetic','Small'),('Juggernaut','Huge'),('Indigo','Small'),('Haskell','Small'),('Gyre','Small')])
@@ -1033,7 +1033,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual([json.loads(r['model_context_json']) for r in exports[365:368]],[r['model_context'] for r in rows])
         edison=next(r for r in d['records'] if r['entity_id']=='eddy:horizon:loop-80-primary')
         self.assertEqual(len(edison['evidence_ids']),3);self.assertTrue(edison['size_gap']);self.assertIsNone(edison['whole_lifetime_days']);self.assertFalse(edison['registry_context']['active_label_is_current_status'])
-        self.assertEqual((d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements'],d['counts']['size_owners']),(121,15,89))
+        self.assertEqual((d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements'],d['counts']['size_owners']),(122,14,89))
 
     def test_edison_model_event_contrasts_reject_observed_life_and_experiment_swaps(self):
         import copy
@@ -1323,5 +1323,36 @@ class EddyRegister(unittest.TestCase):
             with self.assertRaises(AssertionError):validate_ssh_record(wrong)
         for gray in [0,255]:
             with self.assertRaises(AssertionError):read_extremum(bytes([gray])*794*600,794,600,'west',150)
+
+    def test_nautilus_ii_own_calendar_narrative_preserves_parent_and_prior_data(self):
+        d=register.build();b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v42.json').read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:406],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),b['baseline_evidence_sha256'])
+        r=d['evidence'][406];register.validate_nautilus_calendar_reference(r)
+        self.assertEqual(r['range_value'],[184,275]);self.assertIsNone(r['period_start']);self.assertIsNone(r['period_end']);self.assertFalse(r['whole_lifetime_inferred']);self.assertIsNone(r['geometry']);self.assertFalse(r['seasonal_playback_eligible'])
+        child=next(v for v in d['records'] if v['entity_id']=='eddy:horizon:loop-63-secondary')
+        self.assertEqual(child['evidence_ids'],[r['id']]);self.assertTrue(child['size_gap']);self.assertFalse(child['duration_gap']);self.assertIsNone(child['whole_lifetime_days'])
+        self.assertEqual(child['linked_primary_context']['entity_id'],'eddy:horizon:loop-63-primary')
+        self.assertFalse(r['independent_named_case']['primary_values_inherited'])
+        self.assertEqual((d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements'],d['counts']['secondary_entries_with_own_references'],d['counts']['duration_owners']),(122,14,2,101))
+        self.assertEqual((d['counts']['size_owners'],sum(v['size_gap'] for v in d['records'])),(89,47))
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:406])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),b['baseline_measurement_csv_sha256'])
+        self.assertEqual(json.loads(exports[406]['calendar_support_json']),r['calendar_support'])
+        self.assertEqual(json.loads(exports[406]['independent_named_case_json']),r['independent_named_case'])
+
+    def test_nautilus_ii_calendar_reference_rejects_parent_dates_exact_life_and_false_precision(self):
+        import copy
+        b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v42.json').read_bytes());raw=b['records'][0]
+        for key,value in [('entity_id','eddy:horizon:loop-63-primary'),('metric','measured_lifespan'),('range_value',[180,270]),('period_start','2015-05-01'),('period_end','2015-11-30'),('value',230),('unit','month'),('rights_screened_release_eligible',True)]:
+            wrong=copy.deepcopy(raw);wrong[key]=value
+            with self.assertRaises(AssertionError):register.validate_nautilus_calendar_reference(wrong)
+        for key,value in [('start_date_max','2015-05-01'),('end_month_min','2015-11'),('end_date_min','2015-11-01'),('end_date_max','2016-01-01'),('start_precision','day'),('chronology_conditioned',True),('unconditioned_elapsed_day_range',[184,274])]:
+            wrong=copy.deepcopy(raw);wrong['calendar_support'][key]=value
+            with self.assertRaises(AssertionError):register.validate_nautilus_calendar_reference(wrong)
+        for key in ['association_is_verified','primary_values_inherited','exact_split_event_identified','continuous_identity_across_reconnections_verified','whole_physical_lifetime_verified','shared_figure_contour_is_child_boundary','parent_registry_dates_used']:
+            wrong=copy.deepcopy(raw);wrong['independent_named_case'][key]=True
+            with self.assertRaises(AssertionError):register.validate_nautilus_calendar_reference(wrong)
 
 if __name__=='__main__':unittest.main()

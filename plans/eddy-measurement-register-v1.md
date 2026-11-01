@@ -605,3 +605,22 @@ of about +40 cm in its native unit: unknown anomaly reference, exact composite
 time and uncertainty remain unknown. Surface anomaly height is not eddy depth,
 thickness, a chosen contour threshold, a whole-life maximum or annual extrema.
 Retain all 403 preceding evidence and CSV rows.
+
+## Secondary source narratives with month-precision endpoints
+
+An original source can independently name a secondary case and describe its
+formation/dissipation months without establishing a measured physical lifespan.
+For Nautilus II, retain the thesis prose: May 2015 formation and dissipation
+between December 2015 and January 2016, with repeated reconnections to Nautilus.
+The grouped Nautilus/Nautilus II map cannot supply a child width or split date.
+Source identity association and continuous identity across reconnections remain
+unverified. This source claim is not an inherited primary measurement.
+
+Use complete calendar support: May 1..31 and December 1..January 31. End-minus-
+start yields 184..275 days, with no midpoint, month-to-30-day conversion, exact
+May 1 event date, observed track span or whole physical lifetime. Keep period
+start/end null and show source months alongside calendar-support dates. The
+primary registry May 1 separation and November dissipation are excluded from
+inputs and not reconciled by silently changing either source. No physical
+footprint, child size/current inheritance, state join or seasonal playback.
+Preserve all 406 earlier evidence and CSV rows.

@@ -671,6 +671,25 @@ def run():
             page.locator('[data-evidence-id="laura-van-aken-2003-cartographic-circle-east-west-span"]').screenshot(path=str(OUT/'mobile-laura-cartographic-circle-east-west.png'))
             page.locator('[data-evidence-id="laura-van-aken-2003-mare-1-ssh-anomaly-maximum"]').screenshot(path=str(OUT/'mobile-laura-mare-1-ssh-anomaly.png'))
             checks.append('Laura source illustration extent-circle spans: month-only support, unspecified boundary operator, 512 ink/axis/reading scenarios, not a physical/geodesic circle or diameter; separate positive 40 cm SSH anomaly, not eddy depth, annual or full-life maximum; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-63-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-63-secondary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['184–275 days · calendar bounds','Nautilus II source calendar span','not a measured lifespan','May 2015','December 2015 and January 2016','repeated reconnections','Figure 6 groups Nautilus/Nautilus II','No parent size/current values inherited','Size reference needed','start 2015-05-01 to 2015-05-31','end 2015-12-01 to 2016-01-31']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('.eddy-record').count()==1
+            card=page.locator('[data-evidence-id="nautilus-ii-saenz-avalos-2024-source-calendar-span"]')
+            page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/'nautilus-ii-calendar-span.png'))
+            row.locator('summary').screenshot(path=str(OUT/'nautilus-ii-own-reference-summary.png'))
+            card.locator('p').filter(has_text='Source access:').screenshot(path=str(OUT/'nautilus-ii-calendar-source-access.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            card.screenshot(path=str(OUT/'mobile-nautilus-ii-calendar-span.png'))
+            row.locator('summary').screenshot(path=str(OUT/'mobile-nautilus-ii-own-reference-summary.png'))
+            page.select_option('#eddy-filter','measured');assert page.locator('#eddy-rows tr').count()==1
+            page.select_option('#eddy-filter','linked');assert page.locator('#eddy-rows tr').count()==0
+            page.select_option('#eddy-filter','all');page.select_option('#eddy-category','duration');assert page.locator('#eddy-rows tr').count()==1
+            page.select_option('#eddy-category','size');assert page.locator('#eddy-rows tr').count()==0
+            page.select_option('#eddy-category','all')
+            checks.append('Nautilus II own month-precision narrative: 184–275 calendar days without exact event dates, measured lifespan or parent-value inheritance; grouped contour and unresolved reconnections visible, size gap retained; own/linked/category filters and desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

@@ -6,6 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
+    if(r.calendar_support?.method==='source_narrative_nautilus_ii_calendar_span')return `${r.range_value.map(num).join('–')} days · calendar bounds`;
     if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_operational_chart_visible_line_spans_v1'?'operational chart estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     if(r.metric==='source_model_counterfactual_shedding_date_difference')return `${num(r.value)} ${r.value===1?'day':'days'}`;
@@ -155,6 +156,13 @@
       if(c.method==='retained_contour_audit_span_v1')add('p',`Sensitivity: four accepted stroke/threshold paths, ${m.calculation.accepted_scenarios} axis scenarios with ±${c.axis_sensitivity_pixels} pixel anchor shifts, plus the reading allowance above. Two non-simple paths stay excluded. These are editorial contour spans; physical ring attribution remains pending.`,box);
       if(c.method==='source_palette_level_patch_v1')add('p',`Colour patch: plotted level ${c.source_level}; source legend unit unspecified. OSW selection sensitivity uses plot levels ${m.calculation.plot_level_sensitivity.join(', ')}, with source-palette matching. No level in centimetres or metres is assigned. This patch is not the authors’ ring-edge definition or a full-ring boundary.`,box);
       if(c.method==='manual_ink_arrow_span_v1')add('p','Visible circulation-arrow extents · four manual source-ink readings. Closed-outline extraction rejected; no missing segment repaired and no footprint inferred. Source chart carries CONFIDENTIAL stamp and copyright despite public conference hosting. Research candidate only; excluded from rights-screened release.',box);
+    }
+    if(r.calendar_support?.method==='source_narrative_nautilus_ii_calendar_span'){
+      add('strong','Nautilus II source calendar span · not a measured lifespan.',add('p',undefined,box));
+      add('p','The 2024 UABC thesis explicitly names Nautilus II: formation in May 2015 and dissipation between December 2015 and January 2016. It also describes repeated reconnections to Nautilus.',box);
+      add('p','184–275 days covers month precision only. The lower end uses 31 May to 1 December; the upper end uses 1 May to 31 January. These are support boundaries, not observed event dates. No midpoint or 30-day-month conversion.',box);
+      add('p','Figure 6 groups Nautilus/Nautilus II. Exact split history, continuous identity across reconnections and the registry physical association remain unverified. No individual child width or contour is established.',box);
+      add('p','Own source narrative only: primary Nautilus registry separation on 2015-05-01 and dissipation in November 2015 are not inputs. No parent size/current values inherited; size gap retained.',box);
     }
     if(r.independent_named_case)add('strong','Independent named source case · no primary values inherited; physical crosswalk remains unverified.',add('p',undefined,box));
     if(r.evidence_role?.includes('model_case_reference')&&r.model_context?.method!=='source_reported_model_event_date_contrast')add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
