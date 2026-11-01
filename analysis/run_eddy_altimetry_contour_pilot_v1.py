@@ -10,6 +10,7 @@ import contourpy
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.path import Path
 import netCDF4
 import numpy as np
 
@@ -72,6 +73,10 @@ def main():
                             ax.plot(points[:, 0], points[:, 1], color='#75808b', lw=.65, ls='--', alpha=.8)
                     for level in [.15, .17, .19]:
                         candidates, rejected = contour_candidates(lon, lat, z, level)
+                        controls = request.get('review_control_points', {}).get(day, {})
+                        for row, points in candidates:
+                            row['review_control_point_hits'] = {key: Path(points).contains_points(value).tolist()
+                                                               for key, value in controls.items()}
                         record['scenarios'].append({'mean_method': 'cos_latitude_weighted' if weighted else 'finite_gridpoint_arithmetic',
                             'removed_spatial_mean_m': mean, 'demeaning_ocean_samples': count,
                             'demeaning_box_degrees': [-99, 17, -80, 31], 'level_m': level,
@@ -86,6 +91,9 @@ def main():
                     if not weighted:
                         # Only the land/missing mask and extracted contours enter the retained image.
                         ax.pcolormesh(lon, lat, ~np.isfinite(z), cmap='Greys', vmin=0, vmax=1, shading='nearest', alpha=.22)
+                        for control_points in request.get('review_control_points', {}).get(day, {}).values():
+                            control = np.asarray(control_points)
+                            ax.scatter(control[:, 0], control[:, 1], color='#a00053', s=6, marker='+', zorder=5)
                 primary = next(s for s in record['scenarios'] if s['mean_method'] == 'finite_gridpoint_arithmetic' and s['level_m'] == .17)
                 ax.set(xlim=(-99, -79), ylim=(17, 32), title=f"{day} — {len(primary['candidates'])} eligible closed loops", xlabel='Longitude', ylabel='Latitude')
                 ax.set_aspect(1 / np.cos(np.deg2rad(25)))

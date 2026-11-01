@@ -1,7 +1,7 @@
 {
   "schema": "osw.eddy-altimetry-contour-pilot-request.v1",
-  "execute": false,
-  "revision": 2,
+  "execute": true,
+  "revision": 3,
   "maximum_cloud_jobs": 1,
   "maximum_local_heavy_jobs": 0,
   "measurement_admission_permitted": false,
@@ -42,10 +42,53 @@
   "input_sha256": {
     "analysis/eddy_altimetry_contours_v1.py": "0d22d60c43bb4882001864b9ba52fdd8482a9db5c7653a4a49573b983aed74e0",
     "analysis/test_eddy_altimetry_contours_v1.py": "7285225017d983bbb1b7478ae76fe53345c85872fa130a98ed6328aae52054ef",
-    "analysis/run_eddy_altimetry_contour_pilot_v1.py": "3e9fc28e038907de573e3af13f308096c8b94abaeecdbf1354c219dc3b962f64",
+    "analysis/run_eddy_altimetry_contour_pilot_v1.py": "356354a184d64b37c08f32b3c896b78682fa0dfaf6bc1c086ae2c5dc4f12f5f7",
     ".github/workflows/eddy-altimetry-contour-pilot-v1.yml": "d401b88eb5a98ecd6d6a4a1c7c1f13ce80dd5045ab10f5502bcd98b7c6ab16ca"
   },
-  "review_refinement": "Successful first-run image omitted open/rejected contours. Include all 0.17 m paths as dashed context and explicit eligible-loop counts; numeric operator and source days unchanged.",
+  "review_refinement": "Test nine OSW-selected interior control points from the source-labeled Kraken map, Hamilton 2019 Figure 2, 31 March panel. They identify a source-case comparison region only, not a registered physical identity or a source boundary.",
   "completed_run_id": 41277901043,
-  "completed_source_commit": "d80c236dc112f523a85d10be9c1f71fbaf956fc3"
+  "completed_source_commit": "d80c236dc112f523a85d10be9c1f71fbaf956fc3",
+  "review_control_points": {
+    "2013-03-31": {
+      "hamilton-2019-march31-map-interior": [
+        [
+          -87.25,
+          26.75
+        ],
+        [
+          -87.25,
+          27.0
+        ],
+        [
+          -87.25,
+          27.25
+        ],
+        [
+          -87.0,
+          26.75
+        ],
+        [
+          -87.0,
+          27.0
+        ],
+        [
+          -87.0,
+          27.25
+        ],
+        [
+          -86.75,
+          26.75
+        ],
+        [
+          -86.75,
+          27.0
+        ],
+        [
+          -86.75,
+          27.25
+        ]
+      ]
+    }
+  },
+  "control_point_reading_qualification": "OSW approximate interior map reading centered at 87 W, 27 N, with 0.25-degree offsets in each direction. These are selection probes and not measured eddy centers, boundaries or a confidence region."
 }
