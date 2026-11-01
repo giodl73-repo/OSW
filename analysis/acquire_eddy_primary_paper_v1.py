@@ -10,6 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUEST = 'research/eddy-primary-paper-acquisition-request-v1.json'
 OUT = ROOT / '.pytest_cache/eddy-primary-paper-acquisition-v1'
 PAPERS = {
+    'korotaev-2003': {
+        'url': 'https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508',
+        'doi': '10.1029/2002JC001508',
+    },
     'haley-2023': {
         'url': 'https://mseas.mit.edu/publications/PDF/Haley_et_al_Oceans2023.pdf',
         'doi': '10.23919/OCEANS52994.2023.10337035',
@@ -41,7 +45,8 @@ def main():
         'ocean_field_processing': False, 'runtime_changed': False,
     }
     try:
-        with urllib.request.urlopen(source['url'], timeout=25) as response:
+        public_request = urllib.request.Request(source['url'], headers={'User-Agent': 'OSW public eddy source research'})
+        with urllib.request.urlopen(public_request, timeout=25) as response:
             final_url = response.geturl()
             assert final_url.split('#')[0] == source['url'], 'Unexpected source redirect'
             raw = response.read(request['maximum_bytes'] + 1)
