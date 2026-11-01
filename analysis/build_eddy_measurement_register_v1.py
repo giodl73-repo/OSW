@@ -108,6 +108,21 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_thermal_level_enclosed_area':
+        assert row['entity_id']=='eddy:horizon:loop-03-primary' and row['category']=='size' and row['unit']=='km^2'
+        assert row['metric']=='source_reported_thermal_level_enclosed_area'
+        assert row['period_start'] is None and row['period_end'] is None and row['period_precision']=='source_survey_month'
+        assert row.get('depth_m') is None and row.get('range_value') is None
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert c['thermal_reference_celsius']==8 and c['source_table']=='4.4-2'
+        assert c['source_table_unit']=='10^3 km^2' and c['conversion_factor_to_km2']==1000
+        assert c['measurement_method']=='source_planimeter_on_hand_contoured_hydrographic_maps'
+        assert all(c[k] is False for k in ['source_uncertainty_quantified','is_eddy_vertical_extent','sample_depth_inferred','outer_boundary_inferred','annual_extrema_inferred','raw_profiles_acquired','physical_crosswalk_verified'])
+        table={'1985-10':[1.3,9.0,26.0,50.0,97.0],'1985-11':[0.0,2.7,26.0,48.0,85.0],'1986-01':[2.6,7.8,17.0,50.0,None],'1986-04':[0.3,2.4,8.1,24.0,None]}
+        native=table[c['survey_label']][[750,700,650,600,550].index(c['temperature_surface_depth_contour_m'])]
+        assert native is not None and native>0 and c['source_table_value']==native and row['value']==round(native*1000)
+        assert row['id']==f"fast-saic-1988-thermal-area-{c['survey_label']}-{c['temperature_surface_depth_contour_m']}m"
+        return
     if c['method']=='source_reported_multisensor_current_comparison':
         assert row['entity_id']=='eddy:horizon:loop-66-primary' and row['component_label']=='Northern post-split Quantum I source case'
         assert row['metric']=='source_reported_local_multisensor_current_comparison_speed' and row['category']=='kinematics' and row['unit']=='m/s'
@@ -210,7 +225,8 @@ def validate_fast_alias_reference(row):
     assert a['alias_reference_source_id']=='hamilton-1999'
     assert all(a[k] is False for k in ['physical_crosswalk_verified','separation_conventions_reconciled','other_eddy_values_inherited'])
     assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
-    kinds={'source_reported_center_westward_translation_distance':('travel','km'),
+    kinds={'source_reported_thermal_level_enclosed_area':('size','km^2'),
+           'source_reported_center_westward_translation_distance':('travel','km'),
            'source_reported_approximate_center_translation_speed':('kinematics','km/day'),
            'source_reported_sampled_drifter_orbit_diameter':('size','km'),
            'source_reported_sampled_drifter_orbit_radius':('size','km'),
@@ -389,6 +405,12 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_thermal_level_enclosed_area':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                lead=report['verified_numeric_source_lead'];assert lead['source_pixels_reviewed'] is True and lead['positive_numeric_cells']==17
+                c=r['profile_context'];source_row=next(v for v in lead['source_rows'] if v['survey_month']==c['survey_label'])
+                assert source_row['values'][lead['depth_contours_m'].index(c['temperature_surface_depth_contour_m'])]==c['source_table_value']
+
             if r.get('case_alias_association'):
                 if r['case_alias_association'].get('method')=='source_reported_1988_letter_case_reference':validate_year5_alias_reference(r)
                 else:validate_fast_alias_reference(r)

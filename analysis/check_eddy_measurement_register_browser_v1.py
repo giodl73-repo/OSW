@@ -547,6 +547,21 @@ def run():
             for part in ['both-hurricanes-removed','milton-removed']:
                 page.locator('[data-evidence-id="edison-deng-2026-model-detachment-contrast-'+part+'"]').screenshot(path=str(OUT/('mobile-edison-model-'+part+'.png')))
             checks.append('Edison preprint model date contrasts retain three forcing experiments, different simulated worlds, non-additivity, no observed lifespan or physical effect, and an open size gap; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-03-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-03-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            thermal=page.locator('[data-evidence-id^="fast-saic-1988-thermal-area-"]');assert thermal.count()==17
+            for needle in ['Thermal-level enclosed area','not sampling depth or eddy thickness','not the full outer boundary','Zero and unclosed','8°C temperature surface','1985-10','1986-04','registry physical crosswalk unverified']:
+                assert needle in row.inner_text(),needle
+            page.set_viewport_size({'width':1440,'height':1000})
+            for month,depth,value in [('1985-10',550,'97000'),('1986-01',650,'17000'),('1986-04',600,'24000')]:
+                card=page.locator(f'[data-evidence-id="fast-saic-1988-thermal-area-{month}-{depth}m"]')
+                assert value in card.inner_text().replace(',','').replace(' ','')
+                card.screenshot(path=str(OUT/f'fast-thermal-area-{month}-{depth}m.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for month,depth in [('1985-10',550),('1986-04',600)]:
+                page.locator(f'[data-evidence-id="fast-saic-1988-thermal-area-{month}-{depth}m"]').screenshot(path=str(OUT/f'mobile-fast-thermal-area-{month}-{depth}m.png'))
+            checks.append('Fast thermal-level areas: 17 positive source cells, distinct survey and contour levels, unit conversion, no filled zero or unclosed cells, no outer boundary or thickness inference; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

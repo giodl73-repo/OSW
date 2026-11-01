@@ -29,8 +29,15 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_thermal_level_enclosed_area'){
+        add('p',`Survey label: ${c.survey_label}; area within the ${c.temperature_surface_depth_contour_m} m depth contour of the 8°C temperature surface.`,box);
+        add('p',`Source table: ${c.source_table_value} × 1,000 km². Planimeter measurement on hand-contoured hydrographic maps; uncertainty unspecified.`,box);
+        add('strong','Thermal contour depth, not sampling depth or eddy thickness. This area is not the full outer boundary.',add('p',undefined,box));
+        add('p','Survey labels can span month boundaries. Zero and unclosed table cells are not filled or interpolated; different levels do not form an annual size range.',box);
+      }
+
       if(c.method==='source_reported_multisensor_current_comparison'){
         add('p',`Instrument: ${c.instrument}; ${c.sample_depth_m===null?'effective near-surface weighting, no single assigned depth':`sample depth: ${c.sample_depth_m} m`}.`,box);
         add('p',c.shared_source_approximation?'The authors give one approximate speed for both remote instruments; this is not an arithmetic average or two independently resolved values.':'Approximate local buoy comparison value, not a mean or maximum.',box);
