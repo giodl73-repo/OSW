@@ -139,7 +139,7 @@ def run():
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             primary=page.locator('tr[data-eddy-id="eddy:horizon:loop-74-primary"]')
             assert primary.locator('details').evaluate('(e)=>e.open')
-            assert primary.locator('.eddy-record').count()==1
+            assert primary.locator('.eddy-record').count()==3
             for name in ['Feldman','Edison']:
                 page.fill('#eddy-search',name);page.locator('#eddy-rows summary').click()
                 assert page.locator('#eddy-rows .eddy-record').count()==(0 if name=='Feldman' else 3)
