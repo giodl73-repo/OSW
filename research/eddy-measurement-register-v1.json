@@ -2,8 +2,8 @@
  "schema": "osw.eddy-measurement-register.v1",
  "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
  "rules_file": "plans/eddy-measurement-register-v1.md",
- "rules_sha256": "e4525e233daf4c98b8f770cf8042795c1ad61b08e1770d74d6933355ea579afe",
- "generator_sha256": "d6a179ce5c12ab8dfc391537071bbaaf203376998b096426dfa7cfb446c51410",
+ "rules_sha256": "d6ad8545aebdcb4d0ab7b5318c2fc507cc95183e54539f1fac63dbe7d8d88994",
+ "generator_sha256": "9a29013b3d68181b09124450564803536d4e0310abbca44a63f74e0a9ea0c387",
  "input_sha256": {
   "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
   "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
   "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
   "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
   "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-  "research/eddy-measurement-batches-v1.json": "a260130047c85b39944d819cbdaba3a9913b3c15c29fc2d58e387e6e990a0146",
+  "research/eddy-measurement-batches-v1.json": "e9662b8ea78bb0e2f5f59820bf5062c9d96b4de2176c28fc328d699c7154cc5a",
   "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
   "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
   "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -92,7 +92,11 @@
   "research/eddy-measurement-register-additions-v44.json": "d5f6854cd208cae00a431a570df80fb2adb2dd54df5a5a34c3c1676e21646d19",
   "research/eddy-deviant-speed-core-source-review-v1.json": "e111a567e3d5243bbcacc6f9db235d9fdd9ad20940d07dd486d68b8f0bceda05",
   "research/eddy-source-position-references-v1.json": "daab240f6f9fbb2ffd497d1e6625385fbcffe62645970914e0c7e2bd818d2f9f",
-  "research/eddy-deviant-position-and-size-gap-source-review-v1.json": "e13bd42b30f9323e2027ca25909ddfdff32e6696cd2ea0dd3f524a81e03d84e6"
+  "research/eddy-deviant-position-and-size-gap-source-review-v1.json": "e13bd42b30f9323e2027ca25909ddfdff32e6696cd2ea0dd3f524a81e03d84e6",
+  "research/eddy-measurement-register-additions-v45.json": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+  "research/eddy-kinetic-indigo-speed-core-source-review-v1.json": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd",
+  "research/eddy-source-position-references-v2.json": "f1c54395dcf8921cb06428b4fbe01ba5dd2ffc8da4ee6da4a6ae3d194c328dfc",
+  "research/eddy-kinetic-indigo-position-source-review-v1.json": "dcac53c39acc7acd5a416f0771957a7c29280e53eaf736c40e80589a7528cc62"
  },
  "method_implementation_sha256": {
   "analysis/eddy_cartographic_circle_spans_v1.py": "c077b21e533f935d39dbdb63e39bffbff827038a3116f78b2279f6ec8089425a",
@@ -364,6 +368,12 @@
    "baseline_count": 409,
    "preserved_baseline_sha256": "357bb7dcab3981cf50ac2fe54a7896b7e8c26d73cd2f1bf18ba96f079bf53fcd",
    "added": 5
+  },
+  {
+   "file": "research/eddy-measurement-register-additions-v45.json",
+   "baseline_count": 414,
+   "preserved_baseline_sha256": "65f061fcf2fb58c26ee2039bdf34802e96e4a85b094812bf3ac456febabb97ce",
+   "added": 10
   }
  ],
  "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -374,9 +384,9 @@
   "individual_source_records": 112,
   "recurrent_regions": 20,
   "families": 4,
-  "evidence_records": 414,
-  "size_records": 172,
-  "size_owners": 91,
+  "evidence_records": 424,
+  "size_records": 180,
+  "size_owners": 93,
   "duration_owners": 101,
   "recurrence_owners": 12,
   "structure_owners": 15,
@@ -395,7 +405,7 @@
  "size_classification_counts": {
   "records": 15,
   "owners": 15,
-  "owners_with_numeric_size_gap": 9,
+  "owners_with_numeric_size_gap": 7,
   "labels": {
    "Huge": 6,
    "Medium": 2,
@@ -4092,16 +4102,22 @@
     "eddy:horizon:loop-34-primary-registry-maximum-surface-current",
     "eddy:horizon:loop-34-primary-registry-calendar-span",
     "kinetic-mckone-2007-november-near-surface-current",
-    "kinetic-mckone-2007-november-755m-current"
+    "kinetic-mckone-2007-november-755m-current",
+    "kinetic-2000-07-02-speed-core-area",
+    "kinetic-2000-07-02-speed-core-radius",
+    "kinetic-2000-07-02-speed-core-east-west",
+    "kinetic-2000-07-02-speed-core-north-south",
+    "kinetic-2000-07-02-speed-core-speed"
    ],
    "categories": [
     "duration",
-    "kinematics"
+    "kinematics",
+    "size"
    ],
    "size_classification_ids": [
     "whoi-2005-03-table2-row-11"
    ],
-   "size_gap": true,
+   "size_gap": false,
    "duration_gap": false,
    "status": "has_measurements",
    "linked_primary_context": null,
@@ -4192,16 +4208,22 @@
    "source_pointer": "/entries/62",
    "evidence_ids": [
     "eddy:horizon:loop-32-primary-registry-maximum-surface-current",
-    "eddy:horizon:loop-32-primary-registry-calendar-span"
+    "eddy:horizon:loop-32-primary-registry-calendar-span",
+    "indigo-2000-05-13-speed-core-area",
+    "indigo-2000-05-13-speed-core-radius",
+    "indigo-2000-05-13-speed-core-east-west",
+    "indigo-2000-05-13-speed-core-north-south",
+    "indigo-2000-05-13-speed-core-speed"
    ],
    "categories": [
     "duration",
-    "kinematics"
+    "kinematics",
+    "size"
    ],
    "size_classification_ids": [
     "whoi-2005-03-table2-row-13"
    ],
-   "size_gap": true,
+   "size_gap": false,
    "duration_gap": false,
    "status": "has_measurements",
    "linked_primary_context": null,
@@ -59985,6 +60007,1576 @@
     ],
     "report_file": "research/eddy-deviant-speed-core-source-review-v1.json",
     "report_sha256": "e111a567e3d5243bbcacc6f9db235d9fdd9ad20940d07dd486d68b8f0bceda05"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "kinetic-2000-07-02-speed-core-area",
+   "entity_id": "eddy:horizon:loop-34-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_area",
+   "metric_label": "osw speed contour area",
+   "value": null,
+   "unit": "km2",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-07-02",
+   "period_end": "2000-07-02",
+   "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/0",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "kinetic-2000-07-02-speed-core-area",
+    "entity_id": "eddy:horizon:loop-34-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_area",
+    "value": null,
+    "unit": "km2",
+    "range_value": [
+     20000,
+     25000
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-07-02",
+    "period_end": "2000-07-02",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+    "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_area",
+     "unit": "km2",
+     "component": "area",
+     "source_case_name": "Kinetic",
+     "date": "2000-07-02",
+     "scenario_values": [
+      22457.741634515325,
+      22457.741634515325
+     ],
+     "nominal_audit_value": 22457.741634515325,
+     "unrounded_extrema": [
+      22457.741634515325,
+      22457.741634515325
+     ],
+     "round_outward_to": 5000,
+     "range_value": [
+      20000,
+      25000
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -89.8,
+      27.3
+     ],
+     "grid_peak_lon_lat": [
+      -89.6875,
+      26.9375
+     ],
+     "source_point_role": "source_map_mooring_proxy_in_named_composite",
+     "peak_distance_from_source_point_km": 41.81766666337159,
+     "selected_interior_gridpoints": [
+      135,
+      135
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+   "range_value": [
+    20000,
+    25000
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_area",
+    "unit": "km2",
+    "component": "area",
+    "source_case_name": "Kinetic",
+    "date": "2000-07-02",
+    "scenario_values": [
+     22457.741634515325,
+     22457.741634515325
+    ],
+    "nominal_audit_value": 22457.741634515325,
+    "unrounded_extrema": [
+     22457.741634515325,
+     22457.741634515325
+    ],
+    "round_outward_to": 5000,
+    "range_value": [
+     20000,
+     25000
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -89.8,
+     27.3
+    ],
+    "grid_peak_lon_lat": [
+     -89.6875,
+     26.9375
+    ],
+    "source_point_role": "source_map_mooring_proxy_in_named_composite",
+    "peak_distance_from_source_point_km": 41.81766666337159,
+    "selected_interior_gridpoints": [
+     135,
+     135
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "kinetic-2000-07-02-speed-core-radius",
+   "entity_id": "eddy:horizon:loop-34-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_equivalent_radius",
+   "metric_label": "osw speed contour equivalent radius",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-07-02",
+   "period_end": "2000-07-02",
+   "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/1",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "kinetic-2000-07-02-speed-core-radius",
+    "entity_id": "eddy:horizon:loop-34-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_equivalent_radius",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     80,
+     90
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-07-02",
+    "period_end": "2000-07-02",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+    "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_equivalent_radius",
+     "unit": "km",
+     "component": "radius",
+     "source_case_name": "Kinetic",
+     "date": "2000-07-02",
+     "scenario_values": [
+      84.54892774972105,
+      84.54892774972105
+     ],
+     "nominal_audit_value": 84.54892774972105,
+     "unrounded_extrema": [
+      84.54892774972105,
+      84.54892774972105
+     ],
+     "round_outward_to": 10,
+     "range_value": [
+      80,
+      90
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -89.8,
+      27.3
+     ],
+     "grid_peak_lon_lat": [
+      -89.6875,
+      26.9375
+     ],
+     "source_point_role": "source_map_mooring_proxy_in_named_composite",
+     "peak_distance_from_source_point_km": 41.81766666337159,
+     "selected_interior_gridpoints": [
+      135,
+      135
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+   "range_value": [
+    80,
+    90
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_equivalent_radius",
+    "unit": "km",
+    "component": "radius",
+    "source_case_name": "Kinetic",
+    "date": "2000-07-02",
+    "scenario_values": [
+     84.54892774972105,
+     84.54892774972105
+    ],
+    "nominal_audit_value": 84.54892774972105,
+    "unrounded_extrema": [
+     84.54892774972105,
+     84.54892774972105
+    ],
+    "round_outward_to": 10,
+    "range_value": [
+     80,
+     90
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -89.8,
+     27.3
+    ],
+    "grid_peak_lon_lat": [
+     -89.6875,
+     26.9375
+    ],
+    "source_point_role": "source_map_mooring_proxy_in_named_composite",
+    "peak_distance_from_source_point_km": 41.81766666337159,
+    "selected_interior_gridpoints": [
+     135,
+     135
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "kinetic-2000-07-02-speed-core-east-west",
+   "entity_id": "eddy:horizon:loop-34-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_east_west_bounding_arc",
+   "metric_label": "osw speed contour east west bounding arc",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-07-02",
+   "period_end": "2000-07-02",
+   "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/2",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "kinetic-2000-07-02-speed-core-east-west",
+    "entity_id": "eddy:horizon:loop-34-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_east_west_bounding_arc",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     175,
+     200
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-07-02",
+    "period_end": "2000-07-02",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+    "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_east_west_bounding_arc",
+     "unit": "km",
+     "component": "east_west",
+     "source_case_name": "Kinetic",
+     "date": "2000-07-02",
+     "scenario_values": [
+      180.45348420885185,
+      180.45348420885185
+     ],
+     "nominal_audit_value": 180.45348420885185,
+     "unrounded_extrema": [
+      180.45348420885185,
+      180.45348420885185
+     ],
+     "round_outward_to": 25,
+     "range_value": [
+      175,
+      200
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -89.8,
+      27.3
+     ],
+     "grid_peak_lon_lat": [
+      -89.6875,
+      26.9375
+     ],
+     "source_point_role": "source_map_mooring_proxy_in_named_composite",
+     "peak_distance_from_source_point_km": 41.81766666337159,
+     "selected_interior_gridpoints": [
+      135,
+      135
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+   "range_value": [
+    175,
+    200
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_east_west_bounding_arc",
+    "unit": "km",
+    "component": "east_west",
+    "source_case_name": "Kinetic",
+    "date": "2000-07-02",
+    "scenario_values": [
+     180.45348420885185,
+     180.45348420885185
+    ],
+    "nominal_audit_value": 180.45348420885185,
+    "unrounded_extrema": [
+     180.45348420885185,
+     180.45348420885185
+    ],
+    "round_outward_to": 25,
+    "range_value": [
+     175,
+     200
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -89.8,
+     27.3
+    ],
+    "grid_peak_lon_lat": [
+     -89.6875,
+     26.9375
+    ],
+    "source_point_role": "source_map_mooring_proxy_in_named_composite",
+    "peak_distance_from_source_point_km": 41.81766666337159,
+    "selected_interior_gridpoints": [
+     135,
+     135
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "kinetic-2000-07-02-speed-core-north-south",
+   "entity_id": "eddy:horizon:loop-34-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_north_south_bounding_arc",
+   "metric_label": "osw speed contour north south bounding arc",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-07-02",
+   "period_end": "2000-07-02",
+   "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/3",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "kinetic-2000-07-02-speed-core-north-south",
+    "entity_id": "eddy:horizon:loop-34-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_north_south_bounding_arc",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     150,
+     175
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-07-02",
+    "period_end": "2000-07-02",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+    "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_north_south_bounding_arc",
+     "unit": "km",
+     "component": "north_south",
+     "source_case_name": "Kinetic",
+     "date": "2000-07-02",
+     "scenario_values": [
+      154.13802576545075,
+      154.13802576545075
+     ],
+     "nominal_audit_value": 154.13802576545075,
+     "unrounded_extrema": [
+      154.13802576545075,
+      154.13802576545075
+     ],
+     "round_outward_to": 25,
+     "range_value": [
+      150,
+      175
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -89.8,
+      27.3
+     ],
+     "grid_peak_lon_lat": [
+      -89.6875,
+      26.9375
+     ],
+     "source_point_role": "source_map_mooring_proxy_in_named_composite",
+     "peak_distance_from_source_point_km": 41.81766666337159,
+     "selected_interior_gridpoints": [
+      135,
+      135
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+   "range_value": [
+    150,
+    175
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_north_south_bounding_arc",
+    "unit": "km",
+    "component": "north_south",
+    "source_case_name": "Kinetic",
+    "date": "2000-07-02",
+    "scenario_values": [
+     154.13802576545075,
+     154.13802576545075
+    ],
+    "nominal_audit_value": 154.13802576545075,
+    "unrounded_extrema": [
+     154.13802576545075,
+     154.13802576545075
+    ],
+    "round_outward_to": 25,
+    "range_value": [
+     150,
+     175
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -89.8,
+     27.3
+    ],
+    "grid_peak_lon_lat": [
+     -89.6875,
+     26.9375
+    ],
+    "source_point_role": "source_map_mooring_proxy_in_named_composite",
+    "peak_distance_from_source_point_km": 41.81766666337159,
+    "selected_interior_gridpoints": [
+     135,
+     135
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "kinetic-2000-07-02-speed-core-speed",
+   "entity_id": "eddy:horizon:loop-34-primary",
+   "category": "kinematics",
+   "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+   "metric_label": "osw maximum circum averaged geostrophic speed",
+   "value": null,
+   "unit": "m/s",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-07-02",
+   "period_end": "2000-07-02",
+   "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/4",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "kinetic-2000-07-02-speed-core-speed",
+    "entity_id": "eddy:horizon:loop-34-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "kinematics",
+    "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+    "value": null,
+    "unit": "m/s",
+    "range_value": [
+     0.3,
+     0.35
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-07-02",
+    "period_end": "2000-07-02",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-07-02 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-07-02; Hamilton et al. (2003), MMS 2003-049, Figures 1-1 / 2-3d and printed page 14; Eddy K / Kinetic over mooring site.",
+    "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Kinetic point is a manually read mooring map proxy, not an author-reported center; the nominal July 2 source map represents an approximately seven-day composite, distinct from the daily DUACS coordinate. September 24 fails and supplies no measurement. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+     "unit": "m/s",
+     "component": "speed",
+     "source_case_name": "Kinetic",
+     "date": "2000-07-02",
+     "scenario_values": [
+      0.3009328268100017,
+      0.3009328268100017
+     ],
+     "nominal_audit_value": 0.3009328268100017,
+     "unrounded_extrema": [
+      0.3009328268100017,
+      0.3009328268100017
+     ],
+     "round_outward_to": 0.05,
+     "range_value": [
+      0.3,
+      0.35
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -89.8,
+      27.3
+     ],
+     "grid_peak_lon_lat": [
+      -89.6875,
+      26.9375
+     ],
+     "source_point_role": "source_map_mooring_proxy_in_named_composite",
+     "peak_distance_from_source_point_km": 41.81766666337159,
+     "selected_interior_gridpoints": [
+      135,
+      135
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Kinetic dated source-case speed core; physical identity unverified",
+   "range_value": [
+    0.3,
+    0.35
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+    "unit": "m/s",
+    "component": "speed",
+    "source_case_name": "Kinetic",
+    "date": "2000-07-02",
+    "scenario_values": [
+     0.3009328268100017,
+     0.3009328268100017
+    ],
+    "nominal_audit_value": 0.3009328268100017,
+    "unrounded_extrema": [
+     0.3009328268100017,
+     0.3009328268100017
+    ],
+    "round_outward_to": 0.05,
+    "range_value": [
+     0.3,
+     0.35
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -89.8,
+     27.3
+    ],
+    "grid_peak_lon_lat": [
+     -89.6875,
+     26.9375
+    ],
+    "source_point_role": "source_map_mooring_proxy_in_named_composite",
+    "peak_distance_from_source_point_km": 41.81766666337159,
+    "selected_interior_gridpoints": [
+     135,
+     135
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "indigo-2000-05-13-speed-core-area",
+   "entity_id": "eddy:horizon:loop-32-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_area",
+   "metric_label": "osw speed contour area",
+   "value": null,
+   "unit": "km2",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-05-13",
+   "period_end": "2000-05-13",
+   "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/5",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "indigo-2000-05-13-speed-core-area",
+    "entity_id": "eddy:horizon:loop-32-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_area",
+    "value": null,
+    "unit": "km2",
+    "range_value": [
+     45000,
+     50000
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-05-13",
+    "period_end": "2000-05-13",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Indigo dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+    "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_area",
+     "unit": "km2",
+     "component": "area",
+     "source_case_name": "Indigo",
+     "date": "2000-05-13",
+     "scenario_values": [
+      46690.51421319,
+      45746.55189713143
+     ],
+     "nominal_audit_value": 45746.55189713143,
+     "unrounded_extrema": [
+      45746.55189713143,
+      46690.51421319
+     ],
+     "round_outward_to": 5000,
+     "range_value": [
+      45000,
+      50000
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -94.75,
+      26.25
+     ],
+     "grid_peak_lon_lat": [
+      -94.5625,
+      26.4375
+     ],
+     "source_point_role": "source_reported_satellite_center",
+     "peak_distance_from_source_point_km": 27.995852216072272,
+     "selected_interior_gridpoints": [
+      267,
+      262
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Indigo dated source-case speed core; physical identity unverified",
+   "range_value": [
+    45000,
+    50000
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_area",
+    "unit": "km2",
+    "component": "area",
+    "source_case_name": "Indigo",
+    "date": "2000-05-13",
+    "scenario_values": [
+     46690.51421319,
+     45746.55189713143
+    ],
+    "nominal_audit_value": 45746.55189713143,
+    "unrounded_extrema": [
+     45746.55189713143,
+     46690.51421319
+    ],
+    "round_outward_to": 5000,
+    "range_value": [
+     45000,
+     50000
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -94.75,
+     26.25
+    ],
+    "grid_peak_lon_lat": [
+     -94.5625,
+     26.4375
+    ],
+    "source_point_role": "source_reported_satellite_center",
+    "peak_distance_from_source_point_km": 27.995852216072272,
+    "selected_interior_gridpoints": [
+     267,
+     262
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "indigo-2000-05-13-speed-core-radius",
+   "entity_id": "eddy:horizon:loop-32-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_equivalent_radius",
+   "metric_label": "osw speed contour equivalent radius",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-05-13",
+   "period_end": "2000-05-13",
+   "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/6",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "indigo-2000-05-13-speed-core-radius",
+    "entity_id": "eddy:horizon:loop-32-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_equivalent_radius",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     120,
+     130
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-05-13",
+    "period_end": "2000-05-13",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Indigo dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+    "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_equivalent_radius",
+     "unit": "km",
+     "component": "radius",
+     "source_case_name": "Indigo",
+     "date": "2000-05-13",
+     "scenario_values": [
+      121.9100170825317,
+      120.67137078726162
+     ],
+     "nominal_audit_value": 120.67137078726162,
+     "unrounded_extrema": [
+      120.67137078726162,
+      121.9100170825317
+     ],
+     "round_outward_to": 10,
+     "range_value": [
+      120,
+      130
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -94.75,
+      26.25
+     ],
+     "grid_peak_lon_lat": [
+      -94.5625,
+      26.4375
+     ],
+     "source_point_role": "source_reported_satellite_center",
+     "peak_distance_from_source_point_km": 27.995852216072272,
+     "selected_interior_gridpoints": [
+      267,
+      262
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Indigo dated source-case speed core; physical identity unverified",
+   "range_value": [
+    120,
+    130
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_equivalent_radius",
+    "unit": "km",
+    "component": "radius",
+    "source_case_name": "Indigo",
+    "date": "2000-05-13",
+    "scenario_values": [
+     121.9100170825317,
+     120.67137078726162
+    ],
+    "nominal_audit_value": 120.67137078726162,
+    "unrounded_extrema": [
+     120.67137078726162,
+     121.9100170825317
+    ],
+    "round_outward_to": 10,
+    "range_value": [
+     120,
+     130
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -94.75,
+     26.25
+    ],
+    "grid_peak_lon_lat": [
+     -94.5625,
+     26.4375
+    ],
+    "source_point_role": "source_reported_satellite_center",
+    "peak_distance_from_source_point_km": 27.995852216072272,
+    "selected_interior_gridpoints": [
+     267,
+     262
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "indigo-2000-05-13-speed-core-east-west",
+   "entity_id": "eddy:horizon:loop-32-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_east_west_bounding_arc",
+   "metric_label": "osw speed contour east west bounding arc",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-05-13",
+   "period_end": "2000-05-13",
+   "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/7",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "indigo-2000-05-13-speed-core-east-west",
+    "entity_id": "eddy:horizon:loop-32-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_east_west_bounding_arc",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     200,
+     225
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-05-13",
+    "period_end": "2000-05-13",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Indigo dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+    "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_east_west_bounding_arc",
+     "unit": "km",
+     "component": "east_west",
+     "source_case_name": "Indigo",
+     "date": "2000-05-13",
+     "scenario_values": [
+      218.47079978659784,
+      216.77276638315467
+     ],
+     "nominal_audit_value": 216.77276638315467,
+     "unrounded_extrema": [
+      216.77276638315467,
+      218.47079978659784
+     ],
+     "round_outward_to": 25,
+     "range_value": [
+      200,
+      225
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -94.75,
+      26.25
+     ],
+     "grid_peak_lon_lat": [
+      -94.5625,
+      26.4375
+     ],
+     "source_point_role": "source_reported_satellite_center",
+     "peak_distance_from_source_point_km": 27.995852216072272,
+     "selected_interior_gridpoints": [
+      267,
+      262
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Indigo dated source-case speed core; physical identity unverified",
+   "range_value": [
+    200,
+    225
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_east_west_bounding_arc",
+    "unit": "km",
+    "component": "east_west",
+    "source_case_name": "Indigo",
+    "date": "2000-05-13",
+    "scenario_values": [
+     218.47079978659784,
+     216.77276638315467
+    ],
+    "nominal_audit_value": 216.77276638315467,
+    "unrounded_extrema": [
+     216.77276638315467,
+     218.47079978659784
+    ],
+    "round_outward_to": 25,
+    "range_value": [
+     200,
+     225
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -94.75,
+     26.25
+    ],
+    "grid_peak_lon_lat": [
+     -94.5625,
+     26.4375
+    ],
+    "source_point_role": "source_reported_satellite_center",
+    "peak_distance_from_source_point_km": 27.995852216072272,
+    "selected_interior_gridpoints": [
+     267,
+     262
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "indigo-2000-05-13-speed-core-north-south",
+   "entity_id": "eddy:horizon:loop-32-primary",
+   "category": "size",
+   "metric": "osw_speed_contour_north_south_bounding_arc",
+   "metric_label": "osw speed contour north south bounding arc",
+   "value": null,
+   "unit": "km",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-05-13",
+   "period_end": "2000-05-13",
+   "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/8",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "indigo-2000-05-13-speed-core-north-south",
+    "entity_id": "eddy:horizon:loop-32-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "size",
+    "metric": "osw_speed_contour_north_south_bounding_arc",
+    "value": null,
+    "unit": "km",
+    "range_value": [
+     275,
+     300
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-05-13",
+    "period_end": "2000-05-13",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Indigo dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+    "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_speed_contour_north_south_bounding_arc",
+     "unit": "km",
+     "component": "north_south",
+     "source_case_name": "Indigo",
+     "date": "2000-05-13",
+     "scenario_values": [
+      288.32520964395974,
+      284.6067762432794
+     ],
+     "nominal_audit_value": 284.6067762432794,
+     "unrounded_extrema": [
+      284.6067762432794,
+      288.32520964395974
+     ],
+     "round_outward_to": 25,
+     "range_value": [
+      275,
+      300
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -94.75,
+      26.25
+     ],
+     "grid_peak_lon_lat": [
+      -94.5625,
+      26.4375
+     ],
+     "source_point_role": "source_reported_satellite_center",
+     "peak_distance_from_source_point_km": 27.995852216072272,
+     "selected_interior_gridpoints": [
+      267,
+      262
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Indigo dated source-case speed core; physical identity unverified",
+   "range_value": [
+    275,
+    300
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_speed_contour_north_south_bounding_arc",
+    "unit": "km",
+    "component": "north_south",
+    "source_case_name": "Indigo",
+    "date": "2000-05-13",
+    "scenario_values": [
+     288.32520964395974,
+     284.6067762432794
+    ],
+    "nominal_audit_value": 284.6067762432794,
+    "unrounded_extrema": [
+     284.6067762432794,
+     288.32520964395974
+    ],
+    "round_outward_to": 25,
+    "range_value": [
+     275,
+     300
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -94.75,
+     26.25
+    ],
+    "grid_peak_lon_lat": [
+     -94.5625,
+     26.4375
+    ],
+    "source_point_role": "source_reported_satellite_center",
+    "peak_distance_from_source_point_km": 27.995852216072272,
+    "selected_interior_gridpoints": [
+     267,
+     262
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+   },
+   "evidence_role": "qualified_osw_speed_core_source_case_reference",
+   "rights_screened_release_eligible": false
+  },
+  {
+   "id": "indigo-2000-05-13-speed-core-speed",
+   "entity_id": "eddy:horizon:loop-32-primary",
+   "category": "kinematics",
+   "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+   "metric_label": "osw maximum circum averaged geostrophic speed",
+   "value": null,
+   "unit": "m/s",
+   "lower_bound": null,
+   "lower_bound_exclusive": false,
+   "standard_deviation": null,
+   "uncertainty": null,
+   "sample_count": null,
+   "period_start": "2000-05-13",
+   "period_end": "2000-05-13",
+   "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+   "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+   "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+   "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+   "source_claims": [],
+   "value_conflict": false,
+   "date_conflict": false,
+   "source_url": "https://data.griidc.org/data/U2.x856.000:0001",
+   "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+   "source_file": "research/eddy-measurement-register-additions-v45.json",
+   "source_pointer": "/records/9",
+   "source_sha256": "4b0451353d2531496ca197452d223b1319cc8963eaf68be953e1656259fe30d2",
+   "raw_record": {
+    "id": "indigo-2000-05-13-speed-core-speed",
+    "entity_id": "eddy:horizon:loop-32-primary",
+    "source_id": "griidc-adt-speed-core-kinetic-indigo",
+    "category": "kinematics",
+    "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+    "value": null,
+    "unit": "m/s",
+    "range_value": [
+     0.4,
+     0.45
+    ],
+    "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+    "period_start": "2000-05-13",
+    "period_end": "2000-05-13",
+    "period_precision": "daily_product_coordinate",
+    "period_label": "2000-05-13 daily gridded snapshot; source date and registry lifetime remain distinct",
+    "case_label": "Indigo dated source-case speed core; physical identity unverified",
+    "evidence_role": "qualified_osw_speed_core_source_case_reference",
+    "rights_screened_release_eligible": false,
+    "source_locator": "Original DUACS daily ADT 2000-05-13; Rowe and Kennicutt (2009), MMS 2009-039, printed pages 107-108, Figure 8-23, named approximate Indigo center and May 13 SSH map.",
+    "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+    "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+    "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Indigo center is reported near these coordinates; May 2000 source naming and registry December 1999 dissipation remain unreconciled. No physical continuity inferred. The May/June ADCP caption conflict excludes exact-date direct speed/depth admission. No physical footprint, state containment, ranking, playback or exact lifetime inferred.",
+    "calculation": {
+     "method": "osw_speed_contour_named_source_case_v1",
+     "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+     "unit": "m/s",
+     "component": "speed",
+     "source_case_name": "Indigo",
+     "date": "2000-05-13",
+     "scenario_values": [
+      0.4014589530908823,
+      0.4014734263654959
+     ],
+     "nominal_audit_value": 0.4014734263654959,
+     "unrounded_extrema": [
+      0.4014589530908823,
+      0.4014734263654959
+     ],
+     "round_outward_to": 0.05,
+     "range_value": [
+      0.4,
+      0.45
+     ],
+     "level_steps_m": [
+      0.005,
+      0.0025
+     ],
+     "range_is_numerical_only": true,
+     "independent_observations": false,
+     "source_point_lon_lat": [
+      -94.75,
+      26.25
+     ],
+     "grid_peak_lon_lat": [
+      -94.5625,
+      26.4375
+     ],
+     "source_point_role": "source_reported_satellite_center",
+     "peak_distance_from_source_point_km": 27.995852216072272,
+     "selected_interior_gridpoints": [
+      267,
+      262
+     ],
+     "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+     "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
+    }
+   },
+   "rank_eligible": false,
+   "geometry": null,
+   "seasonal_playback_eligible": false,
+   "whole_lifetime_inferred": false,
+   "physical_state_join_eligible": false,
+   "source_access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one dated slice at a time. Original Hamilton et al. (2003) and Rowe and Kennicutt (2009) source pages and all three diagnostic images actually reviewed. Nineteen geometry/speed-core tests passed. Kinetic July and Indigo May pass; Kinetic September rejected and supplies no measurement. Core and numerical range only, with explicit proxy/composite/registry qualifications.",
+   "source_id": "griidc-adt-speed-core-kinetic-indigo",
+   "period_precision": "daily_product_coordinate",
+   "case_label": "Indigo dated source-case speed core; physical identity unverified",
+   "range_value": [
+    0.4,
+    0.45
+   ],
+   "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+   "calculation": {
+    "method": "osw_speed_contour_named_source_case_v1",
+    "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+    "unit": "m/s",
+    "component": "speed",
+    "source_case_name": "Indigo",
+    "date": "2000-05-13",
+    "scenario_values": [
+     0.4014589530908823,
+     0.4014734263654959
+    ],
+    "nominal_audit_value": 0.4014734263654959,
+    "unrounded_extrema": [
+     0.4014589530908823,
+     0.4014734263654959
+    ],
+    "round_outward_to": 0.05,
+    "range_value": [
+     0.4,
+     0.45
+    ],
+    "level_steps_m": [
+     0.005,
+     0.0025
+    ],
+    "range_is_numerical_only": true,
+    "independent_observations": false,
+    "source_point_lon_lat": [
+     -94.75,
+     26.25
+    ],
+    "grid_peak_lon_lat": [
+     -94.5625,
+     26.4375
+    ],
+    "source_point_role": "source_reported_satellite_center",
+    "peak_distance_from_source_point_km": 27.995852216072272,
+    "selected_interior_gridpoints": [
+     267,
+     262
+    ],
+    "report_file": "research/eddy-kinetic-indigo-speed-core-source-review-v1.json",
+    "report_sha256": "0971406ad6fde7ea85d301e884efcfdfa9079cb60f01861629a826171d8724cd"
    },
    "evidence_role": "qualified_osw_speed_core_source_case_reference",
    "rights_screened_release_eligible": false
