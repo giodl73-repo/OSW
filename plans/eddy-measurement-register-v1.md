@@ -547,3 +547,13 @@ do not invent daily pairs, interpolate a time series or treat the axis interval 
 a seasonal range. An SST edge contrast is not a prescribed closed isotherm or
 measurement uncertainty. Do not calculate ellipse area or physical geometry from
 these scalars. Keep the named source case separate from unverified registry joins.
+
+## Local current phases and seabed contours
+
+Keep programme/site current diagnostics separate by phase, instrument depth,
+statistic and location. A bound reported at most sampled sites is not a limit on
+all eddy water. Seabed contour depths describe geography, not instrument depths
+or eddy thickness. Unknown depths stay unknown even when another phase supplies
+a depth. Do not pool differing phase maxima into a seasonal envelope or infer a
+simultaneous vertical profile, shear, or eddy death from the return of local
+background currents.

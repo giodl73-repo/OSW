@@ -109,6 +109,29 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_nelson_1989_local_current_phases':
+        assert row['entity_id']=='eddy:horizon:loop-11-primary' and row['category']=='kinematics' and row['unit']=='knots'
+        assert row['metric']=='source_reported_local_phase_current_speed' and row.get('lower_bound') is None
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert c['source_year']==1989 and c['source_instrument']=='Exxon_ADCP_programme'
+        assert all(c[k] is False for k in ['bathymetry_is_sampling_depth','whole_eddy_maximum_inferred','simultaneous_vertical_profile_inferred','vertical_shear_computed','is_eddy_vertical_extent','annual_extrema_inferred','raw_current_profiles_acquired','source_uncertainty_quantified','physical_crosswalk_verified','separation_conventions_reconciled'])
+        expected={
+          'post-severe-45m-bound':(None,None,0.4,45,None,'source_local_strict_upper_bound_at_most_sites','two_weeks_after_late_august_severe_phase'),
+          'september-25-45m-maximum':(1.4,None,None,45,'1989-09-25','source_local_sampled_maximum','september_25_1989'),
+          'august-surface-band':(None,[2.2,2.7],None,None,None,'source_consistent_local_surface_band','august_1989_severe_current_phase'),
+          'early-september-local-maximum':(3.6,None,None,None,None,'source_local_sampled_maximum','early_september_1989'),
+          'final-phase-local-maximum':(2.6,None,None,None,None,'source_local_sampled_maximum','final_measurement_phase_1989')}
+        assert c['key'] in expected
+        value,interval,upper,depth,day,statistic,phase=expected[c['key']]
+        assert (row['value'],row.get('range_value'),row.get('upper_bound'),row.get('depth_m'))==(value,interval,upper,depth)
+        assert c['sample_depth_m']==depth and (c['statistic'],c['phase'])==(statistic,phase)
+        assert row['period_start']==row['period_end']==day
+        assert row['period_precision']==('day' if day else 'source_phase_without_exact_sample_dates')
+        if upper is not None:assert row['upper_bound_exclusive'] is True
+        if interval is not None:assert row['range_kind']=='source_reported_local_current_band_not_seasonal_range'
+        assert c['bathymetry_contours_m']==([500,1000] if interval else None)
+        assert c['direction_as_reported']==('eastward' if interval else None)
+        return
     if c['method']=='source_reported_quiet_sst_ellipse_axes':
         assert row['entity_id']=='eddy:horizon:loop-14-primary' and row['category']=='size' and row['unit']=='km'
         assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
@@ -466,6 +489,14 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_nelson_1989_local_current_phases':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='NELSON_1989_LOCAL_CURRENT_PHASES_VERIFIED' and report['new_size_measurements']==0
+                c=r['profile_context'];case=next(v for v in report['accepted_local_diagnostics'] if v['key']==c['key'])
+                assert (r['value'],r.get('range_value'),r.get('upper_bound'),c['sample_depth_m'])==(case['value'],case.get('range_value'),case.get('upper_bound'),case['sample_depth_m'])
+                legacy=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==11)
+                assert (legacy['name'],legacy['initial_separation'])==('Nelson',report['registry_association']['registry_initial_separation'])
+
             if r.get('profile_context',{}).get('method')=='source_reported_quiet_sst_ellipse_axes':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 assert report['status']=='QUIET_SOURCE_REPORTED_SST_AXES_VERIFIED'

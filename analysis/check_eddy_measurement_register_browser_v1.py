@@ -632,6 +632,17 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for axis in ['major','minor']:page.locator(f'[data-evidence-id="quiet-hawkins-1991-sst-{axis}-axis"]').screenshot(path=str(OUT/f'mobile-quiet-sst-{axis}-axis.png'))
             checks.append('Quiet source-reported SST axes: nearly 400 km major and about 250–300 km minor; paired image-date support without daily values or seasonal bounds, no strict upper bound, fitted ellipse/area or geometry; named size gap closed; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-11-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-11-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['< 0.4 knots','1.4 knots','2.2–2.7 knots','3.6 knots','2.6 knots','Instrument depth: 45 m','1989-09-25','most sampled sites','not an eddy-wide speed limit','500–1,000 m are seabed contours','not sampling depth','Exact sampling depth unspecified','do not form a seasonal range','Size reference needed']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="nelson-koch-1991-"]').count()==5
+            page.set_viewport_size({'width':1440,'height':1000})
+            for key in ['post-severe-45m-bound','september-25-45m-maximum','august-surface-band','early-september-local-maximum','final-phase-local-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'nelson-{key}.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for key in ['post-severe-45m-bound','september-25-45m-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'mobile-nelson-{key}.png'))
+            checks.append('Nelson local current phases: strict below-0.4 knots at most sites and 1.4 knots maximum at 45 m, distinct surface band and depth-unspecified 3.6/2.6 maxima; seabed contours not sampling depth, no seasonal pooling/profile/shear and size gap retained; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
