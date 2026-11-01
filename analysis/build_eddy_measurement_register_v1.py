@@ -101,6 +101,9 @@ def validate_speed_core_reference(row,report):
     assert row['range_kind']=='level_step_comparison_and_outward_rounding_not_physical_uncertainty'
     assert row['evidence_role']=='qualified_osw_speed_core_source_case_reference' and row['rights_screened_release_eligible'] is False
     assert row.get('depth_m') is None and row.get('source_map_estimate') is None
+    a=report['case_associations'][row['entity_id']]
+    cases=[v for v in report['cloud_review']['result']['cases'] if v['source_name']==a['source_name'] and v['date']==a['date']]
+    assert len(cases)==1 and cases[0]['source_point_role']==a['source_point_role']
 
 
 def validate_model_event_contrast(row):

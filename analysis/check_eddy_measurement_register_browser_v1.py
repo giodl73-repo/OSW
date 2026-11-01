@@ -610,7 +610,7 @@ def run():
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-34-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-34-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
-            for needle in ['50 cm/s','30 cm/s','755 m','Near-surface reached value','exact depth unspecified','First two weeks of November 2000','not the exact current sample time','cross-report event association','remain unverified','not isolated eddy swirl','Size reference needed']:
+            for needle in ['50 cm/s','30 cm/s','755 m','Near-surface reached value','exact depth unspecified','First two weeks of November 2000','not the exact current sample time','cross-report event association','remain unverified','not isolated eddy swirl']:
                 assert needle in row.inner_text(),needle
             assert row.locator('[data-evidence-id^="kinetic-mckone-2007-"]').count()==2
             page.set_viewport_size({'width':1440,'height':1000})
@@ -618,7 +618,7 @@ def run():
             row.locator('summary').screenshot(path=str(OUT/'kinetic-current-reference-summary.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for part in ['near-surface','755m']:page.locator(f'[data-evidence-id="kinetic-mckone-2007-november-{part}-current"]').screenshot(path=str(OUT/f'mobile-kinetic-{part}-interaction-current.png'))
-            checks.append('Kinetic qualified interaction-site currents: near-surface reached value and 755 m local maximum, phase rather than invented sample dates, no simultaneous profile/shear/thickness, cross-report association unverified, size gap retained; desktop/mobile')
+            checks.append('Kinetic qualified interaction-site currents: near-surface reached value and 755 m local maximum, phase rather than invented sample dates, no simultaneous profile/shear/thickness, cross-report association unverified; separate dated speed-core size references do not change these currents; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-14-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-14-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
@@ -720,6 +720,22 @@ def run():
                     page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                     card.screenshot(path=str(OUT/('mobile-deviant-speed-core-'+component+'.png')))
             checks.append('Deviant source-associated speed core: four size diagnostics and circum-averaged geostrophic speed, explicit core-versus-outer and numerical-versus-physical uncertainty limits, native support/dated source and no generic model fallback; desktop/mobile')
+            for owner,name,date,expected in [('34','kinetic','2000-07-02',['20,000–25,000 km²','80–90 km','175–200 km','150–175 km','0.3–0.35 m/s','seven-day composite','map proxy','135 / 135 native gridpoints']),('32','indigo','2000-05-13',['45,000–50,000 km²','120–130 km','200–225 km','275–300 km','0.4–0.45 m/s','December 1999','unreconciled','267 / 262 native gridpoints'])]:
+                page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-'+owner+'-primary')
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="eddy:horizon:loop-'+owner+'-primary"]')
+                text=row.inner_text()
+                for value in expected+['speed-core estimate','not physical uncertainty or a seasonal range',date+' snapshot only','Point role:']:
+                    assert value in text,value
+                assert 'Size reference needed' not in text and 'Model calculation: undefined' not in text
+                assert 'Deviant / LC ring D' not in text and '1997-03-24 snapshot only' not in text
+                for component in ['radius','speed']:
+                    card=page.locator('[data-evidence-id="'+name+'-'+date+'-speed-core-'+component+'"]')
+                    page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/(name+'-speed-core-'+component+'.png')))
+                    if component=='speed':
+                        page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                        card.screenshot(path=str(OUT/('mobile-'+name+'-speed-core-'+component+'.png')))
+                checks.append(name+' dated speed core: fixed numerical method/ranges, own source point role/date and qualification, no inherited Deviant prose; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

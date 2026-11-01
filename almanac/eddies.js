@@ -210,9 +210,9 @@
       add('strong','OSW gridded speed core · not the full outer eddy.',add('p',undefined,box));
       add('p','The selected contour maximizes average geostrophic speed around supported closed contours. Equivalent radius is a speed-core scale; bounding arcs are not principal width. The speed is a circum-averaged estimate, not a direct local current maximum.',box);
       add('p','Two peak-relative level steps: 0.005 and 0.0025 m. Their comparison plus outward rounding is numerical only, not physical uncertainty or a seasonal range. Mapping, MDT and gradient/interpolation errors remain unquantified.',box);
-      add('p',`Source point (longitude, latitude): ${c.source_point_lon_lat.join(', ')}; grid peak: ${c.grid_peak_lon_lat.join(', ')}. About ${num(c.peak_distance_from_source_point_km)} km apart. The source center is coarsely reported; the 150 km search rule is not position accuracy.`,box);
+      add('p',`Source point (longitude, latitude): ${c.source_point_lon_lat.join(', ')}; grid peak: ${c.grid_peak_lon_lat.join(', ')}. About ${num(c.peak_distance_from_source_point_km)} km apart. Point role: ${c.source_point_role.replaceAll('_',' ')}. The source point may be an approximate center or a map proxy; the 150 km search rule is not position accuracy.`,box);
       add('p',`Selected interior support: ${c.selected_interior_gridpoints.join(' / ')} native gridpoints. A 0.125° grid and the 12-point support rule do not establish effective feature resolution.`,box);
-      add('p','24 March 1997 snapshot only. Deviant / LC ring D is explicitly named in the source, but the registry physical crosswalk and SST-boundary equivalence remain unverified. No other eddy values, outer radius, physical footprint, state join or seasonal animation inferred.',box);
+      add('p',`${c.date} snapshot only. ${c.source_case_name} is explicitly named in the source context; the registry physical crosswalk and source-boundary equivalence remain unverified. No other eddy values, outer radius, physical footprint, state join or seasonal animation inferred.`,box);
     }else if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
     if(r.calendar_support){
       const c=r.calendar_support;

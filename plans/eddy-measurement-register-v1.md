@@ -666,3 +666,10 @@ Keep registry separation and source snapshot distinct. Preserve all first 409
 evidence records and CSV rows/header. JSON whitespace may be reduced to retain
 all content within the existing publication byte limit; no measurements or
 source records are dropped.
+
+Kinetic July 2000 and Indigo May 2000 apply the same speed-core method and
+reporting increments. Preserve manual mooring proxy versus author-reported
+center, composite-center versus daily product date, and unreconciled Indigo
+registry dates explicitly. Kinetic September failed support gates and supplies
+no measurement. Never move seeds or relax gates to fill a gap. Preserve all
+first 414 evidence records and CSV rows/header.
