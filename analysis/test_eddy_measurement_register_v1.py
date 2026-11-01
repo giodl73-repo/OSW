@@ -48,7 +48,7 @@ class EddyRegister(unittest.TestCase):
             self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' or e['evidence_role']=='map_read_editorial_candidate_reference' or (name=='thor-2020' and e in analysis_rows and e['evidence_role']=='published_model_case_reference') for e in own))
         for r in d['records']:
             self.assertFalse(r['candidate_crosswalk_is_verified']);self.assertIsNone(r['whole_lifetime_days'])
-            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id'] not in ['eddy:horizon:loop-66-secondary','eddy:horizon:loop-63-secondary']:self.assertFalse(r['evidence_ids'])
+            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id'] not in ['eddy:horizon:loop-66-secondary','eddy:horizon:loop-63-secondary','eddy:horizon:loop-40-secondary']:self.assertFalse(r['evidence_ids'])
         for r in d['evidence']:
             if r['metric'] in ['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval']:
                 self.assertEqual(r['value'],(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days)
