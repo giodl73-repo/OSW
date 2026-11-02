@@ -15,6 +15,16 @@ OUTPUT = 'research/current-depth-register-v48.json'
 CSV = 'research/current-depth-register-v48.csv'
 MEMBER_OUTPUT = 'research/current-depth-member-index-v7.json'
 GENERATOR = 'analysis/build_current_depth_register_v48.py'
+SOURCE_CONTEXT_ID = 'gulf-stream-spray-2023-five-sections'
+SOURCE_CONTEXT = {
+    'source_url':'https://spraydata.ucsd.edu/products/gulf-stream-climatology/',
+    'source_citation':'Todd and Ren(2023), doi:10.21238/S8TC9W; author correction doi:10.1038/s41558-024-02009-y.',
+    'temporal_scope':'Published2015-07-16 through2023-05-30 fitted mean/two-harmonic annual cycle; phase coordinates are not instantaneous observations or monthly means.',
+    'geographic_scope':'Five regional Gulf Stream fitted sections; selected mapped columns are not independently validated current axes.',
+    'qualification':'Mapped regional fitted component descriptor, not whole-current depth, physical thickness, annual extrema or independent occupation. Unsampled upper10m, missing/deep support and locked reference frame retained.',
+    'source_horizontal_axis_operator':'maximum_complete_signed10_to200m_trapezoidal_component_integral_with_regional_direction_sector_and_first_grid_tie',
+    'resolution':'Each new reference source_context_id resolves to this register source_contexts entry. Per-profile files, pointers, SHA256, sections, coordinates, locked directions, phase labels, thresholds, native brackets and numerical values remain on the reference.'
+}
 
 
 def digest(path):
@@ -38,13 +48,14 @@ def reference_rows(fact, raw, section, profile_sha):
         'phase_label': 'fitted time mean' if month is None else f'fitted annual-cycle phase {month:02d}-15',
         'calendar_months': None if month is None else [month],
         'calendar_source_locator': None if month is None else 'Retained nominal phase key, day15; actual provider coordinate retained separately.',
-        'geographic_scope': 'Regional Gulf Stream fitted section ' + section['id'] + '; selected mapped column, not an independently validated current axis.',
-        'temporal_scope': 'Published2015-07-16 through2023-05-30 fitted mean/two-harmonic annual cycle; phase coordinates are not instantaneous observations or monthly means.',
+        'source_context_id': SOURCE_CONTEXT_ID,
+        'geographic_scope': 'Gulf Stream fitted section ' + section['id'] + '; selected mapped column.',
+        'temporal_scope': '2015–2023 fitted climatology; see shared source context.',
         'evidence_kind': 'derived_published_glider_climatology',
         'source_url': 'https://spraydata.ucsd.edu/products/gulf-stream-climatology/',
-        'source_citation': 'Todd and Ren(2023), doi:10.21238/S8TC9W; author correction doi:10.1038/s41558-024-02009-y.',
-        'source_locator': fact['source_file'] + '#' + fact['source_pointer'] + '/selected_profile',
-        'qualification': 'Mapped regional fitted component descriptor, not whole-current depth, physical thickness, annual extrema or independent occupation. Unsampled upper10m, missing/deep support and locked reference frame retained.',
+        'source_citation': 'Todd and Ren(2023), doi:10.21238/S8TC9W.',
+        'source_locator': 'source_profile_file#source_profile_pointer/selected_profile',
+        'qualification': 'Regional fitted descriptor only; see shared source context.',
         'observed_period': None, 'source_case_id': case, 'same_source_width_reference_id': None,
         'independent_observation_count_claimed': False, 'whole_current_representative': False,
         'volume_eligible': False, 'physical_state_join_eligible': False, 'seasonal_playback_eligible': False,
@@ -60,7 +71,6 @@ def reference_rows(fact, raw, section, profile_sha):
         'source_velocity_quantity': 'signed_component_along_native100m_mean_direction_locked_through_depth',
         'source_locked_reference_direction_at100m_degrees': profile['locked_reference_direction_at100m_degrees'],
         'source_horizontal_selection_status': raw['horizontal_selection_status'],
-        'source_horizontal_axis_operator': 'maximum_complete_signed10_to200m_trapezoidal_component_integral_with_regional_direction_sector_and_first_grid_tie',
         'source_core_search_depth_interval_m': [10,200],
         'source_sampled_core_depth_m': primary['core_depth_m'],
         'source_sampled_core_at_shallowest_valid_level': primary['core_depth_m'] == 10,
@@ -156,6 +166,7 @@ def build(root=ROOT):
             'coverage_interpretation':prior['coverage_interpretation']+' Gulf Stream adds210 descriptors across65 shared fitted profiles at five regional sections. Censored5cm/s reach, upper-layer sampled core, half-core decay and15 resolved absolute contours remain separate. No full-current physical thickness or volume established.',
             'metadata_correction_file':prior.get('metadata_correction_file'),'metadata_correction_count':prior.get('metadata_correction_count',0),
             'source_definition_clarification':op['source_definition_clarification'],
+            'source_contexts':{SOURCE_CONTEXT_ID:copy.deepcopy(SOURCE_CONTEXT)},
             'member_depth_index_file':MEMBER_OUTPUT,'records':records,'evidence':evidence,'runtime_changed':False,'full_goal_complete':False}
 
 

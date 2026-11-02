@@ -92,6 +92,11 @@ class GulfStreamDepthAdmission(unittest.TestCase):
     def test_all_source_pointers_and_sha_pins_resolve(self):
         facts=json.loads((d.ROOT/self.op['section_facts_file']).read_bytes())
         for row in self.rows:
+            context=self.data['source_contexts'][row['source_context_id']]
+            self.assertIn('first_grid_tie',context['source_horizontal_axis_operator'])
+            self.assertIn('2023-05-30',context['temporal_scope'])
+            self.assertIn('02009-y',context['source_citation'])
+            self.assertIn('not whole-current depth',context['qualification'])
             pointer=row['source_pointer'];self.assertTrue(pointer.startswith('/descriptors/'))
             source=facts['descriptors'][int(pointer.split('/')[-1])]
             self.assertEqual(source['source_file'],row['source_profile_file'])
