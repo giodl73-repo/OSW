@@ -1,0 +1,64 @@
+name: Current depth source and route review v34
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-register-source-v34.yml
+      - analysis/build_current_depth_register_v34.py
+      - analysis/test_current_depth_register_v34.py
+      - research/current-depth-rules-v34.json
+      - research/current-depth-source-facts-v34.json
+      - research/current-depth-register-v34.json
+      - research/current-depth-register-v34.csv
+      - research/current-depth-member-index-v4.json
+      - analysis/build_current_depth_route_projections_v4.py
+      - analysis/test_current_depth_route_projections_v4.py
+      - research/current-depth-route-projection-operator-v4.json
+      - research/current-depth-route-projections-v4.json
+      - research/current-depth-route-projections-v4.csv
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_register_v*.py
+            analysis/build_atlantic_cruise_widths.py
+            analysis/test_current_depth_register_v34.py
+            analysis/build_current_depth_route_projections_v*.py
+            analysis/test_current_depth_route_projections_v*.py
+            research/current-depth-*.json
+            research/caribbean-current-depth-*.json
+            research/current-depth-register-v*.csv
+            research/current-depth-route-projections-v*.csv
+            research/ocean-current-reference-path-candidates.json
+            research/somali-winter-reference-path-candidate.json
+            research/agulhas-reference-path-candidate.json
+            research/current-length-estimate-register-v1.json
+            research/current-length-family-conventions-v1.json
+            research/current-length-reference-extents-v1.json
+            research/current-length-reference-extents-v5.json
+            research/ocean-current-width-inventory.json
+            research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json
+            research/source-data/cainzos-atlantic-2023/table-*.xlsx
+            research/source-data/cainzos-atlantic-2023/article.xml
+            research/source-data/li-neuc-2018/journal-article.xml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned reference geometry dependency
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+      - name: Verify Atlantic source cases and all route profiles sequentially
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -c "import sys,unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite([loader.discover('analysis',pattern='test_current_depth_register_v34.py'),loader.discover('analysis',pattern='test_current_depth_route_projections_v*.py')]); result=unittest.TextTestRunner(verbosity=2).run(suite); sys.exit(not result.wasSuccessful())"
