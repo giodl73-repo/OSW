@@ -1,0 +1,36 @@
+{
+  "schema": "osw.eac-connected-layer-thickness-operator.v1",
+  "source_file": "research/source-data/eac-hycom-route-depth-v2/candidate.json",
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-hycom-route-depth-operator-v2.json": "56bcf090ef2736d963aba8dcf864f5b4f56766e47e78d501b189313e4084886f",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e"
+  },
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "quantity": "Vertical span of the connected above-threshold signed along-editorial-route model velocity component containing the strongest qualifying native0-200m core at a frozen sampled node.",
+  "upper_boundary": "First adjacent upward crossing through threshold from the core; if contiguous above-threshold support reaches model depth0m, use the model surface. A shallowest sample deeper than0m is censored, not a surface boundary.",
+  "lower_boundary": "First adjacent downward crossing through threshold from the same core. Missing/dry support or end of vertical domain before crossing leaves the boundary unknown. No jump to disconnected deeper flow.",
+  "thickness": "Lower minus upper depth, in metres, only when both connected boundaries resolve. Lower contour depth alone is not thickness. Surface bounded layers are distinct from upper isotach crossings.",
+  "selection": "Keep the v2 selected horizontal node exactly, including edge maxima and unresolved-axis status. Alternate thresholds diagnose their own qualifying core at that same node, as in v2. Also retain all five offsets for support audit; never substitute a more convenient resolved node.",
+  "source_scope": "Two instantaneous2022 HYCOM snapshots, seven editorial EAC route vertices, five offsets per vertex, forty interpolated standard-depth levels. This is not a monthly climatology or a validated named-current axis.",
+  "uncertainty_m": null,
+  "threshold_sensitivity_is_confidence_interval": false,
+  "eligibility": {
+    "whole_current_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud only, one idle CPU; frozen retained source bytes, no network model retrieval, no local tests or ocean-field processing. No integration across gaps, no area or volume inferred from these diagnostic node profiles.",
+  "full_goal_complete": false
+}
