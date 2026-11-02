@@ -1,0 +1,66 @@
+{
+  "schema": "osw.eac-surface-route-screen-operator.v1",
+  "pilot_file": "research/source-data/eac-hycom-route-depth-v2/candidate.json",
+  "source_datasets": {
+    "2022-01-15": "https://thredds.aodn.org.au/thredds/dodsC/IMOS/OceanCurrent/GSLA/DM/2022/IMOS_OceanCurrent_HV_20220115T000000Z_GSLA_FV02_DM03.nc",
+    "2022-07-15": "https://thredds.aodn.org.au/thredds/dodsC/IMOS/OceanCurrent/GSLA/DM/2022/IMOS_OceanCurrent_HV_20220715T000000Z_GSLA_FV02_DM03.nc"
+  },
+  "source_catalog_url": "https://thredds.aodn.org.au/thredds/catalog/IMOS/OceanCurrent/GSLA/DM/2022/catalog.html",
+  "source_documentation_url": "https://registry.opendata.aws/aodn_model_sea_level_anomaly_gridded_realtime/",
+  "source_map_legend_url": "https://oceancurrent.aodn.org.au/eac.php",
+  "source_kind": "Delayed-mode DM03 mapped altimeter/tide-gauge sea-level anomaly plus OFAM3 mean surface geostrophic velocity, retrospective2026 creation, not direct instantaneous full-vector surface observations.",
+  "source_temporal_support": "Exact source analysis date00Z required. Delayed-mode observation mapping uses a symmetric multi-day window, documented as14–30days depending on available altimeters. This is neither the instantaneous HYCOM field nor the five-day-filtered daily mooring profile. Provider source attributes retained.",
+  "source_spatial_support": "Native grid nominal0.2degree. Five20km-spaced model targets can map to duplicate or poorly resolved source cells; retain indices and unique-node count rather than claiming five independent source samples or a resolved axis.",
+  "source_independence": "Different product/provider processing, not statistically independent validation: HYCOM can assimilate altimetry, and this surface product contains an OFAM3 mean. Retain total and mean components separately; do not claim direct observed absolute velocity or error-calibrated model validation.",
+  "prescribed_selection": "Reuse all frozen five normal-offset target coordinates, reference bearings, model selected indices and edge flags at all seven route vertices and both dates. No spatial window expansion, route movement, alternative date or convenient-node substitution.",
+  "poleward_component_threshold_m_s": 0.05,
+  "threshold_role": "Same numerical positive-downstream screening threshold as the pilot, not a universal current edge or calibrated statistical acceptance rule.",
+  "maximum_field_scalars": 10000,
+  "maximum_patch_cells": 500,
+  "maximum_nearest_cell_distance_km": 20,
+  "source_fields": [
+    "UCUR",
+    "VCUR",
+    "UCUR_MEAN",
+    "VCUR_MEAN",
+    "GSL"
+  ],
+  "screen_interpretation": "Above-threshold surface component at the frozen model node is regional flow corroboration only. Lack of corroboration is not proof of absent current because temporal filters, surface ageostrophy, sampling and product reconstructions differ. A positive eddy flank can pass; current/branch identity remains unresolved.",
+  "source_packing_policy": "Use NetCDF mask-and-scale decoding and retain source attributes. Encoded zero is a provider FillValue; never turn masked cells into zero flow. No complete-source or wire-byte checksum claim.",
+  "actual_image_review": [
+    {
+      "url": "https://oceancurrent.aodn.org.au/EAC_array_figures/SST/Brisbane/20220115.gif",
+      "bytes": 262687,
+      "sha256": "1c3f418a371bde2cafc982db27ac3efb655b74bcaea933c670581164e704b510",
+      "actual_pixels_viewed": true,
+      "role": "Qualitative source figure only; no axis digitization, numerical depth extraction or coordinate correction. Image NRT00 sea-level label differs from retrieved retrospective DM03."
+    },
+    {
+      "url": "https://oceancurrent.aodn.org.au/EAC_array_figures/SST/Brisbane/20220715.gif",
+      "bytes": 243397,
+      "sha256": "77665d40439b876423f793dc801cd615e1f38569380a95f19ed356e26b61c180",
+      "actual_pixels_viewed": true,
+      "role": "Qualitative source figure only; no axis digitization, numerical depth extraction or coordinate correction. Image NRT00 sea-level label differs from retrieved retrospective DM03."
+    }
+  ],
+  "source_access_review": "Provider catalog XML and January DAS/DDS metadata reviewed, with exact2022 filenames and DM03 type. Two original provider GIFs actually viewed. No map-based numerical current-axis or depth measurement claimed.",
+  "source_license": "CC-BY-4.0",
+  "source_attribution": "IMOS OceanCurrent/CSIRO/AODN; Data was sourced from the Integrated Marine Observing System (IMOS), a national collaborative research infrastructure supported by the Australian Government.",
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e",
+    "research/current-depth-register-source-review-v46.json": "5e8999716630d97688083ab841c0cca0ea22d00886e6b04dd01727571de6ce72"
+  },
+  "eligibility": {
+    "named_current_axis_validation": false,
+    "physical_current_depth_validation": false,
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential OPeNDAP patches and tests on one idle CPU. Coordinate axes read first, cell/scalar budgets checked before field reads. Retain exact selected source values, grid indices, metadata, reference bearings and targets. No local ocean-field processing or tests.",
+  "full_goal_complete": false
+}
