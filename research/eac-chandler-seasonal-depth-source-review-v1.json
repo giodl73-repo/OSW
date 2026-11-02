@@ -1,0 +1,43 @@
+{
+  "schema": "osw.eac-chandler-seasonal-depth-source-review.v1",
+  "status": "PASS192_MONTHLY_AXES_AND12_FIXED_SUPPORT_CALENDAR_MEANS",
+  "cloud_reviews": [
+    {
+      "run_id": 41447735589,
+      "tests_passed": 9,
+      "source_commit": "253e235582c7c96f57f616d671bb6039662a94c0",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41447735589"
+    }
+  ],
+  "cloud_tests_passed": 9,
+  "input_sha256": {
+    "analysis/derive_eac_chandler_seasonal_depth_v1.py": "20ca179419d5e10dea95c84ad53707a83ae92dec5d5c8698277fa178f8471c3b",
+    "analysis/test_eac_chandler_seasonal_depth_v1.py": "2892a650653eeca2b33cfedcbe3e78dbe3793ccee5a0720efe2d5021e2b88129",
+    ".github/workflows/eac-chandler-seasonal-depth-v1.yml": "1fe21e7954b474ffd495ceb23bdbd7b67011cd8e219c1d33d55308e2172aba7e",
+    "research/eac-chandler-seasonal-depth-operator-v1.json": "281b1618e4395fefdcbbc24fe79e26f6085dd1f94c6c135aaa37f5f988fdc283",
+    "research/source-data/eac-chandler-seasonal-depth-v1/candidate.json": "446f5a3879eb46c3be404aec7c5756537f2d6d57edcc72da645e8fba91ee5d34",
+    "research/eac-chandler-seasonal-depth-source-facts-v1.json": "3c9c886bd4b6ef6336ab458ba4187ab6a5d92db2171a7cc323d373bb5813fbf9"
+  },
+  "counts": {
+    "source_monthly_profiles": 192,
+    "qualified_EAC_axes": 192,
+    "calendar_month_mean_profiles": 12,
+    "years_per_calendar_month": 16,
+    "new_independent_observations": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "scientific_review": [
+    "Published NetCDF source55,152,138bytes verified against Zenodo version5851312 MD5; raw SHA retained. Only the EAC file was downloaded; raw source file not redistributed. All field processing used one idle cloud CPU.",
+    "Source file metadata confirms northward-positive m/s velocities, metre positive-down depth coordinate and192 months January2004–December2019. One regional nominal transect is not a full current route.",
+    "Source axis integration and five-point triangular filter are implemented, with additional OSW identity gate151–157E. All192 selected axes are inside the gate; none is relocated to force identity.",
+    "All12 monthly means retain fixed16-profile support per retained depth. Core,0/5/10cm/s crossings, native brackets, gaps, edge maxima and right-censored cases remain separately typed.",
+    "Nine cloud tests cover integration weights, sign-specific axis, adjacent crossing, missing gaps, censoring versus threshold not reached, shallow edges/ties, unknown poleward core, fixed seasonal contributors and strict JSON nonfinite handling.",
+    "Physical uncertainty from reference velocity, structural reconstruction, averaging and threshold choice is not reduced to a fabricated depth confidence interval. No statistical seasonal significance or whole-current thickness/volume is claimed."
+  ],
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

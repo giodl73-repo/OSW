@@ -1,0 +1,49 @@
+{
+  "schema": "osw.eac-chandler-seasonal-depth-source-facts.v1",
+  "status": "TWELVE_16YEAR_CURRENT_FOLLOWING_MONTHLY_MEAN_PROFILES",
+  "source_paper_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL097834",
+  "source_locator": "Sections2.1–2.3 and data availability; author XAA_px30.m axis/integration code.",
+  "source_access": "Primary publisher indexed full HTML and version-pinned author MATLAB code reviewed. No original paper figure pixels or digitization claimed.",
+  "zenodo_version_doi": "10.5281/zenodo.5851312",
+  "zenodo_version": "v2.1.1",
+  "zenodo_license": "cc-by-4.0",
+  "source_file": {
+    "source_file": "px30_velocity.nc",
+    "source_raw_bytes": 55152138,
+    "source_raw_md5": "3bb0467e40a5372f6d99b661ea23b295",
+    "source_raw_sha256": "cd2893b37e3174f852adf991b1e8363bf19790577155ec8de0f5bee326e0111c"
+  },
+  "author_code_commit": "a97de9420285f5d4e63e00b91b8fa518ace06529",
+  "author_code_review_sha256": {
+    "XAA_px30.m": "0018a15c7b8271b63114055715ffb674b07068fafa9eb11f21e71d09987c8e34",
+    "additional_functions/calc_depth_int_vel.m": "92a68c1e94d02787f4cefcecd46a76f619c87f9c7c4973b784a5c7b33ac54882",
+    "additional_functions/conv_filt.m": "bd67b89f5fcfa2858aaa6258b97c1f8031e86cebb4dbe49184d376028a263207"
+  },
+  "candidate_file": "research/source-data/eac-chandler-seasonal-depth-v1/candidate.json",
+  "candidate_sha256": "446f5a3879eb46c3be404aec7c5756537f2d6d57edcc72da645e8fba91ee5d34",
+  "source_months": 192,
+  "calendar_month_profiles": 12,
+  "years": [
+    2004,
+    2019
+  ],
+  "source_regional_transect": "PX30 Brisbane–Suva",
+  "reconstruction_limitations": [
+    "Velocity sections combine HR-XBT, Argo and satellite SLA. Monthly estimates are reconstructed, not independently observed monthly full-depth sections. Below800m PX30 hydrographic structure is statistically extended from Argo relationships.",
+    "Argo reference velocity near1000m is a time-invariant mean. Source vel_err is a velocity standard-error term and has not been propagated to depth. Physical depth confidence limits remain unknown.",
+    "Moving horizontal axis follows source midpoint-integrated five-point-triangle-smoothed maximum poleward transport per unit width. Vertical maximum speed and depth-integrated horizontal core are different quantities.",
+    "Mean calendar-month profiles use all16 year-specific moving-axis profiles at every retained depth. Threshold crossings of this mean differ from the mean of diagnosed individual crossings. No three-month filter or seasonal hypothesis test was applied.",
+    "Native2.5m upper sample maxima are flagged as shallow-domain edge maxima. They do not resolve a shallower unsampled core or establish a physical upper boundary.",
+    "5cm/s and10cm/s thresholds are explicit diagnostic definitions. The1975m product boundary is not current bottom; ten zero crossings remain right-censored. No thickness or volume is inferred."
+  ],
+  "malvinas_followup": {
+    "supplement_url": "https://agupubs.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1029%2F2020JC016727&file=2020JC016727-sup-0001-Supporting+Information+SI-S01.pdf",
+    "direct_retrieval_result": "HTTP403",
+    "branch_limits_and_cruise_processing_recovered": false,
+    "existing_candidate_status_unchanged": true
+  },
+  "canonical_register_unchanged_during_derivation": "research/current-depth-register-v42.json",
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
