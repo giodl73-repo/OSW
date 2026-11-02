@@ -1,0 +1,244 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native longitude-gate edges and maxima adjacent to missing upper200m support remain unresolved. Retain all candidate flags and local peaks. Geographic maxima do not independently validate shelf-break, coastal, named-current or water-mass identity.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.irminger-wsc-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New Irminger and West Spitsbergen regional cases, declared before source fields. Reuse the cloud-validated fixed-latitude v2 collector, geometry, exact-read transport, selection and connected-layer operators unchanged.",
+  "geometry_provenance": "Fourteen OSW exploratory fixed-latitude windows follow the retained western Reykjanes Ridge and West Spitsbergen regional reference corridors. Longitude gates are editorial choices, not digitized velocity axes, source hydrographic sections, isobaths, whole widths or uncertainty intervals. The Irminger selector may switch between two cores; WSC searches may include Front Current, recirculation or other branches. No independent core/branch/water-mass assignment is performed.",
+  "column_selector": "Frozen complete finite native 0–200 m signed northward trapezoidal-integral selector, primary 10 cm/s and surface >5 cm/s. Fixed 0-degree true component through depth for both currents. Greatest integral wins; first western native index breaks ties. Keep all candidate and local-maximum metadata. Selected gate/support edges, no qualifying flow and primary-depth censoring remain gaps; no gate/cutoff/direction tuning, weaker interior substitution or alternate-cutoff filling.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all28 original section/date shapes and exact times before fields. Every40depth/3–150longitude fixed-native-latitude slice fits20000pairs/patch,250000total and7MB decoded bound. Reuse frozen target-budget ledger with new correctly oriented exact-hyperslab reader. Only actualNetCDFI/Ofailures retry the exact component/slice,at most3 attempts with2/5second backoff, reserving all future first attempts before extra requests. Successful other components are not replayed. Ledger labels actual latitude_index and longitude_indices_inclusive. No wire-byte/hash claim or failure-to-zero conversion.",
+  "currents": {
+    "current:irminger": {
+      "entity_id": "current:irminger",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial northward eastern Irminger Sea branch along the western Reykjanes Ridge flank, 56–65 N editorial gates. Source describes two cores and intermediate return flow; one local integral maximum is not their summed transport, a uniquely tracked core or a whole-current section. Source also includes deeper northward IC water: a connected velocity contour does not separate upper mode water from deep water masses. Exclude return toward Greenland, North Icelandic continuation, interior gyre circuits, opposite ridge-side current and detached eddies as target identities; broad gates do not independently resolve them."
+    },
+    "current:west-spitsbergen": {
+      "entity_id": "current:west-spitsbergen",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial northward West Spitsbergen slope-current corridor from 73 N editorial Barents-departure approach to 79.6 N pre-branching gate. Exclude upstream Norwegian Atlantic routes, Barents inflow, offshore Front Current feeder, recirculation, shelf/fjord intrusions and downstream Svalbard/Yermak/Yermak Pass branches as target identities. Broad northward maxima do not independently resolve these branches or Atlantic Water membership. Source 1,000 m glider limit is not a current bottom; 20–500 m averaged velocities and source water-mass thresholds are not adopted as model layer boundaries. Spitsbergen Atlantic naming is not merged."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-56n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 56,
+      "longitude_gate_degrees_east": [
+        -39,
+        -33
+      ]
+    },
+    {
+      "id": "section-58n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 58,
+      "longitude_gate_degrees_east": [
+        -36,
+        -30
+      ]
+    },
+    {
+      "id": "section-60n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 60,
+      "longitude_gate_degrees_east": [
+        -34,
+        -28
+      ]
+    },
+    {
+      "id": "section-62n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 62,
+      "longitude_gate_degrees_east": [
+        -31,
+        -25
+      ]
+    },
+    {
+      "id": "section-64n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 64,
+      "longitude_gate_degrees_east": [
+        -29.5,
+        -23.5
+      ]
+    },
+    {
+      "id": "section-65n",
+      "entity_id": "current:irminger",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 65,
+      "longitude_gate_degrees_east": [
+        -30,
+        -24
+      ]
+    },
+    {
+      "id": "section-73n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 73,
+      "longitude_gate_degrees_east": [
+        13,
+        17
+      ]
+    },
+    {
+      "id": "section-74n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 74,
+      "longitude_gate_degrees_east": [
+        11.5,
+        15.5
+      ]
+    },
+    {
+      "id": "section-75n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 75,
+      "longitude_gate_degrees_east": [
+        10,
+        14
+      ]
+    },
+    {
+      "id": "section-76n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 76,
+      "longitude_gate_degrees_east": [
+        8,
+        12
+      ]
+    },
+    {
+      "id": "section-77p25n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 77.25,
+      "longitude_gate_degrees_east": [
+        7,
+        11
+      ]
+    },
+    {
+      "id": "section-78n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 78,
+      "longitude_gate_degrees_east": [
+        6.5,
+        10.5
+      ]
+    },
+    {
+      "id": "section-79n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 79,
+      "longitude_gate_degrees_east": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "section-79p6n",
+      "entity_id": "current:west-spitsbergen",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 79.6,
+      "longitude_gate_degrees_east": [
+        5.5,
+        9.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2021JC018188",
+      "locator": "Fried and de Jong (2022), Introduction and Figure 1 context",
+      "scope": "Publisher HTML freshly reviewed November 2, 2026. Two surface-intensified northward cores on the western Reykjanes Ridge flank, intermediate return flow and deeper northward water make one selected profile an incomplete current representation. This 1993–2020 reanalysis/mooring study does not validate 2022 HYCOM axes. No figures or source fields digitized."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017JC013553",
+      "locator": "Goszczko et al. (2018), Introduction; retained WSC regional scope audit",
+      "scope": "Publisher HTML freshly reopened; retained naming context distinguishes northward WSC from Barents inflow, shelf exchanges and adjacent branches. All approach/stop gates and longitude windows remain OSW choices."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/22/1003/2026/",
+      "locator": "Dundas and Fer (2026), Introduction, sections 2.1–2.2, Code and data availability",
+      "scope": "Publisher HTML freshly reviewed. Glider hydrography and depth-averaged currents are not ready-made depth-resolved velocity profiles. Paper combines thermal-wind shear with satellite surface geostrophic reference, avoiding anomalous DAC in sections 7–10. Archive metadata identifies gridded missions and CC BY 4.0, but no archive fields are acquired or interpreted here. Source 1,000 m sampling limit is not a current bottom; potential/conservative-temperature and Absolute-Salinity water-mass criteria are not transferred to HYCOM in-situ temperature or practical salinity. Limited autumn/winter occupations do not establish annual ranges."
+    }
+  ],
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/irminger-reference-path-candidate.json": "ad57b03d5bfe3f2bb1fe5ba1c4233739523c70417a89d0187a55beef712594c7",
+    "research/west-spitsbergen-reference-path-candidate.json": "cd6c83f417d6aa8c73303be20ad3d2472f67769c43141e08e6619ca5b996fdfa",
+    "research/west-spitsbergen-current-naming-seasonal-scope-audit.json": "4df9417cdc25e8b0c6062a3262233b42a30443e06569917edab093347aadd605",
+    "research/spitsbergen-atlantic-naming-branch-scope-audit.json": "f7a5c4a81ff9fb408097877b3cc0d2c85c8fd65618bccf3ac82bda09823158db",
+    "research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json": "87e5c16c7ea5787e1224cc19b05e4f7b885356268062e6c997f1e09c28dc09fa",
+    "research/source-data/dundas-fer-wsc-2026/dataset-datacite.json": "236744cbb83dd06498122a6826371552466a417b00bdd4dfe23c07944d35876a",
+    "research/source-data/dundas-fer-wsc-2026/dataset-acquisition.json": "3aaf4e38a1ec1603e27ff4109f9ee70224987ff1cf1a9adcef618015bbe2e40a"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5
+}
