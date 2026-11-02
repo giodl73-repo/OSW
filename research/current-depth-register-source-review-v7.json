@@ -1,0 +1,70 @@
+{
+  "schema": "osw.current-depth-register-source-review.v7",
+  "status": "PASS_TWENTY_DEEP_DOMAIN_AND_SPATIAL_DEPTH_REFERENCES",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41381893918,
+      "tests_passed": 8,
+      "source_commit": "0a945a38f6c1a5f689c62bbdc5e31bbeea873d3c",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41381893918"
+    },
+    {
+      "run_id": 41381893812,
+      "tests_passed": 6,
+      "source_commit": "0a945a38f6c1a5f689c62bbdc5e31bbeea873d3c",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41381893812"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 95,
+    "identities_with_scoped_depth_reference": 33,
+    "identities_not_yet_assessed": 78,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 9,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 3,
+    "reported_flow_depth_band": 3,
+    "reported_vertical_extent": 16,
+    "transport_selected_depth_extent": 54,
+    "transport_selected_upper_depth": 6
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v7.py": "869e853aef78717f1372b2dcbcd0238f6653abe041848b1d83600fb22878e86f",
+    "analysis/test_current_depth_register_v7.py": "620c30fd1ca820a621c8af8ef3839b0ad8a0f2391c2bd6b25f1f1783cf9d806d",
+    "research/current-depth-rules-v7.json": "1c5ac99576c77ac702cb2a1c49d5a85130bab8464d92e3abb1c7546ae22b03ea",
+    "research/current-depth-source-facts-v7.json": "f87350427304275ebeb125509b47c55a673bc184dd4e18125b67050b05176b12",
+    "research/current-depth-register-v7.json": "b3591be04a6118f2ce0854240136981caa560bbb532a9e87c3b7ff6822c11478",
+    "research/current-depth-register-v7.csv": "a85cb85ca04f2b06eef0ca341f5d3db82cc322215186c28f7fe60085ce77109b",
+    ".github/workflows/current-depth-register-source-v7.yml": "510b0a9efa50d4643ab65a87487aeed7e23040d02bccb2ec2f006af09d9333a5",
+    "research/source-data/cainzos-atlantic-2023/article.xml": "f7f69c1238c4186b6203f56d4cd4a681ca3bb550dadac15119044ccb91aef0c3",
+    "research/source-data/cainzos-atlantic-2023/table-1.xlsx": "bfe0bbc798ca14677fdfd66668f546e2b75fed4f6350bc29881a47133e40d3f6",
+    "research/source-data/cainzos-atlantic-2023/table-2.xlsx": "eab186e33d87ee67f3d8f825e0b12a07cf3e1f8297e5ef24416f7d6a44961f15"
+  },
+  "previous_75_references_and_v6_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all75 preceding depth references retained.",
+    "Fourteen Atlantic DWBC and three deep Labrador sections retain exact original XML table ids, tbody rows, depth column, current groups, layer labels, selected station intervals and cruise joins.",
+    "Six unspecified seafloor terminals remain nonnumeric; their top depths do not become thickness or whole-flow upper boundaries.",
+    "Finite depth domains reproduce both source metre depths, distinct from density indices and transport.",
+    "A source ACC front component does not cover the complete circumpolar current.",
+    "California offshore and within300km depth summaries retain cross-shore scope without becoming a seasonal range or model-period observations.",
+    "No depth uncertainty, uniform rectangles, cross-stream width promotion, compatible width joins, volumes, state intersections or playback inferred.",
+    "JSON and CSV reproduce with domain-terminal semantics."
+  ],
+  "source_review_scope": "Cainzos2023 original retained publisher XML, Table1/Table2 XLSX, original PDF pages4,18 and19 actually viewed, and publisher HTML methods/results. Stone2018 primary publisher HTML and NOAA original PDF web extraction; direct original download403 and no original pixels explicitly recorded. No scientific fields downloaded or processed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
