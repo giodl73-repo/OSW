@@ -23,6 +23,8 @@ SOURCE_CONTEXT = {
     'geographic_scope':'Five regional Gulf Stream fitted sections; selected mapped columns are not independently validated current axes.',
     'qualification':'Mapped regional fitted component descriptor, not whole-current depth, physical thickness, annual extrema or independent occupation. Unsampled upper10m, missing/deep support and locked reference frame retained.',
     'source_horizontal_axis_operator':'maximum_complete_signed10_to200m_trapezoidal_component_integral_with_regional_direction_sector_and_first_grid_tie',
+    'source_documented_fit_observation_period':['2015-07-16','2023-05-30'],
+    'source_native_grid_is_independent_observation_spacing':False,
     'resolution':'Each new reference source_context_id resolves to this register source_contexts entry. Per-profile files, pointers, SHA256, sections, coordinates, locked directions, phase labels, thresholds, native brackets and numerical values remain on the reference.'
 }
 
@@ -64,7 +66,6 @@ def reference_rows(fact, raw, section, profile_sha):
         'source_profile_pointer': fact['source_pointer'], 'source_section_id': section['id'],
         'source_section_definition': section, 'source_selected_lon_lat': profile['source_lon_lat'],
         'source_product_kind': raw['source_product_kind'], 'source_dataset_doi': '10.21238/S8TC9W',
-        'source_documented_fit_observation_period': ['2015-07-16','2023-05-30'],
         'source_actual_provider_phase_timestamp_utc': raw['actual_provider_phase_timestamp_utc'],
         'source_nominal_phase_calendar_date': raw['nominal_phase_calendar_date'],
         'source_phase_timestamp_is_observation_date': False, 'source_is_monthly_average': False,
@@ -78,7 +79,6 @@ def reference_rows(fact, raw, section, profile_sha):
         'source_product_deep_limit_m': 1000, 'source_product_limit_is_current_bottom': False,
         'source_fit_support_pointer': fact['source_pointer'] + '/selected_profile/source_fit_support',
         'source_component_uncertainty_is_depth_error': False,
-        'source_native_grid_is_independent_observation_spacing': False,
         'source_relative_core_fraction': None, 'source_velocity_threshold_m_s': None,
         'source_native_bracketing_depths_m': None, 'source_depth_interpolation': None,
     }

@@ -97,6 +97,8 @@ class GulfStreamDepthAdmission(unittest.TestCase):
             self.assertIn('2023-05-30',context['temporal_scope'])
             self.assertIn('02009-y',context['source_citation'])
             self.assertIn('not whole-current depth',context['qualification'])
+            self.assertEqual(context['source_documented_fit_observation_period'],['2015-07-16','2023-05-30'])
+            self.assertFalse(context['source_native_grid_is_independent_observation_spacing'])
             pointer=row['source_pointer'];self.assertTrue(pointer.startswith('/descriptors/'))
             source=facts['descriptors'][int(pointer.split('/')[-1])]
             self.assertEqual(source['source_file'],row['source_profile_file'])
