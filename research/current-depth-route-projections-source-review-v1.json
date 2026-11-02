@@ -1,0 +1,65 @@
+{
+  "schema": "osw.current-depth-route-projections-source-review.v1",
+  "status": "PASS_FIRST_REGIONAL_ALONG_ROUTE_DEPTH_DESCRIPTOR_SCENARIO",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41415429653,
+      "tests_passed": 7,
+      "source_commit": "13b5d995f854cc672061fe1849eb891db1dc5fbc",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41415429653"
+    },
+    {
+      "run_id": 41415429564,
+      "tests_passed": 6,
+      "source_commit": "13b5d995f854cc672061fe1849eb891db1dc5fbc",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41415429564"
+    }
+  ],
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 1,
+    "identities_not_yet_projected": 110,
+    "regional_projection_scenarios": 1,
+    "source_anchor_references": 2,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_route_projections_v1.py": "7949beb6ab4599b650abd41fde270a57e5d4028aaae74ddcb820b8bc8985e7f9",
+    "analysis/test_current_depth_route_projections_v1.py": "e99cded50d1cffb35d23e8af4ba130ab0d07eb1abac410e4c3675ff921497395",
+    ".github/workflows/current-depth-route-projections-v1.yml": "bc916de751cfb7cc258a34f2b9dcef14feb272887a1435e722fe0ddba5177768",
+    "research/current-depth-route-projection-operator-v1.json": "e7792357e7713ebe853d7daf708eec4396fca7759a43f7975b01fab662abae86",
+    "research/current-depth-route-projections-v1.json": "8a3af2984fa6a8563c901d17f0b76570224a0d33443303eeb99cdcf99e530103",
+    "research/current-depth-route-projections-v1.csv": "d8d785b342abcdfc7f93cc1827d95dabde7fab444192ea928731e2077462145f",
+    "research/current-depth-register-v32.json": "d4507aa29a76a3d8c0e60efe5bf721768e86d5e5b0f1bad89ddd29d4238e930a",
+    "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
+    "research/current-length-estimate-register-v1.json": "5b63576c47b6c59f4360d51cb2c04354ddab670894f7971a2380d8ca9ffd5d87"
+  },
+  "depth_register_v32_source_review_sha256": "c02ad93dafdbf96dac11dbcda49b504a55b45e7ed638d63930f357899d120ef2",
+  "depth_register_319_references_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "source_review_scope": "Primary publisher indexed Shetye1991 abstract rechecked: December1987–January1988 poleward current, approximate200m depth near10N and400m near22N; full paper remains unavailable. Reuses two existing qualified depth references and existing principal editorial route. No new numerical measurements, source pixels or exact section coordinates claimed.",
+  "validation_scope": [
+    "All111 identities retain their existing depth reference ownership in a separate projection inventory. One WICC regional projected scenario,110 identities not yet projected, zero whole-route physical profiles or volumes.",
+    "Use the already selected WICC principal reference routev4, not an unrelated route or a new physical axis. Map approximate source latitude contexts to exact drawing gates using WGS84 geodesic legs and latitude bisection. Drawing longitudes are OSW choices, not observed profile positions.",
+    "North22N400m anchor maps to reference distance0km; south10N200m anchor maps to1540.842km of1787.691km reference drawing. Linear interpolation in reference-route distance is an explicit OSW assumption, with display depths rounded10m. Unsupported southern route is null with no extrapolation.",
+    "The0.861917 interval fraction measures this editorial drawing only, not a measured current fraction, uncertainty, seasonal envelope or physical coverage. Campaign window does not establish simultaneous full-route observations or exact anchor occupation dates.",
+    "Retain approximate extent descriptor semantics. Do not infer physical lower boundary, surface origin, thickness, width pairing, cross-sectional area or volume. Southward undercurrent excluded. No annual playback or physical-state allocation admission.",
+    "Cloud mutation tests reject incompatible source identity/metric/period/phase/depth, explicit projection exclusion, invalid/ambiguous routes, extrapolation and unsupported geometry/season/volume changes. Reversed-route mapping preserves geographic gates and total distance. JSON/CSV reproduce and retain source-anchor versus interpolation versus unsupported statuses.",
+    "Only small metadata/reference-geometry generation ran locally on one idle CPU. All tests ran in cloud with one-CPU scheduling and pinnedpyproj3.7.2. No new ocean fields, app runtime, browser, WASM or server execution."
+  ],
+  "route_length_km": 1787.691,
+  "supported_reference_distance_interval_km": [
+    0.0,
+    1540.842
+  ],
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
