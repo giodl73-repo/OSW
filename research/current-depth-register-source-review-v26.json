@@ -1,0 +1,71 @@
+{
+  "schema": "osw.current-depth-register-source-review.v26",
+  "status": "PASS_PACIFIC_MAIN_SSCC_REGIONAL_CORE_DEPTHS",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41406548617,
+      "tests_passed": 8,
+      "source_commit": "0436e145433d897002660f764101f17183ff237b",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41406548617"
+    },
+    {
+      "run_id": 41406548411,
+      "tests_passed": 6,
+      "source_commit": "0436e145433d897002660f764101f17183ff237b",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41406548411"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 312,
+    "identities_with_scoped_depth_reference": 95,
+    "identities_not_yet_assessed": 16,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 31,
+    "core_lower_boundary_depth": 7,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 13,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 8,
+    "reported_near_zero_flow_depth": 1,
+    "reported_vertical_extent": 59,
+    "reported_vertical_scale_length": 1,
+    "reported_vertical_thickness": 5,
+    "sampled_water_mass_depth_band": 1,
+    "transport_selected_depth_extent": 64,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v26.py": "24fe1d8a6ac9a1ca763754670e199adc7baa71414fa2684d507af848a4d11835",
+    "analysis/test_current_depth_register_v26.py": "14207bb66b343e3f7f1b404754cff3fa5d3da5c9945f3774d96a187d4ee43a35",
+    "research/current-depth-rules-v26.json": "03be1208fe38f3441545161abd73f93dbe258d1b32e79fea3587cc29871f3b76",
+    "research/current-depth-source-facts-v26.json": "4780ff9643010850cc0f87359ca6e7de8a8d4b8f8f37004a782a68c48e70b608",
+    "research/current-depth-register-v26.json": "fc729a4bbf75846ce4d2b94cc7f04eaea9d73d7a9282cfc256c65639ec783685",
+    "research/current-depth-register-v26.csv": "41beb4ba660f315e052bef059f22a1453a1d98f8b79034c1a810f51167cd1857",
+    ".github/workflows/current-depth-register-source-v26.yml": "424968a8b98593102163b61cf0d4bb62a638f21467dc56664e488376e6e9e658"
+  },
+  "previous_309_references_and_v25_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding309 depth references retained. Three main Pacific SSCC core references bring scoped coverage to95 identities with16 not yet assessed; whole-route profiles and volumes remain absent.",
+    "Rowe2000 Section3a gives approximate300m western regional core and150m near95W. Exact western longitude and eastern latitude are left unresolved; introductory110W shorthand and northern325m origin are not substituted. Primary southern jet excludes the separate secondary southern jet.",
+    "Johnson2002 main SSCC200m at nominal140W4.5S remains separate from secondary250m7S, northern200m4N and equatorial110m core. Preserve isopycnal/mixed-layer fitting,20degree longitude pooling, annual/SOI terms, more-than16 local section filter and1985June–2000December archive support. No single occupation or uniform climatology inferred.",
+    "Spatial shoaling may include temporal aliasing from uneven archive coverage. Overlapping archives are not independent confirmation, a synoptic route profile or an annual range. No width/depth pairing or volume eligibility established.",
+    "Mutation checks reject neighboring branch/depth/location substitutions, temporal and fit-operator changes, annual-envelope promotion, physical thickness/boundaries, independence and whole geometry. JSON/CSV reproduce. No local tests or raw ocean-field processing."
+  ],
+  "source_review_scope": "Rowe primary publisher/institutional indexed full text reviewed, no original pixels claimed after access failures. Johnson original institution-hosted PDF8/printed38 rendered and viewed; source prose with Section2 methods, no figure digitization. Tuchen2022 original Figure10 inspected as a deferred Atlantic cSEC source; no unsupported numerical figure depth admitted.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
