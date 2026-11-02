@@ -1,0 +1,63 @@
+{
+  "schema": "osw.malvinas-bathymetry-screen-source-review.v1",
+  "status": "PASS_27_GEBCO_SCREEN_SCENARIOS_ADMISSION_PENDING_BOTTOM_TRACK_AND_PROCESSING",
+  "cloud_reviews": [
+    {
+      "run_id": 41446208874,
+      "tests_passed": 15,
+      "source_commit": "8fab547a18e39b1f1682eec810492b6562b83324",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41446208874"
+    }
+  ],
+  "cloud_tests_passed": 15,
+  "input_sha256": {
+    "analysis/derive_malvinas_bathymetry_screen_v1.py": "d8312f4f4f2cd61617a1c273859cfa6ec1468cb3ce6cd2bb04dbcb771a458b97",
+    "analysis/test_malvinas_bathymetry_screen_v1.py": "ddc132651bd33bcf650becbd213d356c9cbe7a7d6792a345453e026605ca7199",
+    "analysis/derive_malvinas_branch_core_scenarios_v1.py": "70f3ba81b8672a8e2b3c09cb4d1dfa70bc668e28030d30d06354e2d7a992f84d",
+    "analysis/test_malvinas_branch_core_scenarios_v1.py": "267710874807c2b32da308c031a5328771631b389a05a97f18bc999899ea4752",
+    "analysis/audit_malvinas_adcp_depth_v1.py": "430b93ddbddd19aa2d52cebc8ec6ce3b4c2f944380397ad939762f9fc5a41c43",
+    ".github/workflows/malvinas-bathymetry-screen-v1.yml": "032544b1ccaa2159261db07df3bc25c83cb4204e7b3a5413011931213994fe35",
+    "research/malvinas-bathymetry-screen-operator-v1.json": "0906f398d814bb2a0f5bd82138cc14d275017af6aea85ead30c9f8aeff84d08a",
+    "research/source-data/malvinas-bathymetry-screen-v1/candidate.json": "6884aedac7127fd5292a42ab614cd1506027e2e9b8c297baa2c1ccf0a80cf640",
+    "research/malvinas-bathymetry-screen-comparison-v1.json": "15c338ad1264442bc0c7a102566dfc6c6d08a12fa8c28fc5ac9948babe6512e1",
+    "research/source-data/malvinas-bathymetry-screen-v1/elevation.ascii": "15b1d1fee7dd03253650e168c6721e72518d8e26842f5a9e27624b59466213c6",
+    "research/source-data/malvinas-bathymetry-screen-v1/tid.ascii": "01c88ad5f607e4fe36a403545fe3f6de574160a8676efb5e9740885e7a19862f"
+  },
+  "scenario_count": 27,
+  "gebco_tile_shape": [
+    30,
+    590
+  ],
+  "point_tid_counts": {
+    "11": 240,
+    "40": 123,
+    "17": 44
+  },
+  "point_tid_definitions": {
+    "11": "multibeam direct measurement source",
+    "17": "combination of direct measurement methods",
+    "40": "satellite-gravity-guided prediction"
+  },
+  "source_links": [
+    "https://www.gebco.net/data-products-gridded-bathymetry-data/gebco2026-grid",
+    "https://www.teledynemarine.com/en-us/products/Pages/ocean-surveyor-adcp.aspx",
+    "https://currents.soest.hawaii.edu/docs/adcp_doc/ADCP_INTERPRETATION/realistic_ranges/index.html"
+  ],
+  "scientific_review": [
+    "One bounded30x590 GEBCO2026 elevation/TID tile covers the407-profile ADCP crossing and circular footprint envelopes. Elevation and TID coordinates and pixel registration are checked. Complete small ASCII responses and hashes are retained for independent reproduction; all source-field processing ran in cloud.",
+    "Seven native samples are deeper than nearest GEBCO point-grid bed estimates. This is a mismatch against the gridded product, not proof that ship measurements were physically beneath the actual seabed.",
+    "Point-bed-only screening excludes21 velocity samples; point85percent sidelobe screening excludes194; circular-footprint85percent screening excludes240. Masks apply to native rows before spatial selection/smoothing. Counts are source-level screening diagnostics, not counts of independently proven bad observations.",
+    "Manufacturer specifies30degree beams; UHDAS/GO-SHIP guidance excludes roughly bottom15percent. The implemented6m draft and8m support margin are explicit scenarios. Gridded depths, nominal MSL datum, grid-cell allowance and circular beam envelope do not replace ship bottom tracking, beam-specific range, tides, motion, subgrid terrain or original cruise QC.",
+    "At25km, all tested masks/PG retain offshore maximum40.44m. Unmasked or bed-only inshore PG50/70 gives288.44m; point-sidelobe screen gives168.44m and footprint screen200.44m. Screening can change the contributing samples and averages, so maxima need not shift monotonically shallower. These are sensitivity results, not confidence bounds or a verified explanation of source prose/Table3 differences.",
+    "All27 cases remain conditional branch scenarios. No new bottom, thickness, annual depth range or volume is admitted. Tide correction, beam-bottom masking and source branch limits still need independent verification before canonical derived measurement admission.",
+    "Six screening tests plus nine frozen branch-scenario tests pass in cloud. They verify separate bed/sidelobe limits, support margins and equality, footprint shallowing, unknown preservation, ASCII dimensions/coordinates, nearest-cell selection, signed smoothing, gaps, station revisits and candidate maximum semantics. Existing registers, previous scenarios and source comparisons are preserved."
+  ],
+  "canonical_register_file": "research/current-depth-register-v42.json",
+  "canonical_register_sha256": "915dc18d0b979936e2dc660b3cf2b2bf6c95f2eaa8f651bfa900ea4484bd2cf9",
+  "canonical_depth_references_added": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
