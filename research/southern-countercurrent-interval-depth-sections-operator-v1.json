@@ -1,0 +1,226 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain every original section/date,all candidate scores/local peaks,no-selection,gate/support-edge and primary-censored cases. No post-result gate tuning,threshold substitution or inferred coherent occupation/continuity. Geographic maxima may be eddy/recirculation flow or adjacent branches.",
+  "vertical_operator": "Frozen connected-layer tracing above/below qualifying0-200m seeds on full native0-5000m support requires adjacent finite brackets. Retain upper/lower contours,statuses,last supported bounds and paired spans separately. Stop at sign/cutoff gaps;never bridge vertically separated cores or equate connected model span to physical thickness. Window endpoints,300m historical Pacific threshold scale,100m Indian presence,instrument ranges,missing support and bed are not physical bottoms.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.southern-countercurrent-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New quarterly partial eastern-Indian and western-Pacific SECC sections reuse frozen longitude geometry,interval selection,connected-layer math and bounded transport. No old collector/helper/data is modified. Atlantic SECC split shallow/deep cores require separately scoped treatment and are not included.",
+  "geometry_provenance": "OSW exploratory fixed-longitude windows: Indian93,94,95,96,97E/8-4S;Pacific168,169,170,171,172E/12.5-7.5S. They bracket historical95E/6S and170E/10S context;neighboring sections are editorial extensions,not historical observations,extracted axes,widths,errors or complete current routes. Indian reach lies east of selected90E reference handoff and must retain that scope.",
+  "column_selector": "Complete finite native0-200m signed eastward integral,positive integral and qualifying core>10cm/s;no positive surface-speed gate,relative surface comparison or thermal gate. Greatest eligible integral wins;first southern native tie. Gate/support-edge maxima remain unresolved without weaker interior replacement. Sensitivities5/10/20cm/s use the same selected column,each with its own qualifying0-200m seed. Core/selection interval is an editorial upper-ocean diagnostic,not a physical flow boundary.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z quarterly instantaneous probes,not seasonal means,annual extrema,independent observed occupations or historical source replication. Indian northeast-monsoon and Pacific southern-summer literature context does not establish occupancy in all four dates.",
+  "transport_budget": "Preflight all20targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:indian-south-equatorial-countercurrent": {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route."
+    },
+    "current:pacific-south-equatorial-countercurrent": {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Western Pacific SECC local168-172E/12.5-7.5S context around170E/10S. Exclude equatorial EUC/SSCC,westward SEC and southern tropical/subtropical countercurrents south of15S. Historical geostrophic reference methods and approximate upper300m10cm/s scale do not validate2022 absolute velocities,uniform bottom or annual bounds. Gates can censor wider/meandering branches;no weaker interior replacement."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-93e",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 93,
+      "latitude_gate_degrees_north": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "id": "section-94e",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 94,
+      "latitude_gate_degrees_north": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "id": "section-95e",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 95,
+      "latitude_gate_degrees_north": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "id": "section-96e",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 96,
+      "latitude_gate_degrees_north": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "id": "section-97e",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 97,
+      "latitude_gate_degrees_north": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "id": "section-168e",
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 168,
+      "latitude_gate_degrees_north": [
+        -12.5,
+        -7.5
+      ]
+    },
+    {
+      "id": "section-169e",
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 169,
+      "latitude_gate_degrees_north": [
+        -12.5,
+        -7.5
+      ]
+    },
+    {
+      "id": "section-170e",
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 170,
+      "latitude_gate_degrees_north": [
+        -12.5,
+        -7.5
+      ]
+    },
+    {
+      "id": "section-171e",
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 171,
+      "latitude_gate_degrees_north": [
+        -12.5,
+        -7.5
+      ]
+    },
+    {
+      "id": "section-172e",
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 172,
+      "latitude_gate_degrees_north": [
+        -12.5,
+        -7.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://www.ldeo.columbia.edu/~agordon/publications/Hacker_BoB_GRL_98GL52115.pdf",
+      "locator": "Hacker et al.1998,Methods;Results/Figures1,2,4,PDF1-4;fresh primary institutional PDF text",
+      "scope": "Observed eastern SECC distinct from SEC/EUC/northern tentative NECC;February-March1995 snapshot has recirculation variability. Native100m presence is a retained inclusive reach,not a bottom. No observed95E section is extended as observed data to neighboring model sections.0-200m and10cm/s are declared OSW diagnostic choices,not source-derived boundaries."
+    },
+    {
+      "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-05/010028590.pdf",
+      "locator": "Rotschi/Hisard/Jarrige1972,printed10-11/PDF13-14;fresh primary repository PDF text",
+      "scope": "Separates SECC near10S from equatorial deep flow and South Tropical Countercurrent south of15S. Reports approximate10cm/s upper300m scale while flow extends deeper;describes southern-summer wind-convergence context. Historical geostrophic reference velocities are not HYCOM absolute velocities or2022 independent validation. No source figure extraction or numerical digitization."
+    },
+    {
+      "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_7/b_fdi_51-52/010019670.pdf",
+      "locator": "Bourles et al.1999,Section4.1/PDF6;fresh primary repository text",
+      "scope": "Atlantic SECC separate cores near40m/240m with westward110m separation demand explicit multi-core treatment;excluded from this Indian/Pacific batch. Never connect the cores merely to obtain a thickness."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/test_interval_depth_diagnostic_v1.py": "1c3daca18862397b5158bbb5a9ebc9f17fc95222702570e0d59d2afa8a884ee1",
+    "analysis/acquire_southern_countercurrent_interval_depth_sections_v1.py": "dc257cc7153458559825a5b986b434db55b44bb8bcec3cc57a3400e8e34284e5",
+    "analysis/test_southern_countercurrent_interval_depth_sections_v1.py": "062e3ecbaa36c0ba497ea40adb9e2cb3ac9f25e433f3236d2f28cba27c930fb3",
+    "plans/southern-countercurrent-interval-depth-sections-protocol-v1.md": "57a9abb850b623ff0ee0652e9d0823180ed02b3237932552bd7c7a6675509dc0",
+    "research/current-depth-source-facts-v9.json": "3a23c9b45a474126fb4db9837d04e1ea2f8b57a2bda3edf1315bb3ee2482caa9",
+    "research/current-depth-source-facts-v28.json": "62c28e05d982c95e358bcc0e872ada2b2b31d322f9a19f51c887b4a5c248a8df"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "methodology_file": "plans/southern-countercurrent-interval-depth-sections-protocol-v1.md"
+}
