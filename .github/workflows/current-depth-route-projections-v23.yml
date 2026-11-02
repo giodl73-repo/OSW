@@ -1,0 +1,100 @@
+name: Current depth additive inventory v23
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v23.yml
+      - analysis/build_current_depth_route_projections_v23.py
+      - analysis/test_current_depth_route_projections_v23.py
+      - research/current-depth-route-projection-operator-v23.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v23.py
+            analysis/test_current_depth_route_projections_v23.py
+            research/current-depth-route-projection-operator-v23.json
+            research/current-depth-route-projection-inventory-v8.json
+            research/current-depth-route-projection-inventory-source-review-v8.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/greenland-depth-sections-source-facts-v1.json
+            research/greenland-depth-sections-source-review-v1.json
+            research/greenland-depth-sections-operator-v1.json
+            research/source-data/greenland-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-78p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-76n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-73n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-70n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-64n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-61n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-59n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-59p4n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-60p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-61p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-63n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-65n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-78p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-76n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-73n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-70n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-64n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-61n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-59n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-59p4n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-60p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-61p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-63n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-65n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/transport-ledger.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify Greenland additive inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v23.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v23.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v23
+          path: current-depth-route-projections-v23/
+          retention-days: 7
