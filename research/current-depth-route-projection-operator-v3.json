@@ -1,0 +1,372 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v3",
+  "status": "NONCONTEMPORANEOUS_PACIFIC_EUC_NOMINAL_SITE_CONNECTOR",
+  "depth_register_file": "research/current-depth-register-v33.json",
+  "previous_projection_file": "research/current-depth-route-projections-v2.json",
+  "case": {
+    "id": "pacific-euc-halpern2023-noncontemporaneous-core-connector-v1",
+    "entity_id": "current:pacific-equatorial-undercurrent",
+    "connector_id": "pacific-euc-halpern2023-observing-site-connector-v1",
+    "metric_interpretation": "ADCP/ECCOv4r4 comparison-selected near-maximum record-mean core levels at distinct sites/periods; not instantaneous maxima, common-period climatology, current bottom or thickness.",
+    "anchors": [
+      {
+        "reference_id": "pacific-euc-halpern-2023-165e-comparison-core-level",
+        "nominal_lon_lat": [
+          165,
+          0
+        ],
+        "approximate_depth_descriptor_m": 190,
+        "source_context": {
+          "id": "pacific-euc-halpern-2023-165e-comparison-core-level",
+          "entity_id": "current:pacific-equatorial-undercurrent",
+          "metric": "core_depth",
+          "approximate_value_m": 190,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": null,
+          "calendar_months": null,
+          "geographic_scope": "Nominal equatorial mooring at0N,165degrees east; exact site context, not a full-width cross section or full-route core surface.",
+          "temporal_scope": "Record-length mean comparison at this site,1January1996–31December2007; hourly averaged velocities with data gaps. Other sites have different record periods.",
+          "source_definition": "Author-selected near-maximum mean eastward-current core level chosen to minimize ADCP versus ECCOv4r4 record-mean speed difference among near-equivalent levels.",
+          "evidence_kind": "published_ADCP_model_comparison_selected_core_level",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/67911/noaa_67911_DS1.pdf",
+          "source_citation": "Halpern, Le, Smith and Heimbach(2023), Comparison of ADCP and ECCOv4r4 Currents in the Pacific Equatorial Undercurrent, J.Atmos.OceanicTechnol.40:1557–1569, doi:10.1175/JTECH-D-23-0013.1.",
+          "source_locator": "Section3c printed1561/PDF5 first paragraph for190/155/105/75m and comparison selection; Section2a printed1559/PDF3 for per-site periods, coordinates, ADCP acquisition, gaps and analyzed depth domains. Figure2 viewed for context only; no digitization.",
+          "qualification": "This is a source comparison-selected record-mean core level, not an independently recomputed instantaneous maximum, an unbiased common-period observation, physical bottom or thickness. Near-equivalent maxima occur at2–3 adjacent5m analysis levels within1cm/s; neither5m spacing nor1cm/s tolerance is depth uncertainty. Preserve distinct site periods with gaps; no1995–2010 continuous shared record, annual extrema or seasonal envelope.150kHz raw8.68m bins/3s acquisition differs from5m processed levels and hourly study means. Mooring mount250–300m, bathymetry4–5km, analysis-domain endpoints and400m model-domain context are not current boundaries. Source historical100m thickness and more-than150m west–east context are separate from these selected levels, whose endpoint difference is115m. No compatible width/thickness join or volume.",
+          "observed_period": null,
+          "source_case_id": "pacific-euc-halpern-2023-165e-record-mean-comparison",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "section_latitude_degrees_north": 0,
+          "section_longitude_degrees_east": 165,
+          "source_site_id": "165e",
+          "source_record_period": {
+            "start": "1996-01-01",
+            "end": "2007-12-31"
+          },
+          "source_record_period_has_gaps": true,
+          "temporal_operator": "source_site_record_mean_with_gaps_and_comparison_selected_core_level",
+          "core_definition": {
+            "kind": "author_comparison_selected_record_mean_core_level",
+            "velocity_component": "eastward_zonal",
+            "selection": "minimize_ADCP_ECCOv4r4_record_mean_speed_difference_among_near_equivalent_core_levels",
+            "near_equivalent_speed_tolerance_cm_s": 1,
+            "near_equivalent_adjacent_level_count_range": [
+              2,
+              3
+            ]
+          },
+          "comparison_products": [
+            "moored_ADCP",
+            "ECCOv4r4"
+          ],
+          "ADCP_velocities_assimilated_in_ECCOv4r4": false,
+          "reported_velocity_sampling_domain_m": [
+            40,
+            260
+          ],
+          "source_ADCP_frequency_kHz": 150,
+          "source_raw_ADCP_bin_size_m": 8.68,
+          "source_raw_ADCP_sampling_seconds": 3,
+          "source_processed_ADCP_level_spacing_m": 5,
+          "source_study_velocity_averaging_hours": 1,
+          "branch_section_scope": "Pacific_EUC_equatorial_mooring_165e",
+          "source_access_scope": "original_publisher_PDF_via_NOAA_repository_prose_and_figure_context",
+          "source_file": "research/current-depth-source-facts-v33.json",
+          "source_pointer": "/references/0",
+          "source_sha256": "93b1b526a738a322c2f4c20c6c53f2de12f2018dfdfac6e93f47102011903440"
+        }
+      },
+      {
+        "reference_id": "pacific-euc-halpern-2023-170w-comparison-core-level",
+        "nominal_lon_lat": [
+          -170,
+          0
+        ],
+        "approximate_depth_descriptor_m": 155,
+        "source_context": {
+          "id": "pacific-euc-halpern-2023-170w-comparison-core-level",
+          "entity_id": "current:pacific-equatorial-undercurrent",
+          "metric": "core_depth",
+          "approximate_value_m": 155,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": null,
+          "calendar_months": null,
+          "geographic_scope": "Nominal equatorial mooring at0N,-170degrees east; exact site context, not a full-width cross section or full-route core surface.",
+          "temporal_scope": "Record-length mean comparison at this site,1January1995–31December2005; hourly averaged velocities with data gaps. Other sites have different record periods.",
+          "source_definition": "Author-selected near-maximum mean eastward-current core level chosen to minimize ADCP versus ECCOv4r4 record-mean speed difference among near-equivalent levels.",
+          "evidence_kind": "published_ADCP_model_comparison_selected_core_level",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/67911/noaa_67911_DS1.pdf",
+          "source_citation": "Halpern, Le, Smith and Heimbach(2023), Comparison of ADCP and ECCOv4r4 Currents in the Pacific Equatorial Undercurrent, J.Atmos.OceanicTechnol.40:1557–1569, doi:10.1175/JTECH-D-23-0013.1.",
+          "source_locator": "Section3c printed1561/PDF5 first paragraph for190/155/105/75m and comparison selection; Section2a printed1559/PDF3 for per-site periods, coordinates, ADCP acquisition, gaps and analyzed depth domains. Figure2 viewed for context only; no digitization.",
+          "qualification": "This is a source comparison-selected record-mean core level, not an independently recomputed instantaneous maximum, an unbiased common-period observation, physical bottom or thickness. Near-equivalent maxima occur at2–3 adjacent5m analysis levels within1cm/s; neither5m spacing nor1cm/s tolerance is depth uncertainty. Preserve distinct site periods with gaps; no1995–2010 continuous shared record, annual extrema or seasonal envelope.150kHz raw8.68m bins/3s acquisition differs from5m processed levels and hourly study means. Mooring mount250–300m, bathymetry4–5km, analysis-domain endpoints and400m model-domain context are not current boundaries. Source historical100m thickness and more-than150m west–east context are separate from these selected levels, whose endpoint difference is115m. No compatible width/thickness join or volume.",
+          "observed_period": null,
+          "source_case_id": "pacific-euc-halpern-2023-170w-record-mean-comparison",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "section_latitude_degrees_north": 0,
+          "section_longitude_degrees_east": -170,
+          "source_site_id": "170w",
+          "source_record_period": {
+            "start": "1995-01-01",
+            "end": "2005-12-31"
+          },
+          "source_record_period_has_gaps": true,
+          "temporal_operator": "source_site_record_mean_with_gaps_and_comparison_selected_core_level",
+          "core_definition": {
+            "kind": "author_comparison_selected_record_mean_core_level",
+            "velocity_component": "eastward_zonal",
+            "selection": "minimize_ADCP_ECCOv4r4_record_mean_speed_difference_among_near_equivalent_core_levels",
+            "near_equivalent_speed_tolerance_cm_s": 1,
+            "near_equivalent_adjacent_level_count_range": [
+              2,
+              3
+            ]
+          },
+          "comparison_products": [
+            "moored_ADCP",
+            "ECCOv4r4"
+          ],
+          "ADCP_velocities_assimilated_in_ECCOv4r4": false,
+          "reported_velocity_sampling_domain_m": [
+            40,
+            260
+          ],
+          "source_ADCP_frequency_kHz": 150,
+          "source_raw_ADCP_bin_size_m": 8.68,
+          "source_raw_ADCP_sampling_seconds": 3,
+          "source_processed_ADCP_level_spacing_m": 5,
+          "source_study_velocity_averaging_hours": 1,
+          "branch_section_scope": "Pacific_EUC_equatorial_mooring_170w",
+          "source_access_scope": "original_publisher_PDF_via_NOAA_repository_prose_and_figure_context",
+          "source_file": "research/current-depth-source-facts-v33.json",
+          "source_pointer": "/references/1",
+          "source_sha256": "93b1b526a738a322c2f4c20c6c53f2de12f2018dfdfac6e93f47102011903440"
+        }
+      },
+      {
+        "reference_id": "pacific-euc-halpern-2023-140w-comparison-core-level",
+        "nominal_lon_lat": [
+          -140,
+          0
+        ],
+        "approximate_depth_descriptor_m": 105,
+        "source_context": {
+          "id": "pacific-euc-halpern-2023-140w-comparison-core-level",
+          "entity_id": "current:pacific-equatorial-undercurrent",
+          "metric": "core_depth",
+          "approximate_value_m": 105,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": null,
+          "calendar_months": null,
+          "geographic_scope": "Nominal equatorial mooring at0N,-140degrees east; exact site context, not a full-width cross section or full-route core surface.",
+          "temporal_scope": "Record-length mean comparison at this site,1January1997–31December2010; hourly averaged velocities with data gaps. Other sites have different record periods.",
+          "source_definition": "Author-selected near-maximum mean eastward-current core level chosen to minimize ADCP versus ECCOv4r4 record-mean speed difference among near-equivalent levels.",
+          "evidence_kind": "published_ADCP_model_comparison_selected_core_level",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/67911/noaa_67911_DS1.pdf",
+          "source_citation": "Halpern, Le, Smith and Heimbach(2023), Comparison of ADCP and ECCOv4r4 Currents in the Pacific Equatorial Undercurrent, J.Atmos.OceanicTechnol.40:1557–1569, doi:10.1175/JTECH-D-23-0013.1.",
+          "source_locator": "Section3c printed1561/PDF5 first paragraph for190/155/105/75m and comparison selection; Section2a printed1559/PDF3 for per-site periods, coordinates, ADCP acquisition, gaps and analyzed depth domains. Figure2 viewed for context only; no digitization.",
+          "qualification": "This is a source comparison-selected record-mean core level, not an independently recomputed instantaneous maximum, an unbiased common-period observation, physical bottom or thickness. Near-equivalent maxima occur at2–3 adjacent5m analysis levels within1cm/s; neither5m spacing nor1cm/s tolerance is depth uncertainty. Preserve distinct site periods with gaps; no1995–2010 continuous shared record, annual extrema or seasonal envelope.150kHz raw8.68m bins/3s acquisition differs from5m processed levels and hourly study means. Mooring mount250–300m, bathymetry4–5km, analysis-domain endpoints and400m model-domain context are not current boundaries. Source historical100m thickness and more-than150m west–east context are separate from these selected levels, whose endpoint difference is115m. No compatible width/thickness join or volume.",
+          "observed_period": null,
+          "source_case_id": "pacific-euc-halpern-2023-140w-record-mean-comparison",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "section_latitude_degrees_north": 0,
+          "section_longitude_degrees_east": -140,
+          "source_site_id": "140w",
+          "source_record_period": {
+            "start": "1997-01-01",
+            "end": "2010-12-31"
+          },
+          "source_record_period_has_gaps": true,
+          "temporal_operator": "source_site_record_mean_with_gaps_and_comparison_selected_core_level",
+          "core_definition": {
+            "kind": "author_comparison_selected_record_mean_core_level",
+            "velocity_component": "eastward_zonal",
+            "selection": "minimize_ADCP_ECCOv4r4_record_mean_speed_difference_among_near_equivalent_core_levels",
+            "near_equivalent_speed_tolerance_cm_s": 1,
+            "near_equivalent_adjacent_level_count_range": [
+              2,
+              3
+            ]
+          },
+          "comparison_products": [
+            "moored_ADCP",
+            "ECCOv4r4"
+          ],
+          "ADCP_velocities_assimilated_in_ECCOv4r4": false,
+          "reported_velocity_sampling_domain_m": [
+            40,
+            235
+          ],
+          "source_ADCP_frequency_kHz": 150,
+          "source_raw_ADCP_bin_size_m": 8.68,
+          "source_raw_ADCP_sampling_seconds": 3,
+          "source_processed_ADCP_level_spacing_m": 5,
+          "source_study_velocity_averaging_hours": 1,
+          "branch_section_scope": "Pacific_EUC_equatorial_mooring_140w",
+          "source_access_scope": "original_publisher_PDF_via_NOAA_repository_prose_and_figure_context",
+          "source_file": "research/current-depth-source-facts-v33.json",
+          "source_pointer": "/references/2",
+          "source_sha256": "93b1b526a738a322c2f4c20c6c53f2de12f2018dfdfac6e93f47102011903440"
+        }
+      },
+      {
+        "reference_id": "pacific-euc-halpern-2023-110w-comparison-core-level",
+        "nominal_lon_lat": [
+          -110,
+          0
+        ],
+        "approximate_depth_descriptor_m": 75,
+        "source_context": {
+          "id": "pacific-euc-halpern-2023-110w-comparison-core-level",
+          "entity_id": "current:pacific-equatorial-undercurrent",
+          "metric": "core_depth",
+          "approximate_value_m": 75,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": null,
+          "calendar_months": null,
+          "geographic_scope": "Nominal equatorial mooring at0N,-110degrees east; exact site context, not a full-width cross section or full-route core surface.",
+          "temporal_scope": "Record-length mean comparison at this site,1January1996–31December2005; hourly averaged velocities with data gaps. Other sites have different record periods.",
+          "source_definition": "Author-selected near-maximum mean eastward-current core level chosen to minimize ADCP versus ECCOv4r4 record-mean speed difference among near-equivalent levels.",
+          "evidence_kind": "published_ADCP_model_comparison_selected_core_level",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/67911/noaa_67911_DS1.pdf",
+          "source_citation": "Halpern, Le, Smith and Heimbach(2023), Comparison of ADCP and ECCOv4r4 Currents in the Pacific Equatorial Undercurrent, J.Atmos.OceanicTechnol.40:1557–1569, doi:10.1175/JTECH-D-23-0013.1.",
+          "source_locator": "Section3c printed1561/PDF5 first paragraph for190/155/105/75m and comparison selection; Section2a printed1559/PDF3 for per-site periods, coordinates, ADCP acquisition, gaps and analyzed depth domains. Figure2 viewed for context only; no digitization.",
+          "qualification": "This is a source comparison-selected record-mean core level, not an independently recomputed instantaneous maximum, an unbiased common-period observation, physical bottom or thickness. Near-equivalent maxima occur at2–3 adjacent5m analysis levels within1cm/s; neither5m spacing nor1cm/s tolerance is depth uncertainty. Preserve distinct site periods with gaps; no1995–2010 continuous shared record, annual extrema or seasonal envelope.150kHz raw8.68m bins/3s acquisition differs from5m processed levels and hourly study means. Mooring mount250–300m, bathymetry4–5km, analysis-domain endpoints and400m model-domain context are not current boundaries. Source historical100m thickness and more-than150m west–east context are separate from these selected levels, whose endpoint difference is115m. No compatible width/thickness join or volume.",
+          "observed_period": null,
+          "source_case_id": "pacific-euc-halpern-2023-110w-record-mean-comparison",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "section_latitude_degrees_north": 0,
+          "section_longitude_degrees_east": -110,
+          "source_site_id": "110w",
+          "source_record_period": {
+            "start": "1996-01-01",
+            "end": "2005-12-31"
+          },
+          "source_record_period_has_gaps": true,
+          "temporal_operator": "source_site_record_mean_with_gaps_and_comparison_selected_core_level",
+          "core_definition": {
+            "kind": "author_comparison_selected_record_mean_core_level",
+            "velocity_component": "eastward_zonal",
+            "selection": "minimize_ADCP_ECCOv4r4_record_mean_speed_difference_among_near_equivalent_core_levels",
+            "near_equivalent_speed_tolerance_cm_s": 1,
+            "near_equivalent_adjacent_level_count_range": [
+              2,
+              3
+            ]
+          },
+          "comparison_products": [
+            "moored_ADCP",
+            "ECCOv4r4"
+          ],
+          "ADCP_velocities_assimilated_in_ECCOv4r4": false,
+          "reported_velocity_sampling_domain_m": [
+            35,
+            195
+          ],
+          "source_ADCP_frequency_kHz": 150,
+          "source_raw_ADCP_bin_size_m": 8.68,
+          "source_raw_ADCP_sampling_seconds": 3,
+          "source_processed_ADCP_level_spacing_m": 5,
+          "source_study_velocity_averaging_hours": 1,
+          "branch_section_scope": "Pacific_EUC_equatorial_mooring_110w",
+          "source_access_scope": "original_publisher_PDF_via_NOAA_repository_prose_and_figure_context",
+          "source_file": "research/current-depth-source-facts-v33.json",
+          "source_pointer": "/references/3",
+          "source_sha256": "93b1b526a738a322c2f4c20c6c53f2de12f2018dfdfac6e93f47102011903440"
+        }
+      }
+    ],
+    "geometry_role": "nominal_observing_site_connector_not_selected_whole_current_route",
+    "coordinate_reference_system": "OGC:CRS84",
+    "interpolation": "Piecewise linear in WGS84 geodesic distance between adjacent nominal equatorial sites, eastward across the date line.",
+    "sample_spacing_km": 50,
+    "display_depth_rounding_m": 5,
+    "assumptions": [
+      "Straight geodesic legs connect nominal observing sites for display; this is not an observed streamline, navigable route or selected full-current axis.",
+      "Selected levels from differing record windows are connected only as an explicitly noncontemporaneous illustrative scenario. No common-period recomputation.",
+      "Intermediate levels are unmeasured interpolation. No extrapolation west of165E or east of110W.",
+      "Source5m analysis spacing supports preserving stated anchor values; display rounding is not depth uncertainty.",
+      "No width pairing, vertical thickness or volume is inferred."
+    ]
+  },
+  "eligibility": {
+    "whole_current_representative": false,
+    "physical_state_join_eligible": false,
+    "volume_eligible": false,
+    "seasonal_playback_eligible": false,
+    "annual_extrema_eligible": false
+  },
+  "whole_current_length_admission": false,
+  "new_depth_measurements": 0,
+  "full_goal_complete": false
+}
