@@ -1,0 +1,163 @@
+{
+  "schema": "osw.current-depth-source-facts.v24",
+  "review_date": "2026-11-02",
+  "status": "ADRIATIC_SAMPLED_COASTAL_COMPONENT_AND_OBSERVED_MEAN_REACH",
+  "previous_register_file": "research/current-depth-register-v23.json",
+  "previous_register_sha256": "09aef77c13bc0023784510df5aa4dc489455f28ff6bf24301a23b35a36bf3ce7",
+  "source_input_sha256": {},
+  "source_reviews": [
+    {
+      "url": "https://www.nature.com/articles/s41598-018-22569-2",
+      "review_mode": "Primary publisher full HTML Results water-mass classification and Materials and Methods sampling/campaign. Distinct surface and dense-water groups retained. No original PDF pixels claimed.",
+      "actual_original_pixels_viewed": false
+    },
+    {
+      "url": "https://os.copernicus.org/articles/14/237/2018/index.html",
+      "review_mode": "Primary publisher full HTML Section2.2, Section4 and Figure7 caption; original publisher Figure7 downloaded and actually viewed at original resolution. At labeled30m tick in A4, observed mean vector remains nonzero. No speed digitization, extrapolation or endpoint detection.",
+      "actual_original_pixels_viewed": true,
+      "figure_acquisition": {
+        "url": "https://os.copernicus.org/articles/14/237/2018/os-14-237-2018-f07.jpg",
+        "bytes": 2939432,
+        "sha256": "4fb1691aa51e213edfe78d2c09e118453a03bb2270f93b62bce2722da481e525",
+        "file": ".pytest_cache\\current-depth-sources-v24\\nadex-figure7.jpg"
+      },
+      "figure_url": "https://os.copernicus.org/articles/14/237/2018/os-14-237-2018-f07.jpg",
+      "original_figure_redistributed": false
+    }
+  ],
+  "deferred_candidates": [
+    {
+      "entity_id": "current:east-adriatic",
+      "source_url": "https://www.krs.hr/~ivilibic/literature-oceanography-Adriatic/Orlic06.pdf",
+      "reason": "Orlic2006 indexed original text confirms local ADCP observations and monthly variability; local original PDF retrieval404 and web screenshot cache miss. Do not infer current depth directly from61/71m station water depths or extrapolate through contaminated layers."
+    }
+  ],
+  "references": [
+    {
+      "id": "western-adriatic-bernardi-aubry-2018-wacc-sample-depths",
+      "entity_id": "current:western-adriatic",
+      "metric": "sampled_water_mass_depth_band",
+      "approximate_value_m": null,
+      "range_m": [
+        0.5,
+        15
+      ],
+      "lower_bound_m": null,
+      "lower_bound_exclusive": false,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": "Source sampled-water-group depth range across the campaign; not continuous layer bounds, uncertainty or annual extrema.",
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": null,
+      "calendar_months": null,
+      "geographic_scope": "Southern Adriatic shelf coastal water samples of riverine influence classified as WACC; regional surface component, distinct from bottom dense-water pathways.",
+      "temporal_scope": "ODW2012 rapid-response campaign,23March–2April2012. Whole campaign window, not a single simultaneous section or exact boundary occupation.",
+      "source_definition": "Depth range assigned by the source to the sampled Western Adriatic Coastal Current water-mass group.",
+      "evidence_kind": "published_hydrographic_sample_group",
+      "source_url": "https://www.nature.com/articles/s41598-018-22569-2",
+      "source_citation": "Bernardi Aubry, Falcieri, Chiggiato et al.(2018), Massive shelf dense water flow influences plankton community structure and particle transport over long distance, doi:10.1038/s41598-018-22569-2.",
+      "source_locator": "Results: Definition of water masses in the study area, first paragraph; Materials and Methods: Study area and sampling activities for campaign and CTD/rosette method.",
+      "qualification": "The0.5–15m interval describes sampled depths assigned to the river-influenced WACC water group using temperature, salinity and dissolved oxygen. It is not a continuous directly measured velocity layer, a0.5m physical top or15m detected flow bottom, a14.5m thickness, uncertainty or seasonal range. Separate Shelf15–26m, offshore upper-layer and dense NAdDW/ADW waters must not be inherited into the named coastal-current depth. The deeper cascading event motivates the study but does not make WACC a bottom current. No assignment to the2018 publication year or separate model initialization dates.",
+      "observed_period": null,
+      "source_case_id": "western-adriatic-bernardi-aubry-2018-odw2012",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "depth_basis": "source_sampled_water_mass_depth_group",
+      "water_mass_component": "river_influenced_WACC",
+      "campaign_window": {
+        "start_date": "2012-03-23",
+        "end_date": "2012-04-02"
+      },
+      "window_role": "whole_campaign_not_exact_boundary_occupation",
+      "classification_properties": [
+        "temperature",
+        "salinity",
+        "dissolved_oxygen"
+      ],
+      "sample_collection": "CTD_rosette_Niskin",
+      "upper_endpoint_is_physical_flow_boundary": false,
+      "lower_endpoint_is_physical_flow_boundary": false,
+      "continuous_velocity_layer_established": false,
+      "branch_section_scope": "southern_Adriatic_regional_coastal_water_component",
+      "source_access_scope": "primary_publisher_full_HTML"
+    },
+    {
+      "id": "east-adriatic-vilibic-2018-a4-observed-mean-reach",
+      "entity_id": "current:east-adriatic",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": null,
+      "range_m": null,
+      "lower_bound_m": 30,
+      "lower_bound_exclusive": false,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": null,
+      "calendar_months": null,
+      "geographic_scope": "NAdEx2015 station A4 off the northeastern Croatian coast, explicitly identified by the authors as sampling the Eastern Adriatic Current rather than channel exchange.",
+      "temporal_scope": "Figure7 observed residual mean over1February–1April2015. Distinct from the full late-November2014–early-July2015 A4 deployment.",
+      "source_definition": "OSW conservative inclusive reach bound from the nonzero observed mean-current vector at the labeled30m depth tick in Figure7 A4 panel.",
+      "evidence_kind": "published_mooring_mean_figure_presence",
+      "source_url": "https://os.copernicus.org/articles/14/237/2018/index.html",
+      "source_citation": "Vilibic et al.(2018), Wintertime dynamics in the coastal northeastern Adriatic Sea: the NAdEx2015 experiment, doi:10.5194/os-14-237-2018.",
+      "source_locator": "Figure7 A4 panel, observed ADCP set on left,30m depth tick; caption for averaging period; Section4 A4 paragraph for current identity; Section2.2 for56m station depth and deployment.",
+      "qualification": "Figure-presence inference only: read the observed ADCP mean vector, not the standard-deviation ellipse or the blue model set. No arrow-length velocity digitization, speed threshold, significance test, detected terminal boundary or deepest-flow claim. Figure negative vertical-coordinate labels are read as positive depth below the surface.56m is station water depth, not a measured current bottom. A1/A2 channel exchanges and A7–A9 Kvarner circulation are distinct cases. Source model underestimates speeds and is not the basis of this observed bound. Two-month mean does not establish continuous instantaneous reach, seasonal extrema or a route-wide profile.",
+      "observed_period": null,
+      "source_case_id": "east-adriatic-vilibic-2018-a4-residual-mean",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "lower_bound_operator": ">=",
+      "depth_basis": "conservative_inclusive_reach_from_observed_mean_vector_presence",
+      "source_station_id": "A4",
+      "source_station_water_depth_m": 56,
+      "averaging_period": {
+        "start_date": "2015-02-01",
+        "end_date": "2015-04-01"
+      },
+      "deployment_window_description": "late_November_2014_to_early_July_2015",
+      "graphical_read_depth_m": 30,
+      "graphical_read_operator": {
+        "panel": "A4",
+        "series": "observed_ADCP_mean_vectors_left_set",
+        "depth_tick_m": 30,
+        "read_kind": "nonzero_vector_presence_only",
+        "excluded_graphics": [
+          "standard_deviation_ellipses",
+          "blue_model_vectors"
+        ],
+        "velocity_digitized": false,
+        "statistical_significance_established": false
+      },
+      "source_depth_axis_convention": "negative_vertical_coordinate_labels_read_as_positive_depth",
+      "sampling_limit_is_flow_boundary": false,
+      "branch_section_scope": "local_northeastern_Adriatic_A4_observed_mean",
+      "source_access_scope": "primary_publisher_HTML_and_original_figure_pixels"
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
