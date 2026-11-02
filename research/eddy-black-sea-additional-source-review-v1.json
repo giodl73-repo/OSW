@@ -1,0 +1,168 @@
+{
+  "schema": "osw.eddy-black-sea-additional-source-review.v1",
+  "status": "ADDITIONAL_PUBLIC_SOURCES_REVIEWED_NAMED_DIMENSIONS_WITHHELD",
+  "review_date": "2026-11-01",
+  "baseline": {
+    "register_file": "research/eddy-measurement-register-v1.json",
+    "register_sha256": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "measurement_csv_file": "research/eddy-measurement-register-v1.csv",
+    "measurement_csv_sha256": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "counts": {
+      "identities": 136,
+      "individual_source_records": 112,
+      "recurrent_regions": 20,
+      "families": 4,
+      "evidence_records": 468,
+      "size_records": 203,
+      "size_owners": 102,
+      "duration_owners": 101,
+      "recurrence_owners": 12,
+      "structure_owners": 15,
+      "kinematics_owners": 73,
+      "non_registry_entries": 40,
+      "non_registry_entries_with_references": 40,
+      "registry_entries_with_own_references": 85,
+      "linked_primary_context_entries": 11,
+      "secondary_entries_with_own_references": 4,
+      "entries_without_numeric_or_primary_context": 0,
+      "identities_with_measurements": 125,
+      "identities_without_measurements": 11,
+      "conflicted_size_records": 2,
+      "source_track_spans": 23
+    }
+  },
+  "targets": [
+    "eddy:geography:bosphorus-eddy-region",
+    "eddy:geography:danube-eddy-region",
+    "eddy:geography:constantsa-eddy-region"
+  ],
+  "checks": [
+    {
+      "citation": "PONTOS, Report on Dynamics of Ukrainian Coastal Line Changes for 1980–2020, Deliverable D.T1.2.1, PONTOS–UA-1 (Ukraine).",
+      "url": "https://blacksea-cbc.net/images/e-library/BSB889_PONTOS_-_Report_on_dynamics_of_coast_line_change_in_Ukraine_EN.pdf",
+      "acquisition": {
+        "bytes": 13843286,
+        "sha256": "c5977d85737aa4670dedb6308297f425641289a9cbee141f6bc4ac437002399f",
+        "pages": 136,
+        "parser_repaired": false,
+        "has_eof": true,
+        "hit_pages": [
+          19,
+          61,
+          65,
+          84,
+          85
+        ],
+        "certificate_verification_disabled": false,
+        "transport": "curl 8.22.0 Schannel using normal Windows certificate verification"
+      },
+      "initial_python_acquisition": {
+        "url": "https://blacksea-cbc.net/images/e-library/BSB889_PONTOS_-_Report_on_dynamics_of_coast_line_change_in_Ukraine_EN.pdf",
+        "maximum_bytes": 25000000,
+        "attempts": 1,
+        "cookies_or_challenge_workflows_used": false,
+        "source_assets_republished": false,
+        "status": "UNAVAILABLE",
+        "error": "URLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1085)'))"
+      },
+      "visual_review": [
+        {
+          "pdf_page": 1,
+          "render_sha256": "664a8b24c736a4ac76e60d9b58e33d62ea7579cc7ba13114ec2309329eb61aeb",
+          "actual_pixels_viewed": true
+        },
+        {
+          "pdf_page": 84,
+          "render_sha256": "9dbd0c7c4ee609b75dfae78b8921d1b84f11ce6cb9e59d9991206fac9deaaaa9",
+          "actual_pixels_viewed": true
+        },
+        {
+          "pdf_page": 85,
+          "render_sha256": "2979d24cad9eecd983d3cdabb30c6c60ef3db4b31e22eb0286a8166c2b79c930",
+          "actual_pixels_viewed": true
+        }
+      ],
+      "findings": [
+        "Page 84 discusses Danube and Constantsa as recurrent circulation elements, citing earlier work. It supplies no individual horizontal dimension.",
+        "Page 85 Figure 4.38 is a dated current-map example for May 15, 2020. The actual figure does not label separate Danube, Constantsa or Bosphorus eddy cases and does not define their boundaries.",
+        "Geographic proximity, unnamed circulation arrows and adjacent general prose do not verify a named dated case."
+      ],
+      "decision": "No position, contour span, physical dimension, depth or volume assigned to the named targets.",
+      "source_assets_republished": false
+    },
+    {
+      "citation": "Enriquez Ortiz, Cecilia Elizabeth (2005), Mesoscale circulation in the Black Sea: a study combining numerical modelling and observations. PhD thesis, University of Plymouth. DOI 10.24382/1535.",
+      "repository_landing_url": "https://pearl.plymouth.ac.uk/gees-theses/52/",
+      "indexed_document_url": "https://pure.plymouth.ac.uk/ws/portalfiles/portal/38399850/Enriquez%20C%20E_2005.pdf",
+      "acquisition": {
+        "url": "https://pure.plymouth.ac.uk/ws/portalfiles/portal/38399850/Enriquez%20C%20E_2005.pdf",
+        "maximum_bytes": 35000000,
+        "attempts": 1,
+        "source_assets_republished": false,
+        "status": "UNAVAILABLE",
+        "error": "<HTTPError 403: 'Forbidden'>"
+      },
+      "additional_access_checks": [
+        {
+          "url": "https://pearl.plymouth.ac.uk/gees-theses/52/",
+          "result": "HTTP 403 on ordinary unauthenticated GET; no challenge workflow attempted."
+        },
+        {
+          "url": "https://researchportal.plymouth.ac.uk/ws/portalfiles/portal/38399850/Enriquez%20C%20E_2005.pdf",
+          "result": "Public canonical-host candidate returned HTTP 404."
+        },
+        {
+          "route": "Public archive availability query for the indexed exact PDF URL",
+          "result": {
+            "original_url": "https://pure.plymouth.ac.uk/ws/portalfiles/portal/38399850/Enriquez%20C%20E_2005.pdf",
+            "requested_timestamp": "20250101",
+            "maximum_bytes_per_response": 4000000,
+            "maximum_replay_responses": 2,
+            "ocean_field_processing": false,
+            "source_assets_republished": false,
+            "status": "UNAVAILABLE",
+            "error": "HTTP Error 429: Too Many Requests"
+          }
+        }
+      ],
+      "finding": "The indexed thesis contains additional interannual modelling material beyond the shorter 2005 article. The original thesis figures were not acquired; indexed table text is not proof of a horizontal boundary.",
+      "decision": "Retain as an unresolved original-figure source, not as a measurement."
+    },
+    {
+      "citation": "Korotaev et al. (2003), Seasonal, interannual, and mesoscale variability of the Black Sea upper layer circulation derived from altimeter data. DOI 10.1029/2002JC001508.",
+      "discovery": "Figure 11 PowerPoint link exposed by the primary article page.",
+      "acquisition": {
+        "url": "https://agupubs.onlinelibrary.wiley.com/action/downloadFigures?doi=10.1029%2F2002JC001508&id=jgrc9137-fig-0011&partId=",
+        "maximum_bytes": 5000000,
+        "attempts": 1,
+        "cookies_or_challenge_workflows_used": false,
+        "source_assets_republished": false,
+        "status": "UNAVAILABLE",
+        "error": "<HTTPError 403: 'Forbidden'>"
+      },
+      "decision": "No original figure pixels received; no dimensions admitted."
+    },
+    {
+      "citation": "Kubryakov, A. A. and Mizyuk, A. I. (published March 1, 2024), Spatiotemporal Variability of the Characteristics of the Black Sea Eddies Based on the Results of Their Three-Dimensional Identification Using NEMO Model Simulation, Oceanology 63, S83–S100 (2023). DOI 10.1134/S0001437023070081.",
+      "url": "https://link.springer.com/article/10.1134/S0001437023070081",
+      "review_mode": "Primary publisher full-text HTML, sections 2 and 5 and Figure 15/16 captions; original figure pixels not acquired.",
+      "finding": "The detailed vertical-evolution case is source anticyclone No. 6685 off the Anatolian coast, formed near Ilyasbey and subsequently moving toward Cape Sinop. The text does not identify it as the catalogued Bosphorus, Danube or Constantsa case. Figure 16 caption and the surrounding text give conflicting years for this case. Basin population statistics likewise cannot fill these named cases.",
+      "decision": "No named-case dimension, depth or volume admitted. Retain the three-dimensional method as a literature lead for the queued depth programme; do not transfer its population relationships to individual catalogued eddies."
+    }
+  ],
+  "execution": {
+    "sequential": true,
+    "local_cpu_affinity_count": 1,
+    "local_source_analysis_priority": "idle",
+    "source_documents_only": true,
+    "ocean_fields_downloaded": false,
+    "native_or_wasm_builds": false,
+    "cloud_jobs_started": false,
+    "provider_contacted": false,
+    "cookies_or_challenge_workflows_used": false
+  },
+  "measurements_admitted": 0,
+  "register_changed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
