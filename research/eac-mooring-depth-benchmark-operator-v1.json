@@ -1,0 +1,63 @@
+{
+  "schema": "osw.eac-mooring-depth-benchmark-operator.v1",
+  "opendap_base": "https://dods.ndbc.noaa.gov/thredds/dodsC/oceansites/DATA_GRIDDED/IMOS-EAC/",
+  "catalog_url": "https://dods.ndbc.noaa.gov/thredds/catalog/oceansites/DATA_GRIDDED/IMOS-EAC/catalog.html",
+  "source_paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10762209/",
+  "source_paper_doi": "10.1038/s41597-023-02857-x",
+  "source_metadata_review": "NOAA catalog and3200 hourly OPeNDAP form actually read;3200 daily DAS fetched and reviewed2026-11-02. Daily unfilled UCUR/VCUR and their uncertainty fields are distinct from *_FILLED variables. No paper figure pixels or digitization claimed.",
+  "source_attribution": "Sloyan, Cowley and Chapman, CSIRO/IMOS EAC individual mooring daily-depth gridded product, NOAA OceanSITES mirror; Scientific Data11,10(2024), doi:10.1038/s41597-023-02857-x; CC BY4.0.",
+  "station_codes": [
+    "NRSNSI",
+    "0500",
+    "2000",
+    "3200",
+    "4200",
+    "4700",
+    "4800"
+  ],
+  "source_dates": [
+    "2022-01-15",
+    "2022-07-15"
+  ],
+  "source_fields": [
+    "UCUR",
+    "VCUR",
+    "UCUR_uncertainty",
+    "VCUR_uncertainty"
+  ],
+  "time_operator": "Select the unique source daily timestamp whose UTC calendar date equals the prescribed model date. Retain actual timestamp. The daily product uses a5-day filter and daily interpolation; it is not the model instantaneous00Z field. No averaging or clock shifting by OSW.",
+  "source_support": "Processed observations, linearly gridded vertically and temporally; use unfilled fields only, not SOM-filled velocities or spatially mapped no-slip boundaries. The shallowest velocity observations are approximately20m; source0m coordinate does not guarantee surface flow support.",
+  "component_operator": "Poleward meridional component=-VCUR, positive south. This matches the nominal pilot27S downstream direction180degrees but is not full speed, slope rotation, or measured cross-section-normal transport.",
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "layer_operator": "Reuse frozen connected-layer operator at each prescribed fixed mooring, without peak-based mooring substitution. Keep unknown upper/lower boundaries, native brackets and source uncertainty arrays. No zero fill, seabed substitute or extrapolation.",
+  "model_pilot_file": "research/source-data/eac-hycom-route-depth-v2/candidate.json",
+  "comparison_role": "Record nearest existing27S model sample node and geodesic separation for spatial audit only. No acceptance distance chosen from results, model interpolation, observed/model residual, current-axis validation or whole-route inheritance.",
+  "maximum_velocity_scalars": 20000,
+  "maximum_times_per_station": 4000,
+  "maximum_depths_per_station": 500,
+  "uncertainty_m": null,
+  "uncertainty_policy": "Retain source component standard_error arrays. They do not establish a universal sigma, independent errors or propagated depth confidence interval.",
+  "eligibility": {
+    "whole_current_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  },
+  "processing_policy": "Sequential bounded OPeNDAP subsets and tests on one idle cloud CPU. Read coordinates first and check per-station and cumulative field budgets before velocity reads. No full original download, no local ocean-field processing or tests. Decoded profiles retained; no wire-byte or complete-source hash claim.",
+  "full_goal_complete": false
+}
