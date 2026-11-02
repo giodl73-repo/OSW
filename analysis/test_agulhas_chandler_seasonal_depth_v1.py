@@ -51,9 +51,17 @@ class SeasonalDepthTests(unittest.TestCase):
         lon=np.arange(30,37,.5)
         velocity=np.full((len(lon),2),-.2)
         velocity[5,:]=-1
-        velocity[10,:]=-10
+        velocity[12,:]=-10
         index,value=core_index(velocity,[10,30],lon)
         self.assertLess(lon[index],34.4);self.assertEqual(index,5)
+
+    def test_source_restriction_follows_smoothing(self):
+        # A feature immediately outside the gate can affect filtered values inside.
+        # Preserve the author's filter-then-select order rather than clipping first.
+        lon=np.arange(30,37,.5);velocity=np.full((len(lon),2),-.2)
+        velocity[5,:]=-1;velocity[10,:]=-10
+        index,_=core_index(velocity,[10,30],lon)
+        self.assertEqual(index,8);self.assertLess(lon[index],34.4)
 
 
 if __name__=='__main__':unittest.main()
