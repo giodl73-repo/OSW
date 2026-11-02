@@ -1,0 +1,232 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v34",
+  "previous_inventory_file": "research/current-depth-route-projection-inventory-v19.json",
+  "source_facts_file": "research/indian-euc-relative-depth-sections-source-facts-v1.json",
+  "section_files": [
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-70e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-75e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-80e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-85e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-90e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-70e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-75e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-80e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-85e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-90e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-70e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-75e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-80e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-85e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-90e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-70e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-75e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-80e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-85e.json",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-90e.json"
+  ],
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "currents": {
+    "current:indian-equatorial-undercurrent": {
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "require_core_stronger_than_surface": true,
+      "temperature_gate": null,
+      "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched.",
+      "sections": [
+        {
+          "id": "section-70e",
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "fixed_axis": "longitude",
+          "longitude_degrees_east": 70,
+          "latitude_gate_degrees_north": [
+            -2,
+            2
+          ]
+        },
+        {
+          "id": "section-75e",
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "fixed_axis": "longitude",
+          "longitude_degrees_east": 75,
+          "latitude_gate_degrees_north": [
+            -2,
+            2
+          ]
+        },
+        {
+          "id": "section-80e",
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "fixed_axis": "longitude",
+          "longitude_degrees_east": 80,
+          "latitude_gate_degrees_north": [
+            -2,
+            2
+          ]
+        },
+        {
+          "id": "section-85e",
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "fixed_axis": "longitude",
+          "longitude_degrees_east": 85,
+          "latitude_gate_degrees_north": [
+            -2,
+            2
+          ]
+        },
+        {
+          "id": "section-90e",
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "fixed_axis": "longitude",
+          "longitude_degrees_east": 90,
+          "latitude_gate_degrees_north": [
+            -2,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "interpolation_assumption": "Keep every original fixed-longitude section in declared downstream order. Use selected native model positions;where no column qualifies,use actualnativewrappedlongitude and the declaredlatitude-gate midpoint only as an explicit unresolved reference geometry placeholder with no sampled position or depth. ShortestWGS84legs connect adjacentoriginal references,including across180/-180. Assume linear lowerdepth and paired modelspan only between neighboring original supported nodes;never skip,extrapolate or fill from an alternate cutoff. Distances are reference geometry,not measured current lengths.",
+  "interpretation": "Append four quarterly Indian EUC-context relative-core cases with all20 anchors and every primary gap. Source50–200m signed eastward integral requires core>10cm/s and core strictly greater than finite native0m flow;there is no positive surface-speed gate. Re-audit source relative diagnoses and native geometry. Type core/surface comparison before reference projection,using unchanged adjacent-only geometry math. Preserve immutable v14 base,nineteen prior addenda,all113 scenarios,previous unresolved cases,CSV cells and canonical ownership. Four snapshots do not establish thermal identity,persistent EUC,annual ranges,physical thickness or volumes.",
+  "source_operator_file": "research/indian-euc-relative-depth-sections-operator-v1.json",
+  "source_audit_config": {
+    "core_search_depth_interval_m": [
+      50,
+      200
+    ],
+    "selection_depth_interval_m": [
+      50,
+      200
+    ],
+    "thresholds_m_s": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "surface_component_gate_m_s": null,
+    "eligibility": {
+      "whole_route_physical_depth_profile": false,
+      "physical_current_thickness": false,
+      "whole_current_volume": false,
+      "seasonal_envelope": false,
+      "physical_state_join": false,
+      "global_total": false
+    },
+    "maximum_nearest_longitude_distance_km": 5,
+    "require_core_stronger_than_surface": true
+  },
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "physical_state_join": false,
+    "seasonal_envelope": false
+  },
+  "processing_policy": "Cloud-only sequential reference geometry/interpolation,inventory reconstruction and tests on one idleCPU using frozen source chunks/operators/helpers. Local metadata/code/hash/artifact retention only;no local numerical field processing/tests or runtime/browser/server/native/WASM work. No fresh network field retrieval and no byte-cap increases.",
+  "full_goal_complete": false,
+  "input_sha256": {
+    "research/current-depth-route-projection-inventory-v19.json": "b2b4a826c5ac332267bf85851ea1d6e6b8c1b1afab6d9c3342d6e11467f9db99",
+    "research/current-depth-route-projection-inventory-source-review-v19.json": "c62b1ef04378b78bfd9887cb0f98da3635136ee655de54b92f4e1a8d1834f683",
+    "research/current-depth-route-projections-v14.json": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+    "research/current-depth-route-projections-v14.csv": "b232e187b6335da5f45cbff75432d3724b4c16317cdfa968b33ab0e5a9df83d8",
+    "research/current-depth-unresolved-reference-cases-v1.csv": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json": "7a2745a5fe34f4b5281146dfca06b60eac8bda6901d9748da3e0831ec0c82b9c",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv": "48389a2259cca30ab164f5444248d6dcbb4fa16044540ed3b91b8141ae350108",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json": "90702129dd0472abb53660dc28e6e5c194ef78044d3e07a384f45dee8398c4dd",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv": "7fe357c2816765b69d8582bdef28f8e11f04f8f9f8eba161ae1bb87c0e12dcaa",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json": "754cd2b67ca61dc87a8ee306f86171195cc0227c57f8d98af1914bdaf56b3718",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv": "e6ec0b8b6ccefa153f9d913b6231b499335f51ed03a2ef13db81b042a9066f0f",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json": "b24cadbad52bb202747550567161c08c1ae3099ba7bb1f83eacca63a77a76231",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv": "9e7da2d7eab4b36027548d114472309e0e89716df4480ef11cb8ca07654dc622",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv": "49df7f1b8e374214d0b472f8b560fce96ab24480fd67184aad068a4fe4b66991",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv": "21577e6d8f6f0644978df5511c6717ac3fa4f7cf681bb4dd3884a6ddab7c9468",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json": "169a6224567506aed44d9d24a633ccbf589777fc59a90757b4001fd709872272",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv": "127f43eb5de49dcb70d005e4fe7d422d886d4ae248adccf15174824ae141c990",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json": "0a43af62d9266b375936698abf7d9aee702d44aa4fd7c70a74058e1e9fe249b9",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv": "d15483c168f3f025a7aa6c43a2466b7bc376e2a0d78e87298069a17cd518664c",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json": "dd6deb9cec56ee881b7406504dfb26d1bdebe795083e8482b84ac12af1c58587",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv": "827995802a562c21e2daf04059ea935fa45a26ac57bb040f262adc1a6575bbf6",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json": "afbf249c2cc53608fc3f8da4a364f7c4247e6d85fef26b575f97ef2c7e887338",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv": "f72f877f6b1ad04c94cfff2668ab08291a4c7844f0c6f7c48b1fc84f81da849b",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json": "deb639a3c73d93097e67b839f9f867783bca4a7a03f35f509c27d9da5600123a",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv": "d0bdd2391c2def5544442fe0640305ad8d89f6ebb25d7f05440793e54baa0fd5",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json": "2b7a8737daeeca41f4b499f2f3282cd33e7b994d7aef2f8b88c7c2cdcb32d002",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv": "6e97e07b1f3aa05594ade5b541d17b1cfae28d557556983e97c0d00a54095944",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv": "bd7dbddbd2d1124ed79d2211a092f0987bd29f4c1f9f0fc97b87a2c6aee9215b",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json": "5bdf91edde5b5e2dc3dacaa3e3e6e60a6d6b8c86861aeb9d07e107ec8d859eea",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv": "f2165e6866265959516992b61b5b5e6a37aefb6d9792209cf5919af858750d0a",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json": "3a0e8a57d668f0d5abde3bc417b7bf1251b58acdc0911ebd357096e79bc6dcc9",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv": "191c9da7cc6d9517f8b6a9ebf5a200ea065fb61d48e120f36b257ce1b41c39ca",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json": "6e99065abc42c29bcb8c4b100c9799a4a540210fe8c8a0ee20156d432dc10e12",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv": "472badfd6933d71b2d9b0ac357ad71c2050a29abf70688e75fb14e37f09d5e81",
+    "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json": "f20dfe9017b2366814a07be7fb8c4764ace847706a8c6d5e112ace159f6a9be3",
+    "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.csv": "103de06a98abedf81618b90d914ab980e27c3e30d17db442571fd16eaccbed6a",
+    "research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.json": "33e3c07faa5e82d1127c81202bf1343dd219ae38e9db26914ab51dfdb80fbea6",
+    "research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.csv": "6911df869eb170c61cba3be4e71a66041b2025f355a763e035068e802891a8a9",
+    "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json": "cf70cc1d31a076a4b6b5383ee949434ded4ce3bd9607425ffcb9c2aaccedca72",
+    "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.csv": "0f0d8b5389d4c2144e0546ef5d6f1230801301e0e078bd68b91919c70c8900b4",
+    "research/indian-euc-relative-depth-sections-source-facts-v1.json": "e4ccae4db28447a19cf6c4deea1bb8e1fb212205495011aac7c2569b10cd8d4e",
+    "research/indian-euc-relative-depth-sections-source-review-v1.json": "c7cb0cb6caf4cb68f1f930e0c7bab159518c531cd3776190b03960e91e46fb46",
+    "research/indian-euc-relative-depth-sections-operator-v1.json": "00dbebbf7c83bc3c65466594245e5f082b5e8d412ee872605e3c96049169af96",
+    "research/source-data/indian-euc-relative-depth-sections-v1/manifest.json": "b7a19ed2b9e4ed48564deb78d7c59a4a5ae07e3eab12f6c28af320b4fd7ff9ee",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c",
+    "analysis/build_current_depth_route_projections_v15.py": "d980dab7e36bde310f02df255184a31ec55c380408588697bbf8949f29d104db",
+    "analysis/build_current_depth_route_projections_v16.py": "4ee153bd55b9857673ab11f0c12eb5253f99d7a608433290b1c7c3d560cf53dc",
+    "analysis/build_current_depth_route_projections_v18.py": "1af51fafdcc6c62abb46b4b2ea65900b337611733ef357db52ac742fe22d6113",
+    "analysis/load_current_depth_projection_inventory_v1.py": "0c59e211181258d630ddedf10a93501e01a84994c64179796d306fdb55a213ad",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-70e.json": "8beb673ae4e9808b6e582e3bd54fd5f02794b3297528861d42775e8e05708331",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-75e.json": "b7afc97a377ea37fd5c9f5dbb99a3e9009dfcc9edd98cfc171cb9b18cb0e27b7",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-80e.json": "c707c44e0e0ede8b62b93e6a8744e2bf64619fefdc912f0c6181918539d15d53",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-85e.json": "5509e05b37efc493f7c5ffff04372dff0eb4cae930921e7f1535783a56c1492d",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-03-15-indian-equatorial-undercurrent-section-90e.json": "3ee80e5b01be6b517ea58c3ad8266e4f36c3f4b408a605cc0be9edc49315a4fa",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-70e.json": "fb072b978096d0db7a57bd2b30ea2520c8326860d75bca412a46afc1a379dd45",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-75e.json": "8255e86c996059249308fb8127e85b5c458bbab6a82c6de06a46c227f890620a",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-80e.json": "e642d7cb7fbbaceb54d43792ecde2e09984afa29ae78c27e3f8f11329999a4f0",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-85e.json": "45ea65a89995202aa58ab5f88aaee3f1acede447e288059f1a87ac2514fa879c",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-06-15-indian-equatorial-undercurrent-section-90e.json": "516e1421b9f3f22109fc4421a6535a4f96c267e2876e6f89c14629124d5b4954",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-70e.json": "56d024e852dde229505060e216e6374af3743cbfa9ba6885b69746f10c1ccf03",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-75e.json": "fa0152cf25414a4247aea3d51f802efa83828087b025dbebfc43de620e76b8a3",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-80e.json": "abf6291917545684be731062bb5c6b3f095787771ad1468e18899aef5004b497",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-85e.json": "6c02f1f9d7829ad3fafca187db66e44f4f4efeddfe966c8e67c413ff3dfd3780",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-09-15-indian-equatorial-undercurrent-section-90e.json": "4a39df8824af954b6b14ad5a6c6d3b36662b3632dfc33bf91617c25cac7f95db",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-70e.json": "bd91077a999aa4927e5646dfba5b73fc3df3fbbc60ec60a4ddf41935d2fc2280",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-75e.json": "a6c545d179cd11b6355c969c5e03b1027cac3db0d1914c11c0825b1fd115c92a",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-80e.json": "90f05aba1552397cc6d0edac30340bb704db3ec6b20db01f9a5edb4aebeaa6c9",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-85e.json": "aedc47670e53d5e6c40c58d363a0e46b69af841ecb4617d8f681b8032cf5a503",
+    "research/source-data/indian-euc-relative-depth-sections-v1/2022-12-15-indian-equatorial-undercurrent-section-90e.json": "80ee9e3a07f33a055a6147f94256f496bab2261c66ac2d0091cb44e648ef4f78",
+    "research/source-data/indian-euc-relative-depth-sections-v1/transport-ledger.json": "1a99ca3685ea99285366ee06a804c8ec814c54847f6b2ca026409e3acb726fed",
+    "research/wsc-interval20-500-depth-reanalysis-v1.json": "e5d0336fa17643e18a9cd0e56fbae4f5b35ea7c601a1beb830da8646d07f2115",
+    "research/azcc-interval150-700-depth-reanalysis-v1.json": "9f9385681b5b327fd0e8a0219b90424d7eb4eea38820585e48bc71d1e60f4eed",
+    "research/atlantic-seuc-interval100-400-depth-reanalysis-v1.json": "c461a7dc1985d91dcad3ab08deb54a062f0548e2c9372a7fa59f27d52b791ebc",
+    "research/pacific-sscc-interval100-400-depth-reanalysis-v1.json": "e22860a44a39d40436a6c3e4e0a6f2b635a543e3ec834063a36b77c6bb5c91ba",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/test_interval_depth_diagnostic_v1.py": "1c3daca18862397b5158bbb5a9ebc9f17fc95222702570e0d59d2afa8a884ee1",
+    "analysis/relative_core_interval_diagnostic_v1.py": "a10bab8fe7652fd924dbec5389016ca7fc943ef3c86bea02f83a3e1362b59d4c",
+    "analysis/relative_core_interval_section_audit_v1.py": "edc9dbc253d4134342212bab29279b5c4a569b65df8b6b6c872bb3805cb6f718",
+    "analysis/acquire_indian_euc_relative_depth_sections_v1.py": "506bbd72d3250b8d7d459ce151263209e481c4ef8adc801843a475bb20950ab7",
+    "analysis/test_indian_euc_relative_depth_sections_v1.py": "551dff5ed9369a4d678cd652ef1dc5c1d95fa3cb04813e7a48a550867f3210fe",
+    "plans/indian-euc-relative-depth-sections-protocol-v1.md": "33a2ff79d62bc6ed5019390fa130cbb5f4e37f70ef64e331654f21ecb54cb173"
+  }
+}
