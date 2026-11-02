@@ -1,0 +1,3752 @@
+{
+  "schema": "osw.current-depth-route-projection-addendum.v1",
+  "id": "north-brazil-full-sections-hycom2022-v1",
+  "base_snapshot_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+  "operator_file": "research/current-depth-route-projection-operator-v15.json",
+  "operator_sha256": "288692447fa3e3404f30e9f9e40a1f328ab96f9ec1be4a44e4e5c778951ca260",
+  "input_sha256": {
+    "research/current-depth-route-projections-v14.json": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+    "research/current-depth-route-projections-v14.csv": "b232e187b6335da5f45cbff75432d3724b4c16317cdfa968b33ab0e5a9df83d8",
+    "research/current-depth-unresolved-reference-cases-v1.csv": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+    "research/current-depth-route-projections-source-review-v14.json": "1b63600dba2445df1c6949300b393e44c2f9498a52f853330da3659489a0d102",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/north-brazil-depth-sections-source-facts-v1.json": "5ae622dfe542f8fa3251cc1c81be070c660006dd50f619045f9c27766ce136bb",
+    "research/north-brazil-depth-sections-source-review-v1.json": "f96ba454dc6baaee02b821683062c46dc0bd6a78c4b6278c0ed8b6c6eca0b796",
+    "research/north-brazil-depth-sections-operator-v1.json": "876df50956a1bdb00a890d0c411320a8dafaf6b2b5916158083a18e983cdf442",
+    "research/source-data/north-brazil-depth-sections-v1/manifest.json": "bf62f133a6a66f5ab973bfc80fe152e4d05975fc2314ad208001795ed9e9ad36",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c",
+    "analysis/load_current_depth_projection_inventory_v1.py": "0c59e211181258d630ddedf10a93501e01a84994c64179796d306fdb55a213ad",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json": "e6968ac18aa9e280c2efb379f9bfcdbf4549f2dba3837275b7aa246ef489718f",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json": "80a298ed9e51672e07338a103a7efba06baedc9cbb8828774ce6838e40bedb16",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json": "ead39b8e880d7a66ae5b03b28dce34d0bbf72535356bab042debf1aad7a8625e",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json": "ce6ffc05028046d76dc65cfede88b245f967a6feac82248ada585d81e88f5336",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json": "f17c5900d5da3ba14b8466f38f9d338f6499a984d42eb97d7f29726970512962",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json": "0a31c49f29f623671629a263895cc87dd77f9ea20ba501d991a965797befbc66",
+    "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json": "ed7ace9f5df4eafc56de607adb92380213b6345691d4a5d42ddb83f447b5ba89",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json": "d81f1efd1bee803e0b16e2bb9a7eddab6c4627a8cc63231cafc0d42e3fdc872c",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json": "679e34f0fd6da73fa24c14fe4561de9189a5ccc903c407cbe2020c69995d30e2",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json": "a5b7afc54e337f33dfc94767da7e9eb1dd35cc054985f2f259b3ce2e05f5287f",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json": "10a171d8bf6dd70a04ea8a132a9dbcd87f1ee63cb43768e42d0011a9144b79e6",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json": "d7ce11147f41c8987e3c5bb33e40a2ac7c1b46240035f0024d075de0b849eb3d",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json": "39c18db99ef8f2da732a765eb959261fd2c8dbc4689a3d24a50e2f924a0d15d7",
+    "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json": "f3b299ef4547d9f88fb2eb56c7358deafe4d4d0cb39d8bfa00f460ed51bea4ae"
+  },
+  "projections": [
+    {
+      "entity_id": "current:north-brazil",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "anchors": [
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-05s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": null,
+          "model_layer_thickness_m": null,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": null,
+            "layer_thickness_m": null,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "censored_before_missing_or_dry_level",
+            "status": "unresolved_connected_layer_boundary",
+            "core_index": 20,
+            "core_depth_m": 125.0,
+            "core_velocity_m_s": 0.5642712116241455,
+            "lower_last_connected_depth_m": 800.0
+          },
+          "lower_projection_eligible": false,
+          "layer_projection_eligible": false,
+          "projection_block_reasons": [
+            "primary10cms_lower_boundary_censored_or_unresolved"
+          ],
+          "source_section_id": "section-05s",
+          "distance_km": 0.0,
+          "reference_lon_lat": [
+            -34.8800048828125,
+            -5.0
+          ],
+          "selected_model_node_lon_lat": [
+            -34.8800048828125,
+            -5.0
+          ],
+          "source_native_longitude_degrees_east": 325.1199951171875,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json#/columns/26",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-05s",
+            "latitude_degrees_north": -5,
+            "longitude_gate_degrees_east": [
+              -37,
+              -32
+            ]
+          },
+          "source_candidate_count": 63,
+          "source_local_integral_maximum_indices": [
+            26,
+            53,
+            56
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-03s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 960.7180423776147,
+          "model_layer_thickness_m": 960.7180423776147,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 960.7180423776147,
+            "layer_thickness_m": 960.7180423776147,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 19,
+            "core_depth_m": 100.0,
+            "core_velocity_m_s": 0.8053946495056152,
+            "lower_bracket_m": [
+              900.0,
+              1000.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-03s",
+          "distance_km": 433.72887,
+          "reference_lon_lat": [
+            -38.239990234375,
+            -3.0
+          ],
+          "selected_model_node_lon_lat": [
+            -38.239990234375,
+            -3.0
+          ],
+          "source_native_longitude_degrees_east": 321.760009765625,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json#/columns/47",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-03s",
+            "latitude_degrees_north": -3,
+            "longitude_gate_degrees_east": [
+              -42,
+              -34
+            ]
+          },
+          "source_candidate_count": 101,
+          "source_local_integral_maximum_indices": [
+            47,
+            62,
+            95
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-01s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 751.9733052354297,
+          "model_layer_thickness_m": 751.9733052354297,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 751.9733052354297,
+            "layer_thickness_m": 751.9733052354297,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 18,
+            "core_depth_m": 90.0,
+            "core_velocity_m_s": 0.6915504932403564,
+            "lower_bracket_m": [
+              700.0,
+              800.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-01s",
+          "distance_km": 1053.037033,
+          "reference_lon_lat": [
+            -43.43994140625,
+            -1.0
+          ],
+          "selected_model_node_lon_lat": [
+            -43.43994140625,
+            -1.0
+          ],
+          "source_native_longitude_degrees_east": 316.56005859375,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json#/columns/57",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-01s",
+            "latitude_degrees_north": -1,
+            "longitude_gate_degrees_east": [
+              -48,
+              -38
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            57,
+            61,
+            105
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-00p5n",
+          "model_upper_depth_m": 41.94083803698516,
+          "model_lower_depth_m": 1036.2864399899127,
+          "model_layer_thickness_m": 994.3456019529275,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 41.94083803698516,
+            "lower_depth_m": 1036.2864399899127,
+            "layer_thickness_m": 994.3456019529275,
+            "upper_status": "adjacent_isotach_crossing",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 22,
+            "core_depth_m": 200.0,
+            "core_velocity_m_s": 0.6342748403549194,
+            "upper_bracket_m": [
+              40.0,
+              45.0
+            ],
+            "lower_bracket_m": [
+              1000.0,
+              1250.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-00p5n",
+          "distance_km": 1247.573172,
+          "reference_lon_lat": [
+            -44.3199462890625,
+            0.5199999809265137
+          ],
+          "selected_model_node_lon_lat": [
+            -44.3199462890625,
+            0.5199999809265137
+          ],
+          "source_native_longitude_degrees_east": 315.6800537109375,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json#/columns/96",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-00p5n",
+            "latitude_degrees_north": 0.5,
+            "longitude_gate_degrees_east": [
+              -52,
+              -42
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            96
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-02n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 689.2563350900678,
+          "model_layer_thickness_m": 689.2563350900678,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 689.2563350900678,
+            "layer_thickness_m": 689.2563350900678,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 1.0033845901489258,
+            "lower_bracket_m": [
+              600.0,
+              700.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-02n",
+          "distance_km": 1591.695122,
+          "reference_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "selected_model_node_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "source_native_longitude_degrees_east": 312.9599609375,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json#/columns/87",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-02n",
+            "latitude_degrees_north": 2,
+            "longitude_gate_degrees_east": [
+              -54,
+              -44
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            87,
+            108
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-04n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 401.7939136355957,
+          "model_layer_thickness_m": 401.7939136355957,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 401.7939136355957,
+            "layer_thickness_m": 401.7939136355957,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 1.042982578277588,
+            "lower_bracket_m": [
+              400.0,
+              500.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-04n",
+          "distance_km": 1899.036634,
+          "reference_lon_lat": [
+            -48.9599609375,
+            4.0
+          ],
+          "selected_model_node_lon_lat": [
+            -48.9599609375,
+            4.0
+          ],
+          "source_native_longitude_degrees_east": 311.0400390625,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json#/columns/88",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-04n",
+            "latitude_degrees_north": 4,
+            "longitude_gate_degrees_east": [
+              -56,
+              -46
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            88,
+            95,
+            97,
+            125
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-01-15-section-07n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 283.3985765014856,
+          "model_layer_thickness_m": 283.3985765014856,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 283.3985765014856,
+            "layer_thickness_m": 283.3985765014856,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 0.9630794525146484,
+            "lower_bracket_m": [
+              250.0,
+              300.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-07n",
+          "distance_km": 2438.561117,
+          "reference_lon_lat": [
+            -52.800048828125,
+            7.0
+          ],
+          "selected_model_node_lon_lat": [
+            -52.800048828125,
+            7.0
+          ],
+          "source_native_longitude_degrees_east": 307.199951171875,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json#/columns/52",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-07n",
+            "latitude_degrees_north": 7,
+            "longitude_gate_degrees_east": [
+              -57,
+              -47
+            ]
+          },
+          "source_candidate_count": 125,
+          "source_local_integral_maximum_indices": [
+            52
+          ]
+        }
+      ],
+      "geometry_role": "shortest_geodesic_connector_between_full_section_model_axis_proxies_not_observed_current_axis",
+      "route_id": "north-brazil-full-section-axis-proxy-2022-01-15",
+      "route_file": null,
+      "source_time_basis": "HYCOM00Z2022instantaneous full sections;fixed315degree northwest component and complete surface-connected0\u2013200m integral selector. Two snapshots are not an annual cycle or observed monthly means.",
+      "projection_gate": "Interior full-section integral maximum with finite neighboring upper-layer support and resolved primary10cm/s lower contour; no independent named-current-axis validation.",
+      "source_component_reference_frame": "fixed_geographic_315degree_true_northwest_held_through_depth",
+      "earlier_unresolved_pilot_case_id": "north-brazil-hycom-2022-01-15-regional-depth-v1",
+      "method_frame_differs_from_earlier_corridor_pilot": true,
+      "id": "north-brazil-full-sections-2022-01-15-nw315-v1",
+      "status": "REGIONAL_DATED_MODEL_DEPTH_AND_LAYER_SPAN_REFERENCE_SCENARIO",
+      "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "model_layer_thickness_datum": "not_applicable_thickness_distance",
+      "coordinate_kind": "distance_along_declared_regional_reference_geometry_not_measured_current_length",
+      "reference_connector_length_km": 2438.561117,
+      "source_reference_ids": [],
+      "source_profile_refs": [
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+      ],
+      "segments": [
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            433.72887
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "primary10cms_lower_boundary_censored_or_unresolved"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "reference_distance_interval_km": [
+            433.72887,
+            1053.037033
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-01s",
+            "north-brazil-full-sections-2022-01-15-section-00p5n"
+          ],
+          "reference_distance_interval_km": [
+            1053.037033,
+            1247.573172
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "reference_distance_interval_km": [
+            1247.573172,
+            1591.695122
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "reference_distance_interval_km": [
+            1591.695122,
+            1899.036634
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "reference_distance_interval_km": [
+            1899.036634,
+            2438.561117
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "nominal_reference_connector_lon_lat": [
+            -34.8800048828125,
+            -5.0
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_at_blocked_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "nominal_reference_connector_lon_lat": [
+            -35.268226,
+            -4.770196
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "nominal_reference_connector_lon_lat": [
+            -35.65619,
+            -4.540172
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.043907,
+            -4.309938
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.431391,
+            -4.079504
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.818655,
+            -3.848882
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "nominal_reference_connector_lon_lat": [
+            -37.20571,
+            -3.618082
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "nominal_reference_connector_lon_lat": [
+            -37.592569,
+            -3.387116
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "nominal_reference_connector_lon_lat": [
+            -37.979245,
+            -3.155993
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-05s",
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/0",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 433.72887,
+          "nominal_reference_connector_lon_lat": [
+            -38.239990234375,
+            -3.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 960.718042,
+          "computed_model_layer_thickness_m": 960.718042,
+          "projected_depth_descriptor_m": 960,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "nominal_reference_connector_lon_lat": [
+            -38.376795,
+            -2.9477
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 955.233676,
+          "computed_model_layer_thickness_m": 955.233676,
+          "projected_depth_descriptor_m": 960,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "nominal_reference_connector_lon_lat": [
+            -38.797109,
+            -2.786882
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 938.380617,
+          "computed_model_layer_thickness_m": 938.380617,
+          "projected_depth_descriptor_m": 940,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "nominal_reference_connector_lon_lat": [
+            -39.217308,
+            -2.625914
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 921.527559,
+          "computed_model_layer_thickness_m": 921.527559,
+          "projected_depth_descriptor_m": 920,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "nominal_reference_connector_lon_lat": [
+            -39.637399,
+            -2.464802
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 904.6745,
+          "computed_model_layer_thickness_m": 904.6745,
+          "projected_depth_descriptor_m": 900,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "nominal_reference_connector_lon_lat": [
+            -40.05739,
+            -2.303557
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 887.821441,
+          "computed_model_layer_thickness_m": 887.821441,
+          "projected_depth_descriptor_m": 890,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "nominal_reference_connector_lon_lat": [
+            -40.477286,
+            -2.142187
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 870.968382,
+          "computed_model_layer_thickness_m": 870.968382,
+          "projected_depth_descriptor_m": 870,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "nominal_reference_connector_lon_lat": [
+            -40.897094,
+            -1.980702
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 854.115324,
+          "computed_model_layer_thickness_m": 854.115324,
+          "projected_depth_descriptor_m": 850,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "nominal_reference_connector_lon_lat": [
+            -41.316821,
+            -1.819109
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 837.262265,
+          "computed_model_layer_thickness_m": 837.262265,
+          "projected_depth_descriptor_m": 840,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "nominal_reference_connector_lon_lat": [
+            -41.736473,
+            -1.657417
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 820.409206,
+          "computed_model_layer_thickness_m": 820.409206,
+          "projected_depth_descriptor_m": 820,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "nominal_reference_connector_lon_lat": [
+            -42.156057,
+            -1.495636
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 803.556147,
+          "computed_model_layer_thickness_m": 803.556147,
+          "projected_depth_descriptor_m": 800,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "nominal_reference_connector_lon_lat": [
+            -42.57558,
+            -1.333774
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 786.703089,
+          "computed_model_layer_thickness_m": 786.703089,
+          "projected_depth_descriptor_m": 790,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "nominal_reference_connector_lon_lat": [
+            -42.995047,
+            -1.171839
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 769.85003,
+          "computed_model_layer_thickness_m": 769.85003,
+          "projected_depth_descriptor_m": 770,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.414467,
+            -1.009842
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 752.996971,
+          "computed_model_layer_thickness_m": 752.996971,
+          "projected_depth_descriptor_m": 750,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-03s",
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/1",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1053.037033,
+          "nominal_reference_connector_lon_lat": [
+            -43.43994140625,
+            -1.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 751.973305,
+          "computed_model_layer_thickness_m": 751.973305,
+          "projected_depth_descriptor_m": 750,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.652411,
+            -0.633065
+          ],
+          "computed_model_upper_depth_m": 10.124937,
+          "computed_model_lower_depth_m": 820.609336,
+          "computed_model_layer_thickness_m": 810.484399,
+          "projected_depth_descriptor_m": 820,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-01s",
+            "north-brazil-full-sections-2022-01-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.878588,
+            -0.242391
+          ],
+          "computed_model_upper_depth_m": 20.904641,
+          "computed_model_lower_depth_m": 893.683968,
+          "computed_model_layer_thickness_m": 872.779327,
+          "projected_depth_descriptor_m": 890,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-01s",
+            "north-brazil-full-sections-2022-01-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.104752,
+            0.148286
+          ],
+          "computed_model_upper_depth_m": 31.684344,
+          "computed_model_lower_depth_m": 966.758599,
+          "computed_model_layer_thickness_m": 935.074255,
+          "projected_depth_descriptor_m": 970,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-01s",
+            "north-brazil-full-sections-2022-01-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/2",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1247.573172,
+          "nominal_reference_connector_lon_lat": [
+            -44.3199462890625,
+            0.5199999809265137
+          ],
+          "computed_model_upper_depth_m": 41.940838,
+          "computed_model_lower_depth_m": 1036.28644,
+          "computed_model_layer_thickness_m": 994.345602,
+          "projected_depth_descriptor_m": 1040,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.33912,
+            0.530445
+          ],
+          "computed_model_upper_depth_m": 41.645061,
+          "computed_model_lower_depth_m": 1033.839103,
+          "computed_model_layer_thickness_m": 992.194042,
+          "projected_depth_descriptor_m": 1030,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.73418,
+            0.745638
+          ],
+          "computed_model_upper_depth_m": 35.55117,
+          "computed_model_lower_depth_m": 983.416556,
+          "computed_model_layer_thickness_m": 947.865386,
+          "projected_depth_descriptor_m": 980,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "nominal_reference_connector_lon_lat": [
+            -45.129278,
+            0.960794
+          ],
+          "computed_model_upper_depth_m": 29.457278,
+          "computed_model_lower_depth_m": 932.994009,
+          "computed_model_layer_thickness_m": 903.536731,
+          "projected_depth_descriptor_m": 930,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "nominal_reference_connector_lon_lat": [
+            -45.524425,
+            1.175904
+          ],
+          "computed_model_upper_depth_m": 23.363386,
+          "computed_model_lower_depth_m": 882.571462,
+          "computed_model_layer_thickness_m": 859.208075,
+          "projected_depth_descriptor_m": 880,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "nominal_reference_connector_lon_lat": [
+            -45.919633,
+            1.390958
+          ],
+          "computed_model_upper_depth_m": 17.269495,
+          "computed_model_lower_depth_m": 832.148914,
+          "computed_model_layer_thickness_m": 814.87942,
+          "projected_depth_descriptor_m": 830,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1500.0,
+          "nominal_reference_connector_lon_lat": [
+            -46.314913,
+            1.605944
+          ],
+          "computed_model_upper_depth_m": 11.175603,
+          "computed_model_lower_depth_m": 781.726367,
+          "computed_model_layer_thickness_m": 770.550764,
+          "projected_depth_descriptor_m": 780,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1550.0,
+          "nominal_reference_connector_lon_lat": [
+            -46.710275,
+            1.820853
+          ],
+          "computed_model_upper_depth_m": 5.081711,
+          "computed_model_lower_depth_m": 731.30382,
+          "computed_model_layer_thickness_m": 726.222109,
+          "projected_depth_descriptor_m": 730,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-00p5n",
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/3",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1591.695122,
+          "nominal_reference_connector_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 689.256335,
+          "computed_model_layer_thickness_m": 689.256335,
+          "projected_depth_descriptor_m": 690,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1600.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.091836,
+            2.054084
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 681.488623,
+          "computed_model_layer_thickness_m": 681.488623,
+          "projected_depth_descriptor_m": 680,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1650.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.403763,
+            2.379662
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 634.722662,
+          "computed_model_layer_thickness_m": 634.722662,
+          "projected_depth_descriptor_m": 630,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1700.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.715835,
+            2.705167
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 587.956702,
+          "computed_model_layer_thickness_m": 587.956702,
+          "projected_depth_descriptor_m": 590,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1750.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.028074,
+            3.03059
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 541.190741,
+          "computed_model_layer_thickness_m": 541.190741,
+          "projected_depth_descriptor_m": 540,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1800.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.3405,
+            3.35592
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 494.42478,
+          "computed_model_layer_thickness_m": 494.42478,
+          "projected_depth_descriptor_m": 490,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1850.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.653132,
+            3.681148
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 447.65882,
+          "computed_model_layer_thickness_m": 447.65882,
+          "projected_depth_descriptor_m": 450,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-02n",
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/4",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1899.036634,
+          "nominal_reference_connector_lon_lat": [
+            -48.9599609375,
+            4.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 401.793914,
+          "computed_model_layer_thickness_m": 401.793914,
+          "projected_depth_descriptor_m": 400,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1900.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.966787,
+            4.005377
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 401.582509,
+          "computed_model_layer_thickness_m": 401.582509,
+          "projected_depth_descriptor_m": 400,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1950.0,
+          "nominal_reference_connector_lon_lat": [
+            -49.321171,
+            4.284369
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 390.610316,
+          "computed_model_layer_thickness_m": 390.610316,
+          "projected_depth_descriptor_m": 390,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2000.0,
+          "nominal_reference_connector_lon_lat": [
+            -49.675813,
+            4.563195
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 379.638123,
+          "computed_model_layer_thickness_m": 379.638123,
+          "projected_depth_descriptor_m": 380,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2050.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.030728,
+            4.841843
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 368.665929,
+          "computed_model_layer_thickness_m": 368.665929,
+          "projected_depth_descriptor_m": 370,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2100.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.385933,
+            5.120303
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 357.693736,
+          "computed_model_layer_thickness_m": 357.693736,
+          "projected_depth_descriptor_m": 360,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2150.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.741446,
+            5.398563
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 346.721543,
+          "computed_model_layer_thickness_m": 346.721543,
+          "projected_depth_descriptor_m": 350,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2200.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.097283,
+            5.676613
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 335.74935,
+          "computed_model_layer_thickness_m": 335.74935,
+          "projected_depth_descriptor_m": 340,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2250.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.453461,
+            5.95444
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 324.777157,
+          "computed_model_layer_thickness_m": 324.777157,
+          "projected_depth_descriptor_m": 320,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2300.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.809997,
+            6.232035
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 313.804963,
+          "computed_model_layer_thickness_m": 313.804963,
+          "projected_depth_descriptor_m": 310,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2350.0,
+          "nominal_reference_connector_lon_lat": [
+            -52.166908,
+            6.509385
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 302.83277,
+          "computed_model_layer_thickness_m": 302.83277,
+          "projected_depth_descriptor_m": 300,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2400.0,
+          "nominal_reference_connector_lon_lat": [
+            -52.524211,
+            6.78648
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 291.860577,
+          "computed_model_layer_thickness_m": 291.860577,
+          "projected_depth_descriptor_m": 290,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-04n",
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/5",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2438.561117,
+          "nominal_reference_connector_lon_lat": [
+            -52.800048828125,
+            7.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 283.398577,
+          "computed_model_layer_thickness_m": 283.398577,
+          "projected_depth_descriptor_m": 280,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-01-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/6"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        }
+      ],
+      "interpolation_assumption": "Connect all original selected full-section model-axis proxy positions in declared section order with shortest WGS84 reference legs. At exact eligible nodes retain the primary10cm/s descriptor;between neighboring eligible original nodes only assume linear lower depth and paired upper depth/model layer span. Preserve censored original nodes and adjacent gaps,no skipping or extrapolation. Coordinates are reference geometry,not an observed axis or measured whole-current length.",
+      "physical_thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "whole_current_length_replaced": false,
+      "whole_current_representative": false,
+      "model_products_are_statistically_independent": false,
+      "descriptor_display_rounding_m": 10,
+      "derived_serialization_decimals": 6,
+      "serialization_decimals_are_physical_accuracy": false,
+      "eligibility": {
+        "whole_route_physical_depth_profile": false,
+        "physical_current_thickness": false,
+        "volume_estimation": false,
+        "global_volume_total": false,
+        "physical_state_join": false,
+        "seasonal_envelope": false
+      },
+      "full_goal_complete": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "anchors": [
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-05s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": null,
+          "model_layer_thickness_m": null,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": null,
+            "layer_thickness_m": null,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "censored_before_missing_or_dry_level",
+            "status": "unresolved_connected_layer_boundary",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 1.4142135381698608,
+            "lower_last_connected_depth_m": 600.0
+          },
+          "lower_projection_eligible": false,
+          "layer_projection_eligible": false,
+          "projection_block_reasons": [
+            "primary10cms_lower_boundary_censored_or_unresolved"
+          ],
+          "source_section_id": "section-05s",
+          "distance_km": 0.0,
+          "reference_lon_lat": [
+            -34.9599609375,
+            -5.0
+          ],
+          "selected_model_node_lon_lat": [
+            -34.9599609375,
+            -5.0
+          ],
+          "source_native_longitude_degrees_east": 325.0400390625,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json#/columns/25",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-05s",
+            "latitude_degrees_north": -5,
+            "longitude_gate_degrees_east": [
+              -37,
+              -32
+            ]
+          },
+          "source_candidate_count": 63,
+          "source_local_integral_maximum_indices": [
+            25
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-03s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 1032.7568891716728,
+          "model_layer_thickness_m": 1032.7568891716728,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 1032.7568891716728,
+            "layer_thickness_m": 1032.7568891716728,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 20,
+            "core_depth_m": 125.0,
+            "core_velocity_m_s": 1.0946012735366821,
+            "lower_bracket_m": [
+              1000.0,
+              1250.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-03s",
+          "distance_km": 295.140763,
+          "reference_lon_lat": [
+            -36.719970703125,
+            -3.0
+          ],
+          "selected_model_node_lon_lat": [
+            -36.719970703125,
+            -3.0
+          ],
+          "source_native_longitude_degrees_east": 323.280029296875,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json#/columns/66",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-03s",
+            "latitude_degrees_north": -3,
+            "longitude_gate_degrees_east": [
+              -42,
+              -34
+            ]
+          },
+          "source_candidate_count": 101,
+          "source_local_integral_maximum_indices": [
+            47,
+            52,
+            54,
+            56,
+            66
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-01s",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 896.7415693016037,
+          "model_layer_thickness_m": 896.7415693016037,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 896.7415693016037,
+            "layer_thickness_m": 896.7415693016037,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 0.9736860990524292,
+            "lower_bracket_m": [
+              800.0,
+              900.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-01s",
+          "distance_km": 964.608917,
+          "reference_lon_lat": [
+            -42.4000244140625,
+            -1.0
+          ],
+          "selected_model_node_lon_lat": [
+            -42.4000244140625,
+            -1.0
+          ],
+          "source_native_longitude_degrees_east": 317.5999755859375,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json#/columns/70",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-01s",
+            "latitude_degrees_north": -1,
+            "longitude_gate_degrees_east": [
+              -48,
+              -38
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            58,
+            60,
+            64,
+            70,
+            110,
+            117,
+            121
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-00p5n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 1230.1674553251064,
+          "model_layer_thickness_m": 1230.1674553251064,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 1230.1674553251064,
+            "layer_thickness_m": 1230.1674553251064,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 1.1200571060180664,
+            "lower_bracket_m": [
+              1000.0,
+              1250.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-00p5n",
+          "distance_km": 1280.239522,
+          "reference_lon_lat": [
+            -44.800048828125,
+            0.5199999809265137
+          ],
+          "selected_model_node_lon_lat": [
+            -44.800048828125,
+            0.5199999809265137
+          ],
+          "source_native_longitude_degrees_east": 315.199951171875,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json#/columns/90",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-00p5n",
+            "latitude_degrees_north": 0.5,
+            "longitude_gate_degrees_east": [
+              -52,
+              -42
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            90
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-02n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 780.886199307223,
+          "model_layer_thickness_m": 780.886199307223,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 780.886199307223,
+            "layer_thickness_m": 780.886199307223,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 11,
+            "core_depth_m": 35.0,
+            "core_velocity_m_s": 1.4679536819458008,
+            "lower_bracket_m": [
+              700.0,
+              800.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-02n",
+          "distance_km": 1578.444128,
+          "reference_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "selected_model_node_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "source_native_longitude_degrees_east": 312.9599609375,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json#/columns/87",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-02n",
+            "latitude_degrees_north": 2,
+            "longitude_gate_degrees_east": [
+              -54,
+              -44
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            87
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-04n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 446.90087038958853,
+          "model_layer_thickness_m": 446.90087038958853,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 446.90087038958853,
+            "layer_thickness_m": 446.90087038958853,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 0,
+            "core_depth_m": 0.0,
+            "core_velocity_m_s": 1.7981727123260498,
+            "lower_bracket_m": [
+              400.0,
+              500.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-04n",
+          "distance_km": 1873.718755,
+          "reference_lon_lat": [
+            -48.800048828125,
+            4.0
+          ],
+          "selected_model_node_lon_lat": [
+            -48.800048828125,
+            4.0
+          ],
+          "source_native_longitude_degrees_east": 311.199951171875,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json#/columns/90",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-04n",
+            "latitude_degrees_north": 4,
+            "longitude_gate_degrees_east": [
+              -56,
+              -46
+            ]
+          },
+          "source_candidate_count": 126,
+          "source_local_integral_maximum_indices": [
+            90
+          ]
+        },
+        {
+          "id": "north-brazil-full-sections-2022-07-15-section-07n",
+          "model_upper_depth_m": 0.0,
+          "model_lower_depth_m": 838.9763334095404,
+          "model_layer_thickness_m": 838.9763334095404,
+          "source_model_connected_layer": {
+            "threshold_m_s": 0.1,
+            "upper_depth_m": 0.0,
+            "lower_depth_m": 838.9763334095404,
+            "layer_thickness_m": 838.9763334095404,
+            "upper_status": "surface_bounded_layer",
+            "lower_status": "adjacent_isotach_crossing",
+            "status": "resolved_connected_model_threshold_layer",
+            "core_index": 16,
+            "core_depth_m": 70.0,
+            "core_velocity_m_s": 1.4934096336364746,
+            "lower_bracket_m": [
+              800.0,
+              900.0
+            ]
+          },
+          "lower_projection_eligible": true,
+          "layer_projection_eligible": true,
+          "projection_block_reasons": [],
+          "source_section_id": "section-07n",
+          "distance_km": 2399.362858,
+          "reference_lon_lat": [
+            -52.47998046875,
+            7.0
+          ],
+          "selected_model_node_lon_lat": [
+            -52.47998046875,
+            7.0
+          ],
+          "source_native_longitude_degrees_east": 307.52001953125,
+          "source_horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+          "source_component_bearing_degrees_true": 315,
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_model_profile_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json#/columns/56",
+          "source_connected_diagnosis_ref": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json#/diagnosis/selected_column_threshold_layers/1",
+          "source_section_definition": {
+            "id": "section-07n",
+            "latitude_degrees_north": 7,
+            "longitude_gate_degrees_east": [
+              -57,
+              -47
+            ]
+          },
+          "source_candidate_count": 125,
+          "source_local_integral_maximum_indices": [
+            56,
+            61
+          ]
+        }
+      ],
+      "geometry_role": "shortest_geodesic_connector_between_full_section_model_axis_proxies_not_observed_current_axis",
+      "route_id": "north-brazil-full-section-axis-proxy-2022-07-15",
+      "route_file": null,
+      "source_time_basis": "HYCOM00Z2022instantaneous full sections;fixed315degree northwest component and complete surface-connected0\u2013200m integral selector. Two snapshots are not an annual cycle or observed monthly means.",
+      "projection_gate": "Interior full-section integral maximum with finite neighboring upper-layer support and resolved primary10cm/s lower contour; no independent named-current-axis validation.",
+      "source_component_reference_frame": "fixed_geographic_315degree_true_northwest_held_through_depth",
+      "earlier_unresolved_pilot_case_id": "north-brazil-hycom-2022-07-15-regional-depth-v1",
+      "method_frame_differs_from_earlier_corridor_pilot": true,
+      "id": "north-brazil-full-sections-2022-07-15-nw315-v1",
+      "status": "REGIONAL_DATED_MODEL_DEPTH_AND_LAYER_SPAN_REFERENCE_SCENARIO",
+      "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "model_layer_thickness_datum": "not_applicable_thickness_distance",
+      "coordinate_kind": "distance_along_declared_regional_reference_geometry_not_measured_current_length",
+      "reference_connector_length_km": 2399.362858,
+      "source_reference_ids": [],
+      "source_profile_refs": [
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+        "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+      ],
+      "segments": [
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            295.140763
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "primary10cms_lower_boundary_censored_or_unresolved"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "reference_distance_interval_km": [
+            295.140763,
+            964.608917
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "reference_distance_interval_km": [
+            964.608917,
+            1280.239522
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "reference_distance_interval_km": [
+            1280.239522,
+            1578.444128
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "reference_distance_interval_km": [
+            1578.444128,
+            1873.718755
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "reference_distance_interval_km": [
+            1873.718755,
+            2399.362858
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "nominal_reference_connector_lon_lat": [
+            -34.9599609375,
+            -5.0
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_at_blocked_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "nominal_reference_connector_lon_lat": [
+            -35.258759,
+            -4.661467
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "nominal_reference_connector_lon_lat": [
+            -35.557272,
+            -4.322804
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "nominal_reference_connector_lon_lat": [
+            -35.85552,
+            -3.984021
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.153523,
+            -3.645126
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.451304,
+            -3.30613
+          ],
+          "computed_model_upper_depth_m": null,
+          "computed_model_lower_depth_m": null,
+          "computed_model_layer_thickness_m": null,
+          "projected_depth_descriptor_m": null,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-05s",
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/7",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "unknown_between_blocked_reference_anchors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 295.140763,
+          "nominal_reference_connector_lon_lat": [
+            -36.719970703125,
+            -3.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1032.756889,
+          "computed_model_layer_thickness_m": 1032.756889,
+          "projected_depth_descriptor_m": 1030,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "nominal_reference_connector_lon_lat": [
+            -36.761256,
+            -2.985567
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1031.769642,
+          "computed_model_layer_thickness_m": 1031.769642,
+          "projected_depth_descriptor_m": 1030,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "nominal_reference_connector_lon_lat": [
+            -37.186009,
+            -2.836962
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1021.611181,
+          "computed_model_layer_thickness_m": 1021.611181,
+          "projected_depth_descriptor_m": 1020,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "nominal_reference_connector_lon_lat": [
+            -37.610654,
+            -2.6882
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1011.45272,
+          "computed_model_layer_thickness_m": 1011.45272,
+          "projected_depth_descriptor_m": 1010,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "nominal_reference_connector_lon_lat": [
+            -38.035195,
+            -2.539289
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1001.294259,
+          "computed_model_layer_thickness_m": 1001.294259,
+          "projected_depth_descriptor_m": 1000,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "nominal_reference_connector_lon_lat": [
+            -38.45964,
+            -2.390237
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 991.135799,
+          "computed_model_layer_thickness_m": 991.135799,
+          "projected_depth_descriptor_m": 990,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "nominal_reference_connector_lon_lat": [
+            -38.883992,
+            -2.241054
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 980.977338,
+          "computed_model_layer_thickness_m": 980.977338,
+          "projected_depth_descriptor_m": 980,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "nominal_reference_connector_lon_lat": [
+            -39.308259,
+            -2.091747
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 970.818877,
+          "computed_model_layer_thickness_m": 970.818877,
+          "projected_depth_descriptor_m": 970,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "nominal_reference_connector_lon_lat": [
+            -39.732446,
+            -1.942324
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 960.660416,
+          "computed_model_layer_thickness_m": 960.660416,
+          "projected_depth_descriptor_m": 960,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "nominal_reference_connector_lon_lat": [
+            -40.156558,
+            -1.792793
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 950.501955,
+          "computed_model_layer_thickness_m": 950.501955,
+          "projected_depth_descriptor_m": 950,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "nominal_reference_connector_lon_lat": [
+            -40.580601,
+            -1.643164
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 940.343495,
+          "computed_model_layer_thickness_m": 940.343495,
+          "projected_depth_descriptor_m": 940,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "nominal_reference_connector_lon_lat": [
+            -41.004581,
+            -1.493444
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 930.185034,
+          "computed_model_layer_thickness_m": 930.185034,
+          "projected_depth_descriptor_m": 930,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "nominal_reference_connector_lon_lat": [
+            -41.428504,
+            -1.343641
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 920.026573,
+          "computed_model_layer_thickness_m": 920.026573,
+          "projected_depth_descriptor_m": 920,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "nominal_reference_connector_lon_lat": [
+            -41.852375,
+            -1.193764
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 909.868112,
+          "computed_model_layer_thickness_m": 909.868112,
+          "projected_depth_descriptor_m": 910,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "nominal_reference_connector_lon_lat": [
+            -42.2762,
+            -1.043821
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 899.709652,
+          "computed_model_layer_thickness_m": 899.709652,
+          "projected_depth_descriptor_m": 900,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-03s",
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/8",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 964.608917,
+          "nominal_reference_connector_lon_lat": [
+            -42.4000244140625,
+            -1.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 896.741569,
+          "computed_model_layer_thickness_m": 896.741569,
+          "projected_depth_descriptor_m": 900,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "nominal_reference_connector_lon_lat": [
+            -42.669183,
+            -0.829604
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 934.128005,
+          "computed_model_layer_thickness_m": 934.128005,
+          "projected_depth_descriptor_m": 930,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.049408,
+            -0.58884
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 986.947009,
+          "computed_model_layer_thickness_m": 986.947009,
+          "projected_depth_descriptor_m": 990,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.4296,
+            -0.34805
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1039.766013,
+          "computed_model_layer_thickness_m": 1039.766013,
+          "projected_depth_descriptor_m": 1040,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "nominal_reference_connector_lon_lat": [
+            -43.809773,
+            -0.107244
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1092.585018,
+          "computed_model_layer_thickness_m": 1092.585018,
+          "projected_depth_descriptor_m": 1090,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.189939,
+            0.133567
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1145.404022,
+          "computed_model_layer_thickness_m": 1145.404022,
+          "projected_depth_descriptor_m": 1150,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.570114,
+            0.374371
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1198.223026,
+          "computed_model_layer_thickness_m": 1198.223026,
+          "projected_depth_descriptor_m": 1200,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-01s",
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/9",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1280.239522,
+          "nominal_reference_connector_lon_lat": [
+            -44.800048828125,
+            0.5199999809265137
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1230.167455,
+          "computed_model_layer_thickness_m": 1230.167455,
+          "projected_depth_descriptor_m": 1230,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "nominal_reference_connector_lon_lat": [
+            -44.948416,
+            0.618122
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1200.395909,
+          "computed_model_layer_thickness_m": 1200.395909,
+          "projected_depth_descriptor_m": 1200,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "nominal_reference_connector_lon_lat": [
+            -45.323858,
+            0.866381
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1125.06487,
+          "computed_model_layer_thickness_m": 1125.06487,
+          "projected_depth_descriptor_m": 1130,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "nominal_reference_connector_lon_lat": [
+            -45.699348,
+            1.114601
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 1049.733831,
+          "computed_model_layer_thickness_m": 1049.733831,
+          "projected_depth_descriptor_m": 1050,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "nominal_reference_connector_lon_lat": [
+            -46.074901,
+            1.362773
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 974.402792,
+          "computed_model_layer_thickness_m": 974.402792,
+          "projected_depth_descriptor_m": 970,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1500.0,
+          "nominal_reference_connector_lon_lat": [
+            -46.450531,
+            1.610886
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 899.071753,
+          "computed_model_layer_thickness_m": 899.071753,
+          "projected_depth_descriptor_m": 900,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1550.0,
+          "nominal_reference_connector_lon_lat": [
+            -46.826252,
+            1.858929
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 823.740714,
+          "computed_model_layer_thickness_m": 823.740714,
+          "projected_depth_descriptor_m": 820,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-00p5n",
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/10",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1578.444128,
+          "nominal_reference_connector_lon_lat": [
+            -47.0400390625,
+            2.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 780.886199,
+          "computed_model_layer_thickness_m": 780.886199,
+          "projected_depth_descriptor_m": 780,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1600.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.168329,
+            2.146095
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 756.504338,
+          "computed_model_layer_thickness_m": 756.504338,
+          "projected_depth_descriptor_m": 760,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1650.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.466,
+            2.484926
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 699.949304,
+          "computed_model_layer_thickness_m": 699.949304,
+          "projected_depth_descriptor_m": 700,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1700.0,
+          "nominal_reference_connector_lon_lat": [
+            -47.763824,
+            2.823688
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 643.394271,
+          "computed_model_layer_thickness_m": 643.394271,
+          "projected_depth_descriptor_m": 640,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1750.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.06182,
+            3.162371
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 586.839237,
+          "computed_model_layer_thickness_m": 586.839237,
+          "projected_depth_descriptor_m": 590,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1800.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.360009,
+            3.500965
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 530.284204,
+          "computed_model_layer_thickness_m": 530.284204,
+          "projected_depth_descriptor_m": 530,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1850.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.658413,
+            3.839462
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 473.72917,
+          "computed_model_layer_thickness_m": 473.72917,
+          "projected_depth_descriptor_m": 470,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-02n",
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/11",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1873.718755,
+          "nominal_reference_connector_lon_lat": [
+            -48.800048828125,
+            4.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 446.90087,
+          "computed_model_layer_thickness_m": 446.90087,
+          "projected_depth_descriptor_m": 450,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1900.0,
+          "nominal_reference_connector_lon_lat": [
+            -48.983235,
+            4.150495
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 466.503927,
+          "computed_model_layer_thickness_m": 466.503927,
+          "projected_depth_descriptor_m": 470,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1950.0,
+          "nominal_reference_connector_lon_lat": [
+            -49.33194,
+            4.436692
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 503.798692,
+          "computed_model_layer_thickness_m": 503.798692,
+          "projected_depth_descriptor_m": 500,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2000.0,
+          "nominal_reference_connector_lon_lat": [
+            -49.680914,
+            4.722722
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 541.093457,
+          "computed_model_layer_thickness_m": 541.093457,
+          "projected_depth_descriptor_m": 540,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2050.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.030173,
+            5.008573
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 578.388222,
+          "computed_model_layer_thickness_m": 578.388222,
+          "projected_depth_descriptor_m": 580,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2100.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.379736,
+            5.294235
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 615.682986,
+          "computed_model_layer_thickness_m": 615.682986,
+          "projected_depth_descriptor_m": 620,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2150.0,
+          "nominal_reference_connector_lon_lat": [
+            -50.72962,
+            5.579698
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 652.977751,
+          "computed_model_layer_thickness_m": 652.977751,
+          "projected_depth_descriptor_m": 650,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2200.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.079842,
+            5.864949
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 690.272516,
+          "computed_model_layer_thickness_m": 690.272516,
+          "projected_depth_descriptor_m": 690,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2250.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.43042,
+            6.149978
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 727.56728,
+          "computed_model_layer_thickness_m": 727.56728,
+          "projected_depth_descriptor_m": 730,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2300.0,
+          "nominal_reference_connector_lon_lat": [
+            -51.781372,
+            6.434774
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 764.862045,
+          "computed_model_layer_thickness_m": 764.862045,
+          "projected_depth_descriptor_m": 760,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2350.0,
+          "nominal_reference_connector_lon_lat": [
+            -52.132714,
+            6.719325
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 802.15681,
+          "computed_model_layer_thickness_m": 802.15681,
+          "projected_depth_descriptor_m": 800,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-04n",
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/12",
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "assumed_linear_between_adjacent_model_descriptors",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 2399.362858,
+          "nominal_reference_connector_lon_lat": [
+            -52.47998046875,
+            7.0
+          ],
+          "computed_model_upper_depth_m": 0.0,
+          "computed_model_lower_depth_m": 838.976333,
+          "computed_model_layer_thickness_m": 838.976333,
+          "projected_depth_descriptor_m": 840,
+          "source_anchor_ids": [
+            "north-brazil-full-sections-2022-07-15-section-07n"
+          ],
+          "source_profile_refs": [
+            "research/north-brazil-depth-sections-source-facts-v1.json#/descriptors/13"
+          ],
+          "source_reference_ids": [],
+          "status": "source_model_descriptor_at_reference_anchor",
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        }
+      ],
+      "interpolation_assumption": "Connect all original selected full-section model-axis proxy positions in declared section order with shortest WGS84 reference legs. At exact eligible nodes retain the primary10cm/s descriptor;between neighboring eligible original nodes only assume linear lower depth and paired upper depth/model layer span. Preserve censored original nodes and adjacent gaps,no skipping or extrapolation. Coordinates are reference geometry,not an observed axis or measured whole-current length.",
+      "physical_thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "whole_current_length_replaced": false,
+      "whole_current_representative": false,
+      "model_products_are_statistically_independent": false,
+      "descriptor_display_rounding_m": 10,
+      "derived_serialization_decimals": 6,
+      "serialization_decimals_are_physical_accuracy": false,
+      "eligibility": {
+        "whole_route_physical_depth_profile": false,
+        "physical_current_thickness": false,
+        "volume_estimation": false,
+        "global_volume_total": false,
+        "physical_state_join": false,
+        "seasonal_envelope": false
+      },
+      "full_goal_complete": false
+    }
+  ],
+  "unresolved_reference_cases": [],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
