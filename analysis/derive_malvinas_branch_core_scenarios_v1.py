@@ -18,7 +18,7 @@ def smooth(samples,positions,quality,window,min_fraction=0.8,min_count=5):
     result=[]
     half=window/2
     for i,x in enumerate(positions):
-        if x<positions[0]+half or x>positions[-1]-half:
+        if not samples[i] or x<positions[0]+half or x>positions[-1]-half:
             result.append({});continue
         neighbors=[j for j,y in enumerate(positions) if abs(y-x)<=half]
         profile={}
@@ -31,6 +31,27 @@ def smooth(samples,positions,quality,window,min_fraction=0.8,min_count=5):
             profile[depth]={'v_cm_s':sum(v for _,v in valid)/len(valid),'contributors':len(valid),'possible_ensembles':len(neighbors)}
         result.append(profile)
     return result
+
+
+def spatial_select(samples):
+    """One native ensemble nearest each1km cell center; retain empty cells."""
+    metadata=[r[0] for r in samples]
+    start=metadata[0]['lon'];lat=sum(r['lat'] for r in metadata)/len(metadata)
+    geod=Geod(ellps='WGS84')
+    distances=[geod.inv(start,lat,r['lon'],lat)[2]/1000*(1 if r['lon']<=start else -1) for r in metadata]
+    if min(distances)<-1 or distances[-1]<max(distances)-1 or max(r['lat'] for r in metadata)-min(r['lat'] for r in metadata)>0.05:
+        raise ValueError('Crossing geometry exceeds reviewed nearly zonal extent')
+    bins={}
+    for i,x in enumerate(distances):
+        cell=int(x//1)
+        if cell<0:continue
+        if cell not in bins or (abs(x-(cell+0.5)),i)<(abs(distances[bins[cell]]-(cell+0.5)),bins[cell]):bins[cell]=i
+    positions=[k+0.5 for k in range(max(bins)+1)]
+    chosen=[samples[bins[k]] if k in bins else [] for k in range(len(positions))]
+    meta=[metadata[bins[k]] if k in bins else None for k in range(len(positions))]
+    return chosen,positions,meta,{'native_ensembles':len(samples),'occupied_1km_cells':len(bins),
+        'empty_1km_cells':len(positions)-len(bins),'eastward_steps':sum(b<a for a,b in zip(distances,distances[1:])),
+        'selection':'nearest_native_ensemble_to_each_1km_cell_center_ties_earliest'}
 
 
 def choose_branches(surface,positions,min_separation):
@@ -69,11 +90,8 @@ def summarize_branch(indices,profiles,positions,native_metadata):
 
 def derive(raw,operator):
     _,groups,count=parse(raw)
-    ordered=sorted(groups.items());samples=[v for _,v in ordered];metadata=[r[0] for r in samples]
-    if any(a['lon']<=b['lon'] for a,b in zip(metadata,metadata[1:])):
-        raise ValueError('Expected strictly westward crossing; review branch geography before deriving')
-    positions=[0.0];geod=Geod(ellps='WGS84')
-    for a,b in zip(metadata,metadata[1:]):positions.append(positions[-1]+geod.inv(a['lon'],a['lat'],b['lon'],b['lat'])[2]/1000)
+    ordered=sorted(groups.items());original_samples=[v for _,v in ordered]
+    samples,positions,metadata,resampling=spatial_select(original_samples)
     shallow=min(r['depth'] for group in samples for r in group)
     scenarios=[]
     for quality,window in itertools.product(operator['quality_pg_scenarios_percent'],operator['uniform_window_scenarios_km']):
@@ -91,7 +109,7 @@ def derive(raw,operator):
         scenarios.append(scenario)
     return {'schema':'osw.malvinas-branch-core-scenarios.v1','status':'CONDITIONAL_NATIVE_DEPTH_CORE_SCENARIOS_NOT_PAPER_REPRODUCTION',
             'source_doi':operator['source_doi'],'raw_sha256':hashlib.sha256(raw).hexdigest(),'raw_bytes':len(raw),
-            'native_rows':count,'native_ensembles':len(samples),'scenarios':scenarios,
+            'native_rows':count,'native_ensembles':len(original_samples),'spatial_resampling':resampling,'scenarios':scenarios,
             'canonical_depth_references_added':0,'physical_flow_boundaries_established':0,
             'whole_route_depth_profiles':0,'volume_estimates':0,'full_goal_complete':False}
 
