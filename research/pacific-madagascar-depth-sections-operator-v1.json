@@ -1,0 +1,288 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain the selected maximum even if it is at a gate edge or has an immediately adjacent column lacking complete upper200m support. Mark these as unresolved axis brackets rather than selecting a weaker interior result. Retain every candidate score/eligibility and all local integral maxima; multiple peaks are not independently named currents or significance evidence.",
+  "vertical_operator": "At the one selected column retain frozen connected-layer5/10/20cm/s diagnoses, each with its own qualifying0–200m core, upper/lower status and adjacent finite brackets. Keep signed deep return flow. Native0m is a layer boundary only with contiguous threshold support. Missing/dry/domain edges remain unknown, not a seabed or5000m current bottom. Layer span is not admitted physical current thickness.",
+  "maximum_nearest_latitude_distance_km": 3,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.pacific-madagascar-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New exploratory California,Alaska and SouthernEastMadagascar full latitude sections. Existing scoped source summaries,regional geography and frozen full-section acquisition/selection code inspected before declaration. No new section model-field outcomes inspected. No within-run gate expansion,threshold adjustment,section replacement or weaker-interior substitution.",
+  "geometry_provenance": "Every fixed latitude/longitude gate below is an OSW exploratory geographic choice,not published numerical sections,digitized axes,source widths or measured endpoints. California offshore Pacific gates intentionally avoid the Gulf of California;Alaska offshore eastern Gulf gates stop before the westward Alaskan Stream;SouthernEastMadagascar gates cover the southward eastern-margin branch20–25.5S only. Dry/native missing columns remain in the full slices. Broad gates may contain mesoscale jets or other flow and do not establish named-current membership.",
+  "column_selector": "Frozen complete native0–200m signed trapezoidal integral selector with each current geographic direction,primary threshold and surface gate. California/Alaska require surface component>2cm/s and upper200m maximum>5cm/s;SouthernEastMadagascar requires surface>5cm/s and upper200m maximum>10cm/s. All require finite complete0–200m support and positive signed integral. Select greatest integral with first increasing native longitude tie. All scores/local maxima retained. These current-specific OSW exploratory thresholds are not source-recovered physical boundaries.",
+  "temperature_policy": "No temperature eligibility gate or temperature field retrieval for these currents. Frozen collector opensTSmetadata and verifies shared native coordinates;temperature scalar/byte budgets are zero.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Read coordinate axes first;bounded contiguous3–150native columns and frozen20000velocity-cell pairs per patch/250000total,precheck16bytes/pair under7MBdecodedvelocity cap. OnlyUVfields retrieved;no temperature fields. Keep native40depthlevels0–5000m. Separate sourcechunks<2500000B and unchanged publication caps. No source-wire hash or wire-byte claim.",
+  "currents": {
+    "current:california": {
+      "entity_id": "current:california",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "Regional Pacific offshore southward California Current43–23N. Exclude northward California Undercurrent,Davidson/nearshore poleward flow,Gulf ofCalifornia and downstreamNorthEquatorialcontinuation. Broad meridional-component maxima can still include eddies,filaments or upwelling jets;not an independently validated whole-system axis or cross-shore representative depth. Source150/500m literature extents are distinct spatial summaries,not depth targets or seasonal bounds."
+    },
+    "current:alaska": {
+      "entity_id": "current:alaska",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "Partial offshore northward Alaska Current easternGulf/BC/southeastAlaska48–57N only. Exclude separate narrow nearshore AlaskaCoastalCurrent,fjords,northern/westwardAlaskanStream and wholeGulfgyre. Offshore gates reduce coastal overlap but do not independently identify current membership;unorganized flow and eddy northward flanks can pass. Fixednorth component is a geographic diagnostic,not local streamwise velocity."
+    },
+    "current:southern-east-madagascar": {
+      "entity_id": "current:southern-east-madagascar",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Surface southward SouthernEastMadagascar eastern-margin branch20–25.5S only. Exclude northward EastMadagascar branch,opposing intermediate undercurrent,SouthIndianOceanCountercurrent,downstreamretroflexion/Agulhas/Mozambique paths and detached eddies. Regional gates/180degree component do not reproduce the obliqueApril2001source sections or identify every model jet as the current."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-43n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 43,
+      "longitude_gate_degrees_east": [
+        -133.5,
+        -124.5
+      ]
+    },
+    {
+      "id": "section-40n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 40,
+      "longitude_gate_degrees_east": [
+        -133.5,
+        -124.5
+      ]
+    },
+    {
+      "id": "section-37n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 37,
+      "longitude_gate_degrees_east": [
+        -131.5,
+        -122.5
+      ]
+    },
+    {
+      "id": "section-34n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 34,
+      "longitude_gate_degrees_east": [
+        -129,
+        -120
+      ]
+    },
+    {
+      "id": "section-31n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 31,
+      "longitude_gate_degrees_east": [
+        -126,
+        -117
+      ]
+    },
+    {
+      "id": "section-28n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 28,
+      "longitude_gate_degrees_east": [
+        -124,
+        -115
+      ]
+    },
+    {
+      "id": "section-25n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 25,
+      "longitude_gate_degrees_east": [
+        -121.5,
+        -112.5
+      ]
+    },
+    {
+      "id": "section-23n",
+      "entity_id": "current:california",
+      "latitude_degrees_north": 23,
+      "longitude_gate_degrees_east": [
+        -119.5,
+        -110.5
+      ]
+    },
+    {
+      "id": "section-48n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 48,
+      "longitude_gate_degrees_east": [
+        -137,
+        -128
+      ]
+    },
+    {
+      "id": "section-50n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 50,
+      "longitude_gate_degrees_east": [
+        -138,
+        -129
+      ]
+    },
+    {
+      "id": "section-52n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 52,
+      "longitude_gate_degrees_east": [
+        -140,
+        -131
+      ]
+    },
+    {
+      "id": "section-54n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 54,
+      "longitude_gate_degrees_east": [
+        -143,
+        -133
+      ]
+    },
+    {
+      "id": "section-56n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 56,
+      "longitude_gate_degrees_east": [
+        -146,
+        -135
+      ]
+    },
+    {
+      "id": "section-57n",
+      "entity_id": "current:alaska",
+      "latitude_degrees_north": 57,
+      "longitude_gate_degrees_east": [
+        -146,
+        -137
+      ]
+    },
+    {
+      "id": "section-20s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -20,
+      "longitude_gate_degrees_east": [
+        48.5,
+        53.5
+      ]
+    },
+    {
+      "id": "section-21s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -21,
+      "longitude_gate_degrees_east": [
+        48,
+        53
+      ]
+    },
+    {
+      "id": "section-22s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -22,
+      "longitude_gate_degrees_east": [
+        47.5,
+        52.5
+      ]
+    },
+    {
+      "id": "section-23s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -23,
+      "longitude_gate_degrees_east": [
+        47,
+        52
+      ]
+    },
+    {
+      "id": "section-24s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -24,
+      "longitude_gate_degrees_east": [
+        46.5,
+        51.5
+      ]
+    },
+    {
+      "id": "section-25p5s",
+      "entity_id": "current:southern-east-madagascar",
+      "latitude_degrees_north": -25.5,
+      "longitude_gate_degrees_east": [
+        45.5,
+        50.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017JC013174",
+      "locator": "StoneBanasMacCready2018Section1.1",
+      "scope": "PublisherHTML freshly reviewedNovember2,2026 for southward California surface flow vsUndercurrent and separate cross-shore extents. No source figure digitization or sourceROMSvelocity extraction. Source scoped150/500m summaries stay unchanged."
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0079661111001157",
+      "locator": "AuadRoemmichGilson2011publisherabstract retained in California width scope audit",
+      "scope": "Retained43–23Nregional description used;fresh reopen403. No new fullmethods/PDFreview or numerical width/axis extraction claimed."
+    },
+    {
+      "url": "https://www.pmel.noaa.gov/pubs/PDF/schu323/schu323.pdf",
+      "locator": "SchumacherReedGrigsbyDreves1979Section1.1,PDFpage5/printed1",
+      "scope": "OfficialNOAAPDFtext freshly reviewedNovember2,2026:lessorganized northwardAlaskaCurrent offBC/SEAlaska distinct from northern/northwesternAlaskanStream. Kodiak1977observations are not these2022regional sections. No new original pixels/figure geometry reviewed."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007JC004639",
+      "locator": "Nauw2008Abstract,Introductionparagraphs2–7",
+      "scope": "PublisherHTML freshly reviewedNovember2,2026:surface southward easternMadagascar20–25.5S regional jet,opposing intermediate undercurrent,eddy contamination/continuation uncertainty. OriginalApril2001sections not digitized or reproduced."
+    }
+  ],
+  "input_sha256": {
+    "research/current-depth-source-facts-v7.json": "f87350427304275ebeb125509b47c55a673bc184dd4e18125b67050b05176b12",
+    "research/current-depth-source-facts-v11.json": "81ba5dcbabf67aad42ec5f9331d4fec1ba38a3230d1a1657f5c5793d1bae967e",
+    "research/california-2011-abstract-width-scope-audit.json": "3669688088cf53d5fa4e66544967009f18d7e105df721567188d518855a06463",
+    "research/alaska-reference-path-candidate.json": "2424028bad238cb7b940726818ab93ce6509f01de4f52013d837099329f426da",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  }
+}
