@@ -1,0 +1,230 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native longitude-gate maxima and maxima adjacent to missing declared interval support remain unresolved. Keep all scores/local peaks and unsuccessful cases;never substitute a weaker interior profile or retune gates from results. Geographic maxima can be neighboring/mesoscale flow rather than named-current axes.",
+  "vertical_operator": "Frozen connected-layer math traces each qualifying per-current seed on full native0–5000m support. Neither interval endpoint nor reported literature reach,instrument range,pressure domain,bed or missing limit is a physical boundary. Require adjacent finite crossings and keep upper/lower depths,statuses,supported bounds and paired span distinct. Same-sign deep flow can connect;model span is not physical thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.loop-antilles-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New quarterly northward Loop-limb and local Antilles interval sources. A new latitude-interval audit composes the validated interval component audit with byte-identical frozen latitude geometry checks. Older validated helpers/collectors remain unchanged. Selection/core windows and primary cutoffs are declared per current rather than a shared physical boundary.",
+  "geometry_provenance": "Ten OSW exploratory fixed-latitude windows: Loop23,24,25,26,27N/89–83W and Antilles26,26.25,26.5,26.75,27N/77.5–73W. Four quarterly2022 dates sample contrasting states,not annual bounds. These partial reaches and gates are editorial,not extracted axes,widths,uncertainty bounds or full-current coverage.",
+  "column_selector": "Fixed0degree true northward signed integrals,held through depth. Loop uses complete finite native0–200m positive integral and core>10cm/s;Antilles uses100–700m and core>5cm/s. Neither has a positive surface-speed gate or relative surface comparison. Greatest eligible integral wins;first western native tie. Gate/interval-support-edge maxima stay unresolved without weaker interior replacement. Keep5/10/20cm/s layers at same selected column with own declared core-window seed.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all20 original section/date shapes and exact times before fields. Every40depth/3–150longitude fixed-native-latitude slice fits20000pairs/patch,250000total and7MB decoded bound. Reuse frozen target-budget ledger with new correctly oriented exact-hyperslab reader. Only actualNetCDFI/Ofailures retry the exact component/slice,at most3 attempts with2/5second backoff, reserving all future first attempts before extra requests. Successful other components are not replayed. Ledger labels actual latitude_index and longitude_indices_inclusive. No wire-byte/hash claim or failure-to-zero conversion.",
+  "currents": {
+    "current:loop": {
+      "entity_id": "current:loop",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial northward Loop Current western/inflow-limb context23–27N/89–83W. Exclude Yucatan inlet south of reach,eastern southward return,hook/bend,Florida Current and detached Loop rings as target identities. Northern gates may contain no connected Loop limb in contracted states;no occupancy or whole-loop continuity is inferred. Northward maxima can be ring/recirculation flow and do not independently identify an attached Loop axis. Literature1000–1200m reach and deeper circulation remain distinct from threshold boundaries or annual maxima."
+    },
+    "current:antilles": {
+      "entity_id": "current:antilles",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        100,
+        700
+      ],
+      "selection_depth_interval_m": [
+        100,
+        700
+      ],
+      "branch_scope": "Partial local Antilles26–27N reach east of northern Bahamas/Abaco,with77.5–73W searches and26.5N observational context. Exclude southern historical Antilles naming,northwestward28N bend,Florida Current,Gulf Stream,DWBC and detached eddies as target identities. Fixed northward component is not a rotated curved-current axis;islands/dry slopes can censor. Historical mean subsurface peak/pressure references and reported transient reversals do not validate2022 axes,uniform depth or annual seasonal bounds. No dbar-to-m conversion or warm-water classification."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-23n",
+      "entity_id": "current:loop",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 23,
+      "longitude_gate_degrees_east": [
+        -89,
+        -83
+      ]
+    },
+    {
+      "id": "section-24n",
+      "entity_id": "current:loop",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 24,
+      "longitude_gate_degrees_east": [
+        -89,
+        -83
+      ]
+    },
+    {
+      "id": "section-25n",
+      "entity_id": "current:loop",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 25,
+      "longitude_gate_degrees_east": [
+        -89,
+        -83
+      ]
+    },
+    {
+      "id": "section-26n",
+      "entity_id": "current:loop",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26,
+      "longitude_gate_degrees_east": [
+        -89,
+        -83
+      ]
+    },
+    {
+      "id": "section-27n",
+      "entity_id": "current:loop",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 27,
+      "longitude_gate_degrees_east": [
+        -89,
+        -83
+      ]
+    },
+    {
+      "id": "section-26n",
+      "entity_id": "current:antilles",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -73
+      ]
+    },
+    {
+      "id": "section-26p25n",
+      "entity_id": "current:antilles",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26.25,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -73
+      ]
+    },
+    {
+      "id": "section-26p5n",
+      "entity_id": "current:antilles",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26.5,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -73
+      ]
+    },
+    {
+      "id": "section-26p75n",
+      "entity_id": "current:antilles",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26.75,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -73
+      ]
+    },
+    {
+      "id": "section-27n",
+      "entity_id": "current:antilles",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 27,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -73
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://repository.library.noaa.gov/view/noaa/20909/noaa_20909_DS1.pdf",
+      "locator": "Meinen et al.(2019),Abstract,Introduction and Table1;fresh NOAA-hosted primary PDF text",
+      "scope": "Local26.5N mean Antilles flow has a subsurface peak and strong transient variability/reversals;seasonal transport component is weak. Historical depth/pressure and integration domains do not establish2022 threshold edges or a full Bahamas path. OSW100–700m and5cm/s are declared diagnostics,not converted pressure bounds or source errors."
+    },
+    {
+      "url": "https://www.gfdl.noaa.gov/bibliography/related_files/hcl0301.pdf",
+      "locator": "Lee and Mellor(2003),Abstract,Introduction and limb/deep-circulation discussion;fresh NOAA-hosted primary PDF text",
+      "scope": "Separates Loop limbs,detached rings and deeper circulation in a different historical model. No source model geometry or bottom is adopted. OSW0–200m scoring targets upper northward limb candidates,not a full closed loop or independent2022 axis validation."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024JC021753",
+      "locator": "Retained Lopera2025 source facts v12;fresh direct publisher reopen timed out",
+      "scope": "Existing1000–1200m literature reach context stays unmodified,not a uniform thickness,paired boundary or annual range. Detached rings,release depths and seabed access are different quantities."
+    }
+  ],
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/acquire_loop_antilles_interval_depth_sections_v1.py": "9aded5b1759266bc27c13694b338ed5d97bd0f6364d9ca8bf4dc406254527085",
+    "analysis/test_loop_antilles_interval_depth_sections_v1.py": "f63019078eb7b895456237cc078d0ca38078b01c80c3957434152456c087ea9c",
+    "plans/loop-antilles-interval-depth-sections-protocol-v1.md": "5237728a5ce7f8b3e9270494ec20ddb5156ef5122d40e898122d11731906ac3e",
+    "research/antilles-current-naming-seasonal-scope-audit.json": "2b6b59af048ac032cfd87f3ebf02fd4f1b972f8aafef3c5c7f9574183894b9cb",
+    "research/antilles-northern-bahamas-reference-path-input.json": "4624944daa2ff0e74ace3da192019df1512fd9fc661e1aabd7792fa5b9618913",
+    "research/current-depth-source-facts-v12.json": "cd896bed19610b39fc5cab8d34bcf9278e240d117d19845d20b6f66dd1f3c8ba",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "methodology_file": "plans/loop-antilles-interval-depth-sections-protocol-v1.md"
+}
