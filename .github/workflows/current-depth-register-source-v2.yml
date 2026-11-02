@@ -1,0 +1,45 @@
+name: Current depth register source review v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-register-source-v2.yml
+      - analysis/build_current_depth_register_v2.py
+      - analysis/test_current_depth_register_v2.py
+      - research/current-depth-rules-v2.json
+      - research/current-depth-source-facts-v2.json
+      - research/current-depth-register-v2.json
+      - research/current-depth-register-v2.csv
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_register_v1.py
+            analysis/build_current_depth_register_v2.py
+            analysis/test_current_depth_register_v2.py
+            research/current-depth-rules-v1.json
+            research/current-depth-rules-v2.json
+            research/current-depth-source-facts-v1.json
+            research/current-depth-source-facts-v2.json
+            research/current-depth-register-v1.json
+            research/current-depth-register-v1.csv
+            research/current-depth-register-v2.json
+            research/current-depth-register-v2.csv
+            research/current-length-estimate-register-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify depth types and core thickness source scope
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_register_v2.py' -v
