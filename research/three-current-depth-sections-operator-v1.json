@@ -1,0 +1,287 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain the selected maximum even if it is at a gate edge or has an immediately adjacent column lacking complete upper200m support. Mark these as unresolved axis brackets rather than selecting a weaker interior result. Retain every candidate score/eligibility and all local integral maxima; multiple peaks are not independently named currents or significance evidence.",
+  "vertical_operator": "At the one selected column retain frozen connected-layer5/10/20cm/s diagnoses, each with its own qualifying0–200m core, upper/lower status and adjacent finite brackets. Keep signed deep return flow. Native0m is a layer boundary only with contiguous threshold support. Missing/dry/domain edges remain unknown, not a seabed or5000m current bottom. Layer span is not admitted physical current thickness.",
+  "maximum_nearest_latitude_distance_km": 3,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.three-current-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 3000,
+  "maximum_total_decoded_temperature_bytes": 24000,
+  "revision_context": "New exploratory Mindanao, Oyashio and west-coast Leeuwin sections. Existing editorial routes, prior depth references and validated North Brazil selection method were inspected before declaration. No model field outcomes from these new sections have been inspected. No within-run gate expansion or success-conditioned change; retain every outcome.",
+  "geometry_provenance": "All fixed latitudes and longitude gates below are OSW exploratory choices guided by broad primary-source regional geography and previously retained editorial routes. They are not numerical source sections, digitized axes or independently verified current boundaries. Full native contiguous longitude columns; no dateline crossing; 3–150columns per slice.",
+  "column_selector": "Frozen North Brazil complete native0–200m signed trapezoidal integral selector, using each named current geographic component and primary threshold. Surface component>0.05m/s, upper200m maximum>primary threshold and positive integral required; first increasing native longitude breaks exact ties. Oyashio additionally requires native100m model in-situ temperature<=5degC before integral maximization. All candidate scores, gate decisions and qualifying local maxima retained.",
+  "temperature_policy": "JMA defines the southern Oyashio water index at100m by temperature<=5degC in141–148E. OSW applies the threshold to HYCOM instantaneous in-situ temperature throughout these exploratory sections, including upstream/outside that longitude range. This extension is not a reproduction of JMA analyses or a velocity-axis definition. Cold eddies/other cold flows can pass; warm/missing columns excluded from selection. A thermally excluded neighbor is not a velocity-support edge. Raw velocity completeness controls that flag.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Read source coordinate axes first; require equal native depth/lat/lon grids across UV and TS products and exact requested time in each. Frozen20000velocity-pair per-patch and250000total checks, precheck16bytes/pair under7MB total. Only Oyashio native100m temperature row retrieved: <=3000scalars and24000decodedbytes, precheck8bytes/scalar. Each source file<2500000B. No wire-byte or raw-wire SHA claim.",
+  "currents": {
+    "current:mindanao-current": {
+      "entity_id": "current:mindanao-current",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.1,
+      "temperature_gate": null,
+      "branch_scope": "Surface southward Philippine east-coast branch14.3N–5.5N. Excludes northward Mindanao Undercurrent, NECC/EUC/ITF continuations and Mindanao/Halmahera eddy circuits. The source near-surface climatological bifurcation is not a verified2022 axis or endpoint."
+    },
+    "current:oyashio": {
+      "entity_id": "current:oyashio",
+      "component_bearing_degrees_true": 225,
+      "primary_threshold_m_s": 0.1,
+      "temperature_gate": {
+        "native_depth_m": 100,
+        "maximum_temperature_degrees_celsius": 5
+      },
+      "branch_scope": "Pacific-side southwestward Oyashio regional46.2N–40N exploration; southern sections can intersect first/second intrusion branches and mixed eddies. Fixed225degree geographic component and cold-water gate do not independently distinguish branches, current vs eddy or actual southern extent. Exclude upstream East Kamchatka and eastward subarctic continuation."
+    },
+    "current:leeuwin": {
+      "entity_id": "current:leeuwin",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial west-coast southward Leeuwin branch22–34S only. Excludes eastward Cape Leeuwin–Great Australian Bight continuation, South Australian/Zeehan currents, NW Shelf and northward undercurrent. Does not cover the full published Leeuwin naming scope or reproduce the earlier348degree mooring-frame operator."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-14p3n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 14.3,
+      "longitude_gate_degrees_east": [
+        124.5,
+        129.5
+      ]
+    },
+    {
+      "id": "section-13n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 13,
+      "longitude_gate_degrees_east": [
+        124.5,
+        130
+      ]
+    },
+    {
+      "id": "section-12n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 12,
+      "longitude_gate_degrees_east": [
+        125,
+        130
+      ]
+    },
+    {
+      "id": "section-10n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 10,
+      "longitude_gate_degrees_east": [
+        125.5,
+        130.5
+      ]
+    },
+    {
+      "id": "section-8n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 8,
+      "longitude_gate_degrees_east": [
+        126,
+        131
+      ]
+    },
+    {
+      "id": "section-6n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 6,
+      "longitude_gate_degrees_east": [
+        126,
+        131
+      ]
+    },
+    {
+      "id": "section-5p5n",
+      "entity_id": "current:mindanao-current",
+      "latitude_degrees_north": 5.5,
+      "longitude_gate_degrees_east": [
+        125.5,
+        130.5
+      ]
+    },
+    {
+      "id": "section-46p2n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 46.2,
+      "longitude_gate_degrees_east": [
+        149,
+        155
+      ]
+    },
+    {
+      "id": "section-45n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 45,
+      "longitude_gate_degrees_east": [
+        147,
+        154
+      ]
+    },
+    {
+      "id": "section-43p5n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 43.5,
+      "longitude_gate_degrees_east": [
+        144,
+        151
+      ]
+    },
+    {
+      "id": "section-42p2n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 42.2,
+      "longitude_gate_degrees_east": [
+        142,
+        150
+      ]
+    },
+    {
+      "id": "section-41n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 41,
+      "longitude_gate_degrees_east": [
+        141,
+        148
+      ]
+    },
+    {
+      "id": "section-40n",
+      "entity_id": "current:oyashio",
+      "latitude_degrees_north": 40,
+      "longitude_gate_degrees_east": [
+        141,
+        148
+      ]
+    },
+    {
+      "id": "section-22s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -22,
+      "longitude_gate_degrees_east": [
+        110,
+        115
+      ]
+    },
+    {
+      "id": "section-24s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -24,
+      "longitude_gate_degrees_east": [
+        110,
+        115
+      ]
+    },
+    {
+      "id": "section-26s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -26,
+      "longitude_gate_degrees_east": [
+        110,
+        116
+      ]
+    },
+    {
+      "id": "section-28s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -28,
+      "longitude_gate_degrees_east": [
+        111,
+        117
+      ]
+    },
+    {
+      "id": "section-30s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -30,
+      "longitude_gate_degrees_east": [
+        112,
+        118
+      ]
+    },
+    {
+      "id": "section-32s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -32,
+      "longitude_gate_degrees_east": [
+        112,
+        118
+      ]
+    },
+    {
+      "id": "section-34s",
+      "entity_id": "current:leeuwin",
+      "latitude_degrees_north": -34,
+      "longitude_gate_degrees_east": [
+        113,
+        119
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003jc002013",
+      "locator": "Kim2004Section3.1paragraphs12–14,retained editorial route source context",
+      "scope": "Near-surface bifurcation convention; no new figure digitization; publisher reopen failed this turn, retained source context used."
+    },
+    {
+      "url": "https://www.data.jma.go.jp/kaiyou/data/db/hakodate/knowledge/oyashio.html",
+      "locator": "Oyashio origin,branch characteristics and southern-limit index explanation",
+      "scope": "Official HTML freshly reviewed November2,2026;100m<=5degC index in141–148E. Model screen extension is OSW choice; JMA seasonal climatology not2022 velocity geometry."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC001921",
+      "locator": "RidgwayCondie2004AbstractandIntroduction",
+      "scope": "Publisher HTML freshly reviewed November2,2026; west-coast poleward and south-coast eastward naming distinguish partial west-coast collection. No source figures digitized."
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.das",
+      "locator": "water_temp variable attributes",
+      "scope": "Metadata only retrieved locally:degC,sea_water_temperature,in-situ temperature. Cloud must independently check actual returned attributes."
+    }
+  ],
+  "input_sha256": {
+    "research/mindanao-reference-path-candidate.json": "4048ff257d547b9810a6198f8ed91561029d2897175af94cb7e533e7d915afe8",
+    "research/oyashio-reference-path-candidate.json": "60496c4b95952307153bcca4c2ee8f7307a16772cbd223cb295eedc57dc0c6a4",
+    "research/leeuwin-reference-path-candidate.json": "fa33d759c41494c5db7cd06bda58f4e7d74e8dc373dd3f7f54b4314d08dbc239",
+    "research/leeuwin-seasonal-depth-operator-v1.json": "4a523bc949228d584ffccc5e65ceb7593c0d1f60c440b80003329975defc7a12",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6"
+  }
+}
