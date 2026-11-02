@@ -1,0 +1,3741 @@
+{
+  "schema": "osw.leeuwin-depth-sensitivity.v1",
+  "source_sha256": "240680c821d330836c5de4352021bb1c3d0d630f0c34d676c884940798da576a",
+  "methods": [
+    "pooled_daily",
+    "equal_month_climatologies",
+    "equal_year_months",
+    "daily_11day_calendar_window"
+  ],
+  "calendar_window": "365-day reference year2001, eleven-day circular window, February29 excluded from this diagnostic method only",
+  "mean_weighting": "pooled_daily weights daily samples; equal_month_climatologies weights calendar months equally; equal_year_months weights each available year-month equally within a calendar month, then months equally; calendar-window averages eleven-day pooled daily climatologies over reference calendar days",
+  "period": "Same full2011-08-01 to2023-05-01 input as frozen v1; partial first/last years retained explicitly",
+  "negative_local_maxima_are_boundaries": false,
+  "velocity_contours_are_uncertainty_bounds": false,
+  "exact_paper_reproduction_claimed": false,
+  "profiles": [
+    {
+      "phase_id": "month_1",
+      "calendar_months": [
+        1
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.22259553600590293,
+            "boundary_depth_m": 277.39395016037554,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 275.4874300793444,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.83296363664135,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 261.23065806202925,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01247038141860479
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.22259553600590293,
+            "boundary_depth_m": 277.39395016037554,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 275.4874300793444,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.83296363664135,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 261.23065806202925,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01247038141860479
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.22259553600590298,
+            "boundary_depth_m": 277.39395016037554,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 275.4874300793444,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.83296363664135,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 261.23065806202925,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01247038141860479
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.22561638206346085,
+            "boundary_depth_m": 283.5029524915184,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              280.0,
+              285.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 281.1995589801327,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 273.65681303858344,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 265.66805725337883,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01047578145078266
+        }
+      ]
+    },
+    {
+      "phase_id": "month_2",
+      "calendar_months": [
+        2
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2666162725334282,
+            "boundary_depth_m": 320.86985539460306,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              320.0,
+              325.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 318.35655526191607,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 308.5344896713077,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.44524134144126,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.007308310730280976
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2666162725334282,
+            "boundary_depth_m": 320.86985539460306,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              320.0,
+              325.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 318.35655526191607,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 308.5344896713077,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.44524134144126,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.007308310730280976
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.26794186021719785,
+            "boundary_depth_m": 321.92836924331766,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              320.0,
+              325.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 319.39062375830156,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.6455963242998,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 297.6011766103066,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.007006071023900978
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.26773264579217226,
+            "boundary_depth_m": 320.50342271894846,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              320.0,
+              325.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 317.924174236342,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 307.6475312578708,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 295.27116333115316,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.007107650611332629
+        }
+      ]
+    },
+    {
+      "phase_id": "month_3",
+      "calendar_months": [
+        3
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.34124408594905214,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.008856558432834519,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.005,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 330.10137613262066,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                330.0,
+                335.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.00905523884545205
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.34124408594905214,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.008856558432834519,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.005,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 330.10137613262066,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                330.0,
+                335.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.00905523884545205
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.341244085949052,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.008856558432834505,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.005,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 330.10137613262077,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                330.0,
+                335.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.009055238845452049
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3386837434889865,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.007471255595302345,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.005,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 323.793769919826,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.007681248972526952
+        }
+      ]
+    },
+    {
+      "phase_id": "month_4",
+      "calendar_months": [
+        4
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.32288197899458815,
+            "boundary_depth_m": 265.66639457062274,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              265.0,
+              270.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 264.3852847545899,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 259.74067229127337,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 254.36461390828296,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                250.0,
+                255.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02545066208554018
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.32288197899458815,
+            "boundary_depth_m": 265.66639457062274,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              265.0,
+              270.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 264.3852847545899,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 259.74067229127337,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 254.36461390828296,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                250.0,
+                255.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02545066208554018
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3228819789945881,
+            "boundary_depth_m": 265.66639457062274,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              265.0,
+              270.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 264.38528475458986,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 259.74067229127337,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 254.36461390828296,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                250.0,
+                255.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02545066208554018
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3209250766427124,
+            "boundary_depth_m": 266.00881621971445,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              265.0,
+              270.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 264.6558723198665,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 259.8996420869264,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 254.37475899326753,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                250.0,
+                255.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.026232959601883838
+        }
+      ]
+    },
+    {
+      "phase_id": "month_5",
+      "calendar_months": [
+        5
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3308501705652549,
+            "boundary_depth_m": 290.76653209081576,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              290.0,
+              295.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 289.001912884974,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 282.7990894738734,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 276.631764542113,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01652488621384898
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3308501705652549,
+            "boundary_depth_m": 290.76653209081576,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              290.0,
+              295.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 289.001912884974,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 282.7990894738734,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 276.631764542113,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01652488621384898
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.376269494868477,
+            "boundary_depth_m": 302.13724962943894,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 299.557717047622,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 290.9831587441822,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                290.0,
+                295.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 282.222179983922,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.006170490837429211
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.33546736555886775,
+            "boundary_depth_m": 290.46902701100805,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              290.0,
+              295.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 288.73908339960565,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 282.65735144281143,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 276.56148515773015,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.016240542747064855
+        }
+      ]
+    },
+    {
+      "phase_id": "month_6",
+      "calendar_months": [
+        6
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.45230610788596376,
+            "boundary_depth_m": 289.6382880235295,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 288.4897484507742,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 284.0998253010859,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.4975846771415,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.028557765300009447
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.45230610788596376,
+            "boundary_depth_m": 289.6382880235295,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 288.4897484507742,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 284.0998253010859,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.4975846771415,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.028557765300009447
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.4523061078859637,
+            "boundary_depth_m": 289.6382880235295,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 288.4897484507742,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 284.0998253010859,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.4975846771415,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.028557765300009443
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.4464923284338041,
+            "boundary_depth_m": 289.00564205591746,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 287.8452405702224,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 283.54608528917765,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.0118452019721,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.028963481101815677
+        }
+      ]
+    },
+    {
+      "phase_id": "month_7",
+      "calendar_months": [
+        7
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.4445681098323018,
+            "boundary_depth_m": 317.02203289710303,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 315.4690492930693,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.7123851807062,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 302.89333388513586,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.013983107870197783
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.4445681098323018,
+            "boundary_depth_m": 317.02203289710303,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 315.4690492930693,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.7123851807062,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 302.89333388513586,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.013983107870197783
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.444568109832302,
+            "boundary_depth_m": 317.02203289710303,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 315.4690492930693,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.7123851807062,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 302.89333388513586,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01398310787019778
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.44135435344855867,
+            "boundary_depth_m": 317.3437921349894,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 315.70703193494444,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                315.0,
+                320.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.69537127079616,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 302.588979792961,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.012838997967592877
+        }
+      ]
+    },
+    {
+      "phase_id": "month_8",
+      "calendar_months": [
+        8
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.27692209991208033,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.0030616042544776936,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 325.5938531336118,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 306.62289388663174,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0032047782257721077
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.27692209991208033,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.0030616042544776936,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 325.5938531336118,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 306.62289388663174,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0032047782257721077
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.27692209991208033,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.0030616042544776927,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 325.59385313361173,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 306.62289388663174,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.003204778225772104
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2791664580865081,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 345.0,
+              "velocity_m_s": -0.001422419923284404,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 320.26359580175296,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 303.63367515583565,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0015100355674810468
+        }
+      ]
+    },
+    {
+      "phase_id": "month_9",
+      "calendar_months": [
+        9
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.19081887857635468,
+            "boundary_depth_m": 236.62083558597627,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              235.0,
+              240.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 235.19503426345653,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                235.0,
+                240.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 230.33220490308906,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                230.0,
+                235.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 224.85564024578548,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                220.0,
+                225.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.037545187678604035
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.19081887857635468,
+            "boundary_depth_m": 236.62083558597627,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              235.0,
+              240.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 235.19503426345653,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                235.0,
+                240.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 230.33220490308906,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                230.0,
+                235.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 224.85564024578548,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                220.0,
+                225.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.037545187678604035
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.1908188785763546,
+            "boundary_depth_m": 236.62083558597627,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              235.0,
+              240.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 235.19503426345653,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                235.0,
+                240.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 230.33220490308906,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                230.0,
+                235.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 224.85564024578545,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                220.0,
+                225.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.03754518767860405
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.19029130906853176,
+            "boundary_depth_m": 238.42604144449723,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              235.0,
+              240.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 237.02676233273934,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                235.0,
+                240.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 231.93073221282106,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                230.0,
+                235.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 226.2801155115987,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                225.0,
+                230.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.03275805325914461
+        }
+      ]
+    },
+    {
+      "phase_id": "month_10",
+      "calendar_months": [
+        10
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.21822215451004395,
+            "boundary_depth_m": 289.64627177423813,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 286.63833142480195,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 275.0548135261842,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 262.78939204194853,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.00786001631555231
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.21822215451004395,
+            "boundary_depth_m": 289.64627177423813,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 286.63833142480195,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 275.0548135261842,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 262.78939204194853,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.00786001631555231
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.21822215451004387,
+            "boundary_depth_m": 289.6462717742382,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 286.63833142480195,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 275.05481352618415,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 262.78939204194853,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.007860016315552299
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.22198534106436618,
+            "boundary_depth_m": 286.9783633379901,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 284.17542854331543,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 273.4540930633264,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 261.7903459381064,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010681523873829053
+        }
+      ]
+    },
+    {
+      "phase_id": "month_11",
+      "calendar_months": [
+        11
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.24937392528607485,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 365.0,
+              "velocity_m_s": -0.002412205150037352,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 328.373043116252,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 310.5106517959035,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0027324707934199247
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.24937392528607485,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 365.0,
+              "velocity_m_s": -0.002412205150037352,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 328.373043116252,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 310.5106517959035,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0027324707934199247
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2493739252860748,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 365.0,
+              "velocity_m_s": -0.0024122051500373577,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 328.373043116252,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 310.5106517959035,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0027324707934199294
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2434736106834095,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 360.0,
+              "velocity_m_s": -0.0013059635893849471,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 323.8709365818761,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 307.9643180471699,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0015707471322280067
+        }
+      ]
+    },
+    {
+      "phase_id": "month_12",
+      "calendar_months": [
+        12
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.20657011524822178,
+            "boundary_depth_m": 299.74208065885404,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 297.3125939501196,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 288.28417389666004,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 277.69638849470454,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010116054057911265
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.20657011524822178,
+            "boundary_depth_m": 299.74208065885404,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 297.3125939501196,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 288.28417389666004,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 277.69638849470454,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010116054057911265
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.20657011524822164,
+            "boundary_depth_m": 299.74208065885404,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 297.3125939501196,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 288.28417389666004,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 277.69638849470454,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010116054057911253
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.21128951216124758,
+            "boundary_depth_m": 301.3216928819918,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 298.76375835032513,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 289.9395017502148,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.39576729659876,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010263683113236893
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_12_1",
+      "calendar_months": [
+        12,
+        1
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2145252901604951,
+            "boundary_depth_m": 288.6452497238198,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 286.2221100186095,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 277.54516439208913,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.87032879946116,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.011293217738258032
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2145252901604951,
+            "boundary_depth_m": 288.6452497238198,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 286.2221100186095,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 277.54516439208913,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.87032879946116,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.011293217738258029
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2145252901604951,
+            "boundary_depth_m": 288.6452497238198,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              285.0,
+              290.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 286.22211001860944,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 277.54516439208913,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.87032879946116,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.011293217738258022
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.21845294711235422,
+            "boundary_depth_m": 292.9812276232028,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              290.0,
+              295.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 290.55737459190794,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                290.0,
+                295.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 281.33510353968404,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 272.1164769927859,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.010369732282009774
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_2_3",
+      "calendar_months": [
+        2,
+        3
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.30524363348851286,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 355.0,
+              "velocity_m_s": -0.0011185375478094792,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": null,
+              "velocity_contour_m_s": -0.001,
+              "status": "contour_not_reached_in_sampled_profile"
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 325.164175564782,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                325.0,
+                330.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 311.59240061915165,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0012532088789633394
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.3035303231235694,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 360.0,
+              "velocity_m_s": -0.0007040929680709618,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 346.9819020805704,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                345.0,
+                350.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 324.2811574856256,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 310.8992442573692,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0008734640575855375
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.30419311696545426,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 360.0,
+              "velocity_m_s": -0.000837103622002666,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 350.75572538355783,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                350.0,
+                355.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 324.8560979020184,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 311.4602790545998,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0010245839107755352
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3045799965758721,
+            "boundary_depth_m": null,
+            "status": "censored_at_deepest_level",
+            "minimum_reach_m": 475.0
+          },
+          "negative_local_velocity_maxima": [
+            {
+              "depth_m": 360.0,
+              "velocity_m_s": -0.0005048239278794319,
+              "is_flow_boundary": false
+            }
+          ],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 342.7842656311609,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                340.0,
+                345.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 322.8005646963386,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                320.0,
+                325.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 309.40815349284446,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": -0.0006627881530681683
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_4_5",
+      "calendar_months": [
+        4,
+        5
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3267639184777336,
+            "boundary_depth_m": 278.11182529482335,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 276.7464504942432,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 271.44437178852854,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 265.22938243589056,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.021102207173690633
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3268660747799215,
+            "boundary_depth_m": 278.4095610495098,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 277.0492413002778,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 271.7535677410483,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 265.54065515494153,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02098777414969458
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.34957573693153254,
+            "boundary_depth_m": 281.6647409488372,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              280.0,
+              285.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 280.07696774130693,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 274.5667251131271,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 268.07954797642844,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.015810576461484697
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.3283154201902668,
+            "boundary_depth_m": 278.7169935800351,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 277.3708406627613,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 272.10237073131987,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 265.8750872812646,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.021154846118287305
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_6_7",
+      "calendar_months": [
+        6,
+        7
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.44806669030356805,
+            "boundary_depth_m": 303.09424738642633,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 301.6953138194713,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.5066733901018,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 290.6161264711768,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                290.0,
+                295.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02115097217994122
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.4481249999780889,
+            "boundary_depth_m": 302.8644089540891,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 301.4639552824535,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.29367556332636,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 290.4144885684194,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                290.0,
+                295.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.021270436585103615
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.44812499997808913,
+            "boundary_depth_m": 302.8644089540891,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 301.4639552824535,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.29367556332636,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 290.4144885684194,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                290.0,
+                295.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02127043658510361
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.4436759685209319,
+            "boundary_depth_m": 302.63278726627107,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              300.0,
+              305.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 301.1913440083175,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 295.916809482629,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 289.96090998735167,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.02076907164016147
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_8_9",
+      "calendar_months": [
+        8,
+        9
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23428088712920778,
+            "boundary_depth_m": 274.2990067856734,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              270.0,
+              275.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 272.3654631659451,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 264.88003752222244,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 257.26754019449425,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.01683618861244566
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23357020024949296,
+            "boundary_depth_m": 273.56484669599985,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              270.0,
+              275.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 271.63303286715865,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 264.2955273447732,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 256.71049442067687,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.017170204726415964
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2335702002494931,
+            "boundary_depth_m": 273.56484669599985,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              270.0,
+              275.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 271.63303286715865,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 264.2955273447732,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                260.0,
+                265.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 256.71049442067687,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.017170204726415974
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23501880885469514,
+            "boundary_depth_m": 275.05521672222255,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              275.0,
+              280.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 273.0944778431221,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                270.0,
+                275.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 265.4747684046742,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                265.0,
+                270.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 257.735847612646,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                255.0,
+                260.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.015343122871843045
+        }
+      ]
+    },
+    {
+      "phase_id": "phase_10_11",
+      "calendar_months": [
+        10,
+        11
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23354269751464932,
+            "boundary_depth_m": 318.4733490716701,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 313.83910751475446,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 300.3325669459715,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 285.3290374617759,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.0026505964258938257
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23379803989805942,
+            "boundary_depth_m": 319.0911661883575,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 314.2841693920334,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 300.7898284322946,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 285.72503869457415,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.0025637727610661925
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.23379803989805933,
+            "boundary_depth_m": 319.09116618835753,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              315.0,
+              320.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 314.2841693920334,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                310.0,
+                315.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 300.7898284322946,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                300.0,
+                305.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 285.72503869457415,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.0025637727610661847
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 55.0,
+            "core_velocity_m_s": -0.2325533425163547,
+            "boundary_depth_m": 313.11955258512654,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              310.0,
+              315.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 309.71376295073935,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                305.0,
+                310.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 296.720418650998,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 55.0,
+              "boundary_depth_m": 282.8071854205192,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                280.0,
+                285.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.0046558168216698425
+        }
+      ]
+    },
+    {
+      "phase_id": "annual",
+      "calendar_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "methods": [
+        {
+          "method": "pooled_daily",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2905646579229373,
+            "boundary_depth_m": 297.9173687896643,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 295.71740489118145,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 287.72786944516207,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.0790027174758,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.011831663770050557
+        },
+        {
+          "method": "equal_month_climatologies",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2929268839663164,
+            "boundary_depth_m": 297.864571317929,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 295.6884962020895,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 287.7806412258005,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.2099837181606,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.012068656983825475
+        },
+        {
+          "method": "equal_year_months",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2968218932547868,
+            "boundary_depth_m": 298.98207888577315,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 296.7816507027632,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 288.6579237827079,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.8251738186693,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.011180604060258824
+        },
+        {
+          "method": "daily_11day_calendar_window",
+          "strict_zero_crossing": {
+            "core_depth_m": 60.0,
+            "core_velocity_m_s": -0.2930196959277348,
+            "boundary_depth_m": 297.95471548304755,
+            "status": "adjacent_zero_crossing",
+            "crossing_bracket_m": [
+              295.0,
+              300.0
+            ]
+          },
+          "negative_local_velocity_maxima": [],
+          "assumed_velocity_contours": [
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 295.7812798521238,
+              "velocity_contour_m_s": -0.001,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                295.0,
+                300.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 287.87411930839176,
+              "velocity_contour_m_s": -0.005,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                285.0,
+                290.0
+              ]
+            },
+            {
+              "core_depth_m": 60.0,
+              "boundary_depth_m": 279.2917467085953,
+              "velocity_contour_m_s": -0.01,
+              "status": "adjacent_velocity_contour",
+              "bracket_m": [
+                275.0,
+                280.0
+              ]
+            }
+          ],
+          "along_velocity_at350m_m_s": 0.012003049876776022
+        }
+      ]
+    }
+  ],
+  "whole_current_admission": false,
+  "full_goal_complete": false
+}
