@@ -1,0 +1,66 @@
+{
+  "schema": "osw.current-depth-register-source-review.v6",
+  "status": "PASS_TEN_PACIFIC_DEPTH_REFERENCES",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41380873866,
+      "tests_passed": 8,
+      "source_commit": "96079c4c5c80ed4544886a417f4e88d8b35845fc",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41380873866"
+    },
+    {
+      "run_id": 41380873823,
+      "tests_passed": 6,
+      "source_commit": "96079c4c5c80ed4544886a417f4e88d8b35845fc",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41380873823"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 75,
+    "identities_with_scoped_depth_reference": 30,
+    "identities_not_yet_assessed": 81,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 9,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 3,
+    "reported_flow_depth_band": 3,
+    "reported_vertical_extent": 14,
+    "transport_selected_depth_extent": 42
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v6.py": "8c3d6bdfaf89fcc44f1c9451ed776d48a4775a5bcfc09f33f3abf06e0a039884",
+    "analysis/test_current_depth_register_v6.py": "7fb25d11d0a436e326d90ae4c68c0464ef9bc9819ea6c6039f959192d26193e3",
+    "research/current-depth-rules-v6.json": "00ff3a60deda0cccc9682d9a8c9553e816b4951cf6498e0b6d4b073e837a6af5",
+    "research/current-depth-source-facts-v6.json": "2d290fbd00f2aac18a693755afec35bd4676cef8f78345f9bc027e91fafe8ca1",
+    "research/current-depth-register-v6.json": "4d6fc8bb66b321edea89eaaf28b3e38aff8e9fb7b290ef856bcc1ccc640c65ff",
+    "research/current-depth-register-v6.csv": "571499311b2fde734db54be7436cb310e68b903808f2d125d758156fc94d5cb5",
+    ".github/workflows/current-depth-register-source-v6.yml": "d449d8c30623a4f98969fecbbcbcc47b012257a8b44b9f4313f3fc3a8bc42475"
+  },
+  "previous_65_references_and_v5_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all65 preceding depth references retained.",
+    "Ten references cover five new current identities; generic families and unrelated Alaska Current remain gaps.",
+    "Mindanao core and reach retain separate mean/climatology cases, processing and overlapping observation windows.",
+    "NGCUC model core and almost800m reach remain distinct from glider flow continuing below1000m.",
+    "Strict upper bounds retain direction and exclusivity; no point or zero-to-bound interval invented.",
+    "Pacific EUC and NSCC depth bands remain literature context, distinct from whole-flow thickness.",
+    "No annual envelopes, depth uncertainty from velocity error, compatible width joins, volumes, state intersections or seasonal playback inferred.",
+    "JSON and CSV reproduce with bound and averaging context."
+  ],
+  "source_review_scope": "Primary publisher HTML for Zhang2014, Ren2018 and Azminuddin2022; original SprayData observing-program product description/captions; NOAA PMEL author-hosted Stabeno1996 introduction. No original figure pixels claimed; no scientific fields downloaded or processed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
