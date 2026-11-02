@@ -14,6 +14,10 @@ VELOCITY = ('eastward_velocity', 'northward_velocity', 'eastward_velocity_uncert
 SUPPORT = ('along_stream_scale', 'cross_stream_scale', 'downstream_direction', 'n_pts_fit', 'n_missions_fit', 'max_gap', 'arc_fit')
 
 
+def source_doi_matches(value):
+    return value in ['10.21238/S8TC9W', 'https://doi.org/10.21238/S8TC9W']
+
+
 def phase_indices(times):
     result = []
     for month in range(1, 13):
@@ -89,7 +93,7 @@ def main():
             if (len(ds.dimensions['depth']) != 100 or len(ds.dimensions['latitude']) != 161
                     or len(ds.dimensions['longitude']) != 161 or len(ds.dimensions['time']) != (1 if kind == 'mean' else 365)):
                 raise ValueError('Source coordinate dimensions changed')
-            if ds['depth'].units != 'm' or ds['depth'].positive != 'down' or ds.doi != '10.21238/S8TC9W':
+            if ds['depth'].units != 'm' or ds['depth'].positive != 'down' or not source_doi_matches(ds.doi):
                 raise ValueError('Source identity or metre depth frame changed')
             for name, standard in [('eastward_velocity', 'eastward_sea_water_velocity'), ('northward_velocity', 'northward_sea_water_velocity')]:
                 if ds[name].standard_name != standard:

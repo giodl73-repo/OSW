@@ -1,9 +1,15 @@
 from datetime import datetime
 import unittest
-from acquire_florida_spray_seasonal_depth_v1 import phase_indices, select_axis, check_budget, diagnose
+from acquire_florida_spray_seasonal_depth_v1 import phase_indices, select_axis, check_budget, diagnose, source_doi_matches
 
 
 class FloridaSprayDepth(unittest.TestCase):
+    def test_exact_published_doi_spellings_only(self):
+        self.assertTrue(source_doi_matches('10.21238/S8TC9W'))
+        self.assertTrue(source_doi_matches('https://doi.org/10.21238/S8TC9W'))
+        self.assertFalse(source_doi_matches('10.21238/S8SPRAY2675'))
+        self.assertFalse(source_doi_matches('https://example.org/10.21238/S8TC9W'))
+
     def test_phase_labels_not_observation_year_or_monthly_average(self):
         times = [datetime(2016 if m < 7 else 2015, m, 15) for m in range(1, 13)]
         self.assertEqual(phase_indices(times), [(m, m - 1) for m in range(1, 13)])

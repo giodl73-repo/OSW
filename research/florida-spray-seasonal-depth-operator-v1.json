@@ -62,5 +62,17 @@
     "global_total": false
   },
   "processing_policy": "Sequential coordinate-first OPeNDAP subsets and tests on one idle cloud CPU. Before each case enforce100 fitted depth levels, at most20 section longitudes and cumulative100000 scalar budget including selected fit-support values. Retain decoded profiles and source metadata; no full-source/wire-byte hash claim. No local tests or ocean-field processing.",
-  "full_goal_complete": false
+  "full_goal_complete": false,
+  "source_identity_attribute_spellings": [
+    "10.21238/S8TC9W",
+    "https://doi.org/10.21238/S8TC9W"
+  ],
+  "source_identity_attribute_review": "Mean declares bare DOI; annual-cycle DAS declares its https://doi.org/ URL. Both exact forms identify the same published product; retain original attributes. No other DOI or arbitrary URL suffix is accepted.",
+  "prior_terminal_collection_failure": {
+    "run_id": 41461878321,
+    "source_commit": "c7ccce83f1cd812c05ca2c333a7757f97e8dd218",
+    "conclusion": "failure",
+    "reason": "Mean profile retrieved, annual source rejected by strict bare-DOI comparison because its DOI attribute is the equivalent published resolver URL. Twenty tests passed before source identity check halted the full collection. No canonical measurement admission from this partial run.",
+    "scientific_operator_changed": false
+  }
 }
