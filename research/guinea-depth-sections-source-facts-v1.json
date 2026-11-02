@@ -1,0 +1,1379 @@
+{
+  "schema": "osw.guinea-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/guinea-depth-sections-v1/manifest.json",
+  "manifest_sha256": "e832ee9f5f44b4cceae606a90d2e54bb777aa03f8c95a8393d5ab96ccd604139",
+  "operator_file": "research/guinea-depth-sections-operator-v1.json",
+  "operator_sha256": "edb220b982e8696cc1f0ee47d147152e88f24c001da4f29d199e2d82b2f5b45a",
+  "counts": {
+    "section_date_cases": 14,
+    "native_velocity_profiles": 882,
+    "selected_axis_proxy_profiles": 14,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 14
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 14,
+      "0.1": 14,
+      "0.2": 14
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 14,
+      "0.1": 14,
+      "0.2": 14
+    },
+    "decoded_velocity_cell_pairs": 35280,
+    "decoded_velocity_array_bytes": 282240,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:guinea": {
+      "section_date_cases": 14,
+      "native_velocity_profiles": 882,
+      "selected_axis_proxy_profiles": 14,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 14
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 14
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 14
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-8w.json",
+      "source_sha256": "ecc9dd1fb9e40358fb3a941ba2f5496b64c448cfa2f405c822d208b2b342fdc3",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -8,
+        "latitude_gate_degrees_north": [
+          2.5,
+          5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 352.0,
+      "selected_lon_lat": [
+        -8.0,
+        4.0
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        37,
+        44
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 24.035087790387195,
+          "layer_thickness_m": 24.035087790387195,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 19.81481487102632,
+          "layer_thickness_m": 19.81481487102632,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 15.185185680868484,
+          "layer_thickness_m": 15.185185680868484,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 19.81481487102632,
+      "primary_layer_thickness_m": 19.81481487102632,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-6w.json",
+      "source_sha256": "c4c84b46a6e77ca1f9e12f2da6a9df909a074ae1084a72dd3a8da1782860698f",
+      "source_profile_pointer": "/columns/39",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -6,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 354.0,
+      "selected_lon_lat": [
+        -6.0,
+        4.559999942779541
+      ],
+      "selected_column_index": 39,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        1,
+        23,
+        39
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 50.131578630047976,
+          "lower_depth_m": 872.4138032029276,
+          "layer_thickness_m": 822.2822245728796,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.36100003123283386,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 56.71052621001599,
+          "lower_depth_m": 735.5555632820833,
+          "layer_thickness_m": 678.8450370720673,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.36100003123283386,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 68.42696473448312,
+          "lower_depth_m": 293.38236254443507,
+          "layer_thickness_m": 224.95539780995193,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.36100003123283386,
+          "upper_bracket_m": [
+            60.0,
+            70.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 735.5555632820833,
+      "primary_layer_thickness_m": 678.8450370720673,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-4w.json",
+      "source_sha256": "05de08fd69c9605cde958d3cd1d4434109eee420cc6c6579b3113b7dc5befff6",
+      "source_profile_pointer": "/columns/41",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -4,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 356.0,
+      "selected_lon_lat": [
+        -4.0,
+        4.639999866485596
+      ],
+      "selected_column_index": 41,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        41
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 16.625000162981454,
+          "layer_thickness_m": 16.625000162981454,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3580000102519989,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 12.22500053085378,
+          "layer_thickness_m": 12.22500053085378,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3580000102519989,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 7.702702990058912,
+          "layer_thickness_m": 7.702702990058912,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3580000102519989,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 12.22500053085378,
+      "primary_layer_thickness_m": 12.22500053085378,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-2p5w.json",
+      "source_sha256": "602644006e3c4d4dbb77bc3edc19316a2778b151f80f502a6a67df2b62f8eb3e",
+      "source_profile_pointer": "/columns/33",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2p5w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2p5w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -2.5,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 357.52001953125,
+      "selected_lon_lat": [
+        -2.47998046875,
+        4.320000171661377
+      ],
+      "selected_column_index": 33,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        33,
+        38
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 44.400000476837114,
+          "layer_thickness_m": 44.400000476837114,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 35.75757639385124,
+          "layer_thickness_m": 35.75757639385124,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.740260089101195,
+          "layer_thickness_m": 11.740260089101195,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 35.75757639385124,
+      "primary_layer_thickness_m": 35.75757639385124,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-1w.json",
+      "source_sha256": "dd139c745233ea7bdd398d7290094a9b3587740cb72d1f615095f8fb9725428a",
+      "source_profile_pointer": "/columns/20",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-1w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-1w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -1,
+        "latitude_gate_degrees_north": [
+          3.5,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 358.9599609375,
+      "selected_lon_lat": [
+        -1.0400390625,
+        4.320000171661377
+      ],
+      "selected_column_index": 20,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        20
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 551.4285740894929,
+          "layer_thickness_m": 551.4285740894929,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4540000259876251,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 515.7142909030825,
+          "layer_thickness_m": 515.7142909030825,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4540000259876251,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 22.33333598242855,
+          "layer_thickness_m": 22.33333598242855,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4540000259876251,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 515.7142909030825,
+      "primary_layer_thickness_m": 515.7142909030825,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-0e.json",
+      "source_sha256": "a9b7b5d98e1999264c99dc8e2ffdd3c760ba3efbfc77087460b708623178da93",
+      "source_profile_pointer": "/columns/23",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          4,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        4.920000076293945
+      ],
+      "selected_column_index": 23,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 520.0000119209279,
+          "layer_thickness_m": 520.0000119209279,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 292.85714893925007,
+          "layer_thickness_m": 292.85714893925007,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 31.911766304276366,
+          "layer_thickness_m": 31.911766304276366,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 292.85714893925007,
+      "primary_layer_thickness_m": 292.85714893925007,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-01-15-guinea-section-2e.json",
+      "source_sha256": "4a2557f17fb5ee9a8fc2f08d04cc1eac41c443eb5f8802f8794f888f3393e424",
+      "source_profile_pointer": "/columns/35",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          4,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        5.400000095367432
+      ],
+      "selected_column_index": 35,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        35
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 192.39130594991218,
+          "layer_thickness_m": 192.39130594991218,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2370000183582306,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 27.727271157109037,
+          "lower_depth_m": 147.5877197970148,
+          "layer_thickness_m": 119.86044863990577,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2370000183582306,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 54.558821125375076,
+          "lower_depth_m": 125.65789668032214,
+          "layer_thickness_m": 71.09907555494706,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2370000183582306,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 147.5877197970148,
+      "primary_layer_thickness_m": 119.86044863990577,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-8w.json",
+      "source_sha256": "b3f1dd6458272dd31f74ee49ffcb26465000e31c5413b89b37149d110f55d000",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -8,
+        "latitude_gate_degrees_north": [
+          2.5,
+          5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 352.0,
+      "selected_lon_lat": [
+        -8.0,
+        4.0
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 752.9411793547877,
+          "layer_thickness_m": 752.9411793547877,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 386.1111278979138,
+          "layer_thickness_m": 386.1111278979138,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 56.42857553399381,
+          "layer_thickness_m": 56.42857553399381,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 386.1111278979138,
+      "primary_layer_thickness_m": 386.1111278979138,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-6w.json",
+      "source_sha256": "9ddb02e60ce8c9373035afa9ac7b196cea75c4cdab9504ceb3e63895b5b28c48",
+      "source_profile_pointer": "/columns/39",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -6,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 354.0,
+      "selected_lon_lat": [
+        -6.0,
+        4.559999942779541
+      ],
+      "selected_column_index": 39,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        39
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 440.00002235174645,
+          "layer_thickness_m": 440.00002235174645,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1920000314712524,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 309.45946854818624,
+          "layer_thickness_m": 309.45946854818624,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1920000314712524,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 58.57143830280013,
+          "layer_thickness_m": 58.57143830280013,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1920000314712524,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 309.45946854818624,
+      "primary_layer_thickness_m": 309.45946854818624,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-4w.json",
+      "source_sha256": "70439db4ae7530fede66daa0aef012afe355b1b6349d3cd3917dac2855addc8c",
+      "source_profile_pointer": "/columns/43",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -4,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 356.0,
+      "selected_lon_lat": [
+        -4.0,
+        4.71999979019165
+      ],
+      "selected_column_index": 43,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        32,
+        43,
+        52
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 139.28571512200392,
+          "layer_thickness_m": 139.28571512200392,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0230000019073486,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 77.71428766056003,
+          "layer_thickness_m": 77.71428766056003,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0230000019073486,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 50.000001192093315,
+          "layer_thickness_m": 50.000001192093315,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0230000019073486,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 77.71428766056003,
+      "primary_layer_thickness_m": 77.71428766056003,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-2p5w.json",
+      "source_sha256": "220ed9f9720fc03e26081cd164ea35a45b749656c553d13a767970a3f126319b",
+      "source_profile_pointer": "/columns/29",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2p5w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2p5w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -2.5,
+        "latitude_gate_degrees_north": [
+          3,
+          5.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 357.52001953125,
+      "selected_lon_lat": [
+        -2.47998046875,
+        4.159999847412109
+      ],
+      "selected_column_index": 29,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        29,
+        39
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 115.47619326382295,
+          "layer_thickness_m": 115.47619326382295,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 46.964286978223285,
+          "layer_thickness_m": 46.964286978223285,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 33.92405162138758,
+          "layer_thickness_m": 33.92405162138758,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 46.964286978223285,
+      "primary_layer_thickness_m": 46.964286978223285,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-1w.json",
+      "source_sha256": "84b73e8fe332e7a54f3abd74eda25642ae946f347587501b1ebecae49c766b49",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-1w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-1w",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -1,
+        "latitude_gate_degrees_north": [
+          3.5,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 358.9599609375,
+      "selected_lon_lat": [
+        -1.0400390625,
+        3.799999952316284
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        7
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 123.07692351778581,
+          "layer_thickness_m": 123.07692351778581,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7470000386238098,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 70.50000167638035,
+          "layer_thickness_m": 70.50000167638035,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7470000386238098,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 46.730770123516294,
+          "layer_thickness_m": 46.730770123516294,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7470000386238098,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 70.50000167638035,
+      "primary_layer_thickness_m": 70.50000167638035,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-0e.json",
+      "source_sha256": "d56272bf38bc2c04124d4738b35eb455fb98c807765894453e180c99fada52ce",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          4,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        4.480000019073486
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        3,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1013.8888932724286,
+          "layer_thickness_m": 1013.8888932724286,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 548.4848612103581,
+          "layer_thickness_m": 548.4848612103581,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 335.294133631006,
+          "layer_thickness_m": 335.294133631006,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 548.4848612103581,
+      "primary_layer_thickness_m": 548.4848612103581,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:guinea",
+      "source_file": "research/source-data/guinea-depth-sections-v1/2022-07-15-guinea-section-2e.json",
+      "source_sha256": "3ca9ba9f2547d8b0657f149e3cdb56009f148f2484bbee7388b9dc3aeb8691c1",
+      "source_profile_pointer": "/columns/36",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:guinea",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          4,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        5.440000057220459
+      ],
+      "selected_column_index": 36,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "local_integral_maximum_indices": [
+        0,
+        11,
+        36,
+        53
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 584.8484901849889,
+          "layer_thickness_m": 584.8484901849889,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5840000510215759,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 179.33333796924995,
+          "layer_thickness_m": 179.33333796924995,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5840000510215759,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 21.2500004930531,
+          "layer_thickness_m": 21.2500004930531,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5840000510215759,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 179.33333796924995,
+      "primary_layer_thickness_m": 179.33333796924995,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "transport_ledger_file": "research/source-data/guinea-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "47ec28ba5c015c466ee90385e05f88c88a30ef8a84854aceaa280281de8cfbd7",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-component-reads.v1",
+    "planned_successful_component_values": 70560,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 70560,
+    "successfully_returned_component_values": 70560,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 564480,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty."
+  }
+}
