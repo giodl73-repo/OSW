@@ -1,0 +1,143 @@
+{
+  "schema": "osw.eicc-seasonal-depth-comparison.v1",
+  "status": "TWO_PHASE_MEANS_WITH_NATIVE_METRICS_AND_SECTION_GAPS_PRESERVED",
+  "entity_id": "current:east-india-coastal",
+  "model_product": "Sen2022_ROMS_NIO",
+  "model_time_basis": {
+    "kind": "repeating_climatological_forcing",
+    "simulation_duration_years": 8,
+    "analysis_window": "last_three_simulation_years",
+    "calendar_years": null
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v9.json": "ed01933cb503a795609072026bc37f69ba3aca61274cf4645b7aa3a907cdf303",
+    "research/current-depth-route-projection-operator-v9.json": "44aa548c0f001c419c6e99b69f6922fb6127a432642a1675802b7af58bb9f24b",
+    "research/current-depth-register-v39.json": "a090c99fb039007f6a02619aac62af9d335e165fc8a0c7568ccb9c144a75abad"
+  },
+  "sections": [
+    {
+      "section_name": "A",
+      "section_latitude_degrees_north": 19.3,
+      "phases": [
+        {
+          "phase": "northward",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "source_reference_id": "eicc-sen-2022-north-a-core",
+          "native_source_metric": "core_depth",
+          "reported_point_m": 150,
+          "reported_band_m": null,
+          "status": "scoped_source_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        },
+        {
+          "phase": "southward",
+          "calendar_months": [
+            10,
+            11,
+            12
+          ],
+          "source_reference_id": null,
+          "native_source_metric": null,
+          "reported_point_m": null,
+          "reported_band_m": null,
+          "status": "no_section_specific_core_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        }
+      ],
+      "automatic_core_depth_difference_m": null
+    },
+    {
+      "section_name": "B",
+      "section_latitude_degrees_north": 16,
+      "phases": [
+        {
+          "phase": "northward",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "source_reference_id": "eicc-sen-2022-north-b-reach",
+          "native_source_metric": "reported_vertical_extent",
+          "reported_point_m": 20,
+          "reported_band_m": null,
+          "status": "scoped_source_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        },
+        {
+          "phase": "southward",
+          "calendar_months": [
+            10,
+            11,
+            12
+          ],
+          "source_reference_id": "eicc-sen-2022-south-b-core",
+          "native_source_metric": "core_depth",
+          "reported_point_m": 150,
+          "reported_band_m": null,
+          "status": "scoped_source_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        }
+      ],
+      "automatic_core_depth_difference_m": null
+    },
+    {
+      "section_name": "C",
+      "section_latitude_degrees_north": 12,
+      "phases": [
+        {
+          "phase": "northward",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "source_reference_id": "eicc-sen-2022-north-c-core-band",
+          "native_source_metric": "core_depth",
+          "reported_point_m": null,
+          "reported_band_m": [
+            0,
+            100
+          ],
+          "status": "scoped_source_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        },
+        {
+          "phase": "southward",
+          "calendar_months": [
+            10,
+            11,
+            12
+          ],
+          "source_reference_id": "eicc-sen-2022-south-c-core",
+          "native_source_metric": "core_depth",
+          "reported_point_m": 100,
+          "reported_band_m": null,
+          "status": "scoped_source_descriptor",
+          "is_monthly_time_series": false,
+          "is_physical_thickness": false
+        }
+      ],
+      "automatic_core_depth_difference_m": null
+    }
+  ],
+  "northward_conditional_envelope_id": "eicc-sen2022-northward-conditional-core-support-envelope-v1",
+  "regional_southward_reach_reference_id": "eicc-sen-2022-south-regional-reach",
+  "regional_reach_assigned_to_unknown_section_core": false,
+  "whole_year_coverage": false,
+  "monthly_interpolation_performed": false,
+  "annual_depth_range_m": null,
+  "physical_thickness_m": null,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
