@@ -1,0 +1,63 @@
+{
+  "schema": "osw.current-depth-register-source-review.v4",
+  "status": "PASS_SIX_BOUNDARY_CURRENT_DEPTH_REFERENCES",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41379596744,
+      "tests_passed": 7,
+      "source_commit": "4f86cb6da202581d7c52ffc4b1b1c960b2221fc8",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41379596744"
+    },
+    {
+      "run_id": 41379596532,
+      "tests_passed": 6,
+      "source_commit": "4f86cb6da202581d7c52ffc4b1b1c960b2221fc8",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41379596532"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 58,
+    "identities_with_scoped_depth_reference": 22,
+    "identities_not_yet_assessed": 89,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 6,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 3,
+    "reported_flow_depth_band": 1,
+    "reported_vertical_extent": 9,
+    "transport_selected_depth_extent": 35
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v4.py": "e2ccf1749f5beb9f05b47093d14fc6f00e93a2745204139b5f10514945e9f7de",
+    "analysis/test_current_depth_register_v4.py": "63d8b6951cdd50150d7a91dab79ded69f59b59cdcc9fe97840e949a7df616341",
+    "research/current-depth-source-facts-v4.json": "b53ee4ede38d72a2ed496190a654482689524ed90781c0cb8018165b96088e5e",
+    "research/current-depth-register-v4.json": "b8de8a3e18eecdfae309c7a8c62e1e46576fd3011e84c2a101fa3c7fb2e3918d",
+    "research/current-depth-register-v4.csv": "d292da28a80740ffbee4d20eccd9ad9ce0d33035a579bcdb60e0568c80b4d7c7",
+    ".github/workflows/current-depth-register-source-v4.yml": "c42e3fa6d1f2e2aa3db169b0c55eb07e57c736e1e10e04fcd3997787288b8938"
+  },
+  "previous_52_references_and_v3_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all52 preceding depth references retained.",
+    "Six new references cover Agulhas, Somali, East Australian and Leeuwin currents.",
+    "Leeuwin annual and bimonthly zero-flow boundaries preserve mooring, processing, calendar phases and study window; actual TR50 observation span stated separately.",
+    "Literature depth summaries remain distinct from diagnosed flow boundaries.",
+    "No whole-route depth, annual envelope, uniform thickness, assumed uncertainty, volume, state join or seasonal playback inferred.",
+    "Source locators, immutable inputs, JSON and CSV reproduction checked."
+  ],
+  "source_review_scope": "Vinayachandran2021 original PDF pages6 and19 actually viewed. IMOS2014 primary PDF extracted text only, direct PDF403 and screenshot cache misses explicitly recorded. Feng2025 primary publisher HTML reviewed; no original figure pixels or raw fields acquired.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
