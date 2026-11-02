@@ -5,11 +5,12 @@ allowing depth to change along the current. Combine compatible length, width and
 depth estimates into volume estimates, and do the same for eddies. Seasonal
 variation and ranges remain part of the measurement programme.
 
-This is the queued work programme, not an executed measurement method. Continue
-the active eddy work first. Preserve unresolved eddy gaps rather than treating
-coverage of one scalar size reference as complete three-dimensional coverage.
-Current depth collection follows that eddy pass; the depth representation and
-volume rules must support both feature types.
+Current depth collection is the active data priority following the user's
+November 1, 2026 decision to switch focus. Retain the 102 eddy identities with
+size references and the 34 unresolved size cases; that coverage is not complete
+three-dimensional coverage. The depth representation and volume rules must
+support both feature types. This programme is not itself an executed measurement
+method; the initial depth register records qualified source references and gaps.
 
 ## Depth representation
 
