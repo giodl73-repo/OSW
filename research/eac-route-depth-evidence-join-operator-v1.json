@@ -1,0 +1,45 @@
+{
+  "schema": "osw.eac-route-depth-evidence-join-operator.v1",
+  "model_file": "research/source-data/eac-hycom-route-depth-v2/candidate.json",
+  "layers_file": "research/source-data/eac-connected-layer-thickness-v1/candidate.json",
+  "surface_file": "research/source-data/eac-surface-route-screen-v1/candidate.json",
+  "moorings_file": "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json",
+  "source_dates": [
+    "2022-01-15",
+    "2022-07-15"
+  ],
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/source-data/eac-connected-layer-thickness-v1/candidate.json": "63b0766f7cc1f0bd62101e1caa53477663e2b74f8e153d241eb3080cfd5189bd",
+    "research/source-data/eac-surface-route-screen-v1/candidate.json": "f440ebc5d15ba41617d1684dc99b5ff773e834db4df9fccf274a3a5187b68a4b",
+    "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json": "16ebb8434cb613b95b71762d326dce84ee2df415b93739ea6f66f5d3cebfa24e",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e",
+    "research/eac-connected-layer-thickness-source-review-v1.json": "4a4a2e1cf228b416e21b1c67f1358ecf2c3decca4809485bba2bdcba65a1ed70",
+    "research/eac-surface-route-screen-source-review-v1.json": "b361486d6444e5a9094ccfab279a52959fa3eb9ae7a6c5609212025faefc5419",
+    "research/eac-mooring-depth-benchmark-source-review-v1.json": "1e9ee38d9be25be3208b14c806c8d3b0564147063698f433857c6d7c4db4ad6e",
+    "research/current-depth-register-source-review-v46.json": "5e8999716630d97688083ab841c0cca0ea22d00886e6b04dd01727571de6ce72"
+  },
+  "join_keys": "Exact prescribed UTC00Z date and editorial route vertex index0–6. Require complete identical key sets, one row per source/key. Reject duplicated, dropped, shifted-time or mismatched-geometry/selected-node evidence rather than silently joining an intersection.",
+  "quantity_separation": "Keep primary5cm/s signed downstream HYCOM lower contour depth, same-node connected layer thickness and surface geostrophic corroboration separately. Never replace a missing primary boundary with an alternate contour, another node, observational depth or bathymetry.",
+  "node_projection_gate": "Conditional diagnostic node requires primary adjacent lower contour, positive second-product downstream surface component>0.05m/s at the frozen selected node, and interior sampled model maximum. Every node still lacks independent named-current-axis validation. A passed gate is not a physical depth admission.",
+  "projection_assumptions": [
+    "The reference distance is the frozen editorial corridor, not the length of the instantaneous model current axis. Selected model positions and editorial vertices are retained separately.",
+    "Only neighboring original vertices with ascending reference distances may define a conditional linear reference-corridor segment, and both endpoints must pass the declared node gate. No interpolation across edge maxima, unresolved boundaries, noncorroborated/missing surface support or skipped vertices.",
+    "On an eligible segment, linear variation between endpoint lower depths or paired thicknesses is an explicit unobserved-interior assumption, not evidence of a continuous current. No extrapolation outside its reference distance interval.",
+    "Two instantaneous model snapshots, multi-day mapped surface geostrophic estimates and five-day-filtered daily mooring observations have distinct time operators. Same calendar date does not make them coincident or statistically independent.",
+    "Moorings near27S are regional fixed-station context only. They do not replace model depth values, establish collocation, fill missing model profiles or imply route continuity.",
+    "Conditional reference-corridor layer spans and lower contours do not define lateral bounds or cross-sectional area. No water volume, seasonal envelope, physical state join or full-route physical profile is admitted."
+  ],
+  "uncertainty_m": null,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "named_current_axis_validation": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only join, tests and interpolation checks on one idle CPU using frozen retained artifacts. No source network retrieval, local ocean-field calculations, local tests or runtime/UI changes.",
+  "full_goal_complete": false
+}
