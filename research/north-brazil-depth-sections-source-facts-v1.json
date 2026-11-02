@@ -1,0 +1,1309 @@
+{
+  "schema": "osw.north-brazil-depth-sections-source-facts.v1",
+  "status": "FOURTEEN_INTERIOR_MODEL_AXIS_PROXY_PROFILES_WITH_SEPARATE_DEPTH_CENSORING",
+  "manifest_file": "research/source-data/north-brazil-depth-sections-v1/manifest.json",
+  "manifest_sha256": "bf62f133a6a66f5ab973bfc80fe152e4d05975fc2314ad208001795ed9e9ad36",
+  "operator_file": "research/north-brazil-depth-sections-operator-v1.json",
+  "operator_sha256": "876df50956a1bdb00a890d0c411320a8dafaf6b2b5916158083a18e983cdf442",
+  "counts": {
+    "section_date_cases": 14,
+    "native_velocity_profiles": 1586,
+    "selected_axis_proxy_profiles": 14,
+    "interior_bracketed_axis_proxy_cases": 14,
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 11,
+      "0.1": 12,
+      "0.2": 14
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 11,
+      "0.1": 12,
+      "0.2": 14
+    },
+    "decoded_velocity_cell_pairs": 63440,
+    "decoded_velocity_array_bytes": 507520,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json",
+      "source_sha256": "e6968ac18aa9e280c2efb379f9bfcdbf4549f2dba3837275b7aa246ef489718f",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-05s",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-05s",
+        "latitude_degrees_north": -5,
+        "longitude_gate_degrees_east": [
+          -37,
+          -32
+        ]
+      },
+      "actual_source_latitude_degrees_north": -5.0,
+      "selected_lon_lat": [
+        -34.8800048828125,
+        -5.0
+      ],
+      "native_source_longitude_degrees_east": 325.1199951171875,
+      "global_latitude_index": 1875,
+      "global_longitude_index": 4064,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "selected_column_index": 26,
+      "selected_upper200m_integral_m2_s": 81.85362161695957,
+      "local_integral_maximum_indices": [
+        26,
+        53,
+        56
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.5642712116241455,
+          "lower_last_connected_depth_m": 800.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.5642712116241455,
+          "lower_last_connected_depth_m": 800.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 511.7498414796679,
+          "layer_thickness_m": 511.7498414796679,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.5642712116241455,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": null,
+      "primary10cms_layer_thickness_m": null,
+      "primary10cms_lower_status": "censored_before_missing_or_dry_level",
+      "primary10cms_supported_reach_bound_m": 800.0,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json",
+      "source_sha256": "80a298ed9e51672e07338a103a7efba06baedc9cbb8828774ce6838e40bedb16",
+      "source_profile_pointer": "/columns/47",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-03s",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-03s",
+        "latitude_degrees_north": -3,
+        "longitude_gate_degrees_east": [
+          -42,
+          -34
+        ]
+      },
+      "actual_source_latitude_degrees_north": -3.0,
+      "selected_lon_lat": [
+        -38.239990234375,
+        -3.0
+      ],
+      "native_source_longitude_degrees_east": 321.760009765625,
+      "global_latitude_index": 1925,
+      "global_longitude_index": 4022,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "selected_column_index": 47,
+      "selected_upper200m_integral_m2_s": 131.98608320951462,
+      "local_integral_maximum_indices": [
+        47,
+        62,
+        95
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 997.5465215746733,
+          "layer_thickness_m": 997.5465215746733,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.8053946495056152,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 960.7180423776147,
+          "layer_thickness_m": 960.7180423776147,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.8053946495056152,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 876.1127719940687,
+          "layer_thickness_m": 876.1127719940687,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.8053946495056152,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 960.7180423776147,
+      "primary10cms_layer_thickness_m": 960.7180423776147,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json",
+      "source_sha256": "ead39b8e880d7a66ae5b03b28dce34d0bbf72535356bab042debf1aad7a8625e",
+      "source_profile_pointer": "/columns/57",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-01s",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-01s",
+        "latitude_degrees_north": -1,
+        "longitude_gate_degrees_east": [
+          -48,
+          -38
+        ]
+      },
+      "actual_source_latitude_degrees_north": -1.0,
+      "selected_lon_lat": [
+        -43.43994140625,
+        -1.0
+      ],
+      "native_source_longitude_degrees_east": 316.56005859375,
+      "global_latitude_index": 1975,
+      "global_longitude_index": 3957,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 57,
+      "selected_upper200m_integral_m2_s": 111.19820019602776,
+      "local_integral_maximum_indices": [
+        57,
+        61,
+        105
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 957.1629203781742,
+          "layer_thickness_m": 957.1629203781742,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6915504932403564,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 751.9733052354297,
+          "layer_thickness_m": 751.9733052354297,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6915504932403564,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 595.8231591041684,
+          "layer_thickness_m": 595.8231591041684,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6915504932403564,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 751.9733052354297,
+      "primary10cms_layer_thickness_m": 751.9733052354297,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json",
+      "source_sha256": "ce6ffc05028046d76dc65cfede88b245f967a6feac82248ada585d81e88f5336",
+      "source_profile_pointer": "/columns/96",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-00p5n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-00p5n",
+        "latitude_degrees_north": 0.5,
+        "longitude_gate_degrees_east": [
+          -52,
+          -42
+        ]
+      },
+      "actual_source_latitude_degrees_north": 0.5199999809265137,
+      "selected_lon_lat": [
+        -44.3199462890625,
+        0.5199999809265137
+      ],
+      "native_source_longitude_degrees_east": 315.6800537109375,
+      "global_latitude_index": 2013,
+      "global_longitude_index": 3946,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 96,
+      "selected_upper200m_integral_m2_s": 74.31939992308617,
+      "local_integral_maximum_indices": [
+        96
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1174.3932161362977,
+          "layer_thickness_m": 1174.3932161362977,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.6342748403549194,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 41.94083803698516,
+          "lower_depth_m": 1036.2864399899127,
+          "layer_thickness_m": 994.3456019529275,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.6342748403549194,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 60.814607797217455,
+          "lower_depth_m": 934.3087195742582,
+          "layer_thickness_m": 873.4941117770408,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.6342748403549194,
+          "upper_bracket_m": [
+            60.0,
+            70.0
+          ],
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 1036.2864399899127,
+      "primary10cms_layer_thickness_m": 994.3456019529275,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json",
+      "source_sha256": "f17c5900d5da3ba14b8466f38f9d338f6499a984d42eb97d7f29726970512962",
+      "source_profile_pointer": "/columns/87",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-02n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-02n",
+        "latitude_degrees_north": 2,
+        "longitude_gate_degrees_east": [
+          -54,
+          -44
+        ]
+      },
+      "actual_source_latitude_degrees_north": 2.0,
+      "selected_lon_lat": [
+        -47.0400390625,
+        2.0
+      ],
+      "native_source_longitude_degrees_east": 312.9599609375,
+      "global_latitude_index": 2050,
+      "global_longitude_index": 3912,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 87,
+      "selected_upper200m_integral_m2_s": 129.88385358452797,
+      "local_integral_maximum_indices": [
+        87,
+        108
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 890.9644041770337,
+          "layer_thickness_m": 890.9644041770337,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0033845901489258,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 689.2563350900678,
+          "layer_thickness_m": 689.2563350900678,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0033845901489258,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 580.3431116036468,
+          "layer_thickness_m": 580.3431116036468,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0033845901489258,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 689.2563350900678,
+      "primary10cms_layer_thickness_m": 689.2563350900678,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json",
+      "source_sha256": "0a31c49f29f623671629a263895cc87dd77f9ea20ba501d991a965797befbc66",
+      "source_profile_pointer": "/columns/88",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-04n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-04n",
+        "latitude_degrees_north": 4,
+        "longitude_gate_degrees_east": [
+          -56,
+          -46
+        ]
+      },
+      "actual_source_latitude_degrees_north": 4.0,
+      "selected_lon_lat": [
+        -48.9599609375,
+        4.0
+      ],
+      "native_source_longitude_degrees_east": 311.0400390625,
+      "global_latitude_index": 2100,
+      "global_longitude_index": 3888,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 88,
+      "selected_upper200m_integral_m2_s": 143.40974575281143,
+      "local_integral_maximum_indices": [
+        88,
+        95,
+        97,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 482.14696055952817,
+          "layer_thickness_m": 482.14696055952817,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.042982578277588,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 401.7939136355957,
+          "layer_thickness_m": 401.7939136355957,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.042982578277588,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 267.6688490392836,
+          "layer_thickness_m": 267.6688490392836,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.042982578277588,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 401.7939136355957,
+      "primary10cms_layer_thickness_m": 401.7939136355957,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json",
+      "source_sha256": "ed7ace9f5df4eafc56de607adb92380213b6345691d4a5d42ddb83f447b5ba89",
+      "source_profile_pointer": "/columns/52",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-07n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-07n",
+        "latitude_degrees_north": 7,
+        "longitude_gate_degrees_east": [
+          -57,
+          -47
+        ]
+      },
+      "actual_source_latitude_degrees_north": 7.0,
+      "selected_lon_lat": [
+        -52.800048828125,
+        7.0
+      ],
+      "native_source_longitude_degrees_east": 307.199951171875,
+      "global_latitude_index": 2175,
+      "global_longitude_index": 3840,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "selected_column_index": 52,
+      "selected_upper200m_integral_m2_s": 156.47849601507187,
+      "local_integral_maximum_indices": [
+        52
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9630794525146484,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 283.3985765014856,
+          "layer_thickness_m": 283.3985765014856,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9630794525146484,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 247.31479657896193,
+          "layer_thickness_m": 247.31479657896193,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9630794525146484,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 283.3985765014856,
+      "primary10cms_layer_thickness_m": 283.3985765014856,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json",
+      "source_sha256": "d81f1efd1bee803e0b16e2bb9a7eddab6c4627a8cc63231cafc0d42e3fdc872c",
+      "source_profile_pointer": "/columns/25",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-05s",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-05s",
+        "latitude_degrees_north": -5,
+        "longitude_gate_degrees_east": [
+          -37,
+          -32
+        ]
+      },
+      "actual_source_latitude_degrees_north": -5.0,
+      "selected_lon_lat": [
+        -34.9599609375,
+        -5.0
+      ],
+      "native_source_longitude_degrees_east": 325.0400390625,
+      "global_latitude_index": 1875,
+      "global_longitude_index": 4063,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 63,
+      "selected_column_index": 25,
+      "selected_upper200m_integral_m2_s": 242.98523074388504,
+      "local_integral_maximum_indices": [
+        25
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4142135381698608,
+          "lower_last_connected_depth_m": 600.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4142135381698608,
+          "lower_last_connected_depth_m": 600.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 477.3748645793122,
+          "layer_thickness_m": 477.3748645793122,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4142135381698608,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": null,
+      "primary10cms_layer_thickness_m": null,
+      "primary10cms_lower_status": "censored_before_missing_or_dry_level",
+      "primary10cms_supported_reach_bound_m": 600.0,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json",
+      "source_sha256": "679e34f0fd6da73fa24c14fe4561de9189a5ccc903c407cbe2020c69995d30e2",
+      "source_profile_pointer": "/columns/66",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-03s",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-03s",
+        "latitude_degrees_north": -3,
+        "longitude_gate_degrees_east": [
+          -42,
+          -34
+        ]
+      },
+      "actual_source_latitude_degrees_north": -3.0,
+      "selected_lon_lat": [
+        -36.719970703125,
+        -3.0
+      ],
+      "native_source_longitude_degrees_east": 323.280029296875,
+      "global_latitude_index": 1925,
+      "global_longitude_index": 4041,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "selected_column_index": 66,
+      "selected_upper200m_integral_m2_s": 175.50673389434814,
+      "local_integral_maximum_indices": [
+        47,
+        52,
+        54,
+        56,
+        66
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1216.8992902097145,
+          "layer_thickness_m": 1216.8992902097145,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 1.0946012735366821,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1032.7568891716728,
+          "layer_thickness_m": 1032.7568891716728,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 1.0946012735366821,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 924.653383138093,
+          "layer_thickness_m": 924.653383138093,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 1.0946012735366821,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 1032.7568891716728,
+      "primary10cms_layer_thickness_m": 1032.7568891716728,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json",
+      "source_sha256": "a5b7afc54e337f33dfc94767da7e9eb1dd35cc054985f2f259b3ce2e05f5287f",
+      "source_profile_pointer": "/columns/70",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-01s",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-01s",
+        "latitude_degrees_north": -1,
+        "longitude_gate_degrees_east": [
+          -48,
+          -38
+        ]
+      },
+      "actual_source_latitude_degrees_north": -1.0,
+      "selected_lon_lat": [
+        -42.4000244140625,
+        -1.0
+      ],
+      "native_source_longitude_degrees_east": 317.5999755859375,
+      "global_latitude_index": 1975,
+      "global_longitude_index": 3970,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 70,
+      "selected_upper200m_integral_m2_s": 127.7296535372734,
+      "local_integral_maximum_indices": [
+        58,
+        60,
+        64,
+        70,
+        110,
+        117,
+        121
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 965.9699258997985,
+          "layer_thickness_m": 965.9699258997985,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9736860990524292,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 896.7415693016037,
+          "layer_thickness_m": 896.7415693016037,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9736860990524292,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 671.2424769398699,
+          "layer_thickness_m": 671.2424769398699,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9736860990524292,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 896.7415693016037,
+      "primary10cms_layer_thickness_m": 896.7415693016037,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json",
+      "source_sha256": "10a171d8bf6dd70a04ea8a132a9dbcd87f1ee63cb43768e42d0011a9144b79e6",
+      "source_profile_pointer": "/columns/90",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-00p5n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-00p5n",
+        "latitude_degrees_north": 0.5,
+        "longitude_gate_degrees_east": [
+          -52,
+          -42
+        ]
+      },
+      "actual_source_latitude_degrees_north": 0.5199999809265137,
+      "selected_lon_lat": [
+        -44.800048828125,
+        0.5199999809265137
+      ],
+      "native_source_longitude_degrees_east": 315.199951171875,
+      "global_latitude_index": 2013,
+      "global_longitude_index": 3940,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 90,
+      "selected_upper200m_integral_m2_s": 138.47625923901796,
+      "local_integral_maximum_indices": [
+        90
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1501.7641668301383,
+          "layer_thickness_m": 1501.7641668301383,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1200571060180664,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1230.1674553251064,
+          "layer_thickness_m": 1230.1674553251064,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1200571060180664,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1059.368724739252,
+          "layer_thickness_m": 1059.368724739252,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1200571060180664,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 1230.1674553251064,
+      "primary10cms_layer_thickness_m": 1230.1674553251064,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json",
+      "source_sha256": "d7ce11147f41c8987e3c5bb33e40a2ac7c1b46240035f0024d075de0b849eb3d",
+      "source_profile_pointer": "/columns/87",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-02n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-02n",
+        "latitude_degrees_north": 2,
+        "longitude_gate_degrees_east": [
+          -54,
+          -44
+        ]
+      },
+      "actual_source_latitude_degrees_north": 2.0,
+      "selected_lon_lat": [
+        -47.0400390625,
+        2.0
+      ],
+      "native_source_longitude_degrees_east": 312.9599609375,
+      "global_latitude_index": 2050,
+      "global_longitude_index": 3912,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 87,
+      "selected_upper200m_integral_m2_s": 218.5310047864914,
+      "local_integral_maximum_indices": [
+        87
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 957.1756741935468,
+          "layer_thickness_m": 957.1756741935468,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 1.4679536819458008,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 780.886199307223,
+          "layer_thickness_m": 780.886199307223,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 1.4679536819458008,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 686.4629130454794,
+          "layer_thickness_m": 686.4629130454794,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 1.4679536819458008,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 780.886199307223,
+      "primary10cms_layer_thickness_m": 780.886199307223,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json",
+      "source_sha256": "39c18db99ef8f2da732a765eb959261fd2c8dbc4689a3d24a50e2f924a0d15d7",
+      "source_profile_pointer": "/columns/90",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-04n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-04n",
+        "latitude_degrees_north": 4,
+        "longitude_gate_degrees_east": [
+          -56,
+          -46
+        ]
+      },
+      "actual_source_latitude_degrees_north": 4.0,
+      "selected_lon_lat": [
+        -48.800048828125,
+        4.0
+      ],
+      "native_source_longitude_degrees_east": 311.199951171875,
+      "global_latitude_index": 2100,
+      "global_longitude_index": 3890,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "selected_column_index": 90,
+      "selected_upper200m_integral_m2_s": 207.31770423054695,
+      "local_integral_maximum_indices": [
+        90
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 470.16096127115446,
+          "layer_thickness_m": 470.16096127115446,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7981727123260498,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 446.90087038958853,
+          "layer_thickness_m": 446.90087038958853,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7981727123260498,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 400.3806886264566,
+          "layer_thickness_m": 400.3806886264566,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7981727123260498,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 446.90087038958853,
+      "primary10cms_layer_thickness_m": 446.90087038958853,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "source_file": "research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json",
+      "source_sha256": "f3b299ef4547d9f88fb2eb56c7358deafe4d4d0cb39d8bfa00f460ed51bea4ae",
+      "source_profile_pointer": "/columns/56",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-07n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-07n",
+        "latitude_degrees_north": 7,
+        "longitude_gate_degrees_east": [
+          -57,
+          -47
+        ]
+      },
+      "actual_source_latitude_degrees_north": 7.0,
+      "selected_lon_lat": [
+        -52.47998046875,
+        7.0
+      ],
+      "native_source_longitude_degrees_east": 307.52001953125,
+      "global_latitude_index": 2175,
+      "global_longitude_index": 3844,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "selected_column_index": 56,
+      "selected_upper200m_integral_m2_s": 178.07247269153595,
+      "local_integral_maximum_indices": [
+        56,
+        61
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 871.5618993873029,
+          "layer_thickness_m": 871.5618993873029,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.4934096336364746,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 838.9763334095404,
+          "layer_thickness_m": 838.9763334095404,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.4934096336364746,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 727.1247397905356,
+          "layer_thickness_m": 727.1247397905356,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.4934096336364746,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        }
+      ],
+      "primary10cms_lower_depth_m": 838.9763334095404,
+      "primary10cms_layer_thickness_m": 838.9763334095404,
+      "primary10cms_lower_status": "adjacent_isotach_crossing",
+      "primary10cms_supported_reach_bound_m": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "component_definition": "One315degree true signed northwest component held through depth;not the old variable-reference-tangent pilot or a source-reproduced rotation.",
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
