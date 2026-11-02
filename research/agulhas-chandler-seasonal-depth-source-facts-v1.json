@@ -1,0 +1,35 @@
+{
+  "schema": "osw.agulhas-chandler-seasonal-depth-source-facts.v1",
+  "status": "192_MONTHLY_AXES12_MEAN_CORES_AND_COMPLETE_INDIVIDUAL10CMS_CROSSINGS",
+  "source_paper_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL097834",
+  "source_code_url": "https://github.com/mlchandler/wbc_sustained_obs/blob/a97de9420285f5d4e63e00b91b8fa518ace06529/XAA_ix21.m",
+  "source_code_review_sha256": "a913b10cb0b7ff6c56cfc7ceff6e5116b2b357034ba36bc9a64d8bc18514ec6d",
+  "source_access": "Primary publisher indexed full text and pinned author MATLAB IX21 selector reviewed; no original paper figure pixels or digitization claimed.",
+  "source_transect": "IX21_Durban_Port_Louis",
+  "source_data_doi": "10.5281/zenodo.5851312",
+  "source_license": "CC-BY-4.0",
+  "raw_source": {
+    "source_file": "ix21_velocity.nc",
+    "source_raw_bytes": 55619078,
+    "source_raw_sha256": "9c76e82915726ed1317b179ded6d6b63e2775d4fe45e5fe0367a5cf84a6ec1d4",
+    "source_raw_md5": "41315b038a3b575e63475eb4a43e0eeb"
+  },
+  "candidate_file": "research/source-data/agulhas-chandler-seasonal-depth-v1/candidate.json",
+  "candidate_sha256": "f26e6eadf626acc289edfbf1f8e7d92b20e0dc56154140f919eb5f9162b2c0d8",
+  "source_monthly_profiles": 192,
+  "calendar_month_mean_profiles": 12,
+  "years": [
+    2004,
+    2019
+  ],
+  "author_selector": "Apply five-point triangular filter before choosing minimum northward depth-integrated velocity only at longitude<34.4E. This is not the EAC whole-transect selector; nearby flow can influence filtered values inside the restriction.",
+  "support_findings": [
+    "All192 selected axes lie inside the declared Agulhas gate. Native sampled maxima of the12 current-following mean profiles occur at30 or40m.",
+    "All12 calendar-mean5cm/s and zero crossing diagnoses are unknown after a deep support gap, generally beyond900–1000m common support. Mean-profile10cm/s crossing is resolved only for September. Do not replace a missing crossing with the last supported level.",
+    "Every individual monthly profile has a resolved10cm/s crossing, permitting a separately defined fully supported distribution of16 diagnosed depths per calendar month. Such a distribution is not the crossing of a mean velocity profile or physical depth uncertainty.",
+    "Source observations are reconstructed HR-XBT/Argo/SLA estimates. Statistical deep extension, time-invariant mean reference velocity and source velocity error remain limitations; no whole-route bottom, thickness or volume is inferred."
+  ],
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
