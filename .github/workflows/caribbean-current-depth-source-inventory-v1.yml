@@ -1,0 +1,43 @@
+name: Caribbean current depth source inventory v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/caribbean-current-depth-source-inventory-v1.yml
+      - analysis/inventory_caribbean_depth_archive_v1.py
+      - research/caribbean-current-depth-source-inventory-request-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source-inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/inventory_caribbean_depth_archive_v1.py
+            research/caribbean-current-depth-source-inventory-request-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install bounded source-inspection dependencies
+        run: python -m pip install --disable-pip-version-check netCDF4==1.7.4
+      - name: Verify archive and inspect processed velocity schema on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/inventory_caribbean_depth_archive_v1.py --scratch "$RUNNER_TEMP/caribbean-depth-source" --output output/caribbean-depth-source-inventory-v1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: caribbean-depth-source-inventory-v1
+          path: output/caribbean-depth-source-inventory-v1.json
+          if-no-files-found: error
+          retention-days: 14

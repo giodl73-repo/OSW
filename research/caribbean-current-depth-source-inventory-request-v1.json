@@ -1,0 +1,46 @@
+{
+  "schema": "osw.caribbean-depth-source-inventory-request.v1",
+  "entity_id": "current:caribbean",
+  "status": "CLOUD_SOURCE_INSPECTION_ONLY",
+  "source_article": "https://doi.org/10.5194/os-22-735-2026",
+  "source_data_doi": "https://doi.org/10.5281/zenodo.18332586",
+  "source_code_doi": "https://doi.org/10.5281/zenodo.18622052",
+  "license": "cc-by-4.0",
+  "metadata_files_sha256": {
+    "data_record": "bf30fcfb422e0f033455c69e504087691db03a0d3fe91b1be1a6743d37a8d5d4",
+    "code_record": "9c3e2280a6d4a9cc299bdc9794cd25885fc40cd05c9b2f50c8c4fa90cbcb3d88"
+  },
+  "archive": {
+    "url": "https://zenodo.org/api/records/18332586/files/data.zip/content",
+    "bytes": 1070927767,
+    "md5": "49e12ca9fcfcdb63121788ddb3ebadc1"
+  },
+  "processed_velocity_basename": "RU29_2024_Processed_AD2CP.nc",
+  "source_code_commit": "5029c77bb75905d4cb5dc461035bff8ddac59395",
+  "reviewed_source_code_paths": [
+    "code/RU29_ABC2DR_Prep_Glider_Data.ipynb",
+    "code/RU29_ABC2DR_AD2CP_Processing.ipynb"
+  ],
+  "expected_variables": [
+    "u_grid",
+    "v_grid",
+    "depth",
+    "time",
+    "start_time",
+    "end_time",
+    "latitude",
+    "longitude"
+  ],
+  "source_code_timestamp_observation": "Author processing code assigns inversion_time=start_time+(end_time-start_time), while latitude/longitude are endpoint averages. Inspect actual NetCDF before deciding timestamp policy; this observation alone does not prove the archive uses that code or establish a correction.",
+  "source_article_sampling_qualification": "Study near69W comprises2.5 transects over95days. Source says roughly1000m operational depth does not resolve the full vertical flow structure.",
+  "next_measurement_requirements": [
+    "Verify data checksum and source member schema.",
+    "Establish velocity and depth units from source evidence, not magnitude alone.",
+    "Audit reported timestamps against profile start/end times; preserve source values and any derived representative time separately.",
+    "Define current component, lateral section, directional velocity operator, sensitivity scenarios and missing/censored boundary rules before deriving geometry.",
+    "Keep section snapshots and unresolved lower boundaries distinct from whole-route depth and annual extrema."
+  ],
+  "depth_measurements_added": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
