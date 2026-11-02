@@ -1,0 +1,4414 @@
+{
+  "schema": "osw.current-depth-route-projections.v2",
+  "status": "EXTENT_CORE_AND_NET_TRANSPORT_DIAGNOSTICS_SEPARATE",
+  "generator_file": "analysis/build_current_depth_route_projections_v2.py",
+  "generator_sha256": "f2c9b72f80c58cee14782a18234ae86d6ec21b8b441bb9381724d8081f314bf9",
+  "input_sha256": {
+    "analysis/build_current_depth_route_projections_v1.py": "7949beb6ab4599b650abd41fde270a57e5d4028aaae74ddcb820b8bc8985e7f9",
+    "research/agulhas-reference-path-candidate.json": "2b5a04d3b3a21029c61ffb96001080746ae8667be6eff3a1cabf59e56c1b2acc",
+    "research/current-depth-register-v32.json": "d4507aa29a76a3d8c0e60efe5bf721768e86d5e5b0f1bad89ddd29d4238e930a",
+    "research/current-depth-route-projection-operator-v1.json": "e7792357e7713ebe853d7daf708eec4396fca7759a43f7975b01fab662abae86",
+    "research/current-depth-route-projection-operator-v2.json": "b8171bb412cc284291322a912520d9f126a51ddc2737145b8ba7fd3d800bd7a9",
+    "research/current-depth-route-projections-v1.csv": "d8d785b342abcdfc7f93cc1827d95dabde7fab444192ea928731e2077462145f",
+    "research/current-depth-route-projections-v1.json": "8a3af2984fa6a8563c901d17f0b76570224a0d33443303eeb99cdcf99e530103",
+    "research/current-length-estimate-register-v1.json": "5b63576c47b6c59f4360d51cb2c04354ddab670894f7971a2380d8ca9ffd5d87",
+    "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
+    "research/ocean-current-reference-path-candidates.json": "b06caed27655c39f8127ddda441cba0a856800f599ec52edcd5b30d2ad37b633",
+    "research/somali-winter-reference-path-candidate.json": "37cf752d61cfcfff451e3066e842e00f524b78400573b28ff731cf3ff12f4cda"
+  },
+  "previous_projection_numerical_semantics_preserved": true,
+  "sample_value_schema_change": "v1 projected_extent_descriptor_m renamed projected_depth_descriptor_m in v2 samples; per-projection metric retains exact meaning. Frozen v1 files unchanged.",
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 4,
+    "identities_not_yet_projected": 107,
+    "regional_projection_scenarios": 4,
+    "source_anchor_references": 10,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "interpretation": "Extent, core-depth and net-section-transport-zero descriptors are different metrics, with separate source definitions and temporal support. Piecewise interpolation on an editorial drawing adds assumed intermediate values, not new observations, physical thickness or volume.",
+  "records": [
+    {
+      "entity_id": "current:agulhas",
+      "name": "Agulhas Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "agulhas-vinayachandran-2021-pulse-depth-context",
+        "agulhas-casal-2009-rb-zero-net-transport-depth",
+        "agulhas-casal-2009-ps-zero-net-transport-depth",
+        "agulhas-casal-2009-el-zero-net-transport-depth",
+        "agulhas-casal-2009-pe-zero-net-transport-depth"
+      ],
+      "projection_ids": [
+        "agulhas-casal-2009-net-transport-zero-depth-scenario-v1"
+      ],
+      "projection_status": "regional_assumed_interpolation_available",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:agulhas-return",
+      "name": "Agulhas Return Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "agulhas-return-lutjeharms-2007-transport-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:alaska-coastal-gulf",
+      "name": "Alaska Coastal Current (Gulf of Alaska)",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "alaska-coastal-stabeno-1996-shallow-bound"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:alaska",
+      "name": "Alaska Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "alaska-tang-2014-sept2008-geostrophic-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:aleutian",
+      "name": "Aleutian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "aleutian-tabata-1975-subarctic-figure500m-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:algerian",
+      "name": "Algerian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "algerian-taupier-letage-2003-meander-aw-thickness"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:acc",
+      "name": "Antarctic Circumpolar Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-23-acc-front-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:antarctic-coastal",
+      "name": "Antarctic Coastal Current (East Wind Drift)",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "antarctic-coastal-schubert-2021-section-01-mean-depth",
+        "antarctic-coastal-schubert-2021-section-02-mean-depth",
+        "antarctic-coastal-schubert-2021-section-03-mean-depth",
+        "antarctic-coastal-schubert-2021-section-04-mean-depth",
+        "antarctic-coastal-schubert-2021-section-05-mean-depth",
+        "antarctic-coastal-schubert-2021-section-06-mean-depth",
+        "antarctic-coastal-schubert-2021-section-07-mean-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:antarctic-slope",
+      "name": "Antarctic Slope Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "antarctic-slope-dong-2016-deep-branch-below1000"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:antilles",
+      "name": "Antilles Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-51-transport-depth-extent",
+        "cainzos-2023-t02-row-52-transport-depth-extent",
+        "cainzos-2023-t02-row-53-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-equatorial-undercurrent",
+      "name": "Atlantic Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-euc-philander-2001-western-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "name": "Atlantic North Equatorial Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-necc-bourles-1999-march-core",
+        "atlantic-necc-sivkov-2021-setting-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "name": "Atlantic North Equatorial Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-nec-stramma-2005-northern-band-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial-undercurrent",
+      "name": "Atlantic North Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-neuc-sivkov-2021-setting-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-countercurrent",
+      "name": "Atlantic South Equatorial Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-secc-bourles-1999-shallow-core",
+        "atlantic-secc-bourles-1999-deep-core",
+        "atlantic-secc-bourles-1999-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial",
+      "name": "Atlantic South Equatorial Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-sec-assuncao-2023-regional100m-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-undercurrent",
+      "name": "Atlantic South Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "atlantic-seuc-molinari-1981-core-depth-range",
+        "atlantic-seuc-molinari-1981-deep-core-bound"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:azores-countercurrent",
+      "name": "Azores Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "azores-countercurrent-comas-rodriguez-2011-orca-vertical-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:azores",
+      "name": "Azores Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "azores-comas-rodriguez-2011-orca-vertical-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:baffin",
+      "name": "Baffin Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "baffin-carroll-2018-arctic-water-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:balearic",
+      "name": "Balearic Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "balearic-garcia-ladona-1996-fe89-section-a",
+        "balearic-garcia-ladona-1996-fe89-fdc"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:benguela",
+      "name": "Benguela Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-25-transport-depth-extent",
+        "cainzos-2023-t02-row-27-transport-depth-extent",
+        "cainzos-2023-t02-row-28-transport-depth-extent",
+        "cainzos-2023-t02-row-29-transport-depth-extent",
+        "cainzos-2023-t02-row-31-transport-depth-extent",
+        "cainzos-2023-t02-row-32-transport-depth-extent",
+        "cainzos-2023-t02-row-34-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:black-sea-rim",
+      "name": "Black Sea Rim Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "rim-podymov-2023-near-halt-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:brazil",
+      "name": "Brazil Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-5-transport-depth-extent",
+        "cainzos-2023-t02-row-6-transport-depth-extent",
+        "cainzos-2023-t02-row-7-transport-depth-extent",
+        "cainzos-2023-t02-row-13-transport-depth-extent",
+        "cainzos-2023-t02-row-14-transport-depth-extent",
+        "cainzos-2023-t02-row-19-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:california",
+      "name": "California Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "california-stone-2018-offshore-reach",
+        "california-stone-2018-near-coast-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:canary",
+      "name": "Canary Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-55-transport-depth-extent",
+        "cainzos-2023-t02-row-56-transport-depth-extent",
+        "cainzos-2023-t02-row-57-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:caribbean",
+      "name": "Caribbean Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "caribbean-ru29-2024-profile-68-lower-crossing",
+        "caribbean-ru29-2024-profile-70-lower-crossing",
+        "caribbean-ru29-2024-profile-74-lower-crossing",
+        "caribbean-ru29-2024-profile-75-lower-crossing",
+        "caribbean-ru29-2024-profile-76-lower-crossing",
+        "caribbean-ru29-2024-profile-77-lower-crossing",
+        "caribbean-ru29-2024-profile-78-lower-crossing",
+        "caribbean-ru29-2024-profile-79-lower-crossing",
+        "caribbean-ru29-2024-profile-80-lower-crossing",
+        "caribbean-ru29-2024-profile-81-lower-crossing",
+        "caribbean-ru29-2024-profile-82-lower-crossing",
+        "caribbean-ru29-2024-profile-85-lower-crossing",
+        "caribbean-ru29-2024-profile-86-lower-crossing",
+        "caribbean-ru29-2024-profile-87-lower-crossing",
+        "caribbean-ru29-2024-profile-88-lower-crossing",
+        "caribbean-ru29-2024-profile-89-lower-crossing",
+        "caribbean-ru29-2024-profile-90-lower-crossing",
+        "caribbean-ru29-2024-profile-91-lower-crossing",
+        "caribbean-ru29-2024-profile-92-lower-crossing",
+        "caribbean-ru29-2024-profile-93-lower-crossing",
+        "caribbean-ru29-2024-profile-94-lower-crossing",
+        "caribbean-ru29-2024-profile-95-lower-crossing",
+        "caribbean-ru29-2024-profile-96-lower-crossing",
+        "caribbean-ru29-2024-profile-97-lower-crossing",
+        "caribbean-ru29-2024-profile-98-lower-crossing",
+        "caribbean-ru29-2024-profile-99-lower-crossing",
+        "caribbean-ru29-2024-profile-101-lower-crossing",
+        "caribbean-ru29-2024-profile-102-lower-crossing",
+        "caribbean-ru29-2024-profile-103-lower-crossing",
+        "caribbean-ru29-2024-profile-104-lower-crossing",
+        "caribbean-ru29-2024-profile-105-lower-crossing",
+        "caribbean-ru29-2024-profile-106-lower-crossing",
+        "caribbean-ru29-2024-profile-107-lower-crossing",
+        "caribbean-ru29-2024-profile-110-lower-crossing",
+        "caribbean-ru29-2024-profile-120-lower-crossing",
+        "caribbean-ru29-2024-profile-121-lower-crossing",
+        "caribbean-ru29-2024-profile-123-lower-crossing",
+        "caribbean-ru29-2024-profile-127-lower-crossing",
+        "caribbean-ru29-2024-profile-128-lower-crossing",
+        "caribbean-ru29-2024-profile-131-lower-crossing",
+        "caribbean-ru29-2024-profile-133-lower-crossing",
+        "caribbean-ru29-2024-profile-134-lower-crossing",
+        "caribbean-ru29-2024-profile-135-lower-crossing",
+        "caribbean-ru29-2024-profile-138-lower-crossing",
+        "caribbean-ru29-2024-profile-139-lower-crossing",
+        "caribbean-ru29-2024-profile-141-lower-crossing",
+        "caribbean-ru29-2024-profile-145-lower-crossing",
+        "caribbean-ru29-2024-profile-158-lower-crossing",
+        "caribbean-ru29-2024-profile-170-lower-crossing",
+        "caribbean-ru29-2024-profile-171-lower-crossing",
+        "caribbean-ru29-2024-profile-172-lower-crossing",
+        "caribbean-ru29-2024-profile-173-lower-crossing",
+        "caribbean-ru29-2024-profile-174-lower-crossing",
+        "caribbean-ru29-2024-profile-175-lower-crossing",
+        "caribbean-ru29-2024-profile-176-lower-crossing",
+        "caribbean-ru29-2024-profile-177-lower-crossing",
+        "caribbean-ru29-2024-profile-178-lower-crossing",
+        "caribbean-ru29-2024-profile-180-lower-crossing",
+        "caribbean-ru29-2024-profile-181-lower-crossing",
+        "caribbean-ru29-2024-profile-184-lower-crossing",
+        "caribbean-ru29-2024-profile-217-lower-crossing",
+        "caribbean-ru29-2024-profile-218-lower-crossing",
+        "caribbean-ru29-2024-profile-219-lower-crossing",
+        "caribbean-ru29-2024-profile-220-lower-crossing",
+        "caribbean-ru29-2024-profile-221-lower-crossing",
+        "caribbean-ru29-2024-profile-222-lower-crossing",
+        "caribbean-ru29-2024-profile-223-lower-crossing",
+        "caribbean-ru29-2024-profile-224-lower-crossing",
+        "caribbean-ru29-2024-profile-227-lower-crossing",
+        "caribbean-ru29-2024-profile-228-lower-crossing",
+        "caribbean-ru29-2024-profile-229-lower-crossing",
+        "caribbean-ru29-2024-profile-231-lower-crossing",
+        "caribbean-ru29-2024-profile-235-lower-crossing",
+        "caribbean-ru29-2024-profile-236-lower-crossing",
+        "caribbean-ru29-2024-profile-237-lower-crossing",
+        "caribbean-ru29-2024-profile-238-lower-crossing",
+        "caribbean-ru29-2024-profile-239-lower-crossing",
+        "caribbean-ru29-2024-profile-240-lower-crossing",
+        "caribbean-ru29-2024-profile-241-lower-crossing",
+        "caribbean-ru29-2024-profile-244-lower-crossing",
+        "caribbean-ru29-2024-profile-248-lower-crossing",
+        "caribbean-ru29-2024-profile-271-lower-crossing",
+        "caribbean-ru29-2024-profile-274-lower-crossing",
+        "caribbean-ru29-2024-profile-275-lower-crossing",
+        "caribbean-ru29-2024-profile-276-lower-crossing",
+        "caribbean-ru29-2024-profile-277-lower-crossing",
+        "caribbean-ru29-2024-profile-278-lower-crossing",
+        "caribbean-ru29-2024-profile-279-lower-crossing",
+        "caribbean-ru29-2024-profile-281-lower-crossing",
+        "caribbean-ru29-2024-profile-282-lower-crossing",
+        "caribbean-ru29-2024-profile-283-lower-crossing",
+        "caribbean-ru29-2024-profile-284-lower-crossing",
+        "caribbean-ru29-2024-profile-285-lower-crossing",
+        "caribbean-ru29-2024-profile-289-lower-crossing",
+        "caribbean-ru29-2024-profile-298-lower-crossing",
+        "caribbean-ru29-2024-profile-308-lower-crossing",
+        "caribbean-ru29-2024-profile-309-lower-crossing",
+        "caribbean-ru29-2024-profile-312-lower-crossing",
+        "caribbean-ru29-2024-profile-314-lower-crossing",
+        "caribbean-ru29-2024-profile-315-lower-crossing",
+        "caribbean-ru29-2024-profile-316-lower-crossing",
+        "caribbean-ru29-2024-profile-317-lower-crossing",
+        "caribbean-ru29-2024-profile-318-lower-crossing",
+        "caribbean-ru29-2024-profile-319-lower-crossing",
+        "caribbean-ru29-2024-profile-320-lower-crossing",
+        "caribbean-ru29-2024-profile-321-lower-crossing"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:davidson",
+      "name": "Davidson Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "davidson-beutel-2025-northern-extension-layer"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "name": "Deep Western Boundary Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-ch1-t5-tbody-22-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-23-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-25-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-27-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-28-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-29-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-2-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-4-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-6-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-7-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-9-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-10-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-11-deep-domain",
+        "cainzos-2023-ch1-t6-tbody-13-deep-domain"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-adriatic",
+      "name": "East Adriatic Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "east-adriatic-vilibic-2018-a4-observed-mean-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-african-coastal",
+      "name": "East African Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "eacc-zheng-2024-ofes-core",
+        "eacc-zheng-2024-ofes-concentrated-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-australian",
+      "name": "East Australian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "east-australian-imos-plan-2014-typical-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-greenland-coastal",
+      "name": "East Greenland Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "egcc-bacon-2002-aug1997-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-greenland",
+      "name": "East Greenland Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-78-transport-depth-extent",
+        "cainzos-2023-t02-row-79-transport-depth-extent",
+        "cainzos-2023-t02-row-80-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:east-india-coastal",
+      "name": "East India Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "eicc-sen-2022-north-a-core",
+        "eicc-sen-2022-north-b-reach",
+        "eicc-sen-2022-north-c-core-band",
+        "eicc-sen-2022-south-regional-reach",
+        "eicc-sen-2022-south-b-core",
+        "eicc-sen-2022-south-c-core"
+      ],
+      "projection_ids": [
+        "eicc-sen-2022-southward-core-depth-scenario-v1"
+      ],
+      "projection_status": "regional_assumed_interpolation_available",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:equatorial-countercurrent",
+      "name": "Equatorial Countercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:equatorial-undercurrent",
+      "name": "Equatorial Undercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:falkland",
+      "name": "Falkland (Malvinas) Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-3-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:florida",
+      "name": "Florida Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-47-transport-depth-extent",
+        "cainzos-2023-t02-row-48-transport-depth-extent",
+        "cainzos-2023-t02-row-49-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:gaspe",
+      "name": "Gaspé Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "gaspe-leclercq-2022-reported-depth-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:greenland-middle-atlantic-shelf-hypothesis",
+      "name": "Greenland–Middle Atlantic shelf-current hypothesis",
+      "identity_level": "system",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:guiana",
+      "name": "Guiana Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "guiana-baklouti-2007-m2-post-transition-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:guinea",
+      "name": "Guinea Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "guinea-djakoure-2017-thickness-summary"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:gulf-stream",
+      "name": "Gulf Stream",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-59-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:gulf-stream-system",
+      "name": "Gulf Stream System",
+      "identity_level": "system",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:hiri-current",
+      "name": "Hiri Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "hiri-wijeratne-2018-australian-branch-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "name": "Indian Ocean Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "indian-euc-siswanto-2019-march-2017-flow-band",
+        "indian-euc-siswanto-2019-winter-core-depth",
+        "indian-euc-siswanto-2019-spring-core-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "name": "Indian Ocean South Equatorial Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "indian-secc-hacker-1998-i9n-labeled100m-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-undercurrent",
+      "name": "Indian Ocean South Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "indian-seuc-chen-2022-observed-core-depth-band",
+        "indian-seuc-chen-2022-climatological-deep-reach-bound",
+        "indian-seuc-chen-2022-core-thickness-east-minimum",
+        "indian-seuc-chen-2022-core-thickness-central-maximum",
+        "indian-seuc-chen-2022-core-thickness-longitude-median"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:indian-south-equatorial",
+      "name": "Indian South Equatorial Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "indian-sec-premchand-1976-may-june1965-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:indonesian-throughflow",
+      "name": "Indonesian Throughflow",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "itf-jiang-2019-makassar-observed-mean-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:irminger",
+      "name": "Irminger Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-74-transport-depth-extent",
+        "cainzos-2023-t02-row-75-transport-depth-extent",
+        "cainzos-2023-t02-row-76-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:jutland",
+      "name": "Jutland Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "jutland-svansson-1989-station41-record-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:kuroshio",
+      "name": "Kuroshio Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "kuroshio-hsin-2008-inshore-reach",
+        "kuroshio-hsin-2008-offshore-reach",
+        "kuroshio-hsin-2008-southern-core-boundary",
+        "kuroshio-hsin-2008-northern-core-boundary"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:kuroshio-extension",
+      "name": "Kuroshio Extension",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "kuroshio-extension-qu-2001-deep-component"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:labrador",
+      "name": "Labrador Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-86-transport-depth-extent",
+        "cainzos-2023-t02-row-87-transport-depth-extent",
+        "cainzos-2023-t02-row-88-transport-depth-extent",
+        "cainzos-2023-ch1-t5-tbody-18-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-19-deep-domain",
+        "cainzos-2023-ch1-t5-tbody-20-deep-domain"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:leeuwin",
+      "name": "Leeuwin Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "leeuwin-feng-2025-tr50-annual-mean-zero-flow-depth",
+        "leeuwin-feng-2025-tr50-aug-sep-zero-flow-depth",
+        "leeuwin-feng-2025-tr50-feb-mar-zero-flow-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:ligurian",
+      "name": "Ligurian Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "ligurian-berta-2018-northern-summary-winter",
+        "ligurian-berta-2018-northern-summary-summer"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:loop",
+      "name": "Loop Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "loop-lopera-2025-literature-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:mauritanian",
+      "name": "Mauritanian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "mauritanian-klenz-2018-upwelling-core-depth-band",
+        "mauritanian-klenz-2018-upwelling-mean-core-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:mediterranean-undercurrent",
+      "name": "Mediterranean Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "med-bower-2002-may1993-section1-thickness",
+        "med-bower-2002-may1993-section3-velocity-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:mindanao-current",
+      "name": "Mindanao Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "mindanao-zhang-2014-reach",
+        "mindanao-zhang-2014-core",
+        "mindanao-ren-2018-reach",
+        "mindanao-ren-2018-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:monsoon",
+      "name": "Monsoon Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "monsoon-anutaliya-2022-winter-branch-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "name": "New Guinea Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "ngcc-zhang-2020-upper100-reach",
+        "ngcc-zhang-2020-february-profile-maximum",
+        "ngcc-zhang-2020-august-profile-maximum"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "name": "New Guinea Coastal Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "ngcuc-azminuddin-2022-140e-reach",
+        "ngcuc-azminuddin-2022-140e-core",
+        "ngcuc-spray-southern-track-below1000"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "name": "New Ireland Coastal Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "nicu-melet-2010-cited-observed-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-atlantic",
+      "name": "North Atlantic Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-63-transport-depth-extent",
+        "cainzos-2023-t02-row-64-transport-depth-extent",
+        "cainzos-2023-t02-row-66-transport-depth-extent",
+        "cainzos-2023-t02-row-67-transport-depth-extent",
+        "cainzos-2023-t02-row-68-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "name": "North Brazil Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-45-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-cape",
+      "name": "North Cape Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "north-cape-baumann-2026-bso-salinity-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-equatorial-countercurrent",
+      "name": "North Equatorial Countercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-equatorial",
+      "name": "North Equatorial Current",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-equatorial-undercurrent",
+      "name": "North Equatorial Undercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:north-pacific",
+      "name": "North Pacific Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "north-pacific-tabata-1975-nonzero-flow-500m"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "name": "Northern Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "northern-mediterranean-berta-2018-winter-vertical-extent",
+        "northern-mediterranean-berta-2018-summer-vertical-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:norwegian-atlantic-slope",
+      "name": "Norwegian Atlantic Slope Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "nwasc-baumann-2026-svinoy-core-bottom",
+        "nwasc-baumann-2026-gimsoy-core-bottom"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:norwegian-coastal",
+      "name": "Norwegian Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "ncc-tonani-2019-trench-upper-layer"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:norwegian",
+      "name": "Norwegian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "norwegian-skjelvan-2001-norwegian-basin-aw-depth",
+        "norwegian-skjelvan-2001-lofoten-basin-aw-depth"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:oyashio",
+      "name": "Oyashio",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "oyashio-qiu-2019-summer-fall-upper-limit"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-equatorial-undercurrent",
+      "name": "Pacific Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-euc-azminuddin-2022-flow-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "name": "Pacific North Equatorial Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-necc-song-2019-142e-mean"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "name": "Pacific North Equatorial Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-nec-schonau-2015-northern-reach1000"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-undercurrent",
+      "name": "Pacific North Equatorial Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-neuc-li-2018-neucs-upper-boundary",
+        "pacific-neuc-li-2018-neucm-upper-boundary",
+        "pacific-neuc-li-2018-neucn-upper-boundary"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-north-subsurface-countercurrent",
+      "name": "Pacific North Subsurface Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-nscc-azminuddin-2022-flow-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "name": "Pacific South Equatorial Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-secc-rotschi-1972-threshold-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial",
+      "name": "Pacific South Equatorial Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-northern-sec-song-2019-142e-mean"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:pacific-south-subsurface-countercurrent",
+      "name": "Pacific South Subsurface Countercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pacific-sscc-rowe-2000-western-core",
+        "pacific-sscc-rowe-2000-eastern-core",
+        "pacific-sscc-johnson-2002-140w-main-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:persian-gulf-saline-overflow",
+      "name": "Persian Gulf saline overflow",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "pgw-pous-2004-gogp99-thermohaline-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:peru-humboldt",
+      "name": "Peru (Humboldt) Current",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "peru-penven-2005-pcc-mean-reach",
+        "peru-penven-2005-pcuc-punta-falsa-isotach",
+        "peru-penven-2005-pcuc-chimbote-isotach",
+        "peru-penven-2005-pcuc-callao-isotach",
+        "peru-penven-2005-pcuc-pisco-isotach",
+        "peru-penven-2005-pcuc-san-juan-isotach",
+        "peru-penven-2005-pcuc-arica-isotach",
+        "peru-chaigneau-2013-poc-at-least500"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:portugal",
+      "name": "Portugal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "portugal-voelker-2022-subpolar-enacw-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:red-sea-saline-overflow",
+      "name": "Red Sea saline overflow",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "redsea-bower-2005-winter2001-product-core-depths"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "name": "Solomon Island Coastal Undercurrent",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "siuc-melet-2010-6s-model-core"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:somali",
+      "name": "Somali Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "somali-vinayachandran-2021-june-depth-context",
+        "somali-sen-2022-northeast-a-c-reach",
+        "somali-sen-2022-southwest-b-reach",
+        "somali-sen-2022-southwest-c-reach"
+      ],
+      "projection_ids": [
+        "somali-sen-2022-winter-regional-depth-scenario-v1"
+      ],
+      "projection_status": "regional_assumed_interpolation_available",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-atlantic",
+      "name": "South Atlantic Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "south-atlantic-smythe-wright-1998-dominant-layer"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-australian",
+      "name": "South Australian Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "south-australian-duran-2020-cited-flow-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-equatorial-countercurrent",
+      "name": "South Equatorial Countercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-equatorial",
+      "name": "South Equatorial Current",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-equatorial-undercurrent",
+      "name": "South Equatorial Undercurrent",
+      "identity_level": "family",
+      "depth_reference_ids": [],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-indian",
+      "name": "South Indian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "south-indian-stramma-1992-upper1000-transport"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-java",
+      "name": "South Java Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "south-java-ningsih-2021-surface-current-definition"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:south-pacific",
+      "name": "South Pacific Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "south-pacific-stramma-1995-baldrige-nearly500m-flow",
+        "south-pacific-stramma-1995-deryugin-eastern-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:southern-east-madagascar",
+      "name": "Southern East Madagascar Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "semc-nauw-2008-april2001-jet-reach",
+        "semc-nauw-2008-april2001-t6-t8-core-band"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:spitsbergen-atlantic",
+      "name": "Spitsbergen Atlantic Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "spitsbergen-atlantic-defrost-2016-s1-regional-reach"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:tasman-front",
+      "name": "Tasman Front",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "tasman-front-sutton-2014-norfolk-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:tsushima",
+      "name": "Tsushima Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "tsushima-jma-regional-thickness"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:west-australian",
+      "name": "West Australian Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "west-australian-andrews-1977-reported-scale"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:west-greenland",
+      "name": "West Greenland Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "cainzos-2023-t02-row-82-transport-depth-extent",
+        "cainzos-2023-t02-row-83-transport-depth-extent",
+        "cainzos-2023-t02-row-84-transport-depth-extent"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:west-india-coastal",
+      "name": "West India Coastal Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "wicc-shetye-1991-southern-winter-reach",
+        "wicc-shetye-1991-northern-winter-reach",
+        "wicc-sen-2022-north-seasonal-reach",
+        "wicc-sen-2022-south-june-reversal",
+        "wicc-sen-2022-south-july-august-reversal"
+      ],
+      "projection_ids": [
+        "wicc-winter-1987-1988-linear-depth-scenario-v1"
+      ],
+      "projection_status": "regional_assumed_interpolation_available",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:west-spitsbergen",
+      "name": "West Spitsbergen Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "wsc-kolas-fer-2018-aug2015-stream-tube-depth-domain"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:western-adriatic",
+      "name": "Western Adriatic Current",
+      "identity_level": "current",
+      "depth_reference_ids": [
+        "western-adriatic-bernardi-aubry-2018-wacc-sample-depths"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:australian-west-south-boundary-flow",
+      "name": "Western and southern Australian boundary flow",
+      "identity_level": "system",
+      "depth_reference_ids": [
+        "australian-boundary-richardson-2019-winter-interface",
+        "australian-boundary-richardson-2019-summer-interface",
+        "australian-boundary-richardson-2019-summer-local-shallow-interface"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    },
+    {
+      "entity_id": "current:zeehan",
+      "name": "Zeehan Current",
+      "identity_level": "segment",
+      "depth_reference_ids": [
+        "zeehan-cresswell-2000-dec1997-below300"
+      ],
+      "projection_ids": [],
+      "projection_status": "not_yet_projected",
+      "whole_route_physical_depth_profile": false,
+      "volume_estimate_km3": null
+    }
+  ],
+  "projections": [
+    {
+      "id": "wicc-winter-1987-1988-linear-depth-scenario-v1",
+      "entity_id": "current:west-india-coastal",
+      "route_id": "west-india-coastal-principal-reference-extent-v4",
+      "route_file": "research/current-length-reference-extents-v4.json",
+      "route_direction": "stored_editorial_vertex_order_not_flow_direction",
+      "flow_direction_context": "poleward_surface_coastal_current_not_southward_undercurrent",
+      "metric": "projected_reported_vertical_extent_descriptor",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "status": "regional_projected_descriptor_scenario_not_observed_profile",
+      "campaign_window": {
+        "start_month": "1987-12",
+        "end_month": "1988-01"
+      },
+      "exact_section_dates_known": false,
+      "synoptic_full_route": false,
+      "phase_label": "northeast_monsoon",
+      "route_length_km": 1787.691,
+      "supported_reference_distance_interval_km": [
+        0.0,
+        1540.842
+      ],
+      "interpolated_editorial_route_fraction": 0.861917,
+      "fraction_interpretation": "Share of this editorial drawing between source latitude gates; not physical current coverage or confidence.",
+      "anchors": [
+        {
+          "latitude_degrees_north": 22,
+          "approximate_extent_depth_m": 400,
+          "reference_id": "wicc-shetye-1991-northern-winter-reach",
+          "distance_km": 0.0,
+          "editorial_route_lon_lat": [
+            68.5,
+            22
+          ],
+          "coordinate_role": "mapped_approximate_source_latitude_not_observed_profile_position"
+        },
+        {
+          "latitude_degrees_north": 10,
+          "approximate_extent_depth_m": 200,
+          "reference_id": "wicc-shetye-1991-southern-winter-reach",
+          "distance_km": 1540.842,
+          "editorial_route_lon_lat": [
+            75.503576,
+            10.0
+          ],
+          "coordinate_role": "mapped_approximate_source_latitude_not_observed_profile_position"
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "editorial_route_lon_lat": [
+            68.5,
+            22
+          ],
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 400
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "editorial_route_lon_lat": [
+            68.832929,
+            21.672456
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 390
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "editorial_route_lon_lat": [
+            69.164355,
+            21.344235
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 390
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "editorial_route_lon_lat": [
+            69.494309,
+            21.01535
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 380
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "editorial_route_lon_lat": [
+            69.822817,
+            20.685815
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 370
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "editorial_route_lon_lat": [
+            70.149908,
+            20.355644
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 370
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "editorial_route_lon_lat": [
+            70.475611,
+            20.024851
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 360
+        },
+        {
+          "distance_along_reference_route_km": 303.753,
+          "editorial_route_lon_lat": [
+            70.5,
+            20
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 360
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "editorial_route_lon_lat": [
+            70.757663,
+            19.660773
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 350
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "editorial_route_lon_lat": [
+            71.035016,
+            19.293594
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 350
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "editorial_route_lon_lat": [
+            71.311135,
+            18.92598
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 340
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "editorial_route_lon_lat": [
+            71.586048,
+            18.557943
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 340
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "editorial_route_lon_lat": [
+            71.859784,
+            18.189493
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 330
+        },
+        {
+          "distance_along_reference_route_km": 575.693,
+          "editorial_route_lon_lat": [
+            72,
+            18
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 330
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "editorial_route_lon_lat": [
+            72.070732,
+            17.791089
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 320
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "editorial_route_lon_lat": [
+            72.215717,
+            17.361254
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 320
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "editorial_route_lon_lat": [
+            72.360027,
+            16.931296
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 310
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "editorial_route_lon_lat": [
+            72.503684,
+            16.501218
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 300
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "editorial_route_lon_lat": [
+            72.646707,
+            16.071024
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 300
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "editorial_route_lon_lat": [
+            72.789116,
+            15.640718
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 290
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "editorial_route_lon_lat": [
+            72.930931,
+            15.210303
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 280
+        },
+        {
+          "distance_along_reference_route_km": 924.426,
+          "editorial_route_lon_lat": [
+            73,
+            15
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 280
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "editorial_route_lon_lat": [
+            73.105073,
+            14.792681
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 280
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "editorial_route_lon_lat": [
+            73.309927,
+            14.387205
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 270
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "editorial_route_lon_lat": [
+            73.514043,
+            13.981538
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 260
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "editorial_route_lon_lat": [
+            73.717445,
+            13.575687
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 260
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "editorial_route_lon_lat": [
+            73.920157,
+            13.169658
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 250
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "editorial_route_lon_lat": [
+            74.122202,
+            12.763456
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 240
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "editorial_route_lon_lat": [
+            74.323602,
+            12.357088
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 240
+        },
+        {
+          "distance_along_reference_route_km": 1293.92,
+          "editorial_route_lon_lat": [
+            74.5,
+            12
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 230
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "editorial_route_lon_lat": [
+            74.524878,
+            11.950799
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 230
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "editorial_route_lon_lat": [
+            74.729137,
+            11.546088
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 220
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "editorial_route_lon_lat": [
+            74.932811,
+            11.141223
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 220
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "editorial_route_lon_lat": [
+            75.135922,
+            10.736209
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 210
+        },
+        {
+          "distance_along_reference_route_km": 1500.0,
+          "editorial_route_lon_lat": [
+            75.338493,
+            10.331052
+          ],
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "wicc-shetye-1991-northern-winter-reach",
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 210
+        },
+        {
+          "distance_along_reference_route_km": 1540.842,
+          "editorial_route_lon_lat": [
+            75.503576,
+            10.0
+          ],
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "wicc-shetye-1991-southern-winter-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": 200
+        },
+        {
+          "distance_along_reference_route_km": 1550.0,
+          "editorial_route_lon_lat": [
+            75.540545,
+            9.925758
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1600.0,
+          "editorial_route_lon_lat": [
+            75.742101,
+            9.520333
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1650.0,
+          "editorial_route_lon_lat": [
+            75.943182,
+            9.114782
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1664.149,
+          "editorial_route_lon_lat": [
+            76,
+            9
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1700.0,
+          "editorial_route_lon_lat": [
+            76.145366,
+            8.709878
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1750.0,
+          "editorial_route_lon_lat": [
+            76.347729,
+            8.305159
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        },
+        {
+          "distance_along_reference_route_km": 1787.691,
+          "editorial_route_lon_lat": [
+            76.5,
+            8
+          ],
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false,
+          "projected_depth_descriptor_m": null
+        }
+      ],
+      "assumptions": [
+        "Longitude and connecting geometry are OSW editorial choices.",
+        "The two regional descriptions can anchor an illustrative historical along-route trend.",
+        "Intermediate depth varies linearly with reference-route distance; intermediate values are unmeasured.",
+        "No new width pairing, cross-sectional shape, thickness or stored volume is established."
+      ],
+      "eligibility": {
+        "whole_current_representative": false,
+        "physical_state_join_eligible": false,
+        "volume_eligible": false,
+        "seasonal_playback_eligible": false,
+        "annual_extrema_eligible": false
+      },
+      "physical_lower_boundary_profile": null,
+      "physical_thickness_profile": null,
+      "cross_section_area_km2": null,
+      "volume_km3": null,
+      "annual_depth_range_m": null,
+      "source_reference_ids": [
+        "wicc-shetye-1991-northern-winter-reach",
+        "wicc-shetye-1991-southern-winter-reach"
+      ]
+    },
+    {
+      "id": "somali-sen-2022-winter-regional-depth-scenario-v1",
+      "entity_id": "current:somali",
+      "route_id": "somali-winter-reference-path-candidate",
+      "route_file": "research/somali-winter-reference-path-candidate.json",
+      "route_direction": "stored_editorial_vertex_order_not_flow_direction",
+      "flow_direction_context": "southwestward",
+      "metric": "projected_reported_vertical_extent_descriptor",
+      "source_metric": "reported_vertical_extent",
+      "metric_interpretation": "Source seasonal model extent, not an observed bottom or thickness.",
+      "route_phase_relation": "Winter southward editorial route agrees in directional phase; no summer/northeastward projection.",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "status": "regional_projected_descriptor_scenario_not_observed_profile",
+      "campaign_window": null,
+      "model_time_basis": {
+        "kind": "repeating_climatological_forcing",
+        "simulation_duration_years": 8,
+        "analysis_window": "last_three_simulation_years",
+        "calendar_years": null
+      },
+      "model_product": "Sen2022_ROMS_NIO",
+      "source_temporal_scope": "Directional seasonal model mean; last three simulation years, not a real calendar-year record.",
+      "exact_section_dates_assigned": false,
+      "synoptic_full_route": false,
+      "phase_label": "southwestward_seasonal_mean",
+      "calendar_months": [
+        11,
+        12,
+        1,
+        2
+      ],
+      "calendar_months_role": "source_directional_mean_phase_not_annual_playback",
+      "route_length_km": 1488.279,
+      "supported_reference_distance_interval_km": [
+        131.991,
+        554.647
+      ],
+      "interpolated_editorial_route_fraction": 0.28399,
+      "fraction_interpretation": "Share of this editorial drawing between source latitude gates; not physical current coverage or confidence.",
+      "anchors": [
+        {
+          "reference_id": "somali-sen-2022-southwest-b-reach",
+          "latitude_degrees_north": 6,
+          "approximate_depth_descriptor_m": 500,
+          "distance_km": 131.991,
+          "editorial_route_lon_lat": [
+            49.548553,
+            6.0
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "B",
+          "source_case_id": "somali-sen-2022-southwest-b-reach"
+        },
+        {
+          "reference_id": "somali-sen-2022-southwest-c-reach",
+          "latitude_degrees_north": 3,
+          "approximate_depth_descriptor_m": 600,
+          "distance_km": 554.647,
+          "editorial_route_lon_lat": [
+            47.2,
+            3
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "C",
+          "source_case_id": "somali-sen-2022-southwest-c-reach"
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "editorial_route_lon_lat": [
+            50.2,
+            7
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "editorial_route_lon_lat": [
+            49.952919,
+            6.621291
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "editorial_route_lon_lat": [
+            49.706214,
+            6.242454
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 131.991,
+          "editorial_route_lon_lat": [
+            49.548553,
+            6.0
+          ],
+          "projected_depth_descriptor_m": 500,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "editorial_route_lon_lat": [
+            49.459863,
+            5.863496
+          ],
+          "projected_depth_descriptor_m": 500,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "editorial_route_lon_lat": [
+            49.213845,
+            5.484425
+          ],
+          "projected_depth_descriptor_m": 520,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "editorial_route_lon_lat": [
+            48.968137,
+            5.105247
+          ],
+          "projected_depth_descriptor_m": 530,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 263.876,
+          "editorial_route_lon_lat": [
+            48.9,
+            5
+          ],
+          "projected_depth_descriptor_m": 530,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "editorial_route_lon_lat": [
+            48.688323,
+            4.75174
+          ],
+          "projected_depth_descriptor_m": 540,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "editorial_route_lon_lat": [
+            48.395585,
+            4.408008
+          ],
+          "projected_depth_descriptor_m": 550,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "editorial_route_lon_lat": [
+            48.103116,
+            4.064158
+          ],
+          "projected_depth_descriptor_m": 560,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "editorial_route_lon_lat": [
+            47.810894,
+            3.720198
+          ],
+          "projected_depth_descriptor_m": 580,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "editorial_route_lon_lat": [
+            47.518899,
+            3.376139
+          ],
+          "projected_depth_descriptor_m": 590,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "editorial_route_lon_lat": [
+            47.227109,
+            3.03199
+          ],
+          "projected_depth_descriptor_m": 600,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-b-reach",
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 554.647,
+          "editorial_route_lon_lat": [
+            47.2,
+            3
+          ],
+          "projected_depth_descriptor_m": 600,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "somali-sen-2022-southwest-c-reach"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "editorial_route_lon_lat": [
+            46.880527,
+            2.744968
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "editorial_route_lon_lat": [
+            46.528476,
+            2.463703
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "editorial_route_lon_lat": [
+            46.176573,
+            2.182345
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "editorial_route_lon_lat": [
+            45.8248,
+            1.900902
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "editorial_route_lon_lat": [
+            45.473142,
+            1.619386
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "editorial_route_lon_lat": [
+            45.12158,
+            1.337808
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "editorial_route_lon_lat": [
+            44.770099,
+            1.056179
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 909.973,
+          "editorial_route_lon_lat": [
+            44.7,
+            1
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "editorial_route_lon_lat": [
+            44.414239,
+            0.780242
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "editorial_route_lon_lat": [
+            44.057319,
+            0.505701
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "editorial_route_lon_lat": [
+            43.700429,
+            0.231141
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1092.091,
+          "editorial_route_lon_lat": [
+            43.4,
+            0
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "editorial_route_lon_lat": [
+            43.355446,
+            -0.055709
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "editorial_route_lon_lat": [
+            43.073757,
+            -0.407918
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "editorial_route_lon_lat": [
+            42.792044,
+            -0.760116
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "editorial_route_lon_lat": [
+            42.510285,
+            -1.112295
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "editorial_route_lon_lat": [
+            42.228459,
+            -1.464447
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1305.048,
+          "editorial_route_lon_lat": [
+            42.2,
+            -1.5
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "editorial_route_lon_lat": [
+            42.028395,
+            -1.868026
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "editorial_route_lon_lat": [
+            41.837433,
+            -2.277361
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "editorial_route_lon_lat": [
+            41.646363,
+            -2.686668
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1488.279,
+          "editorial_route_lon_lat": [
+            41.5,
+            -3
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        }
+      ],
+      "assumptions": [
+        "Source latitude contexts map to an editorial drawing; longitude is not a measured current axis.",
+        "Intermediate descriptor varies linearly in route distance only between adjacent gates; no extrapolation.",
+        "Source-defined regional metric and time basis remain distinct from observed full-flow thickness."
+      ],
+      "eligibility": {
+        "whole_current_representative": false,
+        "physical_state_join_eligible": false,
+        "volume_eligible": false,
+        "seasonal_playback_eligible": false,
+        "annual_extrema_eligible": false
+      },
+      "physical_lower_boundary_profile": null,
+      "physical_thickness_profile": null,
+      "cross_section_area_km2": null,
+      "volume_km3": null,
+      "annual_depth_range_m": null,
+      "source_reference_ids": [
+        "somali-sen-2022-southwest-b-reach",
+        "somali-sen-2022-southwest-c-reach"
+      ]
+    },
+    {
+      "id": "eicc-sen-2022-southward-core-depth-scenario-v1",
+      "entity_id": "current:east-india-coastal",
+      "route_id": "east-india-coastal-principal-reference-extent-v4",
+      "route_file": "research/current-length-reference-extents-v4.json",
+      "route_direction": "stored_editorial_vertex_order_not_flow_direction",
+      "flow_direction_context": "southward",
+      "metric": "projected_core_depth_descriptor",
+      "source_metric": "core_depth",
+      "metric_interpretation": "Maximum directional meridional velocity core depth, not full-flow extent, lower boundary or thickness.",
+      "route_phase_relation": "November editorial route lies within source October–December mean phase; no October/December path geometry or annual playback established.",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "status": "regional_projected_descriptor_scenario_not_observed_profile",
+      "campaign_window": null,
+      "model_time_basis": {
+        "kind": "repeating_climatological_forcing",
+        "simulation_duration_years": 8,
+        "analysis_window": "last_three_simulation_years",
+        "calendar_years": null
+      },
+      "model_product": "Sen2022_ROMS_NIO",
+      "source_temporal_scope": "Three-month southward seasonal mean in the last three years of an eight-year climatological ROMS run; no real calendar-year interval.",
+      "exact_section_dates_assigned": false,
+      "synoptic_full_route": false,
+      "phase_label": "southward_seasonal_mean",
+      "calendar_months": [
+        10,
+        11,
+        12
+      ],
+      "calendar_months_role": "source_directional_mean_phase_not_annual_playback",
+      "route_length_km": 1846.833,
+      "supported_reference_distance_interval_km": [
+        721.695,
+        1212.585
+      ],
+      "interpolated_editorial_route_fraction": 0.265801,
+      "fraction_interpretation": "Share of this editorial drawing between source latitude gates; not physical current coverage or confidence.",
+      "anchors": [
+        {
+          "reference_id": "eicc-sen-2022-south-b-core",
+          "latitude_degrees_north": 16,
+          "approximate_depth_descriptor_m": 150,
+          "distance_km": 721.695,
+          "editorial_route_lon_lat": [
+            82.571021,
+            16.0
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "B",
+          "source_case_id": "eicc-sen-2022-southward"
+        },
+        {
+          "reference_id": "eicc-sen-2022-south-c-core",
+          "latitude_degrees_north": 12,
+          "approximate_depth_descriptor_m": 100,
+          "distance_km": 1212.585,
+          "editorial_route_lon_lat": [
+            80.8,
+            12
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "C",
+          "source_case_id": "eicc-sen-2022-southward"
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "editorial_route_lon_lat": [
+            87.5,
+            20.5
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "editorial_route_lon_lat": [
+            87.168826,
+            20.173809
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "editorial_route_lon_lat": [
+            86.839028,
+            19.846985
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "editorial_route_lon_lat": [
+            86.510578,
+            19.519542
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "editorial_route_lon_lat": [
+            86.18345,
+            19.191492
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "editorial_route_lon_lat": [
+            85.857617,
+            18.86285
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "editorial_route_lon_lat": [
+            85.533051,
+            18.533629
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 305.102,
+          "editorial_route_lon_lat": [
+            85.5,
+            18.5
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "editorial_route_lon_lat": [
+            85.180458,
+            18.232697
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "editorial_route_lon_lat": [
+            84.82575,
+            17.934383
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "editorial_route_lon_lat": [
+            84.472229,
+            17.635414
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "editorial_route_lon_lat": [
+            84.119873,
+            17.335805
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "editorial_route_lon_lat": [
+            83.768659,
+            17.035569
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "editorial_route_lon_lat": [
+            83.418566,
+            16.734719
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "editorial_route_lon_lat": [
+            83.069571,
+            16.433269
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "editorial_route_lon_lat": [
+            82.721652,
+            16.131231
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 721.695,
+          "editorial_route_lon_lat": [
+            82.571021,
+            16.0
+          ],
+          "projected_depth_descriptor_m": 150,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "editorial_route_lon_lat": [
+            82.374786,
+            15.82862
+          ],
+          "projected_depth_descriptor_m": 150,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "editorial_route_lon_lat": [
+            82.028953,
+            15.525447
+          ],
+          "projected_depth_descriptor_m": 140,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 804.193,
+          "editorial_route_lon_lat": [
+            82,
+            15.5
+          ],
+          "projected_depth_descriptor_m": 140,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "editorial_route_lon_lat": [
+            81.863558,
+            15.107774
+          ],
+          "projected_depth_descriptor_m": 140,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "editorial_route_lon_lat": [
+            81.715199,
+            14.679541
+          ],
+          "projected_depth_descriptor_m": 130,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "editorial_route_lon_lat": [
+            81.567416,
+            14.251197
+          ],
+          "projected_depth_descriptor_m": 130,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "editorial_route_lon_lat": [
+            81.42019,
+            13.822747
+          ],
+          "projected_depth_descriptor_m": 120,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "editorial_route_lon_lat": [
+            81.273501,
+            13.394194
+          ],
+          "projected_depth_descriptor_m": 120,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "editorial_route_lon_lat": [
+            81.127331,
+            12.965541
+          ],
+          "projected_depth_descriptor_m": 110,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "editorial_route_lon_lat": [
+            80.98166,
+            12.536792
+          ],
+          "projected_depth_descriptor_m": 110,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "editorial_route_lon_lat": [
+            80.83647,
+            12.107952
+          ],
+          "projected_depth_descriptor_m": 100,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-b-core",
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1212.585,
+          "editorial_route_lon_lat": [
+            80.8,
+            12
+          ],
+          "projected_depth_descriptor_m": 100,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "eicc-sen-2022-south-c-core"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "editorial_route_lon_lat": [
+            80.926937,
+            11.685732
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "editorial_route_lon_lat": [
+            81.096126,
+            11.265661
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "editorial_route_lon_lat": [
+            81.264824,
+            10.845482
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "editorial_route_lon_lat": [
+            81.433052,
+            10.425199
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "editorial_route_lon_lat": [
+            81.60083,
+            10.004817
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1500.0,
+          "editorial_route_lon_lat": [
+            81.768176,
+            9.58434
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1550.0,
+          "editorial_route_lon_lat": [
+            81.935111,
+            9.163772
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1569.468,
+          "editorial_route_lon_lat": [
+            82,
+            9
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1600.0,
+          "editorial_route_lon_lat": [
+            82.022137,
+            8.724819
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1650.0,
+          "editorial_route_lon_lat": [
+            82.058318,
+            8.274171
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1700.0,
+          "editorial_route_lon_lat": [
+            82.094418,
+            7.823509
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1750.0,
+          "editorial_route_lon_lat": [
+            82.13044,
+            7.372835
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1800.0,
+          "editorial_route_lon_lat": [
+            82.16639,
+            6.922149
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1846.833,
+          "editorial_route_lon_lat": [
+            82.2,
+            6.5
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        }
+      ],
+      "assumptions": [
+        "Source latitude contexts map to an editorial drawing; longitude is not a measured current axis.",
+        "Intermediate descriptor varies linearly in route distance only between adjacent gates; no extrapolation.",
+        "Source-defined regional metric and time basis remain distinct from observed full-flow thickness."
+      ],
+      "eligibility": {
+        "whole_current_representative": false,
+        "physical_state_join_eligible": false,
+        "volume_eligible": false,
+        "seasonal_playback_eligible": false,
+        "annual_extrema_eligible": false
+      },
+      "physical_lower_boundary_profile": null,
+      "physical_thickness_profile": null,
+      "cross_section_area_km2": null,
+      "volume_km3": null,
+      "annual_depth_range_m": null,
+      "source_reference_ids": [
+        "eicc-sen-2022-south-b-core",
+        "eicc-sen-2022-south-c-core"
+      ]
+    },
+    {
+      "id": "agulhas-casal-2009-net-transport-zero-depth-scenario-v1",
+      "entity_id": "current:agulhas",
+      "route_id": "agulhas-reference-path-candidate",
+      "route_file": "research/agulhas-reference-path-candidate.json",
+      "route_direction": "stored_editorial_vertex_order_not_flow_direction",
+      "flow_direction_context": "southwestward_main_Agulhas_not_undercurrent",
+      "metric": "projected_net_section_transport_zero_depth_descriptor",
+      "source_metric": "net_section_transport_zero_depth",
+      "metric_interpretation": "Zero of source-selected laterally integrated transport per unit depth, not local zero speed, flow bottom or thickness. Source eddy-cancellation and counterflow exclusions remain section-specific.",
+      "route_phase_relation": "Historical February–March2003 AUCE regional survey context; route is editorial and data may be temporally aliased. No synoptic full route or seasonal envelope.",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "status": "regional_projected_descriptor_scenario_not_observed_profile",
+      "campaign_window": {
+        "start_month": "2003-02",
+        "end_month": "2003-03"
+      },
+      "model_time_basis": null,
+      "model_product": null,
+      "source_temporal_scope": "AUCE February–March2003 quasi-synoptic survey; exact cross-section dates not assigned.",
+      "exact_section_dates_assigned": false,
+      "synoptic_full_route": false,
+      "phase_label": null,
+      "calendar_months": null,
+      "calendar_months_role": null,
+      "route_length_km": 1988.494,
+      "supported_reference_distance_interval_km": [
+        363.459,
+        1329.681
+      ],
+      "interpolated_editorial_route_fraction": 0.485907,
+      "fraction_interpretation": "Share of this editorial drawing between source latitude gates; not physical current coverage or confidence.",
+      "anchors": [
+        {
+          "reference_id": "agulhas-casal-2009-rb-zero-net-transport-depth",
+          "latitude_degrees_north": -30,
+          "approximate_depth_descriptor_m": 1500,
+          "distance_km": 363.459,
+          "editorial_route_lon_lat": [
+            32,
+            -30
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "Richards Bay",
+          "source_case_id": "agulhas-casal-2009-auce-rb"
+        },
+        {
+          "reference_id": "agulhas-casal-2009-ps-zero-net-transport-depth",
+          "latitude_degrees_north": -32,
+          "approximate_depth_descriptor_m": 3100,
+          "distance_km": 654.269,
+          "editorial_route_lon_lat": [
+            30.029646,
+            -32.0
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "Port Shepstone",
+          "source_case_id": "agulhas-casal-2009-auce-ps"
+        },
+        {
+          "reference_id": "agulhas-casal-2009-el-zero-net-transport-depth",
+          "latitude_degrees_north": -34,
+          "approximate_depth_descriptor_m": 1900,
+          "distance_km": 977.292,
+          "editorial_route_lon_lat": [
+            27.531415,
+            -34.0
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "East London",
+          "source_case_id": "agulhas-casal-2009-auce-el"
+        },
+        {
+          "reference_id": "agulhas-casal-2009-pe-zero-net-transport-depth",
+          "latitude_degrees_north": -36,
+          "approximate_depth_descriptor_m": 3500,
+          "distance_km": 1329.681,
+          "editorial_route_lon_lat": [
+            24.533128,
+            -36.0
+          ],
+          "coordinate_role": "mapped_source_nominal_latitude_not_observed_profile_position",
+          "source_section_name": "Port Elizabeth",
+          "source_case_id": "agulhas-casal-2009-auce-pe"
+        }
+      ],
+      "samples": [
+        {
+          "distance_along_reference_route_km": 0.0,
+          "editorial_route_lon_lat": [
+            33.5,
+            -27
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 50.0,
+          "editorial_route_lon_lat": [
+            33.298578,
+            -27.41374
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 100.0,
+          "editorial_route_lon_lat": [
+            33.095651,
+            -27.827163
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 150.0,
+          "editorial_route_lon_lat": [
+            32.89118,
+            -28.240261
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 200.0,
+          "editorial_route_lon_lat": [
+            32.685129,
+            -28.653025
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 250.0,
+          "editorial_route_lon_lat": [
+            32.477458,
+            -29.065448
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 300.0,
+          "editorial_route_lon_lat": [
+            32.268128,
+            -29.477523
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 350.0,
+          "editorial_route_lon_lat": [
+            32.057099,
+            -29.889239
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 363.459,
+          "editorial_route_lon_lat": [
+            32,
+            -30
+          ],
+          "projected_depth_descriptor_m": 1500,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 400.0,
+          "editorial_route_lon_lat": [
+            31.756877,
+            -30.252968
+          ],
+          "projected_depth_descriptor_m": 1700,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 450.0,
+          "editorial_route_lon_lat": [
+            31.422184,
+            -30.598356
+          ],
+          "projected_depth_descriptor_m": 1980,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 500.0,
+          "editorial_route_lon_lat": [
+            31.085111,
+            -30.942858
+          ],
+          "projected_depth_descriptor_m": 2250,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 550.0,
+          "editorial_route_lon_lat": [
+            30.745615,
+            -31.286457
+          ],
+          "projected_depth_descriptor_m": 2530,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 600.0,
+          "editorial_route_lon_lat": [
+            30.40365,
+            -31.629134
+          ],
+          "projected_depth_descriptor_m": 2800,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 650.0,
+          "editorial_route_lon_lat": [
+            30.059173,
+            -31.97087
+          ],
+          "projected_depth_descriptor_m": 3080,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-rb-zero-net-transport-depth",
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 654.269,
+          "editorial_route_lon_lat": [
+            30.029646,
+            -32.0
+          ],
+          "projected_depth_descriptor_m": 3100,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 700.0,
+          "editorial_route_lon_lat": [
+            29.712137,
+            -32.311645
+          ],
+          "projected_depth_descriptor_m": 2930,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 750.0,
+          "editorial_route_lon_lat": [
+            29.362497,
+            -32.651441
+          ],
+          "projected_depth_descriptor_m": 2740,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 800.0,
+          "editorial_route_lon_lat": [
+            29.010206,
+            -32.990238
+          ],
+          "projected_depth_descriptor_m": 2560,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 801.443,
+          "editorial_route_lon_lat": [
+            29,
+            -33
+          ],
+          "projected_depth_descriptor_m": 2550,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 850.0,
+          "editorial_route_lon_lat": [
+            28.597846,
+            -33.277877
+          ],
+          "projected_depth_descriptor_m": 2370,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 900.0,
+          "editorial_route_lon_lat": [
+            28.181076,
+            -33.56263
+          ],
+          "projected_depth_descriptor_m": 2190,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 950.0,
+          "editorial_route_lon_lat": [
+            27.761568,
+            -33.845957
+          ],
+          "projected_depth_descriptor_m": 2000,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-ps-zero-net-transport-depth",
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 977.292,
+          "editorial_route_lon_lat": [
+            27.531415,
+            -34.0
+          ],
+          "projected_depth_descriptor_m": 1900,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1000.0,
+          "editorial_route_lon_lat": [
+            27.339289,
+            -34.127835
+          ],
+          "projected_depth_descriptor_m": 2000,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1050.0,
+          "editorial_route_lon_lat": [
+            26.914205,
+            -34.408238
+          ],
+          "projected_depth_descriptor_m": 2230,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1100.0,
+          "editorial_route_lon_lat": [
+            26.486282,
+            -34.687142
+          ],
+          "projected_depth_descriptor_m": 2460,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1150.0,
+          "editorial_route_lon_lat": [
+            26.055487,
+            -34.96452
+          ],
+          "projected_depth_descriptor_m": 2680,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1156.416,
+          "editorial_route_lon_lat": [
+            26,
+            -35
+          ],
+          "projected_depth_descriptor_m": 2710,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1200.0,
+          "editorial_route_lon_lat": [
+            25.634425,
+            -35.253232
+          ],
+          "projected_depth_descriptor_m": 2910,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1250.0,
+          "editorial_route_lon_lat": [
+            25.212231,
+            -35.542358
+          ],
+          "projected_depth_descriptor_m": 3140,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1300.0,
+          "editorial_route_lon_lat": [
+            24.787004,
+            -35.829981
+          ],
+          "projected_depth_descriptor_m": 3370,
+          "status": "assumed_linear_interpolation",
+          "source_reference_ids": [
+            "agulhas-casal-2009-el-zero-net-transport-depth",
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1329.681,
+          "editorial_route_lon_lat": [
+            24.533128,
+            -36.0
+          ],
+          "projected_depth_descriptor_m": 3500,
+          "status": "source_anchor_mapped_to_editorial_route",
+          "source_reference_ids": [
+            "agulhas-casal-2009-pe-zero-net-transport-depth"
+          ],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1350.0,
+          "editorial_route_lon_lat": [
+            24.358705,
+            -36.116076
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1400.0,
+          "editorial_route_lon_lat": [
+            23.927296,
+            -36.400614
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1450.0,
+          "editorial_route_lon_lat": [
+            23.492738,
+            -36.683569
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1500.0,
+          "editorial_route_lon_lat": [
+            23.054995,
+            -36.964914
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1506.256,
+          "editorial_route_lon_lat": [
+            23,
+            -37
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1550.0,
+          "editorial_route_lon_lat": [
+            22.650582,
+            -37.277686
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1600.0,
+          "editorial_route_lon_lat": [
+            22.248042,
+            -37.593794
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1650.0,
+          "editorial_route_lon_lat": [
+            21.84209,
+            -37.908501
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1700.0,
+          "editorial_route_lon_lat": [
+            21.432673,
+            -38.221778
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1750.0,
+          "editorial_route_lon_lat": [
+            21.019738,
+            -38.533599
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1800.0,
+          "editorial_route_lon_lat": [
+            20.603231,
+            -38.843935
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1850.0,
+          "editorial_route_lon_lat": [
+            20.183098,
+            -39.152756
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1900.0,
+          "editorial_route_lon_lat": [
+            19.759286,
+            -39.460033
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1950.0,
+          "editorial_route_lon_lat": [
+            19.33174,
+            -39.765735
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        },
+        {
+          "distance_along_reference_route_km": 1988.494,
+          "editorial_route_lon_lat": [
+            19,
+            -40
+          ],
+          "projected_depth_descriptor_m": null,
+          "status": "unsupported_no_extrapolation",
+          "source_reference_ids": [],
+          "depth_uncertainty_m": null,
+          "physical_thickness_m": null,
+          "volume_eligible": false
+        }
+      ],
+      "assumptions": [
+        "Source latitude contexts map to an editorial drawing; longitude is not a measured current axis.",
+        "Intermediate descriptor varies linearly in route distance only between adjacent gates; no extrapolation.",
+        "Source-defined regional metric and time basis remain distinct from observed full-flow thickness."
+      ],
+      "eligibility": {
+        "whole_current_representative": false,
+        "physical_state_join_eligible": false,
+        "volume_eligible": false,
+        "seasonal_playback_eligible": false,
+        "annual_extrema_eligible": false
+      },
+      "physical_lower_boundary_profile": null,
+      "physical_thickness_profile": null,
+      "cross_section_area_km2": null,
+      "volume_km3": null,
+      "annual_depth_range_m": null,
+      "source_reference_ids": [
+        "agulhas-casal-2009-rb-zero-net-transport-depth",
+        "agulhas-casal-2009-ps-zero-net-transport-depth",
+        "agulhas-casal-2009-el-zero-net-transport-depth",
+        "agulhas-casal-2009-pe-zero-net-transport-depth"
+      ]
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
