@@ -1,0 +1,17 @@
+{
+  "schema": "osw.malvinas-adcp-depth-audit-operator.v1",
+  "dataset_doi": "10.1594/PANGAEA.925245",
+  "data_url": "https://doi.pangaea.de/10.1594/PANGAEA.925245?format=textfile",
+  "maximum_download_bytes": 8388608,
+  "quality_pg_scenarios_percent": [50, 70, 90],
+  "quality_scenario_interpretation": "Explicit audit sensitivity selections, not recovered author QC thresholds or validated uncertainty. Missing PG or velocity is excluded; quality does not prove all errors removed.",
+  "velocity_choice": "Native northward V component, cm/s. Transect5 nominal orientation is90 degrees true, making north the declared along-slope diagnostic direction. Do not substitute magnitude or infer current identity from sign alone.",
+  "profile_key": "Date/Time plus source ensemble ID",
+  "depth_choice": "All native metre depth coordinates; nominal700m instrument range is not imposed as a hard truncation or physical current bottom.",
+  "maximum_operator": "All positive-V maxima among valid samples per ensemble; retain ties and shallow/deep valid-domain edge flags. No vertical interpolation, missing-value filling or boundary inference.",
+  "branch_assignment": "None. Along-crossing ensemble maxima can include inshore branch, offshore branch, opposing flows and transient features. They cannot enter the current-depth register as branch cores until geographic membership and processing are reviewed.",
+  "processing_scope": "Audit published tabular profiles only. Do not claim the paper's25km smoothing, TPXO9 correction, projected-velocity maxima or published95cm/s value are reproduced.",
+  "physical_uncertainty_m": null,
+  "seasonal_playback_eligible": false,
+  "volume_eligible": false
+}
