@@ -1,0 +1,143 @@
+{
+  "schema": "osw.eddy-secondary-registered-document-access-review.v1",
+  "status": "REGISTERED_LINKS_CHECKED_NO_NEW_MEASUREMENT",
+  "review_date": "2026-11-01",
+  "baseline": {
+    "register_file": "research/eddy-measurement-register-v1.json",
+    "register_sha256": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "measurement_csv_file": "research/eddy-measurement-register-v1.csv",
+    "measurement_csv_sha256": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "counts": {
+      "identities": 136,
+      "individual_source_records": 112,
+      "recurrent_regions": 20,
+      "families": 4,
+      "evidence_records": 468,
+      "size_records": 203,
+      "size_owners": 102,
+      "duration_owners": 101,
+      "recurrence_owners": 12,
+      "structure_owners": 15,
+      "kinematics_owners": 73,
+      "non_registry_entries": 40,
+      "non_registry_entries_with_references": 40,
+      "registry_entries_with_own_references": 85,
+      "linked_primary_context_entries": 11,
+      "secondary_entries_with_own_references": 4,
+      "entries_without_numeric_or_primary_context": 0,
+      "identities_with_measurements": 125,
+      "identities_without_measurements": 11,
+      "conflicted_size_records": 2,
+      "source_track_spans": 23
+    }
+  },
+  "discovery_method": "Crossref works metadata for the exact DOI; first registered document link per source, one ordinary unauthenticated request per endpoint. Previously failed identical PDF endpoints were not repeated.",
+  "checks": [
+    {
+      "doi": "10.1016/j.ocemod.2026.102841",
+      "title": "3DSeaVizKit: An interactive spatiotemporal visualization toolkit for ocean data",
+      "metadata_url": "https://api.crossref.org/works/10.1016/j.ocemod.2026.102841",
+      "targets": [
+        "Nautilus II"
+      ],
+      "registered_link": "https://api.elsevier.com/content/article/PII:S1463500326001630?httpAccept=text/xml",
+      "acquisition": {
+        "doi": "10.1016/j.ocemod.2026.102841",
+        "url": "https://api.elsevier.com/content/article/PII:S1463500326001630?httpAccept=text/xml",
+        "discovery": "Crossref registered document link",
+        "attempts": 1,
+        "maximum_bytes": 25000000,
+        "cookies_or_challenge_workflows_used": false,
+        "final_url": "https://api.elsevier.com/content/article/PII:S1463500326001630?httpAccept=text/xml",
+        "content_type": "text/xml;charset=UTF-8",
+        "bytes": 1822,
+        "sha256": "5c08f5e7a5a99a7ba0756d4309e04b5d7b173e22a121449d3da11cf02a533d2a",
+        "status": "METADATA_ONLY_NO_FULL_TEXT_OR_FIGURES"
+      },
+      "full_text_or_original_figures_received": false,
+      "measurements_admitted": 0,
+      "finding": "HTTP 200 returned only 1,822 bytes of citation/core metadata. It contains no article body, original text or figure; openaccessArticle is false. A successful HTTP response is not full-text acquisition."
+    },
+    {
+      "doi": "10.1029/2002JC001508",
+      "title": "Seasonal, interannual, and mesoscale variability of the Black Sea upper layer circulation derived from altimeter data",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2002JC001508",
+      "targets": [
+        "Danube Eddy",
+        "Constantsa Eddy"
+      ],
+      "registered_link": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1029%2F2002JC001508",
+      "acquisition": {
+        "doi": "10.1029/2002JC001508",
+        "url": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1029%2F2002JC001508",
+        "discovery": "Crossref registered document link",
+        "attempts": 1,
+        "maximum_bytes": 25000000,
+        "cookies_or_challenge_workflows_used": false,
+        "status": "UNAVAILABLE",
+        "error": "<HTTPError 400: 'No TDM Client Token was found in the request'>"
+      },
+      "full_text_or_original_figures_received": false,
+      "measurements_admitted": 0,
+      "finding": "The registered Wiley TDM endpoint explicitly requires a TDM client token (HTTP 400). No token or alternate authentication workflow was attempted."
+    },
+    {
+      "doi": "10.1029/2019JC015103",
+      "title": "Picoplankton Carbon Biomass Assessments and Distribution of <i>Prochlorococcus</i> Ecotypes Linked to Loop Current Eddies During Summer in the Southern Gulf of Mexico",
+      "metadata_url": "https://api.crossref.org/works/10.1029/2019JC015103",
+      "targets": [
+        "Nautilus II"
+      ],
+      "registered_link": "https://onlinelibrary.wiley.com/doi/pdf/10.1029/2019JC015103",
+      "acquisition": {
+        "doi": "10.1029/2019JC015103",
+        "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1029/2019JC015103",
+        "discovery": "Crossref registered document link",
+        "attempts": 1,
+        "maximum_bytes": 25000000,
+        "cookies_or_challenge_workflows_used": false,
+        "status": "UNAVAILABLE",
+        "error": "<HTTPError 403: 'Forbidden'>"
+      },
+      "full_text_or_original_figures_received": false,
+      "measurements_admitted": 0,
+      "finding": "The registered publisher PDF returned HTTP 403. No cookies, login, challenge or subscriber workflow was attempted."
+    },
+    {
+      "doi": "10.4043/27229-MS",
+      "title": "Loop Current Hyperactivity: Analysis of <i>In Situ</i> Measurements in the Gulf of Mexico",
+      "metadata_url": "https://api.crossref.org/works/10.4043/27229-MS",
+      "targets": [
+        "Nautilus II",
+        "Olympus II"
+      ],
+      "registered_link": "https://onepetro.org/OTCONF/proceedings-pdf/doi/10.4043/27229-MS/1352507/otc-27229-ms.pdf",
+      "acquisition": {
+        "doi": "10.4043/27229-MS",
+        "url": "https://onepetro.org/OTCONF/proceedings-pdf/doi/10.4043/27229-MS/1352507/otc-27229-ms.pdf",
+        "discovery": "Crossref registered document link",
+        "attempts": 1,
+        "maximum_bytes": 25000000,
+        "cookies_or_challenge_workflows_used": false,
+        "status": "UNAVAILABLE",
+        "error": "<HTTPError 403: 'Forbidden'>"
+      },
+      "full_text_or_original_figures_received": false,
+      "measurements_admitted": 0,
+      "finding": "The registered publisher PDF returned HTTP 403. No cookies, login, challenge or subscriber workflow was attempted."
+    }
+  ],
+  "execution": {
+    "sequential": true,
+    "local_priority": "idle",
+    "local_cpu_affinity_count": 1,
+    "ocean_fields_downloaded": false,
+    "cloud_jobs_started": false,
+    "source_assets_republished": false,
+    "provider_contacted": false
+  },
+  "decision": "No horizontal dimension, depth or volume is admitted. Registry metadata and unavailable source figures do not resolve an individual secondary boundary or a recurrent-region case.",
+  "register_changed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
