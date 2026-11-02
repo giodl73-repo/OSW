@@ -1,0 +1,95 @@
+{
+  "schema": "osw.atlantic-current-depth-manifest.v2",
+  "operator_file": "research/atlantic-current-depth-operator-v2.json",
+  "operator_sha256": "a4a841a7781a6d87b0ece55b59fcdbe11719d0e0532302e6e28eb2ab777d4267",
+  "input_sha256": {
+    "research/north-brazil-reference-path-candidate.json": "250d6b1f2c4a497dcf6461ef545536b176f01b677eb5f85acdc008cb60706257",
+    "research/north-atlantic-reference-path-candidate.json": "288f4507f53008bda00d14aeb189cadf17ccf3a7e277208dbf364da71f461c93",
+    "research/labrador-reference-path-candidate.json": "bf791711602b646daf1af7b0e67e2a8f88e4907ab56eae5a794683e475fe0c05",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "research/atlantic-current-depth-source-review-v1.json": "1599c8a4f2845b856d00afe49e9a0db551d5aabd5110c5be04d85154685af3f4",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/current-depth-route-projections-source-review-v13.json": "7c38c8a3a2265346a8debbd642b63bf8d27d0804f30a968ac525462c6c9b1c4c"
+  },
+  "currents": [
+    {
+      "entity_id": "current:north-brazil",
+      "file": "north-brazil.json",
+      "sha256": "0a01f19ef13a0734179c9e870c30ece92fc5bfdb8c5252a9d36665bd0b33dea5",
+      "bytes": 481300,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 7,
+        "sampled_cases": 14,
+        "retained_velocity_profiles": 70,
+        "selected_primary_lower_crossings": 8,
+        "selected_horizontal_edge_maxima": 10,
+        "no_qualifying_core_cases": 4,
+        "selected_resolved_threshold_layers": {
+          "0.05": 8,
+          "0.1": 8,
+          "0.2": 8
+        },
+        "decoded_velocity_cell_pairs": 52080,
+        "decoded_velocity_array_bytes": 416640,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    },
+    {
+      "entity_id": "current:north-atlantic",
+      "file": "north-atlantic.json",
+      "sha256": "27c6c384c2197f2a59367c3c9d43d4fd16eccf25449494df067d016e4bc668e6",
+      "bytes": 395099,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 6,
+        "sampled_cases": 12,
+        "retained_velocity_profiles": 60,
+        "selected_primary_lower_crossings": 8,
+        "selected_horizontal_edge_maxima": 8,
+        "no_qualifying_core_cases": 0,
+        "selected_resolved_threshold_layers": {
+          "0.05": 8,
+          "0.1": 8,
+          "0.2": 7
+        },
+        "decoded_velocity_cell_pairs": 63840,
+        "decoded_velocity_array_bytes": 510720,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    },
+    {
+      "entity_id": "current:labrador",
+      "file": "labrador.json",
+      "sha256": "75979ad4b6da5f9f694238d0b9b51ee0caf753401c1d3933072c9a4ce93d820d",
+      "bytes": 578366,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 9,
+        "sampled_cases": 18,
+        "retained_velocity_profiles": 90,
+        "selected_primary_lower_crossings": 10,
+        "selected_horizontal_edge_maxima": 6,
+        "no_qualifying_core_cases": 2,
+        "selected_resolved_threshold_layers": {
+          "0.05": 10,
+          "0.1": 13,
+          "0.2": 11
+        },
+        "decoded_velocity_cell_pairs": 87120,
+        "decoded_velocity_array_bytes": 696960,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    }
+  ],
+  "total_decoded_velocity_cell_pairs": 203040,
+  "total_decoded_velocity_array_bytes": 1624320,
+  "full_goal_complete": false
+}
