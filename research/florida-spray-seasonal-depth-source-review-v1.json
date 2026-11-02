@@ -1,0 +1,95 @@
+{
+  "schema": "osw.florida-spray-seasonal-depth-source-review.v1",
+  "status": "PASS_MEAN_AND12_ANNUAL_PHASE_PROFILES_WITH_BOUNDARY_CENSORING",
+  "cloud_reviews": [
+    {
+      "run_id": 41462740262,
+      "tests_passed": 12,
+      "source_commit": "ff7ae4299e3d28cd4d5659715f719e990ed990d5",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41462740262"
+    },
+    {
+      "run_id": 41462740262,
+      "tests_passed": 10,
+      "source_commit": "ff7ae4299e3d28cd4d5659715f719e990ed990d5",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41462740262"
+    }
+  ],
+  "cloud_test_groups": [
+    "12 frozen connected-layer tests",
+    "10 Florida source/operator tests"
+  ],
+  "cloud_tests_passed": 22,
+  "cloud_review_note": "Two test groups in the same source-pinned successful run, not independent experiments.",
+  "counts": {
+    "fitted_profiles": 13,
+    "annual_phase_profiles": 12,
+    "decoded_field_scalars_budgeted": 66300,
+    "profiles_with_selected_column": 13,
+    "resolved_lower_depths_by_threshold": {
+      "0.05": 0,
+      "0.1": 0,
+      "0.2": 0
+    },
+    "resolved_half_sampled_core_decay_depths": 12,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "analysis/test_florida_spray_seasonal_depth_v1.py": "5f3f9e72efb76fd0420901a0107dfab894c9da6e326a7a72feea7c70fedb23b6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "research/florida-spray-seasonal-depth-operator-v1.json": "a2d8e8af1126b2a6b18cc9b4f12559e788481ad19805a2c7b3778541c7638dd7",
+    ".github/workflows/florida-spray-seasonal-depth-v1.yml": "d1a9fb585e438c082dcc578fbb00c355919b230e26cc6d092c0261d1a0f60b13",
+    "research/source-data/florida-spray-seasonal-depth-v1/candidate.json": "190f9a430d527e2864dde606d5bd9ffe60900b257a3ba36fe246b6392a3f1cb5",
+    "research/florida-spray-seasonal-depth-source-facts-v1.json": "b37bc47f77cf38ba035e30e69cff6888a5658fcd5581baa2cebd44d57ef353cd"
+  },
+  "prior_terminal_failures": [
+    {
+      "run_id": 41461878321,
+      "source_commit": "c7ccce83f1cd812c05ca2c333a7757f97e8dd218",
+      "conclusion": "failure",
+      "reason": "Mean profile retrieved, annual source rejected by strict bare-DOI comparison because its DOI attribute is the equivalent published resolver URL. Twenty tests passed before source identity check halted the full collection. No canonical measurement admission from this partial run.",
+      "scientific_operator_changed": false
+    },
+    {
+      "run_id": 41462250568,
+      "source_commit": "4d2bb3bd6602d442cb4dcd6f320a708bd9353095",
+      "conclusion": "failure",
+      "reason": "All21 tests and mean retrieval passed; strict literal UTC day15 matching rejected duplicate/missing dates caused by near-midnight coordinate rounding. No canonical admission from partial output.",
+      "source_temporal_phase_key_operator_changed": true,
+      "horizontal_or_vertical_measurement_operator_changed": false
+    }
+  ],
+  "scientific_review": [
+    "Published WHOI/Scripps Spray product supplies one time-mean and twelve fitted annual-cycle phase profiles at27N in the Florida Straits, from documented2015-07-16 through2023-05-30 observations. All13 cases retain complete bounded northward section arrays and selected-profile component uncertainties and fit support. They are spatially mapped fitted products, not13 independent observed occupations.",
+    "A fixed80.1–79.1W source-grid gate and complete finite native10–200m signed northward trapezoidal integral select the fitted section maximum. All13 selected columns lie near79.7W. Mean double-precision and annual float32 coordinates retain their actual representations, without claiming a measured kilometre-scale migration from the rounding difference.",
+    "No absolute5/10/20cm/s lower boundary resolves before missing source support. Each selected profile retains a primary5cm/s supported penetration lower bound and its censoring status; the last supported depth is not silently labelled as a physical current bottom. The mean primary component remains supported through530m at its selected fitted column.",
+    "The separately typed half-sampled-core component decay depth resolves in the mean and eleven annual phases. Mean computed depth is367.76046917396707m, with360/370m native bracket. November remains censored before missing support. Twelve phase samples do not establish actual annual extrema; half-core depth is not an absolute isotach, full-flow bottom, vertical thickness or error bound.",
+    "The source fitted grid starts at10m and ends at1000m globally. Surface support and local lower limits are checked independently;10m is not0m and1000m is not a Florida Current bottom. Upper boundary and layer thickness remain unknown. Native10m spacing is a mapped product grid rather than independent observation spacing or physical accuracy.",
+    "Source mapping scales, downstream direction, fit observation/mission counts, maximum temporal gap and angular fit coverage remain attached at each selected depth. Gaussian mapping scales are not current widths. Velocity standard-error arrays do not establish a propagated depth confidence interval or statistically independent sample counts.",
+    "Provider metadata uses two equivalent exact DOI forms. Annual aggregate phase timestamps are quantized by a few minutes either side of midnight. Separate nominal daily phase keys are recovered only within a prescribed600second tolerance, rejecting larger offsets and duplicate nominal dates; actual provider timestamps remain unmodified. Mean provider time_coverage_end repeats the start, while its summary and product documentation give the full2015–2023 fit period; both are retained without silently repairing metadata.",
+    "Two terminal partial collections were verified before changes: first halted on DOI spelling, second on literal day15 matching. Identity comparison and phase-key handling were corrected with tests; horizontal and vertical measurement operators were unchanged. Partial runs make no canonical admission. The successful final run passes22 checks and retains all13 complete cases.",
+    "All source field retrieval, calculations and tests ran sequentially on one idle cloud CPU. Local work retained cloud bytes and metadata/input hashes only. Source attribution and CC BY4.0 remain explicit. No whole-source or wire-byte hash, whole-route depth, compatible width join, physical-state join, annual uncertainty envelope or water volume is claimed."
+  ],
+  "canonical_depth_register_counts_unchanged": {
+    "identities": 111,
+    "depth_references": 453,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "next_actions": [
+    "Admit source-qualified sampled-core, half-core decay and right-censored penetration lower-bound descriptors with distinct metric types and shared profile identities.",
+    "Extend the same published3D product to source-supported downstream Gulf Stream sections with explicit regional identity and route support; do not inherit Florida depths along the entire system.",
+    "Preserve missing November half-core crossing, missing upper support and all absolute lower-bound censoring when exposing fitted seasonal depth views."
+  ],
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
