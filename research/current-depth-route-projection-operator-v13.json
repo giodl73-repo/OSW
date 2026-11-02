@@ -1,0 +1,41 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v13",
+  "previous_projection_file": "research/current-depth-route-projections-v12.json",
+  "previous_projection_csv": "research/current-depth-route-projections-v12.csv",
+  "depth_register_file": "research/current-depth-register-v48.json",
+  "current_source_files": [
+    "research/source-data/atlantic-current-depth-v1/brazil.json",
+    "research/source-data/atlantic-current-depth-v1/benguela.json",
+    "research/source-data/atlantic-current-depth-v1/canary.json"
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "interpolation_assumption": "Piecewise linear model primary lower-contour depth only between neighboring eligible original reference nodes. Project paired upper depth/model layer span only with supported paired endpoints. Keep every original route vertex, unsupported exact location and adjacent interval; no skipping, extrapolation or filling from other thresholds. The reference corridor is editorial geometry, not observed instantaneous axis or measured current length. Inter-section continuity and linear variation remain assumptions.",
+  "interpretation": "Six dated regional scenarios for Brazil/Benguela/Canary append to29frozen cases. Per-object primary10cm/s forBrazil and5cm/s forBenguela/Canary remain explicit. At each original vertex preserve source-selected node, native/wrapped longitude, fixed downstream component frame and connected threshold diagnosis. A projected node requires an interior selected maximum and resolved primary lower contour; no independent current-axis or second-product surface validation is claimed. Preserve unsupported nodes/intervals and all prior JSON projection objects/CSV cells. Model threshold spans are not physical whole-current thickness; no annual envelope or compatible volume geometry is established.",
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "physical_state_join": false,
+    "seasonal_envelope": false
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v12.json": "b1b99d5b0c3c8b0c8bdc03f8adefa8781fec4a36fd8425b2873a3aad289e9f72",
+    "research/current-depth-route-projections-v12.csv": "6818be6dad2083c28fe81c9b9845bccd3f944d0ffb0d234fb4a9c488292c30fa",
+    "research/current-depth-route-projections-source-review-v12.json": "1a1ab70d07a77c595ba64a6f30abe3a8776933c6b1032794059c9fd7e8f43c49",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/atlantic-current-depth-source-review-v1.json": "1599c8a4f2845b856d00afe49e9a0db551d5aabd5110c5be04d85154685af3f4",
+    "research/atlantic-current-depth-operator-v1.json": "8a272f6ecd816424653c9732c4a9a105c25c13cc6c98ef8d01e4caf9fcf81676",
+    "research/source-data/atlantic-current-depth-v1/manifest.json": "876e74f2cfcb186af1b431b38b319d56d11b474c0c1bfeb028c68b6ec69a77c3",
+    "research/source-data/atlantic-current-depth-v1/brazil.json": "53a04f5b4cfa4d6998806213a9316062c6066c7101bc6257b1fd75e11ff1d2dd",
+    "research/source-data/atlantic-current-depth-v1/benguela.json": "ce67b241cb96735f2d06d31467af440c77769f49a145ca3155141d3070e3cabe",
+    "research/source-data/atlantic-current-depth-v1/canary.json": "69dbc8e5f2391d4732e0168a8e86000fa7bba49b1e1200046819c330a4ad9001",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c"
+  },
+  "processing_policy": "Cloud-only geometry/interpolation and tests on one idle CPU using frozen retained source chunks. No new field retrieval, local numerical tests or runtime/browser/server/native/WASM changes.",
+  "full_goal_complete": false
+}
