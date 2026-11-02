@@ -1,0 +1,74 @@
+{
+  "schema": "osw.current-regional-core-volume-scenarios.v1",
+  "status": "FIRST_EXPLICIT_REGIONAL_MODEL_CORE_REFERENCE_VOLUME_SCENARIO",
+  "input_sha256": {
+    "research/current-depth-route-projections-v6.json": "065a256fb2def0f2d5ebabeec46f1ba02fa6bcfdff49f476ec378f2ed1a11d9c",
+    "research/current-depth-route-projection-operator-v6.json": "f9183d0f496e946f1880c929db497aa5aa81272831f413bef2890f9d14b62ec3",
+    "research/current-depth-register-v36.json": "c4d8017a45c28915422f46d81321511bd4a0d66c74d7eb4a9fb7075cfbc2d272",
+    "analysis/build_current_depth_route_projections_v6.py": "7f1a2c02e2c35c55e9fea022e86f7a6283615e1e6cc7fe85773ee4dd6e20dd6a"
+  },
+  "counts": {
+    "regional_reference_geometry_scenarios": 1,
+    "whole_current_volume_estimates": 0,
+    "observed_water_volume_estimates": 0
+  },
+  "records": [
+    {
+      "id": "eac-kerry2020-27p5-to30p3s-reference-extrusion-v1",
+      "entity_id": "current:east-australian",
+      "projection_id": "eac-kerry2020-coherent-jet-mean-mask-depth-area-scenario-v1",
+      "status": "PROVISIONAL_REGIONAL_REFERENCE_GEOMETRY_VOLUME_SCENARIO",
+      "volume_kind": "extrusion_of_source_model_mean_isotach_section_areas",
+      "scope": "EAC coastal-jet reference interval between nominal27.5S and30.3S sections only. No extrapolation to full current or downstream extensions.",
+      "model_product": "KerryRoughan2020_EAC_ROMS",
+      "model_simulation_period": {
+        "start": "1994-01-01",
+        "end": "2016-10-01"
+      },
+      "mean_mask_definition": "Region inside−0.05m/s contour of long-term mean alongshore velocity; negative is poleward. Fixed mean-field geometry, not mean instantaneous geometry.",
+      "source_reference_ids": [
+        "eac-kerry-2020-27p5s-mean-mask-maximum-depth",
+        "eac-kerry-2020-30p3s-mean-mask-maximum-depth"
+      ],
+      "reference_route_id": "east-australian-reference-path-candidate",
+      "reference_distance_interval_km": [
+        1606.397,
+        1917.482
+      ],
+      "reference_interval_length_km": 311.085,
+      "area_interpolation": "linear_between_source_sections_in_editorial_reference_distance",
+      "integration_formula": "V_km3 = sum((A_left_km2 + A_right_km2)/2 * delta_s_km)",
+      "computed_integral_km3": 31310.705,
+      "scenario_volume_km3": 31000,
+      "display_rounding_km3": 1000,
+      "computational_terms": [
+        {
+          "source_reference_ids": [
+            "eac-kerry-2020-27p5s-mean-mask-maximum-depth",
+            "eac-kerry-2020-30p3s-mean-mask-maximum-depth"
+          ],
+          "interval_start_km": 1606.397,
+          "interval_end_km": 1917.482,
+          "interval_length_km": 311.08500000000004,
+          "left_area_km2": 97.1,
+          "right_area_km2": 104.2,
+          "volume_km3": 31310.705250000006
+        }
+      ],
+      "uncertainty_km3": null,
+      "confidence_interval_km3": null,
+      "orientation_assumption": "Reported source cross-shore areas are treated as normal sections of the editorial reference route for this extrusion scenario. Source grid is rotated20degrees clockwise; exact source section/route orientation correction is not recovered or applied.",
+      "shape_assumption": "Use source-reported areas directly; no rectangle, ellipse or offshore-distance-times-maximum-depth area inferred. Adjacent areas are connected by linear area interpolation.",
+      "temporal_interpretation": "Volume of an extruded long-term mean-field mask scenario, not mean of instantaneous threshold-core volumes, a dated observed water volume or an annual seasonal envelope.",
+      "whole_current_volume_estimate": false,
+      "observed_water_volume": false,
+      "mean_of_instantaneous_core_volumes": false,
+      "physical_state_join_eligible": false,
+      "global_total_eligible": false,
+      "regional_scenario_admitted": true
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
