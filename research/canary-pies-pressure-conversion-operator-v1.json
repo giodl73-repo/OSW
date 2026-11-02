@@ -1,0 +1,18 @@
+{
+  "schema": "osw.canary-pies-pressure-conversion-operator.v1",
+  "gsw_version": "3.6.23",
+  "method": "depth_m = -gsw.z_from_p(source_pressure_dbar, nominal_section_latitude, 0, 0)",
+  "method_documentation": "https://teos-10.github.io/GSW-Python/conversions.html#gsw.conversions.z_from_p",
+  "latitude_rule": "arithmetic_mean_of_nominal_endpoint_latitudes",
+  "assumed_dynamic_height_m2_s2": 0,
+  "assumed_sea_surface_geopotential_m2_s2": 0,
+  "pressure_interpretation": "Assume published oceanographic vertical pressure coordinate is sea pressure; do not subtract atmospheric pressure again. The paper does not independently supply a pressure-datum calibration for each reported reversal.",
+  "latitude_interpretation": "A nominal latitude approximation for the pair-averaged descriptor, not the location of a measured current axis or proof of uniform pressure-to-depth relation throughout the section.",
+  "uncertainty_policy": "Physical boundary uncertainty is unknown. Native pressures are approximate. Endpoint-latitude sensitivity is only the sensitivity to that latitude choice; it omits source/profile errors, ocean-state and geopotential corrections, and is not an error bound or confidence interval.",
+  "display_rounding_m": 10,
+  "computed_serialization_decimal_places": 6,
+  "precision_is_accuracy": false,
+  "new_measurements": false,
+  "volume_eligible": false,
+  "seasonal_playback_eligible": false
+}
