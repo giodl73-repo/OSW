@@ -1,0 +1,66 @@
+{
+  "schema": "osw.current-depth-register-source-review.v3",
+  "status": "PASS_35_INVERSE_SECTION_DEPTH_EXTENTS",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41377739066,
+      "tests_passed": 8,
+      "source_commit": "18818e7abb9655c0159aae484c78e1ab29e5df19",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41377739066"
+    },
+    {
+      "run_id": 41377739021,
+      "tests_passed": 6,
+      "source_commit": "18818e7abb9655c0159aae484c78e1ab29e5df19",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41377739021"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 52,
+    "identities_with_scoped_depth_reference": 18,
+    "identities_not_yet_assessed": 93,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 6,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "reported_flow_depth_band": 1,
+    "reported_vertical_extent": 6,
+    "transport_selected_depth_extent": 35
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v3.py": "ccbe04f426520fa6712987530a933f23d54db0e66cf97ba2bedadc4871716f8a",
+    "analysis/test_current_depth_register_v3.py": "602b2402e074dae1557209552bc95eaa7cacdd795a5618d69b646b06bc239b16",
+    "research/current-depth-rules-v3.json": "e46e373abf5ebb503fb341795b94040f962997ed60eac983c66073bfe8de3799",
+    "research/current-depth-source-facts-v3.json": "a599ba46ffaca9636d41973a0f8a9f0b80c466859f373b09d3512abe23eb1cee",
+    "research/current-depth-register-v3.json": "fdf91a57e4bf45d40d208ffa9c07bd623101518cd90d13681907cc3a28ddbb18",
+    "research/current-depth-register-v3.csv": "69953878672128c977e669ace82dbf61909c3175a3f5f4e80edcd3d0b29f3b66",
+    ".github/workflows/current-depth-register-source-v3.yml": "c0bd7555524e19411afec4ba16d113970f0a0230b21f48c56938213cd0f5e00a",
+    "research/source-data/cainzos-atlantic-2023/table-1.xlsx": "bfe0bbc798ca14677fdfd66668f546e2b75fed4f6350bc29881a47133e40d3f6",
+    "research/source-data/cainzos-atlantic-2023/table-2.xlsx": "eab186e33d87ee67f3d8f825e0b12a07cf3e1f8297e5ef24416f7d6a44961f15",
+    "research/ocean-current-width-inventory.json": "929527ad7c4a500eca26d495c59e6eadd3d62e82b3bc9b9cd1ff57084b1aacb8"
+  },
+  "previous_17_references_and_v2_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all17 preceding depth references retained.",
+    "All35 eligible table rows mapped to ten existing current identities and same-source width records.",
+    "Depth values reproduce original publisher metre column F, distinct from layer indices and transport.",
+    "Whole-section dates, cruise labels, nominal latitudes and density-layer indices retain their scope.",
+    "No decade mean, annual range, fixed-depth rectangle, geographic boundary coordinates, cross-sectional area or volume inferred.",
+    "JSON and CSV reproduce with source locators and explicit section windows."
+  ],
+  "source_review_scope": "Caínzos et al.2023 original publisher Tables1 and2 XLSX, previously retained with CC BY4.0 attribution, read without modification. Original PDF Table2 pages4–6 and methods page7 actually viewed. No ocean fields downloaded or processed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
