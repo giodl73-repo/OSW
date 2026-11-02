@@ -1,0 +1,51 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v11",
+  "previous_projection_file": "research/current-depth-route-projections-v10.json",
+  "previous_projection_csv": "research/current-depth-route-projections-v10.csv",
+  "depth_register_file": "research/current-depth-register-v47.json",
+  "source_facts_file": "research/gulf-stream-spray-depth-sections-source-facts-v1.json",
+  "section_ids": [
+    "coastal-30n",
+    "coastal-32n",
+    "coastal-34n",
+    "offshore-73w",
+    "offshore-70w"
+  ],
+  "section_files": [
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-30n.json",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-32n.json",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-34n.json",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-73w.json",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-70w.json"
+  ],
+  "common_fit_observation_period": [
+    "2015-07-16",
+    "2023-05-30"
+  ],
+  "interpolation_assumption": "Piecewise linear half-sampled-core signed-component decay depth between adjacent fitted source sections, on shortest WGS84 connectors between the selected source columns. Conditional editorial interpolation, not an observed current axis, current length, physical bottom or measured inter-section profile. No extrapolation or bridging unresolved or edge anchors.",
+  "interpretation": "Five regional Gulf Stream sections yield one mean and twelve fitted annual-phase reference connectors. Upper-layer integrated flow selects the source column; the retained source diagnosis uses the sampled full vertical component profile to define its half-core level. Per-section sampled phase spans are neither actual annual extrema nor uncertainty. No width/depth volume join or physical thickness is admitted. The previous twelve scenarios are frozen, not recomputed or newly validated.",
+  "eligibility": {
+    "whole_current_physical_depth_profile": false,
+    "physical_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "state_passage": false,
+    "seasonal_observation_animation": false
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v10.json": "63ecd9fae0c1dae581fca57375bfb92f459156f5a8ac9e003881c555f0abd33c",
+    "research/current-depth-route-projections-v10.csv": "99d0afcfa71fa8be38d3e20563f599408f2f50620ad5fdd6086aa6907c4464d7",
+    "research/current-depth-route-projections-source-review-v10.json": "9e3001f2e5724bdc71496e62d74528bbf8bc54f4ff17dea3d0cbc29d2a489af4",
+    "research/current-depth-register-v47.json": "f6c8e7a7bd98a76d616e73f2a6079467d77238a5b83c9dcad6589e97f527d97c",
+    "research/current-depth-register-source-review-v47.json": "7e9b0baf96a83c9ff374d843680f9f5281fdf93c50903b2ebf9aa807aee0df91",
+    "research/gulf-stream-spray-depth-sections-source-facts-v1.json": "61fbb2ee586949ab4a61490bf586478e09769f3bebbef50e34ec7a68fcd4296a",
+    "research/gulf-stream-spray-depth-sections-source-review-v1.json": "2e442c0fdd565bc7494f9683df442c381a5220ea00bea82acfce6916be130d01",
+    "research/gulf-stream-spray-depth-sections-operator-v1.json": "6c7b46a0aa410472423f9b568d65d00e85ec10d730847adb0ad662bdb1b89ce4",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/manifest.json": "d0ffb69641f856a38b795de6341c8af9759bd869d03074e406b996caa6d67feb",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-30n.json": "f0dd891f75dfff142be7f3093150a5f65d689f84054f38a08d63999d5e174d24",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-32n.json": "1bd2b75c13b0f32b653cd2e3e0f810ab25f66c54c3f28537634896888f79f5f9",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-34n.json": "2d0c771c5cd92957191849d0414c60e27b56b3a2494e679e0a5dec28ecac77d6",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-73w.json": "03f6ed38aebbeb3051f8a4ec9a5277f1b4ee869ed8570e6ac42bd9307ef8fb41",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-70w.json": "140b387d078923e994e4890b6015f851fbb9727fc1dcd394585cb89077b47252"
+  }
+}
