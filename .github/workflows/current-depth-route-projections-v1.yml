@@ -1,0 +1,44 @@
+name: Current depth route projection review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v1.yml
+      - analysis/build_current_depth_route_projections_v1.py
+      - analysis/test_current_depth_route_projections_v1.py
+      - research/current-depth-route-projection-operator-v1.json
+      - research/current-depth-route-projections-v1.json
+      - research/current-depth-route-projections-v1.csv
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  projection-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v1.py
+            analysis/test_current_depth_route_projections_v1.py
+            research/current-depth-route-projection-operator-v1.json
+            research/current-depth-route-projections-v1.json
+            research/current-depth-route-projections-v1.csv
+            research/current-depth-register-v32.json
+            research/current-length-reference-extents-v4.json
+            research/current-length-estimate-register-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned reference-route metric
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+      - name: Verify mapped anchors interpolation and unsupported gaps
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v1.py' -v
