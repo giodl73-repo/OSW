@@ -9,7 +9,12 @@ import convert_canary_pies_depth_v1 as conversion
 
 class CanaryPressureConversionTests(unittest.TestCase):
     def test_official_example_sign_and_inverse(self):
-        self.assertAlmostEqual(-float(gsw.z_from_p(1000,4)),992.09217795512,places=8)
+        # Official 75-term example, not the superseded 48-term v3.04 example:
+        # https://teos-10.org/pubs/gsw/html/gsw_z_from_p.html
+        for pressure,depth in [(10,9.9445834469453),(50,49.7180897012550),
+                               (125,124.2726219409978),(250,248.4700576548589),
+                               (600,595.8253480356214),(1000,992.0919060719987)]:
+            self.assertAlmostEqual(-float(gsw.z_from_p(pressure,4)),depth,places=8)
         for row in conversion.build()['records']:
             p=float(gsw.p_from_z(-row['computed_depth_m'],row['conversion_latitude_degrees_north'],0,0))
             self.assertAlmostEqual(p,row['source_pressure_dbar'],places=5)
