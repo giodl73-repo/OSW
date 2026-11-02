@@ -1,9 +1,17 @@
 from datetime import datetime
 import unittest
-from acquire_florida_spray_seasonal_depth_v1 import phase_indices, select_axis, check_budget, diagnose, source_doi_matches
+from acquire_florida_spray_seasonal_depth_v1 import phase_indices, select_axis, check_budget, diagnose, source_doi_matches, nominal_phase_date
 
 
 class FloridaSprayDepth(unittest.TestCase):
+    def test_quantized_midnight_phase_key_preserves_original_timestamp(self):
+        original = datetime(2015, 9, 14, 23, 56, 40)
+        self.assertEqual(nominal_phase_date(original), datetime(2015, 9, 15))
+        self.assertEqual(original, datetime(2015, 9, 14, 23, 56, 40))
+        self.assertEqual(nominal_phase_date(datetime(2015, 9, 15, 0, 6, 40)), datetime(2015, 9, 15))
+        with self.assertRaises(ValueError):
+            nominal_phase_date(datetime(2015, 9, 15, 0, 11))
+
     def test_exact_published_doi_spellings_only(self):
         self.assertTrue(source_doi_matches('10.21238/S8TC9W'))
         self.assertTrue(source_doi_matches('https://doi.org/10.21238/S8TC9W'))

@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+from datetime import datetime, timedelta
 from pathlib import Path
 import netCDF4
 import numpy as np
@@ -18,10 +19,24 @@ def source_doi_matches(value):
     return value in ['10.21238/S8TC9W', 'https://doi.org/10.21238/S8TC9W']
 
 
+def nominal_phase_date(t):
+    stamp = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second, t.microsecond)
+    midnight = datetime(t.year, t.month, t.day)
+    offset = (stamp - midnight).total_seconds()
+    if offset <= 600:
+        return midnight
+    if offset >= 86400 - 600:
+        return midnight + timedelta(days=1)
+    raise ValueError('Provider phase timestamp more than ten minutes from a nominal daily midnight')
+
+
 def phase_indices(times):
+    nominal = [nominal_phase_date(t) for t in times]
+    if len(set(nominal)) != len(nominal):
+        raise ValueError('Duplicate nominal daily source phases')
     result = []
     for month in range(1, 13):
-        hits = [i for i, t in enumerate(times) if t.month == month and t.day == 15]
+        hits = [i for i, t in enumerate(nominal) if t.month == month and t.day == 15]
         if len(hits) != 1:
             raise ValueError('Exactly one fitted phase labelled the15th per calendar month required')
         result.append((month, hits[0]))
@@ -138,6 +153,8 @@ def main():
                                'source_shallowest_depth_is_surface': False}
                 row = {'source_product_kind': kind, 'calendar_month_phase': month,
                        'actual_provider_phase_timestamp_utc': times[it].strftime('%Y-%m-%dT%H:%M:%SZ'),
+                       'nominal_phase_calendar_date': nominal_phase_date(times[it]).strftime('%Y-%m-%d') if kind != 'mean' else None,
+                       'nominal_phase_key_requires_midnight_tolerance_seconds': 600 if kind != 'mean' else None,
                        'timestamp_is_instantaneous_observation_date': False,
                        'source_time_index': it, 'depth_levels_m': z,
                        'section_latitude': float(lats[iy]), 'section_longitudes': clean(lons[x0:x1+1]),
