@@ -106,4 +106,10 @@ if __name__=='__main__':
     result['input_sha256']={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in [OPERATOR,'analysis/derive_malvinas_branch_core_scenarios_v1.py','analysis/audit_malvinas_adcp_depth_v1.py']}
     output=ROOT/'malvinas-branch-core-scenarios-v1';output.mkdir(exist_ok=True)
     (output/'candidate.json').write_bytes((json.dumps(result,indent=2,ensure_ascii=False)+'\n').encode('utf8'))
-    print(json.dumps([{'pg':r['quality_pg_min_percent'],'window_km':r['uniform_window_km'],'status':r['status'],'branches':{k:{f:v.get(f) for f in ['sampled_maximum_depths_m','smoothed_northward_max_cm_s','longitude']} for k,v in (r.get('branches') or {}).items()} for r in result['scenarios']]))
+    summary=[]
+    for scenario in result['scenarios']:
+        branches={name:{field:branch.get(field) for field in ['sampled_maximum_depths_m','smoothed_northward_max_cm_s','longitude']}
+                  for name,branch in (scenario.get('branches') or {}).items()}
+        summary.append({'pg':scenario['quality_pg_min_percent'],'window_km':scenario['uniform_window_km'],
+                        'status':scenario['status'],'branches':branches})
+    print(json.dumps(summary))
