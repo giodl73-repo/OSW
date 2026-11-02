@@ -95,7 +95,7 @@ class ZonalCurrentAdditiveProjectionTests(unittest.TestCase):
 
     def test_source_frame_selection_pointer_primary_and_temperature_mutations_rejected(self):
         index=next(i for i,r in enumerate(self.facts['descriptors']) if r['selected_column_index'] is not None)
-        for key,value in [('component_bearing_degrees_true',90),('source_profile_pointer','/columns/9999'),('primary_lower_depth_m',-1),('section_id','invented'),('selected_native100m_temperature_degrees_celsius',7)]:
+        for key,value in [('component_bearing_degrees_true',270),('source_profile_pointer','/columns/9999'),('primary_lower_depth_m',-1),('section_id','invented'),('selected_native100m_temperature_degrees_celsius',7)]:
             changed=copy.deepcopy(self.facts);changed['descriptors'][index][key]=value
             with self.subTest(key=key),self.assertRaises((ValueError,IndexError)):p.full_section_cases(changed,self.chunks,self.op)
         changed=copy.deepcopy(self.facts);changed['descriptors'].pop()
