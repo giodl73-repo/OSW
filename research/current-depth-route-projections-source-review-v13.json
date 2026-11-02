@@ -1,0 +1,1046 @@
+{
+  "schema": "osw.current-depth-route-projections-source-review.v13",
+  "status": "PASS_SIX_ATLANTIC_REGIONAL_MODEL_DEPTH_SCENARIOS_WITH_GAPS",
+  "cloud_reviews": [
+    {
+      "run_id": 41479049946,
+      "tests_passed": 10,
+      "source_commit": "e3d77a3351f352903a1b8630acb852bf76f9c9d5",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41479049946"
+    },
+    {
+      "run_id": 41479049393,
+      "tests_passed": 6,
+      "source_commit": "e3d77a3351f352903a1b8630acb852bf76f9c9d5",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41479049393"
+    }
+  ],
+  "cloud_tests_passed": 16,
+  "cloud_test_groups": [
+    "10 new three-current scenario checks",
+    "6 baseline source inventory checks"
+  ],
+  "cloud_review_commit_scope": "Both projection and baseline workflows passed ate3d77a3351f352903a1b8630acb852bf76f9c9d5. The earlier38source collection checks are separately recorded atfaa206d8496d0590618f2d5f8ae9746784219dd2 and are not included in these16checks.",
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 15,
+    "identities_not_yet_projected": 96,
+    "regional_projection_scenarios": 35,
+    "source_anchor_references": 35,
+    "new_model_profile_anchors": 48,
+    "new_projection_eligible_source_nodes": 19,
+    "new_conditional_adjacent_segments": 6,
+    "new_gap_segments": 36,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0,
+    "regional_reference_geometry_volume_scenarios": 2
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v12.json": "b1b99d5b0c3c8b0c8bdc03f8adefa8781fec4a36fd8425b2873a3aad289e9f72",
+    "research/current-depth-route-projections-v12.csv": "6818be6dad2083c28fe81c9b9845bccd3f944d0ffb0d234fb4a9c488292c30fa",
+    "research/current-depth-route-projections-source-review-v12.json": "1a1ab70d07a77c595ba64a6f30abe3a8776933c6b1032794059c9fd7e8f43c49",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/atlantic-current-depth-source-review-v1.json": "1599c8a4f2845b856d00afe49e9a0db551d5aabd5110c5be04d85154685af3f4",
+    "research/atlantic-current-depth-operator-v1.json": "8a272f6ecd816424653c9732c4a9a105c25c13cc6c98ef8d01e4caf9fcf81676",
+    "research/source-data/atlantic-current-depth-v1/manifest.json": "876e74f2cfcb186af1b431b38b319d56d11b474c0c1bfeb028c68b6ec69a77c3",
+    "research/source-data/atlantic-current-depth-v1/brazil.json": "53a04f5b4cfa4d6998806213a9316062c6066c7101bc6257b1fd75e11ff1d2dd",
+    "research/source-data/atlantic-current-depth-v1/benguela.json": "ce67b241cb96735f2d06d31467af440c77769f49a145ca3155141d3070e3cabe",
+    "research/source-data/atlantic-current-depth-v1/canary.json": "69dbc8e5f2391d4732e0168a8e86000fa7bba49b1e1200046819c330a4ad9001",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c",
+    "research/current-depth-route-projection-operator-v13.json": "c7c5bcaccdb7c0187aceaeb535c987b227d978200748ad252ecc0b552cf10749",
+    "analysis/build_current_depth_route_projections_v13.py": "930e21fb4b2baf28b542a3c08cc6992160720b9ce03a9989c4f8d19f3d6a5cbb",
+    "analysis/test_current_depth_route_projections_v13.py": "d5e4e3a16b1d710502d749481fbc1b842a9ac3761cc7b5490802d132eed5d47b",
+    ".github/workflows/current-depth-route-projections-v13.yml": "2ef75f071ba29173fe267a6edda72de487aefc85044a8d8d9a93e1e650e84d63",
+    "research/current-depth-route-projections-v13.json": "7b179c473f248fc5d325b466aaab8a041a38ca8d7073d2e365ab59c69d567177",
+    "research/current-depth-route-projections-v13.csv": "de3118f645696ed56d12c10b414e5b2a42399e7c47bcf124e5d6c8785ff86b36"
+  },
+  "new_case_summaries": [
+    {
+      "projection_id": "brazil-hycom-2022-01-15-regional-depth-v1",
+      "entity_id": "current:brazil",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "original_anchors": 8,
+      "eligible_node_ids": [
+        "brazil-2022-01-15-vertex-2",
+        "brazil-2022-01-15-vertex-3",
+        "brazil-2022-01-15-vertex-5",
+        "brazil-2022-01-15-vertex-6"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-2",
+            "brazil-2022-01-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            667.2425127679712,
+            1088.4563628516203
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-5",
+            "brazil-2022-01-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            2179.2985490753263,
+            2705.6248524724742
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-0",
+            "brazil-2022-01-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            445.8581934744481
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-1",
+            "brazil-2022-01-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            445.8581934744481,
+            667.2425127679712
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-3",
+            "brazil-2022-01-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1088.4563628516203,
+            1694.3589290029495
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-4",
+            "brazil-2022-01-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1694.3589290029495,
+            2179.2985490753263
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-01-15-vertex-6",
+            "brazil-2022-01-15-vertex-7"
+          ],
+          "reference_distance_interval_km": [
+            2705.6248524724742,
+            3225.3109819290744
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "brazil-hycom-2022-07-15-regional-depth-v1",
+      "entity_id": "current:brazil",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "original_anchors": 8,
+      "eligible_node_ids": [
+        "brazil-2022-07-15-vertex-0",
+        "brazil-2022-07-15-vertex-2",
+        "brazil-2022-07-15-vertex-3"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-2",
+            "brazil-2022-07-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            667.2425127679712,
+            1088.4563628516203
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-0",
+            "brazil-2022-07-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            445.8581934744481
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-1",
+            "brazil-2022-07-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            445.8581934744481,
+            667.2425127679712
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-3",
+            "brazil-2022-07-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1088.4563628516203,
+            1694.3589290029495
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-4",
+            "brazil-2022-07-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1694.3589290029495,
+            2179.2985490753263
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-5",
+            "brazil-2022-07-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            2179.2985490753263,
+            2705.6248524724742
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "brazil-2022-07-15-vertex-6",
+            "brazil-2022-07-15-vertex-7"
+          ],
+          "reference_distance_interval_km": [
+            2705.6248524724742,
+            3225.3109819290744
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "benguela-hycom-2022-01-15-regional-depth-v1",
+      "entity_id": "current:benguela",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "original_anchors": 7,
+      "eligible_node_ids": [
+        "benguela-2022-01-15-vertex-0",
+        "benguela-2022-01-15-vertex-3",
+        "benguela-2022-01-15-vertex-5"
+      ],
+      "conditional_segments": [],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-0",
+            "benguela-2022-01-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            247.42892475799252
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-1",
+            "benguela-2022-01-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            247.42892475799252,
+            629.5130786991054
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-2",
+            "benguela-2022-01-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            629.5130786991054,
+            1113.7658444137405
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-3",
+            "benguela-2022-01-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1113.7658444137405,
+            1582.0020234048125
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-4",
+            "benguela-2022-01-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1582.0020234048125,
+            2027.9103520927185
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-01-15-vertex-5",
+            "benguela-2022-01-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            2027.9103520927185,
+            2470.588881740756
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "benguela-hycom-2022-07-15-regional-depth-v1",
+      "entity_id": "current:benguela",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "original_anchors": 7,
+      "eligible_node_ids": [
+        "benguela-2022-07-15-vertex-1",
+        "benguela-2022-07-15-vertex-3"
+      ],
+      "conditional_segments": [],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-0",
+            "benguela-2022-07-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            247.42892475799252
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-1",
+            "benguela-2022-07-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            247.42892475799252,
+            629.5130786991054
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-2",
+            "benguela-2022-07-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            629.5130786991054,
+            1113.7658444137405
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-3",
+            "benguela-2022-07-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1113.7658444137405,
+            1582.0020234048125
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-4",
+            "benguela-2022-07-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1582.0020234048125,
+            2027.9103520927185
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "benguela-2022-07-15-vertex-5",
+            "benguela-2022-07-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            2027.9103520927185,
+            2470.588881740756
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node",
+              "primary_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "canary-hycom-2022-01-15-regional-depth-v1",
+      "entity_id": "current:canary",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "original_anchors": 9,
+      "eligible_node_ids": [
+        "canary-2022-01-15-vertex-0",
+        "canary-2022-01-15-vertex-1",
+        "canary-2022-01-15-vertex-7",
+        "canary-2022-01-15-vertex-8"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-0",
+            "canary-2022-01-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            252.2608665604339
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-7",
+            "canary-2022-01-15-vertex-8"
+          ],
+          "reference_distance_interval_km": [
+            1496.2758101047866,
+            1740.6244740336695
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-1",
+            "canary-2022-01-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            252.2608665604339,
+            427.943748361535
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-2",
+            "canary-2022-01-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            427.943748361535,
+            688.8695791718378
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-3",
+            "canary-2022-01-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            688.8695791718378,
+            871.9495674671671
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-4",
+            "canary-2022-01-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            871.9495674671671,
+            997.3691541835271
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-5",
+            "canary-2022-01-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            997.3691541835271,
+            1219.1847922936317
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-01-15-vertex-6",
+            "canary-2022-01-15-vertex-7"
+          ],
+          "reference_distance_interval_km": [
+            1219.1847922936317,
+            1496.2758101047866
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "canary-hycom-2022-07-15-regional-depth-v1",
+      "entity_id": "current:canary",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "original_anchors": 9,
+      "eligible_node_ids": [
+        "canary-2022-07-15-vertex-2",
+        "canary-2022-07-15-vertex-3",
+        "canary-2022-07-15-vertex-7"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-2",
+            "canary-2022-07-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            427.943748361535,
+            688.8695791718378
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-0",
+            "canary-2022-07-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            252.2608665604339
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-1",
+            "canary-2022-07-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            252.2608665604339,
+            427.943748361535
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-3",
+            "canary-2022-07-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            688.8695791718378,
+            871.9495674671671
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-4",
+            "canary-2022-07-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            871.9495674671671,
+            997.3691541835271
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-5",
+            "canary-2022-07-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            997.3691541835271,
+            1219.1847922936317
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-6",
+            "canary-2022-07-15-vertex-7"
+          ],
+          "reference_distance_interval_km": [
+            1219.1847922936317,
+            1496.2758101047866
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "canary-2022-07-15-vertex-7",
+            "canary-2022-07-15-vertex-8"
+          ],
+          "reference_distance_interval_km": [
+            1496.2758101047866,
+            1740.6244740336695
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "window_edge_or_no_qualifying_model_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    }
+  ],
+  "scientific_review": [
+    "Six dated regional model scenarios append to29exactly preserved prior projection objects:January15/July15,2022 for eachBrazil/Benguela/Canary. Source primary thresholds remain10cm/s forBrazil and5cm/s forBenguela/Canary, with explicit original branch scopes. No new field values, source measurements or canonical references are created by projection.",
+    "All48original date/vertex anchors remain in source order. Nineteen retain an interior selected fixed-window maximum and a resolved primary lower contour. Only sixof42original adjacent intervals permit conditional interpolation;36remain gaps. A resolved edge-selected contour is not promoted to an axis location; no qualifying bounded-window core is not current absence. Source component bearings, native/wrapped longitude, selected coordinates and exact source pointers remain retained.",
+    "Eligibility is specific to these exploratory model reference scenarios. No independent current-axis validation or second-product surface corroboration is claimed. The source routes are coarse editorial geographic corridors; reference distances do not replace current lengths or establish an instantaneous model axis, physical polygon or current continuity.",
+    "Projected lower contour depth is distinct from paired upper depth and layer span. Both endpoint upper/lower boundaries must resolve before a model layer span is interpolated. Model layer thickness uses a distance datum and is not admitted as physical current thickness. Unknown upper support cannot become a zero upper depth or a fabricated span; no volume or lateral-width join is performed.",
+    "The frozen v12 projection operator is reused unchanged. At exact eligible nodes retain the model descriptor; blocked exact nodes and neighboring intervals remain unknown. Between adjacent eligible nodes only, piecewise linear variation on the declared reference geometry is an explicit unobserved-interior assumption. No skipped source vertices, extrapolation, replacement threshold, hidden alternate node or bathymetry fills a gap.",
+    "Each50km sample plus every source anchor retains the source anchor IDs and profile references actually used. Sample coordinates are positions on the editorial reference corridor, separately from selected model-node positions. Derived values/coordinates use six serialization decimals and display depths round to10m; this does not state physical accuracy, measurement error or confidence limits.",
+    "Two instantaneous2022cases do not establish an annual envelope, climatological seasonal cycle or observed monthly averages. Primary thresholds and current branch identity remain per case. Source5/10/20cm/s sensitivity layers remain available in the retained raw-profile collection but are not pooled into an uncertainty margin or substituted for the primary contour.",
+    "Ten cloud tests verify old29-object preservation, all current-owned canonical references, six case IDs/dates/thresholds/scopes, exact source anchors/native coordinates/locked frames/profile pointers, strict edge/no-core/censor gates, no skipped original neighbors, three-quantity interpolation, retention of an all-blocked synthetic case, source duplicate/drop/identity/threshold mutation rejection, physical flags/datum/volume separation, complete oldCSV-cell preservation and source pins/forward clarification. Six baseline checks pass at the same source commit.",
+    "The source collection38checks and its240velocity profiles remain frozen and linked through exact hashes. Existing701canonical scoped depth references and102eddy-size references are preserved. This version refreshes projected ownership counts but neither invents canonical source anchor IDs nor synthesizes parent-family depth values.",
+    "All geometry/interpolation and tests ran in cloud on one idle CPU using retained source chunks. Local work prepared small metadata/code, checked proof hashes and retained exact cloud artifact bytes. There was no new source-field acquisition, local numerical test, browser/server/native/WASM execution or runtime/UI integration.",
+    "JSON1814697B andCSV1638173B are retained byte-exact and published in separate batches under the unchanged3MBaggregate and2.5MBper-file caps. Previous fixed source and publication limits are not raised.",
+    "The inventory now has35regional scenarios across15current identities;96identities still lack a regional projection scenario. No whole-route physical depth profile, full-current thickness, compatible cross-sectional shape, current volume, state passage, global total or annual depth range has been established. Programme remains incomplete."
+  ],
+  "previous29_projection_records_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
