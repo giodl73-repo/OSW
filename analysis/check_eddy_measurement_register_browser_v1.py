@@ -142,7 +142,7 @@ def run():
             assert primary.locator('.eddy-record').count()==3
             for name in ['Feldman','Edison']:
                 page.fill('#eddy-search',name);page.locator('#eddy-rows summary').click()
-                assert page.locator('#eddy-rows .eddy-record').count()==(2 if name=='Feldman' else 3)
+                assert page.locator('#eddy-rows .eddy-record').count()==(2 if name=='Feldman' else 5)
                 assert 'current status and age have not been established' in page.locator('#eddy-rows').inner_text()
                 if name=='Feldman':page.screenshot(path=str(OUT/'undated-active-label.png'),full_page=True)
             page.fill('#eddy-search','Kathleen');page.locator('#eddy-rows summary').click()
@@ -541,7 +541,7 @@ def run():
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-80-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
             page.set_viewport_size({'width':1440,'height':1000})
-            for needle in ['6 days','1 day','No-Hurricane','No-Helene','No-Milton','Preprint model event-date contrast','not eddy lifetime','Different simulated worlds','not additive','not peer-reviewed','Size reference needed','2024-10-16','2024-10-11']:
+            for needle in ['6 days','1 day','No-Hurricane','No-Helene','No-Milton','Preprint model event-date contrast','not eddy lifetime','Different simulated worlds','not additive','not peer-reviewed','control-model 0.4 m isoline estimate','2024-10-16','2024-10-11']:
                 assert needle in row.inner_text(),needle
             for part in ['both-hurricanes-removed','helene-removed','milton-removed']:
                 card=page.locator('[data-evidence-id="edison-deng-2026-model-detachment-contrast-'+part+'"]')
@@ -550,7 +550,7 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for part in ['both-hurricanes-removed','milton-removed']:
                 page.locator('[data-evidence-id="edison-deng-2026-model-detachment-contrast-'+part+'"]').screenshot(path=str(OUT/('mobile-edison-model-'+part+'.png')))
-            checks.append('Edison preprint model date contrasts retain three forcing experiments, different simulated worlds, non-additivity, no observed lifespan or physical effect, and an open size gap; desktop/mobile')
+            checks.append('Edison preprint model date contrasts retain three forcing experiments, different simulated worlds, non-additivity, no observed lifespan or physical effect, and separate control-model isoline size context; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-03-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-03-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
@@ -893,6 +893,19 @@ def run():
                     page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                     card.screenshot(path=str(OUT/'mobile-haskell-speed-core-speed.png'))
             checks.append('Haskell dated named-source speed core: five numerical references, survey waypoint proxy, archived chart/mission/registry definitions, no physical or annual extent promotion; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-80-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-80-primary"]');text=row.inner_text()
+            for value in ['125–275 km · control-model 0.4 m isoline estimate','250–425 km · control-model 0.4 m isoline estimate','preprint model case','not accepted for publication','black 0.4 m SSH line','red 1.5-knot line','64 scenarios','not a direct observation','No closed topology']:
+                assert value in text,value
+            assert 'Size reference needed' not in text and 'Model calculation: undefined' not in text
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="edison-control-2024-10-10-plotted-0p4m-isoline-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('edison-control-isoline-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-edison-control-isoline-'+component+'.png')))
+            page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'edison-control-isoline-summary.png'))
+            checks.append('Edison preprint control-model 0.4 m SSH-isoline spans: explicit black operator and model date, red speed contour/counterfactual exclusion, reading sensitivity, no physical size or volume promotion; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

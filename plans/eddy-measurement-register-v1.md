@@ -790,3 +790,10 @@ observed center. Keep its nominal August 1 date, August 3 mission naming and
 registry May separation separate. These core ranges are numerical comparisons,
 not outer boundaries, seasonal envelopes or volume inputs. Preserve the first
 461 numeric evidence records and CSV rows/header.
+
+For preprint model isolines, retain the experiment, exact source contour operator,
+model-day support and preprint status. Manual spans of a control-model contour
+do not validate observed physical size or storm causality. Keep speed contours
+and counterfactual experiments separate. Edison uses the black 0.4 m SSH line
+in Figure S2 on October 10, 2024; its background datum is unspecified. Preserve
+the first 466 numeric evidence records and CSV rows/header.

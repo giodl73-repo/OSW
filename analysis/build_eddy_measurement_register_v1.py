@@ -24,6 +24,7 @@ from eddy_named_frontal_chart_spans_v1 import summarize as named_frontal_chart_s
 from eddy_public_provider_arrow_spans_v1 import summarize as public_provider_arrow_summary
 from eddy_dated_provider_arrow_spans_v1 import summarize as dated_provider_arrow_summary
 from eddy_manual_ssh_isoline_spans_v1 import summarize as manual_ssh_isoline_summary
+from eddy_edison_model_isoline_spans_v1 import summarize as edison_model_isoline_summary
 from eddy_operational_chart_spans_v1 import validate_case as validate_operational_chart_case, spans as operational_chart_spans
 from eddy_source_bold_isoline_spans_v1 import validate_case as validate_source_isoline_case, spans as source_isoline_spans
 
@@ -95,6 +96,20 @@ def validate_gridded_case(row, report=None):
     assert row['range_value']==summary['range_value'] and row['value'] is None and row['category']=='size'
     assert row['range_kind']=='gridded_contour_method_sensitivity_not_measurement_uncertainty'
     assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
+
+
+def validate_edison_model_isoline_reference(row,report):
+    c=row['calculation'];summary=edison_model_isoline_summary(report,c['component'])
+    assert all(c[k]==v for k,v in summary.items())
+    assert row['entity_id']==report['case']['owner_id']
+    assert row['metric']=='source_manual_model_ssh_isoline_'+c['component']+'_span'
+    assert row['category']=='size' and row['unit']=='km' and row['value'] is None
+    assert row['range_value']==summary['range_km']
+    assert row['period_start']==row['period_end']==summary['source_map_date']
+    assert row['period_precision']=='source_model_date_label_not_observation'
+    assert row['range_kind']=='manual_isoline_reading_and_axis_sensitivity_not_physical_uncertainty'
+    assert row['evidence_role']=='qualified_preprint_model_isoline_reference' and row['rights_screened_release_eligible'] is False
+    assert row.get('source_map_estimate') is None and row.get('depth_m') is None
 
 
 def validate_manual_ssh_isoline_reference(row,report):
@@ -1049,6 +1064,12 @@ def build():
                 c=r['calculation']
                 if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
                 elif c.get('method')=='gridded_adt_named_source_case_v1':validate_gridded_case(r,read(c['report_file']))
+                elif c.get('method')=='source_manual_edison_control_0p4m_isoline_spans_v1':
+                    report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
+                    validate_edison_model_isoline_reference(r,report)
+                    assert report['original']==source['original']
+                    for key in ['method','axis_math']:
+                        assert hashlib.sha256((ROOT/report[key+'_file']).read_bytes()).hexdigest()==report[key+'_sha256']
                 elif c.get('method')=='source_manual_qe2_5cm_isoline_spans_v1':
                     report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
                     validate_manual_ssh_isoline_reference(r,report)
@@ -1179,7 +1200,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_cartographic_circle_spans_v1.py','analysis/eddy_author_animation_patch_v1.py','analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py','analysis/eddy_gridded_case_summary_v1.py','analysis/eddy_altimetry_contours_v1.py','analysis/eddy_operational_chart_spans_v1.py','analysis/eddy_source_bold_isoline_spans_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_cartographic_circle_spans_v1.py','analysis/eddy_author_animation_patch_v1.py','analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py','analysis/eddy_gridded_case_summary_v1.py','analysis/eddy_altimetry_contours_v1.py','analysis/eddy_operational_chart_spans_v1.py','analysis/eddy_source_bold_isoline_spans_v1.py','analysis/eddy_edison_model_isoline_spans_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',
