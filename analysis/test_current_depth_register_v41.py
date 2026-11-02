@@ -50,7 +50,10 @@ class CanaryConvertedDepthRegisterTests(unittest.TestCase):
 
     def test_mutations_reject_pressure_relabeling_and_scope_loss(self):
         for row in self.rows:
-            for key,value in [('approximate_value_m',row['source_pressure_dbar']),('metric','lower_flow_boundary_depth'),('pressure_conversion_latitude_degrees_north',0),('source_mean_velocity_condition','annual_climatology'),('uncertainty_m',0.02),('volume_eligible',True)]:
+            # The480dbar source and rounded480m display happen to be equal.
+            # Mutations must actually change a field; test units explicitly too.
+            wrong_depth=row['source_pressure_dbar'] if row['source_pressure_dbar']!=row['approximate_value_m'] else row['source_pressure_dbar']+10
+            for key,value in [('approximate_value_m',wrong_depth),('unit','dbar'),('metric','lower_flow_boundary_depth'),('pressure_conversion_latitude_degrees_north',0),('source_mean_velocity_condition','annual_climatology'),('uncertainty_m',0.02),('volume_eligible',True)]:
                 changed=copy.deepcopy(row);changed[key]=value
                 with self.subTest(reference=row['id'],field=key),self.assertRaises(ValueError):
                     depth.validate_context(changed)
