@@ -1,0 +1,66 @@
+{
+  "schema": "osw.current-depth-register-source-review.v5",
+  "status": "PASS_SEVEN_ADDITIONAL_ATLANTIC_SECTION_DEPTHS",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41380119869,
+      "tests_passed": 7,
+      "source_commit": "5b2bb955af06ad226e8aeb40bd99fb14f8d83be8",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41380119869"
+    },
+    {
+      "run_id": 41380119824,
+      "tests_passed": 6,
+      "source_commit": "5b2bb955af06ad226e8aeb40bd99fb14f8d83be8",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41380119824"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 65,
+    "identities_with_scoped_depth_reference": 25,
+    "identities_not_yet_assessed": 86,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 6,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 3,
+    "reported_flow_depth_band": 1,
+    "reported_vertical_extent": 9,
+    "transport_selected_depth_extent": 42
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v5.py": "76855aabf6a4308f1ab70a50a4a83382c8f329c2f1c4168f3c8a076758460360",
+    "analysis/test_current_depth_register_v5.py": "40b28bb45e40d0e4e2241eee0c43dc8fc87d66d104516eb2c65fd0466ecc9f85",
+    "research/current-depth-source-facts-v5.json": "b669c8aef000dd998ad336f828fc4eb2e1487f1577b1374dea5f993ca53f963f",
+    "research/current-depth-register-v5.json": "4ff2dbbb3759abd2469400428dadcf67c4f3e1258f46563eedbef7f5621dfbc1",
+    "research/current-depth-register-v5.csv": "4f32d72fefbcd483c10049f0d9339a164e0aee5b6ce4dd570e873ef06c9eb6db",
+    ".github/workflows/current-depth-register-source-v5.yml": "dad4f3d143442ceb724acd6663a4c99a01704dce086829ca4cc70d68f384500b",
+    "research/source-data/cainzos-atlantic-2023/table-1.xlsx": "bfe0bbc798ca14677fdfd66668f546e2b75fed4f6350bc29881a47133e40d3f6",
+    "research/source-data/cainzos-atlantic-2023/table-2.xlsx": "eab186e33d87ee67f3d8f825e0b12a07cf3e1f8297e5ef24416f7d6a44961f15"
+  },
+  "previous_58_references_and_v4_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all58 preceding depth references retained.",
+    "Seven publisher depth cells map independently to Florida, North Brazil at11S and upper Labrador.",
+    "Identity, group row, density-layer labels, metre depths, stations, longitude limits and cruise rows checked against original publisher workbooks.",
+    "Original Table1 whole-section windows checked separately; they are not exact selected-station dates or decade means.",
+    "Upper Labrador support does not establish its deep component. No unrelated width record inherited.",
+    "No uniform thickness, rectangle, uncertainty, annual envelope, volume, state join or seasonal playback inferred.",
+    "JSON and CSV reproduce with source locators and dates."
+  ],
+  "source_review_scope": "Cainzos et al.2023 primary publisher HTML Sections2.3,3.1.5,3.1.6 and3.1.12. Original PDF pages2,5 and6 actually viewed. Original Table1/Table2 XLSX read without modification or recalculation. No ocean fields acquired.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
