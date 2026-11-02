@@ -1,0 +1,55 @@
+{
+  "schema": "osw.current-depth-register-source-review.v41",
+  "status": "PASS_THREE_QUALIFIED_CANARY_STANDARD_OCEAN_PRESSURE_CONVERSIONS",
+  "cloud_reviews": [
+    {
+      "run_id": 41442373315,
+      "tests_passed": 13,
+      "source_commit": "3396c785154eee2ff9f91aea272e5d68586e4f63",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41442373315"
+    }
+  ],
+  "cloud_tests_passed": 13,
+  "counts": {
+    "identities": 111,
+    "depth_references": 350,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v41.py": "a137f958de4589b3034c5d216024fb02f9783c87d58b45f2585cc44e9f505286",
+    "analysis/test_current_depth_register_v41.py": "37a70f1acc94d084596dcb958d4202d5a9c8bdb6aec9e72704a438b5fce36d8c",
+    "research/current-depth-rules-v41.json": "841a2e0ed61b5c7a72c22b1a31aa06acb01184a0f9462505a1c035507e8215c7",
+    "research/current-depth-source-facts-v41.json": "78f71a197437af74d08a26a9984fce142b9519d2773fe72e47b62a146583d852",
+    "research/current-depth-register-v41.json": "1795e4f801594b6f654b26a3278348eccbad180e181c6d7985d1dfe4d6e05313",
+    "research/current-depth-register-v41.csv": "8d16b3fbdeec85194e8ef5ef12e9de6d475e1719843e2f9c88b6041a74fc02e3",
+    ".github/workflows/current-depth-register-source-v41.yml": "81f2eb61cf825e7ee76f342b888352662f8c88d141c1f5ac11589cf758cb0099",
+    "analysis/convert_canary_pies_depth_v1.py": "a25a027c27ee5cf906960f376ea88c06836f3c458709a6f30a29682b07e50003",
+    "analysis/test_canary_pies_depth_conversion_v1.py": "e488bcec2ec5f0453e46b57448bd10da65f17fee59eb82bd7e12497cb3fb4d13",
+    ".github/workflows/canary-pies-depth-conversion-v1.yml": "2701cfd061db3af0552b7afc94cf01cfcb3466db1ae304d211f4dc624cca6e98",
+    "research/canary-pies-native-depth-source-facts-v1.json": "4053138b73e94faaecf453ca9e35541cc7dc814c292517f50bd42798a9feb314",
+    "research/canary-pies-pressure-conversion-operator-v1.json": "db638820525ba42873706eb7bf8f17b66b667ad34fdff813505c6ceceeb9eb0e",
+    "research/canary-pies-converted-depths-v1.json": "b56e729a7347f5d31ac3ac6be1b662d8b3f35de63fc561e6ecde8b00e14b91f4",
+    "research/current-depth-route-projections-v10.json": "63ecd9fae0c1dae581fca57375bfb92f459156f5a8ac9e003881c555f0abd33c",
+    "research/current-depth-member-index-v6.json": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e"
+  },
+  "scientific_review": [
+    "Three original source pressures810/480/690dbar remain retained in native facts; corresponding approximate metre display values800/480/680 are derived descriptors, not new observations. All347 older canonical references and prior scenario records remain unchanged.",
+    "810dbar offshore and480dbar LP are mean section geostrophic velocity reversals. The690dbar LP case uses source conditional southward-component selection excluding recirculation. These are separate definitions, not seasonal extrema, confidence bounds, physical thickness or a uniform current-axis bottom.",
+    "Pinned GSW3.6.23 z_from_p converts the assumed oceanographic sea-pressure coordinate using the arithmetic mean of the nominal PIES endpoint latitudes. Both dynamic-height and surface-geopotential corrections are assumed zero. Atmospheric pressure is not subtracted again. Pressure datum and standard-ocean assumptions are explicit.",
+    "Computed depths retain six decimals for reproducibility;10m display rounding does not establish physical accuracy. The small endpoint-latitude sensitivity excludes source/ocean-state/profile errors and is not uncertainty. Physical depth uncertainty remains unknown.",
+    "One-year source study context remains separate from Figure2 PIES D dates and the somewhat wider archive metadata dates. Exact common valid velocity averaging periods have not been established, so no invented precise observation interval or monthly depth series is admitted.",
+    "Primary publisher indexed full text and official current75-term TEOS-10 documentation reviewed. Official six-value conversion example and inverse consistency passed cloud checks. Original PDF/figure pixels were not viewed and no digitization was performed.",
+    "Public Zenodo record contains five raw pressure/acoustic-travel-time telemetry files, not an identified ready-made absolute-velocity product. Archive metadata alone does not enable monthly reversal estimates without GEM/hydrographic/reference-velocity reconstruction. No raw telemetry was downloaded or processed.",
+    "Seven register checks and six conversion checks pass on source3396c785154eee2ff9f91aea272e5d68586e4f63. They cover exact JSON/CSV reproduction and old cells, native conversion links, branch/condition separation, unsupported promotions, explicit pressure-unit mutations, official values/inverse, latitude sensitivity and changed source/operator rejection. No local tests were run."
+  ],
+  "new_independent_observations": 0,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
