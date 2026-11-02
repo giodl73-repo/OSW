@@ -1,0 +1,90 @@
+{
+  "schema": "osw.current-depth-source-facts.v39",
+  "status": "NWASC_BJORNOYA_STATIC_CORE_DEPTH_AND_AREA",
+  "previous_register_file": "research/current-depth-register-v38.json",
+  "previous_register_sha256": "748c2524180a5c20c377701bbce3681919aaf8ed77cf820301cbe7604ebb5fc4",
+  "source_input_sha256": {
+    "research/current-depth-member-index-v6.json": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e"
+  },
+  "retained_member_index": {
+    "file": "research/current-depth-member-index-v6.json",
+    "sha256": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e",
+    "reason": "NwASC lies outside all nine declared parent membership lists; member discovery unchanged."
+  },
+  "source_reviews": [
+    {
+      "url": "https://os.copernicus.org/articles/22/17/2026/",
+      "review_mode": "Primary HTML Sections2.1.2/2.3 and original PDF5/printed21 Figure3d inspected.580m is source prose, qualitatively checked against cyan core mask; no figure digitization.",
+      "actual_original_pixels_viewed": true,
+      "reviewed_pdf_page": 5,
+      "original_pdf_sha256": "b7a49fcc9ff6f2f487381d9736996fd07e5cd0d2310743a88fb168e1587bae49",
+      "reviewed_render_sha256": "12f8bce18781e4100733e99336dcb05cccfaee6ca47d3f288e64dd0cd253489a",
+      "original_pdf_redistributed": false
+    }
+  ],
+  "references": [
+    {
+      "id": "nwasc-baumann-2026-bjornoya-core-bottom",
+      "entity_id": "current:norwegian-atlantic-slope",
+      "metric": "core_lower_boundary_depth",
+      "approximate_value_m": 580,
+      "range_m": null,
+      "lower_bound_m": null,
+      "lower_bound_exclusive": false,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": null,
+      "calendar_months": null,
+      "geographic_scope": "Bjørnøya hydrographic section in the source’s broad high-latitude NwASC continuation. No point longitude or exact core-axis position assigned.",
+      "temporal_scope": "1993–2022 hydrographic/altimetry mean;53 unevenly sampled Bjørnøya transects, with seasonal bias. Static mean mask, not an instantaneous or quarterly depth series.",
+      "source_definition": "Approximate maximum depth of the Atlantic-Water core selected by descending absolute geostrophic velocity until50% of section mean transport is represented.",
+      "evidence_kind": "published_hydrographic_mean_core",
+      "source_url": "https://os.copernicus.org/articles/22/17/2026/",
+      "source_citation": "Baumann et al.(2026), Reduced cooling in the Norwegian Atlantic Slope Current, Ocean Science22:17–29, doi:10.5194/os-22-17-2026.",
+      "source_locator": "Section2.1.2 final spatial-extent paragraph and original Figure3d, printed21/PDF5; Section2.1 sampling; Section2.3 source core areas.",
+      "qualification": "Maximum static mask depth is not a full-current bottom or uniform thickness.50m is an imposed surface exclusion. Do not inherit Svinøy1500m or Gimsøy2500m lateral cutoff at Bjørnøya; no numerical Bjørnøya isobath cutoff is established. Source mean-mask cell areas slightly overestimate geometric area by ignoring topographic cell cuts. Quarterly interpolation oversamples the sparse section and supplies no seasonal mask-depth data. Source broad NwASC geography may overlap names used for West Spitsbergen flow; no independent duplicate component volume or identity inheritance. BSO uses a different salinity ranking and remains excluded from velocity-ranked core pairing.",
+      "observed_period": null,
+      "source_case_id": "nwasc-baumann-2026-bjornoya-mean-mask",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "climatology_years": [
+        1993,
+        2022
+      ],
+      "section_name": "Bjornoya",
+      "core_definition": {
+        "absolute_salinity_min_g_kg": 35.16,
+        "salinity_operator": ">=",
+        "excluded_surface_upper_depth_m": 50,
+        "shoreward_isobath_m": null,
+        "fraction_of_mean_transport": 0.5,
+        "ranking": "decreasing_absolute_geostrophic_velocity",
+        "static_mean_mask": true
+      },
+      "source_section_transect_count": 53,
+      "source_cross_section_area_km2": 17,
+      "source_area_is_approximate": true,
+      "source_area_geometry": "Rectangular midpoint cells of static mean transport-selected core; topographic partial-cell cuts are not resolved.",
+      "source_area_uncertainty_km2": null,
+      "source_lateral_cutoff_policy": "No numerical SI/GI isobath cutoff inherited at Bjornoya",
+      "source_quarterly_interpolation_is_depth_series": false,
+      "reference_route_projection_eligible": false
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
