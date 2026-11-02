@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v8
+      - uses: actions/checkout@v6
         with:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
@@ -33,7 +33,7 @@ jobs:
             research/ocean-current-width-inventory.json
             research/source-data/cainzos-atlantic-2023/table-*.xlsx
             research/source-data/cainzos-atlantic-2023/article.xml
-      - uses: actions/setup-python@v8
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - name: Verify branch depths core operators and source-reported thickness
