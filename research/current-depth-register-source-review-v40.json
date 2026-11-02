@@ -1,0 +1,51 @@
+{
+  "schema": "osw.current-depth-register-source-review.v40",
+  "status": "PASS_FOUR_HISTORICAL_BRAZIL_MODAL_MEAN_DEPTH_REFERENCES",
+  "cloud_reviews": [
+    {
+      "run_id": 41440742344,
+      "tests_passed": 88,
+      "source_commit": "7d9b11ad75d43d9fe794a089113aa7d0c6c37d94",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41440742344"
+    },
+    {
+      "run_id": 41440742326,
+      "tests_passed": 6,
+      "source_commit": "7d9b11ad75d43d9fe794a089113aa7d0c6c37d94",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41440742326"
+    }
+  ],
+  "cloud_tests_passed": 94,
+  "counts": {
+    "identities": 111,
+    "depth_references": 347,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v40.py": "663b41b8f9e610d054cf84f8c933051bb7cf948a1a353035d72cc5993a35ce50",
+    "analysis/test_current_depth_register_v40.py": "3b0e73b13281c8dc30b56dae404ffc4052d1f7349fc8602c65d3621d79236b39",
+    "research/current-depth-rules-v40.json": "4121897cb292f1d65934aa344dd3b449444055a7367ba4c88b596e9ae57c0de4",
+    "research/current-depth-source-facts-v40.json": "f79756f533f7cbc3b1f01dad7598be0bc33700fc9b232a28c912989a8625abb4",
+    "research/current-depth-register-v40.json": "1f217973dcef8fc339e9ad86a8323c6b4f88dab14c69f48ea4288ab7872be797",
+    "research/current-depth-register-v40.csv": "db4c0445e22a62e32c22ca9b1d745936a71b56c255825097e246c01ccd957a4e",
+    ".github/workflows/current-depth-register-source-v40.yml": "26d872082bd496da7e7770b963fb87d620c0f07137ee6e1b5083ca16187df6e7"
+  },
+  "scientific_review": [
+    "Four author-reported Brazil Current mean modal-fit vertical extents: MARLIM350m, DFBS400m, C3550m, W333850m. Nominal sites and month-precision record bounds retained from Table1; these are different historical records, not a synoptic or annual profile.",
+    "Mean profiles reconstructed using five gravest dynamical modes and WOA2009 stratification. Source instrument gaps, filling methods, local along-front rotation and low-pass processing remain explicit. Bathymetry, instrument sampling limits, transport and underlying IWBC are separate quantities.",
+    "DFBS mean has low statistical significance in the source. The default scenario retains its provisional400m descriptor; the support-filtered field is unknown at DFBS and both adjacent intervals, without bridging the flagged site. This is not a statistical confidence interval.",
+    "Nominal WGS84 mooring connector is reference geometry, not a measured current axis. Source anchors retain exact nominal coordinates. Derived cumulative kilometres and computed coordinates serialize to six decimals solely for cross-platform reproduction, without asserting physical accuracy.",
+    "Depth descriptors interpolate only between adjacent source anchors and round to50m for display. No extrapolation, monthly seasonal cycle, whole-route physical depth, thickness or whole-current volume is admitted.",
+    "Primary author-hosted original PDF inspected: Table1 and Figure6 pages rendered, mean-depth values transcribed from Section2.3 prose. No figure digitization or PDF redistribution. Figure6 nominal metadata inconsistencies are documented using Table1 coordinates/bathymetry.",
+    "All prior eleven scenario records, previous quantity cells, depth registers and eddy measurements remain preserved. Eighty-eight source/profile checks plus six baseline checks passed in cloud; no local tests or raw ocean-field processing."
+  ],
+  "primary_source_url": "https://cesar-rocha.github.io/assets/documents/rocha_etal2014.pdf",
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
