@@ -1,0 +1,54 @@
+name: Current depth supported and blocked cases v14
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v14.yml
+      - analysis/build_current_depth_route_projections_v14.py
+      - analysis/test_current_depth_route_projections_v14.py
+      - research/current-depth-route-projection-operator-v14.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v14.py
+            analysis/test_current_depth_route_projections_v14.py
+            research/current-depth-route-projection-operator-v14.json
+            research/current-depth-route-projections-v13.json
+            research/current-depth-route-projections-v13.csv
+            research/current-depth-route-projections-source-review-v13.json
+            research/current-depth-register-v48.json
+            research/current-depth-register-source-review-v48.json
+            research/atlantic-current-depth-source-review-v2.json
+            research/atlantic-current-depth-operator-v2.json
+            research/source-data/atlantic-current-depth-v2/manifest.json
+            research/source-data/atlantic-current-depth-v2/north-brazil.json
+            research/source-data/atlantic-current-depth-v2/north-atlantic.json
+            research/source-data/atlantic-current-depth-v2/labrador.json
+            analysis/build_current_depth_route_projections_v13.py
+            analysis/build_current_depth_route_projections_v12.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Project and test three Atlantic current depth scenarios on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v14.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v14.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v14
+          path: current-depth-route-projections-v14/
+          retention-days: 7
