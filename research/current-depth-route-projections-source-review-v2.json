@@ -1,0 +1,70 @@
+{
+  "schema": "osw.current-depth-route-projections-source-review.v2",
+  "status": "PASS_FOUR_REGIONAL_PROFILES_WITH_METRICS_AND_PHASES_SEPARATE",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41416401226,
+      "tests_passed": 16,
+      "source_commit": "250f797f9f24131044fddee1f0b1e65dda72a05f",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41416401226"
+    },
+    {
+      "run_id": 41416401090,
+      "tests_passed": 6,
+      "source_commit": "250f797f9f24131044fddee1f0b1e65dda72a05f",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41416401090"
+    }
+  ],
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 4,
+    "identities_not_yet_projected": 107,
+    "regional_projection_scenarios": 4,
+    "source_anchor_references": 10,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    ".github/workflows/current-depth-route-projections-v2.yml": "2ffab37188bf1ef3093b07a6d37849f682a0ed6c01cb020f6567b050c5e27dfb",
+    "analysis/build_current_depth_route_projections_v1.py": "7949beb6ab4599b650abd41fde270a57e5d4028aaae74ddcb820b8bc8985e7f9",
+    "analysis/build_current_depth_route_projections_v2.py": "f2c9b72f80c58cee14782a18234ae86d6ec21b8b441bb9381724d8081f314bf9",
+    "analysis/test_current_depth_route_projections_v1.py": "e99cded50d1cffb35d23e8af4ba130ab0d07eb1abac410e4c3675ff921497395",
+    "analysis/test_current_depth_route_projections_v2.py": "afd66b560e83f7c18108132415690cb86e9f00342715afca46be4302b0f1177d",
+    "research/agulhas-reference-path-candidate.json": "2b5a04d3b3a21029c61ffb96001080746ae8667be6eff3a1cabf59e56c1b2acc",
+    "research/current-depth-register-v32.json": "d4507aa29a76a3d8c0e60efe5bf721768e86d5e5b0f1bad89ddd29d4238e930a",
+    "research/current-depth-route-projection-operator-v1.json": "e7792357e7713ebe853d7daf708eec4396fca7759a43f7975b01fab662abae86",
+    "research/current-depth-route-projection-operator-v2.json": "b8171bb412cc284291322a912520d9f126a51ddc2737145b8ba7fd3d800bd7a9",
+    "research/current-depth-route-projections-v1.csv": "d8d785b342abcdfc7f93cc1827d95dabde7fab444192ea928731e2077462145f",
+    "research/current-depth-route-projections-v1.json": "8a3af2984fa6a8563c901d17f0b76570224a0d33443303eeb99cdcf99e530103",
+    "research/current-depth-route-projections-v2.csv": "17632bb90fc42cef434663f981dacf475124503fbfb665e594c150234313f393",
+    "research/current-depth-route-projections-v2.json": "efea4396ab448b2e0f5bebd8d5d8487127b75ba26bb8bd5fac71d67adc8d6679",
+    "research/current-length-estimate-register-v1.json": "5b63576c47b6c59f4360d51cb2c04354ddab670894f7971a2380d8ca9ffd5d87",
+    "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
+    "research/ocean-current-reference-path-candidates.json": "b06caed27655c39f8127ddda441cba0a856800f599ec52edcd5b30d2ad37b633",
+    "research/somali-winter-reference-path-candidate.json": "37cf752d61cfcfff451e3066e842e00f524b78400573b28ff731cf3ff12f4cda"
+  },
+  "previous_projection_v1_files_preserved": true,
+  "depth_register_319_references_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "source_review_scope": "Primary publisher indexed Sen2022 full text Section3.3 and Conclusions rechecked; direct publisher403 remains, no original figure pixels claimed. Primary Casal2009 HTML Sections4.3–4.4 and paragraph44 rechecked. Existing source-defined metrics, section-specific exceptions and model/observation time bases retained without new measurements or digitization.",
+  "validation_scope": [
+    "All111 catalog identities retain original depth reference ownership. Four currents now have regional projection scenarios,107 remain unprojected, ten unique existing source anchors, zero new depth observations, zero whole-route physical depth profiles or volumes.",
+    "WICC200/400m historical scenario retains every previous numerical value, source link, support and qualification. Sample column renamed from projected_extent_descriptor_m to projected_depth_descriptor_m in version2 so core and transport descriptors are not mislabeled as extent. Frozen version1 remains unchanged.",
+    "Somali winter southwestward seasonal-model extent500m at6N and600m at3N maps to existing winter southward candidate geometry. Preserve November–February phase, ROMS repeating climatology and last-three-simulation-year analysis, not a real-year observational interval. Source section longitude bands bound both mapped drawing gates.",
+    "EICC southward core150m at16N and100m at12N remains maximum directional meridional-velocity core depth, not flow extent. October–December seasonal mean intersects the selected November display route context only; no October/December path reconstructions, all-season continuity or annual depth envelope inferred.",
+    "Agulhas four source laterally integrated net-transport-zero depths1500,3100,1900,3500m at30,32,34,36S remain transport diagnostics. Preserve source eddy cancellation, counterflow exclusions and Port Shepstone possible temporal aliasing, distinct from a pointwise bottom, zero-speed surface or thickness. February–March2003 cruise context remains separate from model cases.",
+    "Piecewise interpolation uses only the two adjacent source anchors per segment, so Agulhas shoaling and deepening are retained with exact contributing-reference provenance. No single end-to-end slope or provenance union over every section. Unknown beyond first/last support; rounding10m is display precision, not measurement uncertainty.",
+    "Case contracts reject source metric/entity/depth/phase/time substitutions. Candidate geometry hashes and selected-route identities checked; gates outside recovered longitude support rejected. All geometry/volume/annual eligibility remains false. No new width pairing, cross-sectional shape, thickness or volume.",
+    "Nine new tests and seven frozen pilot tests pass in the cloud along with six source-register baseline tests:22 total. JSON/CSV reproduce and preserve metric, source periods, model time basis, sample statuses and null gaps. One idle CPU used for small local metadata generation; no local tests or ocean-field/app-runtime execution."
+  ],
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}
