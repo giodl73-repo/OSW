@@ -1,0 +1,20 @@
+{
+  "schema": "osw.malvinas-branch-core-operator.v1",
+  "source_doi": "10.1594/PANGAEA.925245",
+  "data_url": "https://doi.pangaea.de/10.1594/PANGAEA.925245?format=textfile",
+  "expected_raw_sha256": "6d5bf9f8b594bab3117002c9bd09c93bd9779772255b2feb28dd89bb309bc82a",
+  "maximum_download_bytes": 8388608,
+  "quality_pg_scenarios_percent": [50, 70, 90],
+  "uniform_window_scenarios_km": [15, 25, 35],
+  "minimum_surface_peak_separation_km": 40,
+  "geometry": "Cumulative WGS84 distance along time-ordered westward ship track. Eastern segment is offshore, western segment nearer coast; this is a conditional source-informed two-jet classification, not independently validated physical branch polygons.",
+  "branch_operator": "At the shallowest native level choose the pair of positive local maxima separated by at least40km with greatest summed velocity. Split at the minimum valid shallow velocity strictly between them. Exclude separator ensemble. If two peaks are unresolved, retain unknown.",
+  "smoothing_operator": "Centered uniform box mean on native depth levels. Require at least5 valid samples,80percent of native ensembles in the window, and contributor span at least60percent of requested window. Exclude horizontally incomplete edge windows. Signed V values retained before averaging; no vertical interpolation or surface extrapolation.",
+  "scenario_interpretation": "PG thresholds, smoothing windows and40km separation are explicit audit choices, not confidence intervals or recovered author code. Test25km as the paper's stated horizontal scale with a declared kernel;15/35km are sensitivity cases.",
+  "processing_limit": "Archive tide correction is unverified. No TPXO9 correction applied here; perpendicular nominal transect component is native V. Do not claim published peak velocities or branch boundaries reproduced.",
+  "source_internal_comparison": "Published prose describes crossing16 fastest flow in upper50m. Table3 transect5 summary lists main130–150m and inshore100–110m over two crossings. Preserve these scopes and the unresolved processing/aggregation difference; this experiment tests sensitivity without presuming a cause.",
+  "physical_uncertainty_m": null,
+  "canonical_admission_eligible": false,
+  "volume_eligible": false,
+  "seasonal_playback_eligible": false
+}
