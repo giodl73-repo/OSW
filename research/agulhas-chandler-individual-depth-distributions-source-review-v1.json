@@ -1,0 +1,31 @@
+{
+  "schema": "osw.agulhas-individual-depth-distributions-source-review.v1",
+  "status": "PASS12_COMPLETE16YEAR10CMS_DEPTH_DISTRIBUTIONS",
+  "cloud_reviews": [
+    {
+      "run_id": 41450579522,
+      "tests_passed": 5,
+      "source_commit": "1af344a24c729aa6867c112afb30d481394e63e4",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41450579522"
+    }
+  ],
+  "cloud_tests_passed": 5,
+  "input_sha256": {
+    "analysis/build_agulhas_individual_depth_distributions_v1.py": "8a5b394b7525bc24b0d648bd6a0ec278d349f42f66789811b85416e8ba252cc7",
+    "analysis/test_agulhas_individual_depth_distributions_v1.py": "141ca21ef22b5ff41147a6e963f4cd70def2aabe355f39ee966a1dc3f95ca227",
+    ".github/workflows/agulhas-individual-depth-distributions-v1.yml": "9edd23a17b4ba6d66cf4122806263183a2564d69a58f29dd32bd97b10e74ee47",
+    "research/agulhas-chandler-individual-depth-distributions-v1.json": "f2501ddcfc8c740a11b3ed47adc3253abccc152f6a15061d76d36fe13d92329b",
+    "research/agulhas-chandler-seasonal-depth-source-review-v1.json": "331700f95c8c216c612cee0acc53b91091910789ef499198b211b396ac5bea21"
+  },
+  "scientific_review": [
+    "All192 reconstructed monthly profiles have diagnosed10cm/s crossings. Each calendar month therefore supplies exactly16 year-specific depths, summarized with median, mean, sampled minimum/maximum and explicitly defined linear quartiles. These distributions are distinct from crossings of a mean profile.",
+    "Incomplete zero/5cm/s groups retain every year sample and status without reporting a complete-case summary. A missing crossing cannot become a product-limit depth or a partial-sample climatology.",
+    "Reconstructed interannual sample spread is not depth confidence bounds, measurement error, actual annual extrema or statistical proof of seasonal variability. Reference-velocity and structural reconstruction errors remain unpropagated.",
+    "Five cloud tests cover quantile/range semantics, rejection of biased complete-case summary, censoring, duplicate/mismatched year/month/invalid depths, and complete support in real source profiles. No new raw-field download or local tests."
+  ],
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
