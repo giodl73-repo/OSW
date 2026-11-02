@@ -1,0 +1,198 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.caribbean-azores-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New partial Caribbean southern-jet-context and Azores eastward-jet cases, declared before fields. Reuse frozen transverse v2 acquisition and numerical operators.",
+  "geometry_provenance": "Ten OSW exploratory fixed-longitude windows: Caribbean68–80W ordered westward with12–16.5N gates; Azores35–21W ordered eastward with31.5–36.5N gates. Stops, windows and connectors are editorial choices, not digitized axes, measured widths or uncertainty limits. These partial reaches do not cover either entire current or independently establish branch membership.",
+  "column_selector": "Frozen complete finite native0–200m signed along-component trapezoidal-integral selector, held270degree true westward for Caribbean and90degree true eastward for Azores through depth. Both primary10cm/s andsurface>5cm/s; greatest positive integral wins with first southern native tie. Keep selected5/10/20cm/s layers. Edge/support-edge maxima remain unresolved without weaker interior substitution or gate/cutoff tuning.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all20targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:caribbean": {
+      "entity_id": "current:caribbean",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial central Caribbean68–80W southern-jet-context reach,with12–16.5N searches. A separate northern jet and its source waters remain outside the intended branch scope; gates can miss northward deflections. Exclude Yucatan,Loop,Antilles and upstream island-passage flows as target identities. Meanders and eddies can dominate geographic maxima; no coherent southern-jet identity or source-water class is independently established. Existing RU29_2024 inversion layers and15cm/s sensitivity remain separate observed/inversion cases, not relabeled as these2022 model snapshots or independently validated by them."
+    },
+    "current:azores": {
+      "entity_id": "current:azores",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial subtropical Atlantic35–21W eastward Azores-jet-context reach,with31.5–36.5N searches. Exclude westward subsurface Azores Countercurrent,northern recirculation,Portugal/Canary continuation and detached eddies as target identities. Broad-gate eastward maxima need not follow one coherent current axis. Source24.5W_2009 density-layer extent around2000m is not a uniform bottom or a bound imposed on these2022 model layers. Published mean geostrophic speeds and thermal fronts are not instantaneous threshold limits or depth errors."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-68w",
+      "entity_id": "current:caribbean",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -68,
+      "latitude_gate_degrees_north": [
+        12,
+        16.5
+      ]
+    },
+    {
+      "id": "section-71w",
+      "entity_id": "current:caribbean",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -71,
+      "latitude_gate_degrees_north": [
+        12,
+        16.5
+      ]
+    },
+    {
+      "id": "section-74w",
+      "entity_id": "current:caribbean",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -74,
+      "latitude_gate_degrees_north": [
+        12,
+        16.5
+      ]
+    },
+    {
+      "id": "section-77w",
+      "entity_id": "current:caribbean",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -77,
+      "latitude_gate_degrees_north": [
+        12,
+        16.5
+      ]
+    },
+    {
+      "id": "section-80w",
+      "entity_id": "current:caribbean",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -80,
+      "latitude_gate_degrees_north": [
+        12,
+        16.5
+      ]
+    },
+    {
+      "id": "section-35w",
+      "entity_id": "current:azores",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -35,
+      "latitude_gate_degrees_north": [
+        31.5,
+        36.5
+      ]
+    },
+    {
+      "id": "section-31w",
+      "entity_id": "current:azores",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -31,
+      "latitude_gate_degrees_north": [
+        31.5,
+        36.5
+      ]
+    },
+    {
+      "id": "section-27w",
+      "entity_id": "current:azores",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -27,
+      "latitude_gate_degrees_north": [
+        31.5,
+        36.5
+      ]
+    },
+    {
+      "id": "section-24p5w",
+      "entity_id": "current:azores",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -24.5,
+      "latitude_gate_degrees_north": [
+        31.5,
+        36.5
+      ]
+    },
+    {
+      "id": "section-21w",
+      "entity_id": "current:azores",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -21,
+      "latitude_gate_degrees_north": [
+        31.5,
+        36.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://www2.whoi.edu/staff/prichardson/wp-content/uploads/sites/75/2018/11/Richardson-2005-dsr.pdf",
+      "locator": "Richardson(2005),Abstract and discussion printed451–452",
+      "scope": "Author-hosted primary PDF describes separate Caribbean jets and eddy contamination of flow maps. Used for branch context only; no figures or trajectory arrays copied or digitized. Selected windows do not independently validate a jet or current bottom."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC007129",
+      "locator": "Comas-Rodriguez et al.(2011),Abstract and sections3–4",
+      "scope": "Fresh publisher text distinguishes eastward surface-intensified Azores flow from westward subsurface countercurrent at24.5W. The2009 density-layer extent is a distinct source definition, not a2022 threshold bottom; Sv is transport rather than stored water volume."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC007271",
+      "locator": "Volkov and Fu(2011),section3 paragraph9",
+      "scope": "Fresh publisher text describes a tilted eastward mean jet across35–15W. Mean geostrophic velocities are not imposed on instantaneous model thresholds; OSW gates are exploratory, not extracted axes or widths."
+    }
+  ],
+  "input_sha256": {
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "research/caribbean-current-depth-operator-v1.json": "181cfd2c310315f1a34ffc857760573efd4412a62b3bc5ad4a3096a091ab64af",
+    "research/caribbean-current-depth-source-review-v1.json": "6e5253086f2db9aec192a7eb21e1bc7a98fd1426fc04e9f7564ec9bf58cfcf25"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3
+}
