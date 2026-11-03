@@ -1,0 +1,32 @@
+{
+  "schema": "osw.nwasc-selected-noncore-depth-source-context.v1",
+  "entity_id": "current:norwegian-atlantic-slope",
+  "source_url": "https://os.copernicus.org/articles/22/17/2026/",
+  "citation": "Baumann,T.M.,Skagseth,O.,Ingvaldsen,R.B.,Mork,K.A.(2026),Reduced cooling in the Norwegian Atlantic Slope Current:investigating mechanisms of change from30years of observations,OceanScience22,17-29,doi10.5194/os-22-17-2026,CCBY4.0.",
+  "acquisition_file": "research/source-data/baumann-nwasc-2026/acquisition.json",
+  "source_xml_file": "research/source-data/baumann-nwasc-2026/article.xml",
+  "source_pdf_file": "research/source-data/baumann-nwasc-2026/article.pdf",
+  "source_locator": "Section2.1.2 explicit spatial-extent paragraph;Figure3a/b,printed21/PDFpage5.",
+  "primary_prose_and_figure_visually_reviewed": true,
+  "source_mean_definition_years": [1993, 2022],
+  "source_population_role": "non_core_selected_Atlantic_Water",
+  "selection": {
+    "absolute_salinity_minimum_g_kg": 35.16,
+    "absolute_salinity_comparator": ">=",
+    "upper_selection_depth_m": 50,
+    "core_transport_fraction": 0.5,
+    "core_selector": "decreasing_absolute_geostrophic_velocity_until50percent_mean_selected_AW_transport",
+    "noncore_selector": "remaining_selected_AW_population_outside_core",
+    "time_basis": "static_1993_2022_mean_defined_selection"
+  },
+  "sections": [
+    {"id": "svinoy", "label": "Svinoy", "source_figure_panel": "3a", "shoreward_isobath_gate_m": 1500, "existing_core_reference_id": "nwasc-baumann-2026-svinoy-core-bottom"},
+    {"id": "gimsoy", "label": "Gimsoy", "source_figure_panel": "3b", "shoreward_isobath_gate_m": 2500, "existing_core_reference_id": "nwasc-baumann-2026-gimsoy-core-bottom"}
+  ],
+  "excluded_owner_ids": ["current:norwegian", "current:norwegian-coastal", "current:norwegian-atlantic-front"],
+  "excluded_cases": ["Bjornoya separate noncore depth unresolved in prose", "BSO uses distinct salinity-sorted core already catalogued under NorthCape"],
+  "geometry_extracted": false,
+  "curated_transects_obtained": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
