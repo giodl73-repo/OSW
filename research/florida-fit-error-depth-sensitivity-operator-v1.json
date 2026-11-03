@@ -1,0 +1,39 @@
+{
+  "schema": "osw.florida-fit-error-depth-sensitivity-operator.v1",
+  "source_operator": "research/florida-spray-seasonal-depth-operator-v1.json",
+  "source_file": "research/source-data/florida-spray-seasonal-depth-v1/candidate.json",
+  "expected_product_versions": {
+    "mean": "CB27103E-8DE0-464E-B026-1FB2BE2EF05D",
+    "annual_cycle": "157C8877-1FE0-46DA-AF1E-34D9A9FED0CE"
+  },
+  "methodology_file": "plans/florida-fit-error-depth-sensitivity-protocol-v1.md",
+  "source_component_SE_multiplier": 1,
+  "component_policy": "ORIGINAL_NORTHWARD_COMPONENT_AND_NORTHWARD_PROVIDER_SE_ONLY",
+  "interpretation": "All13Florida27N fitted source profiles,original northward component selector/diagnoses. Reuse validated fixed nominal cutoff/core sensitivity with northward provider standard error only;eastward error/provider downstream direction do not enter this original metric. Deterministic +/-one-reported-SE scenarios,not confidence interval,physical bottom or annual range. Preserve the original censored nominal phase and all scenario censors. Existing100-level10-1000m source grid;no retrieval/HYCOM cap change. Phase winners/cutoffs can differ across year. No physical width/volume or new scalar refs.",
+  "eligibility": {
+    "confidence_interval": false,
+    "physical_bottom": false,
+    "annual_extrema": false,
+    "volume": false,
+    "runtime": false
+  },
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/florida-spray-seasonal-depth-v1.yml": "d1a9fb585e438c082dcc578fbb00c355919b230e26cc6d092c0261d1a0f60b13",
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "analysis/acquire_gulf_stream_spray_sections_v1.py": "1cedcb2888afb9c8756762e07088b9eec49470e544feb4f88a6d762042f02f1f",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/derive_florida_fit_error_depth_sensitivity_v1.py": "d49b104e2a5e52ab01fb3537f76cc57b34609bf1000459379bdb619459bb44d8",
+    "analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py": "33d4b0215f54a39bbb2501af2fb81b1e5273d14dea1c71e0b8d0d23ae9a3183b",
+    "analysis/test_florida_fit_error_depth_sensitivity_v1.py": "9315d9cfede5d432ba5701ca6e4c7511f7d062e9f32bb89e84aae61c10680421",
+    "analysis/test_florida_spray_seasonal_depth_v1.py": "5f3f9e72efb76fd0420901a0107dfab894c9da6e326a7a72feea7c70fedb23b6",
+    "plans/florida-fit-error-depth-sensitivity-protocol-v1.md": "540453a86332a54f40d654e2806c7eacefbcc793ba8a7ad65d02ac9b81c0b748",
+    "research/current-depth-reference-inventory-v18.json": "b8824270518816b7f9470be253b6137fd30971fe92d6417ac3ea1c5da41304b7",
+    "research/florida-spray-seasonal-depth-operator-v1.json": "a2d8e8af1126b2a6b18cc9b4f12559e788481ad19805a2c7b3778541c7638dd7",
+    "research/florida-spray-seasonal-depth-source-facts-v1.json": "b37bc47f77cf38ba035e30e69cff6888a5658fcd5581baa2cebd44d57ef353cd",
+    "research/florida-spray-seasonal-depth-source-review-v1.json": "a05939ec7422afac3a53b3278d879902a267dca2e3ec833d007f873451d56408",
+    "research/gulf-stream-fit-error-depth-sensitivity-v1.json": "7504cdd7e65dfb7d1c21c16337e919a0cb77872f951fe88d48ac813c447cecc4",
+    "research/source-data/florida-spray-seasonal-depth-v1/candidate.json": "190f9a430d527e2864dde606d5bd9ffe60900b257a3ba36fe246b6392a3f1cb5"
+  }
+}
