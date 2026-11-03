@@ -5,7 +5,7 @@ import load_current_depth_reference_inventory_v17 as prior
 import load_current_depth_reference_inventory_v18 as loader
 
 ROOT=Path(__file__).resolve().parents[1]
-OPERATOR='research/current-depth-reference-inventory-operator-v17.json'
+OPERATOR='research/current-depth-reference-inventory-operator-v18.json'
 GENERATOR='analysis/build_current_depth_reference_inventory_v18.py'
 INVENTORY='research/current-depth-reference-inventory-v18.json'
 ADDENDUM='research/current-depth-reference-addenda/alaska-jarosz2017-winter-mean-flow-reach-v1.json'
