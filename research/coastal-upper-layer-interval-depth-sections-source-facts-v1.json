@@ -1,0 +1,2566 @@
+{
+  "schema": "osw.coastal-upper-layer-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "f5464d76f6855453f02adbda9b9bd6ba588909474237f804c0575ea67c578132",
+  "operator_file": "research/coastal-upper-layer-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "b96238fec304ebb87a582931f9b51fea4f1058495d1a2968a25c6a3a661e5cb6",
+  "counts": {
+    "section_date_cases": 32,
+    "native_velocity_profiles": 1216,
+    "selected_axis_proxy_profiles": 22,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 17,
+      "no_qualifying_interval_component_column": 10,
+      "section_gate_edge_maximum_axis_unresolved": 2,
+      "selection_interval_support_edge_maximum_axis_unresolved": 3
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 14,
+      "0.1": 16,
+      "0.2": 17
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 14,
+      "0.1": 16,
+      "0.2": 17
+    },
+    "decoded_velocity_cell_pairs": 48640,
+    "decoded_velocity_array_bytes": 389120,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:norwegian-coastal": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 608,
+      "selected_axis_proxy_profiles": 15,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 14,
+        "no_qualifying_interval_component_column": 1,
+        "section_gate_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 8,
+        "0.1": 9,
+        "0.2": 12
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 8,
+        "0.1": 9,
+        "0.2": 12
+      }
+    },
+    "current:tsushima": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 608,
+      "selected_axis_proxy_profiles": 7,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 3,
+        "no_qualifying_interval_component_column": 9,
+        "section_gate_edge_maximum_axis_unresolved": 1,
+        "selection_interval_support_edge_maximum_axis_unresolved": 3
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 6,
+        "0.1": 7,
+        "0.2": 5
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 6,
+        "0.1": 7,
+        "0.2": 5
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-58p5n.json",
+      "source_sha256": "5d5418591da0fc2080df00d5ae8e73ba013ac28e4ccf981e21dc3f8e1da9384a",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-58p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-58p5n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 58.5,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 58.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        3.52001953125,
+        58.47999954223633
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        0,
+        13,
+        21,
+        27
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27000001072883606,
+          "lower_last_connected_depth_m": 100.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27000001072883606,
+          "lower_last_connected_depth_m": 100.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.857145533270035,
+          "layer_thickness_m": 8.857145533270035,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27000001072883606,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 100.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json",
+      "source_sha256": "ac4f0016c54a0cfe2581ef15bce890e52119fa362ce916e7ffcbd2dbfabe395d",
+      "source_profile_pointer": "/columns/11",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-59p25n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-59p25n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 59.25,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 59.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        3.9200439453125,
+        59.2400016784668
+      ],
+      "selected_column_index": 11,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        11,
+        25
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 34.285725537612656,
+          "layer_thickness_m": 34.285725537612656,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 250.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json",
+      "source_sha256": "e6fe1ffc9eb72fa6620d54bc37248462bf95810ae26a9497efac105be8517f86",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.0,
+        60.0
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        3,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.428575321120054,
+          "layer_thickness_m": 11.428575321120054,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 250.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60p75n.json",
+      "source_sha256": "2ad1851781d5b598c7f90c3a66d4fdfa85015574cab7fa3c3f14f0972b91a81e",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60p75n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60p75n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60.75,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.47998046875,
+        60.7599983215332
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        3,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 176.9230822134299,
+          "layer_thickness_m": 176.9230822134299,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.71429255665635,
+          "layer_thickness_m": 110.71429255665635,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 32.50000521540362,
+          "layer_thickness_m": 32.50000521540362,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 110.71429255665635,
+      "primary_layer_thickness_m": 110.71429255665635,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-131e.json",
+      "source_sha256": "c1dd59a928397f313e8ad825b50f7433f41bbe5db844da46415c55b86d36d30a",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-131e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-131e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 131,
+        "latitude_gate_degrees_north": [
+          34,
+          35.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-132e.json",
+      "source_sha256": "a19e6b4f3f82bc0a50ffc9abefe1507f184bbd13315011d51da12ff36218a402",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-132e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-132e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 132,
+        "latitude_gate_degrees_north": [
+          34.5,
+          36
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.0,
+      "selected_lon_lat": [
+        132.0,
+        35.63999938964844
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        28
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 186.33280472869393,
+          "layer_thickness_m": 186.33280472869393,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.17160958766191725,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 37.2282971774132,
+          "lower_depth_m": 170.9549186700703,
+          "layer_thickness_m": 133.7266214926571,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.17160958766191725,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 170.9549186700703,
+      "primary_layer_thickness_m": 133.7266214926571,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-133e.json",
+      "source_sha256": "02b00a13102a6a9a8990f89f080399540911f8d27e844e7defc0d75ceda1b2b3",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-133e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-133e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 133,
+        "latitude_gate_degrees_north": [
+          35,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-134e.json",
+      "source_sha256": "cf6cc9336136e9b4c914779c4aaf49c16302258d9f6eaaf9a02e5f93772affd3",
+      "source_profile_pointer": "/columns/33",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-134e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-134e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 134,
+        "latitude_gate_degrees_north": [
+          35.3,
+          36.8
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 134.0,
+      "selected_lon_lat": [
+        134.0,
+        36.63999938964844
+      ],
+      "selected_column_index": 33,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        11,
+        18,
+        24,
+        33
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 31.63392266050409,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.18955702935873503,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_last_connected_depth_m": 700.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 38.214019553445816,
+          "lower_depth_m": 103.17634907634951,
+          "layer_thickness_m": 64.9623295229037,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.18955702935873503,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 103.17634907634951,
+      "primary_layer_thickness_m": 64.9623295229037,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-58p5n.json",
+      "source_sha256": "b30c57acf1830370fccd916d5a345812a17eca98da4e3c6351b2fea06cb019b8",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-58p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-58p5n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 58.5,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 58.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.9599609375,
+        58.47999954223633
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        12,
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 96.666673289408,
+          "layer_thickness_m": 96.666673289408,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.18200001120567322,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 47.50000260770375,
+          "layer_thickness_m": 47.50000260770375,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.18200001120567322,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 47.50000260770375,
+      "primary_layer_thickness_m": 47.50000260770375,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-59p25n.json",
+      "source_sha256": "4790a7beb8fea4440590744b84d86ac1362cffee50fc658fa63f93ef240a0732",
+      "source_profile_pointer": "/columns/22",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-59p25n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-59p25n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 59.25,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 59.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.800048828125,
+        59.2400016784668
+      ],
+      "selected_column_index": 22,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        17,
+        22
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 82.00000149011643,
+          "layer_thickness_m": 82.00000149011643,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.606062289111875,
+          "layer_thickness_m": 60.606062289111875,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 3.384613515356799,
+          "lower_depth_m": 30.00000135465194,
+          "layer_thickness_m": 26.61538783929514,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 60.606062289111875,
+      "primary_layer_thickness_m": 60.606062289111875,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60n.json",
+      "source_sha256": "a9a07637b90eda30d0cc716e47554c38154e97d1256625fa703b5d02de58ba44",
+      "source_profile_pointer": "/columns/22",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.800048828125,
+        60.0
+      ],
+      "selected_column_index": 22,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        22
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 205.55555902789382,
+          "layer_thickness_m": 205.55555902789382,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.30900001525878906,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 135.52631878208896,
+          "layer_thickness_m": 135.52631878208896,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.30900001525878906,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.33333498901784,
+          "layer_thickness_m": 60.33333498901784,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.30900001525878906,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 135.52631878208896,
+      "primary_layer_thickness_m": 135.52631878208896,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json",
+      "source_sha256": "86533edbc46afb52279cb6c56fd896cc7c12152edbe72aa8ba6839ad22aae1cb",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60p75n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60p75n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60.75,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.47998046875,
+        60.7599983215332
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 231.48150130881888,
+          "layer_thickness_m": 231.48150130881888,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 300.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-131e.json",
+      "source_sha256": "575e0ed1f81089dbc12eb0c648e46e06b54718cf9c450ec0004ecf4bbdb271d1",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-131e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-131e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 131,
+        "latitude_gate_degrees_north": [
+          34,
+          35.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-132e.json",
+      "source_sha256": "9b173185d7d4567b299d274007ef2f81a664b291ea4cd24f64a091cccda45329",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-132e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-132e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 132,
+        "latitude_gate_degrees_north": [
+          34.5,
+          36
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.0,
+      "selected_lon_lat": [
+        132.0,
+        35.63999938964844
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        28
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 170.83389796120034,
+          "layer_thickness_m": 170.83389796120034,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.22819032260608663,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 112.04866569818958,
+          "layer_thickness_m": 112.04866569818958,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.22819032260608663,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3.711045017774442,
+          "layer_thickness_m": 3.711045017774442,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.22819032260608663,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 112.04866569818958,
+      "primary_layer_thickness_m": 112.04866569818958,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-133e.json",
+      "source_sha256": "4d223d006aa8cef0dcdc202f17fba558c1b15a33aa24072d1c8b2e8b4a6e8767",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-133e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-133e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 133,
+        "latitude_gate_degrees_north": [
+          35,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-134e.json",
+      "source_sha256": "b3023950457239a91eb9a725b9e68ef0e7dabcd6f50dd1355ed75cb623bae7af",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-134e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-134e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 134,
+        "latitude_gate_degrees_north": [
+          35.3,
+          36.8
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 134.0,
+      "selected_lon_lat": [
+        134.0,
+        36.79999923706055
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        14,
+        22,
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 139.6940976010854,
+          "layer_thickness_m": 139.6940976010854,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3854582738614507,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 96.09806722952057,
+          "layer_thickness_m": 96.09806722952057,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3854582738614507,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 34.76616791595798,
+          "layer_thickness_m": 34.76616791595798,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3854582738614507,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 96.09806722952057,
+      "primary_layer_thickness_m": 96.09806722952057,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-58p5n.json",
+      "source_sha256": "21e3c52e4445cccd469493909f934d10630d44e85581587575e5d6332a134b09",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-58p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-58p5n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 58.5,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 58.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-59p25n.json",
+      "source_sha256": "966b832620fca7672b8ad5355ba88aea3e1a51c849cb7a04f540dc391579c02d",
+      "source_profile_pointer": "/columns/15",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-59p25n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-59p25n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 59.25,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 59.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.239990234375,
+        59.2400016784668
+      ],
+      "selected_column_index": 15,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        15
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 5.2999997392297225,
+          "lower_depth_m": 196.6666674945089,
+          "layer_thickness_m": 191.3666677552792,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2120000123977661,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 13.799998807907153,
+          "lower_depth_m": 124.19355404674637,
+          "layer_thickness_m": 110.39355523883921,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2120000123977661,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 42.22221596741615,
+          "lower_depth_m": 73.84615807843744,
+          "layer_thickness_m": 31.623942111021293,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2120000123977661,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 124.19355404674637,
+      "primary_layer_thickness_m": 110.39355523883921,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60n.json",
+      "source_sha256": "73c730f389ba00516d516dd6e4523f9a31f3e6d66d1da519ae93399eabf26ade",
+      "source_profile_pointer": "/columns/15",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.239990234375,
+        60.0
+      ],
+      "selected_column_index": 15,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        15,
+        22
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.4062498709881874,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.1990000158548355,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 4.799999403953429,
+          "lower_depth_m": 75.26316115565555,
+          "layer_thickness_m": 70.46316175170213,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.1990000158548355,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 75.26316115565555,
+      "primary_layer_thickness_m": 70.46316175170213,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json",
+      "source_sha256": "a3a3cb4cfbeb3a4f4464642da9f793cd764776b652f25daa3e06ba7074e57610",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60p75n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60p75n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60.75,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.3199462890625,
+        60.7599983215332
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        10
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1.5670100308615307,
+          "lower_depth_m": 69.81481776847406,
+          "layer_thickness_m": 68.24780773761253,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 300.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-131e.json",
+      "source_sha256": "0da7ae55025a96967fcb79c835723aca44aa80ebbcea8fdbc29facfe07359cec",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-131e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-131e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 131,
+        "latitude_gate_degrees_north": [
+          34,
+          35.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-132e.json",
+      "source_sha256": "4f3f40807edc2bfe1f81131dc35b0fe615c429e9c66c8592b292e3757c850d0a",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-132e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-132e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 132,
+        "latitude_gate_degrees_north": [
+          34.5,
+          36
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.0,
+      "selected_lon_lat": [
+        132.0,
+        35.63999938964844
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        28
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 107.58388267249477,
+          "layer_thickness_m": 107.58388267249477,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.32848970823725376,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 100.16641513329603,
+          "layer_thickness_m": 100.16641513329603,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.32848970823725376,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1.5866942631303593,
+          "lower_depth_m": 88.14025543325283,
+          "layer_thickness_m": 86.55356117012248,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.32848970823725376,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 100.16641513329603,
+      "primary_layer_thickness_m": 100.16641513329603,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-133e.json",
+      "source_sha256": "04b4e92fcf264f7857aaa715a7e9706fda3d81ebd3c15c2be42df6b897461fe7",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-133e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-133e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 133,
+        "latitude_gate_degrees_north": [
+          35,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-134e.json",
+      "source_sha256": "346b775391baed2ce64cab2187e9609cb35897924dd30d92b934fe5e033cdeac",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-134e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-134e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 134,
+        "latitude_gate_degrees_north": [
+          35.3,
+          36.8
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 134.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-58p5n.json",
+      "source_sha256": "73f412b358f09f1c802047b0b57d7f8326c9d57cc3949707a0bab0dbe2f80725",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-58p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-58p5n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 58.5,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 58.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        5.5999755859375,
+        58.47999954223633
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        0,
+        5,
+        16,
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 185.71428799507552,
+          "layer_thickness_m": 185.71428799507552,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.1990000158548355,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 144.5652246447045,
+          "layer_thickness_m": 144.5652246447045,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.1990000158548355,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 144.5652246447045,
+      "primary_layer_thickness_m": 144.5652246447045,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json",
+      "source_sha256": "46d09549ad57436a70a823918c7df5ef4eddc83490e1fb516e20ef50fac55a6a",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-59p25n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-59p25n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 59.25,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 59.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.0,
+        59.2400016784668
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34700000286102295,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34700000286102295,
+          "lower_last_connected_depth_m": 250.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 53.432836464875294,
+          "layer_thickness_m": 53.432836464875294,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34700000286102295,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 250.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60n.json",
+      "source_sha256": "c2378307441f72ad94bb119617df539cbe328ef50040832a6d7a1846c68e9b0c",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60,
+        "longitude_gate_degrees_east": [
+          3,
+          6
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        4.47998046875,
+        60.0
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        0,
+        12,
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 111.11111134106731,
+          "layer_thickness_m": 111.11111134106731,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.714288299181284,
+          "layer_thickness_m": 60.714288299181284,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 36.15384871084936,
+          "layer_thickness_m": 36.15384871084936,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 60.714288299181284,
+      "primary_layer_thickness_m": 60.714288299181284,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "published_coastal_front_current_literature_synthesis",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:norwegian-coastal",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60p75n.json",
+      "source_sha256": "3d4bd843feec24436a8fa771e9e544a8c51f061c7980dfc5efa85766e265eaca",
+      "source_profile_pointer": "/columns/1",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-60p75n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-60p75n",
+        "entity_id": "current:norwegian-coastal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 60.75,
+        "longitude_gate_degrees_east": [
+          3.5,
+          6.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 60.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        3.5999755859375,
+        60.7599983215332
+      ],
+      "selected_column_index": 1,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        1
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 51.42857188472941,
+          "layer_thickness_m": 51.42857188472941,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.2200000137090683,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 40.38461644268598,
+          "layer_thickness_m": 40.38461644268598,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.2200000137090683,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 4.909088889430751,
+          "lower_depth_m": 26.025641848585057,
+          "layer_thickness_m": 21.116552959154305,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.2200000137090683,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 40.38461644268598,
+      "primary_layer_thickness_m": 40.38461644268598,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-131e.json",
+      "source_sha256": "fc6d6da0e5e4ad699b72f3f1a8ed002d35a2f8aeaa8761a2023850a763ba882b",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-131e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-131e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 131,
+        "latitude_gate_degrees_north": [
+          34,
+          35.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-132e.json",
+      "source_sha256": "c3519fde703c1c34431f6e34895f703bbdd15ffffeed5e36460bc144b93305d8",
+      "source_profile_pointer": "/columns/32",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-132e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-132e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 132,
+        "latitude_gate_degrees_north": [
+          34.5,
+          36
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.0,
+      "selected_lon_lat": [
+        132.0,
+        35.79999923706055
+      ],
+      "selected_column_index": 32,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        32
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 223.99810407555987,
+          "layer_thickness_m": 223.99810407555987,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.32539609525368013,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 177.34652436194918,
+          "layer_thickness_m": 177.34652436194918,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.32539609525368013,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 107.34291875822282,
+          "layer_thickness_m": 107.34291875822282,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.32539609525368013,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 177.34652436194918,
+      "primary_layer_thickness_m": 177.34652436194918,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-133e.json",
+      "source_sha256": "1ada883bc02ceca932f493a78efc027f262354f6c225ec1df548bf1661818d82",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-133e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-133e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 133,
+        "latitude_gate_degrees_north": [
+          35,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 132.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "identity_evidence_basis": "institutional_regional_warm_current_and_nearshore_branch_synthesis",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:tsushima",
+      "source_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-134e.json",
+      "source_sha256": "6aecf8987064e09306587fff3cc83b7cdc3d612a9cf0df991bd47a07ef82b69a",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-134e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-134e",
+        "entity_id": "current:tsushima",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 134,
+        "latitude_gate_degrees_north": [
+          35.3,
+          36.8
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 134.0,
+      "selected_lon_lat": [
+        134.0,
+        36.279998779296875
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 60,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        11,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 89.34517757906517,
+          "lower_depth_m": 198.47834823614895,
+          "layer_thickness_m": 109.13317065708378,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.23162367279337304,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 92.39620235883913,
+          "lower_depth_m": 180.24382243621105,
+          "layer_thickness_m": 87.84762007737191,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.23162367279337304,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 98.17312491371841,
+          "lower_depth_m": 113.53768135910722,
+          "layer_thickness_m": 15.364556445388814,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.23162367279337304,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 180.24382243621105,
+      "primary_layer_thickness_m": 87.84762007737191,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "identity_evidence_basis_by_current": {
+    "current:norwegian-coastal": "published_coastal_front_current_literature_synthesis",
+    "current:tsushima": "institutional_regional_warm_current_and_nearshore_branch_synthesis"
+  },
+  "selection_windows_by_current": {
+    "current:norwegian-coastal": [
+      0,
+      100
+    ],
+    "current:tsushima": [
+      0,
+      200
+    ]
+  },
+  "primary_thresholds_by_current": {
+    "current:norwegian-coastal": 0.1,
+    "current:tsushima": 0.1
+  },
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "f648cd990c64e4e51f398cf6239c61c47f7c731c1935d65c18084f5bad8c3c88",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 97280,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 97280,
+    "successfully_returned_component_values": 97280,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 778240,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  }
+}
