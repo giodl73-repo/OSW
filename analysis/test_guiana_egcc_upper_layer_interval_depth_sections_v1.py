@@ -17,7 +17,7 @@ class GuianaEgccUpperLayerSourceTests(unittest.TestCase):
             c=self.op['currents'][entity]
             self.assertEqual(c['component_bearing_degrees_true'],frame)
             self.assertEqual(c['selection_depth_interval_m'],window);self.assertEqual(c['core_search_depth_interval_m'],window)
-            self.assertEqual(c['selection_window_basis'],'osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries')
+            self.assertEqual(c['selection_window_basis'],'osw_upper100m_component_diagnostic_not_source_measured_boundaries')
             self.assertEqual(c['primary_threshold_m_s'],.1);self.assertIsNone(c['surface_component_gate_m_s']);self.assertIsNone(c['temperature_gate'])
         self.assertEqual(self.op['snapshot_times_utc'],['2022-03-15T00:00:00Z','2022-06-15T00:00:00Z','2022-09-15T00:00:00Z','2022-12-15T00:00:00Z'])
         self.assertFalse(any(self.op['eligibility'].values()));self.assertEqual(self.op['maximum_total_temperature_scalars'],0)
