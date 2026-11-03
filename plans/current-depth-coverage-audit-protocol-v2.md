@@ -1,0 +1,19 @@
+# Coverage snapshot v2 after Mediterranean source-primary correction
+
+Use ENTIREvalidatedv1 provenancejoin/countingimplementation unchanged with anew
+pinnedoperator/snapshot. The scopedwrappertemporarilysetsitsoperatorpath and
+restoresconfigurationon success/failure;no algorithm/thresholdrule changes.
+Keepv1data/operator/sourcefacts/referenceinventory frozen. AddretainedMediterranean
+source-primaryv2report/review toregisteredcurtaindatasets,keepv1historicalBalearic
+10cm/s variant explicit. No genericthresholdmismatchacceptance orsourceedits.
+
+All16Balearic5cm/scases nowprocessed:12resolved4unresolved. Its16old10cm/scases
+stayseparate. The56nonBalearic10cm/scasesrepeatedinv2 mustcountonce,notnewmeasurements.
+Same1038uniquenativesectioncases;newsource-primaryprocessing672=515resolved+
+157unresolved,366unprocessed=295interior+71unresolved. Verifyagainstretained
+previoussnapshot inclunchangedreference metrics/nativeunits/fittedprofiles/identities.
+
+Actualinputpins andretainedrawsourceprovenancechecked byfrozenjoin. No rawocean
+fieldretrieval/reanalysis,annualrange,physicalbottom,whole-routeprofile,width/area/
+volume,newdepthrefs,main/runtime/UI changes. Cloud-only sequentialoneidleCPU tests/
+build;localstaticediting/AST,metadata/hash/exactretentiononly. Existingcapsunchanged.
