@@ -1,0 +1,248 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all32predeclared cases,all candidate scores/local maxima,no-selection,gate/support-edge and primary-censored outcomes. No post-result retuning. Islands/coastal masks and finite native grid can confound/censor;missing values are not absence or seabed. Geographic maxima do not independently identify the Balearic front or Ligurian/Northern water-mass/branch axes.",
+  "vertical_operator": "Frozen full native0-5000m finite adjacent tracing preserves upper/lower/status/bounds and paired span without sign/cutoff/missing-gap bridging.0-200m selection endpoints,Balearic historical100-150/200m5cm/s descriptions,600dbar geostrophic reference/300m ADCP reference,600/800m sills,parent450m winter/250m summer and instrument/mixed-layer limits are not imposed current bottoms. Same-sign deeper flow can merge;no physical thickness or water-mass/branch classification. No pressure-depth conversion.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.balearic-ligurian-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New per-current Balearic/Ligurian regional declaration;wrapper changes only operator/output of unchanged frozen mixed collector. Kernels,geometry,retries/budgets/audits frozen. Both use an explicitly declared0-200m upper-ocean selection domain with distinct primary cutoffs and non-additive parent/segment metadata.",
+  "geometry_provenance": "Eight editorial longitude cuts:Balearic1.5/2.5/3.5/4.5E with gates[38.5,40],[39,40.5],[39.5,41],[39.5,41]N;Ligurian8.8/8.3/7.8/7.3E with gates[43.2,44.7],[43,44.5],[42.8,44.3],[42.5,44]N. Existing island-margin/coastal studied reaches inform geography,not digitized current axes,flow-normal sections,widths or whole-system endpoints.",
+  "column_selector": "Complete finite0-200m positive signed component integral. Balearic fixed60degree northeast/core>5cm/s;Ligurian fixed240degree southwest/core>10cm/s.0-200m is a declared upper-ocean selection domain,not a source-measured fixed slab or imposed bottom. Balearic cutoff magnitude follows historical5cm/s geostrophic contour as context,not reproduction of600dbar-referenced geostrophy with total-model velocities. Ligurian primary remains a distinct exploratory cutoff;do not substitute sensitivities or inherit parent depth. No positive surface,relative surface,thermal/salinity gate. Greatest eligible integral wins,first southern native index breaks ties. Gate/support-edge winners unresolved without weaker replacement.5/10/20cm/s sensitivities retain own seed at same column.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means,annual ranges,June4-19,1989 FE-89 occupations,2007-2009surface drifters orDecember2011TOSCAexperiment. Source typical parent seasonal descriptions have no assigned calendar months or extrema guarantee. Historical group summaries are not independent repeated depths or contemporaneous paired geometry.",
+  "transport_budget": "Preflight all32targets before fields under unchanged250000pairs/7MBdecoded,40levels,3-150profiles,20000pairs/patch,5km native-axis tolerance. One shared frozen mixed reader,max3exactNetCDFIOfailure attempts2/5seconds,future first-attempt reserve,no success replay/per-owner/per-quarter reset or cap increase.",
+  "currents": {
+    "current:balearic": {
+      "entity_id": "current:balearic",
+      "component_bearing_degrees_true": 60,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial northern Balearic island-margin1.5-4.5E context. Exclude mainland Northern Current,channel outflows/recirculation,Algerian eddies and full connected-system routes. Fixed60degree northeast component is not locally rotated flow-normal geometry or independently identified Balearic front. Historical5cm/s geostrophic boundaries differ from this total-model component;600dbar reference/300m ADCP reference and600/800m sills are not imposed bottoms.",
+      "identity_evidence_basis": "historical_regional_geostrophic_isotach_and_current_direction_context",
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "parent_current_id": null,
+      "identity_relationship": "distinct_regional_current_not_parent_alias",
+      "parent_depth_values_inherited": false
+    },
+    "current:ligurian": {
+      "entity_id": "current:ligurian",
+      "component_bearing_degrees_true": 240,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial8.8-7.3E Genoa-Imperia-Menton/Nice coastal Ligurian studied reach. Catalog regional segment of Northern Current,not a separate additive parent system. Exclude Corsica feeders,basin loops and downstream Provencal/Catalan continuation. Fixed240degree southwest component is editorial,not locally rotated axis. Parent450m winter/250m summer summaries remain parent context,not inherited segment depth or2022 annual limits.",
+      "identity_evidence_basis": "regional_segment_surface_geography_with_separate_parent_depth_context",
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "parent_current_id": "current:northern-mediterranean",
+      "identity_relationship": "regional_segment_not_additive_parent_system",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "sections": [
+    {
+      "id": "section-1p5e",
+      "entity_id": "current:balearic",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 1.5,
+      "latitude_gate_degrees_north": [
+        38.5,
+        40
+      ]
+    },
+    {
+      "id": "section-2p5e",
+      "entity_id": "current:balearic",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 2.5,
+      "latitude_gate_degrees_north": [
+        39,
+        40.5
+      ]
+    },
+    {
+      "id": "section-3p5e",
+      "entity_id": "current:balearic",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 3.5,
+      "latitude_gate_degrees_north": [
+        39.5,
+        41
+      ]
+    },
+    {
+      "id": "section-4p5e",
+      "entity_id": "current:balearic",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 4.5,
+      "latitude_gate_degrees_north": [
+        39.5,
+        41
+      ]
+    },
+    {
+      "id": "section-8p8e",
+      "entity_id": "current:ligurian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 8.8,
+      "latitude_gate_degrees_north": [
+        43.2,
+        44.7
+      ]
+    },
+    {
+      "id": "section-8p3e",
+      "entity_id": "current:ligurian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 8.3,
+      "latitude_gate_degrees_north": [
+        43,
+        44.5
+      ]
+    },
+    {
+      "id": "section-7p8e",
+      "entity_id": "current:ligurian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 7.8,
+      "latitude_gate_degrees_north": [
+        42.8,
+        44.3
+      ]
+    },
+    {
+      "id": "section-7p3e",
+      "entity_id": "current:ligurian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 7.3,
+      "latitude_gate_degrees_north": [
+        42.5,
+        44
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://archimer.ifremer.fr/doc/00094/20507/18176.pdf",
+      "locator": "Retained original Garcia-Ladona1996 PDF printed493/PDF5 visually re-reviewed;methods/campaign text PDF2-3;source-facts-v16 acquisition/render pins retained. Fresh web access403;no fresh download claimed.",
+      "scope": "Island-side5cm/s geostrophic boundary~100-150m insectionA and~200m inFDC group differs from Catalan250-300m jet,600dbar no-motion/300m ADCP references and sill depths. FDC is one group summary;whole June4-19,1989campaign is not exact dates for eachsection. Northeast direction supports regional component,not source-axis digitization or reproducing geostrophy with HYCOMtotal velocity."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/14/689/2018/",
+      "locator": "Fresh Berta2018 primary publisher Introduction",
+      "scope": "Northern Current flows southwest along Ligurian-Provencal region.450m winter/250m summer are broad parent literature summaries,not a new Ligurian studied-reach profile,dated2011measurement,matched width/depth case or annual extrema. No parent depth transferred."
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2020.00497/full",
+      "locator": "Fresh primary publisher model-comparison entry plus pinned island-margin route review",
+      "scope": "Regional northeast Balearic model current context and model-dependent extent do not establish one continuous observed route or confirm2022HYCOM identity."
+    },
+    {
+      "url": "https://mrea.sincem.unibo.it/images/reports/2011_Poulain_Aspects_of_the_surface_circulation.pdf",
+      "locator": "Pinned regional segment/route scope review;no fresh acquisition claimed",
+      "scope": "Genoa-Imperia-Menton/Nice surface studied reach and intermittent2007-2009drifters do not supply full-depth axis or whole Northern Current dimensions. Mixed surface drifter layers and wind slip remain distinct."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_balearic_ligurian_interval_depth_sections_v1.py": "981e735a4c3dd97abad174c6790ce9b78ae0b702b0bcbf107e72fcb36863d2a5",
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_balearic_ligurian_interval_depth_sections_v1.py": "5014a34f4b802cf983fa1b75cc4d9a14e0a1c1ed757f49773e6223d12913d7e6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "plans/balearic-ligurian-interval-depth-sections-protocol-v1.md": "e721b3a85726deae320f08f0f40c1d444d3a6de2a82f860fe0b7ba160f8c459b",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "research/balearic-reference-path-input.json": "678b8e3c7aa192d6995ffbc4edaa8ab46d88a60b6b6586850b1d919cf2ac0939",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v16.json": "5438508bc669fc60393733c7bbb62d3e346157a998d195aca36a9659f9b83ece",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/ligurian-northern-segment-scope-audit.json": "ec5a47eb140325d566f4513266d9498813bb0e0a266e32189cd7c4ff516b85c4",
+    "research/ligurian-reach-reference-path-input.json": "9f27f636d7a4042b832bbe6ef15203d2f8f4713fbc111fea337a6e9427b8da24",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "methodology_file": "plans/balearic-ligurian-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent partial regional connectors preserve canonical routes/owners. Ligurian is a Northern Current segment,not additive independent system;parent depth values are not inherited. Balearic sources/contributions do not become aliases or whole Northern/Algerian routes. No full physical current depth,volume/state join or global sum.",
+  "maximum_nearest_longitude_distance_km": 5,
+  "reviewed_primary_document": {
+    "source_facts_file": "research/current-depth-source-facts-v16.json",
+    "sha256": "70740d49d018b11e9ceaef90dfd1efa8bfb959fc6c8ce2b6e490f155959985a5",
+    "bytes": 706643,
+    "visually_reviewed_pdf_page": 5,
+    "original_document_redistributed": false
+  }
+}
