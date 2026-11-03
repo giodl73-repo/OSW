@@ -1,0 +1,45 @@
+name: NEC Huang2022 primary mooring paper custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/nec-huang2022-primary-paper-acquisition-v1.yml
+      - analysis/acquire_nec_huang2022_primary_paper_v1.py
+      - analysis/test_nec_huang2022_primary_paper_acquisition_v1.py
+      - plans/nec-huang2022-primary-paper-custody-protocol-v1.md
+      - research/nec-huang2022-primary-paper-acquisition-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_egcc_sutherland_primary_paper_v1.py
+            analysis/acquire_nec_huang2022_primary_paper_v1.py
+            analysis/acquire_ncc_skagseth_table1_v1.py
+            analysis/test_nec_huang2022_primary_paper_acquisition_v1.py
+            plans/nec-huang2022-primary-paper-custody-protocol-v1.md
+            research/current-depth-reference-inventory-v15.json
+            research/nec-huang2022-primary-paper-acquisition-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check inherited custody bounds and acquire the original once
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_nec_huang2022_primary_paper_acquisition_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_nec_huang2022_primary_paper_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nec-huang2022-primary-paper-v1
+          path: nec-huang2022-primary-paper-v1/
+          retention-days: 7
