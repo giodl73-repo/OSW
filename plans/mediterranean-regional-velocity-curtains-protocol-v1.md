@@ -30,3 +30,11 @@ Cloud-only sequential one idleCPU tests/geometry/numerics/build. No local ocean
 processing/tests. Preserve40levels,3-150profiles,6000nodes/section,2.4MB output,
 2.5MB file and3MB publication bounds. Prior datasets and102eddy size refs stay
 unchanged. Retain exact cloud output and source-review pins after terminal jobs.
+
+Legacy format adapter:the40MediterraneanBoundary fixed-longitude files predate
+the mixed source_section_geometry tag. First validate each original object with
+its frozen interval_transverse_section_audit_v1 validator. Then deep-copy only
+in memory and add the explicit longitude tag required by the frozen mixed-format
+curtain entry point. No original file/hash,columns,coordinates,selection,diagnosis
+or values change. Retain original raw-file SHA and explicit geometry_adapter on
+each result. Tests prove the view differs only by that declared metadata tag.

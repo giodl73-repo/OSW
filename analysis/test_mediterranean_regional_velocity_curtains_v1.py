@@ -38,6 +38,10 @@ class MediterraneanCurtains(unittest.TestCase):
             with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c)
         c=copy.deepcopy(self.op['cohorts'][0]);c['section_files'][-1]=c['section_files'][0]
         with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c)
+    def test_legacy_adapter_only_adds_declared_tag_after_original_validation(self):
+        cohort=self.op['cohorts'][1];file=cohort['section_files'][0];source=json.loads((derive.ROOT/file).read_bytes());before=copy.deepcopy(source);op=json.loads((derive.ROOT/cohort['source_operator']).read_bytes());config={**op,**op['currents'][source['entity_id']]}
+        view,adapter=derive.geometry_view(source,config,cohort['id']);self.assertEqual(source,before);self.assertNotIn('source_section_geometry',source);self.assertEqual(view['source_section_geometry'],'longitude');del view['source_section_geometry'];self.assertEqual(view,source);self.assertEqual(adapter,'LEGACY_LONGITUDE_VALIDATED_THEN_IN_MEMORY_GEOMETRY_TAG_ONLY')
+        for c in self.report['cases']:self.assertEqual(c['geometry_adapter'],'LEGACY_LONGITUDE_VALIDATED_THEN_IN_MEMORY_GEOMETRY_TAG_ONLY' if c['cohort_id']=='mediterranean-boundary' else 'ORIGINAL_MIXED_GEOMETRY_TAG')
     def test_scopes_have_own_source_intervals_and_frames(self):
         for cohort in self.op['cohorts']:
             source=json.loads((derive.ROOT/cohort['source_operator']).read_bytes())

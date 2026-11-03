@@ -3,6 +3,7 @@ import copy,hashlib,json
 from collections import Counter
 from pathlib import Path
 import derive_barents_makassar_velocity_curtains_v1 as frozen
+from interval_transverse_section_audit_v1 import validate_retained as validate_legacy_longitude
 
 ROOT=Path(__file__).resolve().parents[1]
 OPERATOR='research/mediterranean-regional-velocity-curtains-operator-v1.json'
@@ -11,6 +12,14 @@ COHORTS={'balearic-ligurian':(32,{'current:balearic','current:ligurian'}),'medit
 
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 def encode(v):return (json.dumps(v,separators=(',',':'),allow_nan=False)+'\n').encode()
+
+
+def geometry_view(section,config,slug):
+    if slug!='mediterranean-boundary':return section,'ORIGINAL_MIXED_GEOMETRY_TAG'
+    validate_legacy_longitude(section,config)
+    if 'source_section_geometry' in section:raise ValueError('Original legacy fixed-longitude source must not already have mixed geometry tag')
+    view=copy.deepcopy(section);view['source_section_geometry']='longitude'
+    return view,'LEGACY_LONGITUDE_VALIDATED_THEN_IN_MEMORY_GEOMETRY_TAG_ONLY'
 
 
 def derive_cohort(root,cohort):
@@ -25,7 +34,8 @@ def derive_cohort(root,cohort):
         raw=(root/p).read_bytes();section=json.loads(raw)
         if section['entity_id'] not in owners or section['operator_file']!=file or section['operator_sha256']!=digest((root/file).read_bytes()) or section['source_returned_timestamp_utc']!=section['snapshot_time_utc']:raise ValueError('Pinned original owner,operator and exact snapshot required')
         config={**original,**original['currents'][section['entity_id']]}
-        result=frozen.curtain(section,config,p);result['source_sha256']=digest(raw);result['cohort_id']=slug;result['source_operator']=file;cases.append(result)
+        view,adapter=geometry_view(section,config,slug)
+        result=frozen.curtain(view,config,p);result['geometry_adapter']=adapter;result['source_sha256']=digest(raw);result['cohort_id']=slug;result['source_operator']=file;cases.append(result)
     actual={(v['entity_id'],v['section_id'],v['snapshot_time_utc']) for v in cases};expected={(v['entity_id'],v['id'],t) for v in original['sections'] for t in original['snapshot_times_utc']}
     if actual!=expected or len(actual)!=expected_count:raise ValueError('Every original section/date case exactly once required')
     return cases
