@@ -1,0 +1,24 @@
+# Partitioned South Atlantic and Tasman depth contours
+
+All64original retained cases,53interior11gateedgeunresolved,four2022quarter15th00Z
+snapshots. FourEDITORIALlatitudecontexts underTWOcanonicalcurrentowners. South
+Atlantic0.05m/s,Tasman0.1m/s,botheast90deg,selection/core0-200m,nullsurface/thermal
+gates. Exactoriginalwindows,partitionIDs,pairedlongitudestops/intervals preserved.
+
+Run frozen validate_partitions onoriginaloperator BEFOREcases;run frozen
+validate_section_partition on eachsource torequireexactdefinition/owner/semantics,
+thenoriginallongitudeINTERVALaudit. DeepcopyaddsONLYmixedlongitudegeometrytag
+inmemory;rawsourceunchanged. ENTIREvalidatedv2curtain function unchanged,with
+source-primarythreshold andoriginalseed. Everycandidate/selection/core/layer and
+seedrunboundary reproduces. Keepallunresolvedcases withoutreplacement.
+
+Partitioninteriorscannotoverlap;onesharedlatitudeboundaryallowedbyoriginalsource
+plan. Shared-boundarywinnerremainsgate-edgeunresolved. ContoursremainPERPARTITION:
+no cross-partitioninterpolation/join,front/jet/watermassclassification,ownership
+change orclaimofindependentobservationsfromsummedprofilecounts. Preservepartition
+metadata andperpartitioncounts inoutput. Native strictfour-neighbors,nodiagonal/
+missingbridge/reselection. Separateverticalruns andcrossings/missing/domain/lateral
+censors retained. Same-signflowmayincludeotherfeatures;no physicalbottom,annual
+range,whole-routeprofile,width/area/volume ornewscalarrefs. Missingnotzero,bed,
+absence;nativebracketsnotuncertainty. Cloud-only sequentialoneidleCPU tests/build,
+zero retrieval/replay/sourceedits/capchanges;2.4MBoutputbound unchanged.
