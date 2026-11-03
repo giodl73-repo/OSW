@@ -1,0 +1,16 @@
+# Coverage snapshot v4 after zonal-current exports
+
+Use unchangedvalidatedv1join/countingimplementation throughanewscopedoperator
+wrapper;restoreconfigurationonsuccess/failure. Preservev1/v2/v3snapshots andall
+sourcefacts/referencecounts. Add3canonicalownerexports covering36originalcases:
+AgulhasReturn14(12resolved2unresolved),KuroshioExtension8resolved,NorthPacific14resolved.
+No newidentity,upstream/downstreaminheritance orjoinofnamingreaches ispermitted.
+
+Same1038registeredsourcecases. Newlyprocessed36=34resolved2unresolved. Totalprimary
+processing772=602resolved170unresolved;266unprocessed=208interior58unresolved.
+Existing56duplicatementions/Balearic16alternatecases remainunchanged. Countsare
+profile-date/sourcecaseprocessing,notindependentobservations orphysicalcurrentbodies.
+Reference111identities/808heterogeneousrows,807m+1dbar,fitted78cases77finiteranges
+unchanged. No rawfieldretrieval/reanalysis/newrefs/physicaldepth/annualrange/volume/
+main/runtime/UIchanges. Cloud-only sequentialoneidleCPU tests/build;localstatic
+editing/AST,metadata/hash/exactretention. Fixedoutput/file/publicationcaps unchanged.
