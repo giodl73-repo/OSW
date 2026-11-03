@@ -1,0 +1,163 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    100,
+    300
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all16section/date cases and all candidate scores,local maxima,no-selection,edge and censored cases. No post-result retuning. Coastal masks and finite model resolution do not establish current absence or seabed depth. Geographic maxima may be neighboring flow.",
+  "vertical_operator": "Frozen connected layers trace above/below seeds through full native0-5000m finite adjacent brackets. Retain upper/lower contours,statuses,last-supported bounds and paired spans;do not bridge sign/cutoff/missing gaps.100/300m are selection endpoints,150-250m observed core range and163m model mean core are core locations,800m historical model reach and instrument stops are not imposed bottoms. Same-sign flow may merge currents;no physical thickness,water-mass class or volume inference.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.ngcuc-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "Separately declared NGCUC regional source;wrapper changes only operator/output of frozen mixed-axis collector. All numerical kernels,geometry,read budget,retries and source audit remain frozen.",
+  "geometry_provenance": "Four editorial longitude cuts at142,143.5,145,146E with respective latitude gates[-3.5,-1.5],[-4,-2],[-4.5,-2.5],[-5,-3]. Existing regional route and142E moorings inform geography,not extracted axes or widths.",
+  "column_selector": "Complete finite100-300m positive signed integral of fixed290degree component with core>10cm/s;no surface or temperature qualification. Greatest integral wins,first southern native index breaks ties. Selected gate/support edges stay unresolved without weaker replacement.5/10/20cm/s sensitivities retain same column with separate qualifying seeds.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means,annual extrema,1995-2000 mooring occupations or1994-2015 GLORYS means. Source boreal seasons do not turn four snapshots into measured annual ranges.",
+  "transport_budget": "Preflight all16targets before fields under unchanged250000pairs/7MBdecoded caps;3-150profiles/section,40levels,20000pairs/patch,5km axis tolerance. One shared frozen mixed reader,max3exactfailedcomponent attempts with2/5second delays and future first-attempt reserve;no success replay or cap increase.",
+  "currents": {
+    "current:new-guinea-coastal-undercurrent": {
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "component_bearing_degrees_true": 290,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        100,
+        300
+      ],
+      "selection_depth_interval_m": [
+        100,
+        300
+      ],
+      "branch_scope": "Partial northern PNG reach142-146E downstream of Vitiaz. Exclude Vitiaz Strait,upstream Solomon Sea branches,surface NGCC identity,New Britain and equatorial retroflection/EUC. Fixed290degree northwest component is an editorial approximation based on local142E alongshore orientation,not an along-route rotated axis. A connected same-sign surface layer can merge NGCC and NGCUC;this diagnostic does not classify water masses or establish branch separation."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-142e",
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 142,
+      "latitude_gate_degrees_north": [
+        -3.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-143p5e",
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 143.5,
+      "latitude_gate_degrees_north": [
+        -4,
+        -2
+      ]
+    },
+    {
+      "id": "section-145e",
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 145,
+      "latitude_gate_degrees_north": [
+        -4.5,
+        -2.5
+      ]
+    },
+    {
+      "id": "section-146e",
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 146,
+      "latitude_gate_degrees_north": [
+        -5,
+        -3
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2002JC001611",
+      "locator": "Ueki2003 Data paragraph8-9;Results13-18,Figure3/4 captions;fresh publisher text",
+      "scope": "142E moorings separate subsurface northwest NGCUC from seasonally reversing surface NGCC. Core generally150-250m and shoals during ENSO.20degree rotated local coordinates support an editorial fixed290degree NW frame;100-300m window is declared diagnostic scope,not source-reported current boundaries. Instrument range does not establish bottom."
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1080314/full",
+      "locator": "Azminuddin2022 Sec3.1/3.2,Figure6B;fresh primary publisher text",
+      "scope": "GLORYS1994-2015 mean at140E has~163m core and nearly800m reach;surface westward flow can merge with SEC. Distinct longitude,model,mean period and boundary definition;do not impose these values on2022 HYCOM or whole northern PNG current."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_ngcuc_interval_depth_sections_v1.py": "091b3f45246077147a6e1ba89ec4f1a59ca1491e66fd739b8272234437f8d2e3",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_ngcuc_interval_depth_sections_v1.py": "51c98ec14f86659c74704d8ff6d5085213a0175b4ea76411c05ca2674454e201",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/ngcuc-interval-depth-sections-protocol-v1.md": "4a67f2222056c804c7b49d8280bf6b2dad78f6b21965788587e58f1f7d49e0f4",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/current-depth-source-facts-v6.json": "2d290fbd00f2aac18a693755afec35bd4676cef8f78345f9bc027e91fafe8ca1",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/new-guinea-coastal-undercurrent-reference-path-input.json": "56df70794a8941a39973c4a4627baa8a18eb91e2c3029d00eb03c9da5493fca8",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    100,
+    300
+  ],
+  "methodology_file": "plans/ngcuc-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent regional reference connectors preserve canonical northern PNG editorial route. No route extension to equator,upstream passages,parent/branch numerical inheritance or full-current claim.",
+  "maximum_nearest_longitude_distance_km": 5
+}
