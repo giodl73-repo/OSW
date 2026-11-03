@@ -1,0 +1,137 @@
+{
+  "schema": "osw.current-depth-ncc-original-core-salinity-source-review.v1",
+  "status": "PASS_ALL_FIVE_ORIGINAL_CORES_HAVE_ADJACENT_SALINITY_LIMITED_CONDITIONAL_LOWER_BOUNDARIES",
+  "cloud_review": {
+    "run_id": 41645832989,
+    "source_commit": "aa4e66d7725ae4728689d77906ea1cfb690c7aa8",
+    "status": "completed",
+    "conclusion": "success",
+    "tests_passed": 19,
+    "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41645832989"
+  },
+  "artifact_id": 13234733395,
+  "artifact_sha256": "8cda663c84a941be1f2fc234703fe19dfe3b649c9383e238e1c4ad9d256dd1d4",
+  "source_report_file": "research/source-data/ncc-original-core-salinity-v1/source-report.json",
+  "source_report_sha256": "c2c7a7cbf69243bca746317a4b024d4b3a5f65b485d3ff7c147617d37e10703e",
+  "target_results": [
+    {
+      "date": "2022-03-15T00:00:00Z",
+      "section": "section-59p25n",
+      "original_component_minimum_reach_m": 250.0,
+      "original_core_depth_m": 0.0,
+      "conditional_joint_lower_boundary_m": 158.21967915556252,
+      "native_bracket_m": [
+        150.0,
+        200.0
+      ],
+      "limiting_criteria": [
+        "salinity"
+      ]
+    },
+    {
+      "date": "2022-03-15T00:00:00Z",
+      "section": "section-60n",
+      "original_component_minimum_reach_m": 250.0,
+      "original_core_depth_m": 0.0,
+      "conditional_joint_lower_boundary_m": 128.33347461218955,
+      "native_bracket_m": [
+        125.0,
+        150.0
+      ],
+      "limiting_criteria": [
+        "salinity"
+      ]
+    },
+    {
+      "date": "2022-06-15T00:00:00Z",
+      "section": "section-60p75n",
+      "original_component_minimum_reach_m": 300.0,
+      "original_core_depth_m": 25.0,
+      "conditional_joint_lower_boundary_m": 166.66666666666666,
+      "native_bracket_m": [
+        150.0,
+        200.0
+      ],
+      "limiting_criteria": [
+        "salinity"
+      ]
+    },
+    {
+      "date": "2022-09-15T00:00:00Z",
+      "section": "section-60p75n",
+      "original_component_minimum_reach_m": 300.0,
+      "original_core_depth_m": 20.0,
+      "conditional_joint_lower_boundary_m": 97.02122478795503,
+      "native_bracket_m": [
+        90.0,
+        100.0
+      ],
+      "limiting_criteria": [
+        "salinity"
+      ]
+    },
+    {
+      "date": "2022-12-15T00:00:00Z",
+      "section": "section-59p25n",
+      "original_component_minimum_reach_m": 250.0,
+      "original_core_depth_m": 0.0,
+      "conditional_joint_lower_boundary_m": 96.84184108818953,
+      "native_bracket_m": [
+        90.0,
+        100.0
+      ],
+      "limiting_criteria": [
+        "salinity"
+      ]
+    }
+  ],
+  "successful_salinity_hyperslab_requests": 5,
+  "requested_salinity_scalar_values": 600,
+  "retry_scalar_values_reserved": 0,
+  "new_velocity_scalar_requests": 0,
+  "metadata_open_attempts": 1,
+  "scientific_review": [
+    "All five original v8NCCminimum-reach-bound columns retained without reselection. All five exact original time indices/timestamps,40depthcoordinates,selected lat/lonindices and three-longitude neighbor stencils preflighted before any salinityfield read. Source instantaneous variable practicalsalinitypsu/sea_water_salinity metadata retained.",
+    "Joint classifier uses original northward component>0.1m/s and practicalsalinity<35at original core,with contiguous native support and finite adjacent brackets. All five original cores satisfy classifier. All five lower exits are salinity-limited,with source brackets retained. Interpolated decimals are numerical scenario outputs,not physical precision or confidence intervals.",
+    "Conditional fresh/component lower-boundary depths around97-167m are shallower than original component-only>=250-300mdepthcoordinates. Distinct metrics:the prior velocity minimum reaches remain valid for their component and unchanged. Same-sign deeper water need not be the fresh NCCwatermass. No physical NCCbottom or independently validated axis is established.",
+    "Five patch reads each40levelsx3native profiles returned600scalars total;all succeeded on first attempt,no retries. Neighbors retained but original central column/core remains fixed. No new velocity field reads. Wirebytes/hashes are not instrumented;retained hashes identify decoded JSONarrays,not raw HTTPpayloads.",
+    "Enge2025source watermass distinction motivates S<35classifier,butits50levelAMM15forecast/25hdailymeans are not this40levelinstantaneousHYCOMdataset. This is a new conditionalHYCOMdiagnostic,not a reproduction of unarchivedAMM15outputs. Practicalsalinity35notabsolute35.16g/kg.",
+    "Dates are March/June/September/December2022snapshots at three regional sections. Cross-target depth variation is not a seasonal mean,annual envelope,full-route profile or paired volume. Upper0msample support does not establish a physical surface boundary. Thickness/volume remainnull/ineligible.",
+    "19cloud checks passed before retrieval,covering joint bracket logic,first limiting criterion,equality,detached upper layers,disconnected patches,missing-input censoring,salty/weak/missing core non-reselection,exact node/date/depth/stencil/unit preflight and bounded identical IOretries/no success replay.",
+    "Source custody and conditional diagnostics retained only. Referenceinventoryv9remains752/101owners;modelprojectionv48/physicalprofiles0/volumes0/102eddybaseline/main/runtime/UI/preview unchanged. A separate frozen inventory-admission/reproduction step remains. Goal active."
+  ],
+  "reference_inventory_updated": false,
+  "new_reference_inventory_rows_admitted": 0,
+  "model_projection_inventory_updated": false,
+  "physical_current_bottom_established": false,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/ncc-original-core-salinity-v1.yml": "84261c146759195d765137d7961f10fcc7dc8b22fc8c362137e2b2eff36e6fbe",
+    "analysis/acquire_ncc_original_core_salinity_v1.py": "5811dd2432703635bfb244805bb95b70ea30fbe6cff89f34675b52d3c0c948a2",
+    "analysis/ncc_core_salinity_diagnostic_v1.py": "1e6b128e25c9066b1fd2bb8da45e3bab21676a5654785faed5c7590d9e40e232",
+    "analysis/test_ncc_original_core_salinity_v1.py": "5ea9d0eec0bed33c137838ef7a1d46ba2d91325b164f9be152d2a6d029eb41fa",
+    "plans/ncc-original-core-salinity-protocol-v1.md": "4faef252da57f21827661072146b516746e35fd76cdb2e3145cba3e417bb75c4",
+    "research/coastal-upper-layer-interval-depth-sections-operator-v1.json": "b96238fec304ebb87a582931f9b51fea4f1058495d1a2968a25c6a3a661e5cb6",
+    "research/current-depth-reference-inventory-v9.json": "4476a14e00dd5c44682ebe48d777095cd9a68e2a21e9eeca7852ff6f0dca6615",
+    "research/eddy-measurement-register-v1.csv": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "research/eddy-measurement-register-v1.json": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "research/interval-core-connected-reach-source-report-v1.json": "27a5644044d96766085f53d2a20ee6a59e5db09f1efaea3fa11d05acf718766e",
+    "research/ncc-enge2025-depth-identity-source-scope-review-v1.json": "910a6ac22422bf838e0f7a81d71689316f914a7a10d0d28f01d05f409bd6e29c",
+    "research/ncc-original-core-salinity-operator-v1.json": "efa8790a5490ec0ee0b4aaf1486e49855e5a2c778a4065e9a1eac5b68c998c3d",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json": "ac4f0016c54a0cfe2581ef15bce890e52119fa362ce916e7ffcbd2dbfabe395d",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json": "e6fe1ffc9eb72fa6620d54bc37248462bf95810ae26a9497efac105be8517f86",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json": "86533edbc46afb52279cb6c56fd896cc7c12152edbe72aa8ba6839ad22aae1cb",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json": "a3a3cb4cfbeb3a4f4464642da9f793cd764776b652f25daa3e06ba7074e57610",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json": "46d09549ad57436a70a823918c7df5ef4eddc83490e1fb516e20ef50fac55a6a",
+    "research/source-data/ncc-original-core-salinity-v1/source-report.json": "c2c7a7cbf69243bca746317a4b024d4b3a5f65b485d3ff7c147617d37e10703e",
+    "research/source-data/ncc-original-core-salinity-v1/target-1.json": "c65b5662bcfa4dfc701ed7e691f3af59e19c3f39206a69b571c7e0e8f7fa2348",
+    "research/source-data/ncc-original-core-salinity-v1/target-2.json": "c179e01ad8c10a401168f86430709878b8b95b3950715fb1a6d634df285c51d8",
+    "research/source-data/ncc-original-core-salinity-v1/target-3.json": "3f5062f1f2bff2ac6aa2034e3913be573e7ea01977648151e8c9fdcf1d96f8aa",
+    "research/source-data/ncc-original-core-salinity-v1/target-4.json": "09ac511e498652c2ba803be76a6174eb30f5dad0d6faa39a71a7315eba23c076",
+    "research/source-data/ncc-original-core-salinity-v1/target-5.json": "873ab265a24bd06a02d351ae29a00d56e374a4b33100deaf10e54ae98a4f0574",
+    "research/source-data/ncc-original-core-salinity-v1/transport-ledger.json": "1407bb67f441ee07e1fffb41d47cf891b62de4679175c8ee8a18d17b7af1cd30"
+  }
+}
