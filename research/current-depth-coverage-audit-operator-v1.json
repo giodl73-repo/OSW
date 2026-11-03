@@ -188,7 +188,8 @@
     },
     {
       "data": "research/mediterranean-regional-velocity-depth-curtains-v1.json",
-      "review": "research/current-depth-mediterranean-regional-velocity-curtains-source-review-v1.json"
+      "review": "research/current-depth-mediterranean-regional-velocity-curtains-source-review-v1.json",
+      "threshold_policy": "LEGACY_MEDITERRANEAN_0P1_VARIANT_NOT_SOURCE_PRIMARY"
     },
     {
       "data": "research/nec-subarctic-velocity-depth-curtains-v1.json",
@@ -237,16 +238,26 @@
     "absence_in_this_scope_means_no_registered_case_not_no_depth_evidence": true,
     "facts_schema_adapters": {
       "research/north-brazil-depth-sections-source-facts-v1.json": "Pinned original0.1m/s operator andexactprimary10cms lowerstatus fields;inmemory auditmapping only"
-    }
+    },
+    "source_primary_contour_completion_only": true,
+    "alternate_threshold_products": [
+      {
+        "dataset": "research/mediterranean-regional-velocity-depth-curtains-v1.json",
+        "entity_id": "current:balearic",
+        "source_primary_threshold_m_s": 0.05,
+        "historical_variant_threshold_m_s": 0.1,
+        "counts_as_source_primary_processing": false
+      }
+    ]
   },
-  "interpretation": "Scoped provenance join across frozen reference inventory,native transverse-section fact files,retained contour reports and two fitted sensitivity reports. Nativecases deduplicated bysourcefile+SHA;contours must matchsourceowner/date/selection/threshold. Backlog distinguishes unprocessedinterior fromprocessedunresolved. Reference metrics/nativeunits/evidencekinds remainheterogeneous;no memberinheritance,independent-observation count,physicalbottom/whole-route/annualrange/volume/runtime promotion. Rawfieldsnotreaudited.",
+  "interpretation": "Scoped provenance join across frozen reference inventory,native transverse-section fact files,retained contour reports and two fitted sensitivity reports. Nativecases deduplicated bysourcefile+SHA;contours must matchsourceowner/date/selection/threshold. Backlog distinguishes unprocessedinterior fromprocessedunresolved. Reference metrics/nativeunits/evidencekinds remainheterogeneous;no memberinheritance,independent-observation count,physicalbottom/whole-route/annualrange/volume/runtime promotion. Rawfieldsnotreaudited. HistoricalMediterraneanv1Balearic0.1m/s variant is explicitly separated fromsourceprimary0.05m/s anddoesnotfillprimaryprocessingbacklog.",
   "methodology_file": "plans/current-depth-coverage-audit-protocol-v1.md",
   "runtime_changed": false,
   "full_goal_complete": false,
   "input_sha256": {
-    "analysis/audit_current_depth_coverage_v1.py": "acf85bc1de1f4e7f4f8dbebfc100403d9d62d5c02202789f95bfe1a955973171",
-    "analysis/test_current_depth_coverage_audit_v1.py": "11c555be557731a8b113336d41ba8769a03a15973441851f19b3fb8de82cfa2f",
-    "plans/current-depth-coverage-audit-protocol-v1.md": "64d8702dd56c246a6f460cd2d1c52b6d3abec29641318628f9df1e43397c1a49",
+    "analysis/audit_current_depth_coverage_v1.py": "66551888fab4666eca2d39cebf2a1bea5bed688daafcd2ba2f0823fa505c5081",
+    "analysis/test_current_depth_coverage_audit_v1.py": "7e7dd8bd9b513c33cb02ebf745b8318295e1a6d70afca8eff22769aa0d36c7b8",
+    "plans/current-depth-coverage-audit-protocol-v1.md": "1e0898291742bd95218534960980dba101167e960c8998499fcf869533ad54bc",
     "research/acc-drake-interval-depth-sections-source-facts-v1.json": "91370a26a6d52818754974a53d7c80389a3e3bd41104d847d888480530234990",
     "research/acc-drake-interval-depth-sections-source-review-v1.json": "dd49f592d00bd215c77d969f8c138f3e35c7d9f1badbcaffa5e114105bcdd2c4",
     "research/adriatic-surface-interval-depth-sections-source-facts-v1.json": "a43bb2b84200d4cb01601fffd167e3ad2478fd38fbfb6d218cb627e721dc8262",

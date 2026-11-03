@@ -12,6 +12,12 @@ hashes fail. A contour must match the source owner, section, exact date, origina
 selection status/index and primary threshold. Duplicate contours count once;
 conflicting results fail. Do not add aggregate dataset totals across duplicates.
 Counts of connected columns are profile-and-date support, not independent bodies.
+Processing completion here means the source's own primary threshold. The frozen
+Mediterranean v1 report used0.1m/s for Balearic, whose source primary is0.05m/s.
+Register that exact historical product with an explicit alternate-threshold policy:
+keep its results and provenance separately, do not count it as source-primary
+processing, and leave the primary backlog open. All other owner/time/selection
+joins remain strict. No generic acceptance of different thresholds is permitted.
 North Brazil's legacy primary10cms fields have one explicit schema mapping: require
 its pinned original operator to declare primary0.1m/s and match the stored10cm/s
 layer status. Add audit-only common field names in memory; never rewrite source

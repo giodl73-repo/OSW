@@ -48,6 +48,13 @@ class CoverageAudit(unittest.TestCase):
         bad=copy.deepcopy(case);bad['lateral_gate_censored']=True
         with self.assertRaises(ValueError):audit.attach_curtain(index,derived,bad,'c.json')
 
+    def test_declared_balearic_alternate_does_not_fill_source_primary_backlog(self):
+        row,case,index=fixture();row.update(entity_id='current:balearic',primary_threshold_m_s=.05);index={};audit.merge_source(index,row,'facts.json');case['entity_id']='current:balearic';primary={};alternate={};dataset='research/mediterranean-regional-velocity-depth-curtains-v1.json';policy='LEGACY_MEDITERRANEAN_0P1_VARIANT_NOT_SOURCE_PRIMARY'
+        with self.assertRaises(ValueError):audit.attach_curtain(index,primary,case,dataset)
+        audit.attach_curtain(index,primary,case,dataset,alternate,policy)
+        counts=audit.source_counts(index,index,primary,alternate);self.assertEqual(counts['cases_with_contour_processing'],0);self.assertEqual(counts['cases_with_declared_alternate_threshold_contours'],1);self.assertEqual(counts['unprocessed_interior_cases'],1);self.assertEqual(primary,{})
+        with self.assertRaises(ValueError):audit.attach_curtain(index,primary,case,'other.json',alternate,policy)
+
     def test_processed_unresolved_is_distinct_from_unprocessed_and_absence(self):
         row,case,index=fixture();row['horizontal_selection_status']='no_qualifying_interval_component_column';row['selected_column_index']=None;index={};audit.merge_source(index,row,'facts.json')
         before=audit.source_counts(index,index,{})
