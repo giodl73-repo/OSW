@@ -1,0 +1,167 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    500
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "horizontal_support_policy": "Retain16targets/scores/peaks/no-selection/edge/censored outcomes. Ice/coastal/bathymetric masks/eddies/gyre/opposing undercurrent/resolution confound named-current membership;no independent watermass/axis validation.",
+  "vertical_operator": "Full-native0-5000m adjacent tracing,no cutoff/sign/missing bridge/window clipping.500msearch/thermocline/seabed/mooring support not boundaries. Preserve status/bounds/span/censoring,same-sign deepflow not proven wholecurrent thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.antarctic-slope-dml-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New partial AntarcticSlopeDML west270component collector copies frozen mixed interval method,no source/kernel changes or coastal/Gunnerus/eastward undercurrent depth inheritance.",
+  "geometry_provenance": "Four editorial5.5/6/6.5/7Elongitude cuts with68-70Slatitude gates aroundsource6ECTDline/DMLdeep69.1S anchor,not exact stations/axes/flow-normal lines/widths/endpoints.",
+  "column_selector": "Complete finite0-500m positive west270component integral/core>0.05,no surface/relative/thermal/salinity gate. Primary0.05,sensitivities0.02/0.05/0.1,fixed exploratory conventions,first southern native tie,edge/support-edge unresolved,no weaker replacement/tuning.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Quarterly2022March/June/September/December15 00Zprobes,not seasonalmeans/annualextrema/2019-2020moorings/2020-2021CTD or sourceclimatology.",
+  "transport_budget": "16native targets jointly preflight with unchanged250000pairs/7MBdecoded/40levels/3-150profiles/20000pairsperpatch/5km tolerances,one shared bounded ledger/reserve,max3exactNetCDFIOfailure retries2/5seconds,no successful replay/per-quarter reset or cap increase.",
+  "currents": {
+    "current:antarctic-slope": {
+      "entity_id": "current:antarctic-slope",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "selection_depth_interval_m": [
+        0,
+        500
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        500
+      ],
+      "parent_current_id": null,
+      "parent_depth_values_inherited": false,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "branch_scope": "DMLnear6E,5.5-7E/68-70S,single west270component,not fullASC/coastalcurrent/Gunnerusbranch or eastwardundercurrent identity;watermass/currentaxis unvalidated."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-5p5e",
+      "entity_id": "current:antarctic-slope",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 5.5,
+      "latitude_gate_degrees_north": [
+        -70,
+        -68
+      ]
+    },
+    {
+      "id": "section-6p0e",
+      "entity_id": "current:antarctic-slope",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 6.0,
+      "latitude_gate_degrees_north": [
+        -70,
+        -68
+      ]
+    },
+    {
+      "id": "section-6p5e",
+      "entity_id": "current:antarctic-slope",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 6.5,
+      "latitude_gate_degrees_north": [
+        -70,
+        -68
+      ]
+    },
+    {
+      "id": "section-7p0e",
+      "entity_id": "current:antarctic-slope",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 7.0,
+      "latitude_gate_degrees_north": [
+        -70,
+        -68
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023JC020540",
+      "locator": "Sections2.1/3andSummary;Figures1/2/5captions",
+      "scope": "DMLmooring/CTDgeography and vertical westwardvelocity context;sourcewater/isotherm/instrument depths not imposedcurrent boundaries. HTMLreview,nopixels/fields digitized,sourceperiodnot2022."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_antarctic_slope_dml_interval_depth_sections_v1.py": "792c89ae6dd38fc1db124fe5f80d57ed2db72b82f49db089fd90f1f27c81b475",
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_antarctic_slope_dml_interval_depth_sections_v1.py": "9bb4361ef11a5e2399a2d78ab2d1cf5e9ace44b7f3a908c87b56079961ac2e98",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "plans/antarctic-slope-dml-interval-depth-sections-protocol-v1.md": "88491205737666ea5f9f50fb04948393bfb3ed5e691733ce56245ea3a8161870",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "research/antarctic-slope-darelius-2024-scope-audit.json": "99f9f8bb520bb5f9c389382aac17a6075ca2b26b402afba9aac2c09d703d2b6c",
+    "research/antarctic-slope-dml-depth-method-prerequisites-v1.json": "5ee205a30506905a07cf584f9e619965ecf81123cd144e549f3d08b6fcf6b018",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v10.json": "ee8fc68369c08eec154a55ae19d931823190a553ce6053b89d86293e20ed0f25",
+    "research/current-depth-source-facts-v13.json": "6957b09ae487df62231856fe7efe0bdf3fc5695485e0e1f0341f0aa40e4a7107",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    500
+  ],
+  "methodology_file": "plans/antarctic-slope-dml-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Partial DMLcomponent owned by AntarcticSlope system,not circumpolar scalar/coastal/Gunnerusbranch/eastward-undercurrent alias. No inherited profile/depth,physical/annual/volume/state/global claim.",
+  "maximum_nearest_longitude_distance_km": 5,
+  "whole_system_depth_established": false
+}
