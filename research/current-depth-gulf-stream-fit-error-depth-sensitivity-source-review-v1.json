@@ -1,0 +1,73 @@
+{
+  "schema": "osw.gulf-stream-fit-error-depth-sensitivity-source-review.v1",
+  "status": "ALL65_NOMINAL_FITTED_PROFILES_REPRODUCED_FIXED_CUTOFF_ERROR_SENSITIVITY_RETAINED",
+  "source_commit": "3c6bc73512ce1f07b51470a7bd542f865a6fcfdc",
+  "source_run": 41702854517,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41702854517",
+  "artifact_id": 13263364051,
+  "artifact_sha256": "4df9847966fccf16d8341f72ad0527fd71ba7763a8fa66cead80ae6798e09c57",
+  "tests_passed": 23,
+  "test_group_counts": [
+    8,
+    15
+  ],
+  "counts": {
+    "profile_cases": 65,
+    "mean_cases": 5,
+    "fitted_day15_phase_cases": 60,
+    "status_counts": {
+      "FINITE_FIXED_CUTOFF_ERROR_RECTANGLE_SENSITIVITY": 65
+    },
+    "lower_scenario_lower_status_counts": {
+      "adjacent_isotach_crossing": 65
+    },
+    "upper_scenario_lower_status_counts": {
+      "adjacent_isotach_crossing": 65
+    },
+    "new_ocean_field_requests": 0,
+    "new_scalar_depth_references": 0,
+    "physical_whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "scientific_review": [
+    "All65retainedSprayS8TC9W selectedprofiles preserved:five sections,one mean plus12fittedday15phases each. Existing native100-level10-1000m grid reused without retrieval,truncation or extrapolation. These are fitted products over documented2015-07-16to2023-05-30observations,not instantaneous observations or monthlymeans.",
+    "Every retained upper10-200m candidate audit,original horizontal winner/status,locked100m direction,selected projection,absolute5/10/20cm/s layers and nominalhalf-core layer reproduces exactly with frozen source functions. Unretained unselected deep values stay explicit missing and are used only to reconstruct the upper-layer selection audit,never inferred as a deep section.",
+    "Retained provider metadata and reviewed officialERDDAPdocs identify component uncertainties as fitted-velocity standard errors in m/s. h=abs(sin(theta))*SEu+abs(cos(theta))*SEv projects the componentwise one-reported-SE rectangle. It is not combined downstream standard error,joint confidence region,Gaussian/covariance model or measured depth error.",
+    "Keep original nominal core index,direction and half-core numeric cutoff fixed within each phase. Trace nominal,m-h,m+h with frozen first-crossing routine from that single seed. Weak/missing scenario cores remain unresolved without deeper-core substitution. Missing error remains missing;all native/missing/domain censors retained.",
+    "Finite lower sensitivity ranges are deterministic rectangle scenarios at a fixed nominal cutoff,not current-bottom confidence intervals or a full error budget. Core-selection,direction,geolocation and cutoff uncertainty are not propagated.10m is not surface,1000m not bottom. Phase winners may move between cells and nominal cutoffs may differ across year;no annualextrema claim.",
+    "Analytic tests verify projected rectangle corners,known crossing depths,all discrete profile-rectangle corners,zero-error exact reproduction,weak-core nonreplacement,missing/error censoring and fixed native limits. Newcohort tests blockDataset/urlopen and reproduce all65sourcecases.",
+    "Cloud-only sequential one-idle-CPU numerics/tests/build. No new ocean retrieval,scalar refs,physical whole-route profile,width join or volume. Existing808-reference inventory,prior spatial datasets,102eddy refs,main/runtime/UI unchanged."
+  ],
+  "primary_semantic_review_urls": [
+    "https://spraydata.ucsd.edu/products/gulf-stream-climatology/",
+    "https://spraydata.ucsd.edu/erddap/info/gsMean/index.html",
+    "https://spraydata.ucsd.edu/erddap/info/gsAnnualCycleDaily/index.html"
+  ],
+  "new_primary_document_body_custody_claimed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/gulf-stream-fit-error-depth-sensitivity-v1.yml": "ab1da99105fed751c361f4439c442db69530e7d8b8ebcf8745f6e30269465423",
+    ".github/workflows/gulf-stream-spray-depth-sections-v1.yml": "eb587bae060f524c867cd34b931d585079aaa82d131ffc84640a4befb2fb87ca",
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "analysis/acquire_gulf_stream_spray_sections_v1.py": "1cedcb2888afb9c8756762e07088b9eec49470e544feb4f88a6d762042f02f1f",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py": "33d4b0215f54a39bbb2501af2fb81b1e5273d14dea1c71e0b8d0d23ae9a3183b",
+    "analysis/test_gulf_stream_fit_error_depth_sensitivity_v1.py": "b8ee487ad4629e43bbf10fd81c1fd07eec82c3a3122cf707ed75b0ea61f00198",
+    "analysis/test_gulf_stream_spray_sections_v1.py": "365e94bfa46c5067db521313e99e070f796018027b3d1f200bee5a2c10dd80c0",
+    "plans/gulf-stream-fit-error-depth-sensitivity-protocol-v1.md": "bc82ab2b156da5c8910efe82f0bda8aba0e6434ecee3afcfa0066443c597c1fc",
+    "research/current-depth-reference-inventory-v18.json": "b8824270518816b7f9470be253b6137fd30971fe92d6417ac3ea1c5da41304b7",
+    "research/gulf-stream-fit-error-depth-sensitivity-operator-v1.json": "603f80a4a4bf6e470dd52157aca60edd7a8480b114150456cdb2e74c2dcc201c",
+    "research/gulf-stream-fit-error-depth-sensitivity-v1.json": "7504cdd7e65dfb7d1c21c16337e919a0cb77872f951fe88d48ac813c447cecc4",
+    "research/gulf-stream-spray-depth-sections-operator-v1.json": "6c7b46a0aa410472423f9b568d65d00e85ec10d730847adb0ad662bdb1b89ce4",
+    "research/gulf-stream-spray-depth-sections-source-facts-v1.json": "61fbb2ee586949ab4a61490bf586478e09769f3bebbef50e34ec7a68fcd4296a",
+    "research/gulf-stream-spray-depth-sections-source-review-v1.json": "2e442c0fdd565bc7494f9683df442c381a5220ea00bea82acfce6916be130d01",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-30n.json": "f0dd891f75dfff142be7f3093150a5f65d689f84054f38a08d63999d5e174d24",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-32n.json": "1bd2b75c13b0f32b653cd2e3e0f810ab25f66c54c3f28537634896888f79f5f9",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/coastal-34n.json": "2d0c771c5cd92957191849d0414c60e27b56b3a2494e679e0a5dec28ecac77d6",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/manifest.json": "d0ffb69641f856a38b795de6341c8af9759bd869d03074e406b996caa6d67feb",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-70w.json": "140b387d078923e994e4890b6015f851fbb9727fc1dcd394585cb89077b47252",
+    "research/source-data/gulf-stream-spray-depth-sections-v1/offshore-73w.json": "03f6ed38aebbeb3051f8a4ec9a5277f1b4ee869ed8570e6ac42bd9307ef8fb41"
+  }
+}
