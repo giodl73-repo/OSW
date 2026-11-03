@@ -1,0 +1,39 @@
+{
+  "schema": "osw.nec-huang2022-primary-html-acquisition-operator.v1",
+  "targets": [
+    {
+      "file": "article.html",
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.979442/full",
+      "maximum_response_body_bytes": 1500000
+    },
+    {
+      "file": "figure2.webp",
+      "url": "https://www.frontiersin.org/files/Articles/979442/xml-images/fmars-09-979442-g002.webp",
+      "maximum_response_body_bytes": 800000
+    }
+  ],
+  "timeout_seconds": 25,
+  "maximum_attempts_per_url": 1,
+  "follow_redirects": false,
+  "automatic_retry": false,
+  "worker_timeout_seconds": 90,
+  "maximum_joint_body_bytes": 2300000,
+  "eligibility": {
+    "measurement_admission": false,
+    "physical_current_bottom": false,
+    "volume_estimate": false,
+    "runtime_integration": false
+  },
+  "methodology_file": "plans/nec-huang2022-primary-html-custody-protocol-v1.md",
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    "analysis/acquire_ncc_skagseth_table1_v1.py": "3427ad9b396fc223163942c710f4274f1c81d431abfcf9ae54cdb21de1f0e221",
+    "analysis/acquire_nec_huang2022_primary_html_v1.py": "e6e187114a571e959ab5d8a347fe6a2d67fb687122555fbd6d9cc6880ff390d2",
+    "analysis/test_nec_huang2022_primary_html_v1.py": "02aee5a01ad7b755a8e9d2f6786885150ad3b6be0a1d743ccaa321e45f22171a",
+    "plans/nec-huang2022-primary-html-custody-protocol-v1.md": "3ee2042b09ae161423a1ccb5f49ec33cd83c39ff60a7b633df72fd84c178cfa6",
+    "research/current-depth-reference-inventory-v15.json": "2621b6382a7a2a1355142ba68ce7ad11c3e69c1e10e12cf006045b5af7d9ffb7",
+    "research/nec-huang2022-primary-paper-acquisition-operator-v1.json": "1304ab157ba6081863d1a2e666090528276e5047cb89faae599e674f058348ce",
+    "research/source-data/nec-huang2022-primary-paper-v1/acquisition.json": "67bd470ce94c2997cf99a1ed4a62ea424ec825863a5af73621766574eb8877ae"
+  }
+}
