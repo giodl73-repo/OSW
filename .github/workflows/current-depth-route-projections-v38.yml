@@ -1,0 +1,171 @@
+name: Current depth additive inventory v38
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v38.yml
+      - analysis/build_current_depth_route_projections_v38.py
+      - analysis/test_current_depth_route_projections_v38.py
+      - research/current-depth-route-projection-operator-v38.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v38.py
+            analysis/test_current_depth_route_projections_v38.py
+            research/current-depth-route-projection-operator-v38.json
+            research/current-depth-route-projection-inventory-v23.json
+            research/current-depth-route-projection-inventory-source-review-v23.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.csv
+            research/mediterranean-boundary-interval-depth-sections-source-facts-v1.json
+            research/mediterranean-boundary-interval-depth-sections-source-review-v1.json
+            research/mediterranean-boundary-interval-depth-sections-operator-v1.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/transport-ledger.json
+            research/wsc-interval20-500-depth-reanalysis-v1.json
+            research/azcc-interval150-700-depth-reanalysis-v1.json
+            research/atlantic-seuc-interval100-400-depth-reanalysis-v1.json
+            research/pacific-sscc-interval100-400-depth-reanalysis-v1.json
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            research/zonal-current-depth-sections-operator-v1.json
+            analysis/acquire_mediterranean_boundary_interval_depth_sections_v1.py
+            analysis/test_mediterranean_boundary_interval_depth_sections_v1.py
+            plans/mediterranean-boundary-interval-depth-sections-protocol-v1.md
+            research/current-depth-source-facts-v1.json
+            research/current-depth-source-facts-v10.json
+            research/algerian-reference-path-input.json
+            research/northern-mediterranean-reference-path-input.json
+            research/algerian-cotroneo-2019-regional-width-scope-audit.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify Mediterranean boundary interval additive inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v38.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v38.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v38
+          path: current-depth-route-projections-v38/
+          retention-days: 7
