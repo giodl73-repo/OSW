@@ -1,0 +1,243 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all32predeclared section/date cases,all scores/local maxima,no-selection,gate/support-edge and primary-censored outcomes without post-result retuning. Coastal masks,reef/shelf resolution and offshore neighboring/eddy flow may confound/censor. Missing or subthreshold component support is not current absence,seabed or water-mass identity.",
+  "vertical_operator": "Frozen full native0-5000m finite adjacent tracing preserves upper/lower/status/bounds/span without sign/cutoff/missing bridging.0-200m selection endpoints,Hiri model mean reach>300m,Zeehan observed reach below300m ADCP range,100/200m mooring beds,2000m transport integration,source property strata and instrument limits are not imposed bottoms. Same-sign deeper flow can merge;no physical thickness or salinity/thermal/branch classification. No pressure conversion or parent depth inheritance.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.hiri-zeehan-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New Hiri Australian-branch/Zeehan western-Tasmania declaration using a thin wrapper over unchanged frozen mixed collector. Kernels,geometry,retry/budget/audit functions remain frozen. Both use declared0-200m/10cm/s diagnostics;strict source reach bounds>300m are contextual,not imposed lower boundaries or requirements on2022snapshots.",
+  "geometry_provenance": "Hiri latitude cuts15/14/13/12S with gates[145.5,148.5],[144.5,147.5],[143.5,146.5],[143,146]E. Zeehan40.5/41.25/42/42.75S with gates[142,145],[142.5,145.5],[143,146],[143.5,146.5]E. Editorial partial searches along broad-Hiri Australian and western-Tasmania conventions;no source axis/coast/flow-normal edges,widths,errors or whole-current endpoints digitized.",
+  "column_selector": "Complete finite0-200m positive signed integrals/core>10cm/s,Hiri northward0degree andZeehan southward180degree. Shared upper-ocean domain is an analysis choice,not source-measured boundaries. No positive surface,relative surface,thermal/salinity gate. Greatest eligible integral wins,first western native index breaks ties;gate/support-edge winners remain unresolved without weaker replacement.5/10/20cm/s sensitivities keep own seed at same column and cannot fill missing primary results. Do not flip frames or retune cutoffs from season labels or observed outcomes.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means,annual envelopes,ozROMS2000-2014mean,1997ship/mooring occupations orRidgway2007climatology. Hiri source1999spin-up excluded. Winter intensification/weak summer property indications do not supply annual depth extrema or prove flow absence/reversal in a sampled quarter.",
+  "transport_budget": "All32targets preflight jointly under unchanged250000pairs/7MBdecoded,40levels,3-150profiles,20000pairs/patch and5km axis tolerance before fields. One shared frozen mixed reader,max3exactNetCDFIOfailure retries2/5seconds,future first-attempt reserve,no success replay/per-owner/per-quarter reset or cap increase.",
+  "currents": {
+    "current:hiri-current": {
+      "entity_id": "current:hiri-current",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial15-12S northward Australian Hiri boundary branch under the catalog broad-Hiri convention. Exclude clockwise Gulf-of-Papua/PNG/Louisiade arc,EAC southward branch,closed gyre circuits,direct Solomon inflow and downstream NGCUC. Do not transfer the ozROMS Australian-branch mean reach>300m to the whole PNG arc or impose its2000m transport integration domain as bottom. Fixed northward0degree is editorial,not a locally rotated or independently identified boundary axis.",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false
+    },
+    "current:zeehan": {
+      "entity_id": "current:zeehan",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial40.5-42.75S western Tasmania southward Zeehan shelf/slope context. Exclude western Bass Strait pathways,southern-tip/east-coast continuation,South Australian segment,offshore Flinders/EAC/eddy flow and whole western-southern boundary system. December1997 Strahan flow continuing below300m instrument range is a censored reach,not a300m bottom. Fixed southward180degree is an editorial frame,not a locally rotated current axis or a guarantee of year-round strength.",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "sections": [
+    {
+      "id": "section-15s",
+      "entity_id": "current:hiri-current",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -15,
+      "longitude_gate_degrees_east": [
+        145.5,
+        148.5
+      ]
+    },
+    {
+      "id": "section-14s",
+      "entity_id": "current:hiri-current",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -14,
+      "longitude_gate_degrees_east": [
+        144.5,
+        147.5
+      ]
+    },
+    {
+      "id": "section-13s",
+      "entity_id": "current:hiri-current",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -13,
+      "longitude_gate_degrees_east": [
+        143.5,
+        146.5
+      ]
+    },
+    {
+      "id": "section-12s",
+      "entity_id": "current:hiri-current",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -12,
+      "longitude_gate_degrees_east": [
+        143,
+        146
+      ]
+    },
+    {
+      "id": "section-40p5s",
+      "entity_id": "current:zeehan",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -40.5,
+      "longitude_gate_degrees_east": [
+        142,
+        145
+      ]
+    },
+    {
+      "id": "section-41p25s",
+      "entity_id": "current:zeehan",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -41.25,
+      "longitude_gate_degrees_east": [
+        142.5,
+        145.5
+      ]
+    },
+    {
+      "id": "section-42s",
+      "entity_id": "current:zeehan",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -42,
+      "longitude_gate_degrees_east": [
+        143,
+        146
+      ]
+    },
+    {
+      "id": "section-42p75s",
+      "entity_id": "current:zeehan",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -42.75,
+      "longitude_gate_degrees_east": [
+        143.5,
+        146.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2017JC013221",
+      "locator": "Fresh Wijeratne2018 primary publisher Sec3.1.5 andsource period context;retained source-facts-v18",
+      "scope": "NorthernSEC branches bifurcate near15S into northwardHiri andsouthwardEAC. The Australian Hiri branch has modeled mean reach>300m in2000-2014ozROMS;that strict lower reach bound is not a300m bottom,observation or full PNG arc thickness. H-1 transport domain/integration andmodel spin-up dates remain separate."
+    },
+    {
+      "url": "https://eprints.utas.edu.au/13585/7/2000_Cresswell_Currents_rst.pdf",
+      "locator": "Fresh institutional original PDF prose printed21/25 andFigure5 context;retained source-facts-v10/acquisition pins",
+      "scope": "December1997 Strahan Zeehan flow extends below300m ADCP range,a censored reach rather than detected bottom. March/Decembership sections and100/200m mooring beds/sample thirds are distinct. Seasonal southward strength andEAC/offshore context do not establish a universal flow slab."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JC003898",
+      "locator": "Fresh Ridgway2007 primary publisher Sec6paras29-35/summary plus pinned seasonal audit",
+      "scope": "Weak summer southward property indication,Apriltransition andMay-June development remain qualitative seasonal contexts. Offshore northwest Flinders expression is not silently relabeled as southwardZeehan;seasonal anomalies do not automatically reverse underlying mean current or date2022depth."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC001921",
+      "locator": "Pinned canonical Zeehan route/seasonal component scope;no fresh full-text acquisition claimed",
+      "scope": "Winter western/southern boundary-flow component relation does not confer parent full-route depth or length on partial western Tasmania probes."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_hiri_zeehan_interval_depth_sections_v1.py": "e7aed1c369cf2d2604ee3cee73f415620179b44b92b88f55056ab817ebfa87f6",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_hiri_zeehan_interval_depth_sections_v1.py": "444ded66569ec0d7d15f47d4e83f7e9970fda903fcf5c4152fea3cf040c625da",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/hiri-zeehan-interval-depth-sections-protocol-v1.md": "9d484cff0714efdac762b7f5e176a335c33d6b1d1b9a4761d22e9522308f4bf9",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v10.json": "ee8fc68369c08eec154a55ae19d931823190a553ce6053b89d86293e20ed0f25",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/hiri-reference-path-input.json": "1ad6c77115fd98aaea403e8176511f055882d9d0a2f1db02ac6ac1e1142192f1",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/source-data/cresswell-zeehan-2000/acquisition.json": "dacf55d06f56e8088cad6880cd5d6513c34da5a4a3c67639dc5229cb4d4ef96a",
+    "research/zeehan-reference-path-input.json": "ceb337756ebc6ec247712f761c08aad4ff9ea84e9e179fc30c544a0650af9162",
+    "research/zeehan-ridgway-2007-seasonal-scope-audit.json": "42c3accb4c576c4fa5b23bc412391106d999745e44d8005bbd601477ed440895",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "methodology_file": "plans/hiri-zeehan-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent partial reference connectors preserve broad-Hiri and Zeehan routes. Hiri Australian-branch depths do not cover the whole clockwise PNG arc. Zeehan is a regional component,not additive to the western-southern Australian boundary system;parent depth values remain uninherited. No alias merge,whole-system physical profile,volume/state join or global sum.",
+  "maximum_nearest_longitude_distance_km": 5
+}
