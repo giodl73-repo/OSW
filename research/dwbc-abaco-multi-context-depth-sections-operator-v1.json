@@ -1,0 +1,205 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    1000,
+    3000
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Keep16native targets/32context diagnoses,all candidate scores/local maxima,no-selection,gate/support-edge and censored outcomes. Depth/bathymetric masks,recirculation,eddies and local rotation may confound identity. No independent axis,current identity or paired vertical layers established.",
+  "vertical_operator": "Frozen full-native0-5000m finite adjacent tracing,no sign/cutoff/missing bridge or clipping to source-analysis windows. Same-sign flow may merge upper/lower diagnoses;never sum spans.1000/3000/5000m transport-analysis limits/model maximum/instrument/bed are not detected boundaries. Censor unresolved lower support;no water-mass separation/physical thickness inferred.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.dwbc-abaco-multi-context-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New Abaco DWBC adapter with explicit upper/lower non-additive contexts and latitude geometry. Frozen mixed readers,geometry,interval selector and full-native tracing reused;no field replay or numerical kernel change.",
+  "geometry_provenance": "Editorial24.5/25.5/26.5/27.5Ncuts,77.5-74Wgates within partial source24-30NAbacoregion. Not exact historical26.5Nstations,depth-specific axes,widths,flow-normal geometry or full-current endpoints.",
+  "column_selector": "Independent complete finite1000-3000m/3000-5000m positive south180component integrals/core>0.1m/s,no surface/relative/thermal/salinity gate. OSWexploratoryprimary0.1,sensitivities0.05/0.2,own seed/same context column,no gap fill. Greatest eligible integral/first western tie;gate/support-edge winners unresolved without weaker replacement or tuning.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means/annual extrema/1986-1997mean/2004-2005deployment/2001-2018composite/OFES1980-2013mean.",
+  "transport_budget": "All16native targets/32context diagnoses preflight jointly with unchanged250000pairs/7MBdecoded,40levels,3-150profiles,20000pairs/patch,5kmaxis tolerance;one shared frozen mixed reader/reserve/ledger,max3exactNetCDFIOfailure retries2/5seconds,no success replay/per-context reset/cap increase.",
+  "currents": {
+    "current:deep-western-boundary": {
+      "entity_id": "current:deep-western-boundary",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "branch_scope": "Partial Abaco/Bahamas24.5-27.5Nregion,four77.5-74Wlatitude cuts,fixed south180degree component. Upper/lower source-analysis domains are non-additive search contexts,not physical interfaces or identified water masses. Exclude globalDWBC,subpolar/tropical/SouthAtlantic pathways,AntillesCurrent and northward recirculation inheritance. Geography and signed velocity do not independently validate named identity.",
+      "identity_evidence_basis": "primary_observed_regional_southward_DWBC_with_adjacent_offshore_northward_recirculation",
+      "selection_window_basis": "source_transport_analysis_domains_used_as_search_classification_not_flow_boundaries",
+      "parent_current_id": null,
+      "identity_relationship": "single_canonical_current_with_non_additive_vertical_search_contexts",
+      "parent_depth_values_inherited": false,
+      "default_diagnostic_context_id": "upper",
+      "diagnostic_contexts": {
+        "upper": {
+          "id": "upper",
+          "selection_depth_interval_m": [
+            1000,
+            3000
+          ],
+          "core_search_depth_interval_m": [
+            1000,
+            3000
+          ],
+          "primary_threshold_m_s": 0.1
+        },
+        "lower": {
+          "id": "lower",
+          "selection_depth_interval_m": [
+            3000,
+            5000
+          ],
+          "core_search_depth_interval_m": [
+            3000,
+            5000
+          ],
+          "primary_threshold_m_s": 0.1
+        }
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "section-24p5n",
+      "entity_id": "current:deep-western-boundary",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 24.5,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -74
+      ]
+    },
+    {
+      "id": "section-25p5n",
+      "entity_id": "current:deep-western-boundary",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 25.5,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -74
+      ]
+    },
+    {
+      "id": "section-26p5n",
+      "entity_id": "current:deep-western-boundary",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 26.5,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -74
+      ]
+    },
+    {
+      "id": "section-27p5n",
+      "entity_id": "current:deep-western-boundary",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 27.5,
+      "longitude_gate_degrees_east": [
+        -77.5,
+        -74
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://journals.ametsoc.org/view/journals/phoc/38/3/2007jpo3791.1.xml",
+      "locator": "Fresh primary indexed publisher text,upper/lowerNADW1000-3000/3000-5000m transport domains and southwardDWBC/overlyingAntilles/offshore recirculation distinctions;direct open403",
+      "scope": "Source-analysis domains motivate regional searches,not physical interfaces or2022boundaries. No full article/figure replication claimed."
+    },
+    {
+      "url": "https://journals.ametsoc.org/view/journals/phoc/50/9/jpoD200094.xml",
+      "locator": "Fresh primary indexed publisher Sec6summary,24-30N/72-77WAbacogyre,near-boundary southwardDWBC and offshore northward recirculation;direct open403",
+      "scope": "Mean regional circulation scope,not a2022instantaneous axis/paired edges or depth calibration."
+    },
+    {
+      "url": "https://elischolar.library.yale.edu/journal_of_marine_research/71/",
+      "locator": "Fresh primary institutional abstract,Bryden etal2005,beyond1000mmean southward core and adjacent offshore northward return",
+      "scope": "Historical mean speed/width/transport and array support are not2022constraints or physical thickness."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_dwbc_abaco_multi_context_depth_sections_v1.py": "2b08b360de13ed1058ec4af57c8397b5d7ea5c7e82f5b3e0dbb316be2026f821",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/dwbc_abaco_depth_contexts_v1.py": "d11a945a103daabc7c03f224bd7c414599d23eeece5c474de455e0cec4bdb08d",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_dwbc_abaco_depth_contexts_v1.py": "ecf8c27b5627434a1f9a0d2598c5f76cd2d6b3d0bfc19fee498d8b71c6066ecf",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/dwbc-abaco-multi-context-depth-sections-protocol-v1.md": "44706dbbc0ea6dc85f8a98ebd45e86aca1f95cbd7aea38115cb19d6f03f24619",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v10.json": "ee8fc68369c08eec154a55ae19d931823190a553ce6053b89d86293e20ed0f25",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/current-depth-source-facts-v7.json": "f87350427304275ebeb125509b47c55a673bc184dd4e18125b67050b05176b12",
+    "research/current-depth-source-facts-v9.json": "3a23c9b45a474126fb4db9837d04e1ea2f8b57a2bda3edf1315bb3ee2482caa9",
+    "research/deep-western-boundary-reach-reference-path-input.json": "a969c28dc97266982bd61f472433f1f63d24644ad8e6d5a76dba8b13c367a934",
+    "research/dwbc-richardson-1993-upper-core-width-scope-audit.json": "d3e078458894787b8a812589c48cb96263f2d6a867656840e173410f73712515",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    1000,
+    3000
+  ],
+  "methodology_file": "plans/dwbc-abaco-multi-context-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "One current:deep-western-boundary owner with partial Abacoregional cases. No global family coverage,Antilles alias,water-mass separation,whole-current physical profile,annual envelope,volume/state/global join.",
+  "maximum_nearest_longitude_distance_km": 5
+}
