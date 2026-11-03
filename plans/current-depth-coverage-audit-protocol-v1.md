@@ -12,6 +12,10 @@ hashes fail. A contour must match the source owner, section, exact date, origina
 selection status/index and primary threshold. Duplicate contours count once;
 conflicting results fail. Do not add aggregate dataset totals across duplicates.
 Counts of connected columns are profile-and-date support, not independent bodies.
+North Brazil's legacy primary10cms fields have one explicit schema mapping: require
+its pinned original operator to declare primary0.1m/s and match the stored10cm/s
+layer status. Add audit-only common field names in memory; never rewrite source
+facts, infer an unspecified cutoff, or use a generic missing-field default.
 
 Distinguish retained cases awaiting contour processing from cases already processed
 but unresolved. Rank the retained processing backlog by unprocessed interior cases,

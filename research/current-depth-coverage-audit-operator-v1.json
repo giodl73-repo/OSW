@@ -108,7 +108,9 @@
     },
     {
       "facts": "research/north-brazil-depth-sections-source-facts-v1.json",
-      "review": "research/north-brazil-depth-sections-source-review-v1.json"
+      "review": "research/north-brazil-depth-sections-source-review-v1.json",
+      "facts_schema_adapter": "LEGACY_NORTH_BRAZIL_EXPLICIT_10CMS_FIELDS",
+      "source_operator": "research/north-brazil-depth-sections-operator-v1.json"
     },
     {
       "facts": "research/northern-interval-depth-sections-source-facts-v1.json",
@@ -232,16 +234,19 @@
       "Spray fitted section facts represented separately by the two fitted sensitivity reports",
       "Other observed time series or fit products not explicitly registered here"
     ],
-    "absence_in_this_scope_means_no_registered_case_not_no_depth_evidence": true
+    "absence_in_this_scope_means_no_registered_case_not_no_depth_evidence": true,
+    "facts_schema_adapters": {
+      "research/north-brazil-depth-sections-source-facts-v1.json": "Pinned original0.1m/s operator andexactprimary10cms lowerstatus fields;inmemory auditmapping only"
+    }
   },
   "interpretation": "Scoped provenance join across frozen reference inventory,native transverse-section fact files,retained contour reports and two fitted sensitivity reports. Nativecases deduplicated bysourcefile+SHA;contours must matchsourceowner/date/selection/threshold. Backlog distinguishes unprocessedinterior fromprocessedunresolved. Reference metrics/nativeunits/evidencekinds remainheterogeneous;no memberinheritance,independent-observation count,physicalbottom/whole-route/annualrange/volume/runtime promotion. Rawfieldsnotreaudited.",
   "methodology_file": "plans/current-depth-coverage-audit-protocol-v1.md",
   "runtime_changed": false,
   "full_goal_complete": false,
   "input_sha256": {
-    "analysis/audit_current_depth_coverage_v1.py": "f73cd088a9b9e567a2a48f05c9be301c6406410b29e7c08e7460e692ae1434b6",
-    "analysis/test_current_depth_coverage_audit_v1.py": "26d2933fb48e5d278c91e9d5a45ee6b256927d163d7806310646f08240c601ab",
-    "plans/current-depth-coverage-audit-protocol-v1.md": "896e44d32d511ba919cc0a51b9260bc245f75251d70b1ae3e1b4bcedfe867a5c",
+    "analysis/audit_current_depth_coverage_v1.py": "32335b5f37e7937d08f636f946d48afc2bb96016bcc438f6e9b03ae82b0e94f3",
+    "analysis/test_current_depth_coverage_audit_v1.py": "11c555be557731a8b113336d41ba8769a03a15973441851f19b3fb8de82cfa2f",
+    "plans/current-depth-coverage-audit-protocol-v1.md": "64d8702dd56c246a6f460cd2d1c52b6d3abec29641318628f9df1e43397c1a49",
     "research/acc-drake-interval-depth-sections-source-facts-v1.json": "91370a26a6d52818754974a53d7c80389a3e3bd41104d847d888480530234990",
     "research/acc-drake-interval-depth-sections-source-review-v1.json": "dd49f592d00bd215c77d969f8c138f3e35c7d9f1badbcaffa5e114105bcdd2c4",
     "research/adriatic-surface-interval-depth-sections-source-facts-v1.json": "a43bb2b84200d4cb01601fffd167e3ad2478fd38fbfb6d218cb627e721dc8262",
@@ -367,6 +372,7 @@
     "research/three-current-depth-sections-source-review-v1.json": "ba94e3bb8d4c9c4ced251678cee9deec7483aa7188231ec2522d5caf0f4125b0",
     "research/three-current-velocity-depth-curtains-v1.json": "53020e9eabebba2be9c7b9fda2c663db1e27690d63fa02b64eaf2ec29f1a3cdc",
     "research/zonal-current-depth-sections-source-facts-v1.json": "cd4e1a367bdbb47ae9d152e4fd1a049b80c72992074e2352bf15a5d76300b783",
-    "research/zonal-current-depth-sections-source-review-v1.json": "f519a335facc9a3bb4380d78afab4338278465ff6efcbd69833dbc071c460d10"
+    "research/zonal-current-depth-sections-source-review-v1.json": "f519a335facc9a3bb4380d78afab4338278465ff6efcbd69833dbc071c460d10",
+    "research/north-brazil-depth-sections-operator-v1.json": "876df50956a1bdb00a890d0c411320a8dafaf6b2b5916158083a18e983cdf442"
   }
 }

@@ -27,6 +27,15 @@ class CoverageAudit(unittest.TestCase):
             bad=copy.deepcopy(row);bad[name]=value
             with self.subTest(name=name),self.assertRaises(ValueError):audit.merge_source(index,bad,'facts-b.json')
 
+    def test_legacy_north_brazil_maps_only_declared_10cms_fields(self):
+        row,case,index=fixture();row.pop('primary_threshold_m_s');row.pop('primary_lower_status');row['primary10cms_lower_status']='adjacent_isotach_crossing';row['selected_column_threshold_layers']=[{'threshold_m_s':.1,'lower_status':'adjacent_isotach_crossing'}]
+        spec={'facts':'research/north-brazil-depth-sections-source-facts-v1.json','facts_schema_adapter':'LEGACY_NORTH_BRAZIL_EXPLICIT_10CMS_FIELDS'};original={'primary_threshold_m_s':.1,'entity_id':row['entity_id']};before=copy.deepcopy(row);mapped=audit.source_row(row,spec,original)
+        self.assertEqual(row,before);self.assertEqual(mapped['primary_threshold_m_s'],.1);self.assertEqual(mapped['primary_lower_status'],'adjacent_isotach_crossing')
+        for op in [None,{**original,'primary_threshold_m_s':.05},{**original,'entity_id':'current:other'}]:
+            with self.assertRaises(ValueError):audit.source_row(row,spec,op)
+        bad=copy.deepcopy(row);bad['primary10cms_lower_status']='censored_before_missing_or_dry_level'
+        with self.assertRaises(ValueError):audit.source_row(bad,spec,original)
+
     def test_curtain_requires_matching_owner_time_selection_threshold_and_hash(self):
         row,case,index=fixture()
         for name,value in [('source_sha256','b'*64),('entity_id','current:other'),('snapshot_time_utc','2022-07-15T00:00:00Z'),('original_selected_column_index',2),('velocity_threshold_m_s',.05),('physical_current_bottom_established',True)]:

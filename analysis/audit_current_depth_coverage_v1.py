@@ -14,6 +14,18 @@ def encode(value):return (json.dumps(value,separators=(',',':'),allow_nan=False)
 def key(row):return row['source_file'],row['source_sha256']
 
 
+def source_row(row,spec,source_operator=None):
+    adapter=spec.get('facts_schema_adapter','ORIGINAL_COMMON_FIELDS')
+    if adapter=='ORIGINAL_COMMON_FIELDS':return row
+    if adapter!='LEGACY_NORTH_BRAZIL_EXPLICIT_10CMS_FIELDS' or spec['facts']!='research/north-brazil-depth-sections-source-facts-v1.json':raise ValueError('Unknown facts schema adapter')
+    if source_operator is None or source_operator['primary_threshold_m_s']!=.1 or source_operator['entity_id']!=row['entity_id']:raise ValueError('Original North Brazil 10cm/s operator required')
+    layers=[layer for layer in row['selected_column_threshold_layers'] if layer['threshold_m_s']==.1]
+    if row['selected_column_index'] is None:
+        if layers or row['primary10cms_lower_status'] is not None:raise ValueError('Unselected legacy source must remain unresolved')
+    elif len(layers)!=1 or layers[0]['lower_status']!=row['primary10cms_lower_status']:raise ValueError('Legacy primary lower status must match original 10cm/s layer')
+    return {**row,'primary_threshold_m_s':.1,'primary_lower_status':row['primary10cms_lower_status']}
+
+
 def merge_source(index,row,facts_file):
     """Identical source bytes represent one case, even if several facts cite it."""
     fields=['entity_id','section_id','snapshot_time_utc','horizontal_selection_status','selected_column_index','primary_threshold_m_s','primary_lower_status']
@@ -69,9 +81,15 @@ def build(root=ROOT):
     for spec in op['model_section_facts']:
         facts=read(spec['facts']);pins=read(spec['review'])['input_sha256'];descriptors=facts['descriptors']
         if len(descriptors)!=facts['counts']['section_date_cases']:raise ValueError('Facts case count mismatch')
+        original=None
+        if spec.get('facts_schema_adapter')=='LEGACY_NORTH_BRAZIL_EXPLICIT_10CMS_FIELDS':
+            file=spec['source_operator']
+            if facts['operator_file']!=file or facts['operator_sha256']!=sha((root/file).read_bytes()):raise ValueError('Legacy facts/operator pin mismatch')
+            original=read(file)
         keys=[]
         for row in descriptors:
             if pins.get(row['source_file'])!=row['source_sha256']:raise ValueError('Source descriptor lacks matching retained review pin')
+            row=source_row(row,spec,original)
             merge_source(index,row,spec['facts']);keys.append(key(row));source_mentions+=1
         if len(keys)!=len(set(keys)):raise ValueError('Duplicate case inside a source cohort')
         cohorts[spec['facts']]=set(keys)
