@@ -24,7 +24,7 @@ class DwbcAbacoDepthContextTests(unittest.TestCase):
     def section(self):
         z,columns=self.fixture();a=np.array(columns).T
         lats=np.array([24.46,24.5,24.54]);lons=np.array([283,283.08,283.16])
-        definition=self.op['sections'][0];plan={'definition':definition,'latitude_index':1,'longitude_indices':np.array([0,1,2]),'maximum_latitude_distance_km':0.}
+        definition=self.op['sections'][0];plan={'definition':definition,'latitude_index':1,'longitude_indices':np.array([0,1,2]),'nearest_latitude_distance_km':0.}
         native=geometry.columns_from_arrays(np.zeros_like(a),-a,lats,lons,plan,180)
         diagnoses=contexts.diagnose_contexts(z,columns,self.config)
         return {'schema':contexts.SCHEMA,'entity_id':self.config['entity_id'],'section_definition':definition,'source_section_geometry':'latitude',
