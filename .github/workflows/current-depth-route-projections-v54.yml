@@ -1,0 +1,196 @@
+name: Current depth additive inventory v54
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v54.yml
+      - analysis/build_current_depth_route_projections_v54.py
+      - analysis/test_current_depth_route_projections_v54.py
+      - research/current-depth-route-projection-operator-v54.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_dwbc_abaco_multi_context_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/build_current_depth_route_projections_v54.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/dwbc_abaco_depth_contexts_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_current_depth_route_projections_v54.py
+            analysis/test_dwbc_abaco_depth_contexts_v1.py
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/dwbc-abaco-multi-context-depth-sections-protocol-v1.md
+            research/atlantic-seuc-interval100-400-depth-reanalysis-v1.json
+            research/azcc-interval150-700-depth-reanalysis-v1.json
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/current-depth-route-projection-addenda/adriatic-surface-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/adriatic-surface-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/balearic-ligurian-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/balearic-ligurian-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/davidson-rim-surface-qualified-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/davidson-rim-surface-qualified-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/gaspe-jutland-shallow-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/gaspe-jutland-shallow-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guiana-egcc-upper-layer-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guiana-egcc-upper-layer-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/hiri-zeehan-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/hiri-zeehan-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/monsoon-direction-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/monsoon-direction-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/ngcc-reused-direction-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/ngcc-reused-direction-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/south-java-direction-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/south-java-direction-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-inventory-source-review-v39.json
+            research/current-depth-route-projection-inventory-v39.json
+            research/current-depth-route-projection-operator-v54.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-route-projections-v14.json
+            research/current-depth-source-facts-v10.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v18.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v7.json
+            research/current-depth-source-facts-v9.json
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/deep-western-boundary-reach-reference-path-input.json
+            research/dwbc-abaco-multi-context-depth-sections-operator-v1.json
+            research/dwbc-abaco-multi-context-depth-source-facts-v1.json
+            research/dwbc-abaco-multi-context-depth-source-review-v1.json
+            research/dwbc-richardson-1993-upper-core-width-scope-audit.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/pacific-sscc-interval100-400-depth-reanalysis-v1.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-24p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/manifest.json
+            research/source-data/dwbc-abaco-multi-context-depth-sections-v1/transport-ledger.json
+            research/wsc-interval20-500-depth-reanalysis-v1.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify Abaco DWBC context regional inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v54.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v54.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v54
+          path: current-depth-route-projections-v54/
+          retention-days: 7
