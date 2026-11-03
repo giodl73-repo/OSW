@@ -1,0 +1,45 @@
+name: Loop Current Welsh2009 primary report custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/loop-welsh2009-primary-report-acquisition-v1.yml
+      - analysis/acquire_loop_welsh2009_primary_report_v1.py
+      - analysis/test_loop_welsh2009_primary_report_acquisition_v1.py
+      - plans/loop-welsh2009-primary-report-custody-protocol-v1.md
+      - research/loop-welsh2009-primary-report-acquisition-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_egcc_sutherland_primary_paper_v1.py
+            analysis/acquire_loop_welsh2009_primary_report_v1.py
+            analysis/acquire_ncc_skagseth_table1_v1.py
+            analysis/test_loop_welsh2009_primary_report_acquisition_v1.py
+            plans/loop-welsh2009-primary-report-custody-protocol-v1.md
+            research/current-depth-reference-inventory-v13.json
+            research/loop-welsh2009-primary-report-acquisition-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check inherited custody bounds and acquire the original once
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_loop_welsh2009_primary_report_acquisition_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_loop_welsh2009_primary_report_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: loop-welsh2009-primary-report-v1
+          path: loop-welsh2009-primary-report-v1/
+          retention-days: 7
