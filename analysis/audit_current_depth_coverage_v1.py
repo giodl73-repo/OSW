@@ -43,7 +43,8 @@ def attach_curtain(index,derived,case,dataset):
     if k not in index:raise ValueError('Curtain has no registered source case')
     source=index[k]
     pairs={'entity_id':'entity_id','section_id':'section_id','snapshot_time_utc':'snapshot_time_utc','original_horizontal_selection_status':'horizontal_selection_status','original_selected_column_index':'selected_column_index','velocity_threshold_m_s':'primary_threshold_m_s'}
-    if any(case[a]!=source[b] for a,b in pairs.items()):raise ValueError('Curtain/source owner,selection,time or threshold mismatch')
+    mismatches={a:{'curtain':case[a],'source_facts':source[b]} for a,b in pairs.items() if case[a]!=source[b]}
+    if mismatches:raise ValueError('Curtain/source metadata mismatch '+json.dumps({'dataset':dataset,'source_file':case['source_file'],'fields':mismatches},sort_keys=True))
     if case['core_reselected'] or case['physical_current_bottom_established'] or case['volume_m3'] is not None:raise ValueError('No reselection or physical promotion in proxy audit')
     if case['status']==RESOLVED and source['horizontal_selection_status']!=INTERIOR:raise ValueError('Unresolved original selection cannot become resolved')
     runs=[run for column in case['columns'] for run in column['connected_depth_runs']]
