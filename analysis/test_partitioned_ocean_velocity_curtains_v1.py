@@ -8,7 +8,10 @@ import native_velocity_depth_curtain_v2 as kernel
 class PartitionedOceanCurtains(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        with patch('netCDF4.Dataset',side_effect=AssertionError('No ocean retrieval allowed')),patch('urllib.request.urlopen',side_effect=AssertionError('No HTTP allowed')):cls.report,cls.raw=derive.build()
+        with patch('netCDF4.Dataset',side_effect=AssertionError('No ocean retrieval allowed')),patch('urllib.request.urlopen',side_effect=AssertionError('No HTTP allowed')):
+            cls.batches=[derive.build(partition=partition) for partition in ['sac-northern-search','sac-southern-search','tasman-north-bank-search','tasman-south-bank-search']]
+        cases=[case for report,raw in cls.batches for case in report['cases']];cls.raw=max((raw for report,raw in cls.batches),key=len)
+        cls.report={**cls.batches[0][0],'cases':cases,'counts':derive.counts(cases),'counts_by_cohort':{'partitioned-ocean':derive.counts(cases)},'counts_by_current':{owner:derive.counts([c for c in cases if c['entity_id']==owner]) for owner in ['current:south-atlantic','current:tasman-front']},'counts_by_primary_threshold_m_s':{str(v):derive.counts([c for c in cases if c['velocity_threshold_m_s']==v]) for v in [.05,.1]},'counts_by_partition':{partition:derive.counts([c for c in cases if c['search_partition_id']==partition]) for partition in ['sac-northern-search','sac-southern-search','tasman-north-bank-search','tasman-south-bank-search']}}
         cls.op=json.loads((derive.ROOT/derive.OPERATOR).read_bytes())
     def test_all64cases_twoowners_and_cohort_present(self):
         r=self.report;self.assertEqual(r['counts']['cases'],64);self.assertEqual(set(r['counts_by_current']),{'current:south-atlantic','current:tasman-front'});self.assertEqual({k:v['cases'] for k,v in r['counts_by_cohort'].items()},{'partitioned-ocean':64});self.assertLess(len(self.raw),2400000)
@@ -39,9 +42,9 @@ class PartitionedOceanCurtains(unittest.TestCase):
     def test_incomplete_duplicate_or_wrong_operator_cohort_rejected(self):
         for key,value in [('section_files',self.op['cohorts'][0]['section_files'][:-1]),('source_operator','research/wrong-operator.json'),('id','other')]:
             c=copy.deepcopy(self.op['cohorts'][0]);c[key]=value
-            with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c)
+            with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c,'sac-northern-search')
         c=copy.deepcopy(self.op['cohorts'][0]);c['section_files'][-1]=c['section_files'][0]
-        with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c)
+        with self.assertRaises(ValueError):derive.derive_cohort(derive.ROOT,c,'sac-northern-search')
 
     def test_four_search_partitions_remain_two_owners_without_cross_partition_join(self):
         self.assertEqual({k:v['cases'] for k,v in self.report['counts_by_partition'].items()},{'sac-northern-search':16,'sac-southern-search':16,'tasman-north-bank-search':16,'tasman-south-bank-search':16});self.assertFalse(self.report['partition_profile_counts_are_independent_observation_counts'])
@@ -60,6 +63,13 @@ class PartitionedOceanCurtains(unittest.TestCase):
             with self.subTest(key=key),self.assertRaises(ValueError):derive.geometry_view(bad,config)
         bad=copy.deepcopy(source);bad['section_definition']['latitude_gate_degrees_north'][0]-=.1
         with self.assertRaises(ValueError):derive.geometry_view(bad,config)
+
+    def test_all_four_bounded_batches_cover_exact_plan_without_aggregate_export(self):
+        self.assertEqual(len(self.batches),4);files=[]
+        for report,raw in self.batches:
+            self.assertLess(len(raw),2400000);self.assertEqual(report['source_plan_case_count'],64);self.assertEqual(report['counts']['cases'],16);self.assertEqual(set(report['counts_by_partition']),{report['batch_partition_id']});files.extend(c['source_file'] for c in report['cases'])
+        self.assertEqual(len(files),64);self.assertEqual(len(set(files)),64)
+        with self.assertRaises(ValueError):derive.build()
 
 
 if __name__=='__main__':unittest.main()

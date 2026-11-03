@@ -139,10 +139,31 @@ jobs:
           taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_partitioned_ocean_depth_sections_v1.py' -v
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_partitioned_ocean_velocity_curtains_v1.py' -v
-          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition sac-northern-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition sac-southern-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition tasman-north-bank-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition tasman-south-bank-search
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: partitioned-ocean-velocity-curtains-v1
-          path: partitioned-ocean-velocity-curtains-v1/
+          name: partitioned-ocean-velocity-curtains-sac-northern-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/sac-northern-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-sac-southern-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/sac-southern-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-tasman-north-bank-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/tasman-north-bank-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-tasman-south-bank-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/tasman-south-bank-search/
           retention-days: 7

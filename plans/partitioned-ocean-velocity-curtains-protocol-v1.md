@@ -22,3 +22,9 @@ censors retained. Same-signflowmayincludeotherfeatures;no physicalbottom,annual
 range,whole-routeprofile,width/area/volume ornewscalarrefs. Missingnotzero,bed,
 absence;nativebracketsnotuncertainty. Cloud-only sequentialoneidleCPU tests/build,
 zero retrieval/replay/sourceedits/capchanges;2.4MBoutputbound unchanged.
+
+The initial64case aggregate exceeded the fixed2.4MB output limit. Export each
+original16case searchpartition separately,processedsequentially in the same job.
+Eachartifact/file retains its own2.4MB bound,fullnative resolution and unchanged
+geometry. Tests verify allfourbatches together coverexactly64cases withnoomission
+or duplication;the combinedtestview isnotserialized/publishedasanaggregate.
