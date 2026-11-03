@@ -1,0 +1,3216 @@
+{
+  "schema": "osw.mixed-interval-depth-sections-manifest.v1",
+  "operator_file": "research/solomon-undercurrents-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "df00d2a98356e6d686024f8f4a6488765a5fdc8e6f6fe9284e8de1ab7790a702",
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_ngcuc_interval_depth_sections_v1.py": "091b3f45246077147a6e1ba89ec4f1a59ca1491e66fd739b8272234437f8d2e3",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_solomon_undercurrents_interval_depth_sections_v1.py": "e2c7a29bd6c750070830bae8258a03573b1acab77eb47f973429d5915e481d3c",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_ngcuc_interval_depth_sections_v1.py": "51c98ec14f86659c74704d8ff6d5085213a0175b4ea76411c05ca2674454e201",
+    "analysis/test_solomon_undercurrents_interval_depth_sections_v1.py": "0532a7c0cbb6fa46a2b3f5f20aab16d48559a66a605b6ce62f025c9f2cb6ca0d",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/ngcuc-interval-depth-sections-protocol-v1.md": "4a67f2222056c804c7b49d8280bf6b2dad78f6b21965788587e58f1f7d49e0f4",
+    "plans/solomon-undercurrents-interval-depth-sections-protocol-v1.md": "df8b5a6c3f3a1ec1aa7cfa48186e68368f4215f72622f2743f1e5691ba196476",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/current-depth-source-facts-v6.json": "2d290fbd00f2aac18a693755afec35bd4676cef8f78345f9bc027e91fafe8ca1",
+    "research/current-depth-source-facts-v8.json": "83275b26997914e0b31c97601f8f09a504b01d27790a8c51d9242bc273ceb9db",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/new-guinea-coastal-undercurrent-reference-path-input.json": "56df70794a8941a39973c4a4627baa8a18eb91e2c3029d00eb03c9da5493fca8",
+    "research/new-ireland-coastal-undercurrent-reference-path-input.json": "78dc721e731fdc3144c5ebbbf68d3cdb70f282091a6cf9862815697b3915b5c3",
+    "research/ngcuc-interval-depth-sections-operator-v1.json": "7e3dc61ac8a0fcc33c69372f4df98bfaed8857fc43d095deca8808c8e25b09bf",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/solomon-island-coastal-undercurrent-reference-path-input.json": "d75e61291df10f438ddc2f2201bc272b56593b344baab03d521a91cc914f0b5b",
+    "research/solomon-melet-2010-coastal-confinement-scope-audit.json": "9479bb446cb945602bc253969ca71217d073c93d8b135883005dfffb35236656",
+    "research/source-data/melet-solomon-2010/acquisition.json": "f58625238cf51e5da47e4c426dd377b3fccdfc1d37830579d789c5f88936062a",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "sections": [
+    {
+      "file": "2022-03-15-new-ireland-coastal-undercurrent-section-4p4s.json",
+      "sha256": "941675e27019a380f4be41b71f99c525b24d96255e84b1fbea9a8bc1d4a8010a",
+      "bytes": 108906,
+      "section_id": "section-4p4s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 103.50877162024366,
+          "lower_depth_m": 276.5306136238449,
+          "layer_thickness_m": 173.02184200360122,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 110.81871265914123,
+          "lower_depth_m": 251.020410935705,
+          "layer_thickness_m": 140.20169827656377,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 157.99999582767464,
+          "lower_depth_m": 228.12500118494165,
+          "layer_thickness_m": 70.12500535726701,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            150.0,
+            200.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-new-ireland-coastal-undercurrent-section-3p8s.json",
+      "sha256": "c786cf22f95191e5f057259dd26d36f10050ea0d7ad204f2d61404d5847e6c1d",
+      "bytes": 106594,
+      "section_id": "section-3p8s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 15,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 82.59259216334102,
+          "lower_depth_m": 285.9375040745356,
+          "layer_thickness_m": 203.34491191119457,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.18400001525878906,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 104.61164975505677,
+          "lower_depth_m": 223.00000476837187,
+          "layer_thickness_m": 118.38835501331509,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.18400001525878906,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-new-ireland-coastal-undercurrent-section-3p2s.json",
+      "sha256": "ffb44454412776010b226fad7b450a1ae1113077e6fbdc140721384da9fd74e5",
+      "bytes": 110410,
+      "section_id": "section-3p2s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 26,
+      "selected_column_index": 2,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 264.5000010617077,
+          "layer_thickness_m": 264.5000010617077,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 245.9143979384912,
+          "layer_thickness_m": 245.9143979384912,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 226.45914665811483,
+          "layer_thickness_m": 226.45914665811483,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-new-ireland-coastal-undercurrent-section-2p6s.json",
+      "sha256": "c08da2036f09c1fa6bed4076845a718add1c80a6afae3e70b2266fa9c9fd1ed8",
+      "bytes": 104841,
+      "section_id": "section-2p6s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 245.88477391995096,
+          "layer_thickness_m": 245.88477391995096,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7390000224113464,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 235.59670810661186,
+          "layer_thickness_m": 235.59670810661186,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7390000224113464,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 215.02057647993365,
+          "layer_thickness_m": 215.02057647993365,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7390000224113464,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-solomon-island-coastal-undercurrent-section-6p6s.json",
+      "sha256": "6ccf441d401cac1e32e3f1f1dec8a7bfa6691539f366d04f58936df78e69fd3d",
+      "bytes": 84529,
+      "section_id": "section-6p6s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 229.2307723168083,
+          "layer_thickness_m": 229.2307723168083,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.12400000542402267,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 57.33333250549108,
+          "lower_depth_m": 183.33334230162518,
+          "layer_thickness_m": 126.0000097961341,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.12400000542402267,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-solomon-island-coastal-undercurrent-section-6p4s.json",
+      "sha256": "3d3c3fe5792d67719a21230bf51719c2d9bf8557c56b90db2b83c1aad8f6e2b0",
+      "bytes": 91676,
+      "section_id": "section-6p4s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 53.61702086511058,
+          "lower_depth_m": 218.32061189398132,
+          "layer_thickness_m": 164.70359102887073,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.16700001060962677,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 66.45161040677763,
+          "lower_depth_m": 198.55072829959192,
+          "layer_thickness_m": 132.0991178928143,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.16700001060962677,
+          "upper_bracket_m": [
+            60.0,
+            70.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-solomon-island-coastal-undercurrent-section-6p2s.json",
+      "sha256": "9c066887729c2eceba0210f57d8633f376425e707ca2bfcae3839d4b2dcd65df",
+      "bytes": 94241,
+      "section_id": "section-6p2s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 55.21738978324643,
+          "lower_depth_m": 197.14285987980512,
+          "layer_thickness_m": 141.92547009655868,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.1300000101327896,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 96.1538453015116,
+          "lower_depth_m": 161.42857431757204,
+          "layer_thickness_m": 65.27472901606045,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.1300000101327896,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-solomon-island-coastal-undercurrent-section-6p0s.json",
+      "sha256": "df78ff3c305b7bd7e2dae5aa6036ac4ad75a77bed12780a0185735b862d6e382",
+      "bytes": 98365,
+      "section_id": "section-6p0s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-06-15-new-ireland-coastal-undercurrent-section-4p4s.json",
+      "sha256": "96504c19bd456dcd21d1df5955863b53cc041d4a11fd7bcadf9d61fe72f0ef93",
+      "bytes": 107651,
+      "section_id": "section-4p4s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 4,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 47.49999953433873,
+          "lower_depth_m": 391.03448372427255,
+          "layer_thickness_m": 343.53448418993383,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 56.79245185941177,
+          "lower_depth_m": 373.79310613261083,
+          "layer_thickness_m": 317.0006542731991,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 102.10526274512019,
+          "lower_depth_m": 332.38636888948565,
+          "layer_thickness_m": 230.28110614436548,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-new-ireland-coastal-undercurrent-section-3p8s.json",
+      "sha256": "ae366308f3ba2275ee5106021e343012af734992ef5ef6081f1b0b6532d4ea27",
+      "bytes": 106061,
+      "section_id": "section-3p8s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 7,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 310.68376139676093,
+          "layer_thickness_m": 310.68376139676093,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 37.58064449453692,
+          "lower_depth_m": 293.05555723423555,
+          "layer_thickness_m": 255.47491273969862,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 50.95237972244389,
+          "lower_depth_m": 265.277782859809,
+          "layer_thickness_m": 214.32540313736513,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-new-ireland-coastal-undercurrent-section-3p2s.json",
+      "sha256": "6062454a250db2e74b8cd3a73ff780b3bc462eb7a98deb77c78b8ecd72167ff6",
+      "bytes": 110974,
+      "section_id": "section-3p2s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 26,
+      "selected_column_index": 2,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 292.2222229350864,
+          "layer_thickness_m": 292.2222229350864,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 278.3333344543697,
+          "layer_thickness_m": 278.3333344543697,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 100.35210711878892,
+          "lower_depth_m": 250.5555574929364,
+          "layer_thickness_m": 150.20345037414748,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-new-ireland-coastal-undercurrent-section-2p6s.json",
+      "sha256": "5f391b1d0d01e41192ad7634c1aea164684156d40a941b3f265693e7db3ce25d",
+      "bytes": 105729,
+      "section_id": "section-2p6s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 425.00000199569115,
+          "layer_thickness_m": 425.00000199569115,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.4570000171661377,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 24.999997516472007,
+          "lower_depth_m": 240.99616943110794,
+          "layer_thickness_m": 215.99617191463594,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.4570000171661377,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 42.352939853068705,
+          "lower_depth_m": 221.83908185099136,
+          "layer_thickness_m": 179.48614199792266,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.4570000171661377,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-solomon-island-coastal-undercurrent-section-6p6s.json",
+      "sha256": "185bdb9b9614018b623330ce466fcaf6257f43c123c68ed79276985149cb9782",
+      "bytes": 84721,
+      "section_id": "section-6p6s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 55.624998370185764,
+          "lower_depth_m": 283.536586983618,
+          "layer_thickness_m": 227.91158861343223,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.1850000023841858,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 101.51515120727629,
+          "lower_depth_m": 253.0487829476931,
+          "layer_thickness_m": 151.5336317404168,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.1850000023841858,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-solomon-island-coastal-undercurrent-section-6p4s.json",
+      "sha256": "9412a25be048cdcd0316b48c8b671c1c3ff6a874b158c326de52a58beb9911ef",
+      "bytes": 92508,
+      "section_id": "section-6p4s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 111.95651987296438,
+          "lower_depth_m": 305.10204396210975,
+          "layer_thickness_m": 193.14552408914537,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.17400000989437103,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 147.09302092876683,
+          "lower_depth_m": 243.02326010539105,
+          "layer_thickness_m": 95.93023917662421,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.17400000989437103,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-solomon-island-coastal-undercurrent-section-6p2s.json",
+      "sha256": "390b69e7add57f356e3816faa6164475114c926bcfadb805942401c2eb8c325a",
+      "bytes": 94944,
+      "section_id": "section-6p2s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 78.74999924330035,
+          "lower_depth_m": 482.3529545823588,
+          "layer_thickness_m": 403.60295533905844,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 135.54216754991955,
+          "lower_depth_m": 310.00000745058213,
+          "layer_thickness_m": 174.45783990066258,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 194.8275743355818,
+          "lower_depth_m": 264.44444665202377,
+          "layer_thickness_m": 69.61687231644197,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "upper_bracket_m": [
+            150.0,
+            200.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-solomon-island-coastal-undercurrent-section-6p0s.json",
+      "sha256": "e6327f7d94eb5ef76d715958a3be163af7c1d9df574bbe644ae4a8dc692f97c0",
+      "bytes": 100228,
+      "section_id": "section-6p0s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 508.1632679903174,
+          "layer_thickness_m": 508.1632679903174,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3450000286102295,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 408.0000041723251,
+          "layer_thickness_m": 408.0000041723251,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3450000286102295,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 108.82352663319392,
+          "lower_depth_m": 285.6164416557272,
+          "layer_thickness_m": 176.7929150225333,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3450000286102295,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-new-ireland-coastal-undercurrent-section-4p4s.json",
+      "sha256": "a7c7368bb7bbc66b4cf1715e9e65b1a8e53b99e84a52e87c41a521fc94de15cc",
+      "bytes": 107261,
+      "section_id": "section-4p4s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 250.6849333628533,
+          "layer_thickness_m": 250.6849333628533,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.1900000125169754,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 225.252527449462,
+          "layer_thickness_m": 225.252527449462,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.1900000125169754,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-new-ireland-coastal-undercurrent-section-3p8s.json",
+      "sha256": "90956d5f93cf7bd65818607e57b01acff68e7ec173619768662514654e305c06",
+      "bytes": 107087,
+      "section_id": "section-3p8s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 15,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 94.24999934807431,
+          "lower_depth_m": 227.91666779039784,
+          "layer_thickness_m": 133.66666844232353,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.22300000488758087,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 106.68316650549562,
+          "lower_depth_m": 207.08333552743866,
+          "layer_thickness_m": 100.40016902194304,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.22300000488758087,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 138.265302429741,
+          "lower_depth_m": 160.84905903734702,
+          "layer_thickness_m": 22.583756607606006,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.22300000488758087,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-new-ireland-coastal-undercurrent-section-3p2s.json",
+      "sha256": "a43ee934b37c9dda6cfb0bbf68778753346dd07130366d0f0c7f504b8f319baa",
+      "bytes": 110805,
+      "section_id": "section-3p2s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 26,
+      "selected_column_index": 3,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 287.5862078046189,
+          "layer_thickness_m": 287.5862078046189,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 270.34482954851785,
+          "layer_thickness_m": 270.34482954851785,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 237.1875026193448,
+          "layer_thickness_m": 237.1875026193448,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-new-ireland-coastal-undercurrent-section-2p6s.json",
+      "sha256": "e9242a1d61c53379b191d632316fb51d46715942260813f2f16c5b4f2b66f753",
+      "bytes": 104892,
+      "section_id": "section-2p6s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5700000524520874,
+          "lower_last_connected_depth_m": 900.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 333.47826181321153,
+          "layer_thickness_m": 333.47826181321153,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5700000524520874,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 254.0000131130187,
+          "layer_thickness_m": 254.0000131130187,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5700000524520874,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-solomon-island-coastal-undercurrent-section-6p6s.json",
+      "sha256": "eec695b237da3549d031e86143ca3902d3484397f3dd55c361797db829dd0075",
+      "bytes": 84812,
+      "section_id": "section-6p6s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 130.55555539635512,
+          "lower_depth_m": 292.3728823618997,
+          "layer_thickness_m": 161.8173269655446,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.15400001406669617,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 141.23931585968444,
+          "lower_depth_m": 250.00000126281026,
+          "layer_thickness_m": 108.76068540312582,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.15400001406669617,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-solomon-island-coastal-undercurrent-section-6p4s.json",
+      "sha256": "00cb1db3485b1daaec42fc62fa8dda641e1e46c1540295e4e4781837b81ac517",
+      "bytes": 92360,
+      "section_id": "section-6p4s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 144.28104577709627,
+          "lower_depth_m": 321.79487348484565,
+          "layer_thickness_m": 177.51382770774939,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.16600000858306885,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 159.25925782842089,
+          "lower_depth_m": 245.20548138146,
+          "layer_thickness_m": 85.94622355303912,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.16600000858306885,
+          "upper_bracket_m": [
+            150.0,
+            200.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-solomon-island-coastal-undercurrent-section-6p2s.json",
+      "sha256": "33d17337c8b39b87aba823da2e41ef4edbb87eca9d3e1d3f705d4c8c1b315ca1",
+      "bytes": 94786,
+      "section_id": "section-6p2s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 120.31249887222663,
+          "lower_depth_m": 270.31250016007107,
+          "layer_thickness_m": 150.00000128784444,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.19300000369548798,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 133.1481470545788,
+          "lower_depth_m": 254.68750053842086,
+          "layer_thickness_m": 121.53935348384206,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.19300000369548798,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-solomon-island-coastal-undercurrent-section-6p0s.json",
+      "sha256": "9bf59258bfd4d3dda320aa53ce2a37404a928d3cb2ad330188b5bf1832f3dcba",
+      "bytes": 100618,
+      "section_id": "section-6p0s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 293.29268322323475,
+          "layer_thickness_m": 293.29268322323475,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3140000104904175,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 278.04878085900424,
+          "layer_thickness_m": 278.04878085900424,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3140000104904175,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 135.52631093937308,
+          "lower_depth_m": 246.72131239647052,
+          "layer_thickness_m": 111.19500145709745,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3140000104904175,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-new-ireland-coastal-undercurrent-section-4p4s.json",
+      "sha256": "90f39bfaf6e6288a2d311c3e361f842ca8d8ce3a5aa8f83d9f17adc3c0aa8c5e",
+      "bytes": 108607,
+      "section_id": "section-4p4s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 71.206896257156,
+          "lower_depth_m": 235.93749999090505,
+          "layer_thickness_m": 164.73060373374904,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.36500000953674316,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 102.28873132836128,
+          "lower_depth_m": 229.42708344398852,
+          "layer_thickness_m": 127.13835211562724,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.36500000953674316,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 119.89436363101181,
+          "lower_depth_m": 216.40625035015546,
+          "layer_thickness_m": 96.51188671914365,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.36500000953674316,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-new-ireland-coastal-undercurrent-section-3p8s.json",
+      "sha256": "db52d154bee8a6eacf29c69ee401e454234992f4f434348ef2fb9164b8efa7aa",
+      "bytes": 107289,
+      "section_id": "section-3p8s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 8,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 186.32478563899983,
+          "lower_depth_m": 352.7272753865449,
+          "layer_thickness_m": 166.40248974754505,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.1080000028014183,
+          "upper_bracket_m": [
+            150.0,
+            200.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 234.615379545463,
+          "lower_depth_m": 306.4814884823693,
+          "layer_thickness_m": 71.86610893690627,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.1080000028014183,
+          "upper_bracket_m": [
+            200.0,
+            250.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-new-ireland-coastal-undercurrent-section-3p2s.json",
+      "sha256": "ea7f21937db10e107760a8ee2916dc1f1ed2e9ef930c0b5ab921113b5c933a77",
+      "bytes": 111319,
+      "section_id": "section-3p2s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 26,
+      "selected_column_index": 2,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 248.12030144264526,
+          "layer_thickness_m": 248.12030144264526,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2900000214576721,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 229.3233091467696,
+          "layer_thickness_m": 229.3233091467696,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2900000214576721,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 178.84615726284014,
+          "layer_thickness_m": 178.84615726284014,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2900000214576721,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-new-ireland-coastal-undercurrent-section-2p6s.json",
+      "sha256": "680e8fc8e2a233ac31b3c3be74f3a9a3a75370236559373d069da13871ab748d",
+      "bytes": 105590,
+      "section_id": "section-2p6s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 288.78504706086085,
+          "layer_thickness_m": 288.78504706086085,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3500000238418579,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 265.42056124875074,
+          "layer_thickness_m": 265.42056124875074,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3500000238418579,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 231.59340959397207,
+          "layer_thickness_m": 231.59340959397207,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3500000238418579,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-solomon-island-coastal-undercurrent-section-6p6s.json",
+      "sha256": "e6c834aa16f67de9a504728e1a66ec3e8242e6c3543f84bb1b15c38cee4cface",
+      "bytes": 84924,
+      "section_id": "section-6p6s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 38.846153537549924,
+          "lower_depth_m": 238.43283721922782,
+          "layer_thickness_m": 199.5866836816779,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 53.947367925723206,
+          "lower_depth_m": 219.7761223033835,
+          "layer_thickness_m": 165.8287543776603,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 110.27777497231283,
+          "lower_depth_m": 170.98766183856782,
+          "layer_thickness_m": 60.70988686625499,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-solomon-island-coastal-undercurrent-section-6p4s.json",
+      "sha256": "74ae37832d7cbe16b57667a53a425bdfca39e489d2b03aa5470d3aa2d025d106",
+      "bytes": 91929,
+      "section_id": "section-6p4s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 240.82840312859125,
+          "layer_thickness_m": 240.82840312859125,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2600000202655792,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 226.0355043516018,
+          "layer_thickness_m": 226.0355043516018,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2600000202655792,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 115.95744445315147,
+          "lower_depth_m": 191.6666739102855,
+          "layer_thickness_m": 75.70922945713404,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2600000202655792,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-solomon-island-coastal-undercurrent-section-6p2s.json",
+      "sha256": "4b4f287bca25cdfc98eff105803b5b65d3e717e6e671ab69d07ce2507dbdfeea",
+      "bytes": 94547,
+      "section_id": "section-6p2s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 17,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 248.57143222069212,
+          "layer_thickness_m": 248.57143222069212,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2460000067949295,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 193.1034508007319,
+          "layer_thickness_m": 193.1034508007319,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2460000067949295,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 111.78160686248164,
+          "lower_depth_m": 150.0000012845829,
+          "layer_thickness_m": 38.21839442210127,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2460000067949295,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-solomon-island-coastal-undercurrent-section-6p0s.json",
+      "sha256": "b7d271baa495d947f18b1edecc1f4b1dfe47cc94b67fb83f6e96836e0a271800",
+      "bytes": 100032,
+      "section_id": "section-6p0s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "source_section_geometry": "latitude",
+      "native_columns": 25,
+      "selected_column_index": 11,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 32.499998370185004,
+          "lower_depth_m": 245.8860762896035,
+          "layer_thickness_m": 213.38607791941848,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2760000228881836,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 57.619045388941636,
+          "lower_depth_m": 230.06329220770218,
+          "layer_thickness_m": 172.44424681876055,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2760000228881836,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 87.27272547825466,
+          "lower_depth_m": 195.76271845670442,
+          "layer_thickness_m": 108.48999297844976,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.2760000228881836,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    }
+  ],
+  "preflight_velocity_cell_pairs": 32160,
+  "decoded_velocity_cell_pairs": 32160,
+  "decoded_velocity_array_bytes": 257280,
+  "transport_ledger_file": "transport-ledger.json",
+  "transport_ledger_sha256": "b98e911f7ff3a387459103fcfd0672f2b6be94574a8418476edb0ad53e762a29",
+  "transport": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 64320,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 64320,
+    "successfully_returned_component_values": 64320,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 514560,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "requests": [
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1890,
+        "longitude_indices_inclusive": [
+          1913,
+          1937
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1905,
+        "longitude_indices_inclusive": [
+          1907,
+          1931
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1920,
+        "longitude_indices_inclusive": [
+          1900,
+          1925
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1040,
+        "status": "success",
+        "actual_returned_array_bytes": 4160
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1935,
+        "longitude_indices_inclusive": [
+          1888,
+          1912
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1835,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1840,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1845,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1850,
+        "longitude_indices_inclusive": [
+          1938,
+          1962
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1000,
+        "status": "success",
+        "actual_returned_array_bytes": 4000
+      }
+    ],
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  },
+  "decoded_temperature_scalars": 0,
+  "decoded_temperature_array_bytes": 0,
+  "full_goal_complete": false
+}
