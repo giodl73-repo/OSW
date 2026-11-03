@@ -1,0 +1,47 @@
+{
+  "schema": "osw.current-depth-jutland-nielsen2000-source-scope-review.v1",
+  "entity_id": "current:jutland",
+  "status": "PASS_ORIGINAL_TABLE_AND_EPISODIC_LAYER_PROSE_VISUALLY_REVIEWED_PENDING_ADMISSION",
+  "facts_file": "research/jutland-nielsen2000-depth-profile-source-facts-v1.json",
+  "facts_sha256": "398a47effd39c416c2ee33c009ab93c87e7b1a468b426e4fe3ff324f3f6cdd16",
+  "source_file": "research/source-data/nielsen-jutland-2000/journal-article.pdf",
+  "source_sha256": "29e027afd56877b6acec02382a8a6a2e5b2ecce24572171c2e15c1f1ae071525",
+  "source_license": "No redistribution license established;original retained ignored and not republished.",
+  "review_basis": "Previously retained original PDF hash and byte count checked. Cached text reviewed;original PDFpages74and75rendered on one idle CPU and visually inspected. No new retrieval or local ocean-field analysis.",
+  "original_pdf_pages_visually_reviewed": [
+    74,
+    75
+  ],
+  "printed_pages": [
+    66,
+    67
+  ],
+  "screen_capture_sha256": {
+    "74": "afc6e1e52d4b026457592799d9c5e45243197f8fd8fe50f7637a6841f381becd",
+    "75": "ccebac4d57a30ae7b5eef50395260bb4caecdcbcfe62fbbda007e71af6134c9e"
+  },
+  "findings": [
+    "Table7.1transcribes one seven-depth source-calculated annual-mean GBW composition profile. Decimal-comma source strings retained alongside typed fractional values. Source negative depth sign retained unchanged.",
+    "Adjacent source prose explicitly confines exceptional nutrient-rich GBWpulse transport to upper10-15m,especially1994and1995. Candidate for a separately typed regional episodic water-mass extent reference after cloud admission checks;not measured full-current depth.",
+    "The report1994current-meter series does not disclose an instrument depth in the reviewed Figure7.3passage;do not assign the table or nearby hydrographic sampling depth to that velocity record.",
+    "Source LassoRende15m record is outside the Jutland site and reports no current correlation with HornsRev. Exclude it as a Jutland depth.",
+    "Abstract10mthresholded GBWfraction and reported10-15mepisodic transport layer describe different statistics. Preserve separately;neither gives the whole current bottom."
+  ],
+  "next_actions": [
+    "Create a new versioned reference adapter for source-reported regional episodic water-mass layer scales,not a velocity-bottom metric.",
+    "Verify exact table/prose facts and all prior751references in cloud on one idleCPU before admitting any new reference.",
+    "If deriving a composition-profile crossing later,freeze its quantity,threshold,rounding and bracketing rules before processing;keep it distinct from flow depth and do not infer monthly/annual boundaries from this annual mean table."
+  ],
+  "reference_inventory_updated": false,
+  "new_current_measurements_admitted": 0,
+  "new_ocean_field_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    "research/source-data/nielsen-jutland-2000/journal-article.pdf": "29e027afd56877b6acec02382a8a6a2e5b2ecce24572171c2e15c1f1ae071525",
+    "research/source-data/nielsen-jutland-2000/acquisition.json": "ee96523fe882310b4bc2a72c14b04df6d1985c977739551b0b4779bbda8e28da",
+    "research/jutland-nielsen2000-depth-profile-source-facts-v1.json": "398a47effd39c416c2ee33c009ab93c87e7b1a468b426e4fe3ff324f3f6cdd16",
+    "research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json": "7e5b8d9899ca5eea3664c83ffc3f7f6457dc65934505285032ad04a64f9d7121",
+    "research/current-depth-reference-inventory-v8.json": "5b75ea584d2678af74604784278a21622799e6028684a541394c865e1f14d26a"
+  }
+}
