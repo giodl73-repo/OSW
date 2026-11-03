@@ -1,0 +1,1929 @@
+{
+  "schema": "osw.ngcc-direction-depth-source-facts.v1",
+  "status": "DERIVED_DIRECTION_CASES_FROM_RETAINED_NATIVE_FIELDS_NOT_ROUTE_PROJECTIONS",
+  "manifest_file": "research/source-data/ngcc-direction-depth-sources-v1/manifest.json",
+  "manifest_sha256": "b51a76e8ee45e5f5642c4e41984a1acdd65892ae15aecf19e32370c814fe2322",
+  "operator_file": "research/ngcc-direction-depth-source-operator-v1.json",
+  "operator_sha256": "1faaef9367e9933a11f55ca00ea00f0dbf93fedf34002e9fe2acf0d340011627",
+  "counts": {
+    "raw_sections_reused": 16,
+    "native_profiles_reused": 808,
+    "direction_context_diagnoses": 32,
+    "new_velocity_field_requests": 0,
+    "new_independent_observations": 0,
+    "new_physical_depth_measurements": 0,
+    "by_context": {
+      "southeastward": {
+        "diagnoses": 16,
+        "selected_profiles": 9,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 9,
+          "no_qualifying_interval_component_column": 7
+        }
+      },
+      "northwestward": {
+        "diagnoses": 16,
+        "selected_profiles": 16,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 7,
+          "section_gate_edge_maximum_axis_unresolved": 9
+        }
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-142e.json",
+      "source_sha256": "f6deebbbeaa93fdb508ab0a7256a4a7db65381f2e5fa8c04ee991f18cf429fb1",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-142e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-142e.json",
+      "source_sha256": "f6deebbbeaa93fdb508ab0a7256a4a7db65381f2e5fa8c04ee991f18cf429fb1",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-142e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-142e.json#/direction_contexts/northwestward/profiles/49",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-142e.json#/columns/49",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 49,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 95.63535160458186,
+          "layer_thickness_m": 95.63535160458186,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5410212371752636,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.2809986796692,
+          "layer_thickness_m": 86.2809986796692,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5410212371752636,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 77.14132610436604,
+          "layer_thickness_m": 77.14132610436604,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5410212371752636,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json",
+      "source_sha256": "6eef9d9b90965ef5e69268e6a3e09e42e8e3efb1a6dc45e745c699643dc9eaaf",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/profiles/20",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/20",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 14.744611926953052,
+          "lower_depth_m": 78.96393815324807,
+          "layer_thickness_m": 64.21932622629501,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2255988155609393,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 23.855057157680196,
+          "lower_depth_m": 74.64743098022186,
+          "layer_thickness_m": 50.79237382254166,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2255988155609393,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 46.385410535230264,
+          "lower_depth_m": 63.56700464070276,
+          "layer_thickness_m": 17.1815941054725,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.2255988155609393,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json",
+      "source_sha256": "6eef9d9b90965ef5e69268e6a3e09e42e8e3efb1a6dc45e745c699643dc9eaaf",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/profiles/50",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/50",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 50,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 116.28879594862445,
+          "layer_thickness_m": 116.28879594862445,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5432427440731279,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.62827586790607,
+          "layer_thickness_m": 110.62827586790607,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5432427440731279,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 99.48023366016466,
+          "layer_thickness_m": 99.48023366016466,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5432427440731279,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json",
+      "source_sha256": "cbef0a36a80148643c1721e482882e1e0732010cd2d73359d4d0a1a3e7e771cb",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json#/direction_contexts/southeastward/profiles/28",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/28",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 28,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 78.79842521659933,
+          "layer_thickness_m": 78.79842521659933,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 0.38378839735647446,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 73.7222030717167,
+          "layer_thickness_m": 73.7222030717167,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 0.38378839735647446,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.8738550477220133,
+          "lower_depth_m": 65.56116799603704,
+          "layer_thickness_m": 64.68731294831503,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 11,
+          "core_depth_m": 35.0,
+          "core_velocity_m_s": 0.38378839735647446,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json",
+      "source_sha256": "cbef0a36a80148643c1721e482882e1e0732010cd2d73359d4d0a1a3e7e771cb",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-145e.json#/direction_contexts/northwestward/profiles/49",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/49",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 49,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 148.81412544492986,
+          "layer_thickness_m": 148.81412544492986,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.23804621712028812,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 53.35002082145693,
+          "lower_depth_m": 142.6532747828876,
+          "layer_thickness_m": 89.30325396143067,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.23804621712028812,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 82.80449703671556,
+          "lower_depth_m": 130.33157345880312,
+          "layer_thickness_m": 47.52707642208756,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.23804621712028812,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json",
+      "source_sha256": "337b5f78b0d3c9cd912e5f12df84cced3080967f2e952c77adf04d3cd165905d",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json#/direction_contexts/southeastward/profiles/30",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/30",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 30,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 115.37694532146017,
+          "layer_thickness_m": 115.37694532146017,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5910665102673991,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 102.47873502379684,
+          "layer_thickness_m": 102.47873502379684,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5910665102673991,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 62.79462046634757,
+          "layer_thickness_m": 62.79462046634757,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5910665102673991,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json",
+      "source_sha256": "337b5f78b0d3c9cd912e5f12df84cced3080967f2e952c77adf04d3cd165905d",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-03-15-ngcc-section-146e.json#/direction_contexts/northwestward/profiles/0",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/0",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 41.38581061579271,
+          "layer_thickness_m": 41.38581061579271,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3237516844903471,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 28.35871753723324,
+          "layer_thickness_m": 28.35871753723324,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3237516844903471,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.239537844797798,
+          "layer_thickness_m": 11.239537844797798,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3237516844903471,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-142e.json",
+      "source_sha256": "3cd67c153e470857f9fe129feb7caf2655ccc5aae7968bde9c104a2d2c0523b6",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-142e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-142e.json",
+      "source_sha256": "3cd67c153e470857f9fe129feb7caf2655ccc5aae7968bde9c104a2d2c0523b6",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-142e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-142e.json#/direction_contexts/northwestward/profiles/47",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-142e.json#/columns/47",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 47,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 415.50248567650056,
+          "layer_thickness_m": 415.50248567650056,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9568835083853555,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 329.2912447599833,
+          "layer_thickness_m": 329.2912447599833,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9568835083853555,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 148.9145074049509,
+          "layer_thickness_m": 148.9145074049509,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9568835083853555,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-143p5e.json",
+      "source_sha256": "63b5ec411e2b343b13e525f9f20ea8dda63348ca950250342898519f5e575c72",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-143p5e.json",
+      "source_sha256": "63b5ec411e2b343b13e525f9f20ea8dda63348ca950250342898519f5e575c72",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/profiles/22",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/22",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 738.8230808765583,
+          "layer_thickness_m": 738.8230808765583,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9835575192880561,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 437.36885986452114,
+          "layer_thickness_m": 437.36885986452114,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9835575192880561,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 98.04113586722143,
+          "layer_thickness_m": 98.04113586722143,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9835575192880561,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-145e.json",
+      "source_sha256": "38832aff99676a980f3ac4e6c06902ab1e368a54143f2f2c1df55d84743bda5b",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-145e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-145e.json",
+      "source_sha256": "38832aff99676a980f3ac4e6c06902ab1e368a54143f2f2c1df55d84743bda5b",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-145e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-145e.json#/direction_contexts/northwestward/profiles/34",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/34",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 34,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 821.6598919334866,
+          "layer_thickness_m": 821.6598919334866,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5613109119303321,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 380.1854770064768,
+          "layer_thickness_m": 380.1854770064768,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5613109119303321,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 190.2404604018854,
+          "layer_thickness_m": 190.2404604018854,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5613109119303321,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json",
+      "source_sha256": "fe51635f2a382e3cb9674bc4c175d4ba4169c43368679df8339a660e3a08acd6",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json#/direction_contexts/southeastward/profiles/21",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/21",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 21,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 72.4205776326161,
+          "layer_thickness_m": 72.4205776326161,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2316238410328841,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 62.95370942240623,
+          "layer_thickness_m": 62.95370942240623,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2316238410328841,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 7.971657096201417,
+          "lower_depth_m": 34.34826301119199,
+          "layer_thickness_m": 26.37660591499057,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2316238410328841,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json",
+      "source_sha256": "fe51635f2a382e3cb9674bc4c175d4ba4169c43368679df8339a660e3a08acd6",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-06-15-ngcc-section-146e.json#/direction_contexts/northwestward/profiles/0",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/0",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 88.86041897548891,
+          "layer_thickness_m": 88.86041897548891,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7689205902944636,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.26997325755542,
+          "layer_thickness_m": 86.26997325755542,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7689205902944636,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 81.08908182168845,
+          "layer_thickness_m": 81.08908182168845,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7689205902944636,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-142e.json",
+      "source_sha256": "936becfef23a36b12af8999028b4c03c9a46ff1ad23b122f8de6b5f756e12763",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-142e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-142e.json",
+      "source_sha256": "936becfef23a36b12af8999028b4c03c9a46ff1ad23b122f8de6b5f756e12763",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-142e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-142e.json#/direction_contexts/northwestward/profiles/49",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-142e.json#/columns/49",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 49,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 370.4838260423858,
+          "layer_thickness_m": 370.4838260423858,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.147786217492743,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 333.1980038256513,
+          "layer_thickness_m": 333.1980038256513,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.147786217492743,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 229.36330012562172,
+          "layer_thickness_m": 229.36330012562172,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.147786217492743,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-143p5e.json",
+      "source_sha256": "adc97351f6a745cdadf0907f20ca70b5c28c6144f997a6a3805c2ba957d9599f",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-143p5e.json",
+      "source_sha256": "adc97351f6a745cdadf0907f20ca70b5c28c6144f997a6a3805c2ba957d9599f",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/profiles/50",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/50",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 50,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 341.85270960051537,
+          "layer_thickness_m": 341.85270960051537,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7235875188400798,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 259.70709134880246,
+          "layer_thickness_m": 259.70709134880246,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7235875188400798,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 94.1329866099013,
+          "layer_thickness_m": 94.1329866099013,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7235875188400798,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-145e.json",
+      "source_sha256": "c6e4372447759b0b2c2f30493922c8b8b9fedbeca445d86766027dae9d89d248",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-145e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_profile_ref": null,
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-145e.json",
+      "source_sha256": "c6e4372447759b0b2c2f30493922c8b8b9fedbeca445d86766027dae9d89d248",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-145e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-145e.json#/direction_contexts/northwestward/profiles/16",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/16",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 942.1319302481393,
+          "layer_thickness_m": 942.1319302481393,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.663167259734511,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 85.04911164549048,
+          "layer_thickness_m": 85.04911164549048,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.663167259734511,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 66.51824748784662,
+          "layer_thickness_m": 66.51824748784662,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.663167259734511,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json",
+      "source_sha256": "0db1cf38c58f4d3937d33b5d3f76550f451aab35a67ad87719e13a1279dcb323",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json#/direction_contexts/southeastward/profiles/25",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/25",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 25,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 75.29990175887609,
+          "layer_thickness_m": 75.29990175887609,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20104582144434263,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 4.091518684408264,
+          "lower_depth_m": 63.14497414189693,
+          "layer_thickness_m": 59.05345545748867,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20104582144434263,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 44.79102610278814,
+          "lower_depth_m": 45.32529542135395,
+          "layer_thickness_m": 0.5342693185658121,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20104582144434263,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json",
+      "source_sha256": "0db1cf38c58f4d3937d33b5d3f76550f451aab35a67ad87719e13a1279dcb323",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-09-15-ngcc-section-146e.json#/direction_contexts/northwestward/profiles/3",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/3",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 3,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 291.79423870709473,
+          "layer_thickness_m": 291.79423870709473,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.952336854603909,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 243.80417358461153,
+          "layer_thickness_m": 243.80417358461153,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.952336854603909,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 87.59811030957722,
+          "layer_thickness_m": 87.59811030957722,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.952336854603909,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json",
+      "source_sha256": "65796de78c8898b459504387b4a1ae0c94ff46fefc30dc1b7a43d9e9e2f0f893",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json#/direction_contexts/southeastward/profiles/27",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-142e.json#/columns/27",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 27,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 46.589638192365896,
+          "layer_thickness_m": 46.589638192365896,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34218634732585756,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 41.623439593143914,
+          "layer_thickness_m": 41.623439593143914,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34218634732585756,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 30.893891104821435,
+          "layer_thickness_m": 30.893891104821435,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34218634732585756,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-142e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json",
+      "source_sha256": "65796de78c8898b459504387b4a1ae0c94ff46fefc30dc1b7a43d9e9e2f0f893",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-142e.json#/direction_contexts/northwestward/profiles/46",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-142e.json#/columns/46",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 46,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.2709421516697244,
+          "lower_depth_m": 91.53676121448491,
+          "layer_thickness_m": 90.26581906281518,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3649530374609785,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 8.252288342061183,
+          "lower_depth_m": 86.90004908232589,
+          "layer_thickness_m": 78.64776074026472,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3649530374609785,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 36.68915737800931,
+          "lower_depth_m": 78.81059300645343,
+          "layer_thickness_m": 42.12143562844412,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3649530374609785,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json",
+      "source_sha256": "6c437df1044d77be549f701599a089b25b537fffeb15e237b8150da2e3026fab",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json#/direction_contexts/southeastward/profiles/28",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/28",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 28,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.886713511354756,
+          "layer_thickness_m": 60.886713511354756,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2665548549524156,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 55.18303639221871,
+          "layer_thickness_m": 55.18303639221871,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2665548549524156,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 26.736045154579724,
+          "layer_thickness_m": 26.736045154579724,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2665548549524156,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-143p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json",
+      "source_sha256": "6c437df1044d77be549f701599a089b25b537fffeb15e237b8150da2e3026fab",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-143p5e.json#/direction_contexts/northwestward/profiles/50",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-143p5e.json#/columns/50",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 50,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 78.26762649528067,
+          "layer_thickness_m": 78.26762649528067,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.26473076831321024,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 74.43031068354588,
+          "layer_thickness_m": 74.43031068354588,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.26473076831321024,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 2.904182155276213,
+          "lower_depth_m": 65.25982924318214,
+          "layer_thickness_m": 62.35564708790593,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.26473076831321024,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json",
+      "source_sha256": "d5a5dbe5066baf420e9fd4905285254928d50243cffa3349c7558b2db1a64bc4",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json#/direction_contexts/southeastward/profiles/22",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/22",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 109.79368429355067,
+          "layer_thickness_m": 109.79368429355067,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4296087418798958,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 105.47137545169714,
+          "layer_thickness_m": 105.47137545169714,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4296087418798958,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 93.31911192082052,
+          "layer_thickness_m": 93.31911192082052,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4296087418798958,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-145e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json",
+      "source_sha256": "d5a5dbe5066baf420e9fd4905285254928d50243cffa3349c7558b2db1a64bc4",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-145e.json#/direction_contexts/northwestward/profiles/49",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-145e.json#/columns/49",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 49,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 36.904770828838146,
+          "lower_depth_m": 102.66620320946299,
+          "layer_thickness_m": 65.76143238062485,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.169085916682235,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 48.835238971215816,
+          "lower_depth_m": 96.17579904692344,
+          "layer_thickness_m": 47.34056007570763,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.169085916682235,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "southeastward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json",
+      "source_sha256": "df9c80b9d2ed0d95ebc2adc5923bd367ebe40bb1b7e4599816134c6418b9ed11",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json#/direction_contexts/southeastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json#/direction_contexts/southeastward/profiles/19",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/19",
+      "component_bearing_degrees_true": 110,
+      "selected_column_index": 19,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 161.3128970760374,
+          "layer_thickness_m": 161.3128970760374,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.599503122161533,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 127.77728888570874,
+          "layer_thickness_m": 127.77728888570874,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.599503122161533,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 101.86236828990613,
+          "layer_thickness_m": 101.86236828990613,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.599503122161533,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "diagnostic_context_id": "northwestward",
+      "section_id": "section-146e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json",
+      "source_sha256": "df9c80b9d2ed0d95ebc2adc5923bd367ebe40bb1b7e4599816134c6418b9ed11",
+      "source_diagnosis_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json#/direction_contexts/northwestward/diagnosis",
+      "source_model_profile_ref": "research/source-data/ngcc-direction-depth-sources-v1/2022-12-15-ngcc-section-146e.json#/direction_contexts/northwestward/profiles/48",
+      "source_native_profile_ref": "research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-146e.json#/columns/48",
+      "component_bearing_degrees_true": 290,
+      "selected_column_index": 48,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 30.603124690683583,
+          "lower_depth_m": 328.5862201064453,
+          "layer_thickness_m": 297.98309541576174,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.198005695503328,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 80.25619521382232,
+          "lower_depth_m": 147.29501541649327,
+          "layer_thickness_m": 67.03882020267095,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.198005695503328,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "undercurrent_depth_values_inherited": false,
+      "surface_undercurrent_separation_performed": false,
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    }
+  ],
+  "source_fields_reused_not_new_observations": true,
+  "new_velocity_field_requests": 0,
+  "new_physical_depth_measurements": 0,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
