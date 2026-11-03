@@ -1,0 +1,45 @@
+name: Alaska Jarosz2017 original full HTML custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/alaska-jarosz2017-primary-html-acquisition-v1.yml
+      - analysis/acquire_alaska_jarosz2017_primary_html_v1.py
+      - analysis/test_alaska_jarosz2017_primary_html_v1.py
+      - plans/alaska-jarosz2017-primary-html-custody-protocol-v1.md
+      - research/alaska-jarosz2017-primary-html-acquisition-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_ncc_skagseth_table1_v1.py
+            analysis/acquire_alaska_jarosz2017_primary_html_v1.py
+            analysis/test_alaska_jarosz2017_primary_html_v1.py
+            plans/alaska-jarosz2017-primary-html-custody-protocol-v1.md
+            research/current-depth-reference-inventory-v17.json
+            research/alaska-jarosz2017-primary-html-acquisition-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify custody and retain original HTML once
+        timeout-minutes: 1
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_alaska_jarosz2017_primary_html_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_alaska_jarosz2017_primary_html_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alaska-jarosz2017-primary-html-v1
+          path: alaska-jarosz2017-primary-html-v1/
+          retention-days: 7
