@@ -8,6 +8,8 @@ class WinterMeanReach(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.inventory,cls.addendum,cls.facts,cls.pieces,cls.view=build.build();cls.old=json.loads((build.ROOT/'research/current-depth-reference-inventory-v17.json').read_bytes());cls.parts=prior.read_parts(cls.old,lambda f:(build.ROOT/f).read_bytes())
+    def test_previous_inventory_uses_frozen_v17_loader(self):
+        self.assertIs(build.prior,prior);self.assertIsNot(build.prior,loader)
     def test_all804_prior_rows_contexts_parts_and_base_preserved(self):
         old=prior.load_inventory(self.old,lambda f:(build.ROOT/f).read_bytes());self.assertEqual(self.view['evidence'][:804],old['evidence']);self.assertEqual(self.inventory['base'],self.old['base']);self.assertEqual(self.inventory['addenda'][:-1],self.old['addenda']);self.assertEqual({k:self.view['source_contexts'][k] for k in old['source_contexts']},old['source_contexts']);self.assertEqual(self.view['counts']['depth_references'],808)
     def test_units_recomputed_with_old_pressure_unchanged(self):

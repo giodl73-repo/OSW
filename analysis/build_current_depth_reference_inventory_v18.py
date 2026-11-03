@@ -1,7 +1,7 @@
 """Append four provisional Alaska Coastal Current mean-flow reaches."""
 import copy,hashlib,json
 from pathlib import Path
-import load_current_depth_reference_inventory_v18 as prior
+import load_current_depth_reference_inventory_v17 as prior
 import load_current_depth_reference_inventory_v18 as loader
 
 ROOT=Path(__file__).resolve().parents[1]
