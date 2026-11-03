@@ -1,0 +1,207 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    100
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "All16native targets/32direction diagnoses retained,including no-selection,gate/support-edge,censored cases and all local maxima. Both contexts can pick different columns;coastal counterflow,eddies and unresolved identity remain explicit. No independently identified seasonal branches,independent observations/net transport or additive layers.",
+  "vertical_operator": "Frozen full-native0-5000m finite-adjacent tracing,without sign/cutoff/missing bridges. Source mostly-upper100m flow/local120m winter penetration/possible1000mreach are separate historical descriptions,not2022bottoms. Same-sign upper/deeper flow may connect;physical thickness/undercurrent separation unvalidated.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.monsoon-direction-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New regional Monsoon adapter from frozen SouthJava native-direction design;no old artifact/helper changed. Frozen readers,rotation,selection,adjacent tracing and audits reused;new identity/window/primary/geography declared before field outcomes.",
+  "geometry_provenance": "Editorial77.5/78.5/79.5/80.5E longitude cuts,all2-6N gates;partial Sri Lanka zonal geography. Historical80.5E moorings and possible2Nsummer extension motivate regional study only;not exact stations,current endpoints or widths.",
+  "column_selector": "Complete finite0-100m positive component integral/core>0.1m/s independently in90/270degree frames,no surface/relative/thermal gate.0.1primary and0.05/0.2sensitivities are OSW exploratory conventions,not source-method replication. Greatest eligible integral/first southern tie;no edge replacement,tuning or sensitivity gap fill.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means,annual extrema,1991-1992moorings,August1993section orJuly2016campaign. Test both directions every timestamp without imposing nominal monsoon months.",
+  "transport_budget": "All16native targets/32direction diagnoses preflight jointly under unchanged250000pairs/7MBdecoded,40levels,3-150profiles,20000pairs/patch and5km axis tolerance before fields. One shared frozen mixed reader,max3exactNetCDFIOfailure retries2/5seconds,future first-attempt reserve,no success replay/per-owner/per-quarter reset or cap increase.",
+  "currents": {
+    "current:monsoon": {
+      "entity_id": "current:monsoon",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        100
+      ],
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "default_direction_context_id": "eastward",
+      "direction_contexts": {
+        "eastward": {
+          "id": "eastward",
+          "component_bearing_degrees_true": 90,
+          "selection_depth_interval_m": [
+            0,
+            100
+          ],
+          "core_search_depth_interval_m": [
+            0,
+            100
+          ],
+          "primary_threshold_m_s": 0.1,
+          "surface_component_gate_m_s": null,
+          "temperature_gate": null
+        },
+        "westward": {
+          "id": "westward",
+          "component_bearing_degrees_true": 270,
+          "selection_depth_interval_m": [
+            0,
+            100
+          ],
+          "core_search_depth_interval_m": [
+            0,
+            100
+          ],
+          "primary_threshold_m_s": 0.1,
+          "surface_component_gate_m_s": null,
+          "temperature_gate": null
+        }
+      },
+      "branch_scope": "Partial77.5-80.5E southern India/Sri Lanka zonal reach,four meridional searches2-6N. Both fixed east90/west270degree components tested every snapshot,not calendar-forced phases or observed axes. Exclude Arabian Sea source branches,Laccadive circulation,northward Bay of Bengal continuation,equatorial jets and subsurface counterflows;near-coast opposite flow/eddies can still confound identity. Upper100m classification is not measured thickness/bottom.",
+      "identity_evidence_basis": "primary_direct_observational_description_of_reversing_shallow_regional_flow",
+      "selection_window_basis": "source_informed_upper100m_analysis_classification_not_measured_boundaries",
+      "parent_current_id": null,
+      "identity_relationship": "surface_current_with_non_additive_opposing_direction_contexts",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "sections": [
+    {
+      "id": "section-77p5e",
+      "entity_id": "current:monsoon",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 77.5,
+      "latitude_gate_degrees_north": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "section-78p5e",
+      "entity_id": "current:monsoon",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 78.5,
+      "latitude_gate_degrees_north": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "section-79p5e",
+      "entity_id": "current:monsoon",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 79.5,
+      "latitude_gate_degrees_north": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "section-80p5e",
+      "entity_id": "current:monsoon",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 80.5,
+      "latitude_gate_degrees_north": [
+        2,
+        6
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/94JC02216",
+      "locator": "Fresh primary publisher abstract,observational geometry,shallow flow,reversal,possible2Nsummer extension and coastal counterflow paragraphs",
+      "scope": "1991-1992moorings/ship profiles mostly upper100m;source-informed selection only,not fixed bottom. No original figure digitization or unpublished source threshold claim."
+    },
+    {
+      "url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "locator": "Pinned existing OSW review of Sec5.1.5/printed63-65 and Fig48caption;not freshly downloaded here",
+      "scope": "Historical regional summer/winter geography and distinct upper/subsurface flow. Local120mJanuary1991penetration not annual/current bottom."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_monsoon_direction_depth_sections_v1.py": "7a7a17154aa56e443657dd6b98355452efc5049c359a93de2c7c117ba11a43fd",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/monsoon_direction_depth_contexts_v1.py": "7596a71201835418917ccf9d61296e82c7ab0c9d681efbcdfe351a59bf264406",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_monsoon_direction_depth_contexts_v1.py": "5cbfe0aa7050f35978cdbcb3c82143c80d80fd86529f922e81c8a587ff8c1446",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/monsoon-direction-depth-sections-protocol-v1.md": "3b5382256893707aae0e885c1fda713169e475781e0070a384655205fd3691cf",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v10.json": "ee8fc68369c08eec154a55ae19d931823190a553ce6053b89d86293e20ed0f25",
+    "research/current-depth-source-facts-v13.json": "6957b09ae487df62231856fe7efe0bdf3fc5695485e0e1f0341f0aa40e4a7107",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/monsoon-sri-lanka-seasonal-layer-scope-audit.json": "0887d278f8996560f932453aef28bdafa04882b3e150731b36e179eb11b033ce",
+    "research/monsoon-summer-sri-lanka-reference-path-input.json": "b254ecbc25358b9668b55dee5c14eb8cbd8ecc9eef57c2f038a7c65ec3bb2c0c",
+    "research/monsoon-webber-2018-distinct-widths-scope-audit.json": "01add615729f0ebf28ac9632cf4f76b85d9a0d2e67af33cee9088e52018192c4",
+    "research/monsoon-winter-sri-lanka-reference-path-input.json": "509a757c5781347ad4eb3665cb8c952a75830a065a12ad531da2517063e2e6f6",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    100
+  ],
+  "methodology_file": "plans/monsoon-direction-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "One current:monsoon owner,two non-additive direction contexts. No alias/family admission,phase inheritance,whole-current physical profile,annual envelope,volume,state/global join.",
+  "maximum_nearest_longitude_distance_km": 5
+}
