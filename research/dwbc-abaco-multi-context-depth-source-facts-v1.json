@@ -1,0 +1,1668 @@
+{
+  "schema": "osw.dwbc-abaco-multi-context-depth-source-facts.v1",
+  "status": "NATIVE_FIELDS_WITH_SEPARATE_DIRECTION_DIAGNOSES_NOT_ROUTE_PROJECTIONS",
+  "manifest_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/manifest.json",
+  "manifest_sha256": "0d86d3de0e07357531e0328487e3803037cb2aa8b4745bb5d9ec725aa55cbcdc",
+  "operator_file": "research/dwbc-abaco-multi-context-depth-sections-operator-v1.json",
+  "operator_sha256": "db5a15d5c805d6672349fdd4ec8fde8de17246d6d68549c26fdec638e57ae29f",
+  "counts": {
+    "raw_section_date_cases": 16,
+    "native_velocity_profiles": 704,
+    "context_diagnoses": 32,
+    "decoded_velocity_cell_pairs": 28160,
+    "decoded_velocity_array_bytes": 225280,
+    "additional_context_field_requests": 0,
+    "new_independent_observations": 0,
+    "new_physical_depth_measurements": 0,
+    "by_context": {
+      "upper": {
+        "diagnoses": 16,
+        "selected_profiles": 15,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 13,
+          "no_qualifying_interval_component_column": 1,
+          "section_gate_edge_maximum_axis_unresolved": 1,
+          "selection_interval_support_edge_maximum_axis_unresolved": 1
+        }
+      },
+      "lower": {
+        "diagnoses": 16,
+        "selected_profiles": 3,
+        "horizontal_status_counts": {
+          "no_qualifying_interval_component_column": 13,
+          "selection_interval_support_edge_maximum_axis_unresolved": 3
+        }
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "253d2bb472552fec5a77daa8b84b3aee187748f3120a334a2425f759e2b2cb6b",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "253d2bb472552fec5a77daa8b84b3aee187748f3120a334a2425f759e2b2cb6b",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "be12e8582deb2a2d82adc0de0969b159068e1561ee9a413750d70f8d48eacb01",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json#/columns/16",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json#/columns/16",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3595.744711881096,
+          "layer_thickness_m": 3595.744711881096,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.25500002503395086,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2560.0001370906502,
+          "layer_thickness_m": 2560.0001370906502,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.25500002503395086,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 26.49999329448105,
+          "lower_depth_m": 1585.3659360980191,
+          "layer_thickness_m": 1558.865942803538,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.25500002503395086,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "be12e8582deb2a2d82adc0de0969b159068e1561ee9a413750d70f8d48eacb01",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "787eea7ab224990a3b443b0faeb2c2f3b68e466544fd69ebb6e7b925224029ac",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json#/columns/11",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json#/columns/11",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 11,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 39.8749996594852,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 48.33333278143845,
+          "lower_depth_m": 2661.2904163912754,
+          "layer_thickness_m": 2612.957083609837,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 623.3333250549108,
+          "lower_depth_m": 1903.1250526779295,
+          "layer_thickness_m": 1279.7917276230187,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "upper_bracket_m": [
+            600.0,
+            700.0
+          ],
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "787eea7ab224990a3b443b0faeb2c2f3b68e466544fd69ebb6e7b925224029ac",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "6d119d52d74d5e78d711a43fd876e4b90f10df05273829f325ed26b597b4c6af",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json#/columns/12",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json#/columns/12",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 72.71028011222523,
+          "lower_depth_m": 3644.6281181803956,
+          "layer_thickness_m": 3571.9178380681706,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 77.38317711195663,
+          "lower_depth_m": 3231.404997709139,
+          "layer_thickness_m": 3154.0218205971823,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1186.9369081529414,
+          "lower_depth_m": 2021.7392374752508,
+          "layer_thickness_m": 834.8023293223093,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "upper_bracket_m": [
+            1000.0,
+            1250.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "6d119d52d74d5e78d711a43fd876e4b90f10df05273829f325ed26b597b4c6af",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-03-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "00737f959d741a222803044bb5619c678ea8b3262f743c760bc5215911ca2891",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/columns/29",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/columns/29",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 29,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 357.4468066218538,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.17900000512599948,
+          "upper_bracket_m": [
+            350.0,
+            400.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 674.0740460705227,
+          "lower_depth_m": 2400.0000662273806,
+          "layer_thickness_m": 1725.9260201568577,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.17900000512599948,
+          "upper_bracket_m": [
+            600.0,
+            700.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "00737f959d741a222803044bb5619c678ea8b3262f743c760bc5215911ca2891",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 40,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 3495.1456046531293,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.10200000554323199,
+          "upper_bracket_m": [
+            3000.0,
+            4000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 3980.582471508021,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.10200000554323199,
+          "upper_bracket_m": [
+            3000.0,
+            4000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "badec9be6a8f3412814dc5727f79cba6cf6dbc770d9f6433a34b9a545d8cc379",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json#/columns/16",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json#/columns/16",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 224.9999906867759,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.331000030040741,
+          "upper_bracket_m": [
+            200.0,
+            250.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 388.46152677867565,
+          "lower_depth_m": 3634.6153967391106,
+          "layer_thickness_m": 3246.153869960435,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.331000030040741,
+          "upper_bracket_m": [
+            350.0,
+            400.0
+          ],
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 814.0350820321834,
+          "lower_depth_m": 2323.5295183243384,
+          "layer_thickness_m": 1509.4944362921551,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.331000030040741,
+          "upper_bracket_m": [
+            800.0,
+            900.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "badec9be6a8f3412814dc5727f79cba6cf6dbc770d9f6433a34b9a545d8cc379",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "6c03827df0d4db1ca63c29c71c5998e2d7942de59497f4eacd4f90fa7fa681b5",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json#/columns/9",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json#/columns/9",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 873.52940776872,
+          "lower_depth_m": 2470.873802314606,
+          "layer_thickness_m": 1597.3443945458862,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "upper_bracket_m": [
+            800.0,
+            900.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 940.5063263920326,
+          "lower_depth_m": 2228.1553472149712,
+          "layer_thickness_m": 1287.6490208229386,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "upper_bracket_m": [
+            900.0,
+            1000.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1059.1517800865558,
+          "lower_depth_m": 1881.6964398268883,
+          "layer_thickness_m": 822.5446597403325,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3710000216960907,
+          "upper_bracket_m": [
+            1000.0,
+            1250.0
+          ],
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "6c03827df0d4db1ca63c29c71c5998e2d7942de59497f4eacd4f90fa7fa681b5",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "232a1eb1ccaa31c841f788b97484b7358a8eca5a5de18e1ea7872be858c84a94",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json#/columns/43",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json#/columns/43",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 43,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 35,
+          "core_depth_m": 2000.0,
+          "core_velocity_m_s": 0.2150000035762787,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 35,
+          "core_depth_m": 2000.0,
+          "core_velocity_m_s": 0.2150000035762787,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1444.4443248672694,
+          "lower_depth_m": 3000.0029802705976,
+          "layer_thickness_m": 1555.5586554033282,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 35,
+          "core_depth_m": 2000.0,
+          "core_velocity_m_s": 0.2150000035762787,
+          "upper_bracket_m": [
+            1250.0,
+            1500.0
+          ],
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "232a1eb1ccaa31c841f788b97484b7358a8eca5a5de18e1ea7872be858c84a94",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-06-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "8813cff68f7d31912b491ca5f4a0e4a8c2cd6a99875526767bbea2426149e87b",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/columns/41",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/columns/41",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 41,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1785.7142523471764,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 37,
+          "core_depth_m": 3000.0,
+          "core_velocity_m_s": 0.1330000013113022,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 2249.999943310795,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 37,
+          "core_depth_m": 3000.0,
+          "core_velocity_m_s": 0.1330000013113022,
+          "upper_bracket_m": [
+            2000.0,
+            2500.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "8813cff68f7d31912b491ca5f4a0e4a8c2cd6a99875526767bbea2426149e87b",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 40,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1863.636343079279,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 2470.5881553743993,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            2000.0,
+            2500.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 3483.8709640205216,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            3000.0,
+            4000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "7163dbdaa68faaa708bc07daa513e9adfdc896e864fb49b21fd2b81f0179fdd1",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json#/columns/20",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json#/columns/20",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.1970000118017197,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.1970000118017197,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "7163dbdaa68faaa708bc07daa513e9adfdc896e864fb49b21fd2b81f0179fdd1",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "39cb8aabd210453852601e880ba3b726c21ac3989c68bc8c5ac09e9a140b729d",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json#/columns/12",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json#/columns/12",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3764.0450085342627,
+          "layer_thickness_m": 3764.0450085342627,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 653.8460780178265,
+          "lower_depth_m": 2680.000107288367,
+          "layer_thickness_m": 2026.1540292705404,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "upper_bracket_m": [
+            600.0,
+            700.0
+          ],
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "39cb8aabd210453852601e880ba3b726c21ac3989c68bc8c5ac09e9a140b729d",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "89ff8b6bc769d7aaabe299016cddb1e36bd9eb6d4b148499f351cfd2283ae494",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json#/columns/12",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json#/columns/12",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3626.086995957704,
+          "layer_thickness_m": 3626.086995957704,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2791.0448249158085,
+          "layer_thickness_m": 2791.0448249158085,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 32,
+          "core_depth_m": 1000.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "89ff8b6bc769d7aaabe299016cddb1e36bd9eb6d4b148499f351cfd2283ae494",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-09-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "c0f99828a70bf63d87cd017c6d03ee18eb5c49a5e75e1cadfbe5f357345ad0f0",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 40,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1066.1764586647287,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 37,
+          "core_depth_m": 3000.0,
+          "core_velocity_m_s": 0.2560000121593476,
+          "upper_bracket_m": [
+            1000.0,
+            1250.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 1521.7391028296072,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 37,
+          "core_depth_m": 3000.0,
+          "core_velocity_m_s": 0.2560000121593476,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1956.5217036380666,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 37,
+          "core_depth_m": 3000.0,
+          "core_velocity_m_s": 0.2560000121593476,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-24p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json",
+      "source_sha256": "c0f99828a70bf63d87cd017c6d03ee18eb5c49a5e75e1cadfbe5f357345ad0f0",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-24p5n.json#/columns/40",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 40,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1066.1764586647287,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.3230000138282776,
+          "upper_bracket_m": [
+            1000.0,
+            1250.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 1521.7391028296072,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.3230000138282776,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 1956.5217036380666,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 38,
+          "core_depth_m": 4000.0,
+          "core_velocity_m_s": 0.3230000138282776,
+          "upper_bracket_m": [
+            1500.0,
+            2000.0
+          ],
+          "lower_last_connected_depth_m": 5000.0
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "3b129f9bf3d7e1a45900e8c5b1177a62d0b35ab0d1bbe6ffb4734bc25fe83b95",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json#/columns/17",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json#/columns/17",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 17,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 18.99999925494178,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3160000145435334,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 74.99997392292357,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3160000145435334,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 624.6153620432106,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.3160000145435334,
+          "upper_bracket_m": [
+            600.0,
+            700.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json",
+      "source_sha256": "3b129f9bf3d7e1a45900e8c5b1177a62d0b35ab0d1bbe6ffb4734bc25fe83b95",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-25p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "3fb9349a9d4f8d972a6ca7d9075161ae450a9c19acb93324345ce3e1a3c293e2",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json#/columns/10",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json#/columns/10",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 10,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 851.5151491889832,
+          "lower_depth_m": 2517.241426485541,
+          "layer_thickness_m": 1665.7262772965578,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.18300001323223114,
+          "upper_bracket_m": [
+            800.0,
+            900.0
+          ],
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 954.5454479774496,
+          "lower_depth_m": 2181.818213485347,
+          "layer_thickness_m": 1227.2727655078972,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 33,
+          "core_depth_m": 1250.0,
+          "core_velocity_m_s": 0.18300001323223114,
+          "upper_bracket_m": [
+            900.0,
+            1000.0
+          ],
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json",
+      "source_sha256": "3fb9349a9d4f8d972a6ca7d9075161ae450a9c19acb93324345ce3e1a3c293e2",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-26p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "upper",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "7dcbb7da3aed6e75ce4d314f5a03c4d3cf536bbb9a131951ed767b2111115cf6",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/upper/diagnosis",
+      "source_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json#/columns/13",
+      "source_native_model_profile_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json#/columns/13",
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        1000,
+        3000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 646.153818379493,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            600.0,
+            700.0
+          ],
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 764.179097274333,
+          "lower_depth_m": 3943.6619913405375,
+          "layer_thickness_m": 3179.4828940662046,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            700.0,
+            800.0
+          ],
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 996.9696810970147,
+          "lower_depth_m": 2682.6924162547593,
+          "layer_thickness_m": 1685.7227351577446,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 34,
+          "core_depth_m": 1500.0,
+          "core_velocity_m_s": 0.32600000500679016,
+          "upper_bracket_m": [
+            900.0,
+            1000.0
+          ],
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        }
+      ],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "diagnostic_context_id": "lower",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json",
+      "source_sha256": "7dcbb7da3aed6e75ce4d314f5a03c4d3cf536bbb9a131951ed767b2111115cf6",
+      "source_diagnosis_ref": "research/source-data/dwbc-abaco-multi-context-depth-sections-v1/2022-12-15-deep-western-boundary-section-27p5n.json#/context_diagnoses/lower/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 180,
+      "selection_depth_interval_m": [
+        3000,
+        5000
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "vertical_contexts_are_additive": false,
+      "contexts_are_independent_observations": false
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
