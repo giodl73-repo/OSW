@@ -1,0 +1,142 @@
+name: New Ireland and Solomon Islands undercurrent depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/solomon-undercurrents-velocity-curtains-v1.yml
+      - analysis/derive_solomon_undercurrents_velocity_curtains_v1.py
+      - analysis/test_solomon_undercurrents_velocity_curtains_v1.py
+      - plans/solomon-undercurrents-velocity-curtains-protocol-v1.md
+      - research/solomon-undercurrents-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/solomon-undercurrents-interval-depth-sections-v1.yml
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_ngcuc_interval_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_solomon_undercurrents_interval_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_solomon_undercurrents_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_ngcuc_interval_depth_sections_v1.py
+            analysis/test_solomon_undercurrents_interval_depth_sections_v1.py
+            analysis/test_solomon_undercurrents_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/ngcuc-interval-depth-sections-protocol-v1.md
+            plans/solomon-undercurrents-interval-depth-sections-protocol-v1.md
+            plans/solomon-undercurrents-velocity-curtains-protocol-v1.md
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v6.json
+            research/current-depth-source-facts-v8.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/new-guinea-coastal-undercurrent-reference-path-input.json
+            research/new-ireland-coastal-undercurrent-reference-path-input.json
+            research/ngcuc-interval-depth-sections-operator-v1.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/solomon-island-coastal-undercurrent-reference-path-input.json
+            research/solomon-melet-2010-coastal-confinement-scope-audit.json
+            research/solomon-undercurrents-interval-depth-sections-operator-v1.json
+            research/solomon-undercurrents-interval-depth-sections-source-facts-v1.json
+            research/solomon-undercurrents-interval-depth-sections-source-review-v1.json
+            research/solomon-undercurrents-velocity-curtains-operator-v1.json
+            research/source-data/melet-solomon-2010/acquisition.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-new-ireland-coastal-undercurrent-section-2p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-new-ireland-coastal-undercurrent-section-3p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-new-ireland-coastal-undercurrent-section-3p8s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-new-ireland-coastal-undercurrent-section-4p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-solomon-island-coastal-undercurrent-section-6p0s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-solomon-island-coastal-undercurrent-section-6p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-solomon-island-coastal-undercurrent-section-6p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-03-15-solomon-island-coastal-undercurrent-section-6p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-new-ireland-coastal-undercurrent-section-2p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-new-ireland-coastal-undercurrent-section-3p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-new-ireland-coastal-undercurrent-section-3p8s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-new-ireland-coastal-undercurrent-section-4p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-solomon-island-coastal-undercurrent-section-6p0s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-solomon-island-coastal-undercurrent-section-6p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-solomon-island-coastal-undercurrent-section-6p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-06-15-solomon-island-coastal-undercurrent-section-6p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-new-ireland-coastal-undercurrent-section-2p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-new-ireland-coastal-undercurrent-section-3p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-new-ireland-coastal-undercurrent-section-3p8s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-new-ireland-coastal-undercurrent-section-4p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-solomon-island-coastal-undercurrent-section-6p0s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-solomon-island-coastal-undercurrent-section-6p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-solomon-island-coastal-undercurrent-section-6p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-09-15-solomon-island-coastal-undercurrent-section-6p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-new-ireland-coastal-undercurrent-section-2p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-new-ireland-coastal-undercurrent-section-3p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-new-ireland-coastal-undercurrent-section-3p8s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-new-ireland-coastal-undercurrent-section-4p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-solomon-island-coastal-undercurrent-section-6p0s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-solomon-island-coastal-undercurrent-section-6p2s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-solomon-island-coastal-undercurrent-section-6p4s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/2022-12-15-solomon-island-coastal-undercurrent-section-6p6s.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/manifest.json
+            research/source-data/solomon-undercurrents-interval-depth-sections-v1/transport-ledger.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_solomon_undercurrents_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_solomon_undercurrents_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_solomon_undercurrents_velocity_curtains_v1.py --current current:new-ireland-coastal-undercurrent
+          taskset -c "$cpu" nice -n 15 python analysis/derive_solomon_undercurrents_velocity_curtains_v1.py --current current:solomon-island-coastal-undercurrent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solomon-undercurrents-velocity-curtains-new-ireland-coastal-undercurrent-v1
+          path: solomon-undercurrents-velocity-curtains-v1/new-ireland-coastal-undercurrent/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solomon-undercurrents-velocity-curtains-solomon-island-coastal-undercurrent-v1
+          path: solomon-undercurrents-velocity-curtains-v1/solomon-island-coastal-undercurrent/
+          retention-days: 7
