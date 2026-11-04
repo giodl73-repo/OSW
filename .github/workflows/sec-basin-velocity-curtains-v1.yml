@@ -1,0 +1,126 @@
+name: South Equatorial Current basin depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/sec-basin-velocity-curtains-v1.yml
+      - analysis/derive_sec_basin_velocity_curtains_v1.py
+      - analysis/test_sec_basin_velocity_curtains_v1.py
+      - plans/sec-basin-velocity-curtains-protocol-v1.md
+      - research/sec-basin-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/sec-basin-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_sec_basin_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/assemble_nec_subarctic_depth_completion_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_nec_subarctic_velocity_curtains_v1.py
+            analysis/derive_sec_basin_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_sec_basin_depth_sections_v1.py
+            analysis/test_sec_basin_velocity_curtains_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/sec-basin-velocity-curtains-protocol-v1.md
+            research/carr-indian-sec-2026-source-facts-v1.json
+            research/carr-indian-sec-2026-source-review-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-measurement-scopes/south-equatorial.json
+            research/sec-basin-depth-sections-operator-v1.json
+            research/sec-basin-depth-sections-source-facts-v1.json
+            research/sec-basin-depth-sections-source-review-v1.json
+            research/sec-basin-velocity-curtains-operator-v1.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-31w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-32w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-33w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-34w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-35w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-70e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-75e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-80e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-85e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-90e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-100w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-110w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-120w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-130w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-140w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-31w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-32w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-33w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-34w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-35w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-70e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-75e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-80e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-85e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-90e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-100w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-110w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-120w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-130w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-140w.json
+            research/source-data/sec-basin-depth-sections-v1/manifest.json
+            research/source-data/sec-basin-depth-sections-v1/transport-ledger.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_sec_basin_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_sec_basin_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_sec_basin_velocity_curtains_v1.py --current current:atlantic-south-equatorial
+          taskset -c "$cpu" nice -n 15 python analysis/derive_sec_basin_velocity_curtains_v1.py --current current:pacific-south-equatorial
+          taskset -c "$cpu" nice -n 15 python analysis/derive_sec_basin_velocity_curtains_v1.py --current current:indian-south-equatorial
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sec-basin-velocity-curtains-atlantic-south-equatorial-v1
+          path: sec-basin-velocity-curtains-v1/atlantic-south-equatorial/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sec-basin-velocity-curtains-pacific-south-equatorial-v1
+          path: sec-basin-velocity-curtains-v1/pacific-south-equatorial/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sec-basin-velocity-curtains-indian-south-equatorial-v1
+          path: sec-basin-velocity-curtains-v1/indian-south-equatorial/
+          retention-days: 7
