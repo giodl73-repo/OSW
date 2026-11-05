@@ -1,0 +1,33 @@
+# Somali steady-model pressure extent source verification
+
+New original source Wind-driven cross-equatorial flow in the Indian ocean,
+repositorybitstream10553/4615/1/0617537_00000_0000.pdf. Primaryindexedabstract
+reportsNCEPwindstress/Argotemperaturesalinity/steady-model2003-2009study,
+winterapproximately200dbar,summmerandtransitionapproximately650dbar. First
+originalPDFGETplanned, no prioruse in localcatalog/sourceledgers. Repository
+handlemetadatawebcachemissclosed,no retry;PDFisdistinctoriginaldocumenttarget,
+notalternatecopyofafailedPDF. OthernewSomalipaperWang2018analyzes0-100m
+surface layer, not an inferred currentbottom; don'tadmitthatselectiondepth.
+
+OnecloudPDFrequest maximum1900000rawbytes/25sectransport/60secabsolutealarm+
+SIGTERM/outer70seckillafter5. Reserve beforeattempt,freshoutdir,no redirect/
+retry/mirror or otherresource fallback. Stream rawbeforePyMuPDFparse.1-40pages,
+160000textcharacters/10000source numeric tokens/250000case,7MBsharedrawcasecap
+but1.9MBtighterpublishedoutputcustodygate. Whole raw+derived+inspection+images
+<=2.4MB. SingleidleCPUallparse/tests/renders/numericassembly/counting cloudonly.
+Sharedsyntheticproducerphaseclock. Nativearrays0, no acquiredArgo/NCEPfields.
+Casebookkeepingupperbound1000numericmetadata/outputtokens inadditiontosource
+texttokens, conservative notclaimedexactruntimecount. Actualresult mustroundtrip.
+Alwaysretainrawerrorandledger; producerterminalbeforeartifactupload.
+
+Extractonlyexplicitabstractreportedpressures200/650, notgraphdigitization or
+nativegeostrophic reconstruction. Three phasecontexts represent TWOdistinct
+reportedpressurevalues:sharedsummer/transitionstatementnotindependentcasts.
+Metric reported_steady_model_current_lower_extent_pressure. dbarstaysdbar,
+no metreconversion, physicalbottom/thickness/widthvolume/route/state/ranking
+or annualuncertaintyextrema. Sourcecutoffcriteria notindependentlyreconstructed;
+full sourcecitation/type/methodlimits requiremanualprimarydocumentreview after
+capture beforeanycanonicaladmission. Renderpages1and2at75dpiifoutputallows,
+retainscopeifnotrendered. No newcanonicalreferencesstage;891/111unchanged,
+102eddy/21UTF8/unrelatedleaves/main/UI/runtime/defaultquery unchanged. Original
+fullPDF/inspectionprivateignoredonly; retainqualifiedshortfacts/results later.
