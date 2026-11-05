@@ -1,0 +1,50 @@
+name: Gaspe1991 original ADCP variable metadata custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/capture_gaspe1991_adcp_info_v1.py
+      - analysis/test_gaspe1991_adcp_info_v1.py
+      - research/gaspe1991-adcp-info-operator-v1.json
+      - plans/gaspe1991-adcp-info-protocol-v1.md
+      - .github/workflows/gaspe1991-adcp-info-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/capture_gaspe1991_adcp_info_v1.py
+            analysis/test_gaspe1991_adcp_info_v1.py
+            research/gaspe1991-adcp-info-operator-v1.json
+            plans/gaspe1991-adcp-info-protocol-v1.md
+            .github/workflows/gaspe1991-adcp-info-v1.yml
+            research/gaspe1991-source-metadata-ledger-v1.json
+            research/gaspe1991-original-resource-inventory-v1.json
+            research/gaspe1991-observed-depth-source-case-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU checks and original metadata custody
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_GASPE1991_INFO_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_gaspe1991_adcp_info_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 70s python analysis/capture_gaspe1991_adcp_info_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gaspe1991-adcp-info-v1
+          path: gaspe1991-adcp-info-v1/
+          retention-days: 7
