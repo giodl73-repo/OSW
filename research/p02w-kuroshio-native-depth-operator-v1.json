@@ -1,0 +1,81 @@
+{
+  "schema": "osw.p02w-kuroshio-native-depth-operator.v1",
+  "maximum_provider_operations": 3,
+  "maximum_response_bytes": 600000,
+  "maximum_per_response_bytes": 200000,
+  "maximum_case_seconds": 180,
+  "maximum_metadata_numeric_values": 10000,
+  "maximum_native_scalars": 250000,
+  "maximum_native_bytes": 7000000,
+  "maximum_selected_levels_per_cast": 40,
+  "maximum_native_profiles": 3,
+  "maximum_depth_axis_values_per_cast": 1000,
+  "maximum_native_cells": 20000,
+  "maximum_measurement_nodes": 6000,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "targets": [
+    {
+      "cast_id": "00601",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2022_P02W/00601.nc",
+      "provider_listed_lon_lat": [
+        133.47,
+        32.07
+      ],
+      "provider_listed_max_cast_depth_m": 2119,
+      "provider_listed_netcdf_size": "73.6 KB"
+    },
+    {
+      "cast_id": "00701",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2022_P02W/00701.nc",
+      "provider_listed_lon_lat": [
+        133.6,
+        31.88
+      ],
+      "provider_listed_max_cast_depth_m": 3052,
+      "provider_listed_netcdf_size": "94.3 KB"
+    },
+    {
+      "cast_id": "00801",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2022_P02W/00801.nc",
+      "provider_listed_lon_lat": [
+        133.67,
+        31.81
+      ],
+      "provider_listed_max_cast_depth_m": 4221,
+      "provider_listed_netcdf_size": "119.4 KB"
+    }
+  ],
+  "source_provider_page": "https://currents.soest.hawaii.edu/go-ship/ladcp/2022_P02W/index.html",
+  "source_full_cruise_report": "https://cchdo.ucsd.edu/data/35206/33RR20220430_do.pdf",
+  "source_full_cruise_report_access": "Direct web PDF fetch failed on inaccessible expired signed redirect; CLOSED/no retry/alternatehostbypass. Indexed primary report excerpts only,no PDFbytecustody.",
+  "source_metadata_evidence": "Primary provider page successful rendered-text review2026-11-05. Primary indexed cruise Sections1/2describe westernKuroshiosurvey; indexedChapter15describesinitialshipboardLADCP QC andplannedpostcruiseassessment,not independently verified finalQC.",
+  "URL_discovery_tier": "prospective_nc_filename_inference_from_listed_cast_labels_and_previously_validated_provider_convention_not_verified_href_strings",
+  "current_membership": "regional_Kuroshio_survey_candidates_not_independent_core_or_axis_membership",
+  "source_final_post_cruise_QC_verified": false,
+  "source_method_context_file": "research/a20-ldeo-ix14-component-method-context-v1.json",
+  "eligibility": {
+    "canonical_depth_reference_admission": false,
+    "independent_current_axis_verified": false,
+    "physical_current_bottom": false,
+    "seasonal_extrema": false,
+    "volume": false,
+    "runtime": false
+  },
+  "input_sha256": {
+    "analysis/acquire_p02w_kuroshio_native_depths_v1.py": "899ac973571aca7ce7da9efde10e0b027a4aaf3a17dc67ed60a74038a11a8801",
+    "analysis/test_p02w_kuroshio_native_depths_v1.py": "1ca6a7122e241da531aeb496b97a5e9faa1a7daf6ce1abbd043d7cd73a0d9bb4",
+    "plans/p02w-kuroshio-native-depth-protocol-v1.md": "684dae4c20e232e5ec2f3cb9befb27369b627872893f7171aa26f17216cb4ae4",
+    ".github/workflows/p02w-kuroshio-native-depths-v1.yml": "913d1ed74c83e12959b1062674478cc86fada25ffd3de80f04979eaeccbf1ea9",
+    "analysis/acquire_a20_gulf_stream_cast_headers_v1.py": "97b8354c856d54380629adb8b7acc4293bedabc04ce16001a8366366df4836c2",
+    "analysis/inspect_retained_a20_gulf_stream_headers_v2.py": "a42caaf094d0611d829541e6993cb229a8649feb0766dfcaed9677ce67fc27a4",
+    "analysis/sample_a20_gulf_stream_depth_brackets_v1.py": "831dd652dfea26b4541e71c7bb0e6b23b39d06ac1cdf1e73ea32edfbe5beb75c",
+    "analysis/sample_a20_gulf_stream_core_direction_depths_v2.py": "3d0d5b3fbd776ef18f51eb527831c592a39514bb96cb977da55eb96060bfc0d7"
+  },
+  "catalog_reference_rows_preserved": 869,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
