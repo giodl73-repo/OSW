@@ -38,7 +38,10 @@ class NorthBrazilCurtains(unittest.TestCase):
         for k in ['new_ocean_field_requests','new_reference_inventory_rows','whole_route_physical_depth_profiles','volume_estimates']:self.assertEqual(self.report[k],0)
     def test_original_vertical_rules_and_counts_reused(self):
         import derive_surface_regional_velocity_curtains_v1 as prior
-        self.assertIs(derive.frozen.curtain,kernel.curtain);self.assertIs(derive.counts,prior.counts)
+        import ast,inspect
+        self.assertEqual(ast.dump(ast.parse(inspect.getsource(derive.frozen.curtain))),ast.dump(ast.parse(inspect.getsource(kernel.curtain))))
+        for name in ['component','runs','connected_layer']:self.assertIs(getattr(derive.frozen,name),getattr(kernel,name))
+        self.assertIs(derive.counts,prior.counts)
     def test_incomplete_duplicate_or_wrong_operator_cohort_rejected(self):
         for key,value in [('section_files',self.op['cohorts'][0]['section_files'][:-1]),('source_operator','research/wrong-operator.json'),('id','other')]:
             c=copy.deepcopy(self.op['cohorts'][0]);c[key]=value
@@ -55,7 +58,8 @@ class NorthBrazilCurtains(unittest.TestCase):
     def test_exact_frozen_legacy_selection_and_classic_trace_bindings(self):
         import acquire_three_current_depth_sections_v1 as classic
         import derive_pacific_madagascar_velocity_curtains_v1 as geometry
-        self.assertIs(derive.legacy.selection,classic.base_selection);self.assertIs(derive.frozen.validate_retained,geometry.validate_retained);self.assertIs(derive.frozen.diagnose,classic.diagnose)
+        import ast,inspect
+        self.assertIs(derive.legacy.selection,classic.base_selection);self.assertIs(derive.frozen.original_diagnose,derive.legacy.diagnose);self.assertEqual(ast.dump(ast.parse(inspect.getsource(derive.frozen.validate_retained))),ast.dump(ast.parse(inspect.getsource(geometry.validate_retained))))
     def test_original_northwest_frame_surface_gate_and_view_geometry_preserved(self):
         for c in self.report['cases']:
             self.assertEqual(c['component_bearing_degrees_true'],315);self.assertEqual(c['source_geometry']['section_definition']['entity_id'],'current:north-brazil');self.assertNotIn('fixed_axis',c['source_geometry']['section_definition']);self.assertFalse(c['schema_adapter_changes_source_bytes']);self.assertFalse(c['component_values_changed_by_adapter']);self.assertIsNone(c['original_horizontal_temperature_gate']);source=json.loads((derive.ROOT/c['source_file']).read_bytes());self.assertEqual(c['original_decoded_columns_sha256'],source['decoded_columns_sha256'])
@@ -91,6 +95,10 @@ class NorthBrazilCurtains(unittest.TestCase):
             seed=[run['threshold_layer'] for col in case['columns'] for run in col['connected_depth_runs'] if run['contains_original_core']];self.assertEqual(len(seed),1)
             for key in ['lower_depth_m','lower_status','lower_last_connected_depth_m']:self.assertEqual(seed[0][key],primary[key])
             self.assertIsNone(case['physical_thickness_m']);self.assertIsNone(case['volume_m3'])
+
+    def test_decoded_binary32_evidence_and_exact_reproduction_are_explicit(self):
+        manifest=json.loads((derive.ROOT/'research/source-data/north-brazil-depth-sections-v1/manifest.json').read_bytes());self.assertEqual(manifest['decoded_velocity_cell_pairs'],63440);self.assertEqual(manifest['decoded_velocity_array_bytes'],507520)
+        for case in self.report['cases']:self.assertTrue(case['legacy_binary32_component_reproduction_exact'])
 
 
 if __name__=='__main__':unittest.main()

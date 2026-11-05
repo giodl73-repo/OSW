@@ -15,15 +15,28 @@ with owner and temperature_gate=None. Reversing the alias/null/owner changes and
 restoring the original checksum must reproduce every original field exactly.
 Do not insert a mixed-geometry tag, fixed-axis field or native-latitude column key.
 
-Call the ENTIRE unchanged validated derive_three_current_velocity_curtains_v1.curtain
-function on this view. Its original classic selector uses the exact legacy NBC base
-selection, and its strict pre-tag geometry/component validator recomputes signed
-components and verifies fixed-latitude/native indices/hyperslabs/longitude gates/
-original -45-meridian distance convention. Every original candidate/selection/core/
-layer and seed-run boundary must reproduce. Record original and alias-view checksums,
-label the adapter and retain source-file SHA from ORIGINAL bytes, not view encoding.
-No old method/source edit, numeric alias change, interpolation, new fields acquired
-or thermal screen. Alias-view checksum is not original source/wire-byte evidence.
+Use a NEW scoped binary32 validation binding. Its tracing function body must be
+AST-identical to the frozen three-current curtain; its pre-tag geometry validation
+body must be AST-identical to the frozen Pacific/Madagascar validator. Reuse exact
+v2 graph/runs/connected_layer and exact original NBC selection/diagnose. Never edit
+those old functions or weaken equality to a tolerance. Original decoded u/v arrays
+were binary32: 63440 pairs/507520 bytes. The older collector rotated those arrays
+before converting to JSON numbers. Newer float64 reconstruction differs at rounding
+bits and cannot replace those stored values. Require every decoded u/v value to
+round-trip exactly through binary32; replay the exact original along_velocity
+operation/order on binary32 arrays and compare signed components exactly. This is
+source representation, not physical accuracy or an uncertainty claim. Pin original
+NumPy2.3.4 for replay. The first cloud check rejected a float64 generic binding;
+that failed check is evidence for this source-specific audit, not a relaxed gate.
+
+The binding restores original column names/definition/null/checksum fields and
+runs the original legacy audit, then checks exact binary32 component reproduction.
+Strict copied geometry checks retain native indices/hyperslabs/gates and original
+-45-meridian distance convention. Every original candidate/selection/core/layer and
+seed-run boundary reproduces. Record original and alias-view checksums, exact
+binary32 audit flag and source SHA from ORIGINAL bytes, not alias encoding. No
+old method/source edits, numeric alias changes, interpolation, new fields acquired
+or thermal screen. Alias checksum is not original source/wire-byte evidence.
 
 Preserve fixed 315-degree northwest component, primary 0.1 m/s, surface gate0.05 m/s,
 complete finite positive 0-200 m signed integral/core search, original thresholds

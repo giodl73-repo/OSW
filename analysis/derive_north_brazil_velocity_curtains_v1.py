@@ -2,7 +2,7 @@
 import copy,hashlib,json
 from collections import Counter
 from pathlib import Path
-import derive_three_current_velocity_curtains_v1 as frozen
+import native_north_brazil_velocity_curtain_v1 as frozen
 import acquire_north_brazil_depth_sections_v1 as legacy
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -33,7 +33,7 @@ def source_view(section,original):
         if 'signed_reference_component_m_s' in column:raise ValueError('No mixed component aliases in source')
         column['signed_reference_component_m_s']=column.pop('signed_northwest_component_m_s')
     view['section_definition']['entity_id']=original['entity_id'];view['native100m_temperature_degrees_celsius']=None;view['temperature_source']=None;view['decoded_columns_sha256']=legacy.canonical_hash(view['columns'])
-    config=copy.deepcopy(original);config['temperature_gate']=None;config['sections']=[{**d,'entity_id':original['entity_id']} for d in original['sections']]
+    config=copy.deepcopy(original);config['legacy_original_decoded_columns_sha256']=section['decoded_columns_sha256'];config['temperature_gate']=None;config['sections']=[{**d,'entity_id':original['entity_id']} for d in original['sections']]
     if restore_source(view,section['decoded_columns_sha256'])!=section:raise ValueError('In-memory aliases must restore every original source field')
     return view,config
 
@@ -41,7 +41,7 @@ def source_view(section,original):
 def source_curtain(section,original,file):
     view,config=source_view(section,original);result=frozen.curtain(view,config,file)
     result['schema_adapter']='REVERSIBLE_NBC_COMPONENT_ALIAS_DEFINITION_OWNER_AND_NONTHERMAL_NULL_VIEW'
-    result['schema_adapter_changes_source_bytes']=False;result['component_values_changed_by_adapter']=False
+    result['legacy_binary32_component_reproduction_exact']=True;result['schema_adapter_changes_source_bytes']=False;result['component_values_changed_by_adapter']=False
     result['original_decoded_columns_sha256']=section['decoded_columns_sha256'];result['canonical_view_decoded_columns_sha256']=view['decoded_columns_sha256']
     return result
 

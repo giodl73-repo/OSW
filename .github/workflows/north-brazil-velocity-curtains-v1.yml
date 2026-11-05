@@ -29,6 +29,7 @@ jobs:
             analysis/derive_barents_makassar_velocity_curtains_v1.py
             analysis/derive_eac_connected_layer_thickness_v1.py
             analysis/derive_north_brazil_velocity_curtains_v1.py
+            analysis/native_north_brazil_velocity_curtain_v1.py
             analysis/derive_pacific_madagascar_velocity_curtains_v1.py
             analysis/derive_surface_regional_velocity_curtains_v1.py
             analysis/derive_three_current_velocity_curtains_v1.py
@@ -78,7 +79,7 @@ jobs:
         timeout-minutes: 5
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
-          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4 pyproj==3.7.2
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_north_brazil_depth_sections_v1.py' -v
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_north_brazil_velocity_curtains_v1.py' -v
           taskset -c "$cpu" nice -n 15 python analysis/derive_north_brazil_velocity_curtains_v1.py --current current:north-brazil
