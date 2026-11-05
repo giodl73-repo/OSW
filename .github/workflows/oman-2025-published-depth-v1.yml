@@ -1,0 +1,48 @@
+name: Oman July2025 published plume depth descriptors v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/verify_oman_2025_published_depth_v1.py
+      - analysis/test_oman_2025_published_depth_v1.py
+      - research/oman-2025-published-depth-facts-v1.json
+      - research/oman-2025-published-depth-operator-v1.json
+      - plans/oman-2025-published-depth-protocol-v1.md
+      - .github/workflows/oman-2025-published-depth-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/verify_oman_2025_published_depth_v1.py
+            analysis/test_oman_2025_published_depth_v1.py
+            research/oman-2025-published-depth-facts-v1.json
+            research/oman-2025-published-depth-operator-v1.json
+            plans/oman-2025-published-depth-protocol-v1.md
+            .github/workflows/oman-2025-published-depth-v1.yml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Synthetic checks then one bounded primary HTML acquisition
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_oman_2025_published_depth_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 70s python analysis/verify_oman_2025_published_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oman-2025-published-depth-v1
+          path: oman-2025-published-depth-v1/
+          retention-days: 7
