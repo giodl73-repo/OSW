@@ -1,0 +1,63 @@
+{
+  "schema": "osw.a20-gulf-stream-cast-acquisition-operator.v1",
+  "case_operation_cap": 3,
+  "case_response_byte_cap": 600000,
+  "per_response_byte_cap": 200000,
+  "case_time_cap_seconds": 180,
+  "metadata_numeric_attribute_cap": 10000,
+  "native_scalar_case_cap": 250000,
+  "native_byte_case_cap": 7000000,
+  "future_selected_levels_per_cast_cap": 40,
+  "future_measurement_node_cap": 6000,
+  "future_native_cell_cap": 20000,
+  "source_cruise_page": "https://currents.soest.hawaii.edu/go-ship/ladcp/2021_A20/index.html",
+  "source_QC_report": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2021_A20/2021_A20_LADCP_CruiseReport_QC_Report.pdf",
+  "source_QC_author": "A.M.Thurnherr",
+  "source_QC_report_date": "2022-03-04",
+  "source_access": "Provider cruise page and primary QC-report rendered text reviewed2026-11-05. No original HTML/PDF byte custody; no figure digitization. QC report identifies stations014-021 Gulf Stream crossing and final constrained horizontal profiles as high quality; known problematic032-044 excluded. Native scientific admission awaits original-file header/QC review.",
+  "url_discovery_tier": "PROSPECTIVE_FILENAME_INFERENCE_FROM_LISTED_STATION_NETCDF_LINKS_AND_OBSERVED_016_TXT_BASENAME_NOT_VERIFIED_HREF_STRINGS",
+  "targets": [
+    {
+      "station": "014",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2021_A20/014.nc",
+      "provider_listed_size_text": "133.1 KB",
+      "provider_listed_max_cast_depth_m": 4761,
+      "candidate_current": "current:gulf-stream",
+      "current_axis_independently_verified": false
+    },
+    {
+      "station": "015",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2021_A20/015.nc",
+      "provider_listed_size_text": "140.1 KB",
+      "provider_listed_max_cast_depth_m": 5091,
+      "candidate_current": "current:gulf-stream",
+      "current_axis_independently_verified": false
+    },
+    {
+      "station": "016",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2021_A20/016.nc",
+      "provider_listed_size_text": "141.9 KB",
+      "provider_listed_max_cast_depth_m": 5139,
+      "candidate_current": "current:gulf-stream",
+      "current_axis_independently_verified": false
+    }
+  ],
+  "eligibility": {
+    "depth_reference_admission": false,
+    "physical_current_bottom": false,
+    "seasonal_extrema": false,
+    "volume": false,
+    "route_projection": false,
+    "runtime": false
+  },
+  "input_sha256": {
+    ".github/workflows/a20-gulf-stream-cast-headers-v1.yml": "3160d2d0376026ce55333516c303b9ffa540f73da59a3d5dd09ee9d8d68085a8",
+    "analysis/acquire_a20_gulf_stream_cast_headers_v1.py": "97b8354c856d54380629adb8b7acc4293bedabc04ce16001a8366366df4836c2",
+    "analysis/test_a20_gulf_stream_cast_headers_v1.py": "5f026474b6e94f1ebbc9767645720031b1d7a76b7777c0ef9f4eeebb29c88d71",
+    "plans/a20-gulf-stream-cast-header-custody-protocol-v1.md": "ac0bbaa903404850b84a065e3a74df040b3d9a69742477fbd0b8f3e9447baf8a"
+  },
+  "prior_reference_inventory_rows_preserved": 860,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

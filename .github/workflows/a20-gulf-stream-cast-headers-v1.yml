@@ -1,0 +1,52 @@
+name: A20 Gulf Stream full-depth cast header custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/a20-gulf-stream-cast-headers-v1.yml
+      - analysis/acquire_a20_gulf_stream_cast_headers_v1.py
+      - analysis/test_a20_gulf_stream_cast_headers_v1.py
+      - research/a20-gulf-stream-cast-acquisition-operator-v1.json
+      - plans/a20-gulf-stream-cast-header-custody-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/a20-gulf-stream-cast-headers-v1.yml
+            analysis/acquire_a20_gulf_stream_cast_headers_v1.py
+            analysis/test_a20_gulf_stream_cast_headers_v1.py
+            research/a20-gulf-stream-cast-acquisition-operator-v1.json
+            plans/a20-gulf-stream-cast-header-custody-protocol-v1.md
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install and check bounded source-custody operator
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_a20_gulf_stream_cast_headers_v1.py' -v
+      - name: Acquire three original cast files once and inspect headers only
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_a20_gulf_stream_cast_headers_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a20-gulf-stream-cast-headers-v1
+          path: a20-gulf-stream-cast-headers-v1/
+          retention-days: 7
+          if-no-files-found: error
