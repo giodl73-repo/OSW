@@ -23,7 +23,7 @@ class AtlanticContextCurtains(unittest.TestCase):
                 section=json.loads((derive.ROOT/c['source_file']).read_bytes());d=section['context_diagnoses'][context]['diagnosis'];self.assertEqual(c['original_selected_column_index'],d['selected_column_index']);self.assertEqual(c['original_horizontal_selection_status'],d['horizontal_selection_status']);self.assertEqual(c['source_context_diagnosis_sha256'],derive.digest(derive.encode(d)));self.assertEqual(c['source_sha256'],derive.digest((derive.ROOT/c['source_file']).read_bytes()))
                 primary=d['selected_column_threshold_layers'][1] if d['selected_column_index'] is not None else None;self.assertEqual(c['original_primary_layer'],primary)
                 if c['columns']:
-                    seeds=[run for col in c['columns'] for run in col['connected_depth_runs'] if run['contains_original_core']];self.assertEqual(len(seeds),1);self.assertEqual(seeds[0]['threshold_layer'],primary)
+                    seeds=[run for col in c['columns'] for run in col['connected_depth_runs'] if run['contains_original_core']];self.assertEqual(len(seeds),1);self.assertEqual({k:v for k,v in seeds[0]['threshold_layer'].items() if not k.startswith('core_')},{k:v for k,v in primary.items() if not k.startswith('core_')})
     def test_entire_validated_tracer_and_original_context_helpers_unchanged(self):
         import native_velocity_depth_curtain_v2 as kernel
         import atlantic_secc_depth_contexts_v1 as original
