@@ -1,0 +1,551 @@
+{
+  "schema": "osw.pgw-source-relative-core-depth-projection.v1",
+  "entity_id": "current:persian-gulf-saline-overflow",
+  "status": "SOURCE_CONSTRAINED_LINEAR_REGIONAL_SCENARIO_FAMILY",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC002146",
+  "doi": "10.1029/2003JC002146",
+  "source_locator": "Section3.2 paragraph15, R14-to-R02 net depth change; Section2/Table1 campaign context.",
+  "source_facts_file": "research/pgw-pous-2004-core-depth-regimes-source-facts-v1.json",
+  "input_sha256": {
+    "research/pgw-pous-2004-core-depth-regimes-source-facts-v1.json": "8d30b686c582e95228b211f95529ea3ed0bb3b97771850bef3592af425d45692",
+    "research/current-depth-pgw-core-depth-regimes-reference-inventory-source-review-v19.json": "4006c45e1397e63f8eb0f120751a2e5d19432fa71f063464abd60bdc8a112cf3",
+    "research/current-depth-reference-inventory-v20.json": "07c78f2ddd1641e6d10b1be4ebea1cb1930341dd5d1912472491f884707ab585",
+    "research/current-depth-route-projection-inventory-v48.json": "8c10344d2faaef7854ecc47b3039587a0553e6a7a95b98bbdf3a38b019d79c7c",
+    "analysis/project_pgw_relative_core_depth_v1.py": "766c4f12d1dc93bfd956ce930c7ec7e72d9c9c14f5afac0e454da30728135121",
+    "analysis/test_pgw_relative_core_depth_v1.py": "dad8dd9894a3b53b0f1f8de8d6d77f0aee5b6ea4a79ecdb5212ee7401f95e5b6",
+    "plans/pgw-relative-core-depth-protocol-v1.md": "d07101869826c83a01e86d14669e09494f45e04f18769e1cbb08a5367cbb2dd0"
+  },
+  "campaign_window": {
+    "start": "1999-10-08",
+    "end": "1999-11-10"
+  },
+  "exact_common_occupation_time": null,
+  "coordinate": {
+    "kind": "source_relative_path_distance",
+    "origin_section": "R14",
+    "end_section": "R02",
+    "approximate_length_km": 300,
+    "geographic_geometry": null,
+    "length_uncertainty_km": null
+  },
+  "metric": "salinity_maximum_core_depth_change",
+  "depth_positive_direction": "down",
+  "source_constraint": {
+    "endpoint_shoaling_m_exclusive_interval": [
+      0,
+      30
+    ],
+    "absolute_endpoint_depths_m": null,
+    "constraint_applies_to_net_endpoint_change_only": true
+  },
+  "assumptions": [
+    "Linear change is an OSW scenario assumption. The source constrains net endpoint change, not monotonicity or intermediate depth excursions.",
+    "Seven50km samples represent evaluation spacing of a continuous linear function, not station spacing or measurement resolution.",
+    "Endpoint changes5/15/25m are illustrative choices inside the reported limit, not observations, quantiles, likelihoods or best estimates.",
+    "The optional200m R14 datum is an explicit illustrative assumption motivated by the regional near200m core description; no measured R14 endpoint depth is available.",
+    "The300km coordinate is approximate as reported; no mapped route, exact chainage or length uncertainty is recovered.",
+    "Campaign sections were occupied on different dates. This is not an instantaneous, monthly, seasonal or annual profile.",
+    "Salinity-core depth is not velocity-core depth, flow top, bottom or thickness. No centered layer, width/thickness join, area or stored volume is inferred."
+  ],
+  "scenario_family_range_is_uncertainty": false,
+  "annual_range_m": null,
+  "physical_layer_thickness_m": null,
+  "volume_m3": null,
+  "physical_state_join_eligible": false,
+  "whole_current_profile": false,
+  "old_projection_inventory_modified": false,
+  "new_primary_measurements": 0,
+  "profiles": [
+    {
+      "id": "pgw-r14-r02-linear-shoaling-5m-v1",
+      "endpoint_shoaling_m": 5,
+      "statistical_weight": null,
+      "relative_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -0.8333333333333333,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -1.6666666666666665,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -2.5,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -3.333333333333333,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -4.166666666666667,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -5.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ],
+      "illustrative_absolute_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 200.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -0.8333333333333333,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 199.16666666666666,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -1.6666666666666665,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 198.33333333333334,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -2.5,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 197.5,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -3.333333333333333,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 196.66666666666666,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -4.166666666666667,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 195.83333333333334,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -5.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 195.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ]
+    },
+    {
+      "id": "pgw-r14-r02-linear-shoaling-15m-v1",
+      "endpoint_shoaling_m": 15,
+      "statistical_weight": null,
+      "relative_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -2.5,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -5.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -7.5,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -10.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -12.5,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -15.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ],
+      "illustrative_absolute_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 200.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -2.5,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 197.5,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -5.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 195.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -7.5,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 192.5,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -10.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 190.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -12.5,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 187.5,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -15.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 185.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ]
+    },
+    {
+      "id": "pgw-r14-r02-linear-shoaling-25m-v1",
+      "endpoint_shoaling_m": 25,
+      "statistical_weight": null,
+      "relative_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -4.166666666666666,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -8.333333333333332,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -12.5,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -16.666666666666664,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -20.833333333333336,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -25.0,
+          "assumed_r14_core_depth_m": null,
+          "scenario_core_depth_m": null,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ],
+      "illustrative_absolute_samples": [
+        {
+          "source_distance_from_R14_km": 0,
+          "relative_core_depth_change_m": -0.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 200.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -0.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": false,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 50,
+          "relative_core_depth_change_m": -4.166666666666666,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 195.83333333333334,
+          "linear_scenario_depth_change_open_lower_bound_m": -5.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 100,
+          "relative_core_depth_change_m": -8.333333333333332,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 191.66666666666666,
+          "linear_scenario_depth_change_open_lower_bound_m": -10.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 150,
+          "relative_core_depth_change_m": -12.5,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 187.5,
+          "linear_scenario_depth_change_open_lower_bound_m": -15.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 200,
+          "relative_core_depth_change_m": -16.666666666666664,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 183.33333333333334,
+          "linear_scenario_depth_change_open_lower_bound_m": -20.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 250,
+          "relative_core_depth_change_m": -20.833333333333336,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 179.16666666666666,
+          "linear_scenario_depth_change_open_lower_bound_m": -25.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        },
+        {
+          "source_distance_from_R14_km": 300,
+          "relative_core_depth_change_m": -25.0,
+          "assumed_r14_core_depth_m": 200,
+          "scenario_core_depth_m": 175.0,
+          "linear_scenario_depth_change_open_lower_bound_m": -30.0,
+          "linear_scenario_depth_change_open_upper_bound_m": 0,
+          "bounds_exclusive": true,
+          "bounds_role": "linear_family_only_not_observed_pointwise_limits",
+          "distance_is_approximate_source_path_coordinate": true
+        }
+      ]
+    }
+  ],
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
