@@ -1,0 +1,47 @@
+name: WBTS2025 original profile index custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/capture_wbts2025_profile_index_v1.py
+      - analysis/test_wbts2025_profile_index_v1.py
+      - research/wbts2025-native-depth-case-operator-v1.json
+      - plans/wbts2025-native-depth-case-protocol-v1.md
+      - .github/workflows/wbts2025-profile-index-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/capture_wbts2025_profile_index_v1.py
+            analysis/test_wbts2025_profile_index_v1.py
+            research/wbts2025-native-depth-case-operator-v1.json
+            plans/wbts2025-native-depth-case-protocol-v1.md
+            .github/workflows/wbts2025-profile-index-v1.yml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU checks and original directory custody
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_WBTS2025_INDEX_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_wbts2025_profile_index_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 70s python analysis/capture_wbts2025_profile_index_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wbts2025-profile-index-v1
+          path: wbts2025-profile-index-v1/
+          retention-days: 7
