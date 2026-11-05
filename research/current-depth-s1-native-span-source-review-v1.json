@@ -1,0 +1,96 @@
+{
+  "schema": "osw.current-depth-s1-native-span-source-review.v1",
+  "status": "PASS_ORIGINAL_PROFILES_AND_INVARIANT_LOCAL_SPANS_ABSOLUTE_DEPTH_UNQUALIFIED",
+  "source_commit": "e0b756551a999c6783fd4252479c94eac669e602",
+  "cloud_run_id": 42067490592,
+  "cloud_semantic_tests_passed": 5,
+  "actual_complete_profile_and_measurement_json_roundtrips_passed": true,
+  "outputs": {
+    "research/source-data/s1-core-layer-spans-v1/primary-data.csv": {
+      "bytes": 133935,
+      "sha256": "8ea7b8cdd74e7ac33251f90f6423088cd413aa7a0614bf517905a86a308c03e4"
+    },
+    "research/s1-observed-native-profiles-v1.json": {
+      "bytes": 307169,
+      "sha256": "e44eb49d6486b8b51f53d2953480d2cf8ab9363779e7af5ecae9e9aea490c717"
+    },
+    "research/s1-core-layer-spans-v1.json": {
+      "bytes": 151205,
+      "sha256": "b7a09248ef1b57b59f32486ff8ce08445f9bc6b50bf1a2ab0102697453390c78"
+    },
+    "research/s1-observed-depth-closed-case-ledger-v1.json": {
+      "bytes": 1832,
+      "sha256": "8f0ad36b5c0af38ceecb14570ff6a9432b5f5b72a7f1432a6e0009039d2e3389"
+    }
+  },
+  "source_attribution": {
+    "publisher": "Italian Arctic Data Center",
+    "institution": "CNR Institute of Polar Sciences and OGS",
+    "contributor": "Francesco Paladini de Mendoza",
+    "dataset_id": "8e2f4c44-d784-40ed-94aa-ef5fa505761a",
+    "title": "S1 Mooring ADCP data @ 420m looking upward",
+    "license": "CC-BY-4.0",
+    "metadata_file": "research/source-data/s1-mooring-adcp-metadata-v1/primary-info.json",
+    "metadata_sha256": "ef5e6897bd0a3b6cc44db92a3957779e671ffa6e5ccdcb39b5e88ae7fcd6d4fd"
+  },
+  "artifact": {
+    "id": 13433483274,
+    "sha256": "9af08dbe2b244d5feed954838a7d4953ece1dd6b7732ffeb53f85abd2f55aeb2",
+    "retained_once": true
+  },
+  "metadata_cloud_run_id": 42066341145,
+  "metadata_artifact": {
+    "id": 13434631486,
+    "sha256": "ede0b25dc91de41e77376438831271b77226c7e641f9a4aa56b6715b8b05dcfd",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "native_dated_profiles": 48,
+    "selected_levels_per_profile": 32,
+    "threshold_variants": 3,
+    "span_records": 144,
+    "resolved_sampled_spans": 138,
+    "decoded_cells": 10752,
+    "measurement_nodes": 4608,
+    "new_canonical_depth_references": 0
+  },
+  "cloud_reported_original_case": {
+    "attempted_provider_operations": 2,
+    "unused_provider_operations_surrendered": 6,
+    "remaining_provider_operations": 0,
+    "provider_case_closed": true,
+    "cumulative_raw_bytes": 155283,
+    "numeric_upper_bound": 65564,
+    "cumulative_active_seconds": 4.009061069999987
+  },
+  "native_csv_sha256": "8ea7b8cdd74e7ac33251f90f6423088cd413aa7a0614bf517905a86a308c03e4",
+  "example": {
+    "time_utc": "2023-07-10T00:00:00Z",
+    "threshold_m_s": 0.1,
+    "sampled_connected_span_m": 200.0,
+    "reaches_sampled_numeric_coordinate_boundary": true,
+    "physical_layer_thickness_established": false
+  },
+  "scientific_review": [
+    "These are actual provider velocity profiles retained raw before parsing, not a literature depth summary or model field. All original selected rows stay in the native CSV.",
+    "There are 48 temporally correlated half-hourly profiles, not 144 independent observations. Threshold variants share the same profiles and original case budget.",
+    "Depth coordinates are negative despite positive-down and EPSG:5831 declarations. No sign reversal, absolute depth, or shallow/deep endpoint interpretation is admitted.",
+    "Horizontal source orientation is not independently verified. Core-relative dot products and speeds are invariant under a common horizontal rotation within a profile, but do not establish geographic current direction or water-mass identity.",
+    "The source coordinate is nominal, calculated from mooring diagram and other sensors; sampled bin-coordinate spans do not establish true instantaneous physical layer thickness or an uncertainty bound.",
+    "Only provider QC1 finite pairs qualify. Missing/QC bins, vertical gaps and domain edges terminate connectivity. Threshold brackets are not interpolated.",
+    "A connected bin-center span is the span of the sampled threshold-selected run. Physical layers may extend beyond sampled/QC support; no full extent or physical bottom inferred. A single bin produces null span, not a zero-depth current.",
+    "The example 200m span reaches a sampled boundary and stops at QC/missing data at its other end. It does not establish an exact 200m physical layer.",
+    "S1 is offshore southwest Svalbard in a region of interacting flows. No named-current attribution is admitted; this packet is not assigned to West Spitsbergen or copied to Norwegian/branch owners.",
+    "The 0.05/0.10/0.20m/s thresholds are methodological variants, not confidence limits or seasonal ranges. Tides are not removed. One July day is not an annual range.",
+    "The inherited ledger raw_sha256 identifies the original metadata; native_raw_sha256 identifies the CSV. raw_bytes is cumulative across both operations.",
+    "The original S1 case is closed with unused operations surrendered. Do not acquire another instrument/month/format under a renewed budget or replay these source/artifact targets."
+  ],
+  "canonical_catalog_unchanged": "research/current-depth-reference-inventory-v38.json",
+  "canonical_reference_admission_performed": false,
+  "absolute_current_depth_qualified": false,
+  "physical_current_thickness_qualified": false,
+  "named_current_assignment_performed": false,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}
