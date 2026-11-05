@@ -1,0 +1,63 @@
+{
+  "schema": "osw.nec-subarctic-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_nec_subarctic_paired_depth_v1.py": "ce6bdeb2b181a82a290d8ce749e3815fc26403f1692154eafe07240ff1649bd8",
+    "analysis/test_nec_subarctic_paired_depth_v1.py": "65249251805449e229464d3be3f3f851ef040bd477551ced0ba97b6f4be0f831",
+    "plans/nec-subarctic-paired-depth-v1.md": "a419a78c48aee7fbf808384b24e2c78dc1c7b74d150de5e602f2936ee142d537",
+    ".github/workflows/nec-subarctic-paired-depth-v1.yml": "c7ea35535e65b123f23190d0602e7170d0235f3ed9233726c80f1d69b66dbf7c",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/nec-subarctic-velocity-depth-curtains-v1.json": "6bbfa3e7e5d943db666ba6ffd08b9135ffb55b53c138de2e2631270d2d3c02c5",
+    "research/current-depth-nec-subarctic-velocity-curtains-source-review-v1.json": "b9ebb61db998907a93936c96c8b0a3dc7c4017fff114e5204961e977cf821bb0",
+    "research/nec-subarctic-depth-sections-operator-v1.json": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819"
+  },
+  "source_cases": 34,
+  "original_supported_cases": 29,
+  "original_axis_gap_cases": 5,
+  "source_owner_case_counts": {
+    "current:pacific-north-equatorial": 14,
+    "current:atlantic-north-equatorial": 8,
+    "current:aleutian": 12
+  },
+  "primary_thresholds_m_s": {
+    "current:pacific-north-equatorial": 0.1,
+    "current:atlantic-north-equatorial": 0.1,
+    "current:aleutian": 0.05
+  },
+  "surface_selection_gates_m_s": {
+    "current:pacific-north-equatorial": 0.05,
+    "current:atlantic-north-equatorial": 0.05,
+    "current:aleutian": 0.02
+  },
+  "source_integral_core_window_m": [
+    0,
+    200
+  ],
+  "case_storage": "ordered-object-tables.v1 lossless ordered keys/list tags/string interning;no numeric rounding or dropped values",
+  "full_scientific_json_bytes_and_both_csv_roundtrips_required": true,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
