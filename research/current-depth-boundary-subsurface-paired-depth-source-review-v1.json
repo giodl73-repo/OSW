@@ -1,0 +1,118 @@
+{
+  "schema": "osw.current-depth-boundary-subsurface-paired-depth-source-review.v1",
+  "status": "PASS_FOUR_SCOPES_60_CASES_39_FINITE_2_CENSORED_ANCHORS_19_AXIS_GAPS",
+  "source_commit": "ab4a46a846e2b18fb4ab2b642898bc999364dddd",
+  "producer_run_id": 42117521523,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42117521523",
+  "cloud_semantic_tests_passed": 18,
+  "actual_complete_60_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13457127468,
+    "bytes": 194062,
+    "sha256": "54bcacf35f87b7d320b08a917514516a926ebfd0f1ff483d28a13f7594067813",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "source_cases": 60,
+    "original_unresolved_cases": 19,
+    "cases_with_integrable_partial_geometry": 40,
+    "retained_column_descriptors": 2852,
+    "retained_vertical_runs": 1326,
+    "finite_paired_column_runs": 1283,
+    "censored_runs_with_minimum_support": 43,
+    "conditional_strip_patches": 1141,
+    "strips_without_integrable_geometry": 1709,
+    "rejected_ambiguous_links": 98,
+    "original_axis_proxy_anchors": 41,
+    "finite_paired_axis_anchors": 39,
+    "censored_axis_anchors_with_minimum_support": 2,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:mauritanian": {
+      "source_cases": 20,
+      "finite_paired_axis_anchors": 14,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 6,
+      "partial_geometry_cases": 14
+    },
+    "current:baffin": {
+      "source_cases": 20,
+      "finite_paired_axis_anchors": 18,
+      "censored_axis_anchors": 2,
+      "axis_gaps": 0,
+      "partial_geometry_cases": 19
+    },
+    "current:pacific-north-subsurface-countercurrent": {
+      "source_cases": 10,
+      "finite_paired_axis_anchors": 5,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 5,
+      "partial_geometry_cases": 5
+    },
+    "current:atlantic-north-equatorial-undercurrent": {
+      "source_cases": 10,
+      "finite_paired_axis_anchors": 2,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 8,
+      "partial_geometry_cases": 2
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 71445,
+    "query_unique_json_bytes": 3526336,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.3078078929999997,
+    "whole_output_bytes": 2218468,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All60 original dated cases retained:20Mauritanian,20Baffin,10Pacific North Subsurface Countercurrent,10Atlantic North Equatorial Undercurrent. The first two retain March/June/September/December15,2022; the northern pair retain January/July15,2022 exact model instants. No padded seasons,seasonal means,annual extrema or cross-date interpolation.",
+    "Original fixed-latitude axes retained for Mauritanian/Baffin; fixed-longitude for the northern pair. Exact original source operator,section definition,native transverse index progression and5km fixed-axis tolerance are checked. No axis transpose,skipped column or replacement core.",
+    "Original strict component cutoffs remain0.1m/s northward0degrees Mauritanian,0.05m/s southward180degrees Baffin,0.1m/s eastward90degrees both northern scopes. No surface or temperature gate. Baffin5cm/s is never normalized to10cm/s.",
+    "Core-search and selection windows retain original owner overrides50\u2013300mMauritanian/100\u2013300mBaffin,or explicit method defaults100\u2013400mfor the northern pair. Owner overrides take precedence; missing defaults raise. These strata select cores,do not cap connected depth or require detached subsurface tops.",
+    "Both upper and lower component boundaries are retained. Thickness is lower minus upper,not lower depth: synthetic125\u2013350m layer yields225m. Surface-connected layers remain allowed when the original source connects them,even with100\u2013400mcore-selection windows. Neither a core depth nor a search window is relabeled as body thickness.",
+    "Original41supported cases retain41axis-proxy anchors:39finite paired contours,2censored Baffin anchors.19axis gaps remain explicit.40cases have integrable partial geometry; Baffin19of20does not erase the remaining supported axis anchor. Source-declared4092native columns are not relabeled as2852available compiled column descriptors.",
+    "All1326available vertical runs retained:1283finite paired runs and43censored runs. Minimum span uses first-to-last contiguous qualifying native depth under the original piecewise-linear component model. It is not surface depth,finite bottom,physical current bound,uncertainty or annual range. Single-level zero is uninformative,not zero actual thickness/absence. Censored thickness and boundaries remain null.",
+    "Only uniquely overlapping runs on consecutive original transverse columns within20km at spherical radius6371008.8m form linear strips.1141accepted partial patches,1709strips without integrable geometry,98ambiguous links rejected. No split/merge,disjoint run,censor,missing or lateral gap is closed from neighboring support.",
+    "Partial fixed-axis component areas are not independently flow-normal sections,whole current widths or physical bodies. Equivalent area/span thickness omits gaps. Sampling brackets are conditional geometry,not confidence intervals or guaranteed physical bounds. No between-section interpolation,terrain clearance,whole-route physical depth or water volume.",
+    "Mauritanian retains regional surface/undercurrent and opposing-flow context. Baffin component support does not establish Arctic-water classification. Northern same-sign NECC/EUC layers may remain connected; depth selection does not independently prove isolated undercurrent identity. No parent depth inheritance or additive overlapping bodies.",
+    "Eighteen cloud semantic tests passed: analytic geometry/units,censorship,all60cases/four owners/41anchors/19gaps,mixed exact dates/axes,explicit method defaults/owner overrides,Baffin5cm/s,lower-minus-upper thickness,selection-not-detachment,source immutability,mutation rejection,CSV context and lossless JSON/both CSV parity. Actual complete60case report expansion and both CSV byte streams roundtrip exactly.",
+    "Offline sequential one idle cloud CPU;shared absolute60s including tests and producer,outer timeout plus SIGALRM/SIGTERM,fresh output. Independent ordinary DescriptorQueryv3 explicit0prior numeric/bytes reserves71445tokens/3526336uniqueJSONbytes before decode/cache under250k/32MB/2.5MBpacket. Whole output2218468bytes under2.4MB,shared1.3078078929999997seconds. No native/archive/provider target or closed acquisition replay.",
+    "Four-member artifact retained once after all branch jobs terminal;exact bytes/hash installed. Shared-note schema osw.boundary-subsurface-paired-depth.v2 expands to complete scientific report and original CSV key order. HYCOM Consortium,NRL,COAPS-FSU attribution retained. No new observations/canonical references.111identities,908scalar-reference inventory,102eddy references,main,UI,runtime,WASM unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "outputs": {
+    "research/boundary-subsurface-paired-depth-v1.json": {
+      "bytes": 2110609,
+      "sha256": "a05ad281005acc636429c8f2e4f6c5c5909a378e64b0a7753a687480399dd530"
+    },
+    "research/boundary-subsurface-paired-depth-v1.csv": {
+      "bytes": 83299,
+      "sha256": "b5b40d6dd20d1bef925fb2f5e21ce680cb738d16f5a279ca2ac87dc6ff322d1a"
+    },
+    "research/boundary-subsurface-depth-anchors-v1.csv": {
+      "bytes": 23052,
+      "sha256": "f765446397a3eaae2f4ec4ad8940ded776959bbb3cfb1e1576cd8e3012abb91c"
+    },
+    "research/boundary-subsurface-paired-depth-query-ledger-v1.json": {
+      "bytes": 1504,
+      "sha256": "a87e6351f215f3bd5d9db34a67fcad90b94861e974cecb970554f9f9553d44b7"
+    }
+  }
+}
