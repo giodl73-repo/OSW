@@ -1,0 +1,109 @@
+{
+  "schema": "osw.current-depth-makassar-etopo-terrain-source-review.v1",
+  "status": "PASS_COARSE_TERRAIN_SCREEN_FLAGS_TWENTY_TWO_PATCHES_FOR_REVIEW",
+  "source_commit": "26caee6aa604e6346a76b66e510046a8e788078b",
+  "producer_run_id": 42092002141,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42092002141",
+  "cloud_semantic_tests_passed": 8,
+  "complete_screen_json_csv_roundtrip_passed": true,
+  "artifact": {
+    "id": 13445387349,
+    "sha256": "b317d7325f3a6d339c1f432a91f9d331d2ac39aaf16f45d01c422c545ebb0199",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/makassar-etopo-coarse-terrain-screen-v1.json": {
+      "bytes": 596423,
+      "sha256": "6b2c45307383b50e6420817fc7a9ce66891f59725ae85bf3b652b1702247011c"
+    },
+    "research/makassar-etopo-coarse-terrain-screen-v1.csv": {
+      "bytes": 57410,
+      "sha256": "70d653146107d47bb0ae5b7809b7a64dec347c35e72a8c48b049b7dcbee01352"
+    },
+    "research/makassar-etopo-terrain-case-ledger-v1.json": {
+      "bytes": 2352,
+      "sha256": "12057a9ff06f49b5bd2a703896c2a96d6a8408edfbfa625dccbeb50b1be08f66"
+    },
+    "research/makassar-etopo-terrain-query-ledger-v1.json": {
+      "bytes": 1193,
+      "sha256": "b7eb4b18011152e4f9ee9060ad82353b8a9398a364b0d1c3da5c45958bf4e868"
+    },
+    "research/source-data/makassar-etopo-terrain-screen-v1/raster-metadata.json": {
+      "bytes": 772,
+      "sha256": "61b9f792556273f1bcbf167096d4b27dca0c422fa154218841cd7ba5e7143cf9"
+    },
+    "research/source-data/makassar-etopo-terrain-screen-v1/terrain.tif.base64": {
+      "bytes": 17745,
+      "sha256": "fcf797d58c90cb5822252bbc84446bccf9000113e03711148cb446d3db640b89",
+      "encoding": "Opaque base64 of exact original GeoTIFF source bytes; not a raster decode or alternate provider product",
+      "decoded_source_bytes": 13307,
+      "decoded_source_sha256": "a5f8a69a52b8a1e2dd56bf06f1e18dc972aa5f87059f553ca4d2e1db83f7db1c"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_depth_surface_patches": 59,
+    "terrain_grid_cells_decoded": 2849,
+    "comparison_node_occurrences": 2950,
+    "patch_status_counts": {
+      "NO_SAMPLED_CONFLICT_NOT_TERRAIN_VALIDATION": 37,
+      "OFFSET_SENSITIVE_SAMPLED_CONFLICT": 1,
+      "SAMPLED_CONFLICT_AT_ALL_TESTED_OFFSETS": 21
+    },
+    "new_current_depth_measurements": 0,
+    "new_native_velocity_values_decoded": 0,
+    "physical_volumes_admitted": 0
+  },
+  "cloud_reported_case": {
+    "provider_operations_attempted": 2,
+    "provider_operations_remaining": 0,
+    "raw_bytes_retained": 14079,
+    "numeric_scalar_upper_bound": 46392,
+    "elapsed_seconds_including_tests": 0.9584457800000052,
+    "closed": true
+  },
+  "selected_terrain": {
+    "service": "https://gis.ngdc.noaa.gov/arcgis/rest/services/DEM_mosaics/DEM_global_mosaic/ImageServer",
+    "OBJECTID": 4593,
+    "Name": "ETOPO_2022_v1_15s_surface_elev",
+    "CellsizeArcseconds": 15,
+    "service_VerticalDatum_attribute": null,
+    "nominal_vertical_reference_basis": "ETOPO2022primary product documentation specifiesEGM2008geoid elevation; no independent local datum reconciliation",
+    "source_metadata_sha256": "61b9f792556273f1bcbf167096d4b27dca0c422fa154218841cd7ba5e7143cf9",
+    "raw_geotiff_sha256": "a5f8a69a52b8a1e2dd56bf06f1e18dc972aa5f87059f553ca4d2e1db83f7db1c",
+    "raw_geotiff_bytes": 13307,
+    "raw_metadata_bytes": 772,
+    "export_grid_shape": [
+      77,
+      37
+    ],
+    "export_bbox": [
+      117.48,
+      -4.04,
+      118.96000000000001,
+      -0.96
+    ],
+    "export_step_degrees": 0.04,
+    "resampling": "nearest_neighbor"
+  },
+  "scientific_review": [
+    "This new independent environmental terrain case checks assumed Makassar depth surfaces; it does not collect new current velocity/depth profiles or renew any closed velocity/mooring/source budget. All59original patches remain present and all source surfaces/volumes remain byte-exact.",
+    "Only the selected ETOPO2022rasterID4593was locked into the numeric F32nearest-neighbor GeoTIFF export; the heterogeneous default DEM mosaic was not used. Metadata identifies the15arcsecond surface-elevation product. Bed/surface differ under ice sheets,not in this Makassar region. Exact metadata and TIFF body hashes/custody are retained.",
+    "The service VerticalDatum attribute is null. Nominal EGM2008orthometric elevation follows the primary ETOPO2022product documentation,not a recovered local datum transform. Current depths have their original positive-down provider sea-surface context. No tide,geoid,time-varying sea level,model-grid or datum reconciliation is established.",
+    "One coarse0.04degree export covers all original footprints with a one-cell margin. CRS,one-bandF32type,dimensions,affine pixel registration and bounds were checked before decoding all2849reserved values. This samples the underlying15arcsecond product sparsely; it cannot detect every island,shoal,coastline or between-sample obstruction.",
+    "At2950comparison-point occurrences,central bilinear current upper/lower surfaces are evaluated at actual exported pixel centers. Nominal water depth is assumed surface offset minus elevation. Offsets-20,0,+20m are fixed sensitivity scenarios,not observed sea levels,datum corrections or uncertainty bounds. Source sampling-bracket volume ranges are separate and are not reinterpreted as lower-depth uncertainty.",
+    "Twenty-one patches have a lower-surface/grid-bed conflict at one or more sampled points under every tested offset. One patch is offset-sensitive. Thirty-seven have no sampled conflict,which is not terrain validation or proof of current continuity. These are discrepancies against a gridded product under assumptions,not proof that observed currents are beneath the actual seafloor.",
+    "No current boundary is clipped to the bed,no source current depth/volume is recalculated,and no missing flow is filled with seabed depth. All physical current-depth and physical-volume admission remains zero. The flagged candidates need terrain/datum/model review before stronger use; no-sampled-conflict candidates retain interpolation and subgrid uncertainty.",
+    "The original case made exactly two successful provider operations,metadata then locked numeric export,both raw bodies retained before parsing. Raw14079bytes,combined numeric upper bound46392,2849native terrain values,zero new native velocity values and0.9584457800000052seconds including synthetic tests remain below the declared caps. Both provider operations are spent; this case is closed with no retries/replays/alternate requests.",
+    "Eight synthetic cloud tests cover bilinear evaluation,prospective grid/node caps,locked source selection,correct offset signs,persistent/sensitive/missing/no-sampled-conflict states,no bed clipping or physical promotion,and immutable original volume values. The actual59-patch report and CSV roundtrip passed. Scientific parsing,terrain decoding,geometry,numerical assembly and tests ran only in cloud sequentially on one idleCPU.",
+    "The exact rawTIFF is retained in the original cloud artifact and local ignored custody cache. Its tracked base64 representation is an opaque byte-preserving transport for the inline-UTF8GitTreepublication path; decoding that representation reconstructs the original13307bytes and original hash. No TIFF pixels were decoded or scientific processing performed locally.",
+    "Primary attribution:NOAA/NCEI ETOPO2022Global Relief Model doi:10.25921/fd45-gt74,https://www.ncei.noaa.gov/products/etopo-global-relief-model. Original HYCOM/NRL/COAPS-FSU attribution remains in the current-source chain. Canonical908references,old projection inventory,main,runtime/defaultqueryUI/WASM and102eddy references remain unchanged. Programme incomplete."
+  ],
+  "source_credit": "NOAA National Centers for Environmental Information ETOPO2022Global Relief Model,doi:10.25921/fd45-gt74;HYCOM/NRL/COAPS-FSU current-source attribution retained.",
+  "current_boundaries_clipped_to_bed": false,
+  "original_current_surfaces_and_volumes_unchanged": true,
+  "physical_volume_eligibility_changed": false,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

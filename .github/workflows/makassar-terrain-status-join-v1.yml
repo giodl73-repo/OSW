@@ -1,0 +1,55 @@
+name: Makassar terrain status and whole-segment presentation gates v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/join_makassar_terrain_status_v1.py
+      - analysis/test_makassar_terrain_status_join_v1.py
+      - plans/makassar-terrain-reviewed-scenario-gates-v1.md
+      - .github/workflows/makassar-terrain-status-join-v1.yml
+      - research/makassar-terrain-status-join-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  join:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/join_makassar_terrain_status_v1.py
+            analysis/test_makassar_terrain_status_join_v1.py
+            plans/makassar-terrain-reviewed-scenario-gates-v1.md
+            .github/workflows/makassar-terrain-status-join-v1.yml
+            research/makassar-terrain-status-join-operator-v1.json
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            research/makassar-etopo-coarse-terrain-screen-v1.csv
+            research/barents-makassar-conditional-depth-surface-segments-v1.csv
+            research/barents-makassar-conditional-depth-surfaces-v1.geojson
+            research/current-depth-makassar-etopo-terrain-source-review-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Synthetic gate tests then offline typed status join on one idle CPU
+        timeout-minutes: 3
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_TERRAIN_JOIN_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_makassar_terrain_status_join_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/join_makassar_terrain_status_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: makassar-terrain-reviewed-surfaces-v1
+          path: makassar-terrain-reviewed-surfaces-v1/
+          retention-days: 7
+          if-no-files-found: error
