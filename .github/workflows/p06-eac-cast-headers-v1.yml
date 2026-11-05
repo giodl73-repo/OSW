@@ -1,0 +1,55 @@
+name: P06 East Australian original cast custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/p06-eac-cast-headers-v1.yml
+      - analysis/acquire_p06_eac_cast_headers_v1.py
+      - analysis/test_p06_eac_cast_headers_v1.py
+      - research/p06-eac-cast-acquisition-operator-v1.json
+      - plans/p06-eac-source-custody-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/p06-eac-cast-headers-v1.yml
+            analysis/acquire_p06_eac_cast_headers_v1.py
+            analysis/test_p06_eac_cast_headers_v1.py
+            analysis/acquire_a20_gulf_stream_cast_headers_v1.py
+            analysis/inspect_retained_a20_gulf_stream_headers_v2.py
+            plans/p06-eac-source-custody-protocol-v1.md
+            research/p06-eac-cast-acquisition-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install bounded custody dependencies on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4
+      - name: Check one-shot controls and retain originals before header inspection
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_P06_CASE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_p06_eac_cast_headers_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_p06_eac_cast_headers_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p06-eac-cast-headers-v1
+          path: p06-eac-cast-headers-v1/
+          retention-days: 7
+          if-no-files-found: error
