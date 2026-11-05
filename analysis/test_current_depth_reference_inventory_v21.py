@@ -15,7 +15,7 @@ class BedformDepthAdmission(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.inventory, cls.addendum, cls.facts, cls.pieces, cls.view = build.build()
-        cls.reader = lambda path: (ROOT / path).read_bytes()
+        cls.reader = staticmethod(lambda path: (ROOT / path).read_bytes())
         cls.before_manifest = json.loads(cls.reader('research/current-depth-reference-inventory-v20.json'))
         cls.before = prior.load_inventory(cls.before_manifest, cls.reader)
         cls.parts = prior.read_parts(cls.before_manifest, cls.reader)
