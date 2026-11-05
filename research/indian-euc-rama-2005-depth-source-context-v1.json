@@ -1,0 +1,42 @@
+{
+  "schema": "osw.indian-euc-rama2005-depth-source-context.v1",
+  "entity_id": "current:indian-equatorial-undercurrent",
+  "source_dataset": "pmelTaoDyAdcp",
+  "direct_source_root": "https://coastwatch.pfeg.noaa.gov/erddap/",
+  "primary_context_review": [
+    {"doi": "10.1029/2008JC005188", "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005188", "locator": "Section2 paragraph7 and Table1; Section3 paragraph17; Figure6 caption.", "reviewed_fact": "Equatorial90E ADCP record includes2005. Study uses40-300m to avoid near-surface backscatter and gappy deeper levels. Its Figure6 and reported maxima use31day smoothing, not individual daily observations."},
+    {"doi": "10.1175/JPO-D-18-0151.1", "url": "https://journals.ametsoc.org/view/journals/phoc/49/1/jpo-d-18-0151.1.xml", "locator": "Section2a Data and methods.", "reviewed_fact": "Daily records span2005 at90E and80.5E. EUC definition includes a thermocline core60-160m beneath weaker or westward surface flow and duration at least one month."},
+    {"doi": "10.1175/JPO-D-14-0225.1", "url": "https://journals.ametsoc.org/view/journals/phoc/45/6/jpo-d-14-0225.1.xml", "locator": "EUC definition and discussion of downward Wyrtki-jet extensions.", "reviewed_fact": "Eastward subsurface flow alone does not establish an undercurrent; a subsurface maximum and persistence matter."}
+  ],
+  "source_access": "Primary publisher text reviewed through web indexed/full-text results. No original figure digitization, raw instrument reconstruction or publication PDF redistribution.",
+  "year": 2005,
+  "months": [2, 3, 4, 5],
+  "continuous_nominal_site": {"latitude_degrees_north": 0, "longitude_degrees_east": 90},
+  "sparse_comparison_nominal_site": {"latitude_degrees_north": 0, "longitude_degrees_east": 80.5, "days_each_month": [14, 15, 16]},
+  "source_query_depth_interval_m": [40, 300],
+  "source_row_selection": "orderByClosest(station,time,depth/10)",
+  "core_search_depth_interval_m": [60, 160],
+  "thresholds_m_s": [0.05, 0.1, 0.2],
+  "primary_threshold_m_s": 0.1,
+  "maximum_contiguous_returned_depth_gap_m": 15,
+  "quality_flags_accepted": [1, 2],
+  "observed_upper_reference_depths_m": [40, 50],
+  "operational_core_upper_reference_contrast_m_s": 0.1,
+  "operational_minimum_consecutive_daily_profiles": 31,
+  "operational_context_definition": "Original selected interior core must exceed both quality-valid40m and50m samples by at least0.1m/s. At90E require31consecutive candidate daily labels without gaps. These operational gates are editorial, not author-reported measurement error or proof of uninterrupted physical flow.",
+  "true_surface_current_comparison_verified": false,
+  "thermocline_membership_independently_verified": false,
+  "physical_current_identity_independently_verified": false,
+  "sparse_site_persistence_may_be_borrowed_from_continuous_site": false,
+  "source_daily_numeric_coverage_independently_verified": false,
+  "qualifications": [
+    "New independent Indian Ocean source programme, disjoint from the exhausted Pacific programme. Reuse retained metadata bytes only; no prior provider target is repeated.",
+    "Core window60-160m and reliable source interval40-300m follow independent Indian regional priors. Core selection, quality, threshold, tied-maximum, gap and censoring rules are fixed before field values.",
+    "A failed operational context gate is not evidence that the Indian EUC is absent. No temperature or true surface data are acquired;40-50m is an observed upper reference only.",
+    "Daily mean-field contours and31day sequences are not mean instantaneous depths, proof of continuous hourly flow, seasonal climatology or annual ranges.",
+    "At80.5E only sparse comparison days are sampled; month-long persistence is unassessed there, regardless of90E results. Nominal sites are not deployment coordinates or current axes.",
+    "Retain all planned profiles, weak/reverse/missing/QC-rejected cases and unresolved boundaries. Threshold spans and resolution brackets are not physical thickness or uncertainty. No width/volume/whole-route inference."
+  ],
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
