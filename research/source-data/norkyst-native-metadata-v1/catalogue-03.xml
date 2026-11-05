@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2">
+  <service name="dap_and_http" serviceType="Compound" base="">
+    <service name="dapService" serviceType="OpenDAP" base="/thredds/dodsC/" />
+    <service name="httpService" serviceType="HTTPServer" base="/thredds/fileServer/" />
+    <service name="wms" serviceType="WMS" base="/thredds/wms/" />
+  </service>
+  <service name="virtualServices" serviceType="Compound" base="">
+    <service name="thisDODS" serviceType="OpenDAP" base="/thredds/dodsC/" />
+    <service name="wms" serviceType="WMS" base="/thredds/wms/" />
+    <service name="wcs" serviceType="WCS" base="/thredds/wcs/" />
+    <service name="subsetServer" serviceType="NetcdfSubset" base="/thredds/ncss/grid/" />
+    <service name="ncml" serviceType="NCML" base="/thredds/ncml/" />
+    <service name="uddc" serviceType="UDDC" base="/thredds/uddc/" />
+    <service name="iso" serviceType="ISO" base="/thredds/iso/" />
+  </service>
+  <dataset name="norkyst_v3/sdepth/2024/">
+    <property name="DatasetScan" value="true" />
+    <metadata inherited="true">
+      <serviceName>dap_and_http</serviceName>
+    </metadata>
+    <catalogRef xlink:href="01/catalog.xml" xlink:title="01" ID="romshindcast/norkyst_v3/sdepth/2024/01" name="01">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="02/catalog.xml" xlink:title="02" ID="romshindcast/norkyst_v3/sdepth/2024/02" name="02">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="03/catalog.xml" xlink:title="03" ID="romshindcast/norkyst_v3/sdepth/2024/03" name="03">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="04/catalog.xml" xlink:title="04" ID="romshindcast/norkyst_v3/sdepth/2024/04" name="04">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="05/catalog.xml" xlink:title="05" ID="romshindcast/norkyst_v3/sdepth/2024/05" name="05">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="06/catalog.xml" xlink:title="06" ID="romshindcast/norkyst_v3/sdepth/2024/06" name="06">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="07/catalog.xml" xlink:title="07" ID="romshindcast/norkyst_v3/sdepth/2024/07" name="07">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="08/catalog.xml" xlink:title="08" ID="romshindcast/norkyst_v3/sdepth/2024/08" name="08">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="09/catalog.xml" xlink:title="09" ID="romshindcast/norkyst_v3/sdepth/2024/09" name="09">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="10/catalog.xml" xlink:title="10" ID="romshindcast/norkyst_v3/sdepth/2024/10" name="10">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="11/catalog.xml" xlink:title="11" ID="romshindcast/norkyst_v3/sdepth/2024/11" name="11">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+    <catalogRef xlink:href="12/catalog.xml" xlink:title="12" ID="romshindcast/norkyst_v3/sdepth/2024/12" name="12">
+      <property name="DatasetScan" value="true" />
+    </catalogRef>
+  </dataset>
+</catalog>

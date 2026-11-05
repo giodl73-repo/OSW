@@ -1,0 +1,55 @@
+name: NorKyst observed native aggregate metadata v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/probe_norkyst_native_aggregate_metadata_v1.py
+      - analysis/test_norkyst_native_aggregate_metadata_v1.py
+      - plans/norkyst-native-aggregate-metadata-protocol-v1.md
+      - research/norkyst-native-aggregate-metadata-operator-v1.json
+      - .github/workflows/norkyst-native-aggregate-metadata-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/norkyst-native-metadata-v1.yml
+            analysis/discover_norkyst_native_metadata_v1.py
+            analysis/probe_norkyst_native_aggregate_metadata_v1.py
+            analysis/test_norkyst_native_aggregate_metadata_v1.py
+            analysis/test_norkyst_native_metadata_v1.py
+            plans/norkyst-native-aggregate-metadata-protocol-v1.md
+            plans/norkyst-native-metadata-protocol-v1.md
+            research/current-depth-norkyst-jutland-dated-depth-summary-source-review-v1.json
+            research/current-depth-norkyst-native-metadata-source-review-v1.json
+            research/norkyst-native-aggregate-metadata-operator-v1.json
+            research/norkyst-native-metadata-operator-v1.json
+            research/source-data/norkyst-native-metadata-v1/catalogue-01.xml
+            research/source-data/norkyst-native-metadata-v1/catalogue-02.xml
+            research/source-data/norkyst-native-metadata-v1/catalogue-03.xml
+            research/source-data/norkyst-native-metadata-v1/catalogue-04.xml
+            research/source-data/norkyst-native-metadata-v1/discovery.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Validate observed-resource planning and use remaining metadata slot
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_norkyst_native_metadata_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_norkyst_native_aggregate_metadata_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/probe_norkyst_native_aggregate_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: norkyst-native-aggregate-metadata-v1
+          path: norkyst-native-aggregate-metadata-v1/
+          retention-days: 7
