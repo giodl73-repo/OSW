@@ -1,0 +1,87 @@
+{
+  "schema": "osw.current-depth-makassar-terrain-status-join-source-review.v1",
+  "status": "PASS_ALL59_FEATURES24_SLOTS_PRESERVED_NINE_SEGMENT_VOLUMES_WITHHELD",
+  "source_commit": "a816010fe2386466a67546878297b6e2537a408a",
+  "producer_run_id": 42094114318,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42094114318",
+  "cloud_semantic_tests_passed": 7,
+  "actual_complete_source_geometry_properties_report_csv_geojson_roundtrip_passed": true,
+  "source_baseline_run_id": 42094114549,
+  "source_baseline_tests_passed": 6,
+  "artifact": {
+    "id": 13446276828,
+    "sha256": "f4aac8beafd6cec0d3fde309ae9fb828be2461eca88963180396633b72c8c97c",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/makassar-terrain-reviewed-depth-surfaces-v1.geojson": {
+      "bytes": 83756,
+      "sha256": "8239821579a0168513fcda7ace25cc38ecc4ce494dc0464f3b2336105a1bb5a1"
+    },
+    "research/makassar-terrain-reviewed-segment-gates-v1.json": {
+      "bytes": 20007,
+      "sha256": "70209fd6e7e0c2c7aacbc810f2a8f5ebc94534f182059cdf3eabd326b2d6a6d5"
+    },
+    "research/makassar-terrain-reviewed-segment-gates-v1.csv": {
+      "bytes": 6290,
+      "sha256": "e9a2584cb4675a89d23ec25072403fb377bd10158cd40a9ebe9527750215a2fd"
+    },
+    "research/makassar-terrain-status-join-query-ledger-v1.json": {
+      "bytes": 1526,
+      "sha256": "dcc27d09724b5babcd64410d6b9f68b8488c24e8e72e09bae4acfe749b337b86"
+    }
+  },
+  "original_terrain_screen": {
+    "review_file": "research/current-depth-makassar-etopo-terrain-source-review-v1.json",
+    "producer_run_id": 42092002141,
+    "native_case_reopened": false,
+    "provider_targets_replayed": false,
+    "raw_tiff_or_native_point_arrays_read": false
+  },
+  "cloud_reported_counts": {
+    "source_features": 59,
+    "source_segment_slots": 24,
+    "terrain_patch_status_counts": {
+      "NO_SAMPLED_CONFLICT_NOT_TERRAIN_VALIDATION": 37,
+      "OFFSET_SENSITIVE_SAMPLED_CONFLICT": 1,
+      "SAMPLED_CONFLICT_AT_ALL_TESTED_OFFSETS": 21
+    },
+    "segment_gate_counts": {
+      "CONDITIONAL_ONLY_COARSE_SCREEN_NOT_VALIDATED": 3,
+      "SOURCE_GAP_NO_DEPTH_SURFACE": 12,
+      "WITHHELD_OFFSET_SENSITIVE_TERRAIN_CONFLICT": 1,
+      "WITHHELD_SAMPLED_TERRAIN_CONFLICT": 8
+    },
+    "features_withheld_by_whole_segment_gate": 39,
+    "physical_volumes_admitted": 0,
+    "new_native_terrain_values_decoded": 0,
+    "new_native_velocity_values_decoded": 0,
+    "new_provider_requests": 0
+  },
+  "cloud_reported_query": {
+    "json_numeric_tokens": 2660,
+    "csv_string_only_numeric_upper_bound": 3577,
+    "combined_numeric_upper_bound": 6237,
+    "combined_unique_bytes": 236486
+  },
+  "scientific_review": [
+    "This is an offline metadata/status join of compiled summaries,not new terrain screening,current depth computation or physical volume measurement. The native terrain case remains closed at two spent provider operations. No raw raster,native terrain-point array report,old source-data or prior producer was read/rerun.",
+    "All59original features,footprints,corner upper/lower depths,sampling ranges and original candidate-volume properties are exact. Added terrain flags and conditional_volume_after_terrain_gate_km3 are separate fields. Historical source files and rejected-candidate values are preserved for audit,not silently erased or relabeled.",
+    "Every original patch ID matches exactly one terrain CSV status;every feature belongs to one original model segment. All24source slots remain,including12NorthCape source gaps without invented surfaces. All supported and terrain-reviewed scenarios remain scoped to the Makassar branch,not all ITF passages.",
+    "Persistent sampled conflicts affect21patches;one more is offset-sensitive. Whole-segment presentation gating withholds eight segment candidates for persistent sampled conflicts and one for offset sensitivity. A conflict at any patch withholds the entire source segment volume; no subtraction of bad patches or replacement with a smaller apparently equivalent segment total.",
+    "Three source segments remain eligible only for CONDITIONAL scenario presentation. No-sampled-conflict is not terrain validation,independent axis identification,flow continuity or physical volume eligibility. Subgrid terrain,source datum,model bathymetry,interpolation and current-identity uncertainty remain unresolved.",
+    "Thirty-nine feature candidate-volume presentation fields are null through the whole-segment gate,while all59original volume properties and geometry remain visible. Patch-status counts and segment-withholding counts are distinct quantities. No new current/annual/global volume sum is computed.",
+    "The source terrain screen compares central bilinear surfaces with a sparse0.04degree ETOPO2022export under fixed-20,0,+20m nominal surface/datum scenarios. Those offsets are not physical uncertainty bounds. Service VerticalDatum was null;nominal EGM2008reference comes from primary product documentation. These are gridded discrepancies under assumptions,not proof that observed currents lie beneath the actual seabed.",
+    "Seven synthetic cloud tests verify whole-segment withholding,conditional-versus-physical semantics,offset/NoData handling,source gaps,duplicate/missing/unknown status rejection,exact immutable geometry/properties and deliberate non-parsing of numeric/scenario CSV cells. Actual59-feature/24-slot JSON/CSV/GeoJSON roundtrips passed. Six exact-code source baseline checks also passed.",
+    "CSV cells were read as strings and only IDs/status categories used. A conservative reservation counts every CSV digit-run before string parsing. The exact already-compiled model GeoJSON is a hash-pinned JSON descriptor container decoded under the unchanged before-decode JSON guard;the generic reader is not broadened and no native inputs enter sparse checkout. Combined6237numeric upper bound/236486unique bytes remain below250000/32MBlimits,with2.5MBpackets,shared60second deadline,SIGTERM,fresh2.4MBoutputs and one idle cloud CPU.",
+    "The preferred terrain-reviewed GeoJSON carries NOAA/NCEI ETOPO2022doi:10.25921/fd45-gt74 and HYCOM/NRL/COAPS-FSU attribution. Consumers should use the added terrain gate and conditional candidate field for presentation;all physical-volume and terrain-clearance flags remain false. Main,runtime,defaultqueryUI/WASM,canonical908references,old projection inventory and102eddy references are unchanged. Programme incomplete."
+  ],
+  "original_source_geometry_and_properties_preserved": true,
+  "whole_segment_withholding_applied": true,
+  "physical_volume_eligibility_changed": false,
+  "new_observations_collected": false,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
