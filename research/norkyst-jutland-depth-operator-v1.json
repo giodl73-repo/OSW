@@ -1,0 +1,77 @@
+{
+  "schema": "osw.norkyst-jutland-depth-operator.v1",
+  "dates": [
+    "2024-03-15",
+    "2024-06-15",
+    "2024-09-15",
+    "2024-12-15"
+  ],
+  "sections": [
+    {
+      "id": "hanstholm-search-cut",
+      "editorial_center_lon_lat": [
+        8.55,
+        57.25
+      ]
+    },
+    {
+      "id": "north-jutland-midcoast-search-cut",
+      "editorial_center_lon_lat": [
+        9.25,
+        57.55
+      ]
+    },
+    {
+      "id": "hirtshals-search-cut",
+      "editorial_center_lon_lat": [
+        9.85,
+        57.7
+      ]
+    }
+  ],
+  "component_bearing_degrees_true": 45,
+  "diagnostic": {
+    "selection_depth_interval_m": [
+      0,
+      25
+    ],
+    "core_search_depth_interval_m": [
+      0,
+      25
+    ],
+    "primary_threshold_m_s": 0.1,
+    "thresholds_m_s": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "surface_component_gate_m_s": null
+  },
+  "source_documentation_url": "https://gmd.copernicus.org/articles/19/2785/2026/",
+  "source_metadata_reused_not_retrieved": true,
+  "maximum_http_requests": 12,
+  "maximum_attempts_per_target": 1,
+  "timeout_seconds": 25,
+  "maximum_body_bytes_per_patch": 120000,
+  "maximum_scientific_output_bytes": 2400000,
+  "maximum_source_decoded_scalar_values": 250000,
+  "maximum_source_decoded_bytes": 7000000,
+  "input_sha256": {
+    "analysis/collect_norkyst_jutland_depth_v1.py": "01b958c63f941e6beef36e35d888e7a467685b0c8fa76f6f51781c43f05bbd92",
+    "analysis/test_norkyst_jutland_depth_v1.py": "2a84e0a5ceac705ab08113b827dd491b38fd593cfcd6ddc92a66ab08f388369b",
+    "plans/norkyst-jutland-depth-protocol-v1.md": "ccbb4b9fdb507b2f4580d0e1b79b4c694defc58825bfcf41fec909363bb37d2c",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "research/source-data/norkyst-ingoy-months-2024/20240101.dds": "58b9d1a055084e586b5919c4a1558ca6571f219491f95c065c92f0dfe7eb218d",
+    "research/source-data/norkyst-ingoy-months-2024/20240101.das": "f5289f184a1df8b30e938395213967f5be302e0d73f6cc57007bfeae9721ca6e",
+    "research/source-data/norkyst-ingoy-months-2024/metadata-probe.json": "727e25dbd4e5a31290d024c04451273ba52c0d94dac06906c6ee5a975a6a53d1",
+    "research/jutland-kuijpers1993-bedform-depth-source-facts-v1.json": "e853a677be15aab651e520c257672d4f48aed3021269793a54854c810228cc3b",
+    "research/jutland-current-naming-scope-audit.json": "4520258deb2ac71bae2269b2c4cf78bf6c47d4c7c20057d68aa08acb89c6d350",
+    "research/norkyst-ingoy-source-metadata-20240315.das": "f6e392f8a37d066f1d8c567dbb78124519db743df9ad0d6b92fb6170ae148a68",
+    "research/norkyst-ingoy-source-metadata-20240615.das": "b2a4f07564a249c1d2fb3aafba6bb58c92151dc1233c872dd42158ac5fef4531",
+    "research/norkyst-ingoy-source-metadata-20240915.das": "f3e2314604eb8caa26ed01691fc2d078323f0dbb435ecc6e4ae09a319ec23a35",
+    "research/norkyst-ingoy-source-metadata-20241215.das": "c95107d1894dec4d9e357d7903899474af388ea5ae163fccef373034126911df"
+  },
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

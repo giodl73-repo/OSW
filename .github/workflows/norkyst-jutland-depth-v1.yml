@@ -1,0 +1,58 @@
+name: NorKyst northern Jutland depth sections v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/collect_norkyst_jutland_depth_v1.py
+      - analysis/test_norkyst_jutland_depth_v1.py
+      - plans/norkyst-jutland-depth-protocol-v1.md
+      - research/norkyst-jutland-depth-operator-v1.json
+      - .github/workflows/norkyst-jutland-depth-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/collect_norkyst_jutland_depth_v1.py
+            analysis/test_norkyst_jutland_depth_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            plans/norkyst-jutland-depth-protocol-v1.md
+            research/norkyst-jutland-depth-operator-v1.json
+            research/norkyst-ingoy-source-metadata-20240315.das
+            research/norkyst-ingoy-source-metadata-20240615.das
+            research/norkyst-ingoy-source-metadata-20240915.das
+            research/norkyst-ingoy-source-metadata-20241215.das
+            research/source-data/norkyst-ingoy-months-2024/20240101.dds
+            research/source-data/norkyst-ingoy-months-2024/20240101.das
+            research/source-data/norkyst-ingoy-months-2024/metadata-probe.json
+            research/jutland-kuijpers1993-bedform-depth-source-facts-v1.json
+            research/jutland-current-naming-scope-audit.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Validate source parsing, fixed diagnostics and joint budget
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_norkyst_jutland_depth_v1.py' -v
+      - name: Collect only new predeclared northern-Denmark source sections
+        timeout-minutes: 7
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/collect_norkyst_jutland_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: norkyst-jutland-depth-v1
+          path: norkyst-jutland-depth-v1/
+          retention-days: 7
