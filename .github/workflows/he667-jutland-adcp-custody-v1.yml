@@ -1,0 +1,48 @@
+name: HE667 Skagerrak ADCP bounded original source custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/acquire_he667_jutland_adcp_custody_v1.py
+      - analysis/test_he667_jutland_adcp_custody_v1.py
+      - plans/he667-jutland-adcp-custody-protocol-v1.md
+      - research/he667-jutland-adcp-custody-operator-v1.json
+      - .github/workflows/he667-jutland-adcp-custody-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_he667_jutland_adcp_custody_v1.py
+            analysis/test_he667_jutland_adcp_custody_v1.py
+            plans/he667-jutland-adcp-custody-protocol-v1.md
+            .github/workflows/he667-jutland-adcp-custody-v1.yml
+            research/he667-jutland-adcp-custody-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU checks then bounded source screen
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4
+          export OSW_HE667_CUSTODY_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_he667_jutland_adcp_custody_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 100s python analysis/acquire_he667_jutland_adcp_custody_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: he667-jutland-adcp-custody-v1
+          path: he667-jutland-adcp-custody-v1/
+          retention-days: 7
