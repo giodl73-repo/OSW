@@ -1,0 +1,110 @@
+name: New Guinea Coastal Undercurrent depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/ngcuc-velocity-curtains-v1.yml
+      - analysis/derive_ngcuc_velocity_curtains_v1.py
+      - analysis/test_ngcuc_velocity_curtains_v1.py
+      - plans/ngcuc-velocity-curtains-protocol-v1.md
+      - research/ngcuc-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/ngcuc-interval-depth-sections-v1.yml
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_ngcuc_interval_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_ngcuc_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_ngcuc_interval_depth_sections_v1.py
+            analysis/test_ngcuc_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/ngcuc-interval-depth-sections-protocol-v1.md
+            plans/ngcuc-velocity-curtains-protocol-v1.md
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v6.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/new-guinea-coastal-undercurrent-reference-path-input.json
+            research/ngcuc-interval-depth-sections-operator-v1.json
+            research/ngcuc-interval-depth-sections-source-facts-v1.json
+            research/ngcuc-interval-depth-sections-source-review-v1.json
+            research/ngcuc-velocity-curtains-operator-v1.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-142e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-143p5e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-145e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-03-15-new-guinea-coastal-undercurrent-section-146e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-142e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-143p5e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-145e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-06-15-new-guinea-coastal-undercurrent-section-146e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-142e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-143p5e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-145e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-09-15-new-guinea-coastal-undercurrent-section-146e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-142e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-143p5e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-145e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/2022-12-15-new-guinea-coastal-undercurrent-section-146e.json
+            research/source-data/ngcuc-interval-depth-sections-v1/manifest.json
+            research/source-data/ngcuc-interval-depth-sections-v1/transport-ledger.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_ngcuc_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_ngcuc_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_ngcuc_velocity_curtains_v1.py --current current:new-guinea-coastal-undercurrent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ngcuc-velocity-curtains-new-guinea-coastal-undercurrent-v1
+          path: ngcuc-velocity-curtains-v1/new-guinea-coastal-undercurrent/
+          retention-days: 7
