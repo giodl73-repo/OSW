@@ -1,0 +1,62 @@
+name: EAC retained local depth standard error sensitivity v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/eac-mooring-local-depth-sensitivity-v1.yml
+      - analysis/audit_eac_mooring_local_depth_sensitivity_v1.py
+      - analysis/test_eac_mooring_local_depth_sensitivity_v1.py
+      - plans/eac-mooring-local-depth-sensitivity-protocol-v1.md
+      - research/eac-mooring-local-depth-sensitivity-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/eac-mooring-depth-benchmark-v1.yml
+            .github/workflows/eac-mooring-local-depth-sensitivity-v1.yml
+            analysis/acquire_eac_mooring_depth_benchmark_v1.py
+            analysis/audit_eac_mooring_local_depth_sensitivity_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_eac_mooring_depth_benchmark_v1.py
+            analysis/test_eac_mooring_local_depth_sensitivity_v1.py
+            plans/eac-mooring-local-depth-sensitivity-protocol-v1.md
+            research/current-depth-native-pressure-projections-source-review-v1.json
+            research/current-depth-reference-inventory-v26.json
+            research/eac-connected-layer-thickness-source-review-v1.json
+            research/eac-mooring-depth-benchmark-operator-v1.json
+            research/eac-mooring-depth-benchmark-source-review-v1.json
+            research/eac-mooring-local-depth-sensitivity-operator-v1.json
+            research/source-data/eac-mooring-depth-benchmark-v1/candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify local rectangle counterexamples and all original cases
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_mooring_local_depth_sensitivity_v1.py' -v
+      - name: Analyse retained lower brackets with provider network disabled
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/audit_eac_mooring_local_depth_sensitivity_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eac-mooring-local-depth-sensitivity-v1
+          path: eac-mooring-local-depth-sensitivity-v1/
+          retention-days: 7
+          if-no-files-found: error
