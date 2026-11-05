@@ -1,0 +1,46 @@
+name: S1 original moored ADCP variable metadata v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/capture_s1_mooring_adcp_metadata_v1.py
+      - analysis/capture_gaspe1991_adcp_info_v1.py
+      - research/s1-mooring-observed-depth-case-operator-v1.json
+      - plans/s1-mooring-observed-depth-protocol-v1.md
+      - .github/workflows/s1-mooring-adcp-metadata-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/capture_s1_mooring_adcp_metadata_v1.py
+            analysis/capture_gaspe1991_adcp_info_v1.py
+            research/s1-mooring-observed-depth-case-operator-v1.json
+            plans/s1-mooring-observed-depth-protocol-v1.md
+            .github/workflows/s1-mooring-adcp-metadata-v1.yml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU checks and original metadata custody
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_S1_METADATA_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 70s python analysis/capture_s1_mooring_adcp_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s1-mooring-adcp-metadata-v1
+          path: s1-mooring-adcp-metadata-v1/
+          retention-days: 7
