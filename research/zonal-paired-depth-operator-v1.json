@@ -1,0 +1,75 @@
+{
+  "schema": "osw.zonal-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_zonal_paired_depth_v1.py": "0626ef28b3a037fa403050bab173f1428386be0004353576ff91887620baac17",
+    "analysis/test_zonal_paired_depth_v1.py": "d866a14898e4eb03322a2a7fd1ff51500672872f28b5d6e372f263b978a325c7",
+    "plans/zonal-paired-depth-v1.md": "9bb9f447ce2c559f39839b2b6f848b023b78153f4e8d33fc1ac1c297e37d7a7b",
+    ".github/workflows/zonal-paired-depth-v1.yml": "c69f6d0e86b171498833bbdd8ff06e8eb1c0661b88873c4cfcb71ad9ab8d1f66",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/zonal-current-kuroshio-extension-velocity-depth-curtains-v1.json": "d23385d1a3324dc2b30aeaf5bbbe857019568a17a1f9fa5e35b5130a090eb633",
+    "research/zonal-current-agulhas-return-velocity-depth-curtains-v1.json": "550aef9f5c5de6c0d6e56d607933cadbb34f02849385ff32228e26728f867760",
+    "research/zonal-current-north-pacific-velocity-depth-curtains-v1.json": "4637becd0c363d2cc31fdc3a38d4094ac7428cc40cc66b9e96a67f55c7f07415",
+    "research/current-depth-zonal-current-kuroshio-extension-velocity-curtains-source-review-v1.json": "ef0f26b164e691d1166fe281c40f371586834c4d7f913f10b042fb8c33a7c104",
+    "research/current-depth-zonal-current-agulhas-return-velocity-curtains-source-review-v1.json": "4d850aadb77ff90def00646a20ba72d9e167586e679bf86e323a4235bb6643d3",
+    "research/current-depth-zonal-current-north-pacific-velocity-curtains-source-review-v1.json": "31c54819f086bb351e71b09324dc136ac114795c288f4d35873da83b1485b292",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "source_cases": 36,
+  "original_supported_cases": 34,
+  "original_axis_gap_cases": 2,
+  "source_owner_case_counts": {
+    "current:kuroshio-extension": 8,
+    "current:agulhas-return": 14,
+    "current:north-pacific": 14
+  },
+  "all_three_original_batches_one_cumulative_query": true,
+  "per_case_source_pointer_scope": "exact source_compiled_descriptor_file and SHA256 plus source_descriptor_pointer",
+  "primary_thresholds_m_s": {
+    "current:kuroshio-extension": 0.1,
+    "current:agulhas-return": 0.1,
+    "current:north-pacific": 0.05
+  },
+  "surface_selection_gates_m_s": {
+    "current:kuroshio-extension": 0.05,
+    "current:agulhas-return": 0.05,
+    "current:north-pacific": 0.02
+  },
+  "source_integral_core_window_m": [
+    0,
+    200
+  ],
+  "original_fixed_longitude_tolerance_km": 5,
+  "case_storage": "ordered-object-tables.v1;exact values/order,no rounding or removed fields",
+  "full_scientific_json_bytes_and_both_csv_roundtrips_required": true,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "longitude_delta"
+  ],
+  "encoding_ast_identical_except_cohort_schema_names": [
+    "compact_report",
+    "expand_report"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
