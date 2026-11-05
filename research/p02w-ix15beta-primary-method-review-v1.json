@@ -1,0 +1,37 @@
+{
+  "schema": "osw.p02w-ix15beta-primary-method-review.v1",
+  "status": "PRIMARY_CODE_REVIEW_NARROWS_FORMAT_GAP_EXECUTABLE_AND_ARCHIVE_CONVERTER_NOT_QUALIFIED",
+  "review_date": "2026-11-05",
+  "source_review": "research/p02w-kuroshio-completed-source-attempt-review-v2.json",
+  "sources": [
+    {"url": "https://github.com/athurnherr/LDEO_IX/blob/master/HISTORY", "evidence": "Maintainer history identifies IX_15beta, later CTD missing-value handling, partial-depth editing and magnetic-model updates, followed by a bottom-track fix for uplooker-only processing in the release. Master is mutable; this rendered review does not pin the precise executable used for either cast."},
+    {"url": "https://github.com/athurnherr/LDEO_IX/blob/master/default.m", "evidence": "Current defaults identify release IX_15 and retain beta-version history. Current defaults are not proof of the parameters or code used for the retained beta casts."},
+    {"url": "https://github.com/athurnherr/LDEO_IX/blob/master/ladcp2cdf.m", "evidence": "Writer maps z, u, v and uerr to a common z dimension, writes dr fields and carries supplied units. This establishes writer structure only, not the sign convention or exact archived converter."},
+    {"url": "https://github.com/athurnherr/LDEO_IX/blob/master/getinv.m", "evidence": "Solver assigns z and real/imaginary ocean components to dr.z/u/v. Its uerr computation is rescaled from residual component diagnostics. This is not an independent standard error, confidence interval or depth uncertainty."},
+    {"url": "https://github.com/athurnherr/LDEO_IX/blob/master/saveres.m", "evidence": "ASCII writer exports dr.z/u/v/uerr. It does not establish the exact downstream NetCDF conversion path."}
+  ],
+  "retained_header_evidence": {
+    "file": "research/source-data/p02w-kuroshio-retained-native-v2/headers.json",
+    "sha256": "cb454e6c8012e72149d4a79638cc5ff7de1fe1ff2aa58791e5bac36f463194d9",
+    "interpretation": "Both headers explicitly describe an ldeo_to_cdf conversion, similar but not identical to ladcp2cdf, with scalar geocodes and changed time/date representation. Do not equate the processor writer with the archive converter. Both retain downlooker and uplooker processing records; this does not certify correction of every beta issue. Warning records remain relevant and source final QC remains unverified."
+  },
+  "closed_failed_document_targets": [
+    "https://github.com/athurnherr/LDEO_IX/blob/master/savearch.m",
+    "https://github.com/athurnherr/LDEO_IX/blob/master/uvrot.m",
+    "https://currents.soest.hawaii.edu/git/efiring/pycurrents/src/branch/main/ladcp/ldeo_to_cdf.py"
+  ],
+  "closed_target_rule": "No retries, mirror/raw-host bypass or alternate filename to obtain these failed resources. The earlier failed full cruise PDF remains closed. Previously reviewed IX14 manual is not new beta evidence.",
+  "excluded_literature_lead": {
+    "doi": "10.1029/2025JC022501",
+    "reason": "Primary article describes different yo-yo observations at an Izu-Ogasawara seamount in June 2023; it does not qualify the May 2022 western P02W casts or establish their Kuroshio-axis membership."
+  },
+  "software_semantic_equivalence_independently_verified": false,
+  "exact_archive_converter_qualified": false,
+  "source_final_post_cruise_QC_verified": false,
+  "scientific_measurement_patch_authorized_by_this_review": false,
+  "new_native_reads": false,
+  "new_depth_references": 0,
+  "next_action": "Keep both original casts retained with their original cumulative budgets. Pursue independent current-depth support while a compatible cohort and sufficient version/converter qualification are unavailable. Do not relax frozen IX14 guards or replace the failed third cast.",
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

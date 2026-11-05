@@ -1,0 +1,68 @@
+{
+  "schema": "osw.i06s-agulhas-cast-acquisition-operator.v1",
+  "case_operation_cap": 3,
+  "case_response_byte_cap": 600000,
+  "per_response_byte_cap": 200000,
+  "case_time_cap_seconds": 180,
+  "metadata_numeric_attribute_cap": 10000,
+  "native_scalar_case_cap": 250000,
+  "native_byte_case_cap": 7000000,
+  "future_selected_levels_per_cast_cap": 40,
+  "maximum_native_profiles": 3,
+  "maximum_section_cells": 20000,
+  "maximum_measurement_nodes": 6000,
+  "geometry_tolerance_m": 5000,
+  "primary_provider_page": "https://currents.soest.hawaii.edu/go-ship/ladcp/2019_I06S/index.html",
+  "provider_page_review": "Rendered primary metadata reviewed 2026-11-05. Exact native URLs prospectively inferred from confirmed other-cruise provider convention, not surfaced as hrefs; no alternate targets after failure.",
+  "entity_context": "current:agulhas",
+  "current_membership_basis": "regional_candidates_not_independently_verified_axis_or_core",
+  "targets": [
+    {
+      "station": "046",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2019_I06S/046.nc",
+      "provider_listed_datetime": "2019-05-09T02:24",
+      "provider_listed_lon_lat": [
+        28.1,
+        -33.23
+      ]
+    },
+    {
+      "station": "047",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2019_I06S/047.nc",
+      "provider_listed_datetime": "2019-05-09T05:18",
+      "provider_listed_lon_lat": [
+        28.2,
+        -33.39
+      ]
+    },
+    {
+      "station": "048",
+      "url": "https://currents.soest.hawaii.edu/go-ship/ladcp/downloads/2019_I06S/048.nc",
+      "provider_listed_datetime": "2019-05-09T13:59",
+      "provider_listed_lon_lat": [
+        28.55,
+        -33.69
+      ]
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_i06s_agulhas_cast_headers_v1.py": "581fca3ba4979f633a81af160dacf3350ad119363895da39bfeb8acaf3a25c42",
+    "analysis/test_i06s_agulhas_cast_headers_v1.py": "1607cfcaa6816adf80931cbd983b92b9f2e1774e29158cf624ebfcb5428893fe",
+    "analysis/acquire_a20_gulf_stream_cast_headers_v1.py": "97b8354c856d54380629adb8b7acc4293bedabc04ce16001a8366366df4836c2",
+    "analysis/inspect_retained_a20_gulf_stream_headers_v2.py": "a42caaf094d0611d829541e6993cb229a8649feb0766dfcaed9677ce67fc27a4",
+    "plans/i06s-agulhas-source-custody-protocol-v1.md": "67e2e40e252508beb3065acee9f6163dad7a74b68924a54e7f16c388f6ccbe2b"
+  },
+  "eligibility": {
+    "depth_reference": false,
+    "current_axis_assignment": false,
+    "physical_bottom": false,
+    "physical_thickness": false,
+    "seasonal_range": false,
+    "volume": false,
+    "state_join": false,
+    "route_projection": false
+  },
+  "no_target_retry": true,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
