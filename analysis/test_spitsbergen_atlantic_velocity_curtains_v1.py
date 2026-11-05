@@ -65,7 +65,7 @@ class SpitsbergenAtlanticCurtains(unittest.TestCase):
         op=json.loads((derive.ROOT/self.op['cohorts'][0]['source_operator']).read_bytes())
         for owner in derive.BATCH_COUNTS:
             file=self.op['cohorts'][0]['section_files_by_current'][owner][0];source=json.loads((derive.ROOT/file).read_bytes());before=copy.deepcopy(source);config={**op,**op['currents'][owner]};derive.source_curtain(source,config,file);self.assertEqual(source,before)
-            for key,value in [('component_bearing_degrees_true',90),('maximum_nearest_latitude_distance_km',999),('source_returned_timestamp_utc','2022-01-16T00:00:00Z')]:
+            for key,value in [('component_bearing_degrees_true',90),('nearest_latitude_distance_km',999),('source_returned_timestamp_utc','2022-01-16T00:00:00Z')]:
                 bad=copy.deepcopy(source);bad[key]=value
                 with self.subTest(key=key),self.assertRaises(ValueError):derive.source_curtain(bad,config,file)
             bad=copy.deepcopy(source);bad['diagnosis']['selected_column_index']=-1
