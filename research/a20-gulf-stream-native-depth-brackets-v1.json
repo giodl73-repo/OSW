@@ -1,0 +1,897 @@
+{
+  "schema": "osw.a20-gulf-stream-native-depth-brackets.v1",
+  "status": "BOUNDED_NATIVE_EASTWARD_COMPONENT_LOCAL_CROSSINGS_NOT_PHYSICAL_CURRENT_BOTTOMS",
+  "operator_file": "research/a20-gulf-stream-depth-bracket-operator-v1.json",
+  "input_sha256": {
+    "analysis/sample_a20_gulf_stream_depth_brackets_v1.py": "831dd652dfea26b4541e71c7bb0e6b23b39d06ac1cdf1e73ea32edfbe5beb75c",
+    "analysis/test_a20_gulf_stream_depth_brackets_v1.py": "ea681074c9080a0a348392f054b082d40dddb923f2055a290f0db0b3e3403f9c",
+    "plans/a20-gulf-stream-native-depth-bracket-protocol-v1.md": "fc439437aac42a6c269b721e7bc860451c4bc40a73eb8cb9c1925c89b0c8c758",
+    "research/a20-ldeo-ix14-component-method-context-v1.json": "4c8baef3b1c464d5cd49c0660b0244c891f67d6e4283965d9701a17151405d33",
+    ".github/workflows/a20-gulf-stream-native-depth-brackets-v1.yml": "4e8fdf14fdfdf516162201cbb3dc500275a9dbb83f721c42dec5d7daed209b07",
+    "research/a20-gulf-stream-retained-headers-v2.json": "95ba3338145f345618ad1fabb7c7734577d92a814b9b282a7bd89718503d9fce",
+    "research/a20-gulf-stream-retained-header-source-review-v2.json": "c91be1e89b36d89bb49228693a8e3018115f820db14a7f34fb84eec1fa188f56",
+    "research/source-data/a20-gulf-stream-native-casts-v1/014.nc": "789546139ddda905122153d02e89cda9f1f0de610fe9d823b1e412517c8e26ca",
+    "research/source-data/a20-gulf-stream-native-casts-v1/015.nc": "6ca6e4305661e9e309da7bd885ae2d90079d0c2935ba46643c55335969c0b708",
+    "research/source-data/a20-gulf-stream-native-casts-v1/016.nc": "3c2c06e6045104f9940222ce91ea05bc110583a0ce80633f08c4b6c52458a5c9",
+    "research/source-data/a20-gulf-stream-native-casts-v1/journal.json": "d23341ca5ebfb9b8f7998bc0ddf0b8ec31857c4ae5e29e36d1708ebb8254f873"
+  },
+  "profiles": [
+    {
+      "station": "014",
+      "entity_context": "current:gulf-stream",
+      "current_membership_basis": "primary_cruise_QC_report_stations14_to21_not_independent_axis_validation",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/014.nc",
+      "source_sha256": "789546139ddda905122153d02e89cda9f1f0de610fe9d823b1e412517c8e26ca",
+      "cast_datetime_utc": "2021-03-23T16:51:25",
+      "source_lon_lat": [
+        -52.05171,
+        41.46347
+      ],
+      "native_depth_axis_count": 595,
+      "native_depth_axis_domain_m": [
+        8.0,
+        4760.0
+      ],
+      "diagnostic_component": "source_u_eastward_LDEO_IX14_not_speed_magnitude_or_current_axis_projection",
+      "source_uerr_role": "provider_uncertainty_estimate_not_standard_error_or_depth_CI",
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        594
+      ],
+      "sampled_upper200m_core_index": 24,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        594
+      ],
+      "selected_native_levels": 15,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": -0.0016895129811018705,
+          "v_m_s": 0.24689650535583496,
+          "uerr_m_s": 0.10696107149124146
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": -0.015171604230999947,
+          "v_m_s": 0.2640232741832733,
+          "uerr_m_s": 0.06023188680410385
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.004050758667290211,
+          "v_m_s": 0.2668982446193695,
+          "uerr_m_s": 0.058291077613830566
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.03747554123401642,
+          "v_m_s": 0.2818392813205719,
+          "uerr_m_s": 0.052722662687301636
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.04738888144493103,
+          "v_m_s": 0.22348737716674805,
+          "uerr_m_s": 0.04939557984471321
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": 0.07999319583177567,
+          "v_m_s": 0.15911231935024261,
+          "uerr_m_s": 0.048970647156238556
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": 0.10416251420974731,
+          "v_m_s": 0.08908391743898392,
+          "uerr_m_s": 0.04270368441939354
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": 0.011642158962786198,
+          "v_m_s": 0.07364693284034729,
+          "uerr_m_s": 0.04016333445906639
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.005115473177284002,
+          "v_m_s": 0.07784178853034973,
+          "uerr_m_s": 0.05393347889184952
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.0024953160900622606,
+          "v_m_s": 0.07695110887289047,
+          "uerr_m_s": 0.06394804269075394
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": -0.04004376754164696,
+          "v_m_s": 0.03504645451903343,
+          "uerr_m_s": 0.07151136547327042
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.008949799463152885,
+          "v_m_s": 0.037018783390522,
+          "uerr_m_s": 0.08077432960271835
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.040462370961904526,
+          "v_m_s": 0.0004445704980753362,
+          "uerr_m_s": 0.07876737415790558
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": 0.024371376261115074,
+          "v_m_s": -0.004308897070586681,
+          "uerr_m_s": 0.08498387038707733
+        },
+        {
+          "native_index": 594,
+          "depth_m": 4760.0,
+          "u_m_s": -0.027297668159008026,
+          "v_m_s": -0.038028620183467865,
+          "uerr_m_s": 0.13116222620010376
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 24,
+          "coarse_bracket_indices": null,
+          "refined_bracket_indices": null,
+          "lower_depth_m": null,
+          "lower_depth_native_bracket_m": null,
+          "status": "NO_QUALIFYING_SAMPLED_UPPER200M_CORE",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": false
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 24,
+          "coarse_bracket_indices": null,
+          "refined_bracket_indices": null,
+          "lower_depth_m": null,
+          "lower_depth_native_bracket_m": null,
+          "status": "NO_QUALIFYING_SAMPLED_UPPER200M_CORE",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": false
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 24,
+          "coarse_bracket_indices": null,
+          "refined_bracket_indices": null,
+          "lower_depth_m": null,
+          "lower_depth_native_bracket_m": null,
+          "status": "NO_QUALIFYING_SAMPLED_UPPER200M_CORE",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": false
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    },
+    {
+      "station": "015",
+      "entity_context": "current:gulf-stream",
+      "current_membership_basis": "primary_cruise_QC_report_stations14_to21_not_independent_axis_validation",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/015.nc",
+      "source_sha256": "6ca6e4305661e9e309da7bd885ae2d90079d0c2935ba46643c55335969c0b708",
+      "cast_datetime_utc": "2021-03-23T23:04:42",
+      "source_lon_lat": [
+        -52.1849,
+        41.29177
+      ],
+      "native_depth_axis_count": 636,
+      "native_depth_axis_domain_m": [
+        8.0,
+        5088.0
+      ],
+      "diagnostic_component": "source_u_eastward_LDEO_IX14_not_speed_magnitude_or_current_axis_projection",
+      "source_uerr_role": "provider_uncertainty_estimate_not_standard_error_or_depth_CI",
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        635
+      ],
+      "sampled_upper200m_core_index": 0,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        39,
+        40,
+        42,
+        48,
+        54,
+        55,
+        56,
+        57,
+        59,
+        60,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        635
+      ],
+      "selected_native_levels": 26,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": 0.355142742395401,
+          "v_m_s": 0.5175632834434509,
+          "uerr_m_s": 0.11016044020652771
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": 0.26557251811027527,
+          "v_m_s": 0.5007492303848267,
+          "uerr_m_s": 0.06384619325399399
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": 0.24231746792793274,
+          "v_m_s": 0.4636422097682953,
+          "uerr_m_s": 0.05790729448199272
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.30376526713371277,
+          "v_m_s": 0.509793758392334,
+          "uerr_m_s": 0.057517968118190765
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.3284139037132263,
+          "v_m_s": 0.47712546586990356,
+          "uerr_m_s": 0.05163438245654106
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": 0.23582680523395538,
+          "v_m_s": 0.35731983184814453,
+          "uerr_m_s": 0.04935973882675171
+        },
+        {
+          "native_index": 39,
+          "depth_m": 320.0,
+          "u_m_s": 0.21617062389850616,
+          "v_m_s": 0.34779176115989685,
+          "uerr_m_s": 0.05078333616256714
+        },
+        {
+          "native_index": 40,
+          "depth_m": 328.0,
+          "u_m_s": 0.197771817445755,
+          "v_m_s": 0.3455905616283417,
+          "uerr_m_s": 0.06065801903605461
+        },
+        {
+          "native_index": 42,
+          "depth_m": 344.0,
+          "u_m_s": 0.14746765792369843,
+          "v_m_s": 0.3520152270793915,
+          "uerr_m_s": 0.05302887409925461
+        },
+        {
+          "native_index": 48,
+          "depth_m": 392.0,
+          "u_m_s": 0.15864817798137665,
+          "v_m_s": 0.2558390498161316,
+          "uerr_m_s": 0.05221693962812424
+        },
+        {
+          "native_index": 54,
+          "depth_m": 440.0,
+          "u_m_s": 0.13475291430950165,
+          "v_m_s": 0.20919287204742432,
+          "uerr_m_s": 0.04914030060172081
+        },
+        {
+          "native_index": 55,
+          "depth_m": 448.0,
+          "u_m_s": 0.10544060170650482,
+          "v_m_s": 0.1946312040090561,
+          "uerr_m_s": 0.05403343215584755
+        },
+        {
+          "native_index": 56,
+          "depth_m": 456.0,
+          "u_m_s": 0.08482019603252411,
+          "v_m_s": 0.21477796137332916,
+          "uerr_m_s": 0.05037146061658859
+        },
+        {
+          "native_index": 57,
+          "depth_m": 464.0,
+          "u_m_s": 0.06779351830482483,
+          "v_m_s": 0.2033396065235138,
+          "uerr_m_s": 0.050853315740823746
+        },
+        {
+          "native_index": 59,
+          "depth_m": 480.0,
+          "u_m_s": 0.05371756851673126,
+          "v_m_s": 0.1457851231098175,
+          "uerr_m_s": 0.04970944672822952
+        },
+        {
+          "native_index": 60,
+          "depth_m": 488.0,
+          "u_m_s": 0.035413581877946854,
+          "v_m_s": 0.1271207332611084,
+          "uerr_m_s": 0.05295587331056595
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": 0.0414770245552063,
+          "v_m_s": 0.11102770268917084,
+          "uerr_m_s": 0.04959205538034439
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": 0.038068097084760666,
+          "v_m_s": 0.08070507645606995,
+          "uerr_m_s": 0.04763740301132202
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.011547424830496311,
+          "v_m_s": 0.08981268852949142,
+          "uerr_m_s": 0.057720787823200226
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": 0.03611963614821434,
+          "v_m_s": 0.05932778865098953,
+          "uerr_m_s": 0.06514459103345871
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": 0.010595220141112804,
+          "v_m_s": 0.09023381024599075,
+          "uerr_m_s": 0.06832751631736755
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.026392536237835884,
+          "v_m_s": 0.03340544179081917,
+          "uerr_m_s": 0.08284474164247513
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.04956391081213951,
+          "v_m_s": -0.01769527979195118,
+          "uerr_m_s": 0.0809650868177414
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": 0.1124793142080307,
+          "v_m_s": -0.12853838503360748,
+          "uerr_m_s": 0.0962384045124054
+        },
+        {
+          "native_index": 624,
+          "depth_m": 5000.0,
+          "u_m_s": 0.11793886125087738,
+          "v_m_s": -0.12504363059997559,
+          "uerr_m_s": 0.06516920030117035
+        },
+        {
+          "native_index": 635,
+          "depth_m": 5088.0,
+          "u_m_s": 0.09638377279043198,
+          "v_m_s": -0.12342415004968643,
+          "uerr_m_s": 0.12107481062412262
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            59,
+            60
+          ],
+          "lower_depth_m": 481.6248126007059,
+          "lower_depth_native_bracket_m": [
+            480.0,
+            488.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            480.0,
+            488.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            55,
+            56
+          ],
+          "lower_depth_m": 450.1107641789492,
+          "lower_depth_native_bracket_m": [
+            448.0,
+            456.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            448.0,
+            456.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            39,
+            40
+          ],
+          "lower_depth_m": 327.03116213110144,
+          "lower_depth_native_bracket_m": [
+            320.0,
+            328.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            320.0,
+            328.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    },
+    {
+      "station": "016",
+      "entity_context": "current:gulf-stream",
+      "current_membership_basis": "primary_cruise_QC_report_stations14_to21_not_independent_axis_validation",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/016.nc",
+      "source_sha256": "3c2c06e6045104f9940222ce91ea05bc110583a0ce80633f08c4b6c52458a5c9",
+      "cast_datetime_utc": "2021-03-24T05:00:35",
+      "source_lon_lat": [
+        -52.33388,
+        41.098169999999996
+      ],
+      "native_depth_axis_count": 643,
+      "native_depth_axis_domain_m": [
+        8.0,
+        5144.0
+      ],
+      "diagnostic_component": "source_u_eastward_LDEO_IX14_not_speed_magnitude_or_current_axis_projection",
+      "source_uerr_role": "provider_uncertainty_estimate_not_standard_error_or_depth_CI",
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        642
+      ],
+      "sampled_upper200m_core_index": 0,
+      "selected_native_indices": [
+        0,
+        1,
+        2,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        642
+      ],
+      "selected_native_levels": 18,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": 0.05386889725923538,
+          "v_m_s": 0.3970903754234314,
+          "uerr_m_s": 0.22804668545722961
+        },
+        {
+          "native_index": 1,
+          "depth_m": 16.0,
+          "u_m_s": 0.05386889725923538,
+          "v_m_s": 0.3970903754234314,
+          "uerr_m_s": 0.22693060338497162
+        },
+        {
+          "native_index": 2,
+          "depth_m": 24.0,
+          "u_m_s": 0.024193042889237404,
+          "v_m_s": 0.4495491087436676,
+          "uerr_m_s": 0.16377899050712585
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": 0.031051509082317352,
+          "v_m_s": 0.40049871802330017,
+          "uerr_m_s": 0.1416066437959671
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.00875325221568346,
+          "v_m_s": 0.357126384973526,
+          "uerr_m_s": 0.09909094870090485
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.023090260103344917,
+          "v_m_s": 0.33291393518447876,
+          "uerr_m_s": 0.09983264654874802
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.03796030953526497,
+          "v_m_s": 0.29474225640296936,
+          "uerr_m_s": 0.10508270561695099
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": -0.015203741379082203,
+          "v_m_s": 0.27088332176208496,
+          "uerr_m_s": 0.09962185472249985
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": -0.003536781994625926,
+          "v_m_s": 0.18123823404312134,
+          "uerr_m_s": 0.08933461457490921
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": -0.029397673904895782,
+          "v_m_s": 0.14322058856487274,
+          "uerr_m_s": 0.08810807019472122
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.05082950368523598,
+          "v_m_s": 0.08110446482896805,
+          "uerr_m_s": 0.10965792089700699
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.09245186299085617,
+          "v_m_s": 0.07703258097171783,
+          "uerr_m_s": 0.1276479959487915
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": -0.09640622138977051,
+          "v_m_s": 0.057630039751529694,
+          "uerr_m_s": 0.14947600662708282
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.07736903429031372,
+          "v_m_s": -0.0677843764424324,
+          "uerr_m_s": 0.1470140814781189
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.02699924260377884,
+          "v_m_s": 0.061806581914424896,
+          "uerr_m_s": 0.16357024013996124
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": -0.05070934444665909,
+          "v_m_s": -0.028380604460835457,
+          "uerr_m_s": 0.17195871472358704
+        },
+        {
+          "native_index": 624,
+          "depth_m": 5000.0,
+          "u_m_s": -0.1226511299610138,
+          "v_m_s": 0.020438415929675102,
+          "uerr_m_s": 0.15194889903068542
+        },
+        {
+          "native_index": 642,
+          "depth_m": 5144.0,
+          "u_m_s": -0.09234162420034409,
+          "v_m_s": -0.00039776755147613585,
+          "uerr_m_s": 0.1915827840566635
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            0,
+            5
+          ],
+          "refined_bracket_indices": [
+            1,
+            2
+          ],
+          "lower_depth_m": 17.04297513015074,
+          "lower_depth_native_bracket_m": [
+            16.0,
+            24.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            16.0,
+            24.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": null,
+          "refined_bracket_indices": null,
+          "lower_depth_m": null,
+          "lower_depth_native_bracket_m": null,
+          "status": "NO_QUALIFYING_SAMPLED_UPPER200M_CORE",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": false
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": null,
+          "refined_bracket_indices": null,
+          "lower_depth_m": null,
+          "lower_depth_native_bracket_m": null,
+          "status": "NO_QUALIFYING_SAMPLED_UPPER200M_CORE",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": false
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    }
+  ],
+  "counts": {
+    "source_cast_profiles": 3,
+    "threshold_contexts": 9,
+    "selected_native_levels": 59,
+    "adjacent_local_crossings": 4,
+    "native_axis_values_one_pass": 1874,
+    "selected_native_field_values_one_pass": 177,
+    "native_geocode_values_one_pass": 6,
+    "typed_metadata_numbers_per_pass": 1017,
+    "prior_metadata_touch_bound": 1989,
+    "metadata_bound_including_two_packet_reads": 4023,
+    "case_scalar_bound_including_one_actual_test_and_producer": 8137,
+    "provider_requests": 0,
+    "new_canonical_depth_references": 0
+  },
+  "original_case_operations_used": 3,
+  "original_case_operations_remaining": 0,
+  "original_case_response_bytes": 425028,
+  "native_scalar_case_cap_unchanged": 250000,
+  "native_byte_case_cap_unchanged": 7000000,
+  "metric_is_comparable_to_locked100m_direction_glider_fit_depth": false,
+  "skipped_native_levels_may_hide_earlier_crossings": true,
+  "whole_route_physical_depth_profile_established": false,
+  "physical_thickness_m": null,
+  "annual_depth_range_m": null,
+  "volume_m3": null,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "new_native_phase_seconds": 0.4434306809999988,
+  "cumulative_case_time_charge_seconds": 3.961546226999996
+}
