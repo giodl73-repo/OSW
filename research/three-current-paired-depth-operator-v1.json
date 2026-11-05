@@ -1,0 +1,69 @@
+{
+  "schema": "osw.three-current-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_three_current_paired_depth_v1.py": "1a243ab2a9fa4e9dcb8b87be99b2be594faba1f0572e8acf414505cad8038754",
+    "analysis/test_three_current_paired_depth_v1.py": "444cd7e2bf006a060fb1a6b53a7a37513eaac5352990c3d48df33d446a62ec25",
+    "plans/three-current-paired-depth-v1.md": "c88ab94e18657ea2d4609bb9129cde3a0d28aba03929a3c2972b1ae5a01ef73c",
+    ".github/workflows/three-current-paired-depth-v1.yml": "9eb40ee517bfd5a9a41a435e9f7382f6403c50c589eed68b536f49a04470eed2",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/three-current-velocity-depth-curtains-v1.json": "53020e9eabebba2be9c7b9fda2c663db1e27690d63fa02b64eaf2ec29f1a3cdc",
+    "research/current-depth-three-current-velocity-curtains-source-review-v1.json": "e5a451d0f2b0b832086a5b26a3d5c7c6b9e5b7df2121413f778a380c058935e0",
+    "research/three-current-depth-sections-operator-v1.json": "d0b3b68ba9ee3a569cd13cd66121714000c8aa7058bb32f6aa5a1959aefbf89d"
+  },
+  "source_cases": 40,
+  "original_supported_cases": 34,
+  "original_axis_gap_cases": 6,
+  "source_owner_case_counts": {
+    "current:mindanao-current": 14,
+    "current:oyashio": 12,
+    "current:leeuwin": 14
+  },
+  "primary_thresholds_m_s": {
+    "current:mindanao-current": 0.1,
+    "current:oyashio": 0.1,
+    "current:leeuwin": 0.05
+  },
+  "shared_explicit_surface_selection_gate_m_s": 0.05,
+  "source_integral_core_window_m": [
+    0,
+    200
+  ],
+  "original_pre_tag_latitude_tolerance_km": 3,
+  "oyashio_thermal_selection": {
+    "native_depth_m": 100,
+    "maximum_temperature_degrees_celsius": 5,
+    "comparison": "inclusive<=",
+    "scope": "original_horizontal_selection_only_not_3Dtemperature_membership"
+  },
+  "nonthermal_or_unselected_temperature": "retain_null_not_zero_or_inherited",
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case"
+  ],
+  "encoding_ast_identical_except_cohort_schema_names": [
+    "compact_report",
+    "expand_report"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
