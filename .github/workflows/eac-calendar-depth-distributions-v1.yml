@@ -1,0 +1,60 @@
+name: EAC retained calendar month depth distributions v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/eac-calendar-depth-distributions-v1.yml
+      - analysis/summarize_eac_calendar_depth_distributions_v1.py
+      - analysis/test_eac_calendar_depth_distributions_v1.py
+      - plans/eac-calendar-depth-distribution-protocol-v1.md
+      - research/eac-calendar-depth-distribution-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  summarize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/eac-calendar-depth-distributions-v1.yml
+            .github/workflows/eac-chandler-seasonal-depth-v1.yml
+            analysis/derive_eac_chandler_seasonal_depth_v1.py
+            analysis/summarize_eac_calendar_depth_distributions_v1.py
+            analysis/test_eac_calendar_depth_distributions_v1.py
+            analysis/test_eac_chandler_seasonal_depth_v1.py
+            plans/eac-calendar-depth-distribution-protocol-v1.md
+            research/current-depth-reference-inventory-v26.json
+            research/eac-calendar-depth-distribution-operator-v1.json
+            research/eac-chandler-seasonal-depth-operator-v1.json
+            research/eac-chandler-seasonal-depth-source-facts-v1.json
+            research/eac-chandler-seasonal-depth-source-review-v1.json
+            research/eac-mooring-window-depth-sensitivity-source-review-v2.json
+            research/source-data/eac-chandler-seasonal-depth-v1/candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify censoring, cohort and nonlinear operator counterexamples
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_calendar_depth_distributions_v1.py' -v
+      - name: Summarize existing monthly depth descriptors without network access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/summarize_eac_calendar_depth_distributions_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eac-calendar-depth-distributions-v1
+          path: eac-calendar-depth-distributions-v1/
+          retention-days: 7
+          if-no-files-found: error
