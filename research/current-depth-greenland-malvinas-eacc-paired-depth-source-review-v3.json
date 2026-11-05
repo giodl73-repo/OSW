@@ -1,0 +1,115 @@
+{
+  "schema": "osw.current-depth-greenland-malvinas-eacc-paired-depth-source-review.v3",
+  "status": "PASS_FOUR_CURRENT_48_CASE_DEPTH_SHAPES_32_FINITE_11_CENSORED_ANCHORS_5_AXIS_GAPS",
+  "source_commit": "57e0587bfc8ab197446c0e57f45404a286304f42",
+  "producer_run_id": 42105908546,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42105908546",
+  "cloud_semantic_tests_passed": 16,
+  "actual_complete_48_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13451926730,
+    "bytes": 202967,
+    "sha256": "275e1342a625c9a2926696471f77b8a640a28604fd74a832ce6c338561e08224",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/greenland-malvinas-eacc-paired-depth-v3.json": {
+      "bytes": 2149385,
+      "sha256": "de9ddc4582711dc7d1a14b3bc75e1fac28b7b2d78326f2f72970adbc61e9b243"
+    },
+    "research/greenland-malvinas-eacc-paired-depth-v3.csv": {
+      "bytes": 67358,
+      "sha256": "a10d06e967a24635bab85c1aad9ddc05658e935bc22ad99c9937b7e03c44dc78"
+    },
+    "research/greenland-malvinas-eacc-depth-anchors-v3.csv": {
+      "bytes": 11376,
+      "sha256": "21b56d590047166551eca98d5cc9b236ba3b1f9ae82caa916ed6ad43a2f59421"
+    },
+    "research/greenland-malvinas-eacc-paired-depth-query-ledger-v3.json": {
+      "bytes": 1664,
+      "sha256": "a261a4ec2c4ae049c0c975269ef728d9125d864df90adcab750e0188017c535a"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_cases": 48,
+    "original_unresolved_cases": 5,
+    "cases_with_integrable_partial_geometry": 41,
+    "retained_column_descriptors": 3224,
+    "retained_vertical_runs": 1301,
+    "finite_paired_column_runs": 1068,
+    "censored_runs_with_minimum_support": 233,
+    "conditional_strip_patches": 828,
+    "strips_without_integrable_geometry": 2412,
+    "rejected_ambiguous_links": 198,
+    "original_axis_proxy_anchors": 43,
+    "finite_paired_axis_anchors": 32,
+    "censored_axis_anchors_with_minimum_support": 11,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:east-greenland": {
+      "cases": 16,
+      "finite_paired_anchors": 13,
+      "censored_anchors_with_minimum_support": 2,
+      "axis_gaps": 1
+    },
+    "current:west-greenland": {
+      "cases": 12,
+      "finite_paired_anchors": 8,
+      "censored_anchors_with_minimum_support": 1,
+      "axis_gaps": 3
+    },
+    "current:falkland": {
+      "cases": 10,
+      "finite_paired_anchors": 3,
+      "censored_anchors_with_minimum_support": 6,
+      "axis_gaps": 1
+    },
+    "current:east-african-coastal": {
+      "cases": 10,
+      "finite_paired_anchors": 8,
+      "censored_anchors_with_minimum_support": 2,
+      "axis_gaps": 0
+    }
+  },
+  "cloud_reported_budget": {
+    "combined_numeric_tokens": 144510,
+    "combined_unique_json_bytes": 7383079,
+    "prior_failed_numeric_tokens_charged": 72244,
+    "prior_failed_json_bytes_charged": 3793262,
+    "prior_phase_active_seconds_upper_bound_charged": 4,
+    "cumulative_active_seconds": 4.906982424000002,
+    "whole_output_bytes": 2229787,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "cumulative_active_second_cap_including_tests": 60
+  },
+  "review": [
+    "All48original regional source cases preserved across East Greenland,West Greenland,Falkland/Malvinas and East African Coastal currents. January15 and July15,2022 remain exact dated snapshots,not monthly means,seasons or annual extrema. All original owner-specific component directions,strict0.1m/s cutoff,selected cores,section definitions and branch scopes remain unchanged.",
+    "The full data now contain1068finite paired upper/lower component contours and233censored runs with explicit native-supported minimum spans. All1301original available vertical runs and3224column descriptors are retained. Five originally unresolved cases retain empty source columns and null anchors; source-declared native input counts remain separate and are not invented as available descriptors.",
+    "The minimum span is original deepest minus shallowest contiguous qualifying sample depth under the declared piecewise-linear signed-component definition. It is neither depth below the surface nor a finite lower boundary. A single sample gives zero minimum support,which is uninformative and never establishes zero thickness or absent flow. Every physical-current-bound flag is false. Censored thickness/bottom fields remain null.",
+    "Forty-three original selected-axis proxies are retained with exact original primary upper/lower boundary status,depth and thickness/censor.32have finite paired component boundaries;11remain censored with minimum support. Five unresolved axis cases keep their original candidate diagnoses without acquiring a substituted coordinate or a weaker core. The flat48row depth-anchor CSV exposes these distinctions with dates,coordinates,owner and source pointers.",
+    "Partial transverse geometry is available in41cases.828accepted partial strip patches use unique overlapping original depth runs between consecutive longitude columns only,with geodesic separation at sphere6371008.8m and maximum20km spacing.2412strips lacking integrable geometry remain gaps and198ambiguous split/merge links are rejected. No closed lateral endpoint,missing patch,bed or sample-limit fill is used.",
+    "Latitude-section geometry is not independently flow-normal current width/area. Equivalent area/span thickness omits gaps and is not representative whole-current depth. Sampling-bracket scenarios are not confidence intervals,physical uncertainty,guaranteed true-boundary bounds or annual ranges. No between-section surface,independent terrain clearance,whole-route physical profile or water volume is established.",
+    "Preserve original branch limitations: outer/slope EGC may mix with Irminger/deep same-sign flow; WGC is a partial shelf-break corridor without water-mass partition; Falkland broad gates can contain competing branches/eddies; EACC is restricted to the declared perennial regional reach and excludes northern seasonal confluence,Mozambique/Madagascar and detached eddies. Geographic integral maxima remain model axis proxies,not independently validated named-current boundaries.",
+    "Science functions boundary,run_geometry,separation,strip,run_support,attach_anchor,counts,build,anchor_csv,derive_case and csv_bytes are AST-identical to the initial v1 implementation. Frozen source curtain object remains unchanged. No native velocity/source-data input,old native producer,provider target or archive is replayed. This is an ordinary bounded query of already-derived descriptors with all failed-phase charges retained.",
+    "Initial v1 passed14tests and full report/CSV roundtrip but rejected combined output size. v2 then failed one exact CSV synthetic because shared-note expansion changed key insertion order; its source producer did not start. Both failed versions remain frozen with explicit retained failure reviews. v3 fixes serialization order,preserves all16tests and restores the full original scientific dictionary and exact expanded CSV bytes after decoding compact JSON.",
+    "Preferred JSON uses shared-note schema osw.greenland-malvinas-eacc-paired-depth.v2: per-run minimum_span_definition_ref points to root /run_note. Expansion helper in the v3producer restores full note text at its original key position. This is lossless repeated-metadata storage,not dropped cases,runs,values,censors,precision,source pointers or relaxed output limits. Both CSV views retain their original expanded scientific contents.",
+    "Combined query144510numeric tokens/7383079unique JSON bytes includes the failed72244tokens/3793262bytes as prior charges. Prior active-time upper bound4seconds covers both failed steps and tests; completed cumulative time4.906982424000002seconds remains under60. Whole outputs2229787bytes remain under the original2.4MBcap. Shared deadline/SIGTERM,fresh outputs,offline one idle cloud CPU and before-decode reservation/cache remain enforced.",
+    "Sixteen final synthetic cloud tests cover analytic units,finite/censored/surface boundaries,native adjacency,split/merge/disjoint support,all4owners/48cases/43anchors/5gaps,primary/frame/owner/geometry/time mutations,minimal support versus thickness,zero-bound semantics,source immutability,lossless serialization and exact both-CSV parity. Actual complete48case lossless JSON/CSV roundtrips passed. Artifact retained once after all branch jobs terminal and installed byte-exact.",
+    "Source credit HYCOM Consortium,NRL,COAPS-FSU preserved. No new depth observations or canonical scalar references are claimed. Existing111identities,908reference inventory,102eddy references,old projection inventory,main,runtime,query UI and WASM remain unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
