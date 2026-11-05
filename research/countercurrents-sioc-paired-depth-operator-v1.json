@@ -1,0 +1,75 @@
+{
+  "schema": "osw.countercurrents-sioc-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_countercurrents_sioc_paired_depth_v1.py": "195349e83f4fb3bee51eda2a38bb8cf96376097e2499f0bc307c854abfee1b1c",
+    "analysis/test_countercurrents_sioc_paired_depth_v1.py": "fafa76f7c509edf97e5db890c46f4a35132290685e79e095199f9988a2dd478a",
+    "plans/countercurrents-sioc-paired-depth-v1.md": "c8d70e5caf716b5fadbd551200370bd802dc30ff136cbe7b1d6abb4e7a4067b2",
+    ".github/workflows/countercurrents-sioc-paired-depth-v1.yml": "292e419565389c32b5e60c5ab36806c56d1d8df5d2f5b8bcdfe63922272b1606",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/countercurrents-sioc-pacific-north-equatorial-countercurrent-velocity-depth-curtains-v1.json": "7de4feb7880f498b18b7b9d7090d7d43fd1041aaaf03ea53fbe85ccb2b833dd7",
+    "research/countercurrents-sioc-atlantic-north-equatorial-countercurrent-velocity-depth-curtains-v1.json": "b314c2e42ac89648a017e6151c5b0043559748c8434370a66f47e70f4eae9ae0",
+    "research/countercurrents-sioc-south-indian-velocity-depth-curtains-v1.json": "79ba852474295ec12731cf4c623936bd5404095b6b69aefa1ddc374ea38a50d2",
+    "research/current-depth-countercurrents-sioc-pacific-north-equatorial-countercurrent-velocity-curtains-source-review-v1.json": "52cada82f53ac2cea9f348e8905a3593218010b903026e202da0b3c54ff9d04e",
+    "research/current-depth-countercurrents-sioc-atlantic-north-equatorial-countercurrent-velocity-curtains-source-review-v1.json": "4e1e23a66e596c8755741a564018737fd434abe6ec2fa3cfb166199da1466d69",
+    "research/current-depth-countercurrents-sioc-south-indian-velocity-curtains-source-review-v1.json": "50f2c288fb00411b245fb97ce96bc90016aac5393cde436222f72926d0b871dc",
+    "research/countercurrents-sioc-depth-sections-operator-v1.json": "f1a9537bcb42332889563be567eef829f30e0f1f892ddf69f8afc21b3f701879"
+  },
+  "source_cases": 32,
+  "original_supported_cases": 31,
+  "original_axis_gap_cases": 1,
+  "source_owner_case_counts": {
+    "current:pacific-north-equatorial-countercurrent": 14,
+    "current:atlantic-north-equatorial-countercurrent": 8,
+    "current:south-indian": 10
+  },
+  "primary_thresholds_m_s": {
+    "current:pacific-north-equatorial-countercurrent": 0.1,
+    "current:atlantic-north-equatorial-countercurrent": 0.1,
+    "current:south-indian": 0.05
+  },
+  "surface_selection_gates_m_s": {
+    "current:pacific-north-equatorial-countercurrent": 0.05,
+    "current:atlantic-north-equatorial-countercurrent": 0.05,
+    "current:south-indian": 0.02
+  },
+  "all_three_original_batches_one_cumulative_query": true,
+  "source_integral_core_window_m": [
+    0,
+    200
+  ],
+  "seasonal_context_policy": "original January/July qualifying and unresolved outcomes retained;no historical climatology forced as dated result or year-round continuity",
+  "source_pointer_scope": "exact compiled file/hash plus pointer",
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "longitude_delta",
+    "anchor_csv",
+    "csv_bytes"
+  ],
+  "encoding_ast_identical_except_cohort_schema_names": [
+    "compact_report",
+    "expand_report"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}
