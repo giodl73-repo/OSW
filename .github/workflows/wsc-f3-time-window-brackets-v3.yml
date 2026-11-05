@@ -1,0 +1,53 @@
+name: WSC F3 exploratory time window depth brackets v3
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/project_wsc_f3_time_window_brackets_v3.py
+      - analysis/test_wsc_f3_time_window_brackets_v3.py
+      - .github/workflows/wsc-f3-time-window-brackets-v3.yml
+      - research/wsc-f3-time-window-operator-v3.json
+      - plans/wsc-f3-time-window-projection-v3.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  reconstruct:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/project_wsc_f3_time_window_brackets_v3.py
+            analysis/test_wsc_f3_time_window_brackets_v3.py
+            .github/workflows/wsc-f3-time-window-brackets-v3.yml
+            research/wsc-f3-time-window-operator-v3.json
+            plans/wsc-f3-time-window-projection-v3.md
+            research/wsc-f3-offline-results-ledger-v2.json
+            research/wsc-f3-exact-time-native-results-v2.json
+            analysis/derive_wsc_f3_warm_flow_brackets_v1.py
+            research/source-data/wsc-f3-bounded-preview-v1/preview.html
+            plans/wsc-f3-warm-flow-brackets-protocol-v1.md
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU timing tests and offline projected brackets
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_F3_WINDOW_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_wsc_f3_time_window_brackets_v3.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 65s python analysis/project_wsc_f3_time_window_brackets_v3.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wsc-f3-time-window-brackets-v3
+          path: wsc-f3-time-window-brackets-v3/
+          retention-days: 7
+          if-no-files-found: error
