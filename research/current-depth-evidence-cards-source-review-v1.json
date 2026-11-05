@@ -1,0 +1,60 @@
+{
+  "schema": "osw.current-depth-evidence-cards-source-review.v1",
+  "status": "PASS_CLOUD_TESTS_AND_ACTUAL_FULL_JSON_CSV_ROUNDTRIPS",
+  "source_commit": "ad5006f7fd0139c0c886023347e9bf07a2fc8bc5",
+  "cloud_run_id": 42064367094,
+  "cloud_semantic_tests_passed": 4,
+  "baseline_run_id": 42064366707,
+  "baseline_tests_passed": 6,
+  "source_catalog": "research/current-depth-reference-inventory-v38.json",
+  "outputs": {
+    "research/current-depth-evidence-cards-v1.json": {
+      "sha256": "a66799b78ee41bf11e034cb1e0eea891a62736324f76a9a5d1f6d07df29fc7af",
+      "bytes": 2043596
+    },
+    "research/current-depth-evidence-cards-v1.csv": {
+      "sha256": "21a7b9dcb2a50690eb0741cbe8d202f90de2fdf1bd72fed10143c75df5c9f332",
+      "bytes": 24311
+    },
+    "research/current-depth-evidence-cards-query-ledger-v1.json": {
+      "sha256": "8ebef93971b5d80eb0b45c493efca31320ff25a2915e98ea30cd4c620abb3ff2",
+      "bytes": 8750
+    }
+  },
+  "artifact": {
+    "id": 13433271027,
+    "sha256": "66a0594e8c1807927a779df7c4d2bfc07723aa54dae2ff224b46a1aef600533f",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "identities": 111,
+    "references": 894,
+    "new_measurements": 0
+  },
+  "cloud_reported_quantity_role_statuses": {
+    "context_or_core_only": 74,
+    "not_assessed_no_zero_implied": 10,
+    "scoped_boundary_or_proxy_available": 27
+  },
+  "cloud_reported_query": {
+    "numeric_tokens": 14257,
+    "unique_json_bytes": 7705183,
+    "active_seconds": 1.6587486869999992,
+    "new_native_values_decoded": 0,
+    "provider_requests": 0
+  },
+  "scientific_review": [
+    "A presentation packet of existing evidence, not a measurement-gap admission or new observation. Canonical inventory v38 is unchanged.",
+    "Quantity-role categories describe metric names, not observation quality, physical-depth readiness, or evidence confidence. Published extent references in the context category may contain useful depth information; inspect their source definitions.",
+    "Do not interpret 27 proxy-supported identities as 27 measured physical current bottoms. A core-relative decay threshold, directional component isotach, and observed zero crossing are distinct definitions.",
+    "No numerical values are averaged, converted, subtracted or merged into a current-wide range. All source quantities selected for presentation retain their original values and censor flags.",
+    "Reported ranges are neither automatically annual ranges nor uncertainty margins. Layers and transport limits are distinct from depth coordinates.",
+    "All identities retain direct-owner membership. Missing evidence is null, not zero, bed contact, or absent flow. No whole-current depth, physical annual range, or volume is inferred.",
+    "The packet provides reference IDs, original source citations/pointers and qualifications. It is an export; no website cards, runtime, default query, or UI integration was installed."
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "new_measurements": 0,
+  "canonical_reference_admission_performed": false,
+  "full_goal_complete": false
+}
