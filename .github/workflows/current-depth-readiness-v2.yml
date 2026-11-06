@@ -1,0 +1,160 @@
+name: Current depth readiness v2 admitted v40 and censored calendar
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/build_current_depth_readiness_v2.py
+      - analysis/test_current_depth_readiness_v2.py
+      - analysis/compiled_depth_catalog_view_v3.py
+      - plans/current-depth-readiness-protocol-v2.md
+      - .github/workflows/current-depth-readiness-v2.yml
+      - research/current-depth-readiness-operator-v2.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_readiness_v2.py
+            analysis/test_current_depth_readiness_v2.py
+            analysis/compiled_depth_catalog_view_v3.py
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/load_current_depth_reference_inventory_v1.py
+            analysis/build_current_depth_readiness_v1.py
+            analysis/compiled_depth_catalog_view_v1.py
+            analysis/current_depth_cast_time_view_v29.py
+            plans/current-depth-readiness-protocol-v2.md
+            .github/workflows/current-depth-readiness-v2.yml
+            research/a20-cast-temporal-semantics-correction-v1.json
+            research/agulhas-chandler-individual-depth-distributions-source-review-v1.json
+            research/current-depth-collection-priorities-v1.json
+            research/current-depth-florida-fit-error-depth-sensitivity-source-review-v1.json
+            research/current-depth-reference-addenda/a20-local-fixed-direction-depths-v1.csv
+            research/current-depth-reference-addenda/a20-local-fixed-direction-depths-v1.json
+            research/current-depth-reference-addenda/alaska-jarosz2017-winter-mean-flow-reach-v1.csv
+            research/current-depth-reference-addenda/alaska-jarosz2017-winter-mean-flow-reach-v1.json
+            research/current-depth-reference-addenda/azores-ibi-1993-2021-mean-section-depth-v1.csv
+            research/current-depth-reference-addenda/azores-ibi-1993-2021-mean-section-depth-v1.json
+            research/current-depth-reference-addenda/benguela-kersale2019-mean-pressure-v1.csv
+            research/current-depth-reference-addenda/benguela-kersale2019-mean-pressure-v1.json
+            research/current-depth-reference-addenda/coastal-full-section-fresh-depths-v1.csv
+            research/current-depth-reference-addenda/coastal-full-section-fresh-depths-v1.json
+            research/current-depth-reference-addenda/egcc-sutherland2008-coastal-front-foot-v1.csv
+            research/current-depth-reference-addenda/egcc-sutherland2008-coastal-front-foot-v1.json
+            research/current-depth-reference-addenda/florida-primary-censored-penetration-v1.csv
+            research/current-depth-reference-addenda/florida-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/i06s-agulhas-native-uv-depths-v1.csv
+            research/current-depth-reference-addenda/i06s-agulhas-native-uv-depths-v1.json
+            research/current-depth-reference-addenda/indian-euc-iskandar2009-published-core-depths-v1.csv
+            research/current-depth-reference-addenda/indian-euc-iskandar2009-published-core-depths-v1.json
+            research/current-depth-reference-addenda/interval-primary-core-connected-reach-v1.csv
+            research/current-depth-reference-addenda/interval-primary-core-connected-reach-v1.json
+            research/current-depth-reference-addenda/jutland-aure1989-area-mean-depth-v1.csv
+            research/current-depth-reference-addenda/jutland-aure1989-area-mean-depth-v1.json
+            research/current-depth-reference-addenda/jutland-kuijpers1993-bedform-depth-v1.csv
+            research/current-depth-reference-addenda/jutland-kuijpers1993-bedform-depth-v1.json
+            research/current-depth-reference-addenda/jutland-nielsen2000-episodic-gbw-layer-v1.csv
+            research/current-depth-reference-addenda/jutland-nielsen2000-episodic-gbw-layer-v1.json
+            research/current-depth-reference-addenda/jutland-norkyst2024-interior-censored-support-v1.csv
+            research/current-depth-reference-addenda/jutland-norkyst2024-interior-censored-support-v1.json
+            research/current-depth-reference-addenda/labrador-handmann2018-mean-extent-v1.csv
+            research/current-depth-reference-addenda/labrador-handmann2018-mean-extent-v1.json
+            research/current-depth-reference-addenda/leeuwin-watr50-reviewed-monthly-censor-support-v1.csv
+            research/current-depth-reference-addenda/leeuwin-watr50-reviewed-monthly-censor-support-v1.json
+            research/current-depth-reference-addenda/loop-welsh2009-local-transition-bands-v1.csv
+            research/current-depth-reference-addenda/loop-welsh2009-local-transition-bands-v1.json
+            research/current-depth-reference-addenda/malvinas-eacc-primary-censored-penetration-v1.csv
+            research/current-depth-reference-addenda/malvinas-eacc-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/ncc-north-joint-fresh-depths-v1.csv
+            research/current-depth-reference-addenda/ncc-north-joint-fresh-depths-v1.json
+            research/current-depth-reference-addenda/ncc-original-core-fresh-component-depth-v1.csv
+            research/current-depth-reference-addenda/ncc-original-core-fresh-component-depth-v1.json
+            research/current-depth-reference-addenda/nec-huang2022-filtered-depth-cases-v1.csv
+            research/current-depth-reference-addenda/nec-huang2022-filtered-depth-cases-v1.json
+            research/current-depth-reference-addenda/northern-toulon-2011-dated-local-depth-v1.csv
+            research/current-depth-reference-addenda/northern-toulon-2011-dated-local-depth-v1.json
+            research/current-depth-reference-addenda/norwegian-rudels2026-entering-aw-layer-thickness-v1.csv
+            research/current-depth-reference-addenda/norwegian-rudels2026-entering-aw-layer-thickness-v1.json
+            research/current-depth-reference-addenda/nwasc-baumann-selected-noncore-depth-v1.csv
+            research/current-depth-reference-addenda/nwasc-baumann-selected-noncore-depth-v1.json
+            research/current-depth-reference-addenda/oman-2025-published-plume-descriptors-v1.csv
+            research/current-depth-reference-addenda/oman-2025-published-plume-descriptors-v1.json
+            research/current-depth-reference-addenda/ombai-sprintall2010-observed-depth-bands-v1.csv
+            research/current-depth-reference-addenda/ombai-sprintall2010-observed-depth-bands-v1.json
+            research/current-depth-reference-addenda/p06-eac-native-uv-depths-v1.csv
+            research/current-depth-reference-addenda/p06-eac-native-uv-depths-v1.json
+            research/current-depth-reference-addenda/pgw-pous-2004-core-depth-regimes-v1.csv
+            research/current-depth-reference-addenda/pgw-pous-2004-core-depth-regimes-v1.json
+            research/current-depth-reference-addenda/pgw-pous-2004-regional-core-thickness-v1.csv
+            research/current-depth-reference-addenda/pgw-pous-2004-regional-core-thickness-v1.json
+            research/current-depth-reference-addenda/pratt2000-hanish-mean-interface-depths-v1.csv
+            research/current-depth-reference-addenda/pratt2000-hanish-mean-interface-depths-v1.json
+            research/current-depth-reference-addenda/redsox-published-plume-thickness-v1.csv
+            research/current-depth-reference-addenda/redsox-published-plume-thickness-v1.json
+            research/current-depth-reference-addenda/redsox-rsx1-observed-core-and-censored-reach-v1.csv
+            research/current-depth-reference-addenda/redsox-rsx1-observed-core-and-censored-reach-v1.json
+            research/current-depth-reference-addenda/rim-oguz1999-native-vertical-evidence-v1.csv
+            research/current-depth-reference-addenda/rim-oguz1999-native-vertical-evidence-v1.json
+            research/current-depth-reference-addenda/sun2023-143e-published-mean-boundaries-v1.csv
+            research/current-depth-reference-addenda/sun2023-143e-published-mean-boundaries-v1.json
+            research/current-depth-reference-addenda/tao-pacific-euc-observed-daily-lower-depths-v1.csv
+            research/current-depth-reference-addenda/tao-pacific-euc-observed-daily-lower-depths-v1.json
+            research/current-depth-reference-addenda/tsushima-observed-pair-direction-change-v1.csv
+            research/current-depth-reference-addenda/tsushima-observed-pair-direction-change-v1.json
+            research/current-depth-reference-addenda/tsushima-takikawa2014-observed-core-depths-v1.csv
+            research/current-depth-reference-addenda/tsushima-takikawa2014-observed-core-depths-v1.json
+            research/current-depth-reference-inventory-v28.json
+            research/current-depth-reference-inventory-v29.json
+            research/current-depth-reference-inventory-v30.json
+            research/current-depth-reference-inventory-v33.json
+            research/current-depth-reference-inventory-v34.json
+            research/current-depth-reference-inventory-v35.json
+            research/current-depth-reference-inventory-v36.json
+            research/current-depth-reference-inventory-v37.json
+            research/current-depth-reference-inventory-v38.json
+            research/current-depth-reference-inventory-v39.json
+            research/current-depth-reference-inventory-v40.json
+            research/current-depth-register-v48.csv
+            research/current-depth-register-v48.json
+            research/current-depth-route-projection-inventory-v48.json
+            research/current-depth-temporal-review-index-v1.json
+            research/eac-calendar-depth-distributions-source-review-v1.json
+            research/florida-spray-seasonal-depth-source-review-v1.json
+            research/gulf-stream-fitted-phase-depth-summary-source-review-v1.json
+            research/kuroshio-calendar-depth-distributions-source-review-v1.json
+            research/leeuwin-depth-sensitivity-source-review-v1.json
+            research/leeuwin-monthly-depth-support-series-v2.csv
+            research/leeuwin-monthly-depth-support-series-v2.json
+            research/p06-eac-native-uv-unresolved-reference-contexts-v1.json
+            research/current-depth-readiness-operator-v2.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Synthetic semantics and admitted canonical catalog join on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_DEPTH_READINESS_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_readiness_v2.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/build_current_depth_readiness_v2.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-readiness-v2
+          path: current-depth-readiness-v2/
+          retention-days: 7
+          if-no-files-found: error
