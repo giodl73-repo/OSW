@@ -1,0 +1,51 @@
+name: ECCO prospective subset guard v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/ecco_bounded_subset_plan_v1.py
+      - analysis/test_ecco_bounded_subset_plan_v1.py
+      - analysis/verify_ecco_bounded_subset_plan_v1.py
+      - plans/ecco-bounded-subset-plan-protocol-v1.md
+      - .github/workflows/ecco-bounded-subset-plan-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/ecco_bounded_subset_plan_v1.py
+            analysis/test_ecco_bounded_subset_plan_v1.py
+            analysis/verify_ecco_bounded_subset_plan_v1.py
+            plans/ecco-bounded-subset-plan-protocol-v1.md
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify prospective subset limits offline on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_ECCO_GUARD_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_ECCO_GUARD'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_ecco_bounded_subset_plan_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/verify_ecco_bounded_subset_plan_v1.py
+          OSW_ECCO_GUARD
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ecco-bounded-subset-plan-v1
+          path: ecco-bounded-subset-plan-v1/
+          retention-days: 7
+          if-no-files-found: error
