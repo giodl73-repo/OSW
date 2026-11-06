@@ -1,0 +1,156 @@
+{
+  "schema": "osw.west-greenland-core-width-execution-review.v1",
+  "status": "EXECUTED_SUPPORT_CENSORED_NO_WIDTH_ADMISSION",
+  "run_id": 40096072079,
+  "job_id": 120878542914,
+  "run_conclusion": "success",
+  "execution_commit": "a14a9691bde59eb06a299b8be2357d981125e321",
+  "freeze_remote_commit": "b21714341ad97c3d99596e5f4b9c04c890dcf4b2",
+  "preflight_sha256": "f4b464396ddd0f9bcb41aa8e7b51f18d997286f797c2ff3f2b78291f67171607",
+  "artifact_id": 12560618527,
+  "synthetic_tests": {
+    "passed": 55,
+    "cloud_seconds": 1.14
+  },
+  "report": {
+    "path": "research/west-greenland-regional-core-diagnostic-v1.json",
+    "bytes": 1755109,
+    "sha256": "3ecbdf6d36ed972d8ad6ba569389e57304df5a312ee7063c819d6aab465c6fd1"
+  },
+  "figure": {
+    "path": "figures/west-greenland-regional-core-diagnostic-v1.svg",
+    "bytes": 7121,
+    "sha256": "07fdec4cf052b2c3e5345061f8c36fdb90748527664081390a9d5457840dd7cc",
+    "actually_rendered_and_inspected": true
+  },
+  "hourly_trace": {
+    "bytes": 1690258,
+    "name": "hourly-traces.npz",
+    "sha256": "646209ba0a453a951d3dafa4a42ca412281c297f7dd54c6955514f3fffa252f6",
+    "hash_provenance": "Declared by the successful frozen cloud producer; not independently rehashed locally.",
+    "downloaded_locally": false,
+    "arrays_loaded_locally": false
+  },
+  "months": 26,
+  "threshold_attempts": 78,
+  "resolved_threshold_samples": 0,
+  "maximum_monthly_joint_available_hours": 0,
+  "station_support": [
+    {
+      "station": "LS1",
+      "source_time_rows": 18185,
+      "layer_profile_counts": {
+        "available_layer": 13396,
+        "insufficient_paired_depth_cells": 5,
+        "layer_not_bracketed": 4359,
+        "vertical_gap_exceeds_limit": 425
+      },
+      "filtered_available_hours": 3115,
+      "longest_available_layer_segment_hours": 1020
+    },
+    {
+      "station": "LS2",
+      "source_time_rows": 18225,
+      "layer_profile_counts": {
+        "available_layer": 16796,
+        "insufficient_paired_depth_cells": 66,
+        "layer_not_bracketed": 624,
+        "vertical_gap_exceeds_limit": 739
+      },
+      "filtered_available_hours": 1731,
+      "longest_available_layer_segment_hours": 1670
+    },
+    {
+      "station": "LS3",
+      "source_time_rows": 18241,
+      "layer_profile_counts": {
+        "available_layer": 14729,
+        "insufficient_paired_depth_cells": 62,
+        "layer_not_bracketed": 1152,
+        "vertical_gap_exceeds_limit": 2298
+      },
+      "filtered_available_hours": 27,
+      "longest_available_layer_segment_hours": 243
+    },
+    {
+      "station": "LS4",
+      "source_time_rows": 17903,
+      "layer_profile_counts": {
+        "available_layer": 6883,
+        "insufficient_paired_depth_cells": 1,
+        "layer_not_bracketed": 10815,
+        "vertical_gap_exceeds_limit": 204
+      },
+      "filtered_available_hours": 0,
+      "longest_available_layer_segment_hours": 61
+    },
+    {
+      "station": "LS5",
+      "source_time_rows": 17893,
+      "layer_profile_counts": {
+        "available_layer": 10777,
+        "layer_not_bracketed": 6356,
+        "vertical_gap_exceeds_limit": 760
+      },
+      "filtered_available_hours": 328,
+      "longest_available_layer_segment_hours": 381
+    },
+    {
+      "station": "LS6",
+      "source_time_rows": 17971,
+      "layer_profile_counts": {
+        "available_layer": 8781,
+        "layer_not_bracketed": 8887,
+        "vertical_gap_exceeds_limit": 303
+      },
+      "filtered_available_hours": 0,
+      "longest_available_layer_segment_hours": 69
+    },
+    {
+      "station": "LS7",
+      "source_time_rows": 17977,
+      "layer_profile_counts": {
+        "available_layer": 4456,
+        "layer_not_bracketed": 13377,
+        "vertical_gap_exceeds_limit": 144
+      },
+      "filtered_available_hours": 0,
+      "longest_available_layer_segment_hours": 41
+    },
+    {
+      "station": "LS8",
+      "source_time_rows": 17999,
+      "layer_profile_counts": {
+        "available_layer": 1336,
+        "layer_not_bracketed": 16626,
+        "vertical_gap_exceeds_limit": 37
+      },
+      "filtered_available_hours": 0,
+      "longest_available_layer_segment_hours": 92
+    }
+  ],
+  "findings": [
+    "The 50\u2013100 m layer and uninterrupted-filter rules produce no joint filtered hours; all 26 monthly profiles fail before edge estimation.",
+    "LS4 has 6883 available layer profiles but its longest uninterrupted segment is 61 hours, shorter than the fixed 240-hour filtering requirement. This is a method-support failure, not absent current flow.",
+    "LS6, LS7 and LS8 likewise retain zero filtered hours; a narrower station window alone would not cure the LS4 support failure.",
+    "The generated SVG was actually rendered and inspected. All months and all three failed threshold outcomes are readable; no zero is presented as a physical width.",
+    "All 31 executed scientific inputs and the original case outputs remain immutable. No post-result threshold/layer/filter tuning is applied to v1."
+  ],
+  "next_required_work": [
+    "Review the physical layer and temporal estimator together before proposing a separately versioned method.",
+    "Distinguish loss of physical-layer bracketing from filter-segment/edge losses; do not fill gaps or claim unbiased seasonal coverage.",
+    "Use a new prospective protocol, synthetic tests, review and freeze for any new original dimension case.",
+    "Continue other current measurement sources and preserve this unclosed West Greenland gap in the catalogue."
+  ],
+  "new_current_widths_or_lengths": 0,
+  "annual_physical_ranges_admitted": 0,
+  "new_current_geometry_or_state_joins": 0,
+  "working_query_packet_changed": false,
+  "scientific_release_published": false,
+  "main_merged": false,
+  "original_archive_synced_locally": false,
+  "hourly_traces_synced_locally": false,
+  "local_native_or_wasm_builds": 0,
+  "local_browser_runs": 0,
+  "review_scope": "One assistant reviewing actual frozen cloud results and a static figure; no independent scientific peer review or measurement approval."
+}

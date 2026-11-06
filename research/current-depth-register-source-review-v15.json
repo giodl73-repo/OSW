@@ -1,0 +1,73 @@
+{
+  "schema": "osw.current-depth-register-source-review.v15",
+  "status": "PASS_LOCAL_LAYER_JOINS_AND_BAFFIN_COMPONENT_BAND",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41393660582,
+      "tests_passed": 8,
+      "source_commit": "190b0f27fff5afb78ba86032428f0b1cc41b1abd",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41393660582"
+    },
+    {
+      "run_id": 41393660479,
+      "tests_passed": 6,
+      "source_commit": "190b0f27fff5afb78ba86032428f0b1cc41b1abd",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41393660479"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 264,
+    "identities_with_scoped_depth_reference": 69,
+    "identities_not_yet_assessed": 42,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 26,
+    "core_lower_boundary_depth": 6,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 5,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 6,
+    "reported_vertical_extent": 39,
+    "reported_vertical_thickness": 4,
+    "transport_selected_depth_extent": 56,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v15.py": "f9de44fa03be31db48883fdf4031b493d7c6375bdf3a368fabdb9d3f0d5df07b",
+    "analysis/test_current_depth_register_v15.py": "031f5a1d33b9e9fbdcad026a1b210ecb4e71e43a63826272fe6ad1fbf70e74fc",
+    "research/current-depth-rules-v15.json": "cf8b27a1ce2c352b5d87f85ed350b27786e35e2b0a0441542b5f9d7516c97b86",
+    "research/current-depth-source-facts-v15.json": "a65baf1751f14de74be2def910d30e693f10dbc3a14d14a314976ce52b0287ae",
+    "research/current-depth-register-v15.json": "29738ace1eb06ea3a3afdd381f94284dfed5c047b96fbb804652c28604e39b99",
+    "research/current-depth-register-v15.csv": "59fdf6c9c95d8c4befc758bf8bb1026b3667594e0f4367b7d7cc4f3a25f4bbc9",
+    ".github/workflows/current-depth-register-source-v15.yml": "37c16ec25f359d57e5dea0540e7466dbeec39f3db1c67fe558ac1b1a96548d34",
+    "research/caribbean-current-depth-measurements-v1.json": "c3b5bfb1f960f223ca08a140d4244e50128eb1979d3c6c774f11e10e7b58dccb",
+    "research/caribbean-current-depth-operator-v1.json": "181cfd2c310315f1a34ffc857760573efd4412a62b3bc5ad4a3096a091ab64af",
+    "research/caribbean-current-depth-measurement-review-v1.json": "d5ee9826b41b5313c4e829e43300a81baa54001c6b33e995b02b2eed769efeca"
+  },
+  "previous_157_references_and_v14_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding157 references retained. Two newly covered current identities bring scoped coverage to69, with42 still unassessed.",
+    "106 local Caribbean lower velocity-threshold crossings join every accepted profile exactly once, with source profile index, coordinates, transect, interval, source end timestamp and separately derived midpoint.",
+    "Central0.10m/s threshold, minimum3bins, operator hash and ten-metre sample brackets preserved. Brackets are not confidence intervals and mesoscale eddy flow is not removed.",
+    "Linked measurement series preserves57 two-boundary thickness diagnostics and49 unresolved upper boundaries; no whole-current thickness is assigned.",
+    "Baffin100–300m band belongs to the Arctic-water component in the primary source regional setting, not Atlantic water, full current thickness, basin bathymetry or the fjord mooring campaign.",
+    "Mutation checks reject swapped profile data, altered threshold/operator, source end time replaced with midpoint, wrong component, geometry and annual-extrema promotion.",
+    "JSON and CSV reproduce with source joins and discretization metadata, without duplicate columns. No new ocean field processing, local test execution or runtime change."
+  ],
+  "source_review_scope": "Carroll2018 primary publisher full HTML Section2.1 definitions and following Baffin Island Current paragraph. Caribbean derived measurements previously calculated and reviewed under pinned operatorv1; this batch only joins accepted diagnostics to the catalog.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

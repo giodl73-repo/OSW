@@ -10,7 +10,7 @@ def main():
     row=next(r for r in snapshot['entries'] if r['id']=='current:gulf-stream-system')
     features=[f for f in row['map_features'] if f.get('geometry_id')]
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')

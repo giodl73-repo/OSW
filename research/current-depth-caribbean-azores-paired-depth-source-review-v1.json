@@ -1,0 +1,118 @@
+{
+  "schema": "osw.current-depth-caribbean-azores-paired-depth-source-review.v1",
+  "status": "PASS_20_CASES_19_FINITE_AXIS_ANCHORS_ONE_ORIGINAL_AXIS_GAP",
+  "source_commit": "7678deab00e09e09bf9c65106987fc1745647301",
+  "producer_run_id": 42112853723,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42112853723",
+  "cloud_semantic_tests_passed": 16,
+  "actual_complete_20_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13455580091,
+    "bytes": 147058,
+    "sha256": "0962d95a49b6e796bebc5188cef10378bf23c7091b7d29de41396bf9117868bc",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/caribbean-azores-paired-depth-v1.json": {
+      "bytes": 1690567,
+      "sha256": "4cfa6f84cbb842035ead5b0fa334c2897c587513d3c10ca11d491e58a4f1eec3"
+    },
+    "research/caribbean-azores-paired-depth-v1.csv": {
+      "bytes": 34144,
+      "sha256": "2ccca146b746f4c7e97759df12a9112e2920b611ea99ded209bf5be5ab7db892"
+    },
+    "research/caribbean-azores-depth-anchors-v1.csv": {
+      "bytes": 9264,
+      "sha256": "0812dee2cb67a2bebd23118fd46e6f6d44d8fa6a6073b3eadf88c9ca7af24902"
+    },
+    "research/caribbean-azores-paired-depth-query-ledger-v1.json": {
+      "bytes": 1352,
+      "sha256": "6ec20861c4d39cf6afe1c9ac94fb8a8bdd097acdec7d0abb8ce2f0364de73cb3"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_cases": 20,
+    "original_unresolved_cases": 1,
+    "cases_with_integrable_partial_geometry": 19,
+    "retained_column_descriptors": 2267,
+    "retained_vertical_runs": 1182,
+    "finite_paired_column_runs": 1175,
+    "censored_runs_with_minimum_support": 7,
+    "conditional_strip_patches": 1053,
+    "strips_without_integrable_geometry": 1325,
+    "rejected_ambiguous_links": 108,
+    "original_axis_proxy_anchors": 19,
+    "finite_paired_axis_anchors": 19,
+    "censored_axis_anchors_with_minimum_support": 0,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_counts_by_current": {
+    "current:caribbean": {
+      "source_cases": 10,
+      "original_axis_proxy_anchors": 9,
+      "finite_paired_axis_anchors": 9,
+      "axis_gaps": 1,
+      "retained_column_descriptors": 1017,
+      "retained_vertical_runs": 909,
+      "finite_paired_column_runs": 909,
+      "censored_runs_with_minimum_support": 0,
+      "conditional_strip_patches": 831,
+      "strips_without_integrable_geometry": 297,
+      "rejected_ambiguous_links": 73,
+      "component_bearing_degrees_true": 270
+    },
+    "current:azores": {
+      "source_cases": 10,
+      "original_axis_proxy_anchors": 10,
+      "finite_paired_axis_anchors": 10,
+      "axis_gaps": 0,
+      "retained_column_descriptors": 1250,
+      "retained_vertical_runs": 273,
+      "finite_paired_column_runs": 266,
+      "censored_runs_with_minimum_support": 7,
+      "conditional_strip_patches": 222,
+      "strips_without_integrable_geometry": 1028,
+      "rejected_ambiguous_links": 35,
+      "component_bearing_degrees_true": 90
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 58203,
+    "query_unique_json_bytes": 2796500,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.2670074080000013,
+    "whole_output_bytes": 1735331,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All20original Caribbean/Azores section-date cases retained:five sections per owner at each exact January15/July15,2022 snapshot. These are individual model fields,not monthly means,seasons,annual extrema or new independent observations.19original interior cases retain selected axis proxies;one original Caribbean gate-edge case keeps a null anchor and its exact original candidate diagnosis.",
+    "Original Caribbean270degree westward and Azores90degree eastward signed components,strict0.1m/s primary contour,0.05m/s surface selection gate and complete native0\u2013200mselection window remain unchanged. Gates/core windows are selection metadata,not imposed layer boundaries or current thickness. No source window,threshold,core or branch is tuned to improve outcomes.",
+    "A5cm/s surface selection requirement is below the10cm/s primary contour. It does not force the selected primary upper boundary to0m,make its layer surface-connected or establish a physical surface current body. Nonzero original upper boundaries are preserved. Original native surface-seed connectivity is copied as graph topology only,not selected-layer or physical thickness evidence. The unresolved case explicitly says its graph was not constructed,so its defaultfalse flag is not observed absence.",
+    "Original legacy longitude provenance dictionaries are preserved,including exact section definitions,retrieved-hyperslab metadata,native longitude and nearest-coordinate receipt. Canonical sampled longitude must match the original native coordinate wrapped to[-180,180);every available row must remain within the original5km longitude tolerance. Increasing consecutive native latitude indices at fixed longitude are preserved. No enum-tag or fixed-latitude adapter substitutes the source geometry.",
+    "All1182original available vertical runs and2267available column descriptors retained. Source-declared native counts for the unresolved case are not relabeled as available descriptors.1175runs have finite paired component contours and7Azores runs remain censored with minimum native support. All19selected-axis anchors have finite paired component boundaries;non-axis censored runs remain in the full section shape. Source object and bytes remain exact.",
+    "All19supported cases have partial transverse geometry:1053accepted partial strip patches,1325strips without integrable geometry and108rejected ambiguous split/merge links. Pair only uniquely overlapping depth runs on consecutive original latitude columns within20km spherical geodesic separation at radius6371008.8m. Preserve missing/censored/ambiguous gaps and lateral-gate flags. No endpoint closure,neighbor substitution,sample-limit or bathymetry fill.",
+    "Minimum support is original first-to-last contiguous qualifying native sample span under the original piecewise-linear component definition. It is neither surface-relative depth,a finite bottom,physical named-current thickness bound nor uncertainty. A single sample gives an uninformative zero minimum span,never absent flow or zero actual thickness. Censored boundaries/thickness stay null;physical-bound flags stay false.",
+    "Fixed-longitude partial component areas are not independently flow-normal current widths/areas. Equivalent area/span thickness excludes gaps and is not representative whole-current depth. Native brackets are conditional sampling scenarios,not confidence intervals,physical uncertainty,guaranteed true-boundary bounds or annual ranges. No between-section surface,independent terrain clearance,whole-route physical depth profile or water volume is established.",
+    "Caribbean scope is the partial southern-jet context,excluding northern jet,Yucatan,Loop,Antilles and upstream island-passage flows. Azores scope is the partial eastward-jet context,excluding westward subsurface countercurrent,northern recirculation,Portugal/Canary continuation and detached eddies. Broad geographic maxima can be mesoscale or other flow;independent named-current axis/body/water-mass membership is not established. RU29_2024inversion layers and24.5W_2009density-layer extents are not these2022component boundaries or imposed bottoms.",
+    "Boundary,run_geometry,separation,strip,run_support,attach_anchor,counts,derive_case and report-run functions are AST-identical to the validated Mediterranean implementation. Changes bind the original two-owner legacy longitude dictionaries,gates and dates. Shared-note JSON schema osw.caribbean-azores-paired-depth.v2 expands through the new producer to the exact full scientific dictionary and both CSV byte streams. No numeric precision,records,runs,censors,source pointers or qualifications are dropped.",
+    "Sixteen cloud tests cover analytic geometry/scenario units,censored/surface limits,native adjacency/splits/disjoint support,all20cases/19anchors/one gap,source immutability,nonzero primary tops despite surface selection,minimum span versus surface depth/zero absence,longitude wrapping/receipt/definitions/indices,owner/direction/cutoff/gate/window/date/primary mutations,blank unresolved depths,explicit topology interpretation,and exact lossless JSON/both-CSV parity. Actual full20case roundtrips passed on all original compiled data.",
+    "Offline sequential one idle cloud CPU,fresh output,one absolute60s deadline wrapping both tests and producer plus producer SIGALRM/SIGTERM handling. Ordinary DescriptorQueryv3 starts explicit0prior numeric/bytes and reserves58203tokens/2796500unique JSON bytes before decoding/cache under250k/32MB/2.5MBpacket. Whole output1735331bytes remains under2.4MB,cumulative1.2670074080000013seconds. No native/source-data,old producer/validator,provider target,archive or closed acquisition case is replayed or renewed.",
+    "Single four-member artifact retained once after all branch jobs terminal,then installed byte-for-byte. HYCOM Consortium,NRL,COAPS-FSU credit preserved. No new observations or canonical scalar references. Existing111identities,908reference inventory,old projection inventory,102eddy references,main,runtime,query UI and WASM remain unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,97 @@
+name: Verify matching Indian SEC native and WASM delivery v3
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/chen-indian-sec-delivery-request-v3.json
+      - .github/workflows/chen-indian-sec-delivery-v3.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_CHEN_INDIAN_SEC_DELIVERY_V2: "1"
+  OSW_CHEN_INDIAN_SEC_INDEX_V1: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/chen-indian-sec-delivery-request-v3.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/chen-indian-sec-delivery-request-v3.json').read_bytes())
+          assert r['schema']=='osw.chen-indian-sec-delivery-request.v3'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  native-core:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Prove local native compilation is refused before access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_delivery_contract_v1.py -v
+      - name: Verify lossless capture and complete batch transport without native execution
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 node analysis/test_current_gap_json_capture_v2.mjs
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_native_batch_v2.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_check_chen_indian_sec_delivery_v3.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_semantic_diff_v2.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_delivery_contract_v2.py -v
+      - name: Install the frozen Rust toolchain on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+      - name: Install frozen geodesic runtime and verify query contract fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_canonical_replay_v2.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_ridge_query_v2.py -v
+      - name: Capture parent APIs, build matched native/WASM and compare complete responses
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_chen_indian_sec_delivery_v3.py
+      - name: Retain compact native evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chen-indian-sec-delivery-evidence-v3
+          path: .pytest_cache/chen-indian-sec-delivery-v3/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Retain matching engine on the cloud for later browser verification and installation
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chen-indian-sec-delivery-engine-v3
+          path: .pytest_cache/chen-indian-sec-delivery-work-v3/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

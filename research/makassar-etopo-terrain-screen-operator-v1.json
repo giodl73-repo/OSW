@@ -1,0 +1,38 @@
+{
+  "schema": "osw.makassar-etopo-new-terrain-context-operator.v1",
+  "scope": "Independent environmental terrain screen of retained current-depth scenarios,not native velocity-case renewal",
+  "input_sha256": {
+    "analysis/screen_makassar_depth_surfaces_etopo_v1.py": "4c5c78bdf7454c8d89c9ed5815466269f9088d0a73f6badda418e1954363a844",
+    "analysis/test_makassar_etopo_terrain_screen_v1.py": "c5eb6975a0e37c9d6fd3d78e3c779d8dbaa0d619259b001d9745adf1b79a4c37",
+    "plans/makassar-etopo-coarse-terrain-screen-v1.md": "26b5b160ca41ae0f020491e027ec6bd9bef3a270c944e452416fe8e676776907",
+    ".github/workflows/makassar-etopo-terrain-screen-v1.yml": "c7202bd8c5ea5b175eebf92eb876c7d8db89386bb260eafeaee3f531dcda1467",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/barents-makassar-conditional-depth-surfaces-v1.json": "99c2c3007df7613950d77adbe611c2ab4f826579e086964590a76b0fb03ccdec",
+    "research/current-depth-barents-makassar-conditional-surfaces-source-review-v1.json": "c19be51e971111f6c52222994aa7a94ec85511063a2551c611b23c63edb443af"
+  },
+  "terrain_service": "https://gis.ngdc.noaa.gov/arcgis/rest/services/DEM_mosaics/DEM_global_mosaic/ImageServer",
+  "terrain_doi": "10.25921/fd45-gt74",
+  "maximum_provider_operations_total": 2,
+  "metadata_body_cap_bytes": 100000,
+  "field_body_cap_bytes": 1000000,
+  "whole_case_raw_byte_cap": 7000000,
+  "whole_case_numeric_scalar_cap": 250000,
+  "metadata_numeric_token_reservation": 2000,
+  "maximum_terrain_cells": 6000,
+  "maximum_comparison_node_occurrences": 6000,
+  "export_step_degrees": 0.04,
+  "datum_surface_offset_scenarios_m": [
+    -20,
+    0,
+    20
+  ],
+  "analysis_scalar_reservation_formula": "10*comparison_node_occurrences+40*source_patches+5000",
+  "maximum_output_bytes": 2400000,
+  "shared_deadline_seconds_including_tests": 60,
+  "new_native_velocity_values_allowed": 0,
+  "closed_velocity_case_budget_renewed": false,
+  "current_boundary_clipping_to_bed_allowed": false,
+  "physical_volume_promotion_allowed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

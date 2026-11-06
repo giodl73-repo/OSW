@@ -1,0 +1,69 @@
+name: Diagnose Pacific NEC monthly regional dimensions v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-monthly-dimensions-request-v1.json
+      - .github/workflows/pacific-nec-monthly-dimensions-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  OSW_PACIFIC_NEC_MONTHLY_DIMENSIONS_V1: "1"
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-monthly-dimensions-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-monthly-dimensions-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+      - name: Install pinned diagnostic dependencies on one CPU
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install --only-binary=:all: numpy==2.2.6 pyproj==3.7.2 matplotlib==3.10.3
+      - name: Test profile operators and local refusal
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_pacific_nec_monthly_dimensions_v1.py -v
+      - name: Acquire bounded source, compute all declared cases and render diagnostic
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 timeout 900s python analysis/pacific_nec_monthly_dimensions_v1.py
+      - name: Retain compact derived results and images
+        if: always() && steps.request.outputs.execute == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-monthly-dimensions-evidence-v1
+          path: .pytest_cache/pacific-nec-monthly-dimensions-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Preserve original fields on cloud only
+        if: always() && steps.request.outputs.execute == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-monthly-dimensions-original-source-v1
+          path: .pytest_cache/pacific-nec-monthly-dimensions-source-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

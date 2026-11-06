@@ -1,0 +1,40 @@
+# ACT native source geometry postflight
+
+Qualify the six alreadyretainednativepointrecords, not anotherdiscoveryround
+or a newcase. Originalcase18remoteops,10used8remain; use atmost3additional
+plannedoperations(oneexplicitanonymouscontrolsession,twoRETRdocuments) from
+sameprovider/manifestpaths. Metadata-discoverystage6remainsclosed,notrenewed.
+This is provenancepostflightneededbeforeusingexistingnativeobservations,
+notresource-budgetgamingorvelocityharvestjusttojustifydocumentation.
+Original210scasecharged54.317670404s;new155sremaining(floored),25sabsolute
+operations/26sstartminimum, no resets/retries/fallback/reconnect. Aggregate
+plannedcontrolsessions4,countthisconnectionasoperation11;dataops12/13 leave5.
+
+Only observedabout/0140939_lonlat.txt1706bytes andabout/journal.txt1497bytes,
+fullproviderSHA256/sizefromimmutablemanifest. No sourceNC/TIME/directory/XML/
+README/artifactreplay, no privateconfirmationemailorcontactmessages. One
+qualificationpacket<=10000bytes,rawfsyncbeforeinterpretation,absolutealarms,
+SIGTERM unwind/finalizebeforeupload,freshfolder. Original10receipts/body
+1742987bytes/native2transfercorrectedledgerremainexact;newbody3203bytesif
+complete. Scalarbound85175including2000metadata remains,nonewrawnativearrays;
+coordinatesonlyfromalreadyderivedJSON,6existingpoints/4catalogueextent
+corners insideoriginal1000node reserve/6000cap. Alloutput<2.4MB.
+
+Beforeseeingdocuments,compareproviderlon/latagainstprimarycataloguecopied
+limits27.4-28.4E,34.9-33.5S. Preservecatalogueliteralordering/contextrather
+thanpretendingformalpolygonprecision. PrimaryBeal2015Section2adescribes
+nominal34Sarray;Table1exactBpositionunread. Strictinclusivebboxmembership
+is a consistencycheckonly,notindependentstation/axisvalidation. Do notfit
+bbox, silentlyalterproviderpositions, usepaper34SasexactB, orgrantOSWstate/
+route/width/physicaljoinsfromsamecoordinates/labels. Missingcoordsstayunknown.
+Eveninsidebbox geographyremainsunverified untilcrosschecked sourceidentity.
+
+Archivecoords/provenance docsretainedastextwithsourcehashesandexplicitnative
+identifiermentions. NODC-derivedpositionlistisnotindependentproviderfield
+confirmation. No guessedparsing/correctedpositionfromunlabelledrowsorfile
+order. Actualsourcecontentsreviewedafterretentionandmayrequireindependent
+primarytable;gateallmap/state/routeassignmentuntilreconciled. Measurement
+values/nativecoords/originaljournalsunchanged. No currentdepthreference/
+physicalthickness/uncertainty/annualrange/volumeadmission. Cloud-onlysingle
+idleCPU/tests/geometry;localstatic/AST/custodyonly. Preserve858refs/102eddyrefs/
+21UTF8/runtime/main;newscopedcodeonly,exactparentGitTreepublication.

@@ -1,0 +1,223 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    50,
+    350
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all32 original section/date cases,all candidate scores/local maxima and all no-selection,gate/support-edge or primary-censored results. Do not retune gates,skip support gaps or substitute weaker interior profiles. Native coastal/topographic masks and a narrow channel resolved by few cells can censor/confound maxima. Directional geographic maxima do not independently validate current/branch identity or water masses.",
+  "vertical_operator": "Frozen connected-layer tracing searches above/below each per-current seed on full native0-5000m support with adjacent finite brackets. Keep upper/lower contours,statuses,last supported bounds and paired span distinct. Selection endpoints,BSO salinity-selected350m core/50m analysis cutoff,observed Makassar100m mean peak,instrument limits,channel sills,bed and missing support are not physical current bottoms. Same-sign deep flow can connect;model span is not physical thickness. No pressure conversion or thermal/salinity classification.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.barents-makassar-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New quarterly North Cape/BSO and Makassar branch sources use their appropriate transverse axes. Mixed preflight delegates unchanged longitude/latitude geometry and jointly checks total targets before fields. One shared reservation/ledger aliases both frozen bounded read methods;no independent per-axis budget reset. Interval selection,component rotation,connected-layer math and both native audits remain frozen.",
+  "geometry_provenance": "OSW partial fixed-longitude North Cape/BSO context at20,22,24,26E with70.5-73.5N gates;fixed-latitude Makassar context at1,2,3,4S with117.5-120E gates. Eight editorial cuts yield32quarterly targets. Stops/gates are not extracted axes,widths,errors,dated trajectories or full current-system routes.",
+  "column_selector": "North Cape uses complete finite50-350m eastward90degree integral;Makassar50-200m southward180degree integral. Both require positive signed integral and core>10cm/s,held through depth. No positive surface gate,relative surface comparison or thermal/salinity gate. Greatest eligible integral wins;first native southern index on longitude cuts or western index on latitude cuts breaks ties. Gate/support-edge winners remain unresolved without weaker interior replacement.5/10/20cm/s sensitivities use their own qualifying seed at the same selected column.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous quarterly probes,not seasonal means,annual envelopes,independent occupations,1993-2022 mean BSO core or2004-2012 INSTANT comparison mean. Published broader2004-2017 observing span is separate from the caption-specific averaging interval.",
+  "transport_budget": "Preflight both axes and every32target before any field. Sum both frozen preflight counts under original250000pairs/7MBdecoded caps;3-150profiles,40levels,20000pairs/patch and5km native-axis tolerances remain. Create one BoundedMixedReads reservation for the full joint plan. Both exact frozen read methods share all counters/retry reserve/ledger. Max3exact failed-component attempts with2/5secondbackoff;never replay successes or spend future first-attempt reserve. No per-axis reset or cap increase;counts are requested/decoded,not wire traffic or precision.",
+  "currents": {
+    "current:north-cape": {
+      "entity_id": "current:north-cape",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        50,
+        350
+      ],
+      "selection_depth_interval_m": [
+        50,
+        350
+      ],
+      "branch_scope": "Partial20-26E/70.5-73.5N BSO/southwestern Barents eastward inflow context mapped to North Cape usage. Exclude northern Hopen75-77N reach,coastal Norwegian flow,westward return circulation and full Norwegian/Fram branches as targets. Source BSO core is salinity-ranked rather than a pronounced mean velocity jet.350m selected-core scale and50m upper analysis exclusion are not physical boundaries. Fixed eastward is not a rotated along-slope axis;no Atlantic-Water class is diagnosed. Historical1993-2022 mean sections do not validate2022 snapshot axes or annual extrema."
+    },
+    "current:indonesian-throughflow": {
+      "entity_id": "current:indonesian-throughflow",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        50,
+        200
+      ],
+      "selection_depth_interval_m": [
+        50,
+        200
+      ],
+      "branch_scope": "Partial1-4S/117.5-120E Makassar Strait southward branch context. Exclude eastern inflow,Java/Flores recirculation and Lombok/Ombai/Timor exit passages from target coverage. Observed100m mean peak is a velocity-core location,not current depth or full-network thickness.2004-2012 caption-specific comparison mean differs from broader2004-2017 observing span and from FVCOM/SODA/OFES/ATOP model profiles. Surface reversals/freshwater caps and narrow-channel/topographic masks matter;no positive surface gate or salinity classification. Fixed southward is not a curved passage axis. No full ITF depth,continuous system route or inherited200m model core is admitted."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-20e",
+      "entity_id": "current:north-cape",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 20,
+      "latitude_gate_degrees_north": [
+        70.5,
+        73.5
+      ]
+    },
+    {
+      "id": "section-22e",
+      "entity_id": "current:north-cape",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 22,
+      "latitude_gate_degrees_north": [
+        70.5,
+        73.5
+      ]
+    },
+    {
+      "id": "section-24e",
+      "entity_id": "current:north-cape",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 24,
+      "latitude_gate_degrees_north": [
+        70.5,
+        73.5
+      ]
+    },
+    {
+      "id": "section-26e",
+      "entity_id": "current:north-cape",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 26,
+      "latitude_gate_degrees_north": [
+        70.5,
+        73.5
+      ]
+    },
+    {
+      "id": "section-1s",
+      "entity_id": "current:indonesian-throughflow",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -1,
+      "longitude_gate_degrees_east": [
+        117.5,
+        120
+      ]
+    },
+    {
+      "id": "section-2s",
+      "entity_id": "current:indonesian-throughflow",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -2,
+      "longitude_gate_degrees_east": [
+        117.5,
+        120
+      ]
+    },
+    {
+      "id": "section-3s",
+      "entity_id": "current:indonesian-throughflow",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -3,
+      "longitude_gate_degrees_east": [
+        117.5,
+        120
+      ]
+    },
+    {
+      "id": "section-4s",
+      "entity_id": "current:indonesian-throughflow",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -4,
+      "longitude_gate_degrees_east": [
+        117.5,
+        120
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://os.copernicus.org/articles/22/17/2026/",
+      "locator": "Baumann et al.2026,Sections2.1.2/3 and Figure3c;fresh primary publisher text",
+      "scope": "BSO core is salinity-selected over the southern slope,not a pronounced mean boundary velocity jet.350m core and50m exclusion are analysis scopes,not physical top/bottom. Historical irregular/seasonally skewed1993-2022 sections do not establish2022 instantaneous axes or measured seasonal extrema. OSW50-350m/10cm/s is a velocity diagnostic,not a reproduction of that mask."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JC014884",
+      "locator": "Jiang et al.2019,Section3.2 and Figure5 caption;fresh primary publisher text plus pinned source-facts-v14 caption review",
+      "scope": "Observed Makassar mean velocity peak near100m is distinct from model profiles,mean current bottom and complete ITF depth. Caption averaging2004-2012 differs from broader observing2004-2017 span. Source variability and subsurface structure motivate a declared50-200m scoring window without surface gate,not a uniform100m/200m current or annual range."
+    },
+    {
+      "url": "https://doi.org/10.1029/2005GL023440",
+      "locator": "Retained North Cape/BSO identity mapping in source-facts-v20;not newly digitized",
+      "scope": "North Cape naming for BSO inflow is retained conditionally for this regional context. Existing Hopen Northern-branch route is a different reach;no branch depth numbers or axes are inherited."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+      "locator": "Existing pinned ITF network scope audit and input",
+      "scope": "Passage/exit transport budgets and integration widths are distinct from stored volume,current footprint or complete network coverage. Only partial Makassar source sections are collected here."
+    }
+  ],
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    50,
+    350
+  ],
+  "methodology_file": "plans/barents-makassar-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent regional connectors do not replace/extrapolate current routes. North Cape BSO/southwestern Barents inflow context is distinct from existing75-77N Hopen Northern-branch reference reach. Makassar is one Indonesian Throughflow passage,not a complete western/eastern inflow/exit network. No parent/branch depth inheritance,volume/state join or global sum.",
+  "maximum_nearest_longitude_distance_km": 5
+}

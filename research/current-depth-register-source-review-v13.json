@@ -1,0 +1,70 @@
+{
+  "schema": "osw.current-depth-register-source-review.v13",
+  "status": "PASS_FIVE_BRANCH_REACH_AND_CLASSIFICATION_DEPTH_REFERENCES",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41388898190,
+      "tests_passed": 8,
+      "source_commit": "6c6e1b549d1c93580faf2d6206033c39c72b6be9",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41388898190"
+    },
+    {
+      "run_id": 41388898340,
+      "tests_passed": 6,
+      "source_commit": "6c6e1b549d1c93580faf2d6206033c39c72b6be9",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41388898340"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 150,
+    "identities_with_scoped_depth_reference": 64,
+    "identities_not_yet_assessed": 47,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 25,
+    "core_lower_boundary_depth": 6,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 5,
+    "reported_flow_depth_band": 5,
+    "reported_vertical_extent": 38,
+    "reported_vertical_thickness": 4,
+    "transport_selected_depth_extent": 55,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v13.py": "d9d3fc4bd488bd1afcb56f1f408c0acfb4eaa73ee7dd5bad711d858d857cfb16",
+    "analysis/test_current_depth_register_v13.py": "9022a78edb42b443c948204dbef6f3cffd986fea9058dab3dcca4c4dbb778b6f",
+    "research/current-depth-rules-v13.json": "bf733ce023d60be5f9befb271bca319d5dbae43dcbf7ca92ca1b6b6688cc7704",
+    "research/current-depth-source-facts-v13.json": "6957b09ae487df62231856fe7efe0bdf3fc5695485e0e1f0341f0aa40e4a7107",
+    "research/current-depth-register-v13.json": "7655dc8ed886d5f9d2929232d54521071bd5b9d4160b7647d032da085821f9fc",
+    "research/current-depth-register-v13.csv": "3c43548e1735440072a88b8e2c426a568f05beff3dda83add3b07771c01b207d",
+    ".github/workflows/current-depth-register-source-v13.yml": "b4b78044d5b384d6a2617ca7266f55f43c8264e1b629d4133bd9ddbbbef2cccf"
+  },
+  "previous_145_references_and_v12_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all145 preceding depth references retained.",
+    "Five references cover five previously unassessed identities: Antarctic Slope, Pacific NEC, Pacific NECC, Pacific SEC and South Java.",
+    "Antarctic Slope offshore Gunnerus Bank branch retains strict deeper-than1000m bound and February–March2008 whole-cruise support, without promotion to shallow branch or entire circumpolar current.",
+    "Northern NEC14–16N at134.3E reports1000m reach in a June2009–January2014 glider geostrophic mean. Sampling limit is explicit and does not become a detected physical bottom. Latitude-integrated500m net transport support is separate.",
+    "Pacific142E mooring-array mean August2014–November2015 is distinct from nearby140E2014–2018 records and MJO event composites.",
+    "Pacific NECC strictly shallower than200m remains an upper bound; northern SEC upper150m retains partial0–2N latitude scope.60m ADCP coverage top is not a current upper boundary.",
+    "South Java150m definition retains its literature-classification basis, not a new physical no-flow boundary or1950–2013 OFES estimate. Deeper SJUC and800m eastward anomalies are separate.",
+    "Mutation checks reject branch, identity, averaging-period, sampling-limit and evidence-kind substitutions, numeric bound promotion and unsupported full-flow geometry.",
+    "Source facts, JSON and CSV reproduce without duplicate columns and retain averaging-month windows, sampling limits, processing and depth basis. No raw ocean-field processing or local test execution."
+  ],
+  "source_review_scope": "Dong2016 primary publisher full HTML Sections1/5. Schonau/Rudnick2015 primary publisher full HTML methods, geostrophic reconstruction and Section3.2. Song2019 primary publisher full HTML Sections2.1/3.1 and Figure1 caption. Ningsih2021 primary publisher full HTML Section3.1 SJC/SJUC definition citing Iskandar2006. No original pixels claimed, figure digitization or pressure conversion performed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

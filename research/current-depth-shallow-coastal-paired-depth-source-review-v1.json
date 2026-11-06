@@ -1,0 +1,158 @@
+{
+  "schema": "osw.current-depth-shallow-coastal-paired-depth-source-review.v1",
+  "status": "PASS_SIX_COASTAL_SCOPES_96_CASES_34_FINITE_13_CENSORED_ANCHORS_49_AXIS_GAPS",
+  "source_commit": "43cca239d0ffbe1bad680a03c8906b2388f95aa7",
+  "producer_run_id": 42115009392,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42115009392",
+  "cloud_semantic_tests_passed": 18,
+  "actual_complete_96_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13455726741,
+    "bytes": 98551,
+    "sha256": "991b9b1ce925256c79afbac6dec264f3cefc5753825bcdec4ddf495cbcf32eb1",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/shallow-coastal-paired-depth-v1.json": {
+      "bytes": 1185842,
+      "sha256": "b8ffcfa000193f39663ed6c73b9027042f696f93a3a99a48f60d7fc14c5848d1"
+    },
+    "research/shallow-coastal-paired-depth-v1.csv": {
+      "bytes": 120034,
+      "sha256": "3b6e2adf7c6ca386c0cdff757fbcf4ca6c92e8e0b3cd635644e769b31af9021a"
+    },
+    "research/shallow-coastal-depth-anchors-v1.csv": {
+      "bytes": 27845,
+      "sha256": "9d79b3d3e2bfe38fe64a00b968606c6f505ac231eaa8a7744a201192857345f5"
+    },
+    "research/shallow-coastal-paired-depth-query-ledger-v1.json": {
+      "bytes": 1654,
+      "sha256": "6f6194c0b2c0af483b8ecee898cfde559634a079534f24adab5b6751332fe340"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_cases": 96,
+    "original_unresolved_cases": 49,
+    "cases_with_integrable_partial_geometry": 47,
+    "retained_column_descriptors": 1354,
+    "retained_vertical_runs": 668,
+    "finite_paired_column_runs": 529,
+    "censored_runs_with_minimum_support": 139,
+    "conditional_strip_patches": 411,
+    "strips_without_integrable_geometry": 901,
+    "rejected_ambiguous_links": 62,
+    "original_axis_proxy_anchors": 47,
+    "finite_paired_axis_anchors": 34,
+    "censored_axis_anchors_with_minimum_support": 13,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:norwegian-coastal": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 9,
+      "censored_axis_anchors": 5,
+      "axis_gaps": 2,
+      "fixed_axis": "latitude",
+      "selection_window_m": [
+        0,
+        100
+      ]
+    },
+    "current:tsushima": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 3,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 13,
+      "fixed_axis": "longitude",
+      "selection_window_m": [
+        0,
+        200
+      ]
+    },
+    "current:guiana": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 2,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 14,
+      "fixed_axis": "latitude",
+      "selection_window_m": [
+        0,
+        100
+      ]
+    },
+    "current:east-greenland-coastal": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 9,
+      "censored_axis_anchors": 7,
+      "axis_gaps": 0,
+      "fixed_axis": "latitude",
+      "selection_window_m": [
+        0,
+        100
+      ]
+    },
+    "current:gaspe": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 11,
+      "censored_axis_anchors": 1,
+      "axis_gaps": 4,
+      "fixed_axis": "longitude",
+      "selection_window_m": [
+        0,
+        30
+      ]
+    },
+    "current:jutland": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 0,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 16,
+      "fixed_axis": "latitude",
+      "selection_window_m": [
+        0,
+        30
+      ]
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 38334,
+    "query_unique_json_bytes": 2059954,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.228057376999999,
+    "whole_output_bytes": 1335379,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All96original dated source cases retained across Norwegian Coastal,Tsushima,Guiana,East Greenland Coastal,Gasp\u00e9 and Jutland,16per owner. March/June/September/December15,2022 are exact model snapshots,not seasonal means,residual/de-tided flow,annual extrema,1991/1993Gasp\u00e9 observations,1966Jutland records or2024NorKyst cases.47original supported cases remain47model-axis-proxy anchors;49original axis gaps remain explicit.",
+    "Original0.1m/s primary component cutoff and owner-specific directions remain:NCC0degrees,Tsushima60,Guiana315,EGCC225,Gasp\u00e990,Jutland0. No surface-component or temperature gate is introduced. Original core-search/selection intervals remain0\u2013100mNCC,0\u2013200mTsushima,0\u2013100mGuiana/EGCC,0\u201330mGasp\u00e9/Jutland. These windows select cores;they are not current thicknesses,bottoms or caps on connected deeper flow.",
+    "Mixed source axes are retained:NCC,Guiana,EGCC,Jutland fixed latitude;Tsushima,Gasp\u00e9 fixed longitude. Source enums must match exact original section definitions and owner axis,with original5km fixed-axis tolerance,constant native fixed index and increasing consecutive transverse indices. No transpose,skipped native row/column or changed field kind is accepted.",
+    "All668original available runs and1354available column descriptors retained; source-declared native input counts2660include unresolved cases and are not relabeled as available descriptors.529runs have finite paired component contours and139censored runs retain native-supported minimum spans without finite thickness/bottom substitution. Original source object and bytes remain unchanged.",
+    "Forty-seven original selected core-containing anchors remain:34finite paired boundaries and13censored anchors with minimum support. NCC9finite/5censored/2gaps;Tsushima3finite/13gaps;Guiana2finite/14gaps;EGCC9finite/7censored;Gasp\u00e911finite/1censored/4gaps;Jutland16gaps. Original primary depth/status/thickness/censor remains exact. Axis gaps retain null coordinates/anchors and exact original candidate-or-null diagnoses,not alternative better-resolved cores.",
+    "All16Jutland cases remain unresolved with no invented depth or zero thickness. Its0\u201330mselection window is not a depth measurement. The independent2024NorKyst conditional lower-reach references are not joined as2022axes or finite bottoms. The NCC58.5\u201360.75Nsubset does not resolve original63/63.75Nquarterly source gaps. No source window,date,current or branch is switched to clear these gaps.",
+    "Minimum support is original first-to-last contiguous qualifying native sample span under the original piecewise-linear signed-component definition. It is neither depth from the surface,a finite bottom,physical named-current thickness bound nor uncertainty. A single sample gives an uninformative zero minimum span,never absent flow or zero actual thickness. Censored boundaries/thickness remain null;physical-bound flags remain false.",
+    "All47supported cases have some partial transverse geometry:411accepted partial strip patches,901strips without integrable geometry and62rejected ambiguous split/merge links. Only uniquely overlapping runs on consecutive original transverse columns within20km spherical geodesic separation at radius6371008.8m form linear strips. Missing,censored,ambiguous or lateral-endpoint support is not filled from a neighbor,sample limit or seabed.",
+    "Partial fixed-axis component areas are not independently flow-normal widths/areas or whole current bodies. Equivalent area/span thickness omits gaps and is not representative current depth. Native-bracket scenarios are conditional sampling geometry,not confidence intervals,physical uncertainty,guaranteed true-boundary limits or annual ranges. No between-section surface,independent terrain clearance,whole-route physical profile or water volume is established.",
+    "EGCC retains its source-declared regional_coastal_branch_not_additive_parent_current relationship to current:east-greenland and false parent_depth_values_inherited. No offshore/parent depth is assigned to the coastal branch. Guiana retains episodic_regional_shelf_flow_not_permanent_independent_current,not a newly established permanent current/NBC alias. Missing identity fields remain undeclared. Flat CSV exposes source relationship,parent context,axis,selection window and no-surface-gate policy.",
+    "NCC remains distinct from broad unresolved Norwegian Current and offshore Atlantic flows;no salinity/coastal-front identity is independently established. Tsushima stays in the regional Japanese Nearshore Branch scope,not channel bathymetry or the full system. Guiana excludes offshore retroflection/rings,undercurrent,river-plume and Caribbean continuations. EGCC excludes offshore EGC/merger/continuation and lacks low-salinity classification. Gasp\u00e9/Jutland preserve restricted coastal reaches and historical-reference/alias qualifications,not whole coastal systems.",
+    "Boundary,run_geometry,separation,strip,run_support,counts and report-run functions are AST-identical to the validated Mediterranean implementation. New bindings preserve original mixed axes and distinct selection windows;no paired-boundary arithmetic or source values change. Shared-note JSON schema osw.shallow-coastal-paired-depth.v2 expands through the new producer to the exact full scientific dictionary and both CSV byte streams. No records,precision,censors,source pointers or qualifications are dropped.",
+    "Eighteen cloud tests cover analytic geometry/scenario units,censorship,all96cases/47anchors/49gaps,six owners/four dates,all16Jutland null anchors,per-owner windows versus deeper connected layers,mixed axes/indices/tolerances,owner/frame/cutoff/gate/window/date/primary mutations,EGCC no parent-depth inheritance/Guiana no permanence promotion,minimal-span/zero semantics,source immutability,visible flat CSV context and exact lossless JSON/both-CSV parity. Actual complete96case roundtrips passed.",
+    "Offline sequential one idle cloud CPU,fresh outputs,one absolute60s timeout wrapping tests and producer plus producer SIGALRM/SIGTERM. Ordinary DescriptorQueryv3 starts explicit0prior numeric/bytes and prospectively reserves38334tokens/2059954unique JSON bytes before decoding/cache under250k/32MB/2.5MBpacket. Whole output1335379bytes under2.4MB,cumulative1.228057376999999seconds. No native/source-data input,old producer/validator,provider target,archive or closed acquisition case is replayed or renewed.",
+    "Single four-member artifact retained once after all branch jobs terminal and installed byte-for-byte. HYCOM Consortium,NRL,COAPS-FSU credit retained. No new observations or canonical scalar references. Existing111identities,908reference inventory,old projection inventory,102eddy references,main,runtime,query UI and WASM unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

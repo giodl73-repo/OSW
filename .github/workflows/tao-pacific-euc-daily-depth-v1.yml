@@ -1,0 +1,49 @@
+name: TAO Pacific EUC observed daily depth v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/tao-pacific-euc-daily-depth-v1.yml
+      - analysis/collect_tao_pacific_euc_daily_depth_v1.py
+      - analysis/test_tao_pacific_euc_daily_depth_v1.py
+      - plans/tao-pacific-euc-daily-depth-protocol-v1.md
+      - research/tao-pacific-euc-daily-depth-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/tao-pacific-euc-daily-depth-v1.yml
+            analysis/collect_tao_pacific_euc_daily_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/test_tao_pacific_euc_daily_depth_v1.py
+            plans/tao-pacific-euc-daily-depth-protocol-v1.md
+            research/tao-pacific-euc-daily-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify quality, depth continuity and durable source acquisition
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_tao_pacific_euc_daily_depth_v1.py' -v
+      - name: Acquire predeclared daily profiles with in-process deadline
+        timeout-minutes: 6
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/collect_tao_pacific_euc_daily_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tao-pacific-euc-daily-depth-v1
+          path: tao-pacific-euc-daily-depth-v1/
+          retention-days: 7
+          if-no-files-found: error

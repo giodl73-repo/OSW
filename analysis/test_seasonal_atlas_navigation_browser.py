@@ -1,4 +1,6 @@
 """Atlas/season round trips retain current and recorded-phase identity."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json,os
 from pathlib import Path
 from urllib.parse import urlparse,parse_qs
@@ -10,7 +12,7 @@ def main():
  frames=read('research/ocean-current-seasonal-route-frames.json')['frames']
  widths=read('research/ocean-current-width-inventory.json')['measurements']
  directions=read('research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')['phases']
- catalog=read('research/ocean-current-reference-path-candidates.json')['candidates']
+ catalog=read('research/ocean-current-working-reference-routes.json')['candidates']
  linked={ident for f in frames for ident in f['width_measurement_ids']}
  records=frames+[r for r in widths if r['id'] not in linked]+directions
  with sync_playwright() as p:
@@ -18,7 +20,7 @@ def main():
   page=browser.new_page(viewport={'width':1440,'height':1100});errors=[]
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-  page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
+  page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
   for row in read('research/ocean-motion-dashboard.json')['entries']:
    if row['type']!='named_current':continue
    page.locator('#route-atlas-select').select_option(row['id'])

@@ -1,0 +1,42 @@
+{
+  "schema": "osw.agulhas-chandler-seasonal-depth-source-review.v1",
+  "status": "PASS192_AGULHAS_AXES_WITH_DISTINCT_MEAN_AND_INDIVIDUAL_SUPPORT",
+  "cloud_reviews": [
+    {
+      "run_id": 41449753840,
+      "tests_passed": 11,
+      "source_commit": "c93f0a6e0836e49a7c8e848a23ef2b74493c5006",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41449753840"
+    }
+  ],
+  "cloud_tests_passed": 11,
+  "input_sha256": {
+    "analysis/derive_agulhas_chandler_seasonal_depth_v1.py": "3c833f2d196369de1113163d056cceace74c7fe4ed1c0d05c94ce46bf1e15097",
+    "analysis/test_agulhas_chandler_seasonal_depth_v1.py": "c5f6eb130f12ebc2a2c5c24b8b7171c268c620300aafe16061d68891c2048d6e",
+    ".github/workflows/agulhas-chandler-seasonal-depth-v1.yml": "b0d3d66ca7c734c9d158dd3e25228ea57461683e91945caf6d6aa39879d7bdf3",
+    "research/agulhas-chandler-seasonal-depth-operator-v1.json": "172c279ba8f619420f3a1fa3013bafb40ec1ecf3b405c6bfc3ca44883e3f2a0b",
+    "research/source-data/agulhas-chandler-seasonal-depth-v1/candidate.json": "f26e6eadf626acc289edfbf1f8e7d92b20e0dc56154140f919eb5f9162b2c0d8",
+    "research/agulhas-chandler-seasonal-depth-source-facts-v1.json": "8193cea3bfc5305109b0964408d3c067e30a619d5e11984755f3056667dc2e8c"
+  },
+  "counts": {
+    "monthly_axes": 192,
+    "calendar_month_mean_profiles": 12,
+    "individual_10cms_crossings": 192,
+    "resolved_calendar_mean_5cms_crossings": 0,
+    "resolved_calendar_mean_10cms_crossings": 1,
+    "new_independent_observations": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "scientific_review": [
+    "Raw source55,619,078bytes verified against immutable Zenodo MD5 and retained SHA. Source variable units/direction and192 exact month stamps verified. All field processing used one idle cloud CPU.",
+    "Eleven tests verify source integration, signed restricted axis, filter-before-restriction behavior including outside influence, adjacent crossings, censoring versus gaps, threshold absence, native sampled maxima/ties, fixed16-profile calendar support, unknown flow and strict JSON.",
+    "All previous registers and EAC products remain frozen. Agulhas source axis selection is independently represented rather than inferred from EAC behavior.",
+    "Calendar-mean depth gaps remain unknown. Complete individual10cm/s crossing support can be summarized separately, without relaxing the contributor rule or promoting spread to confidence bounds."
+  ],
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

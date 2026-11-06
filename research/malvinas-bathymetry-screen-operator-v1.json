@@ -1,0 +1,21 @@
+{
+  "schema": "osw.malvinas-bathymetry-screen-operator.v1",
+  "adcp_url": "https://doi.pangaea.de/10.1594/PANGAEA.925245?format=textfile",
+  "adcp_raw_sha256": "6d5bf9f8b594bab3117002c9bd09c93bd9779772255b2feb28dd89bb309bc82a",
+  "gebco_elevation_url": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/ice_surface_elevation/netcdf/GEBCO_2026.nc",
+  "gebco_tid_url": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/type_identifier_grid/netcdf/gebco_2026_tid.nc",
+  "gebco_citation": "GEBCO Bathymetric Compilation Group2026(2026), GEBCO_2026 Grid, doi:10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa.",
+  "gebco_documentation": "https://www.gebco.net/data-products-gridded-bathymetry-data/gebco2026-grid",
+  "adcp_beam_angle_degrees": 30,
+  "beam_angle_source": "https://www.teledynemarine.com/en-us/products/Pages/ocean-surveyor-adcp.aspx",
+  "sidelobe_guidance": "https://currents.soest.hawaii.edu/docs/adcp_doc/ADCP_INTERPRETATION/realistic_ranges/index.html",
+  "screen_modes": ["bed_only", "point_sidelobe85", "footprint_sidelobe85"],
+  "screen_definition": "Reject native depth plus8m support margin deeper than point-grid bed, or deeper than6+0.85*(bed-6). The6m draft is source paper context. The8m margin is an explicit conservative half-support scenario based on the paper's8/16m bin configurations, not a recovered per-ping cell size or uncertainty.",
+  "footprint_definition": "At each ensemble use the shallowest GEBCO depth within circular radius point_depth*tan30deg+400m. Circular envelope avoids assuming beam azimuth;400m is a grid footprint allowance, not a confidence margin. Require whole envelope inside the bounded tile. It does not resolve subgrid slopes or prove all sidelobes removed.",
+  "datum_limit": "GEBCO assumes heterogeneous source elevations referred to mean sea level; some shallow sources differ. ADCP depths use local sea-surface context. No tide, geoid or time-varying sea-level correction is recovered. Gridded bathymetry is a screening approximation, not ship bottom-track observations or proof of physical current boundaries.",
+  "processing": "Mask native rows before spatial selection and smoothing. Preserve prior1km representative selection, nine PG/window combinations and two-jet candidate segmentation. No vertical filling or bottom extrapolation.",
+  "canonical_admission_eligible": false,
+  "physical_uncertainty_m": null,
+  "volume_eligible": false,
+  "seasonal_playback_eligible": false
+}

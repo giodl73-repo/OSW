@@ -1,0 +1,127 @@
+{
+  "schema": "osw.current-depth-source-facts.v32",
+  "review_date": "2026-11-02",
+  "status": "ATLANTIC_CENTRAL_SEC_REGIONAL_DEPTH_AND_UPDATED_MEMBER_DISCOVERY",
+  "previous_register_file": "research/current-depth-register-v31.json",
+  "previous_register_sha256": "dfd2c1f32f3e38b01e51f80ae8d91c3d071bcda36689ddfffcc59731c73d9555",
+  "source_input_sha256": {
+    "research/current-length-family-conventions-v1.json": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086",
+    "research/current-depth-member-index-v1.json": "312bda5a9eca32b559fe5255f40798d2e8aacd56219243483e6f3f4b4b2f791f"
+  },
+  "member_index_policy": {
+    "mapping_file": "research/current-length-family-conventions-v1.json",
+    "mapping_sha256": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086",
+    "scope": "Existing eight family memberships and strict three-member Gulf Stream System convention; no new identities or aliases.",
+    "aggregation_operator": null,
+    "new_depth_measurements_added_by_member_links": 0,
+    "parent_scalar_depth_allowed": false,
+    "member_missing_evidence_retained": true
+  },
+  "source_reviews": [
+    {
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284953",
+      "review_mode": "Original publisher PDF and JATS XML downloaded. Original PDF pages3,4,8 actually viewed: Figure1 geographic identity, Methods2.1 survey periods and SADCP averaging, Results3.1 numerical extent and Figure4F/caption.100m transcribed from prose, no figure digitization or raw-field processing.",
+      "actual_original_pixels_viewed": true,
+      "original_pdf_sha256": "6f7da3ca02d814b770953d0cca2dbd5218a8472a0aedd6d75b65129236143432",
+      "original_pdf_bytes": 4075868,
+      "publisher_JATS_sha256": "4309fb16f3ba9055c81c44cc34561779c22a5176294c60a5a45fa3bf3affefad",
+      "actual_reviewed_pages": [
+        3,
+        4,
+        8
+      ],
+      "render_sha256": {
+        "3": "fdc3ef0a5c5832b6895db0f924a1e07f4bf60d8db590f0d0e0ba8720664091af",
+        "4": "135c2fa84bd0341db0013b74f3fb794d92c569a3b577273423099786fdbf5056",
+        "8": "21bba4791ae44c1766b8d2d7c63f6094f97166f88e73d877d4b73397cd4cf396"
+      },
+      "original_pdf_redistributed": false
+    }
+  ],
+  "deferred_candidates": [
+    {
+      "source_case": "Bourles1999_30W_March1994",
+      "reason": "Institutional original indexed prose is available but original PDF download403 and web screenshot cache miss. No numerical physical depth inferred from density-bounded transport or adjacent SEUC."
+    },
+    {
+      "source_case": "Tuchen2022_Figure10",
+      "reason": "Original Figure10 viewed again; coarse depth axis and neighboring jets. Earlier deferred numerical digitization remains deferred; this batch uses independent explicit Assuncao2023 prose."
+    }
+  ],
+  "source_caveats": [
+    "Methods2.1 reports52 selected stations but gives22 spring plus32 autumn. Inconsistent total not used as observation count or region-specific sample size. No correction guessed.",
+    "Regional source system SECS includes cSEC and SEUC; the admitted reference belongs only to the explicitly named westward surface cSEC."
+  ],
+  "references": [
+    {
+      "id": "atlantic-sec-assuncao-2023-regional100m-extent",
+      "entity_id": "current:atlantic-south-equatorial",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": 100,
+      "range_m": null,
+      "lower_bound_m": null,
+      "lower_bound_exclusive": false,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": null,
+      "calendar_months": null,
+      "geographic_scope": "Offshore South Equatorial Current System along the Fernando de Noronha chain, northeast Brazil; central SEC branch in Figure1, distinct from coastal NBC/NBUC and eastward SEUC. Regional multi-station support, not an exact axis/profile coordinate.",
+      "temporal_scope": "ABRACOS1 September–October2015 austral spring and ABRACOS2 April–May2017 austral autumn, RV Antea. One author regional description across the two survey comparisons, not two independent depth measurements or an annual climatology.",
+      "source_definition": "Author regional approximate extent of westward surface cSEC down to100m. Numerical value from Results3.1 prose, not a zero-crossing digitized from current-speed magnitude.",
+      "evidence_kind": "published_observed_regional_summary",
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284953",
+      "source_citation": "Assunção et al.(2023), Fine-scale vertical relationships between environmental conditions and sound scattering layers in the Southwestern Tropical Atlantic, PLOS ONE18(8):e0284953, doi:10.1371/journal.pone.0284953.",
+      "source_locator": "Results3.1 printed/PDF8 second paragraph and Figure4F/caption; Figure1 and Methods2.1 printed/PDF3–4 for identity, survey periods, regional sampling and SADCP averaging.",
+      "qualification": "One regional rounded depth summary. No exact lower boundary or100m physical thickness: SADCP nominal support starts15m, and Figure4F shows current magnitude without zonal sign. Direction/identity and100m come from prose.15–700m instrument range and500m displayed ADCP limit are not current boundaries. Shaded standard deviations describe velocity profiles, not depth uncertainty. Autumn2017 stronger cSEC and spring2015 stronger SEUC are qualitative source comparisons, not depth extrema or a seasonal depth envelope. Do not inherit NBUC140–320m, shear40–140m or320–450m, epipelagic200m, CTD1000m, acoustic backscatter layers or their thresholds. No whole-route projection, width join or volume.",
+      "observed_period": null,
+      "source_case_id": "atlantic-sec-assuncao-2023-abracos-regional-comparison",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "source_current_name": "central_branch_South_Equatorial_Current_cSEC",
+      "branch_section_scope": "Fernando_de_Noronha_chain_offshore_SECS",
+      "temporal_operator": "author_regional_summary_across_two_noncontemporaneous_surveys",
+      "source_survey_periods": [
+        {
+          "survey": "ABRACOS1",
+          "start_month": "2015-09",
+          "end_month": "2015-10",
+          "austral_season": "spring"
+        },
+        {
+          "survey": "ABRACOS2",
+          "start_month": "2017-04",
+          "end_month": "2017-05",
+          "austral_season": "autumn"
+        }
+      ],
+      "source_research_vessel": "Antea",
+      "source_ADCP_frequency_kHz": 75,
+      "reported_velocity_sampling_domain_m": [
+        15,
+        700
+      ],
+      "source_displayed_ADCP_limit_m": 500,
+      "station_profile_averaging_definition": "mean_velocity_within_source_reported_0.02_degree_circle_around_each_CTD_profile",
+      "source_figure4_velocity_quantity": "current_speed_magnitude_not_signed_zonal_velocity",
+      "depth_basis": "source_prose_regional_westward_surface_current_extent",
+      "source_access_scope": "original_publisher_PDF_prose_methods_and_figures",
+      "reference_route_projection_eligible": false
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,34 @@
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	﻿2026-10-29T10:53:08.1614937Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1615961Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1616910Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python analysis/check_chen_indian_sec_delivery_v2.py^[[0m
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1663182Z shell: /usr/bin/bash -e {0}
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1663606Z env:
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1663947Z   OSW_CHEN_INDIAN_SEC_DELIVERY_V2: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1664418Z   OSW_CHEN_INDIAN_SEC_INDEX_V1: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1665149Z   CARGO_BUILD_JOBS: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1665524Z   CARGO_INCREMENTAL: 0
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1665892Z   OMP_NUM_THREADS: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1666271Z   OPENBLAS_NUM_THREADS: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1666666Z   MKL_NUM_THREADS: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1667029Z   NUMEXPR_NUM_THREADS: 1
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1667522Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1668281Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib/pkgconfig
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1669101Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1669776Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1670465Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1671155Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:08.1671731Z ##[endgroup]
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:43.2925003Z {"status":"PASS","mode":"capture-main","checks":225,"maximum_wasm_memory":924450816}
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:53:56.7708721Z {"status":"PASS","mode":"capture-index","checks":79,"maximum_wasm_memory":1406205952}
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2030375Z Traceback (most recent call last):
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2036412Z   File "/home/runner/work/OSW/OSW/analysis/check_chen_indian_sec_delivery_v2.py", line 203, in <module>
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2037080Z     try:run()
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2037329Z         ~~~^^
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2037912Z   File "/home/runner/work/OSW/OSW/analysis/check_chen_indian_sec_delivery_v2.py", line 150, in run
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2038753Z     elif item['kind']=='snapshot':rules.verify_snapshot(item['name'],old,actual,c)
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2039357Z                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2040154Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_delivery_contract_v1.py", line 62, in verify_snapshot
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2041126Z     if expected!=new:raise ValueError('Complete '+name+' changed outside declared regional evidence')
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2041848Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.2042503Z ValueError: Complete atlas changed outside declared regional evidence
+native-core	Capture parent APIs, build matched native/WASM and compare complete responses	2026-10-29T10:59:21.6196632Z ##[error]Process completed with exit code 1.

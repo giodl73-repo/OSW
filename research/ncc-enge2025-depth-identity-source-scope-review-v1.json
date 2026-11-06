@@ -1,0 +1,76 @@
+{
+  "schema": "osw.current-depth-ncc-enge2025-identity-source-scope-review.v1",
+  "entity_id": "current:norwegian-coastal",
+  "status": "PRIMARY_PUBLISHER_HTML_REVIEWED_WATER_MASS_VELOCITY_DEPTH_DISTINCTION",
+  "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2025.1600994/full",
+  "doi": "10.3389/fmars.2025.1600994",
+  "citation": "Enge,Pietrzak and van Prooijen(2025),The variability of wind-driven currents in the Norwegian Trench,Frontiers in Marine Science12.",
+  "source_locators": [
+    "Sections2.1and2.2:source fields and transects",
+    "Section3.2.1:shallow fresh NCC versus deeper northward NorthSea/AW flow",
+    "Section4:shallow NCC interpretation",
+    "Data availability statement"
+  ],
+  "source_access": "Direct publisher HTML reviewed via web;original HTML/PDF bytes not retained,no raw fields obtained,no figure digitization.",
+  "study_period": [
+    "2022-01-01",
+    "2023-12-31"
+  ],
+  "source_product": "NWSHELF_ANALYSISFORECAST_PHY_004_013,AMM15/NEMO3.6",
+  "source_model_basis": {
+    "horizontal_resolution_approximate_km": 1.5,
+    "native_vertical_levels": 50,
+    "daily_velocity_basis": "de-tided25houraverages",
+    "source_practical_salinity_classification": {
+      "NCC": "below35PSU",
+      "Atlantic_Water": "at_or_above35PSU"
+    },
+    "original_forecast_outputs_archived": false,
+    "suggested_reanalysis_is_same_dataset": false
+  },
+  "review_findings": [
+    "Source associates fresh NCC with upper50-100m;deeper northward flow in eastern trench can be NorthSea/AW. Same-sign velocity alone does not identify NCC depth.",
+    "Source distinguishes mixed-layer depth from NCCextent. MLD is not a universal current bottom.",
+    "Original high-resolution2022-2023forecast outputs were not stored. Suggested7kmreanalysis is a different dataset;do not label it an exact reproduction or silently substitute it.",
+    "OSW already has Tonani2019upper50-100mreference. Do not count this corroborating range as a new independent measured depth or force a global NCCscalar.",
+    "The five v8NCCinterval-core minimum reach bounds preserve a velocity-component metric and unvalidated water-mass identity;this review does not erase or reinterpret them."
+  ],
+  "source_transects": {
+    "eastern_latitudes_north": [
+      58.9,
+      61.28
+    ],
+    "eastern_longitude_interval_east": [
+      3.9,
+      5.5
+    ],
+    "interpretation": "Source spatial means,notOSWselectedcolumns. Preserve source-specific transects;no axes/coordinates transferred.",
+    "source_western_transect_label_inconsistencies_resolved": false
+  },
+  "recommended_next_collection": {
+    "quantity": "collocated_native_practical_salinity_at_the_original_five_NCC_model_columns",
+    "reason": "Separate source-classified fresh upper layer from deeper same-direction component flow.",
+    "requirements": [
+      "Freeze a separate operator before retrieval;do not modify validated velocity studies.",
+      "Verify source ts3ztime/depth/lon/lat correspondence to frozen uv3zprofiles;no nearest-date substitution or unverified salt/velocity pairing.",
+      "Keep original selected velocity column/core/threshold unchanged. Salinity evidence is conditional regional water-mass support,not an independently validated NCCaxis.",
+      "Use a declared source practical-salinity classifier;do not conflate it with absolute salinity35.16g/kgused in separateAWstudies.",
+      "Retain missing/bracket/domain outcomes and fail closed on source-axis mismatch. No threshold retuning to match50-100m.",
+      "Keep native50levelAMM15description separate from existing40levelHYCOMstudy. No copying source model resolution or dailyaveraging onto instantaneousHYCOMsnapshots.",
+      "All ocean retrieval/numerics/tests cloud-only,sequentialoneidleCPU,within existing unchanged request/byte/cell/level caps."
+    ]
+  },
+  "new_current_measurements_admitted": 0,
+  "reference_inventory_updated": false,
+  "model_projection_inventory_updated": false,
+  "new_ocean_field_requests": 0,
+  "physical_current_bottom_established": false,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    "research/current-depth-reference-inventory-v8.json": "5b75ea584d2678af74604784278a21622799e6028684a541394c865e1f14d26a",
+    "research/current-depth-reference-addenda/interval-primary-core-connected-reach-v1.json": "318bad3d30940fdf6a53326296c7c4bf376d495b356e5e44454ac21d5751fd5d",
+    "research/coastal-upper-layer-interval-depth-sections-operator-v1.json": "b96238fec304ebb87a582931f9b51fea4f1058495d1a2968a25c6a3a661e5cb6",
+    "research/interval-core-connected-reach-source-report-v1.json": "27a5644044d96766085f53d2a20ee6a59e5db09f1efaea3fa11d05acf718766e"
+  }
+}

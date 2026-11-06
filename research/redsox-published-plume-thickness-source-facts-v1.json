@@ -1,0 +1,152 @@
+{
+  "schema": "osw.redsox-published-plume-thickness-source-facts.v1",
+  "status": "ORIGINAL_PAGE_VISUALLY_VERIFIED_PUBLISHED_CHANNEL_LAYER_STATISTICS",
+  "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Peters_2005_MixingEntrainment.pdf",
+  "doi": "10.1175/JPO2679.1",
+  "source_pdf_file": "research/source-data/peters-redsox-2005/journal-article.pdf",
+  "source_pdf_sha256": "dd85cd4a85fc8842b3819a5d30a2c645b0c74942f4cffa07b450afea372ef61c",
+  "source_locator": "Table2 and Section5a,printed577,PDFpage9",
+  "original_page_visually_reviewed": true,
+  "data": [
+    {
+      "channel": "northern",
+      "layer": "bottom",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 59,
+      "minimum_sampled_thickness_m": 34,
+      "maximum_sampled_thickness_m": 119,
+      "ctd_ladcp_casts": 21
+    },
+    {
+      "channel": "northern",
+      "layer": "bottom",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 42,
+      "minimum_sampled_thickness_m": 25,
+      "maximum_sampled_thickness_m": 88,
+      "ctd_ladcp_casts": 12
+    },
+    {
+      "channel": "northern",
+      "layer": "interfacial",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 102,
+      "minimum_sampled_thickness_m": 36,
+      "maximum_sampled_thickness_m": 286,
+      "ctd_ladcp_casts": 21
+    },
+    {
+      "channel": "northern",
+      "layer": "interfacial",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 69,
+      "minimum_sampled_thickness_m": 40,
+      "maximum_sampled_thickness_m": 116,
+      "ctd_ladcp_casts": 12
+    },
+    {
+      "channel": "northern",
+      "layer": "whole_plume",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 161,
+      "minimum_sampled_thickness_m": 76,
+      "maximum_sampled_thickness_m": 344,
+      "ctd_ladcp_casts": 21
+    },
+    {
+      "channel": "northern",
+      "layer": "whole_plume",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 111,
+      "minimum_sampled_thickness_m": 65,
+      "maximum_sampled_thickness_m": 186,
+      "ctd_ladcp_casts": 12
+    },
+    {
+      "channel": "southern",
+      "layer": "bottom",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 45,
+      "minimum_sampled_thickness_m": 16,
+      "maximum_sampled_thickness_m": 119,
+      "ctd_ladcp_casts": 16
+    },
+    {
+      "channel": "southern",
+      "layer": "bottom",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 36,
+      "minimum_sampled_thickness_m": 16,
+      "maximum_sampled_thickness_m": 81,
+      "ctd_ladcp_casts": 10
+    },
+    {
+      "channel": "southern",
+      "layer": "interfacial",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 63,
+      "minimum_sampled_thickness_m": 19,
+      "maximum_sampled_thickness_m": 146,
+      "ctd_ladcp_casts": 16
+    },
+    {
+      "channel": "southern",
+      "layer": "interfacial",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 64,
+      "minimum_sampled_thickness_m": 21,
+      "maximum_sampled_thickness_m": 139,
+      "ctd_ladcp_casts": 10
+    },
+    {
+      "channel": "southern",
+      "layer": "whole_plume",
+      "cruise": "REDSOX-1",
+      "mean_thickness_m": 108,
+      "minimum_sampled_thickness_m": 49,
+      "maximum_sampled_thickness_m": 184,
+      "ctd_ladcp_casts": 16
+    },
+    {
+      "channel": "southern",
+      "layer": "whole_plume",
+      "cruise": "REDSOX-2",
+      "mean_thickness_m": 100,
+      "minimum_sampled_thickness_m": 38,
+      "maximum_sampled_thickness_m": 186,
+      "ctd_ladcp_casts": 10
+    }
+  ],
+  "boundary_rules": {
+    "bottom_layer_top": "velocity_maximum_above_seafloor",
+    "whole_plume_top": "any_of_speed_below_threshold_or_direction_departure_exceeds45degrees_or_salinity_below_threshold",
+    "REDSOX-1": {
+      "speed_threshold_m_s": 0.075,
+      "salinity_threshold_psu": 36.5
+    },
+    "REDSOX-2": {
+      "speed_threshold_m_s": 0.05,
+      "salinity_threshold_psu": 35.7
+    },
+    "interfacial_layer": "between_bottom_layer_top_and_whole_plume_top"
+  },
+  "qualifications": [
+    "Statistics describe selected active-plume casts on channel axes, not mapped whole-current depth or thickness profiles.",
+    "Winter and summer source boundary thresholds differ; these are not a common-operator annual range.",
+    "Casts without significant active flow were omitted. Summer quiescence does not establish zero thickness.",
+    "Bottom layers below approximately 15 m were undetectable with these LADCP observations.",
+    "Layer records share casts. Do not sum their cast counts or independently sampled extrema.",
+    "Plume thickness differs from water depth, equilibration depth, core depth and isohaline water-mass extent.",
+    "The table reports means; individual cast weights and per-cast geometry have not been reconstructed.",
+    "Bathymetric channel width is not plume width. No stored-volume multiplication is supported."
+  ],
+  "new_field_requests": 0,
+  "new_physical_measurements_collected": 0,
+  "whole_current_depth_m": null,
+  "annual_depth_range_m": null,
+  "volume_km3": null,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "source_pdf_bytes": 1432988,
+  "source_mean_weighting_reconstructed": false
+}

@@ -1,0 +1,38 @@
+name: Agulhas individual depth distributions v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/agulhas-individual-depth-distributions-v1.yml
+      - analysis/build_agulhas_individual_depth_distributions_v1.py
+      - analysis/test_agulhas_individual_depth_distributions_v1.py
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  summarize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_agulhas_individual_depth_distributions_v1.py
+            analysis/test_agulhas_individual_depth_distributions_v1.py
+            research/source-data/agulhas-chandler-seasonal-depth-v1/candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify full support and summarize existing diagnosed depths on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_agulhas_individual_depth_distributions_v1.py -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_agulhas_individual_depth_distributions_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agulhas-individual-depth-distributions-v1
+          path: agulhas-individual-depth-distributions-v1/
+          retention-days: 7

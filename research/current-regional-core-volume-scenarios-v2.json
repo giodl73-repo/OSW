@@ -1,0 +1,142 @@
+{
+  "schema": "osw.current-regional-core-volume-scenarios.v2",
+  "status": "TWO_EXPLICIT_REGIONAL_CORE_GEOMETRY_VOLUME_SCENARIOS",
+  "input_sha256": {
+    "research/current-depth-route-projections-v8.json": "cb41b7ee08e675b71c78f14686f4b2d39aeef640ebdf6f46cfbee17df56ad6bb",
+    "research/current-depth-route-projection-operator-v8.json": "746b78f51234de723c416e01d1524a1a91fee4bfa8ca7dc3e34c5fcab6810027",
+    "research/current-depth-register-v39.json": "a090c99fb039007f6a02619aac62af9d335e165fc8a0c7568ccb9c144a75abad",
+    "research/nwasc-core-geometry-source-facts-v1.json": "41696233562033977aa46be40d2ae9bdf7bc5541d5b494c62fed8b50a8d73d7a",
+    "analysis/build_current_depth_route_projections_v8.py": "b8615666a1417cf4c2bd1f92d6bc7d1c95d76ccd56090a891c15aeb146e4c159",
+    "research/current-regional-core-volume-scenarios-v1.json": "a9c2bc1d59febca16e34f1652851002a1a004e5f8b31f452ea6a92751c32b7e2",
+    "research/current-regional-core-volume-scenarios-v1.csv": "9fee3e97afde62b6e72655ac025e8bd5548ee4d77091ab7381a8468893075e99"
+  },
+  "previous_EAC_volume_record_preserved": true,
+  "counts": {
+    "regional_reference_geometry_scenarios": 2,
+    "whole_current_volume_estimates": 0,
+    "observed_water_volume_estimates": 0
+  },
+  "records": [
+    {
+      "id": "eac-kerry2020-27p5-to30p3s-reference-extrusion-v1",
+      "entity_id": "current:east-australian",
+      "projection_id": "eac-kerry2020-coherent-jet-mean-mask-depth-area-scenario-v1",
+      "status": "PROVISIONAL_REGIONAL_REFERENCE_GEOMETRY_VOLUME_SCENARIO",
+      "volume_kind": "extrusion_of_source_model_mean_isotach_section_areas",
+      "scope": "EAC coastal-jet reference interval between nominal27.5S and30.3S sections only. No extrapolation to full current or downstream extensions.",
+      "model_product": "KerryRoughan2020_EAC_ROMS",
+      "model_simulation_period": {
+        "start": "1994-01-01",
+        "end": "2016-10-01"
+      },
+      "mean_mask_definition": "Region inside−0.05m/s contour of long-term mean alongshore velocity; negative is poleward. Fixed mean-field geometry, not mean instantaneous geometry.",
+      "source_reference_ids": [
+        "eac-kerry-2020-27p5s-mean-mask-maximum-depth",
+        "eac-kerry-2020-30p3s-mean-mask-maximum-depth"
+      ],
+      "reference_route_id": "east-australian-reference-path-candidate",
+      "reference_distance_interval_km": [
+        1606.397,
+        1917.482
+      ],
+      "reference_interval_length_km": 311.085,
+      "area_interpolation": "linear_between_source_sections_in_editorial_reference_distance",
+      "integration_formula": "V_km3 = sum((A_left_km2 + A_right_km2)/2 * delta_s_km)",
+      "computed_integral_km3": 31310.705,
+      "scenario_volume_km3": 31000,
+      "display_rounding_km3": 1000,
+      "computational_terms": [
+        {
+          "source_reference_ids": [
+            "eac-kerry-2020-27p5s-mean-mask-maximum-depth",
+            "eac-kerry-2020-30p3s-mean-mask-maximum-depth"
+          ],
+          "interval_start_km": 1606.397,
+          "interval_end_km": 1917.482,
+          "interval_length_km": 311.08500000000004,
+          "left_area_km2": 97.1,
+          "right_area_km2": 104.2,
+          "volume_km3": 31310.705250000006
+        }
+      ],
+      "uncertainty_km3": null,
+      "confidence_interval_km3": null,
+      "orientation_assumption": "Reported source cross-shore areas are treated as normal sections of the editorial reference route for this extrusion scenario. Source grid is rotated20degrees clockwise; exact source section/route orientation correction is not recovered or applied.",
+      "shape_assumption": "Use source-reported areas directly; no rectangle, ellipse or offshore-distance-times-maximum-depth area inferred. Adjacent areas are connected by linear area interpolation.",
+      "temporal_interpretation": "Volume of an extruded long-term mean-field mask scenario, not mean of instantaneous threshold-core volumes, a dated observed water volume or an annual seasonal envelope.",
+      "whole_current_volume_estimate": false,
+      "observed_water_volume": false,
+      "mean_of_instantaneous_core_volumes": false,
+      "physical_state_join_eligible": false,
+      "global_total_eligible": false,
+      "regional_scenario_admitted": true
+    },
+    {
+      "id": "nwasc-baumann2026-gimsoy-bjornoya-core-volume-scenario-v1",
+      "entity_id": "current:norwegian-atlantic-slope",
+      "projection_id": "nwasc-baumann2026-gimsoy-bjornoya-static-core-scenario-v1",
+      "status": "PROVISIONAL_REGIONAL_SOURCE_PATH_MEAN_CORE_VOLUME_SCENARIO",
+      "volume_kind": "extrusion_of_source_reconstructed_static_mean_core_section_areas",
+      "scope": "Approximate Gimsøy–Bjørnøya source pathway only. Broad source NwASC continuation may overlap modern West Spitsbergen naming; no additive component or full-current volume.",
+      "source_reference_ids": [
+        "nwasc-baumann-2026-gimsoy-core-bottom",
+        "nwasc-baumann-2026-bjornoya-core-bottom"
+      ],
+      "source_period_years": [
+        1993,
+        2022
+      ],
+      "source_reported_path_length_km": 750,
+      "source_path_length_is_approximate": true,
+      "source_section_areas_km2": [
+        8,
+        17
+      ],
+      "source_areas_are_approximate": true,
+      "integration_formula": "V_km3 = (A_Gimsoy_km2 + A_Bjornoya_km2)/2 * reported_path_length_km",
+      "computed_integral_km3": 9375.0,
+      "scenario_volume_km3": 9000,
+      "display_rounding_km3": 1000,
+      "computational_terms": [
+        {
+          "source_reference_ids": [
+            "nwasc-baumann-2026-gimsoy-core-bottom",
+            "nwasc-baumann-2026-bjornoya-core-bottom"
+          ],
+          "interval_start_km": 0,
+          "interval_end_km": 750,
+          "interval_length_km": 750,
+          "left_area_km2": 8,
+          "right_area_km2": 17,
+          "volume_km3": 9375.0
+        }
+      ],
+      "uncertainty_km3": null,
+      "confidence_interval_km3": null,
+      "orientation_assumption": "Section areas are treated as normal to the abstract source pathway for extrusion. Actual section/path angles and map geometry are not recovered.",
+      "shape_assumption": "Linearly connect the two source mask areas. Do not multiply source50km contextual box width by maximum depth or infer a uniform thickness.",
+      "temporal_interpretation": "Extrusion of static1993–2022 mean-core masks from uneven hydrographic/altimetry sampling; not a dated water volume or a mean of instantaneous core volumes.",
+      "source_area_geometry_bias": "Source midpoint rectangles neglect bathymetric partial-cell cuts and slightly overestimate areas; no numerical correction or confidence interval is available.",
+      "source_heat_budget_box_context": {
+        "length_km": 750,
+        "assumed_width_km": 50,
+        "assumed_section_area_km2": 10,
+        "derived_box_depth_m": 200,
+        "reported_box_volume_km3": 7500,
+        "role": "idealized_heat_budget_box_not_current_measurement_or_uncertainty_bound",
+        "used_as_actual_core_geometry": false
+      },
+      "source_heat_budget_box_used_for_integration": false,
+      "source_box_difference_is_uncertainty": false,
+      "whole_current_volume_estimate": false,
+      "observed_water_volume": false,
+      "mean_of_instantaneous_core_volumes": false,
+      "physical_state_join_eligible": false,
+      "global_total_eligible": false,
+      "regional_scenario_admitted": true
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}

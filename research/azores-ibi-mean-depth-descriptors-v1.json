@@ -1,0 +1,58 @@
+{
+  "schema": "osw.azores-ibi-mean-depth-descriptors.v1",
+  "source_url": "https://sp.copernicus.org/articles/4-osr8/5/2024/",
+  "source_doi": "10.5194/sp-4-osr8-5-2024",
+  "source_attribution": "de Pascual Collar, Aznar, Levier and Sotillo (2024), Monitoring main ocean currents of the Iberia\u2013Biscay\u2013Ireland region, State of the Planet4-osr8,5; CC BY4.0",
+  "source_locator": "Section2, MA section description and Figure2 caption; original publisher HTML prose, no plot digitization",
+  "source_license": "CC BY4.0",
+  "raw_sha256": "a37fdc1ffc22a5ae83a73a0d32af6f583d206ee15756bad39df8a8f8b4373cbc",
+  "facts_sha256": "24ff1faa1c12e48c627e793c4b382cd2aef8363fa68b27cc766b1f7883068880",
+  "rows": [
+    {
+      "id": "azores-pascual-collar2024-ma-ibi-rea-mean-upper-layer-extent",
+      "entity_id": "current:azores",
+      "metric": "reported_reanalysis_mean_current_upper_layer_extent",
+      "approximate_value": 600,
+      "unit": "m",
+      "source_statistic": "author_reported_approximate_extent_of_long_term_mean_section",
+      "geographic_scope": "MA meridional monitoring section north of Madeira, source-defined regional Azores Current window; exact coordinates not independently qualified",
+      "source_section": "MA_north_of_Madeira",
+      "source_product": "IBI-REA",
+      "source_mean_period": [
+        1993,
+        2021
+      ],
+      "observation_start": null,
+      "observation_end": null,
+      "calendar_month": null,
+      "velocity_component": "source_section_transverse_velocity_in_long_term_reanalysis_mean",
+      "source_direction_consistency": "unresolved_conflicting_primary_labels",
+      "source_velocity_cutoff_m_s": null,
+      "vertical_datum": "source_reported_depth_not_independently_qualified",
+      "exact_position": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "thickness_m": null,
+      "volume_m3": null,
+      "omi_boundary_is_fixed_at_reported_extent": false,
+      "eligibility": {
+        "physical_current_bottom_established": false,
+        "whole_route_representative": false,
+        "physical_depth_ranking": false,
+        "seasonal_playback": false,
+        "route_state_join": false,
+        "volume": false
+      },
+      "qualification": "Source Section2 reports Azores upper-layer transport to600m at MA, with deeper transport strongly affected by bathymetry; Figure2 is IBI-REA1993\u20132021mean. This is neither a new direct observation nor a reconstructed velocity threshold crossing. Section2 labels the current eastward, while monitoring-window setup and signed transport discussion call AC westward; keep direction unresolved and do not transfer an axis or sign. The OMIs use dynamic density-based vertical windows;600m is prose describing the mean section, not a fixed OMI boundary or physical current bottom."
+    }
+  ],
+  "caveats": [
+    "Mean-section lower reach, not mean individual current depths, annual extrema, calendar climatology, uncertainty or everywhere thickness.",
+    "Four reanalyses plus one reprocessed-observation product support the ensemble OMI; Figure2 mean is specifically IBI-REA. Do not relabel600m as a five-product measured mean depth.",
+    "Direction labels conflict within the paper; exact position, flow sign and direction are unresolved. Retain Azores attribution without geographic edge, route or state projection.",
+    "The primary seamount wording also changes geographic reference. No coordinates inferred from that wording or digitized from a plot.",
+    "Transport anomalies remove the monthly climatology; the OMI anomaly record does not supply monthly depth evolution.",
+    "No raw model arrays obtained; no core, bed, dynamic density boundary, selected transport layer or volume substituted for current thickness."
+  ],
+  "canonical_reference_admitted": false
+}

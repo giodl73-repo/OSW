@@ -1,0 +1,86 @@
+{
+  "schema": "osw.eac-mooring-depth-benchmark-source-review.v1",
+  "status": "PASS_SEVEN_MOORINGS_TWO_DATES_REGIONAL_DEPTH_SUPPORT_NOT_AXIS_VALIDATION",
+  "cloud_reviews": [
+    {
+      "run_id": 41455611658,
+      "tests_passed": 12,
+      "source_commit": "51bbf1826ee8096f04a2595f8082365c869c3975",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41455611658"
+    },
+    {
+      "run_id": 41455611658,
+      "tests_passed": 7,
+      "source_commit": "51bbf1826ee8096f04a2595f8082365c869c3975",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41455611658"
+    }
+  ],
+  "cloud_test_groups": [
+    "12 frozen connected-layer checks",
+    "7 mooring acquisition checks"
+  ],
+  "cloud_tests_passed": 19,
+  "cloud_review_note": "Both test groups ran in the same source-pinned workflow run; duplicate run IDs are not independent source experiments.",
+  "counts": {
+    "stations": 7,
+    "dates": 2,
+    "profiles": 14,
+    "velocity_scalars_retrieved": 8768,
+    "profiles_with_any_velocity": 13,
+    "resolved_lower_boundaries_by_threshold": {
+      "0.05": 5,
+      "0.1": 5,
+      "0.2": 6
+    },
+    "resolved_layer_thicknesses_by_threshold": {
+      "0.05": 1,
+      "0.1": 1,
+      "0.2": 0
+    },
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/acquire_eac_mooring_depth_benchmark_v1.py": "86ec0139f17ef2236786b05678c071c31f6b1bcfbc4aae35f36a59490b0b8bd2",
+    "analysis/test_eac_mooring_depth_benchmark_v1.py": "0a9a78dc4fd9b812b48312a0c6763c7c135ac126e21f919b9750485032596470",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/test_eac_connected_layer_thickness_v1.py": "dfe5be1cdd1cca816a0eaf4250febfcd63de5f8853b59271646a66af446da41f",
+    "research/eac-mooring-depth-benchmark-operator-v1.json": "eb341711de0d6b057c3cb620d4aaa25ea563594f1091222c38168b0e0440c9cb",
+    ".github/workflows/eac-mooring-depth-benchmark-v1.yml": "f30c7f0161382ee185f44e291571a15cd13a4504fcfd99a11d4a8f8fbc3ce5ac",
+    "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json": "16ebb8434cb613b95b71762d326dce84ee2df415b93739ea6f66f5d3cebfa24e",
+    "research/eac-connected-layer-thickness-source-review-v1.json": "4a4a2e1cf228b416e21b1c67f1358ecf2c3decca4809485bba2bdcba65a1ed70"
+  },
+  "source_paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10762209/",
+  "source_catalog_url": "https://dods.ndbc.noaa.gov/thredds/catalog/oceansites/DATA_GRIDDED/IMOS-EAC/catalog.html",
+  "scientific_review": [
+    "Seven independently documented EAC mooring locations near27S were prescribed before velocity retrieval, for2022-01-15 and2022-07-15. All14 profiles retained;13 contain some unfilled meridional velocity. The July NRSNSI profile remains missing rather than being replaced by a convenient date, station or filled product.",
+    "Only daily unfilled UCUR/VCUR and their source uncertainty fields were retrieved,8768 scalar values total after coordinate/budget checks. These are processed observations with vertical/time linear gridding and a5-day filter, not raw instrument samples or instantaneous model fields. No SOM-filled velocity or spatially mapped no-slip boundary is used.",
+    "Poleward component is negative true-north VCUR. Five lower5cm/s, five lower10cm/s and six lower20cm/s crossings resolve across dated station profiles. Their shared profiles and threshold sensitivities are not independent observations, annual extrema, complete physical current bottoms or depth confidence bounds.",
+    "Most upper boundaries remain censored because the source lacks surface velocity support. The resolved5cm/s and10cm/s thickness spans occur at far-offshore EAC4800 on January15 and belong only to those local connected velocity components. They are not promoted to main-jet thickness or a physical EAC volume.",
+    "EAC3200 dated lower5cm/s crossings are940m in January and1066.6666666666667m in July; EAC4200 values are1068m and992.5m. Native brackets, upper censoring, fixed coordinates, full component profiles and source uncertainty arrays remain retained. These four values illustrate regional profile support, not along-route or seasonal extrema.",
+    "Nearest existing27S HYCOM sample-node index, position and geodesic separation are reported only for spatial audit. The observational array is oblique near27S while the editorial model section is at27S. No coincident-section, same temporal filter, model-error estimate or named-current-axis validation is claimed from proximity.",
+    "All19 cloud checks passed: twelve frozen connected-layer checks and seven exact-date, duplicate-date, pre-read budget, sign, missing-surface, missing-deep and opposing-flow acquisition checks. Processing was sequential on one idle cloud CPU. Local operations retained cloud bytes and verified input pins only.",
+    "Provider source attributes, time indices, actual UTC daily labels, units, sea-surface positive-down datum and CC BY4.0 attribution remain in the artifact. No wire-byte hash or full original-source checksum is claimed for OPeNDAP subsets. Uncertainty arrays do not by themselves establish an error distribution or propagated boundary confidence interval.",
+    "The benchmark changes no canonical depth register, reference-route geometry, runtime/UI or eddy size record. Canonical depth coverage remains439 scoped references across101 identities. No whole-route physical depth profile or whole-current water volume is admitted."
+  ],
+  "canonical_depth_register_counts_unchanged": {
+    "identities": 111,
+    "depth_references": 439,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "next_actions": [
+    "Admit source-qualified fixed-station lower-contour descriptors separately from whole-current physical depth and unresolved upper boundaries.",
+    "Use independently bounded observational/satellite axis information or a source-backed regional branch operator before treating an editorial model route as a tracked EAC jet.",
+    "Retain source temporal filtering and spatial separation when evaluating model/observation compatibility; do not turn two dates into seasonal extrema."
+  ],
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

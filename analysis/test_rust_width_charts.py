@@ -1,4 +1,5 @@
 """Complete query charts, stable source axes, missing marks and native/WASM parity."""
+from query_packet import read_bundle_bytes
 import json
 import os
 from pathlib import Path
@@ -8,7 +9,7 @@ from test_rust_query_browser import native,browser_query
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    corpus=json.loads((ROOT/'almanac/query-data.json').read_bytes())['collections']['width_samples'];index={r['id']:r for r in corpus}
+    corpus=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))['collections']['width_samples'];index={r['id']:r for r in corpus}
     query={'collection':'width_samples','limit':1,'offset':20};full=native(query)
     assert len(full['rows'])==1 and full['chart_scene']['matching_samples']==127
     assert len(full['chart_scene']['panels'])==10

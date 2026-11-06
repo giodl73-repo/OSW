@@ -1,0 +1,38 @@
+inspect-source-headers	Verify frozen metadata and refusal fixtures	﻿2026-10-29T06:23:09.4119509Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4120099Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4120769Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_axis_feasibility_v1.py -v^[[0m
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4151350Z shell: /usr/bin/bash -e {0}
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4151624Z env:
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4151823Z   OMP_NUM_THREADS: 1
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4152062Z   OPENBLAS_NUM_THREADS: 1
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4152295Z   MKL_NUM_THREADS: 1
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4152507Z   NUMEXPR_NUM_THREADS: 1
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4152946Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.17/x64
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4153405Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib/pkgconfig
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4153835Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4154215Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4154642Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4155029Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.4155360Z ##[endgroup]
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6208321Z test_chen_indian_sec_axis_feasibility_v1 (unittest.loader._FailedTest.test_chen_indian_sec_axis_feasibility_v1) ... ERROR
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6209101Z 
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6209262Z ======================================================================
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6210407Z ERROR: test_chen_indian_sec_axis_feasibility_v1 (unittest.loader._FailedTest.test_chen_indian_sec_axis_feasibility_v1)
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6211205Z ----------------------------------------------------------------------
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6211890Z ImportError: Failed to import test module: test_chen_indian_sec_axis_feasibility_v1
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6212453Z Traceback (most recent call last):
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6219216Z   File "/opt/hostedtoolcache/Python/3.13.17/x64/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6220044Z     module = self._get_module_from_name(name)
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6220749Z   File "/opt/hostedtoolcache/Python/3.13.17/x64/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6221316Z     __import__(name)
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6221538Z     ~~~~~~~~~~^^^^^^
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6222031Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_axis_feasibility_v1.py", line 2, in <module>
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6222569Z     import numpy as np
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223060Z ModuleNotFoundError: No module named 'numpy'
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223282Z 
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223288Z 
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223440Z ----------------------------------------------------------------------
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223792Z Ran 1 test in 0.000s
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6223920Z 
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6224006Z FAILED (errors=1)
+inspect-source-headers	Verify frozen metadata and refusal fixtures	2026-10-29T06:23:09.6319123Z ##[error]Process completed with exit code 1.

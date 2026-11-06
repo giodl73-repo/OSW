@@ -1,0 +1,60 @@
+name: A20 Gulf Stream fixed native100m direction depth brackets v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/a20-gulf-stream-core-direction-depths-v2.yml
+      - analysis/sample_a20_gulf_stream_core_direction_depths_v2.py
+      - analysis/test_a20_gulf_stream_core_direction_depths_v2.py
+      - research/a20-gulf-stream-core-direction-depth-operator-v2.json
+      - research/a20-ldeo-ix14-component-method-context-v1.json
+      - plans/a20-gulf-stream-core-direction-depth-protocol-v2.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/a20-gulf-stream-core-direction-depths-v2.yml
+            analysis/sample_a20_gulf_stream_core_direction_depths_v2.py
+            analysis/test_a20_gulf_stream_core_direction_depths_v2.py
+            research/a20-gulf-stream-core-direction-depth-operator-v2.json
+            research/a20-ldeo-ix14-component-method-context-v1.json
+            plans/a20-gulf-stream-core-direction-depth-protocol-v2.md
+            research/a20-gulf-stream-retained-headers-v2.json
+            research/a20-gulf-stream-retained-header-source-review-v2.json
+            research/source-data/a20-gulf-stream-native-casts-v1/
+            analysis/sample_a20_gulf_stream_depth_brackets_v1.py
+            research/a20-gulf-stream-native-depth-brackets-v1.json
+            research/a20-gulf-stream-native-depth-bracket-source-review-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install single-CPU native reader dependencies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4
+      - name: Check and sample retained casts without network access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_A20_DIRECTION_PHASE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_a20_gulf_stream_core_direction_depths_v2.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/sample_a20_gulf_stream_core_direction_depths_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a20-gulf-stream-core-direction-depths-v2
+          path: a20-gulf-stream-core-direction-depths-v2/
+          retention-days: 7
+          if-no-files-found: error

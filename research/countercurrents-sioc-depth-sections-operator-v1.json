@@ -1,0 +1,272 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.countercurrents-sioc-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New exploratory PacificNECCeast-central,AtlanticNECCwesternsummerrange andSouthIndian70–90Esections. Existing source scopes and fresh primarytext reviewed before declaration;no newsectionfieldoutcomes inspected. Preserve originalfixedgates/cutoffs regardlessseasonalweakness. Newtransportv2responds to two terminalHYCOMI/Ofailures in priorNECbatch,without changing integral/layer/selectionmath or byte/cellcaps.",
+  "geometry_provenance": "All longitude/latitude windows are OSW exploratory choices guided by published studysections/regionalgeography,not digitized/sourcevelocityaxes,fullwidths oruncertaintybands. Pacificsource140–95Wand Atlantic42–32Wreaches truncate larger currents. SIOC70–90Eis naming-convention regionalreach near40S. Everyoriginalsection remains even if weak/absent at one snapshot. Nativeincreasinglatitude breaks ties;alltransects usefixednative longitude.",
+  "column_selector": "Frozen complete native0–200m signed trapezoidal integral selector,held90degree eastward throughdepth. Pacific/AtlanticNECC primary10cm/s withsurface>5cm/s;diffuseSIOC primary5cm/s withsurface>2cm/s. Requirecompletefiniteupper200m support,qualifyinguppercore andpositiveintegral;greatestintegral selectsoneprofile withfirstsouthernnativeindex tie. A missing Januarysurfaceexpression is not filledby anothergate orforcedsubsurface maximum. Allcutoffs are declaredmodeldiagnostics,not sourcephysicalboundaries.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all32targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:pacific-north-equatorial-countercurrent": {
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial east-centralPacificNECC140–95Wsource-studyreach,not wholebasin orcontinuousyear-roundaxis. Exclude westerninflow,coastalredistributioneastof95W,equatorialEUC/deeperNSCC-TsuchiyaJet anddetachededdies as targets. Johnson2002reports weak/absent surfaceexpression near110WinDJF;retain qualifying/nonqualifying2022snapshotoutcomes without assuming thatsourceclimatology is a datedobservation or thatallsubsurfaceeastflowvanishes."
+    },
+    "current:atlantic-north-equatorial-countercurrent": {
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "PartialwesternAtlanticNECC42–32Wreach withOSW3.5–8.5Nsearches. SourceJASsummercontext doesnot establishJanuarycontinuity oruniquejoiningofnorthern/southerncores. Exclude upstreamNBCretroflexion,equatorialESC,easternbasincontinuation anddetachedrings as targets. A selectedeastwardjet maybelongtoseparatebranches/eddies;no independentbranchassignment,sumofbranches oruniquevelocityaxis inferred."
+    },
+    "current:south-indian": {
+      "entity_id": "current:south-indian",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "PartialSouthIndianOceanCurrent70–90Eunder easternnamingconvention,searching37.5–42.5Snearthehistorical40Sfrontcontext. Exclude westernAgulhasReturn,northwardrecirculation,eastwardAustraliacontinuations,neighboringACCfronts andSouthIndianOceanCountercurrent as targets. Historicalupper1000mgeostrophictransport/referencelevels are not physicalbottoms or a depth-uniform/surfaceaxis. Geographicmaxima do not independentlyidentifyfrontmembership."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-140w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -140,
+      "latitude_gate_degrees_north": [
+        4.5,
+        9.5
+      ]
+    },
+    {
+      "id": "section-132p5w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -132.5,
+      "latitude_gate_degrees_north": [
+        5,
+        10
+      ]
+    },
+    {
+      "id": "section-125w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -125,
+      "latitude_gate_degrees_north": [
+        5.5,
+        10.5
+      ]
+    },
+    {
+      "id": "section-117p5w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -117.5,
+      "latitude_gate_degrees_north": [
+        4.5,
+        9.5
+      ]
+    },
+    {
+      "id": "section-110w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -110,
+      "latitude_gate_degrees_north": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "id": "section-102p5w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -102.5,
+      "latitude_gate_degrees_north": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "section-95w",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -95,
+      "latitude_gate_degrees_north": [
+        4.5,
+        9.5
+      ]
+    },
+    {
+      "id": "section-42w",
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -42,
+      "latitude_gate_degrees_north": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "id": "section-38w",
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -38,
+      "latitude_gate_degrees_north": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "id": "section-35w",
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -35,
+      "latitude_gate_degrees_north": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "id": "section-32w",
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -32,
+      "latitude_gate_degrees_north": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "id": "section-70e",
+      "entity_id": "current:south-indian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 70,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    },
+    {
+      "id": "section-75e",
+      "entity_id": "current:south-indian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 75,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    },
+    {
+      "id": "section-80e",
+      "entity_id": "current:south-indian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 80,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    },
+    {
+      "id": "section-85e",
+      "entity_id": "current:south-indian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 85,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    },
+    {
+      "id": "section-90e",
+      "entity_id": "current:south-indian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 90,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+      "locator": "Johnson2002Sections3.1/3.2.3 andretainedseasonalscopeaudit",
+      "scope": "OfficialNOAAHTML freshlyreviewedNovember2,2026. Sourceeast-central meansection neighborhoods and110Wseasonalsurfacecaution,not2022axes/currentbottoms. No sourceADCP/CTDarrays,figurepixels orwidthscales extracted."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/19/251/2023/",
+      "locator": "Dimoune2023Abstract/Sections2.1,3,4.2,6 andretainedregionalroute",
+      "scope": "PublisherHTML freshlyreviewedNovember2,2026.42/32Wstudylongitudes andJASsummercontext informpartialreach,not a year-roundaxisor verifiedcorejoin. No newfiguregeometry/fields extracted."
+    },
+    {
+      "url": "https://journals.ametsoc.org/abstract/journals/phoc/22/4/1520-0485_1992_022_0421_tsioc_2_0_co_2.xml",
+      "locator": "Stramma1992publisherabstract",
+      "scope": "Primarypublisher-indexedabstract freshlyreviewedfornear40Ssubtropicalfront/currentbandcontext. No fulloriginalfigure/method extraction or imposed numericalaxis."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/96JC03455",
+      "locator": "StrammaLutjeharms1997retainedreferencecandidateSections3.2/Figure7context",
+      "scope": "Freshpublisherreopen403;retainedhistoricalupper1000m/90Esplitting andlater70Enamingcontext used. No neworiginalpixels,digitization orsourcevelocityprocessing claimed."
+    }
+  ],
+  "input_sha256": {
+    "research/pacific-necc-reach-reference-path-candidate.json": "0df217ce291f5e8d4804a2fa25f86a2bb8a6fdd5101f00abe2401583ec00df01",
+    "research/pacific-necc-reach-seasonal-section-scope-audit.json": "e97d4ddb320f9384f527b001c44058f74f3ad0c126d40429f890decfa25553de",
+    "research/atlantic-necc-western-summer-reference-path-candidate.json": "44fbddc113fefbff554b2b652a0a62c2f965be3e8be28aa0267c381645b251be",
+    "research/south-indian-eastern-reach-reference-path-candidate.json": "5ffe93eddca3a110dedfc3a0d2dfb589504d60422e24729e0820629b4a94eafe",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3
+}

@@ -1,0 +1,65 @@
+name: Audit installed parent for Pacific NEC product-axis diagnostics v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-product-axis-parent-request-v1.json
+      - .github/workflows/pacific-nec-product-axis-parent-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  OSW_PACIFIC_NEC_AXIS_PARENT_V1: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/pacific-nec-product-axis-parent-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-product-axis-parent-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-product-axis-parent-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  audit-parent:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify record scope, source identity and installed-access refusal
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_pacific_nec_product_axis_records_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_audit_pacific_nec_product_axis_parent_v1.py -v
+      - name: Audit exact installed parent and publication aliases without mutation
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/audit_pacific_nec_product_axis_parent_v1.py
+      - name: Retain compact audit metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-product-axis-parent-evidence-v1
+          path: .pytest_cache/pacific-nec-product-axis-parent-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

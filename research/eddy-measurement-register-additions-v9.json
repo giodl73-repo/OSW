@@ -1,0 +1,584 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 270,
+  "baseline_evidence_sha256": "090c100d742cfc3d7f0a80fa31d31235a67b0f41727c959c7d1918ff58dea5b0",
+  "sources": {
+    "enriquez-2005": {
+      "url": "https://nora.nerc.ac.uk/id/eprint/502673/1/EnriquezetalOD2005.pdf",
+      "doi": "10.1007/s10236-005-0031-4",
+      "citation": "Enriquez, Shapiro, Souza and Zatsepin (2005), Ocean Dynamics 55, 476-489.",
+      "access": "Original NERC-hosted published PDF; Table 4 on PDF page 10 and Caucasus event paragraph on PDF page 12 visually reviewed.",
+      "original": {
+        "url": "https://nora.nerc.ac.uk/id/eprint/502673/1/EnriquezetalOD2005.pdf",
+        "bytes": 1137292,
+        "sha256": "35f5fae3a496215f7501104f9ec53e5f0cece17e3599284c3060077220b039c2",
+        "pages": 14
+      },
+      "reviewed_png_sha256": {
+        "10": "fc677a03f29b04b771e6941399628fed5e026832d9f3c4f26ceac5de568d5461",
+        "12": "2d664eeff34c7f59f298123d4c06a66e6a64ddda3c1001c67952770708120e34"
+      }
+    }
+  },
+  "model_table_rows": [
+    {
+      "source_name": "Sevastopol",
+      "source_location": "West of Crimean peninsula",
+      "velocity_range_m_s": [
+        0.1,
+        0.2
+      ],
+      "penetration_depth_m": 400,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:sevastopol-eddy-region"
+    },
+    {
+      "source_name": "Kali-Akra",
+      "source_location": "West of Sevastopol eddy",
+      "velocity_range_m_s": [
+        0.1,
+        0.25
+      ],
+      "penetration_depth_m": 130,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:kaliakra-eddy-region"
+    },
+    {
+      "source_name": "Bosphorus",
+      "source_location": "South-western coast",
+      "velocity_range_m_s": [
+        0.15,
+        0.35
+      ],
+      "penetration_depth_m": 200,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:bosphorus-eddy-region"
+    },
+    {
+      "source_name": "Sakarya",
+      "source_location": "South coast at about 31 E",
+      "velocity_range_m_s": [
+        0.15,
+        0.25
+      ],
+      "penetration_depth_m": 800,
+      "depth_relation": "greater_than",
+      "mapped_entity_id": null
+    },
+    {
+      "source_name": "Crimea",
+      "source_location": "East of Crimean peninsula",
+      "velocity_range_m_s": [
+        0.1,
+        0.4
+      ],
+      "penetration_depth_m": 350,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:crimea-eddy-region"
+    },
+    {
+      "source_name": "Sinop",
+      "source_location": "South coast at about 36 E",
+      "velocity_range_m_s": [
+        0.1,
+        0.2
+      ],
+      "penetration_depth_m": 200,
+      "depth_relation": "approximately",
+      "mapped_entity_id": null
+    },
+    {
+      "source_name": "Caucasus",
+      "source_location": "North-eastern coast",
+      "velocity_range_m_s": [
+        0.1,
+        0.15
+      ],
+      "penetration_depth_m": 100,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:caucasus-eddy-region"
+    },
+    {
+      "source_name": "Kizilirmak",
+      "source_location": "South coast about 38 E",
+      "velocity_range_m_s": [
+        0.1,
+        0.3
+      ],
+      "penetration_depth_m": 200,
+      "depth_relation": "approximately",
+      "mapped_entity_id": null
+    },
+    {
+      "source_name": "Batumi",
+      "source_location": "South-eastern coast",
+      "velocity_range_m_s": [
+        0.1,
+        0.18
+      ],
+      "penetration_depth_m": 400,
+      "depth_relation": "approximately",
+      "mapped_entity_id": "eddy:geography:batumi-eddy-region"
+    }
+  ],
+  "unmapped_named_source_rows": [
+    {
+      "source_name": "Sakarya",
+      "source_row_index": 3,
+      "status": "named_source_lead_for_inventory_review",
+      "measurement_assigned_to_another_name": false
+    },
+    {
+      "source_name": "Sinop",
+      "source_row_index": 5,
+      "status": "named_source_lead_for_inventory_review",
+      "measurement_assigned_to_another_name": false
+    },
+    {
+      "source_name": "Kizilirmak",
+      "source_row_index": 7,
+      "status": "named_source_lead_for_inventory_review",
+      "measurement_assigned_to_another_name": false
+    }
+  ],
+  "records": [
+    {
+      "entity_id": "eddy:geography:sevastopol-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Sevastopol row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Sevastopol, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 0,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Sevastopol structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth.",
+      "id": "sevastopol-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 400,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:sevastopol-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Sevastopol row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Sevastopol, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 0,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Sevastopol structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "sevastopol-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.1,
+        0.2
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "entity_id": "eddy:geography:kaliakra-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Kali-Akra row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Kali-Akra, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 1,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Kali-Akra structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth.",
+      "id": "kaliakra-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 130,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:kaliakra-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Kali-Akra row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Kali-Akra, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 1,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Kali-Akra structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "kaliakra-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.1,
+        0.25
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "entity_id": "eddy:geography:bosphorus-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Bosphorus row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Bosphorus, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 2,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Bosphorus structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth.",
+      "id": "bosphorus-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 200,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:bosphorus-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Bosphorus row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Bosphorus, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 2,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Bosphorus structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "bosphorus-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.15,
+        0.35
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "entity_id": "eddy:geography:crimea-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Crimea row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Crimea, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 4,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Crimea structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth.",
+      "id": "crimea-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 350,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:crimea-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Crimea row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Crimea, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 4,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Crimea structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "crimea-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.1,
+        0.4
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "entity_id": "eddy:geography:caucasus-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Caucasus row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Caucasus, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 6,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Caucasus structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth.",
+      "id": "caucasus-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 100,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:caucasus-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Caucasus row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Caucasus, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 6,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Caucasus structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "caucasus-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.1,
+        0.15
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "entity_id": "eddy:geography:batumi-eddy-region",
+      "unit": "m",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Batumi row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Batumi, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 8,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Batumi structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. In this simulation the Batumi pattern is often an open return-flow structure rather than a closed anticyclone; no closed boundary inferred.",
+      "id": "batumi-enriquez-2005-model-penetration",
+      "category": "structure",
+      "metric": "source_model_case_vertical_penetration_depth",
+      "value": 400,
+      "definition": "Approximate vertical reach of the modeled eddy circulation, as reported in the penetration-depth column.",
+      "period_start": "2000-06-10",
+      "period_end": "2000-06-10",
+      "period_label": "Source snapshot label: day 40, 10 June 2000",
+      "period_precision": "day_as_reported"
+    },
+    {
+      "entity_id": "eddy:geography:batumi-eddy-region",
+      "unit": "m/s",
+      "source_id": "enriquez-2005",
+      "source_locator": "Table 4, Batumi row, printed page 485 / PDF page 10; section 4 model context.",
+      "case_label": "Batumi, POLCOMS May-June 2000 case",
+      "evidence_role": "published_model_case_reference",
+      "model_table_row_index": 8,
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "quantity_role": "model_case_reference",
+        "surface_map_depth_m": 7.5,
+        "surface_map_depth_is_velocity_column_depth": false,
+        "penetration_day_as_reported": 40,
+        "penetration_date_as_reported": "2000-06-10"
+      },
+      "scope": "Reported Batumi structure in the fine-grid simulation analyzed for May-June 2000.",
+      "qualification": "Model-case reference, not a dated observed eddy or regional constant. The table does not supply horizontal size, measurement uncertainty or a physical footprint. Penetration depth is not lens thickness or water-column depth. In this simulation the Batumi pattern is often an open return-flow structure rather than a closed anticyclone; no closed boundary inferred. Near-surface maps use 7.5 m, but that convention is not assigned as a measured sampling depth to this table column.",
+      "id": "batumi-enriquez-2005-model-velocity-range",
+      "category": "kinematics",
+      "metric": "source_model_case_velocity_range_as_reported",
+      "value": null,
+      "definition": "Velocity interval from the model table; the column does not identify it as a translation speed or a peak.",
+      "range_value": [
+        0.1,
+        0.18
+      ],
+      "range_kind": "source_reported_model_velocity_interval",
+      "period_label": "May-June 2000 model-analysis context; velocity-column sampling dates unspecified"
+    },
+    {
+      "id": "caucasus-enriquez-2005-model-event-1-duration",
+      "entity_id": "eddy:geography:caucasus-eddy-region",
+      "category": "duration",
+      "metric": "source_reported_model_event_duration",
+      "value": 6,
+      "unit": "day",
+      "source_id": "enriquez-2005",
+      "source_locator": "Section 4, Caucasus paragraph, printed page 487 / PDF page 12.",
+      "definition": "Reported persistence of one modeled Caucasus eddy occurrence.",
+      "scope": "One of three separate occurrences in the May-June 2000 simulation.",
+      "qualification": "Model event, not a measured physical lifespan, regional mean or recurrence rate. The three durations stay separate; no start/end dates or annual frequency inferred. Source notes shape and stability depend on the Rim Current position.",
+      "case_label": "Caucasus simulated occurrence 1, source sequence",
+      "period_label": "May-June 2000 simulation; individual event dates unspecified",
+      "evidence_role": "published_model_case_reference",
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "event_order_in_source": 1
+      }
+    },
+    {
+      "id": "caucasus-enriquez-2005-model-event-2-duration",
+      "entity_id": "eddy:geography:caucasus-eddy-region",
+      "category": "duration",
+      "metric": "source_reported_model_event_duration",
+      "value": 3,
+      "unit": "day",
+      "source_id": "enriquez-2005",
+      "source_locator": "Section 4, Caucasus paragraph, printed page 487 / PDF page 12.",
+      "definition": "Reported persistence of one modeled Caucasus eddy occurrence.",
+      "scope": "One of three separate occurrences in the May-June 2000 simulation.",
+      "qualification": "Model event, not a measured physical lifespan, regional mean or recurrence rate. The three durations stay separate; no start/end dates or annual frequency inferred. Source notes shape and stability depend on the Rim Current position.",
+      "case_label": "Caucasus simulated occurrence 2, source sequence",
+      "period_label": "May-June 2000 simulation; individual event dates unspecified",
+      "evidence_role": "published_model_case_reference",
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "event_order_in_source": 2
+      }
+    },
+    {
+      "id": "caucasus-enriquez-2005-model-event-3-duration",
+      "entity_id": "eddy:geography:caucasus-eddy-region",
+      "category": "duration",
+      "metric": "source_reported_model_event_duration",
+      "value": 17,
+      "unit": "day",
+      "source_id": "enriquez-2005",
+      "source_locator": "Section 4, Caucasus paragraph, printed page 487 / PDF page 12.",
+      "definition": "Reported persistence of one modeled Caucasus eddy occurrence.",
+      "scope": "One of three separate occurrences in the May-June 2000 simulation.",
+      "qualification": "Model event, not a measured physical lifespan, regional mean or recurrence rate. The three durations stay separate; no start/end dates or annual frequency inferred. Source notes shape and stability depend on the Rim Current position.",
+      "case_label": "Caucasus simulated occurrence 3, source sequence",
+      "period_label": "May-June 2000 simulation; individual event dates unspecified",
+      "evidence_role": "published_model_case_reference",
+      "model_context": {
+        "model": "POLCOMS",
+        "horizontal_grid_km": 6.7,
+        "analysis_months": "May-June 2000",
+        "event_order_in_source": 3
+      }
+    }
+  ]
+}

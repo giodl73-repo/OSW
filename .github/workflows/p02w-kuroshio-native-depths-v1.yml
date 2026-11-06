@@ -1,0 +1,57 @@
+name: P02W Kuroshio regional native depth candidates v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/p02w-kuroshio-native-depths-v1.yml
+      - analysis/acquire_p02w_kuroshio_native_depths_v1.py
+      - analysis/test_p02w_kuroshio_native_depths_v1.py
+      - research/p02w-kuroshio-native-depth-operator-v1.json
+      - plans/p02w-kuroshio-native-depth-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/p02w-kuroshio-native-depths-v1.yml
+            analysis/acquire_p02w_kuroshio_native_depths_v1.py
+            analysis/test_p02w_kuroshio_native_depths_v1.py
+            analysis/acquire_a20_gulf_stream_cast_headers_v1.py
+            analysis/inspect_retained_a20_gulf_stream_headers_v2.py
+            analysis/sample_a20_gulf_stream_depth_brackets_v1.py
+            analysis/sample_a20_gulf_stream_core_direction_depths_v2.py
+            plans/p02w-kuroshio-native-depth-protocol-v1.md
+            research/p02w-kuroshio-native-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install native reader on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4
+      - name: Check synthetic guards then acquire and process each prospective native resource once
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_P02W_CASE_PHASE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_p02w_kuroshio_native_depths_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_p02w_kuroshio_native_depths_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p02w-kuroshio-native-depths-v1
+          path: p02w-kuroshio-native-depths-v1/
+          retention-days: 7
+          if-no-files-found: error

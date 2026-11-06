@@ -1,0 +1,63 @@
+name: Southern reaches countercurrents paired depths v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_southern_context_paired_depth_v1.py
+      - analysis/test_southern_context_paired_depth_v1.py
+      - plans/southern-context-paired-depth-v1.md
+      - .github/workflows/southern-context-paired-depth-v1.yml
+      - research/southern-context-paired-depth-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/derive_southern_context_paired_depth_v1.py
+            analysis/test_southern_context_paired_depth_v1.py
+            plans/southern-context-paired-depth-v1.md
+            .github/workflows/southern-context-paired-depth-v1.yml
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            research/southern-reaches-depth-sections-operator-v1.json
+            research/southern-countercurrent-interval-depth-sections-operator-v1.json
+            research/southern-reaches-south-pacific-velocity-depth-curtains-v1.json
+            research/current-depth-southern-reaches-south-pacific-velocity-curtains-source-review-v1.json
+            research/southern-reaches-south-australian-velocity-depth-curtains-v1.json
+            research/current-depth-southern-reaches-south-australian-velocity-curtains-source-review-v1.json
+            research/southern-countercurrent-indian-south-equatorial-countercurrent-velocity-depth-curtains-v1.json
+            research/current-depth-southern-countercurrent-indian-south-equatorial-countercurrent-velocity-curtains-source-review-v1.json
+            research/southern-countercurrent-pacific-south-equatorial-countercurrent-velocity-depth-curtains-v1.json
+            research/current-depth-southern-countercurrent-pacific-south-equatorial-countercurrent-velocity-curtains-source-review-v1.json
+            research/southern-context-paired-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Synthetic checks and joint distinct-cutoff descriptor geometry on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_SOUTHERN_CONTEXT_PAIRED_DEPTH_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_southern_context_paired_depth_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/derive_southern_context_paired_depth_v1.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: southern-context-paired-depth-v1
+          path: southern-context-paired-depth-v1/
+          retention-days: 7
+          if-no-files-found: error

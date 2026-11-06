@@ -1,0 +1,103 @@
+{
+  "schema": "osw.source-plot-profile-extraction-input.v1",
+  "status": "RULES_FROZEN_BEFORE_NUMERICAL_BAR_EXTRACTION",
+  "entity_id": "current:pacific-south-equatorial",
+  "component": "southern_branch",
+  "doi": "10.1186/s40562-025-00393-7",
+  "source_pdf_sha256": "55300fdf21f671c695b2de553e4708ffa4dea32f0aae03afd9306af4a124cc0b",
+  "source_figure_png_sha256": "b1d0d4e99fb9292b64f2a85fb84df10a23e7fe7ec230900c4974e2b323b37de1",
+  "figure": "2c and2f",
+  "native_image_dimensions_px": [
+    1948,
+    1411
+  ],
+  "quantity": "author_plotted_poleward_velocity_core_migration",
+  "unit": "degree_latitude",
+  "period_years": [
+    1960,
+    2020
+  ],
+  "reference_pressure_or_depth": {
+    "value": 2000,
+    "unit": "m",
+    "role": "geostrophic_no_motion_reference_not_current_thickness"
+  },
+  "panels": [
+    {
+      "panel": "2c",
+      "longitude": -170,
+      "crop_px": [
+        105,
+        706,
+        905,
+        990
+      ]
+    },
+    {
+      "panel": "2f",
+      "longitude": -160,
+      "crop_px": [
+        1025,
+        706,
+        1825,
+        990
+      ]
+    }
+  ],
+  "depths_m": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500,
+    550,
+    600
+  ],
+  "axis_calibration": {
+    "zero_y_px": 989,
+    "one_degree_y_px": 732,
+    "independent_each_pick_allowance_px": 2
+  },
+  "bar_detection": {
+    "red_range": [
+      235,
+      255
+    ],
+    "green_range": [
+      140,
+      215
+    ],
+    "blue_range": [
+      40,
+      150
+    ],
+    "minimum_column_orange_pixels": 2,
+    "group_adjacent_columns": true,
+    "required_bars_per_panel": 12,
+    "top_pick": "median first orange y over inner half of each bar",
+    "bottom_support": "bar orange must continue to within3pixels of the common baseline"
+  },
+  "extraction_allowance_rule": "Propagate independent +/-2px allowances on top, zero and one-degree picks by all8 extreme combinations; outward round bounds to0.01degree. This is plot-reading allowance, not measurement confidence or physical variability.",
+  "central_rounding_degree": 0.02,
+  "selection_rule": "Retain all12 depths in each panel, including tiny bars and intervals touching zero. Do not infer the unsampled0m level or interpolate missing depths.",
+  "temporal_operator_note": "Caption reports migration over1960-2020; adjacent contours compare1960-1989 with1990-2020. Do not infer an annual series, exact endpoint displacement, confidence interval or trend at each depth from bars alone.",
+  "eligibility": {
+    "whole_current_length": false,
+    "whole_current_width": false,
+    "physical_state_join": false,
+    "annual_extrema": false,
+    "seasonal_playback": false,
+    "independent_observations": false
+  },
+  "planned_outputs": [
+    "research/pacific-sec-sun-2025-core-migration-profile-prepared-v1.json",
+    "figures/pacific-sec-sun-2025-core-migration-profile-v1.svg"
+  ],
+  "installed": false,
+  "full_goal_complete": false
+}

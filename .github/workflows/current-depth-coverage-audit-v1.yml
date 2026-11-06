@@ -1,0 +1,170 @@
+name: Current depth scoped coverage audit v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-coverage-audit-v1.yml
+      - analysis/audit_current_depth_coverage_v1.py
+      - analysis/test_current_depth_coverage_audit_v1.py
+      - plans/current-depth-coverage-audit-protocol-v1.md
+      - research/current-depth-coverage-audit-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/audit_current_depth_coverage_v1.py
+            analysis/test_current_depth_coverage_audit_v1.py
+            plans/current-depth-coverage-audit-protocol-v1.md
+            research/acc-drake-interval-depth-sections-source-facts-v1.json
+            research/acc-drake-interval-depth-sections-source-review-v1.json
+            research/adriatic-surface-interval-depth-sections-source-facts-v1.json
+            research/adriatic-surface-interval-depth-sections-source-review-v1.json
+            research/alaska-coastal-shelikof-interval-depth-sections-source-facts-v1.json
+            research/alaska-coastal-shelikof-interval-depth-sections-source-review-v1.json
+            research/antarctic-coastal-bellingshausen-interval-depth-sections-source-facts-v1.json
+            research/antarctic-coastal-bellingshausen-interval-depth-sections-source-review-v1.json
+            research/antarctic-regional-velocity-depth-curtains-v1.json
+            research/antarctic-slope-dml-interval-depth-sections-source-facts-v1.json
+            research/antarctic-slope-dml-interval-depth-sections-source-review-v1.json
+            research/atlantic-latitude-velocity-depth-curtains-v1.json
+            research/atlantic-secc-multi-context-depth-sections-source-facts-v1.json
+            research/atlantic-secc-multi-context-depth-sections-source-review-v1.json
+            research/balearic-ligurian-interval-depth-sections-source-facts-v1.json
+            research/balearic-ligurian-interval-depth-sections-source-review-v1.json
+            research/barents-makassar-interval-depth-sections-source-facts-v1.json
+            research/barents-makassar-interval-depth-sections-source-review-v1.json
+            research/barents-makassar-velocity-depth-curtains-v1.json
+            research/boundary-subsurface-velocity-depth-curtains-v1.json
+            research/caribbean-azores-depth-sections-source-facts-v1.json
+            research/caribbean-azores-depth-sections-source-review-v1.json
+            research/caribbean-azores-velocity-depth-curtains-v1.json
+            research/coastal-upper-layer-interval-depth-sections-source-facts-v1.json
+            research/coastal-upper-layer-interval-depth-sections-source-review-v1.json
+            research/countercurrents-sioc-depth-sections-source-facts-v1.json
+            research/countercurrents-sioc-depth-sections-source-review-v1.json
+            research/current-depth-antarctic-regional-velocity-curtains-source-review-v1.json
+            research/current-depth-atlantic-latitude-velocity-curtains-source-review-v1.json
+            research/current-depth-barents-makassar-velocity-curtains-source-review-v1.json
+            research/current-depth-boundary-subsurface-velocity-curtains-source-review-v1.json
+            research/current-depth-caribbean-azores-velocity-curtains-source-review-v1.json
+            research/current-depth-coverage-audit-operator-v1.json
+            research/current-depth-florida-fit-error-depth-sensitivity-source-review-v1.json
+            research/current-depth-greenland-malvinas-eacc-velocity-curtains-source-review-v1.json
+            research/current-depth-guinea-velocity-curtains-source-review-v1.json
+            research/current-depth-gulf-stream-fit-error-depth-sensitivity-source-review-v1.json
+            research/current-depth-loop-antilles-regional-velocity-curtains-source-review-v1.json
+            research/current-depth-mediterranean-regional-velocity-curtains-source-review-v1.json
+            research/current-depth-nec-subarctic-velocity-curtains-source-review-v1.json
+            research/current-depth-pacific-madagascar-velocity-curtains-source-review-v1.json
+            research/current-depth-reference-addenda/alaska-jarosz2017-winter-mean-flow-reach-v1.json
+            research/current-depth-reference-addenda/coastal-full-section-fresh-depths-v1.json
+            research/current-depth-reference-addenda/egcc-sutherland2008-coastal-front-foot-v1.json
+            research/current-depth-reference-addenda/florida-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/interval-primary-core-connected-reach-v1.json
+            research/current-depth-reference-addenda/jutland-aure1989-area-mean-depth-v1.json
+            research/current-depth-reference-addenda/jutland-nielsen2000-episodic-gbw-layer-v1.json
+            research/current-depth-reference-addenda/loop-welsh2009-local-transition-bands-v1.json
+            research/current-depth-reference-addenda/malvinas-eacc-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/ncc-north-joint-fresh-depths-v1.json
+            research/current-depth-reference-addenda/ncc-original-core-fresh-component-depth-v1.json
+            research/current-depth-reference-addenda/nec-huang2022-filtered-depth-cases-v1.json
+            research/current-depth-reference-addenda/nwasc-baumann-selected-noncore-depth-v1.json
+            research/current-depth-reference-addenda/ombai-sprintall2010-observed-depth-bands-v1.json
+            research/current-depth-reference-addenda/pgw-pous-2004-regional-core-thickness-v1.json
+            research/current-depth-reference-addenda/redsox-published-plume-thickness-v1.json
+            research/current-depth-reference-addenda/rim-oguz1999-native-vertical-evidence-v1.json
+            research/current-depth-reference-addenda/tsushima-observed-pair-direction-change-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-register-v48.json
+            research/current-depth-shallow-coastal-velocity-curtains-source-review-v1.json
+            research/current-depth-surface-regional-velocity-curtains-source-review-v1.json
+            research/current-depth-three-current-velocity-curtains-source-review-v1.json
+            research/davidson-rim-surface-qualified-depth-sections-source-facts-v1.json
+            research/davidson-rim-surface-qualified-depth-sections-source-review-v1.json
+            research/florida-fit-error-depth-sensitivity-v1.json
+            research/florida-portugal-depth-sections-source-facts-v1.json
+            research/florida-portugal-depth-sections-source-review-v1.json
+            research/gaspe-jutland-shallow-interval-depth-sections-source-facts-v1.json
+            research/gaspe-jutland-shallow-interval-depth-sections-source-review-v1.json
+            research/greenland-depth-sections-source-facts-v1.json
+            research/greenland-depth-sections-source-review-v1.json
+            research/greenland-malvinas-eacc-velocity-depth-curtains-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-source-facts-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-source-review-v1.json
+            research/guinea-depth-sections-source-facts-v1.json
+            research/guinea-depth-sections-source-review-v1.json
+            research/guinea-velocity-depth-curtains-v1.json
+            research/gulf-stream-fit-error-depth-sensitivity-v1.json
+            research/hiri-zeehan-interval-depth-sections-source-facts-v1.json
+            research/hiri-zeehan-interval-depth-sections-source-review-v1.json
+            research/indian-euc-relative-depth-sections-source-facts-v1.json
+            research/indian-euc-relative-depth-sections-source-review-v1.json
+            research/irminger-wsc-depth-sections-source-facts-v1.json
+            research/irminger-wsc-depth-sections-source-review-v1.json
+            research/loop-antilles-interval-depth-sections-source-facts-v1.json
+            research/loop-antilles-interval-depth-sections-source-review-v1.json
+            research/loop-antilles-regional-velocity-depth-curtains-v1.json
+            research/malvinas-eacc-depth-sections-source-facts-v1.json
+            research/malvinas-eacc-depth-sections-source-review-v1.json
+            research/mauritania-baffin-interval-depth-sections-source-facts-v1.json
+            research/mauritania-baffin-interval-depth-sections-source-review-v1.json
+            research/mediterranean-boundary-interval-depth-sections-source-facts-v1.json
+            research/mediterranean-boundary-interval-depth-sections-source-review-v1.json
+            research/mediterranean-regional-velocity-depth-curtains-v1.json
+            research/nec-subarctic-depth-sections-source-facts-v1.json
+            research/nec-subarctic-depth-sections-source-review-v1.json
+            research/nec-subarctic-velocity-depth-curtains-v1.json
+            research/ngcuc-interval-depth-sections-source-facts-v1.json
+            research/ngcuc-interval-depth-sections-source-review-v1.json
+            research/north-brazil-depth-sections-source-facts-v1.json
+            research/north-brazil-depth-sections-source-review-v1.json
+            research/northern-interval-depth-sections-source-facts-v1.json
+            research/northern-interval-depth-sections-source-review-v1.json
+            research/pacific-madagascar-depth-sections-source-facts-v1.json
+            research/pacific-madagascar-depth-sections-source-review-v1.json
+            research/pacific-madagascar-velocity-depth-curtains-v1.json
+            research/partitioned-ocean-depth-sections-source-facts-v1.json
+            research/partitioned-ocean-depth-sections-source-review-v1.json
+            research/sec-basin-depth-sections-source-facts-v1.json
+            research/sec-basin-depth-sections-source-review-v1.json
+            research/shallow-coastal-velocity-depth-curtains-v1.json
+            research/solomon-undercurrents-interval-depth-sections-source-facts-v1.json
+            research/solomon-undercurrents-interval-depth-sections-source-review-v1.json
+            research/southern-countercurrent-interval-depth-sections-source-facts-v1.json
+            research/southern-countercurrent-interval-depth-sections-source-review-v1.json
+            research/southern-reaches-depth-sections-source-facts-v1.json
+            research/southern-reaches-depth-sections-source-review-v1.json
+            research/spitsbergen-atlantic-interval-depth-sections-source-facts-v1.json
+            research/spitsbergen-atlantic-interval-depth-sections-source-review-v1.json
+            research/surface-regional-velocity-depth-curtains-v1.json
+            research/three-current-depth-sections-source-facts-v1.json
+            research/three-current-depth-sections-source-review-v1.json
+            research/three-current-velocity-depth-curtains-v1.json
+            research/zonal-current-depth-sections-source-facts-v1.json
+            research/zonal-current-depth-sections-source-review-v1.json
+            research/north-brazil-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Audit provenance and depth processing gaps without raw ocean fields
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_coverage_audit_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/audit_current_depth_coverage_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-coverage-audit-v1
+          path: current-depth-coverage-audit-v1/
+          retention-days: 7

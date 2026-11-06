@@ -1,0 +1,87 @@
+{
+  "schema": "osw.pacific-neuc-mean-sections-operator.v1",
+  "entity_id": "current:pacific-north-equatorial-undercurrent",
+  "coordinates_file": "research/source-data/pacific-neuc-mean-coordinate-access-v1/coordinates.json",
+  "header_file": "research/source-data/pacific-neuc-mean-header-inspection-v1/header-inspection.json",
+  "nominal_provider_period": "1994_01_2015_12",
+  "temporal_operator_class": "provider-native-mean-derived-fixed-depth-velocity-with-unverified-weights-completeness-and-Eulerian-equivalence",
+  "section_longitudes_deg_e": [
+    135.0,
+    136.5,
+    138.0,
+    140.0
+  ],
+  "latitude_gate_deg_n": [
+    6.0,
+    10.0
+  ],
+  "independent_southern_jet_latitude_context_deg_n": [
+    6.5,
+    9.5
+  ],
+  "selection_depth_interval_m": [
+    300.0,
+    1500.0
+  ],
+  "core_search_depth_interval_m": [
+    300.0,
+    1500.0
+  ],
+  "surface_component_gate_m_s": null,
+  "primary_threshold_m_s": 0.02,
+  "thresholds_m_s": [
+    0.01,
+    0.02,
+    0.05
+  ],
+  "maximum_axis_distance_km": 5.0,
+  "maximum_profiles_per_section": 150,
+  "maximum_cell_pairs_per_section": 20000,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_bytes": 7000000,
+  "maximum_http_requests": 160,
+  "maximum_requested_bytes": 100000,
+  "maximum_ranges_per_request": 128,
+  "maximum_response_body_bytes": 50000,
+  "maximum_total_response_body_bytes": 7000000,
+  "regional_inventory_promotion_authorized": false,
+  "new_physical_depth_measurements": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/pacific-neuc-mean-coordinate-access-v1.yml": "ca2d49175c54ef0989a77de970b2719c725796989a802e969c97357f15e15306",
+    "analysis/acquire_neuc_mean_coordinates_v1.py": "93b59df5ffb10fc1aa751804b9167257b85cc152773c6c748456bbf41e4fb8d2",
+    "analysis/bounded_hycom_http_ranges_v1.py": "cf8f7c70d4e9cbcd26f217b79a94ce787d4a3ff7468e815d448c18567ddb3be7",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/inspect_hycom_mean_header_v1.py": "d334731bf5626f47bf70eaecaecb94668301e5af284118a0b4bbc5b0b743aae3",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/pacific_neuc_mean_sections_v1.py": "e0c0c1a61714ef04bafbc322027663f8f4d5719c5ea90cf682d484dfdab07f80",
+    "analysis/test_bounded_hycom_http_ranges_v1.py": "cdb1b5583c17c0172afc916761aa894532ead1811dd5cf70f97c0e440ec75c7c",
+    "analysis/test_eac_connected_layer_thickness_v1.py": "dfe5be1cdd1cca816a0eaf4250febfcd63de5f8853b59271646a66af446da41f",
+    "analysis/test_hycom_mean_header_inspection_v1.py": "700a5ff0e86c2b441ef2244e8d3058ed2d0000fc9df37fb99716296d68aa099e",
+    "analysis/test_pacific_neuc_mean_sections_v1.py": "09276570aeee444ed37fdf7c050cdb3464f3413c76f565a8f5daa0d9f410b860",
+    "plans/pacific-neuc-mean-coordinate-access-v1.md": "f5b3b0be2b9b8fd233e7392a77ea9632b6550e457faade705c74187329c858d1",
+    "plans/pacific-neuc-precomputed-mean-header-inspection-v1.md": "40371ec2cdc7fe4ffc63092262e56dcd802b105875654765ba0e7400b20bbd4a",
+    "plans/pacific-neuc-provider-mean-section-diagnostic-v1.md": "44f7cb20cdb28f017723b2ef491d53a122f9c3c9d9cc6c89867fcbe028c9c5d5",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-route-projection-inventory-v42.json": "9e518d7195f02b75636c3317d80a256bbe360126f8dc2a649e8d9e7c5057a6c3",
+    "research/eddy-measurement-register-v1.csv": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "research/eddy-measurement-register-v1.json": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "research/pacific-neuc-depth-method-prerequisites-v1.json": "198495431c525a70dadc696354dce28a78339bd8975de36158d64c20a983f62a",
+    "research/pacific-neuc-mean-coordinate-access-operator-v1.json": "b63b5d7bbbdda3ea99c16d825e9821702f51b063d65007da98bc45c1f447a863",
+    "research/pacific-neuc-mean-coordinate-source-review-v1.json": "c76c3fcd69c84f918500bfe57d49a52410108646bfdf34776872c28340e1f77d",
+    "research/pacific-neuc-mean-header-inspection-operator-v1.json": "2b1331fae17e7c3fc7eca51c209360fb39bac0ef15ea02566d1b7e18d992b7b5",
+    "research/pacific-neuc-mean-header-source-review-v1.json": "a2fffb6bbbac99ea29caac8851c37abf2489b80a59a05fb4462778cc3c4b822a",
+    "research/pacific-neuc-nscc-distinction-scope-audit.json": "d41b02c0c981c39afacbecb50b67ee4b9613d691a226c0f980063a830682b564",
+    "research/pacific-neuc-precomputed-mean-source-assessment-v1.json": "2f75f091b51868080e099623191ebc4a87e5119e11525523e7b893f81ed40688",
+    "research/pacific-neuc-southern-reach-scope-audit.json": "62f28c970b17812098bf5dbe07394450cbd7c8881449a494fb0462d64d56f584",
+    "research/source-data/pacific-neuc-mean-catalog-metadata-v1/.gitattributes": "76ce964eeb42fff9b4148e26bcfd2f404c82f4e6b2406dc4a898fa04bd1d3e8d",
+    "research/source-data/pacific-neuc-mean-catalog-metadata-v1/access.json": "d46d653b69a5c7f83c13ab99605d5790840d430cbdcacf5ada243cf4dab9b5f5",
+    "research/source-data/pacific-neuc-mean-catalog-metadata-v1/native-grid-mean-index.html": "d79c148ee4118f4daac85f24220866c09c2ef46fd475120e99be4fa03fef1c45",
+    "research/source-data/pacific-neuc-mean-catalog-metadata-v1/reanalysis-catalog.xml": "e0b37038ead930742d3696c91fc1923366f3745806f2e0c4905f9496b8fa1416",
+    "research/source-data/pacific-neuc-mean-catalog-metadata-v1/uniform-grid-mean-index.html": "66fa6311a38052c21615cedc5a29b5210b094fd9207ff5b72d996c99c2d9af11",
+    "research/source-data/pacific-neuc-mean-coordinate-access-v1/coordinates.json": "4b215d19782edbe14e50a2c18057dc4f98e99b8a699d254bfed8c7f641228bac",
+    "research/source-data/pacific-neuc-mean-coordinate-access-v1/transport-ledger.json": "4646710e776a2efea5b66245581a2dbe71095ae2dec4146e620bd0ee0bb70755",
+    "research/source-data/pacific-neuc-mean-header-inspection-v1/header-inspection.json": "908155f095ac6bfb5cbaf6487980f3e83cf8ab583e9a405f29ca358240e88042"
+  }
+}

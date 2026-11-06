@@ -1,0 +1,26 @@
+{
+  "schema": "osw.current-measurement-coverage-counting-rules.v1",
+  "status": "EXPLICIT_RECORD_AND_CAPABILITY_COUNTING_CONVENTIONS",
+  "rules": [
+    {"id": "identity-denominator", "rule": "Count accepted identity IDs once. Families, systems, segments and individual currents are distinct catalogue entries, not equivalent physical measurement targets."},
+    {"id": "width-record-count", "rule": "Count each admitted scoped width-row ID once. Preserve its source, operator, layer, location, date and evidence class. An admitted scoped record does not establish a representative whole-current width."},
+    {"id": "width-record-owner-count", "rule": "Count distinct current_id owners of admitted width rows. Do not transfer rows to a parent family or related current, and do not count a candidate series as an admitted width row."},
+    {"id": "dashboard-capability-count", "rule": "The historical scoped_width dashboard capability also includes derived candidates and some diagnostics. Report it separately from admitted width-record owner coverage; it is not an accepted-measurement completeness score."},
+    {"id": "candidate-only-width-gap", "rule": "An identity with a positive dashboard width capability but zero admitted width rows retains an admitted-record gap. Preserve its candidate-review status until its measurement definition and scientific admission gates pass."},
+    {"id": "exclusive-width-decision", "rule": "For the inventory status summary, an identity with its own admitted width-row IDs is scoped_width_evidence_present. Otherwise preserve its unresolved decision class. Separate pending candidates can coexist with admitted records."},
+    {"id": "length-and-route-coverage", "rule": "Count reported whole-current lengths separately from editorial reference routes and regional reaches. Their union is an identity coverage measure, not a count of measured whole-current axes."},
+    {"id": "ranges-and-uncertainty", "rule": "Keep seasonal variability, spatial ranges, editorial sensitivity, strict bounds and measurement uncertainty separate. None supplies missing annual extrema or a confidence interval automatically."}
+  ],
+  "current_width_reconciliation": {
+    "current_identities": 111,
+    "admitted_scoped_width_rows": 190,
+    "admitted_scoped_width_record_owners": 93,
+    "broader_dashboard_width_capability_owners": 94,
+    "candidate_only_current_ids": ["gulf-stream-system"],
+    "identities_without_admitted_scoped_width_rows": 18,
+    "reconciliation_file": "research/current-width-record-owner-reconciliation-v1.json"
+  },
+  "scientific_admission_rules_changed": false,
+  "new_measurements_added": 0,
+  "full_goal_complete": false
+}

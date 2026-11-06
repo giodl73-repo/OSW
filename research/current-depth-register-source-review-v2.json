@@ -1,0 +1,62 @@
+{
+  "schema": "osw.current-depth-register-source-review.v2",
+  "status": "PASS_SCOPED_CORE_DEPTH_AND_CORE_THICKNESS_BATCH",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41375120453,
+      "tests_passed": 8,
+      "source_commit": "01ba33d03f88800cb32f5a4e473c7180f809dcbe",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41375120453"
+    },
+    {
+      "run_id": 41375120386,
+      "tests_passed": 6,
+      "source_commit": "01ba33d03f88800cb32f5a4e473c7180f809dcbe",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41375120386"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 17,
+    "identities_with_scoped_depth_reference": 8,
+    "identities_not_yet_assessed": 103,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 6,
+    "core_lower_boundary_depth": 1,
+    "core_vertical_thickness": 3,
+    "reported_flow_depth_band": 1,
+    "reported_vertical_extent": 6
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v2.py": "529195e07e09544eba67a1a3e4d847ba3ff0ebe542919a3db34b701f6f858924",
+    "analysis/test_current_depth_register_v2.py": "feafbde063f51615c9a155a20c4529f5086a404839bc05b6a5477e638b6a0c11",
+    "research/current-depth-rules-v2.json": "cd39a8069c6352ac9eb836e1fb39533ff6ff8ec1162d5bd7cc0bdbb47b5cf460",
+    "research/current-depth-source-facts-v2.json": "4c29800383f5504d893c7741a57995cdeb1d869de0180b61ac3691293c21b80d",
+    "research/current-depth-register-v2.json": "a550dd3e5224fdc8a86117e691f1f95fd26fc151a3b398ef5a6b8fe264c89440",
+    "research/current-depth-register-v2.csv": "327d5c2461f085a96b58d3942297eea13cb8137290d87c573e8c263a4faa6e50",
+    ".github/workflows/current-depth-register-source-v2.yml": "663d5a619851283f9f8b5b1ea13371da87dc9b1af38c72197adbd296b1d000af"
+  },
+  "previous_four_references_and_v1_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and the entire preceding evidence list retained.",
+    "JSON and CSV reproduce from source facts.",
+    "Core-location and saline-flow bands do not become thickness or invented midpoints.",
+    "Deep-reach lower bounds retain exclusivity.",
+    "Model core thickness keeps strict u>0.1m/s,BRAN2020,2001–2018,MAM and longitude aggregation.",
+    "No whole-flow geometry,uncertainty,annual extrema,seasonal playback or physical volume promoted."
+  ],
+  "source_review_scope": "Five primary source documents; three original PDFs with seven actual pages visually inspected, and two publisher HTML articles with relevant text/captions read. No new field observations or numerical reanalysis processing.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

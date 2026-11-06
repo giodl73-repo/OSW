@@ -1,0 +1,64 @@
+{
+  "schema": "osw.current-depth-register-source-review.v47",
+  "status": "PASS38_FLORIDA_FITTED_CORE_REACH_BOUND_AND_HALF_CORE_DESCRIPTORS",
+  "cloud_reviews": [
+    {
+      "run_id": 41464620686,
+      "tests_passed": 82,
+      "source_commit": "685e5bb9ea463425e6e5387d9eaf17cf620147e1",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41464620686"
+    }
+  ],
+  "cloud_tests_passed": 82,
+  "prior_baseline_review": {
+    "run_id": 41464427884,
+    "source_commit": "1b7aa3c7100702af2cadb7bcd85b1e76591fba1f",
+    "tests_passed": 6,
+    "conclusion": "success",
+    "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41464427884",
+    "scope_note": "Baseline ran on the immediately preceding JSON-publication commit. The final admission commit adds only v47 CSV and its workflow; it is not claimed to be the same-commit baseline run."
+  },
+  "counts": {
+    "identities": 111,
+    "depth_references": 491,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v47.py": "b5965ae882a0e0003a423e34854e0cb007695bb5fb24fe4e57e7d823b7c31b47",
+    "analysis/test_current_depth_register_v47.py": "3e0357f87d989008bcff77020737045fafa9364562bbd6ee5b038989358d3da0",
+    "research/current-depth-rules-v47.json": "c62cf25a7c1d8b2f27fe8ab06d32d92712f220a08eb03839728376b802b14c89",
+    "research/current-depth-source-facts-v47.json": "b4edb7dc0be0b50b705bbdf92a0abfe603df4fe7d396830b86858a86152abacb",
+    "research/current-depth-register-v47.json": "f6c8e7a7bd98a76d616e73f2a6079467d77238a5b83c9dcad6589e97f527d97c",
+    "research/current-depth-register-v47.csv": "965790a6ea5a552e2b51a74ec58b6b0016e716cf373a5be957c8a5ac11df534c",
+    ".github/workflows/current-depth-register-source-v47.yml": "e4781f372af9e8a8964131feb2e4b0812664607591217a22744a27c103591dad",
+    "research/florida-spray-seasonal-depth-operator-v1.json": "a2d8e8af1126b2a6b18cc9b4f12559e788481ad19805a2c7b3778541c7638dd7",
+    "research/florida-spray-seasonal-depth-source-facts-v1.json": "b37bc47f77cf38ba035e30e69cff6888a5658fcd5581baa2cebd44d57ef353cd",
+    "research/florida-spray-seasonal-depth-source-review-v1.json": "a05939ec7422afac3a53b3278d879902a267dca2e3ec833d007f873451d56408",
+    "research/source-data/florida-spray-seasonal-depth-v1/candidate.json": "190f9a430d527e2864dde606d5bd9ffe60900b257a3ba36fe246b6392a3f1cb5",
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "research/current-depth-member-index-v6.json": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e",
+    "research/current-depth-route-projections-v10.json": "63ecd9fae0c1dae581fca57375bfb92f459156f5a8ac9e003881c555f0abd33c"
+  },
+  "scientific_review": [
+    "All453 preceding references and old CSV cells remain exact. Thirty-eight Florida descriptors share13 source-fitted profiles:13 sampled upper200m cores,13 supported5cm/s penetration lower bounds and12 resolved half-core component decay depths. They are not38 independent observations.",
+    "New metric types distinguish supported penetration lower bounds and relative-core decay depths. A fitted profile remaining above5cm/s through530m supports reach>=530m, with inclusive bound semantics and no scalar midpoint or physical bottom assignment. Absolute5/10/20cm/s lower crossings remain censored before missing support.",
+    "Half-core depths use one-half the sampled upper200m northward component maximum and adjacent finite fitted native-level brackets. They are depths below the sea surface, not thicknesses or offsets below the core. November remains missing; no zero,530m last-valid depth or alternative contour is substituted for its unresolved half-core crossing.",
+    "Sampled cores preserve the10m shallow-grid edge flag and source-fitted grid representation. Missing surface support leaves upper boundary and physical thickness unknown. Provider Gaussian mapping scales remain support diagnostics rather than current widths, and source velocity uncertainties do not become depth confidence intervals.",
+    "Time mean and twelve fitted annual-cycle day15 phases retain documented2015-07-16 through2023-05-30 observation support. Actual provider time coordinates and separate nominal phase dates with600second tolerance remain distinct. Phase labels do not become actual observations, monthly means or annual extrema, and the provider mean coverage-metadata discrepancy is preserved.",
+    "Florida Straits27N source context does not inherit into downstream Gulf Stream, North Atlantic Current, strict Gulf Stream system or family numeric depth. Selected longitudes near79.7W, the fixed80.1–79.1W gate and complete finite10–200m signed northward integral remain explicit. No whole-route projection, matched width join, physical-state passage or water volume is inferred.",
+    "Eighty-two cloud checks comprise11 new admission tests,10 Florida source/operator tests,12 frozen connected-layer checks,7 EAC mooring checks,9 EAC seasonal checks,11 Agulhas seasonal checks,5 Agulhas distribution checks,11 Kuroshio checks and6 Canary conversion checks. Raw retained fitted profiles independently verify native core, threshold/fraction, bracket interpolation, contiguous bound support and missing next level. Exact JSON/CSV, all old cells, metadata roles, mutation rejection and source pins pass.",
+    "All tests ran in cloud, sequentially on one idle CPU. Local work generated metadata/register documents from retained derived descriptors and checked hashes only. Fixed publication byte caps required separate metadata, JSON and CSV/workflow commits; no cap was raised and final admission checks cover the complete outputs. Existing length, width, projection and102 eddy size references remain preserved."
+  ],
+  "new_derived_descriptors": 38,
+  "shared_fitted_profile_groups": 13,
+  "new_independent_observations": 0,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

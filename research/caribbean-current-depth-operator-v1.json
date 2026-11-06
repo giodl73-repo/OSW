@@ -1,0 +1,52 @@
+{
+  "schema": "osw.caribbean-velocity-layer-operator.v1",
+  "entity_id": "current:caribbean",
+  "status": "SOURCE_SPECIFIC_DIAGNOSTIC_OPERATOR",
+  "inventory_sha256": "75338b2524620a3e3c82464d7baaf896bd778288bb762175ee09b36754b7ea02",
+  "source_article": "https://doi.org/10.5194/os-22-735-2026",
+  "source_dataset": "https://doi.org/10.5281/zenodo.18332586",
+  "source_license": "CC-BY-4.0",
+  "attribution": "Gradone, Wilson, Glenn, Hopson and Miles(2026).",
+  "component": "local_strongest_contiguous_westward_velocity_layer_per_profile",
+  "threshold_speeds_m_s": [
+    0.05,
+    0.1,
+    0.15
+  ],
+  "central_threshold_m_s": 0.1,
+  "threshold_basis": "OSW declared diagnostic scenarios, not author-defined physical boundaries. Article Section2.1.1 reports inversion RMS uncertainty of order0.05m/s. Main threshold0.10m/s is twice that scale;0.05/0.15m/s are operator sensitivity cases, not confidence limits. Correlated errors are not divided by sqrt(profile count).",
+  "minimum_contiguous_bins": 3,
+  "depth_coordinate": "source bin centers5,15,...,995; metres positive down by author source evidence",
+  "unit_evidence": {
+    "metadata_status": "u_grid,v_grid,depth lack CF unit attributes",
+    "velocity_unit": "m/s",
+    "depth_unit": "m",
+    "scale_conversion": 1,
+    "basis": "Article Section2.1.1 uses E-W ENU velocity and RMS in m/s. Archived author Transports notebook integrates u_grid times geodesic distances in metres times depth differences and divides by1e6 to report Sv, and labels depth in meters. Units are source-evidenced, not inferred from magnitudes.",
+    "author_code_commit": "5029c77bb75905d4cb5dc461035bff8ddac59395",
+    "author_notebook_path": "code/RU29_ABC2DR_Transports.ipynb",
+    "author_notebook_sha256": "0ecfb96670989159b2c1a264f048ce273659b61a24c1f77bd460ed78683af297"
+  },
+  "transect_windows": [
+    {
+      "id": "transect_1",
+      "start": "2024-04-27T20:05:00",
+      "end": "2024-05-18T12:00:00"
+    },
+    {
+      "id": "transect_2",
+      "start": "2024-05-18T12:00:00",
+      "end": "2024-06-06T00:00:00"
+    }
+  ],
+  "window_source": "Archived author Transports notebook, selection windows for the two full transects. These sequential approximately3-week sections are not synoptic or annual samples.",
+  "time_policy": "Audit all486 source intervals. Preserve source reported timestamp and endpoints; derive midpoint separately. Include a profile only when its entire start/end interval lies within one selected transect, excluding window-crossing profiles.",
+  "boundary_policy": "Use only the contiguous above-threshold component containing the strongest westward sample. At least3consecutive bins required. Bracket each threshold crossing with adjacent finite bin centers and give a linear interpolation. Never bridge missing data; sampling edges and missing neighbors give one-sided supported depths, not detected boundaries. Do not extrapolate to0/1000m.",
+  "thickness_policy": "Compute velocity-defined layer thickness only if both boundaries are bracketed. Discretization brackets are not statistical uncertainty. These local layers may include eddy flow and do not establish the entire named current footprint.",
+  "whole_current_representative": false,
+  "whole_route_profile_established": false,
+  "annual_extrema_eligible": false,
+  "volume_eligible": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

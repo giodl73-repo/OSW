@@ -1,0 +1,24 @@
+.regional-model-lengths { container-type: inline-size; }
+.regional-model-lengths .regional-model-table td { white-space: normal; overflow-wrap: anywhere; }
+@container (max-width: 480px) {
+  .regional-model-table-wrap { overflow: visible !important; }
+  .regional-model-table, .regional-model-table tbody { display: block; width: 100%; min-width: 0; max-width: 100%; }
+  .regional-model-table thead {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .regional-model-table tbody tr {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: .6rem 0; border: 1px solid #73929c; border-radius: .3rem;
+  }
+  .regional-model-table td {
+    display: block; width: auto !important; min-width: 0; max-width: none; border-top: 0 !important;
+    white-space: normal !important;
+  }
+  .regional-model-table td::before {
+    content: attr(data-label); display: block; margin-bottom: .25rem;
+    font-size: .75rem; font-weight: 600; line-height: 1.3;
+  }
+  .regional-model-table td:first-child { grid-column: 1 / -1; }
+  .regional-model-table[data-columns="4"] td:last-child { grid-column: 1 / -1; }
+}

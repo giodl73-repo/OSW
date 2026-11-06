@@ -1,0 +1,13 @@
+# Indian SEC regional model lengths: native Rust core gate v1
+
+The prepared source-bound contract adds one regional model series,75 readings,67 withheld values and120 sensitivity scenarios. Its scientific files and Python contract remain frozen. This backend gate tests Rust validation and projections before further presentation work. It does not materialize a candidate query packet or claim the new data have been shipped.
+
+The new module validates the exact compiled contract and scientific report, manifest receipt and input bindings, all series/readings/sensitivities, source uniqueness, audited owner/family records and preserved older evidence. An explicitly validated parent-row projection lets the older basin identity validator check its original rows without ignoring unrelated evidence. The complete final assessment is applied only after the new basin identities have been appended to the historical table. Whole-current length, reference-route counters, observed dates, physical uncertainty and annual extrema remain unmeasured.
+
+Archive every changed existing Rust source byte-for-byte against installed engine manifest0f5a5b1a32f0b1602687ed2ecb6bdda7e110a26ad07947f4fd7a3cf7f7b9572d. Bind every candidate Rust source, crate manifest/lockfile, the contract/report, driver and workflow. Verify all21 installed parent file hashes and sizes on the cloud before compilation. No installed bulk files are read locally.
+
+Use exactly Rust1.95.0, one CPU, nice15, CARGO_BUILD_JOBS1, no incremental compilation and one test thread. Run cargo test --locked --lib and expect the preceding282 tests plus six new Rust tests. Keep complete logs and retain failures. The syntax-only parse of nine files is preparation evidence; native type checking and test success require the actual cloud result. A one-test Python guard verifies local native compilation is refused before any file or compiler access.
+
+The only enabled operation is cloud native unit testing. The shared osw-current-gap-delivery queue remains sequential with cancel-in-progress false. No WASM compilation, index rebuild, source-field processing, browser, installation, local bulk synchronization or main merge. Compiled targets stay on the cloud and are not uploaded; retain only compact logs and result metadata. The source-review phase and older requests stay disabled.
+
+Further work remains: complete packet materialization and source/index registration, current-card/query rendering, OSW map/atlas access, independently scoped API preservation, fresh scientific replay and full native/WASM/browser delivery. This native gate alone does not close the physical current-length gap or install model values.

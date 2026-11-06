@@ -1,0 +1,60 @@
+name: Gulf Stream fitted depth error sensitivity v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/gulf-stream-fit-error-depth-sensitivity-v1.yml
+      - analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py
+      - analysis/test_gulf_stream_fit_error_depth_sensitivity_v1.py
+      - plans/gulf-stream-fit-error-depth-sensitivity-protocol-v1.md
+      - research/gulf-stream-fit-error-depth-sensitivity-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/gulf-stream-spray-depth-sections-v1.yml
+            analysis/acquire_florida_spray_seasonal_depth_v1.py
+            analysis/acquire_gulf_stream_spray_sections_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py
+            analysis/test_gulf_stream_fit_error_depth_sensitivity_v1.py
+            analysis/test_gulf_stream_spray_sections_v1.py
+            plans/gulf-stream-fit-error-depth-sensitivity-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/gulf-stream-fit-error-depth-sensitivity-operator-v1.json
+            research/gulf-stream-spray-depth-sections-operator-v1.json
+            research/gulf-stream-spray-depth-sections-source-facts-v1.json
+            research/gulf-stream-spray-depth-sections-source-review-v1.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-30n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-32n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-34n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/manifest.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/offshore-70w.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/offshore-73w.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce fitted source and evaluate fixed-cutoff sensitivity without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_gulf_stream_spray_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_gulf_stream_fit_error_depth_sensitivity_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gulf-stream-fit-error-depth-sensitivity-v1
+          path: gulf-stream-fit-error-depth-sensitivity-v1/
+          retention-days: 7

@@ -1,0 +1,46 @@
+{
+  "schema": "osw.i06s-agulhas-native-source-review.v1",
+  "status": "THREE_ORIGINAL_NATIVE_CASTS_RETAINED_LIMITED_NATIVE_FRAME_DIAGNOSTICS_PLANNED",
+  "source_commit": "1b8c7f91a130c4abe0e6ab77e0dc95bb9c0d0780",
+  "source_run": 42023825187,
+  "source_run_conclusion": "success",
+  "synthetic_tests_passed": 4,
+  "artifact_id": 13412253884,
+  "artifact_sha256": "a6886bcfc1efc266b9f65b27026f6143f9ad7e0613ad220696d1165a41df08f9",
+  "retained_native_casts": [
+    "046",
+    "047",
+    "048"
+  ],
+  "provider_operations_used": 3,
+  "provider_operations_remaining": 0,
+  "case_response_bytes": 236856,
+  "numeric_metadata_attribute_values": 891,
+  "native_array_values_decoded": 0,
+  "case_time_charge_seconds": 2.6656695409999998,
+  "source_software": "LDEO LADCP software: Version IX_14beta2",
+  "source_final_QC_verified": false,
+  "exact_solver_equivalence_verified": false,
+  "current_axis_membership_verified": false,
+  "review": [
+    "All three predeclared independent 2019I06S resources returned HTTP200 NetCDF on their only attempts. Raw files closed before bounded header inspection. Original target URLs were prospectively inferred from provider convention, now confirmed by actual responses; no target substitution or retry.",
+    "Original native reaches reported by headers:046508m,0472583m,0483755m. These are cast reaches, not measured current bottoms. Metadata shape/units alone do not establish physical current depth.",
+    "Three original files have common z/U/V/uerr axes labelled Meters/m/s. Original date vector has six elements and geocodes length one, unlike the newer P02W converter. Preserve beta software label. Exact executable equivalence/final QC are not verified.",
+    "Cast047 retains a15%tilt>22 warning. Source logs contain other processing diagnostics; no blanket no-warning or final-QC claim. Native-UV frame diagnostic can be separately qualified as conditional arithmetic on provider fields without independently established east/north orientation or current-axis attribution.",
+    "Primary CCHDO cruise report section14 describes initial QC and planned later assessment. No source final-QC certification inferred from archive presence or September processing date. All869 canonical references remain unchanged.",
+    "Exact six-member artifact downloaded once after all jobs terminal, digest verified, ZIP saved before exact-member custody inspection. No native array values parsed locally or in this custody phase."
+  ],
+  "primary_provider": "https://currents.soest.hawaii.edu/go-ship/ladcp/2019_I06S/index.html",
+  "primary_report": "https://cchdo.ucsd.edu/data/15498/325020190403_do.txt",
+  "input_sha256": {
+    "research/source-data/i06s-agulhas-native-casts-v1/046.nc": "2514e6a38b6d9b0982c19d1506c73835ae39a6f18657bfcc1420990340fa4d71",
+    "research/source-data/i06s-agulhas-native-casts-v1/047.nc": "86f919b08cdd0592d12c26eb994b312b54e30ef9d8585959757a83faa162669a",
+    "research/source-data/i06s-agulhas-native-casts-v1/048.nc": "6bf28ce36c8c8115fc34bea821fc6d70109672191f16fb9097220afbf1ba0e63",
+    "research/source-data/i06s-agulhas-native-casts-v1/headers.json": "4a70c7f9b7a79d21eba3c5bcd4af1e893f46461a90519206771175c8825155bc",
+    "research/source-data/i06s-agulhas-native-casts-v1/journal.json": "976e1ada13950116868ba8ee12d491ba6e347b7285b022444cbf1e397631e895",
+    "research/source-data/i06s-agulhas-native-casts-v1/custody.json": "cc7b539cc07d8362c1c1b66857787d041c1d2ed491906b262cf5bd18c054dda7"
+  },
+  "new_depth_references": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

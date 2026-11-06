@@ -1,0 +1,59 @@
+{
+  "schema": "osw.eac-mean-core-browser-resume-preparation-review.v1",
+  "status": "PASS_SEVEN_BOUNDED_PYTHON_TESTS_AND_TWO_FRONTEND_CONTRACTS_CLOUD_BROWSER_PENDING",
+  "preflight_sha256": "5f54802ff5eeecc54e3018d33925ad818a97b49979ddf7ece9e4e9b2f5e9e33d",
+  "checks": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_resume_eac_mean_core_browser_v1.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "test_browser_only_workflow_and_harness_preserve_failure_observations (test_resume_eac_mean_core_browser_v1.Resume.test_browser_only_workflow_and_harness_preserve_failure_observations) ... ok\ntest_exact_saved_engine_identity_counts_and_scope_required (test_resume_eac_mean_core_browser_v1.Resume.test_exact_saved_engine_identity_counts_and_scope_required) ... ok\ntest_local_resume_refused_before_any_payload_hash (test_resume_eac_mean_core_browser_v1.Resume.test_local_resume_refused_before_any_payload_hash) ... ok\ntest_original_three_api_parent_capture_must_match (test_resume_eac_mean_core_browser_v1.Resume.test_original_three_api_parent_capture_must_match) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.053s\n\nOK\n"
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_eac_mean_core_dashboard_context_v1.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "test_changed_scientific_dependency_or_archived_dashboard_is_refused (test_eac_mean_core_dashboard_context_v1.Context.test_changed_scientific_dependency_or_archived_dashboard_is_refused) ... ok\ntest_exact_saved_engine_preserved_except_three_presentation_assets (test_eac_mean_core_dashboard_context_v1.Context.test_exact_saved_engine_preserved_except_three_presentation_assets) ... ok\ntest_unrelated_binary_record_pin_namespace_or_marker_change_is_refused (test_eac_mean_core_dashboard_context_v1.Context.test_unrelated_binary_record_pin_namespace_or_marker_change_is_refused) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.087s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "analysis/test_eac_mean_core_dashboard_schema_v1.mjs"
+      ],
+      "exit_code": 0,
+      "output": "PASS: prior/unrelated/EAC dashboard entries accepted; absent optional fields allowed; malformed present values and missing required fields refused; helper loaded before consumer.\n"
+    },
+    {
+      "command": [
+        "node",
+        "analysis/test_mean_core_sections_ui_v1.mjs"
+      ],
+      "exit_code": 0,
+      "output": "PASS: five/filtered section cards, source/Inspect links, unknowns, compact disclosure, separate scales, consumer ordering and dashboard labels; browser layout pending\n"
+    }
+  ],
+  "disabled_older_requests": 71,
+  "frozen_source_files": 78,
+  "actual_browser_run": false,
+  "native_or_wasm_rebuild": false,
+  "installed": false,
+  "full_goal_complete": false
+}

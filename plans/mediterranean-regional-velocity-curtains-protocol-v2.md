@@ -1,0 +1,25 @@
+# Mediterranean source-primary depth contours v2
+
+Coverageauditv1 identified that historicalMediterraneanv1 used0.1m/s forBalearic,
+whose originalsourceprimary is0.05m/s. Keep historicalv1 asits explicit10cm/s
+variant. Newv2uses exactoriginalper-currentprimary:Balearic.05,Ligurian/Northern
+Mediterranean/Algerian.1. Preserve all72original cases,63interior9unresolved,
+sourcewindows/frames/selection/corestrata andfour2022quarter15th00Z snapshots.
+No retrospectivegate/thresholdtuning;thiscorrectsprimarylookup tosourceoperator.
+
+ENTIREvalidated native_velocity_depth_curtain_v2.curtain unchanged;primarylookup
+byexactvalue andoriginalseed. ExistingMediterraneangeometryadapter reused:
+Balearic/Ligurianoriginalmixedtag,legacyboundaryoriginallongitudeintervalaudit
+firsttheninmemorytag-onlycopy. No sourceedits/retrieval ornewnumericalkernels.
+Everycandidate/selection/core/layer/seedrunboundary reproduces. All56nonBalearic
+ENTIREcase dictionaries mustmatchretainedv1exactly. All16Baleariccases use
+original5cm/slayer(index0),sameoriginalhorizontalnode;old10cm/sresult preserved.
+
+Strictfournativeaxisneighbors,no diagonal/missingbridge/reselection/interpolation.
+Separateverticalruns andfinitecrossings,missing/domain/lateralcensors retained.
+Partialregionalcomponentflow mayincludeotherflows/eddies;no independentnamedaxis/
+body/watermass/physicalbottom,annualrange,whole-routeprofile,width/area/volume or
+newscalarrefs. Missingnotzero,bed,absence;nativebracketsnotuncertainty. Cloud-only
+sequentialoneidleCPUtests/build;localstaticediting/AST,metadata/hash/exactretention.
+Existing2.4MBoutput/2.5MBfile/3MBpublicationbounds unchanged. Updatecoverageaudit
+withnewversion afterretention;donotmodifyfrozenauditv1orcountduplicate.1cases twice.

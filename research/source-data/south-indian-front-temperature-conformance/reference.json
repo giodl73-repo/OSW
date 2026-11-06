@@ -1,0 +1,41 @@
+{
+  "schema": "osw.south-indian-front-temperature-conformance.v1",
+  "role": "synthetic numerical probe; not source observations, model output or admitted measurements",
+  "gsw_version": "3.6.23",
+  "synthetic_daily_shape": [
+    5,
+    2,
+    326,
+    3
+  ],
+  "minimum_synthetic_common_samples": 4,
+  "missing_nan_payload": "explicit numpy.nan sentinel; finite numeric bits never rounded",
+  "dependencies": {
+    "analysis/check_south_indian_front_temperature_portability.py": {
+      "bytes": 5224,
+      "sha256": "f255290ea712df7eaeaaa76f023c30df0e82fe653c7849b9292c6ea3714adf77"
+    },
+    "analysis/south_indian_front_temperature.py": {
+      "bytes": 3165,
+      "sha256": "d87d66e66bd622951485b243dc915e13d52f1b5969667881cf993aba123dd0d5"
+    },
+    "analysis/acquire_indian_secc_hycom_2013.py": {
+      "bytes": 15332,
+      "sha256": "826bbedd4578a90121a62bc05306affe5f0b4857db91d861add601fdc72e96a9"
+    },
+    "plans/indian-secc-hycom-array-serialization-protocol-v1.md": {
+      "bytes": 1732,
+      "sha256": "35d7c16c5686a6f9f5c69ad4eeeb2b004d541cbeb6b049dac83333484c0fc336"
+    },
+    "research/source-data/hycom-south-indian-hydrography-2013/coordinates.ascii": {
+      "bytes": 172166,
+      "sha256": "24f5928f4e7c05f9db46794f1600d7a1bb414f327a53f709bf879e6d123cb969"
+    }
+  },
+  "current_association_verified": false,
+  "physical_width_admitted": false,
+  "reference": {
+    "bytes": 265678,
+    "sha256": "eb726eedeb7625470da342d48efa50f98047606edb145eb381453f05a67b0103"
+  }
+}

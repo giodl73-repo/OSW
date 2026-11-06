@@ -1,0 +1,113 @@
+name: Mindanao Oyashio and Leeuwin depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/three-current-velocity-curtains-v1.yml
+      - analysis/derive_three_current_velocity_curtains_v1.py
+      - analysis/test_three_current_velocity_curtains_v1.py
+      - plans/three-current-velocity-curtains-protocol-v1.md
+      - research/three-current-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/three-current-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_pacific_madagascar_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/derive_three_current_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            analysis/test_three_current_velocity_curtains_v1.py
+            plans/three-current-velocity-curtains-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/leeuwin-reference-path-candidate.json
+            research/leeuwin-seasonal-depth-operator-v1.json
+            research/mindanao-reference-path-candidate.json
+            research/oyashio-reference-path-candidate.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-22s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-24s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-26s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-28s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-30s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-32s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-leeuwin-section-34s.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-10n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-12n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-13n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-14p3n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-5p5n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-6n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-mindanao-current-section-8n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-40n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-41n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-42p2n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-43p5n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-45n.json
+            research/source-data/three-current-depth-sections-v1/2022-01-15-oyashio-section-46p2n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-22s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-24s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-26s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-28s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-30s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-32s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-leeuwin-section-34s.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-10n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-12n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-13n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-14p3n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-5p5n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-6n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-mindanao-current-section-8n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-40n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-41n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-42p2n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-43p5n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-45n.json
+            research/source-data/three-current-depth-sections-v1/2022-07-15-oyashio-section-46p2n.json
+            research/source-data/three-current-depth-sections-v1/manifest.json
+            research/three-current-depth-sections-operator-v1.json
+            research/three-current-depth-sections-source-facts-v1.json
+            research/three-current-depth-sections-source-review-v1.json
+            research/three-current-velocity-curtains-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_three_current_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: three-current-velocity-curtains-v1
+          path: three-current-velocity-curtains-v1/
+          retention-days: 7

@@ -1,0 +1,62 @@
+name: Kuroshio retained calendar depth and observation era distributions v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/kuroshio-calendar-depth-distributions-v1.yml
+      - analysis/summarize_kuroshio_calendar_depth_distributions_v1.py
+      - analysis/test_kuroshio_calendar_depth_distributions_v1.py
+      - plans/kuroshio-calendar-depth-distribution-protocol-v1.md
+      - research/kuroshio-calendar-depth-distribution-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  summarize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/kuroshio-calendar-depth-distributions-v1.yml
+            .github/workflows/kuroshio-chandler-seasonal-depth-v1.yml
+            analysis/derive_kuroshio_chandler_seasonal_depth_v1.py
+            analysis/summarize_eac_calendar_depth_distributions_v1.py
+            analysis/summarize_kuroshio_calendar_depth_distributions_v1.py
+            analysis/test_eac_calendar_depth_distributions_v1.py
+            analysis/test_kuroshio_calendar_depth_distributions_v1.py
+            analysis/test_kuroshio_chandler_seasonal_depth_v1.py
+            plans/kuroshio-calendar-depth-distribution-protocol-v1.md
+            research/current-depth-reference-inventory-v26.json
+            research/eac-calendar-depth-distributions-source-review-v1.json
+            research/kuroshio-calendar-depth-distribution-operator-v1.json
+            research/kuroshio-chandler-seasonal-depth-operator-v1.json
+            research/kuroshio-chandler-seasonal-depth-source-facts-v1.json
+            research/kuroshio-chandler-seasonal-depth-source-review-v1.json
+            research/source-data/kuroshio-chandler-seasonal-depth-v1/candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify Kuroshio identity, cohorts, censorship and observation eras
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_kuroshio_calendar_depth_distributions_v1.py' -v
+      - name: Summarize existing Kuroshio depth descriptors with network disabled
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/summarize_kuroshio_calendar_depth_distributions_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kuroshio-calendar-depth-distributions-v1
+          path: kuroshio-calendar-depth-distributions-v1/
+          retention-days: 7
+          if-no-files-found: error

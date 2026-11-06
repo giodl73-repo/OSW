@@ -1,4 +1,5 @@
 """Keep model means, theoretical scales and real calendar occupations separate."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -19,7 +20,7 @@ def test_model_scope_and_theoretical_exclusions():
 
 def check_compiled_model_scope(tmp_path):
     path=ROOT/'almanac/query-data.json'
-    packet=json.loads(path.read_bytes())
+    packet=json.loads(read_bundle_bytes(path))
     plans=json.loads(subprocess.check_output([str(CLI),str(path),'--seasons'],encoding='utf8'))['phase_plans']
     plan=plans['guinea']
     assert len(plan['phases'])==1 and plan['can_play'] is False and plan['eligible_indices']==[]

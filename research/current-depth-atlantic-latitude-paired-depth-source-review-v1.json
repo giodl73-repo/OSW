@@ -1,0 +1,122 @@
+{
+  "schema": "osw.current-depth-atlantic-latitude-paired-depth-source-review.v1",
+  "status": "PASS_FOUR_CURRENT_48_CASE_DEPTH_SHAPES_22_FINITE_15_CENSORED_ANCHORS_11_AXIS_GAPS",
+  "source_commit": "36992480218c33bc91368541b9d58912007f76aa",
+  "producer_run_id": 42108191262,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42108191262",
+  "cloud_semantic_tests_passed": 18,
+  "actual_complete_48_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13451384188,
+    "bytes": 143386,
+    "sha256": "682983ef651da01097bacca1020e28b21c3ebb8c0a431db2b673f492b3a10996",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/atlantic-latitude-paired-depth-v1.json": {
+      "bytes": 1556865,
+      "sha256": "6fc62e6584c9931bf1cf970aec45fda59a82807bf9e9534c1923e936ea8f3ed9"
+    },
+    "research/atlantic-latitude-paired-depth-v1.csv": {
+      "bytes": 60484,
+      "sha256": "700ca3fe9ceace8b195b7e4752472f112f264cba310cd1a9f16a5e24e668f90e"
+    },
+    "research/atlantic-latitude-depth-anchors-v1.csv": {
+      "bytes": 10738,
+      "sha256": "49e51d3b4d9016892cfce0217462bdb411e9d65c15fdab7482326d58a889938c"
+    },
+    "research/atlantic-latitude-paired-depth-query-ledger-v1.json": {
+      "bytes": 1504,
+      "sha256": "9daef4077adaa8988ff86368aeb5236158e3939f4c3ce62a20eca80d011c8fd6"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_cases": 48,
+    "original_unresolved_cases": 11,
+    "cases_with_integrable_partial_geometry": 37,
+    "retained_column_descriptors": 2437,
+    "retained_vertical_runs": 830,
+    "finite_paired_column_runs": 698,
+    "censored_runs_with_minimum_support": 132,
+    "conditional_strip_patches": 513,
+    "strips_without_integrable_geometry": 1912,
+    "rejected_ambiguous_links": 144,
+    "original_axis_proxy_anchors": 37,
+    "finite_paired_axis_anchors": 22,
+    "censored_axis_anchors_with_minimum_support": 15,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:florida": {
+      "cases": 10,
+      "finite_paired_anchors": 2,
+      "censored_anchors_with_minimum_support": 8,
+      "axis_gaps": 0,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 0
+    },
+    "current:portugal": {
+      "cases": 10,
+      "finite_paired_anchors": 6,
+      "censored_anchors_with_minimum_support": 3,
+      "axis_gaps": 1,
+      "primary_threshold_m_s": 0.02,
+      "component_bearing_degrees_true": 180
+    },
+    "current:irminger": {
+      "cases": 12,
+      "finite_paired_anchors": 8,
+      "censored_anchors_with_minimum_support": 4,
+      "axis_gaps": 0,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 0
+    },
+    "current:west-spitsbergen": {
+      "cases": 16,
+      "finite_paired_anchors": 6,
+      "censored_anchors_with_minimum_support": 0,
+      "axis_gaps": 10,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 0
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 52309,
+    "query_unique_json_bytes": 2621583,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.0268454779999985,
+    "whole_output_bytes": 1629595,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All48original dated Florida,Portugal,Irminger and West Spitsbergen cases retained. January15/July15,2022 are exact model snapshots,not months,seasons,annual extrema or independent observations. Original cases,section definitions,geometry,owner-specific frames,selected cores,primary diagnoses and branch scopes remain exact. All11source-axis gaps retain null anchors and original candidate diagnoses.",
+    "Portugal preserves its original southward180degree,strict0.02m/s primary contour and0.01m/s surface gate; Florida,Irminger and West Spitsbergen preserve northward0degree,strict0.1m/s primary and0.05m/s surface gate. The paired-run helper accepts the declared original cutoff and rejects a substituted threshold. No outcome-conditioned tuning or new universal cutoff is introduced. Both CSV views carry primary threshold and direction,including cases with unresolved axes.",
+    "Separate threshold-context summaries preserve10Portugal0.02m/s cases and38other0.1m/s cases. These are different source definitions,not comparable physical-body boundaries or a common depth ranking. Mean/source error statistics and native contour brackets are not velocity bounds,depth confidence intervals or annual ranges.",
+    "All830available original connected runs and2437available column descriptors retained; source-declared native counts for unresolved cases are not relabeled as available columns.698runs have finite paired component contours;132censored runs retain native-supported minimum spans without acquiring finite thickness/bottom fields. The original curtain object and bytes remain unchanged.",
+    "Thirty-seven original selected core-containing axis-proxy anchors are retained exactly:22finite paired boundaries and15censored anchors with minimum support. Florida has2finite/8censored;Portugal6finite/3censored/1gap;Irminger8finite/4censored;West Spitsbergen6finite/10gaps. No selected core/run is replaced by a better-resolved neighbor or another named current. West Spitsbergen is not merged with Spitsbergen Atlantic.",
+    "Minimum support is original last minus first contiguous qualifying native sample depth under the original piecewise-linear signed-component definition. It is not depth from the surface,a finite bottom,physical named-current thickness bound or uncertainty. A single sample gives an uninformative zero span,never absent flow or zero actual thickness. Physical-bound flags stay false and censored boundaries/thickness remain null.",
+    "All37supported cases have some integrable partial transverse geometry:513accepted partial strip patches,1912strips without integrable geometry and144rejected ambiguous split/merge links. Pair only uniquely overlapping depth runs on consecutive original longitude columns within20km spherical geodesic separation at radius6371008.8m. No gap,missing profile,lateral closure,sample limit or bathymetry substitutes a boundary.",
+    "Latitude-section partial component areas are not independently flow-normal current widths/areas. Area/span equivalent thickness omits gaps and is not representative whole-current depth. Sampling-bracket scenarios are conditional geometry,not confidence or guaranteed true-boundary bounds. No between-section interpolation,independent terrain clearance,whole-route physical profile or water volume is established.",
+    "Florida is restricted to the original Straits segment and these two model snapshots are not a joined seasonal series with27N Spray fitted means/phases. Portugal is an offshore diffuse-current proxy and may contain mesoscale flow,not coastal countercurrent/slope undercurrent or Azores/Canary continuation. Irminger retains multiple-core/return-flow and deeper same-sign water limitations. West Spitsbergen retains its slope corridor exclusions and no Atlantic-water/recirculation/branch partition is inferred.",
+    "Core paired-boundary,minimum-support and area arithmetic are unchanged apart from an explicit owner-specific cutoff parameter and original owner/source bindings. Invariant boundary,separation,strip,attach_anchor,counts and report-run functions are AST-identical to the validated prior implementation. Compacted JSON shared-note schema osw.atlantic-latitude-paired-depth.v2 expands through the new producer helper to the exact full scientific dictionary and exact both-CSV bytes. No numeric precision,run,case,censor or source pointer is dropped.",
+    "Eighteen cloud tests cover analytic wedge/scenario units,finite/censored/surface boundaries,native adjacency,split/merge/disjoint support,all4owners/48cases/37anchors/11gaps,owner/frame/primary/geometry/time mutations,min-span versus thickness and zero-bound semantics,source immutability,lossless expansion/CSV ordering,Portugal0.02preservation/substitution rejection,and visible cutoff/direction in every flat row. Actual full48case both-CSV/JSON roundtrips passed on the original compiled data.",
+    "Offline sequential one idle cloud CPU,fresh outputs and a shared absolute60s deadline including tests/SIGTERM. Ordinary DescriptorQueryv3 explicitly starts0prior numeric/bytes and reserves52309tokens/2621583unique JSON bytes before decoding under250k/32MB/2.5MBpacket limits. Whole output1629595bytes remains under2.4MB; cumulative1.0268454779999985seconds. No native/source-data input,old native producer,provider target,archive or closed acquisition case is replayed or renewed.",
+    "Single four-member artifact retained once only after all branch jobs terminal,then installed byte-for-byte. HYCOM Consortium,NRL,COAPS-FSU credit preserved. No new observations or canonical scalar references are admitted. Existing111identities,908reference inventory,old projection inventory,102eddy references,main,runtime,query UI and WASM remain unchanged. Goal active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

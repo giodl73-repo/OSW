@@ -1,0 +1,82 @@
+name: Sequential saved-engine WICC reference browser review v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/wicc-reference-browser-resume-request-v2.json
+      - .github/workflows/wicc-reference-browser-resume-v2.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_WICC_REFERENCE_DELIVERY_V1: "1"
+  OSW_WICC_REFERENCE_BROWSER_RESUME_V2: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/wicc-reference-browser-resume-request-v2.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/wicc-reference-browser-resume-request-v2.json').read_bytes())
+          assert r['schema']=='osw.wicc-reference-browser-resume-request.v2'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Bounded saved-engine and disclosure checks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_wicc_reference_card_context_v1.py -v
+          taskset -c "$cpu" nice -n 15 node analysis/test_wicc_reference_card_context_v1.mjs
+      - name: Install pinned browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify exact saved candidate and actual views without rebuilding
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_wicc_reference_browser_v2.py
+      - name: Retain browser evidence and original engine receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wicc-reference-browser-resume-evidence-v1
+          include-hidden-files: true
+          path: |
+            .pytest_cache/wicc-reference-browser-resume-v2/browser-failure.json
+            .pytest_cache/wicc-reference-browser-resume-v2/browser.json
+            .pytest_cache/wicc-reference-browser-resume-v2/result.json
+            .pytest_cache/wicc-reference-browser-resume-v2/parent-snapshots.json
+            .pytest_cache/wicc-reference-browser-resume-v2/engine.json
+            .pytest_cache/wicc-reference-browser-resume-v2/engine-manifest.json
+            .pytest_cache/wicc-reference-browser-resume-v2/*.png
+            .pytest_cache/wicc-reference-browser-resume-v2/*.geometry.json
+          if-no-files-found: warn
+          retention-days: 90

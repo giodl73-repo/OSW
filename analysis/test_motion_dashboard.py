@@ -17,7 +17,8 @@ class DashboardEvidenceTests(unittest.TestCase):
         self.assertEqual(network['capabilities']['flow_network'],1)
         self.assertEqual(network['capabilities']['passage_transport'],3)
         self.assertIsNone(network['latest_observation_date'])
-        self.assertEqual(loop['capabilities']['scoped_width'],2)
+        # Two retained component diagnostics plus one published regional core.
+        self.assertEqual(loop['capabilities']['scoped_width'],3)
         self.assertEqual(network['capabilities']['scoped_width'],0)
         for row in [loop,network]:
             self.assertEqual(row['capabilities']['reported_length'],0)
@@ -39,12 +40,17 @@ class DashboardEvidenceTests(unittest.TestCase):
         def altered(candidate):return json.dumps(data).encode() if candidate==path else original(candidate)
         with patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):build()
 
-    def test_kuroshio_counts_four_profiles_without_double_counting_prose(self):
+    def test_kuroshio_profiles_and_filtered_readings_keep_separate_counts(self):
         row=next(r for r in build()['entries'] if r['id']=='current:kuroshio')
         self.assertEqual(row['capabilities']['scoped_width'],3)
-        self.assertEqual(row['capabilities']['time_samples'],4)
+        self.assertEqual(row['capabilities']['time_samples'],196)
         self.assertEqual(row['series'][0]['evidence_role'],'seasonal_width_profile_plot_extraction')
         self.assertEqual(row['series'][0]['frames'],4)
+        self.assertEqual(len(row['series']),2)
+        filtered=row['series'][1]
+        self.assertEqual(filtered['frames'],192)
+        self.assertEqual(filtered['evidence_role'],'filtered_curve_plot_samples_not_raw_monthly_observations')
+        self.assertFalse(filtered['sample_time_is_observation_date'])
         self.assertIsNone(row['latest_observation_date'])
 
     def test_leeuwin_width_months_count_as_records_without_single_year_dates(self):
@@ -58,7 +64,7 @@ class DashboardEvidenceTests(unittest.TestCase):
 
     def test_necc_monthly_diagnostic_is_pinned_and_not_admitted_width(self):
         current=next(row for row in build()['entries'] if row['id']=='current:pacific-north-equatorial-countercurrent')
-        self.assertEqual(current['capabilities']['scoped_width'],1)
+        self.assertEqual(current['capabilities']['scoped_width'],3)  # Two published model states plus the still-pending OSCAR candidate.
         self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(current['capabilities']['time_samples'],12)
         series=next(s for s in current['series'] if s['evidence_role']=='monthly_mean_section_width_candidate')
@@ -78,15 +84,20 @@ class DashboardEvidenceTests(unittest.TestCase):
     def test_red_sea_reach_and_channels_do_not_become_ranked_length_or_current_width(self):
         current=next(row for row in build()['entries'] if row['id']=='current:red-sea-saline-overflow')
         self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        routes=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']
+        owned=[r for r in routes if r['current_id']=='red-sea-saline-overflow']
+        self.assertEqual(current['capabilities']['reference_route'],len(owned))
+        self.assertTrue(owned)
+        self.assertTrue(all(r['comparison_group']=='osw_studied_reach_routes' for r in owned))
         self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(current['scope_audits'][0]['reported_reach']['approximate_length_km'],130)
         self.assertEqual(len(current['scope_audits'][0]['branches']),3)
 
-    def test_persian_gulf_core_records_are_scoped_widths_without_route_admission(self):
+    def test_persian_gulf_width_operators_and_editorial_reach_remain_scoped(self):
         current=next(row for row in build()['entries'] if row['id']=='current:persian-gulf-saline-overflow')
-        self.assertEqual(current['capabilities']['scoped_width'],6)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        self.assertEqual(current['capabilities']['scoped_width'],8)
+        self.assertEqual(current['capabilities']['reference_route'],1)
+        self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(len(current['scope_audits'][0]['reported_local_core_widths']),6)
         self.assertEqual(current['scope_audits'][0]['reported_section_distances']['rows'][-1]['distance_km'],920)
 
@@ -103,8 +114,10 @@ class DashboardEvidenceTests(unittest.TestCase):
     def test_antilles_section_series_preserves_pending_measurement_and_checksum(self):
         current=next(row for row in build()['entries'] if row['id']=='current:antilles')
         self.assertEqual(current['series'][0]['frames'],2)
-        self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        # Three independent published cruise spans coexist with this pending
+        # 2005 LADCP diagnostic; they do not promote its one-sided extent.
+        self.assertEqual(current['capabilities']['scoped_width'],3)
+        self.assertEqual(current['capabilities']['reference_route'],1)
         path=ROOT/'research/antilles-ab0505-400m-section-diagnostic.json'
         original=Path.read_bytes
         for key,value in [('inventory_sha256','wrong'),('whole_current_width_km',74),('width_rank_eligible',True),('seasonal_playback_eligible',True),('geographic_role','current_axis')]:
@@ -122,7 +135,12 @@ class DashboardEvidenceTests(unittest.TestCase):
             {'id':'alaskan-stream','name':'Alaskan Stream'},
             {'id':'aleutian-north-slope','name':'Aleutian North Slope Current'}])
         self.assertEqual(aleutian['capabilities']['reference_route'],1)
-        self.assertEqual(aleutian['capabilities']['scoped_width'],0)
+        self.assertEqual(aleutian['capabilities']['scoped_width'],1)
+        from aleutian_onishi_width import verify_inputs
+        constraint,_=verify_inputs()
+        self.assertEqual(len(constraint['width_records']),1)
+        self.assertFalse(constraint['width_records'][0]['physical_edges_admitted'])
+        self.assertFalse(constraint['width_records'][0]['annual_extrema_eligible'])
         self.assertNotIn('current:aleutian-north-slope',rows)
         notes_path=ROOT/'research/ocean-current-scope-notes.json'
         notes=json.loads(notes_path.read_bytes())
@@ -163,7 +181,15 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows={row['id']:row for row in build()['entries']}
         guiana=rows['current:guiana']
         self.assertEqual(guiana['capabilities']['scope_notes'],1)
-        self.assertEqual(guiana['capabilities']['reference_route'],0)
+        self.assertEqual(guiana['capabilities']['reference_route'],1)
+        own_route=json.loads((ROOT/'research/guiana-reference-path-candidate.json').read_bytes())
+        self.assertEqual(own_route['current_id'],'guiana')
+        self.assertEqual(own_route['candidate_comparison_group'],'osw_studied_reach_routes')
+        self.assertFalse(own_route['rank_eligible_published_estimates'])
+        own_features=[f for f in guiana['map_features'] if f['role']=='editorial_reference_route']
+        self.assertEqual(len(own_features),1)
+        self.assertEqual(own_features[0]['geometry']['coordinates'],own_route['coordinates_lon_lat'])
+        self.assertNotIn(own_features[0]['geometry'],[f['geometry'] for f in rows['current:north-brazil']['map_features']])
         self.assertEqual(guiana['capabilities']['scoped_width'],1)
         self.assertEqual(rows['current:north-brazil']['capabilities']['scoped_width'],2)
         self.assertEqual(guiana['capabilities']['time_samples'],0)
@@ -208,8 +234,9 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows = {row['id']: row for row in build()['entries']}
         antilles = rows['current:antilles']
         self.assertEqual(antilles['capabilities']['scope_notes'], 1)
-        self.assertEqual(antilles['capabilities']['scoped_width'], 0)
-        self.assertEqual(antilles['capabilities']['reference_route'], 0)
+        self.assertEqual(antilles['capabilities']['scoped_width'], 3)
+        self.assertEqual(antilles['capabilities']['reference_route'], 1)
+        self.assertEqual(antilles['capabilities']['reported_length'], 0)
         self.assertEqual(antilles['latest_observation_date'], '2015-11-23')
         self.assertIn('Modern observations', antilles['scope_notes'][0]['summary'])
 
@@ -228,18 +255,34 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows = {row['id']: row for row in result['entries']}
         self.assertEqual(rows['current:aleutian']['capabilities']['source_connectivity'], 3)
         self.assertEqual(rows['current:aleutian']['capabilities']['reference_route'], 1)
-        self.assertIsNone(rows['current:aleutian']['latest_observation_date'])
+        self.assertEqual(rows['current:aleutian']['latest_observation_date'],'1993-07-18')
         self.assertNotIn('current:alaskan-stream', rows)
         for connection in result['connections']:
             self.assertIsNone(connection['junction_coordinate'])
             self.assertIsNone(connection['transport_sv'])
             self.assertIs(connection['canonical_admission'], False)
+        # The native ADCP observations supply Aleutian's date. Removing the
+        # independently described links must not change dates or dimensions.
+        path=ROOT/'research/ocean-current-connectivity-candidates.json'
+        links=json.loads(path.read_bytes());links['entries']=[]
+        original=Path.read_bytes
+        def without_links(candidate):
+            return json.dumps(links).encode() if candidate==path else original(candidate)
+        with patch.object(Path,'read_bytes',without_links):
+            unlinked=build()
+        self.assertEqual(unlinked['connections'],[])
+        for entry in unlinked['entries']:
+            prior=rows[entry['id']]
+            self.assertEqual(entry['latest_observation_date'],prior['latest_observation_date'])
+            for metric in ['reported_length','reference_route','scoped_width','time_samples']:
+                self.assertEqual(entry['capabilities'][metric],prior['capabilities'][metric])
 
     def test_naming_review_does_not_transfer_neighbor_dimensions_or_dates(self):
         rows={row['id']:row for row in build()['entries']}
         for ident in ['norwegian','spitsbergen-atlantic']:
             row=rows['current:'+ident]
-            self.assertEqual(row['capabilities']['scope_notes'],1)
+            self.assertEqual(row['capabilities']['scope_notes'],2)
+            self.assertEqual(sum(bool(n.get('measurement_scope_assessment')) for n in row['scope_notes']),1)
             self.assertEqual(row['capabilities']['reference_route'],0)
             self.assertEqual(row['capabilities']['scoped_width'],0)
             self.assertIsNone(row['latest_observation_date'])
@@ -273,10 +316,17 @@ class DashboardEvidenceTests(unittest.TestCase):
         entity=json.loads((ROOT/'almanac/release/v0.1.0/entities.json').read_bytes())[0]
         target=next(s for s in sources if s['id']==entity['source_id'])
         target['rights_review_date']='2099-01-01'  # Synthetic metadata, never written.
-        original=Path.read_bytes
-        def altered(path):
-            return json.dumps(sources).encode() if path==sources_path else original(path)
-        with patch.object(Path,'read_bytes',altered):
+        # Mutate the provenance value at the hashing boundary. Changing source
+        # bytes would correctly invalidate the frozen admission/export receipts.
+        from build_motion_dashboard import fingerprint
+        def changed_review(value):
+            if isinstance(value,list):return [changed_review(v) for v in value]
+            if isinstance(value,dict):
+                updated={k:changed_review(v) for k,v in value.items()}
+                if value.get('id')==target['id']:updated['rights_review_date']=target['rights_review_date']
+                return updated
+            return value
+        with patch('build_motion_dashboard.fingerprint',lambda value:fingerprint(changed_review(value))):
             after=build()
         old={r['id']:r for r in before['entries']}
         changed=[r for r in after['entries'] if r['fingerprint']!=old[r['id']]['fingerprint']]
@@ -286,6 +336,33 @@ class DashboardEvidenceTests(unittest.TestCase):
             self.assertNotEqual(row['section_fingerprints']['sources'],old[row['id']]['section_fingerprints']['sources'])
             self.assertEqual(row['capabilities'],old[row['id']]['capabilities'])
             self.assertEqual(row['latest_observation_date'],old[row['id']]['latest_observation_date'])
+
+    def test_native_support_provenance_change_highlights_only_aleutian(self):
+        import copy
+        import current_research_evidence as research
+        before=build()
+        registry=research.verify()
+        native=json.loads((ROOT/research.NATIVE).read_bytes())
+        valid_times=[row['ensemble_end_utc'] for row in native['profiles'] if row['layer_mean']['eastward_m_s'] is not None]
+        observed=next(scene for scene in registry['scenes'] if scene['current_id']=='aleutian')
+        self.assertEqual(observed['observation_times_utc'],[valid_times[0],valid_times[-1]])
+        self.assertEqual(next(row for row in before['entries'] if row['id']=='current:aleutian')['latest_observation_date'],valid_times[-1][:10])
+        self.assertEqual(valid_times[-1][:10],'1993-07-18')
+        changed_registry=copy.deepcopy(registry)
+        owner=next(scene for scene in changed_registry['scenes'] if scene['current_id']=='aleutian')
+        source=next(iter(owner['support_source_sha256']))
+        owner['support_source_sha256'][source]='f'*64  # Synthetic metadata stimulus; never written.
+        with patch.object(research,'verify',return_value=changed_registry):after=build()
+        previous={row['id']:row for row in before['entries']}
+        changed=[row for row in after['entries'] if row['fingerprint']!=previous[row['id']]['fingerprint']]
+        self.assertEqual([row['id'] for row in changed],['current:aleutian'])
+        for row in after['entries']:
+            old=previous[row['id']]
+            if row['id']!='current:aleutian':self.assertEqual(row,old)
+            else:
+                self.assertNotEqual(row['section_fingerprints']['sources'],old['section_fingerprints']['sources'])
+                self.assertEqual(row['capabilities'],old['capabilities'])
+                self.assertEqual(row['latest_observation_date'],old['latest_observation_date'])
 
 
 if __name__=='__main__': unittest.main()

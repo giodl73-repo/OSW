@@ -1,0 +1,70 @@
+{
+  "schema": "osw.florida-fit-error-depth-sensitivity-source-review.v1",
+  "status": "ALL13_NOMINAL_FLORIDA_PROFILES_REPRODUCED_NORTHWARD_FIT_ERROR_SENSITIVITY_RETAINED",
+  "source_commit": "1e2cfd92fda8425f0644accadf0e11b5a971751f",
+  "source_run": 41704098191,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41704098191",
+  "artifact_id": 13265246813,
+  "artifact_sha256": "17e4438ea40210a89fff3e1c50c7891f759a417c8a0f307ebf44a358c9657bc4",
+  "tests_passed": 18,
+  "test_group_counts": [
+    10,
+    8
+  ],
+  "counts": {
+    "profile_cases": 13,
+    "mean_cases": 1,
+    "fitted_day15_phase_cases": 12,
+    "status_counts": {
+      "FINITE_FIXED_CUTOFF_ERROR_RECTANGLE_SENSITIVITY": 12,
+      "UNRESOLVED_LOCKED_CORE_OR_LOWER_BOUNDARY_SENSITIVITY": 1
+    },
+    "nominal_lower_status_counts": {
+      "adjacent_isotach_crossing": 12,
+      "censored_before_missing_or_dry_level": 1
+    },
+    "lower_scenario_lower_status_counts": {
+      "adjacent_isotach_crossing": 13
+    },
+    "upper_scenario_lower_status_counts": {
+      "adjacent_isotach_crossing": 12,
+      "censored_before_missing_or_dry_level": 1
+    },
+    "new_ocean_field_requests": 0,
+    "new_scalar_depth_references": 0,
+    "physical_whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "scientific_review": [
+    "All13retainedFlorida27NSprayS8TC9W selectedprofiles preserved:one mean plus12fittedday15phases,existing100-level10-1000m grid,documentedobservationfitperiod,providerproductversions and phase timestamps. Fittedphases are not instantaneous observations,monthlymeans or observedannualextrema. Zero newretrieval or HYCOMcap change.",
+    "All original northward column integrals,winner/status,node and nominal5/10/20cm/s andhalf-core layers reproduce with frozen Florida source functions. This original metric uses northward velocity. Eastward component/errors and provider downstream_direction do not enter;tests explicitly change them without changing results.",
+    "Reuse validated GulfStream fixed-core/fixed-cutoff sensitivity routine unchanged. Radius is one provider northward velocity fitted standard error in m/s,not GulfStream downstream-projection rectangle or a common scalar across both current contexts. Original nominal core and numeric cutoff remain fixed within each phase;no rotation,reselection or threshold recalculation.",
+    "The original nominal phase without a resolved lowerhalf-core crossing remains censored. Finite sensitivity range requires low/nominal/high lower crossings all finite and ordered. Weak/missing scenario core cannot select another deeper qualifier. Missing,error/domain stops never become zero,current absence,seabed or1000m bottom.",
+    "One-reported-SE scenarios are deterministic depth sensitivity,not confidence intervals,a full error budget,physical-current thickness or annualrange. No Gaussian/covariance model,core-selection,cutoff,direction or geolocation uncertainty propagated. Source-phase winners/cutoffs may differ across year.10m not surface/1000m not physical bottom.",
+    "Cloud-only sequential one-idle-CPU numerics/tests/build;newtestsblockDataset/urlopen. No source edits,newscalarrefs,physical whole-route profile,width join,volume,main/runtime/UI changes. Existing808-reference inventory,GulfStream sensitivity data,other spatial datasets and102eddy refs preserved."
+  ],
+  "new_primary_document_body_custody_claimed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/florida-fit-error-depth-sensitivity-v1.yml": "e996d974daa1be16bb6d91a56d13d3ceb546ff58b0104651dfd2d9a6fcfd21a4",
+    ".github/workflows/florida-spray-seasonal-depth-v1.yml": "d1a9fb585e438c082dcc578fbb00c355919b230e26cc6d092c0261d1a0f60b13",
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "analysis/acquire_gulf_stream_spray_sections_v1.py": "1cedcb2888afb9c8756762e07088b9eec49470e544feb4f88a6d762042f02f1f",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/derive_florida_fit_error_depth_sensitivity_v1.py": "d49b104e2a5e52ab01fb3537f76cc57b34609bf1000459379bdb619459bb44d8",
+    "analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py": "33d4b0215f54a39bbb2501af2fb81b1e5273d14dea1c71e0b8d0d23ae9a3183b",
+    "analysis/test_florida_fit_error_depth_sensitivity_v1.py": "9315d9cfede5d432ba5701ca6e4c7511f7d062e9f32bb89e84aae61c10680421",
+    "analysis/test_florida_spray_seasonal_depth_v1.py": "5f3f9e72efb76fd0420901a0107dfab894c9da6e326a7a72feea7c70fedb23b6",
+    "plans/florida-fit-error-depth-sensitivity-protocol-v1.md": "540453a86332a54f40d654e2806c7eacefbcc793ba8a7ad65d02ac9b81c0b748",
+    "research/current-depth-reference-inventory-v18.json": "b8824270518816b7f9470be253b6137fd30971fe92d6417ac3ea1c5da41304b7",
+    "research/florida-fit-error-depth-sensitivity-operator-v1.json": "79dfdb6df09b585410cfb3b245170e988b1c741e79da2b41dfc0b59f86fa06ee",
+    "research/florida-fit-error-depth-sensitivity-v1.json": "34d29f05192b7218575d097775eedab2597c5a3929763b146826e1d03d346fcd",
+    "research/florida-spray-seasonal-depth-operator-v1.json": "a2d8e8af1126b2a6b18cc9b4f12559e788481ad19805a2c7b3778541c7638dd7",
+    "research/florida-spray-seasonal-depth-source-facts-v1.json": "b37bc47f77cf38ba035e30e69cff6888a5658fcd5581baa2cebd44d57ef353cd",
+    "research/florida-spray-seasonal-depth-source-review-v1.json": "a05939ec7422afac3a53b3278d879902a267dca2e3ec833d007f873451d56408",
+    "research/gulf-stream-fit-error-depth-sensitivity-v1.json": "7504cdd7e65dfb7d1c21c16337e919a0cb77872f951fe88d48ac813c447cecc4",
+    "research/source-data/florida-spray-seasonal-depth-v1/candidate.json": "190f9a430d527e2864dde606d5bd9ffe60900b257a3ba36fe246b6392a3f1cb5"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "osw.sec-basin-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_sec_basin_paired_depth_v1.py": "3894031916440c99ddd630f380667865c589af54a51d36f832f8dba82fb36c15",
+    "analysis/test_sec_basin_paired_depth_v1.py": "d8bb03e5ad1824e8b8d4d0969487034c5263661137cb65c5b9b888936dd1f8c8",
+    "plans/sec-basin-paired-depth-v1.md": "41f61734f9ed7d581bd0469c167a03cb4ee302d115282702b1f31f4972d3d70b",
+    ".github/workflows/sec-basin-paired-depth-v1.yml": "f9d9b3d4369e39cff3817d18b77cda7026f40d901bd4b296f246291b309af28d",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/sec-basin-depth-sections-operator-v1.json": "85e39db05f866a761ff891f256c2425afa87d03bf207ef3885c5a4767cc69127",
+    "research/sec-basin-atlantic-south-equatorial-velocity-depth-curtains-v1.json": "9b9765f61a9119a80171a45f9f2642f44b680b75cb7527e8090f4b99b0f4d662",
+    "research/current-depth-sec-basin-atlantic-south-equatorial-velocity-curtains-source-review-v1.json": "0cd92f53a7298272dcfc3e688e704f155310399f3eadc095399a216f1e417f02",
+    "research/sec-basin-pacific-south-equatorial-velocity-depth-curtains-v1.json": "99faeecd92b6ef4c35b0e8c6204c6a8ba4ede349711731106532069ac1060d17",
+    "research/current-depth-sec-basin-pacific-south-equatorial-velocity-curtains-source-review-v1.json": "a56659e5691f00a32274b2faa813f6f129679008f9822e4ac5a42c572efe7f58",
+    "research/sec-basin-indian-south-equatorial-velocity-depth-curtains-v1.json": "a68ff31f52db179748db6206700c3073da0384fa970fa8b014b7c7ed34dfb5f2",
+    "research/current-depth-sec-basin-indian-south-equatorial-velocity-curtains-source-review-v1.json": "b508c6ee14eb8b4d5d940c7d2433354a82724051a31bd8056c24034050c4b059"
+  },
+  "source_cases": 30,
+  "original_supported_cases": 27,
+  "source_owner_axis_gaps": {
+    "current:atlantic-south-equatorial": 0,
+    "current:pacific-south-equatorial": 0,
+    "current:indian-south-equatorial": 3
+  },
+  "global_classic_selection_interval_m": [
+    0,
+    200
+  ],
+  "surface_selection_gate_m_s": 0.05,
+  "primary_curtain_cutoff_m_s": 0.1,
+  "all_three_basins_one_cumulative_query": true,
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "prior_active_seconds_upper": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,257 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.sec-basin-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New partial Atlantic central-branch,Pacific southern-branch and Indian zonal-mode SEC cases,declared before fields. Frozen transverse v2 transport/geometry/selection/layer code is reused. Basin members remain distinct from the unscoped family.",
+  "geometry_provenance": "Fifteen OSW exploratory fixed-longitude windows,ordered westward: Atlantic31–35W near Fernando de Noronha,Pacific100–140W southern surface branch,and Indian90–70E southern zonal-mode band. All latitude gates,stops and connectors are editorial,not digitized velocity axes,source transects,full widths,seasonal ranges or uncertainty bounds. These partial branches do not represent full basin currents or their family. Unsearched branches and meanders remain outside scope.",
+  "column_selector": "Frozen complete finite native0–200m signed westward trapezoidal integral selector,held270degree true through depth. All basin members use primary10cm/s,surface>5cm/s. Greatest positive integral with qualifying upper core wins; first southern native index breaks ties. All candidates/local peaks and5/10/20cm/s layers remain. Selected edges/support edges,no qualifying flow and primary censoring stay explicit without direction/gate/cutoff tuning or weaker interior replacement.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all30targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:atlantic-south-equatorial": {
+      "entity_id": "current:atlantic-south-equatorial",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial western Atlantic cSEC-context31–35W reach near the Fernando de Noronha island/seamount chain,with1.5–6.5S searches. Exclude coastal NBC/NBUC,northern/southern SEC branches,eastward SEUC and detached eddies as target identities. Broad westward maxima do not independently establish central-branch membership,an island-clear current axis or one coherent core. Source approximate100m regional surface extent is context,not an imposed cutoff,whole-current thickness or annual range."
+    },
+    "current:pacific-south-equatorial": {
+      "entity_id": "current:pacific-south-equatorial",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial east-central Pacific SEC(S) surface-branch100–140W reach,with0.5–5.5S searches. Exclude SEC(N),equatorial EUC,deep EIC,subsurface countercurrents/Tsuchiya jets,SECC,western boundary flow and detached eddies as target identities. Deeper same-sign SEC extensions or other currents can connect in the model;geographic maxima do not independently identify branches. The separate142E northern-component150m source reference is not transferred to this southern reach."
+    },
+    "current:indian-south-equatorial": {
+      "entity_id": "current:indian-south-equatorial",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial Indian SEC90–70E southern zonal-mode reach,with10–15S searches. Northern northwestward meanders can lie outside these fixed windows and are not filled by moving gates. Exclude SECC,SCTR recirculation,coastal Madagascar/Agulhas branches,upstream ITF straits and detached eddies as target identities. Salinity fronts,SSH contours and20C thermocline depth are separate diagnostics,not velocity axes or current bottoms. No reproduction of Carr/Chen model fields,source grid lengths or source seasonal geometry is claimed."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-31w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -31,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-32w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -32,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-33w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -33,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-34w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -34,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-35w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -35,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-100w",
+      "entity_id": "current:pacific-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -100,
+      "latitude_gate_degrees_north": [
+        -5.5,
+        -0.5
+      ]
+    },
+    {
+      "id": "section-110w",
+      "entity_id": "current:pacific-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -110,
+      "latitude_gate_degrees_north": [
+        -5.5,
+        -0.5
+      ]
+    },
+    {
+      "id": "section-120w",
+      "entity_id": "current:pacific-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -120,
+      "latitude_gate_degrees_north": [
+        -5.5,
+        -0.5
+      ]
+    },
+    {
+      "id": "section-130w",
+      "entity_id": "current:pacific-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -130,
+      "latitude_gate_degrees_north": [
+        -5.5,
+        -0.5
+      ]
+    },
+    {
+      "id": "section-140w",
+      "entity_id": "current:pacific-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -140,
+      "latitude_gate_degrees_north": [
+        -5.5,
+        -0.5
+      ]
+    },
+    {
+      "id": "section-90e",
+      "entity_id": "current:indian-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 90,
+      "latitude_gate_degrees_north": [
+        -15,
+        -10
+      ]
+    },
+    {
+      "id": "section-85e",
+      "entity_id": "current:indian-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 85,
+      "latitude_gate_degrees_north": [
+        -15,
+        -10
+      ]
+    },
+    {
+      "id": "section-80e",
+      "entity_id": "current:indian-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 80,
+      "latitude_gate_degrees_north": [
+        -15,
+        -10
+      ]
+    },
+    {
+      "id": "section-75e",
+      "entity_id": "current:indian-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 75,
+      "latitude_gate_degrees_north": [
+        -15,
+        -10
+      ]
+    },
+    {
+      "id": "section-70e",
+      "entity_id": "current:indian-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 70,
+      "latitude_gate_degrees_north": [
+        -15,
+        -10
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284953",
+      "locator": "Assuncao et al.(2023),Introduction,Methods2.1,Results3.1",
+      "scope": "Fresh publisher HTML distinguishes offshore cSEC/SEUC from coastal NBC/NBUC near Fernando de Noronha. Approximate100m westward surface extent is an author regional summary across2015/2017 surveys,not a closed current thickness. Instrument/plot limits and current-speed magnitude are not signed velocity boundaries. Longitude/latitude gates here are OSW choices;no source figures or arrays extracted."
+    },
+    {
+      "url": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+      "locator": "Johnson et al.(2002),section3.1",
+      "scope": "Fresh official NOAA HTML distinguishes SEC(N),SEC(S),EIC,EUC and subsurface countercurrents. Southern surface SEC and deep eastern extensions provide regional context,not2022 model-axis validation. Native ADCP dropout is not current bottom. No source field/figure redistribution or digitization performed."
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1835248/full",
+      "locator": "Carr et al.(2026),Introduction andResults3.3",
+      "scope": "Fresh publisher HTML distinguishes typical10–15S zonal SEC from northwest meanders. Source2010–2020 CROCO states,SSH/front/thermocline diagnostics and known source-metadata discrepancies remain separate from2022 HYCOM profiles. Source gridded packets/scripts are not downloaded,executed or reinterpreted here. No source whole-current axes,widths or depth boundaries are adopted."
+    }
+  ],
+  "input_sha256": {
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "research/current-measurement-scopes/south-equatorial.json": "3c145a506a9fa5b34c7a94b6d4e196294e27ea38a451551d05997243c92c68b7",
+    "research/carr-indian-sec-2026-source-facts-v1.json": "3770599d669d728d87711145cf054178a96cf51d2eed28babbb3531190d8efc3",
+    "research/carr-indian-sec-2026-source-review-v1.json": "b92b672d1a51f03be4c1e682311b6db56f5749bce6867bea1579f2738ae688b2"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3
+}

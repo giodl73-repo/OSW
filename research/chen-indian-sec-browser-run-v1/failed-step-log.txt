@@ -1,0 +1,41 @@
+browser	Install one pinned browser	﻿2026-10-29T11:45:51.3361194Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+browser	Install one pinned browser	2026-10-29T11:45:51.3361799Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+browser	Install one pinned browser	2026-10-29T11:45:51.3362325Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0^[[0m
+browser	Install one pinned browser	2026-10-29T11:45:51.3363241Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium^[[0m
+browser	Install one pinned browser	2026-10-29T11:45:51.3393525Z shell: /usr/bin/bash -e {0}
+browser	Install one pinned browser	2026-10-29T11:45:51.3393788Z env:
+browser	Install one pinned browser	2026-10-29T11:45:51.3396533Z   GH_TOKEN: ***
+browser	Install one pinned browser	2026-10-29T11:45:51.3396763Z   OSW_CHEN_INDIAN_SEC_BROWSER_V1: 1
+browser	Install one pinned browser	2026-10-29T11:45:51.3397207Z   OMP_NUM_THREADS: 1
+browser	Install one pinned browser	2026-10-29T11:45:51.3397439Z   OPENBLAS_NUM_THREADS: 1
+browser	Install one pinned browser	2026-10-29T11:45:51.3397663Z   MKL_NUM_THREADS: 1
+browser	Install one pinned browser	2026-10-29T11:45:51.3397871Z   NUMEXPR_NUM_THREADS: 1
+browser	Install one pinned browser	2026-10-29T11:45:51.3398163Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.17/x64
+browser	Install one pinned browser	2026-10-29T11:45:51.3398604Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib/pkgconfig
+browser	Install one pinned browser	2026-10-29T11:45:51.3399086Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+browser	Install one pinned browser	2026-10-29T11:45:51.3399472Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+browser	Install one pinned browser	2026-10-29T11:45:51.3399854Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+browser	Install one pinned browser	2026-10-29T11:45:51.3400242Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib
+browser	Install one pinned browser	2026-10-29T11:45:51.3400568Z ##[endgroup]
+browser	Install one pinned browser	2026-10-29T11:45:53.2436798Z Collecting playwright==1.58.0
+browser	Install one pinned browser	2026-10-29T11:45:53.2673052Z   Downloading playwright-1.58.0-py3-none-manylinux1_x86_64.whl.metadata (3.5 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.3018016Z Collecting pyee<14,>=13 (from playwright==1.58.0)
+browser	Install one pinned browser	2026-10-29T11:45:53.3048424Z   Downloading pyee-13.0.1-py3-none-any.whl.metadata (3.0 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.4504200Z Collecting greenlet<4.0.0,>=3.1.1 (from playwright==1.58.0)
+browser	Install one pinned browser	2026-10-29T11:45:53.4544264Z   Downloading greenlet-3.5.6-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.4715768Z Collecting typing-extensions (from pyee<14,>=13->playwright==1.58.0)
+browser	Install one pinned browser	2026-10-29T11:45:53.4745488Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.4818709Z Downloading playwright-1.58.0-py3-none-manylinux1_x86_64.whl (46.2 MB)
+browser	Install one pinned browser	2026-10-29T11:45:53.7747104Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.2/46.2 MB 161.8 MB/s  0:00:00
+browser	Install one pinned browser	2026-10-29T11:45:53.7779963Z Downloading greenlet-3.5.6-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (623 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.7833768Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 623.8/623.8 kB 126.7 MB/s  0:00:00
+browser	Install one pinned browser	2026-10-29T11:45:53.7867438Z Downloading pyee-13.0.1-py3-none-any.whl (15 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.7916567Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+browser	Install one pinned browser	2026-10-29T11:45:53.9489366Z Installing collected packages: typing-extensions, greenlet, pyee, playwright
+browser	Install one pinned browser	2026-10-29T11:45:54.7993163Z 
+browser	Install one pinned browser	2026-10-29T11:45:54.8006675Z Successfully installed greenlet-3.5.6 playwright-1.58.0 pyee-13.0.1 typing-extensions-4.16.0
+browser	Install one pinned browser	2026-10-29T11:45:55.3236647Z BEWARE: your OS is not officially supported by Playwright; installing dependencies for ubuntu26.04-x64 as a fallback.
+browser	Install one pinned browser	2026-10-29T11:45:55.3240182Z Cannot install dependencies for ubuntu26.04-x64 with Playwright 1.58.0!
+browser	Install one pinned browser	2026-10-29T11:45:55.3341390Z Failed to install browsers
+browser	Install one pinned browser	2026-10-29T11:45:55.3342093Z Error: ERROR: Playwright does not support chromium on ubuntu26.04-x64
+browser	Install one pinned browser	2026-10-29T11:45:55.3511457Z ##[error]Process completed with exit code 1.

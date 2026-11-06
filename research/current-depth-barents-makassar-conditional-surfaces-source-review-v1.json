@@ -1,0 +1,81 @@
+{
+  "schema": "osw.current-depth-barents-makassar-conditional-surface-source-review.v1",
+  "status": "PASS_MATCHED_REGIONAL_DEPTH_SURFACES_WITH_EXPLICIT_INTERPOLATION_AND_VOLUME_SCENARIO_SCOPE",
+  "source_commit": "0efbbfcc46e1a7c29cdffc02a96a6087c3c8f309",
+  "producer_run_id": 42088668614,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42088668614",
+  "cloud_semantic_tests_passed": 8,
+  "complete_32_source_case_24_segment_slot_json_csv_geojson_roundtrip_passed": true,
+  "artifact": {
+    "id": 13442854433,
+    "sha256": "93e28c7132834f8a83fa7714d6530b0302e66dc42836d634bca43f1630ca94c4",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/barents-makassar-conditional-depth-surfaces-v1.json": {
+      "bytes": 220451,
+      "sha256": "99c2c3007df7613950d77adbe611c2ab4f826579e086964590a76b0fb03ccdec"
+    },
+    "research/barents-makassar-conditional-depth-surfaces-v1.geojson": {
+      "bytes": 58024,
+      "sha256": "6909d8de6425240df0a206911be509dbba13a031b91e4324723dc20783932eb6"
+    },
+    "research/barents-makassar-conditional-depth-surface-segments-v1.csv": {
+      "bytes": 6898,
+      "sha256": "7afa65fc41da21ed78699fce56e16cd04f85ae911f900534b32b3ba8500404bd"
+    },
+    "research/barents-makassar-depth-surfaces-query-ledger-v1.json": {
+      "bytes": 1347,
+      "sha256": "33346e85b960b3cce0c736ba9b13162877093f82e2cd857d59eddba5bfc6443c"
+    }
+  },
+  "source_descriptor": {
+    "file": "research/barents-makassar-paired-section-geometry-v1.json",
+    "sha256": "0567e901b74ba28e2bf7033938bbcbc96d8fbf52c3d39feed0ee46645e481a89",
+    "prior_cloud_geometry_run_id": 42085618873,
+    "prior_derived_producer_reexecuted": false,
+    "native_source_or_original_validators_reexecuted": false
+  },
+  "cloud_reported_counts": {
+    "source_cases": 32,
+    "source_unresolved_cases_preserved": 14,
+    "declared_neighbor_segment_cases": 24,
+    "segments_with_partial_depth_surface_scenarios": 12,
+    "segments_with_unresolved_endpoint": 12,
+    "conditional_depth_surface_patches": 59,
+    "gap_cells": 313,
+    "rejected_between_section_ambiguity_links": 28,
+    "surface_control_corner_occurrences": 236,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "new_observations": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_query": {
+    "numeric_tokens": 13967,
+    "unique_json_bytes": 744733
+  },
+  "scientific_review": [
+    "New explicitly assumed regional depth surfaces and corresponding partial component-volume scenarios are calculated from already-reviewed paired depth descriptors. No new observations,native field reanalysis or scalar reference admission. The source32cases,all14unresolved selections,branch/frame/cutoff identities and source pointers remain exact. New interpolation does not retroactively broaden the historical scope of frozen source products.",
+    "All24declared neighboring section/date slots are preserved. Supported surfaces belong to the Makassar southward branch context; North Cape has no qualified neighboring pair and all of its segment values remain unknown. No Norwegian parent,northern North Cape branch,other ITF passage or whole-current coverage is inferred.",
+    "Only same-date,same-owner,same-branch,unchanged0.1m/s component definitions and homologous native transverse coordinates can join. Four corners need finite paired upper and lower boundaries and a shared native depth-index level. One-to-one pairing is required both within the source strips and between sections. Twenty-eight between-section split/merge link occurrences are rejected;313cells remain unfilled. No missing/censored corner,skipped cut,diagonal layer bridge or substitute core.",
+    "Upper and lower surfaces vary bilinearly in longitude and latitude over each matched original rectangle. This assumes the unsampled interior between cuts,not a verified continuous current or newly resolved model field. Interior bathymetry and dynamics may interrupt the interpolant. Source independently-validated-axis and water-mass identification claims remain false; source lateral censoring remains visible.",
+    "The volume scenario integrates compatible corner thickness over the same footprint rather than multiplying unrelated marginal dimensions. Spherical surface area uses6371008.8m radius and analytic cos(latitude) weights. Constant-surface-footprint vertical extrusion is assumed; radial shell contraction is not modelled. Result units are km3,not Sverdrups.",
+    "Sampling-bracket thickness scenarios are propagated with the same positive integration weights. They quantify only the original sampling brackets conditional on the declared shape; model,identity,datum,bathymetry and interpolation-structure uncertainty remain unquantified. No confidence interval,true-volume guarantee,physical uncertainty,annual/seasonal range or noncontemporaneous extrema product.",
+    "Only disjoint accepted patches within a single segment/date/owner are summed. Each result is PARTIAL,and whole_segment_volume_established remains false. No current,annual or global volume total is admitted. Physical water volume,whole-current depth,physical uncertainty and annual range remain null; physical-state and global-total eligibility remain false.",
+    "GeoJSON has59map-ready2Dfootprints,with corner upper/lower provider depths as separate properties inSW,SE,NE,NWorder. They are assumed depth surfaces,not measured current-edge polygons. Positive-down provider depths are not WGS84ellipsoidal altitude; no third coordinate is invented. The exact GeoJSON and report hashes are bound together in this review for source custody.",
+    "Eight cloud checks include an analytic constant prism and units,independent Simpson quadrature of a varying-depth high-latitude field,sampling ranges,unresolved/nonadjacent cuts,owner/date/branch/frame/coordinates/native-index mutations,disconnected levels,split/merge rejection,all32source cases/all24slots,input immutability and2DGeoJSON depth semantics. Actual report,24-slot CSV and GeoJSON pass complete roundtrips.",
+    "A separate bounded DescriptorQueryv3 used explicit zero prior counters,13967numeric tokens and744733uniqueJSONbytes under250000numeric/32MBJSON/2.5MBpacket caps. Durable before-decode reservations/cache,network/source-data/native blocking,a shared60second synthetic-test/producer deadline,SIGTERM handling,fresh outputs and2.4MBoutput cap were applied. Geometry and tests ran sequentially on one idle cloud CPU; local work was static edits/manual source review/exact byte custody. No closed native acquisition budget was renewed.",
+    "Canonical reference inventoryv40remains908references and111identities. Old projection inventoryv48 and its two separate historical reference-geometry volume records remain frozen. These new partial component scenarios are a distinct product class; physical whole-current volume coverage remains zero. Main,102eddy references,runtime,WASM,defaultquery UI and preview are unchanged. Overall current-depth and compatible-volume programme remains incomplete."
+  ],
+  "source_credit": "HYCOM Consortium,NRL,COAPS-FSU;source attributes and original reviews retained in the pinned source chain.",
+  "new_conditional_depth_surfaces_computed": true,
+  "new_conditional_regional_volume_scenarios_computed": true,
+  "new_observations_collected": false,
+  "canonical_reference_count_unchanged": 908,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

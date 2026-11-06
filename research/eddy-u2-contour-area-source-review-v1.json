@@ -1,0 +1,105 @@
+{
+  "schema": "osw.eddy-u2-contour-area-source-review.v1",
+  "status": "REVIEWED_PRIMARY_SOURCE_NORTHERN_BRANCH_CONTOUR_AREAS",
+  "review_date": "2026-11-01",
+  "original": {
+    "url": "https://espis.boem.gov/final%20reports/4353.pdf",
+    "bytes": 56686601,
+    "sha256": "50030c1f603cae0eb853458ec3e9e6ea6b36145fca7f6772ecfb46134cf28f3d",
+    "pages": 364
+  },
+  "citation": "Donohue, Hamilton, Leben, Watts and Waddell (2008), Survey of Deepwater Currents in the Northwestern Gulf of Mexico, Volume II: Technical Report, OCS Study MMS 2008-031, June 2008.",
+  "reviewed_pdf_pages": [
+    2,
+    150,
+    173,
+    178,
+    181
+  ],
+  "reviewed_render_sha256": {
+    "2": "b7db39cc8440c3f45ae4db2f83761001933b9a60310b772ba2850d2bdf58af18",
+    "150": "166dec691bc59b653bbad51c8a731c4b80da1b5e363aaa1e1766fed8f6f0070f",
+    "173": "94b7fb2b2e07e512a11b14157fadc9587286b6622204bb1c59e9407eef41132b",
+    "178": "49e0b13628cfbc84e7a538b606636a2bbc19846b093e31189ca6cb0ca348d12d",
+    "181": "866cc3e750cdb71c2c43c5d39ea6144847fd7d288a4479cd333fd189330d648c"
+  },
+  "source_verification": {
+    "original_pdf_bytes_and_sha256_verified": true,
+    "actual_source_page_pixels_reviewed": true,
+    "explicit_northern_u2_name_and_southern_ulysses_distinction_verified": true,
+    "composite_path_changes_branch_identity_at_split": true,
+    "local_cpu_affinity": 1,
+    "local_priority": "IDLE",
+    "ocean_fields_processed": false,
+    "source_assets_republished": false
+  },
+  "accepted_area_rows": [
+    {
+      "date": "2005-01-01",
+      "area_km2": 42100,
+      "association_basis": "Explicitly named U2 northern piece in the comparison with southern Ulysses.",
+      "locator": "Printed page 3-70 / PDF page 178; named map Figure 3.3-7, printed page 3-73 / PDF page 181."
+    },
+    {
+      "date": "2005-02-01",
+      "area_km2": 37000,
+      "association_basis": "Northern post-split branch of the explicitly defined Ulysses-before/U2-after composite path.",
+      "locator": "Printed pages 3-65 and 3-70 / PDF pages 173 and 178, paragraph spanning the intervening figures."
+    },
+    {
+      "date": "2005-04-14",
+      "area_km2": 18900,
+      "association_basis": "Northern post-split branch of the explicitly defined Ulysses-before/U2-after composite path.",
+      "locator": "Printed pages 3-65 and 3-70 / PDF pages 173 and 178; the April endpoint is repeated in both paragraphs."
+    }
+  ],
+  "operator": {
+    "quantity": "Area bounded by the source 10 cm SSH-anomaly contour",
+    "contour_height_cm": 10,
+    "height_reference": "source SSH anomaly; reference surface unspecified in reviewed prose",
+    "source_area_unit": "km2",
+    "source_uncertainty": null,
+    "is_material_boundary": false,
+    "source_operator_equated_to_osw_native_adt_or_speed_core": false
+  },
+  "identity_context": {
+    "source_name": "U2",
+    "entity_id": "eddy:horizon:loop-44-secondary",
+    "source_role": "Northern piece after Ulysses splitting",
+    "southern_piece_retains_source_name": "Ulysses",
+    "physical_registry_crosswalk_verified": false,
+    "primary_values_inherited": false,
+    "independent_secondary_separation_date_inferred": false
+  },
+  "excluded_comparisons": [
+    {
+      "date": "2004-11-22",
+      "area_km2": 89700,
+      "source_role": "Ulysses before split, on the composite path",
+      "u2_area_admitted": false
+    },
+    {
+      "date": "2004-12-12",
+      "area_km2": 83400,
+      "source_role": "Ulysses before split",
+      "u2_area_admitted": false
+    },
+    {
+      "date": "2005-01-01",
+      "area_km2": 38900,
+      "source_role": "Southern Ulysses piece",
+      "u2_area_admitted": false
+    }
+  ],
+  "limitations": [
+    "These are three source-reported contour-area scalars. Numeric reporting precision is preserved; error bars and uncertainty are unspecified, not inferred from rounding.",
+    "January 1 explicitly identifies U2 to the north and Ulysses to the south. The February and April values follow the source-defined northern branch of a composite path that uses Ulysses before splitting and U2 afterward. Pre-split parent areas are not independent U2 observations.",
+    "The source analysis dates are not exact simultaneous sampling times, formation dates or lifetime endpoints. The nominal splitting date and approximately completed split remain separate from registry initial separation.",
+    "The source uses SSH anomaly, not a verified native-ADT datum or the OSW maximum-speed contour. A 10 cm numerical level is not equated to 0.1 m modern ADT.",
+    "SSH contour streamlines need not be material boundaries in unsteady flow. No closed geospatial footprint, state join, ranking, principal width, diameter, radius, thickness or seasonal range derived.",
+    "Three dated samples do not establish annual extrema, continuous shrinkage or an individual full lifetime. Nearby 150 m salinity measurements are not eddy thickness."
+  ],
+  "measurements_admitted_by_source_review": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

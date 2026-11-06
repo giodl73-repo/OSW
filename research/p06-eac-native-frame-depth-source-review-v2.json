@@ -1,0 +1,53 @@
+{
+  "schema": "osw.p06-eac-native-frame-depth-source-review.v2",
+  "status": "SIX_CONDITIONAL_LOCAL_DEPTH_PROXIES_TWO_FRAMES_ONE_UNRESOLVED_PROFILE",
+  "source_commit": "d013d0faf75fadac4d190c119a7f58adda802678",
+  "source_run": 42028190281,
+  "source_run_conclusion": "success",
+  "synthetic_tests_passed": 5,
+  "artifact_id": 13414767771,
+  "artifact_sha256": "42a592e3e6464c402664765aaa5e724349ce4ffde4f3bfb21a393869e4658071",
+  "counts_from_cloud_producer": {
+    "source_cast_profiles": 3,
+    "cutoff_contexts": 9,
+    "qualified_native_reference_frames": 2,
+    "adjacent_local_crossings": 6,
+    "selected_native_levels": 58,
+    "case_metadata_numeric_values": 1932,
+    "native_array_values_decoded": 1064,
+    "case_scalar_bound": 2996,
+    "new_canonical_depth_references": 0
+  },
+  "metric": "derived_native_uv_fixed_frame_component_isotach_depth",
+  "review": [
+    "Cloud-only producer processed all three original retained P06 casts002/004/008 once, under the predeclared per-profile qualification rules. Five synthetic checks cover basis-rotation invariance, missing references/censoring, local-crossing caveats and rejection of unsupported axes without sign correction/clipping. No local scientific run, new provider request, replacement cast or native reread.",
+    "All three axes passed the frozen finite ascending nonnegative-metre gate. The anticipated axis-unqualified branch was not used. Cast002 instead failed the finite-reference-vector/speed qualification; its three threshold estimates remain null with NO_QUALIFYING_FIXED_NATIVE_UV_FRAME. Do not claim an invalid axis, corrected sign, zero current, failed source transfer or three valid depth estimates for this cast. Preserve its first/last depth warnings.",
+    "Cast004 local5/10/20cm/s crossings:197.65550670931486m within195.41567993164062-203.55799865722656m;187.04252789375886m within179.13104248046875-187.2733612060547m;165.9447591356441m within162.84640502929688-170.9887237548828m.",
+    "Cast008 local5/10/20cm/s crossings:3947.0150505032207m within3943.05859375-3951.1884765625m;1492.6137052085664m within1487.793212890625-1495.9232177734375m;340.6288498587874m within333.3307189941406-341.46075439453125m. The deep weak-threshold crossing is conditional regional native-field support, not evidence that the physical EAC extends to3.95km. Independent current membership and continuous core connection are unverified; distinct deeper flow or skipped reversals are not excluded.",
+    "Six resolved contexts share two qualifying source frames inside a three-profile cohort. Nine attempted contexts are not nine measurements or independent observations. Different threshold/location results are not a seasonal range, uncertainty interval or current-wide mean. July2017 is an austral-winter sampling date, not a winter climatology. No fallback to another reference depth was used to force cast002 to resolve.",
+    "Retain exact native samples, frames, unrounded crossings, actual nonuniform metre brackets, refined/original coarse indices, nominal finite-cast dates, provider geocodes and native/result SHA provenance. Native bracket widths are support, not8m accuracy or confidence intervals. Coarse scanning may hide earlier crossings and global-first crossing remains unverified.",
+    "Source metadata explicitly identifiesIX_13beta/common native U/V/z units. Arithmetic is conditional in that declared basis and does not establish exact solver equivalence, independently verified geographic component orientation, final provider QC or current-axis membership. The primary full cruise text report failed and remains closed; no initial/final QC certification or alternate document copy. Preserve provider warning records and uerr diagnostics without SE/depthCI claims.",
+    "Original source3operations remain closed,0remaining;254704response/native bytes. Cumulative1932numeric metadata includes prior877and repeated typed JSON;1064native values and2996total scalars. Selected58levels share40percast caches. Case time3.728328930999986seconds includes original3.131704195999987acquisition charge and new shared tests/producer phase. All original caps unchanged; no percast/phase reset.",
+    "Exact two-member scientific artifact downloaded once after all branch jobs terminal, raw ZIP saved before custody inspection and digest verified, then retained byte-for-byte. Current canonical v30 catalog remains878references: these six local diagnostics are not yet admitted. No physical bottom, thickness, whole-route depth, state/route join, seasonal range or volume. Main/21UTF8/102eddyrefs/unrelated leaves/UI/runtime unchanged; full goal remains active."
+  ],
+  "canonical_reference_rows_unchanged": 878,
+  "exact_solver_equivalence_verified": false,
+  "source_final_QC_verified": false,
+  "independent_current_axis_verified": false,
+  "whole_route_physical_depth_profile_established": false,
+  "physical_thickness_m": null,
+  "seasonal_range_m": null,
+  "volume_m3": null,
+  "input_sha256": {
+    "research/p06-eac-native-frame-depths-v2.json": "20cff220eb9ee313fb597ebdc9f03409fd8979c4c241d36c21ef0ece9494c578",
+    "research/p06-eac-native-frame-depth-ledger-v2.json": "597b27e28259f1573eae0b35179af1493d5c6be454416d687ca7fef38077481c",
+    "research/p06-native-frame-depth-operator-v2.json": "88dfc0a45581f855eae58e06647390688b6b25d35f885f1841d146463f2f51b8",
+    "analysis/sample_p06_native_frame_depths_v2.py": "3d327ef6aca969b4c75eef57bac542a50c6b0bcce983fe9cb3586240217c6f28",
+    "analysis/test_p06_native_frame_depths_v2.py": "0d9be5b0edd42f006d61c5c225a8d319fc8af7c0b5137cff3e1b3118832cb4a6",
+    "plans/p06-native-frame-depth-protocol-v2.md": "8970505dd384b5068c3f0b2b2d6a4d9c7d8dc872bb6571ab04a373d5a6881349",
+    ".github/workflows/p06-native-frame-depths-v2.yml": "91bcc7d8af1932d4c53d5f8e5d37931105d97586172d6b931a82de04ed025db9",
+    "research/p06-eac-native-source-review-v1.json": "b940c4de99adc4b1a0992590b39546160a27fcf675e21906aa235997e3e1758b"
+  },
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

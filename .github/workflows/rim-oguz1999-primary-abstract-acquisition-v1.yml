@@ -1,0 +1,45 @@
+name: Rim Oguz1999 primary institutional abstract custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/rim-oguz1999-primary-abstract-acquisition-v1.yml
+      - analysis/acquire_rim_oguz1999_primary_abstract_v1.py
+      - analysis/test_rim_oguz1999_primary_abstract_v1.py
+      - plans/rim-oguz1999-primary-abstract-custody-protocol-v1.md
+      - research/rim-oguz1999-primary-abstract-acquisition-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_ncc_skagseth_table1_v1.py
+            analysis/acquire_rim_oguz1999_primary_abstract_v1.py
+            analysis/test_rim_oguz1999_primary_abstract_v1.py
+            plans/rim-oguz1999-primary-abstract-custody-protocol-v1.md
+            research/current-depth-reference-inventory-v16.json
+            research/rim-oguz1999-primary-abstract-acquisition-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify custody and retain primary abstract once
+        timeout-minutes: 1
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_rim_oguz1999_primary_abstract_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_rim_oguz1999_primary_abstract_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rim-oguz1999-primary-abstract-v1
+          path: rim-oguz1999-primary-abstract-v1/
+          retention-days: 7

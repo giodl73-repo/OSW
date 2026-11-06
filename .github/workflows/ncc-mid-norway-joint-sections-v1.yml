@@ -1,0 +1,68 @@
+name: NCC mid Norway paired depth sections with native patch journal v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/ncc-mid-norway-joint-sections-v1.yml
+      - analysis/acquire_ncc_mid_norway_joint_sections_v1.py
+      - analysis/test_ncc_mid_norway_joint_sections_v1.py
+      - plans/ncc-mid-norway-joint-depth-extension-protocol-v1.md
+      - research/ncc-mid-norway-joint-sections-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_ncc_mid_norway_joint_sections_v1.py
+            analysis/acquire_ncc_north_joint_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/ncc_core_salinity_diagnostic_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_ncc_mid_norway_joint_sections_v1.py
+            analysis/test_ncc_north_joint_sections_v1.py
+            plans/ncc-mid-norway-joint-depth-extension-protocol-v1.md
+            plans/ncc-north-joint-depth-extension-protocol-v1.md
+            research/ncc-enge2025-depth-identity-source-scope-review-v1.json
+            research/ncc-mid-norway-joint-sections-operator-v1.json
+            research/ncc-north-joint-sections-operator-v1.json
+            research/norwegian-coastal-reference-path-input.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify unchanged joint collector and new domain plus journal safeguards
+        timeout-minutes: 3
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_ncc_north_joint_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_ncc_mid_norway_joint_sections_v1.py' -v
+      - name: Collect new regional fields on one idle CPU with immediate success journals
+        timeout-minutes: 20
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_ncc_mid_norway_joint_sections_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ncc-mid-norway-joint-sections-v1
+          path: ncc-mid-norway-joint-sections-v1/
+          retention-days: 7

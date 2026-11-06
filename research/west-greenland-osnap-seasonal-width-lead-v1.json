@@ -1,0 +1,47 @@
+{
+  "schema": "osw.current-observation-data-lead.v1",
+  "current_id": "west-greenland",
+  "status": "original_data_lead_not_measurement_admission",
+  "review_date": "2026-10-24",
+  "paper": {
+    "doi": "10.1175/JPO-D-20-0086.1",
+    "citation": "Pacini et al. (2020), Mean Conditions and Seasonality of the West Greenland Boundary Current System near Cape Farewell.",
+    "original_repository_url": "https://nora.nerc.ac.uk/528563/1/jpod200086.pdf",
+    "review_scope": "Selected extracted text: abstract, sections 2a and data availability; no full visual review or retained original bytes.",
+    "findings": [
+      "The 2014-2018 array distinguishes coastal, slope and deep boundary-current components.",
+      "Hourly detided velocity sections use a 5 km by 100 m interpolated grid; offshore data are initially gridded more coarsely. Interpolation is not independent observing resolution.",
+      "Instrument blowdown changes sampled depths. A data-dependent boundary limits gridding; missing upper coverage must remain missing.",
+      "The 35 km quantity in the wave-speed calculation is shelf width, not current width."
+    ]
+  },
+  "datasets": [
+    {
+      "doi": "10.7924/r4fj2dr7k",
+      "repository_url": "https://research.repository.duke.edu/record/39",
+      "provider_metadata_scope": "Indexed provider metadata identifies August 2014-August 2016 calibrated and quality-controlled MicroCAT, Aquadopp, ADCP and Tidbit data; CC0. Direct page retrieval returned HTTP 403.",
+      "files_or_schema_inspected": false
+    },
+    {
+      "doi": "10.35090/fz80-6c32",
+      "period": "2016-2018",
+      "link_support": "Pacini and Pickart (2023), data availability, doi:10.1029/2022JC018952.",
+      "provider_metadata_verified": false,
+      "files_or_schema_inspected": false
+    }
+  ],
+  "required_next_steps": [
+    "Inspect provider file inventory, byte sizes, licenses, coordinates, timestamps, units, quality flags and deployment continuity before selecting any payload.",
+    "Acquire and hash only selected originals in one future cloud stage after the current delivery queue clears; do not download or process bulk data locally.",
+    "Review the original coordinate rotation and figures visually before fixing the section-normal orientation.",
+    "Define current identity, compatible depth support, velocity edge rule and missing-data/censoring rules prospectively; freeze a new protocol and synthetic checks before deriving actual widths.",
+    "Require both edges within valid sampled support. Keep coastal, slope and deep cores separate; do not substitute water-mass thickness, shelf width or transport seasonality for velocity width.",
+    "If seasonal widths are defensible, retain individual observation times, coverage and censoring alongside monthly distributions. Keep sampling variability separate from interpolation sensitivity and uncertainty."
+  ],
+  "new_measurements_admitted": 0,
+  "annual_width_range_km": null,
+  "seasonal_animation_eligible": false,
+  "new_geometry_or_state_joins": 0,
+  "working_dataset_changed": false,
+  "scientific_release_published": false
+}

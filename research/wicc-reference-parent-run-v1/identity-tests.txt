@@ -1,0 +1,22 @@
+parent-audit	Identity and pre-read refusal fixtures	﻿2026-10-28T10:45:21.8356560Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8356939Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8357328Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_wicc_reference_parent_v1.py -v^[[0m
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8572841Z shell: /usr/bin/bash -e {0}
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8573072Z env:
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8574800Z   GH_TOKEN: ***
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8574939Z   OMP_NUM_THREADS: 1
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8575088Z   OPENBLAS_NUM_THREADS: 1
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8575234Z   MKL_NUM_THREADS: 1
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8575372Z   NUMEXPR_NUM_THREADS: 1
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.8575551Z ##[endgroup]
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9587305Z test_conflicting_identifier_refused (test_wicc_reference_parent_v1.WiccParent.test_conflicting_identifier_refused) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9588679Z test_duplicate_publications_require_reconciliation (test_wicc_reference_parent_v1.WiccParent.test_duplicate_publications_require_reconciliation) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9589671Z test_duplicate_source_id_refused (test_wicc_reference_parent_v1.WiccParent.test_duplicate_source_id_refused) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9594109Z test_local_call_refused_before_any_read (test_wicc_reference_parent_v1.WiccParent.test_local_call_refused_before_any_read) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9594964Z test_missing_publication_does_not_create_one (test_wicc_reference_parent_v1.WiccParent.test_missing_publication_does_not_create_one) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9595836Z test_normalized_doi_reuses_existing_identity (test_wicc_reference_parent_v1.WiccParent.test_normalized_doi_reuses_existing_identity) ... ok
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9596300Z 
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9596441Z ----------------------------------------------------------------------
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9596827Z Ran 6 tests in 0.001s
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9596960Z 
+parent-audit	Identity and pre-read refusal fixtures	2026-10-28T10:45:21.9597040Z OK

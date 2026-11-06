@@ -1,0 +1,131 @@
+{
+  "schema": "osw.current-depth-source-facts.v28",
+  "review_date": "2026-11-02",
+  "status": "INDIAN_SECC_OBSERVED_SECTION_CONSERVATIVE_REACH",
+  "previous_register_file": "research/current-depth-register-v27.json",
+  "previous_register_sha256": "ecf74db3a1958f6c8830a1377cd4922b9d4d8e061aaf86e5566758aa55b3c44c",
+  "source_input_sha256": {
+    "research/current-length-reference-extents-v5.json": "aa1a1cd9ab29601062c3df4e19518f484341a3312747923ced1380a3da938b71"
+  },
+  "reference_route_scope_audit": {
+    "source_file": "research/current-length-reference-extents-v5.json",
+    "source_sha256": "aa1a1cd9ab29601062c3df4e19518f484341a3312747923ced1380a3da938b71",
+    "route_id": "indian-south-equatorial-countercurrent-principal-reference-extent-v5",
+    "coordinates_lon_lat": [
+      [
+        44,
+        -4
+      ],
+      [
+        50,
+        -5
+      ],
+      [
+        65,
+        -6
+      ],
+      [
+        80,
+        -6
+      ],
+      [
+        90,
+        -6
+      ]
+    ],
+    "source_section_nominal_longitude_degrees_east": 95,
+    "route_easternmost_vertex_longitude_degrees_east": 90,
+    "projection_eligible": false
+  },
+  "source_reviews": [
+    {
+      "url": "https://www.ldeo.columbia.edu/~agordon/publications/Hacker_BoB_GRL_98GL52115.pdf",
+      "review_mode": "Original author institution-hosted PDF downloaded. Printed2770/PDF2 Figure1a observed currents and printed2771/PDF3 Figure2 bottom signed-zonal-velocity section actually viewed. Methods PDF1 and prose identify campaign, instruments, current/leg and separate model. Conservative100m labeled-depth presence reading, no speed/boundary digitization.",
+      "actual_original_pixels_viewed": true,
+      "original_pdf_sha256": "65664598b908e84908d01ce61e21b5aa832ae79acfe8386870944b61b7ea6a59",
+      "original_pdf_bytes": 597463,
+      "actual_reviewed_pages": [
+        2,
+        3
+      ],
+      "render_sha256": {
+        "page2": "1b144f04dec97766db47e52188f61de4ef0e50f5a7d9b9e19a5fec7f6f0b8260",
+        "page3": "44f249367ebd9ff847bbc17725c7aaa1ba8591158ea15bce624bbfda7826634f"
+      },
+      "original_pdf_redistributed": false
+    }
+  ],
+  "excluded_substitutions": [
+    "Figure1a observed25–75m averaging window does not establish physical endpoints or reach75m by itself.",
+    "Figure1b nominal0–115m model layer is separate from observed Figure2.",
+    "Full ADCP21–300m nominal measurement range does not establish current bottom; failed northern-leg instrument and repair are not new SECC depth measurements.",
+    "Preparis Eddy140m core, EUC60–140m and tentative northern NECC100m are distinct named features."
+  ],
+  "references": [
+    {
+      "id": "indian-secc-hacker-1998-i9n-labeled100m-reach",
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": null,
+      "range_m": null,
+      "lower_bound_m": 100,
+      "lower_bound_exclusive": false,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": "northeast_monsoon",
+      "calendar_months": null,
+      "geographic_scope": "Eastern Indian Ocean SECC neighborhood around6S on I9N eastern leg, nominal95E. Regional observed case east of selected90E atlas handoff.",
+      "temporal_scope": "Two-leg Knorr survey6February–21March1995; exact eastern SECC occupation days not recovered. Northeast monsoon snapshot, not seasonal climatology.",
+      "source_definition": "OSW inferred inclusive reach from eastward flow presence at labeled100m in original Figure2 bottom zonal-velocity section, with SECC identity from Figure1a and Results prose.",
+      "evidence_kind": "original_observed_section_figure_presence",
+      "source_url": "https://www.ldeo.columbia.edu/~agordon/publications/Hacker_BoB_GRL_98GL52115.pdf",
+      "source_citation": "Hacker, Firing, Hummon, Gordon and Kindle(1998), Bay of Bengal currents during the northeast monsoon, GRL25:2769–2772, doi:10.1029/98GL52115.",
+      "source_locator": "Figure2 bottom panel and caption, printed2771/PDF3; Figure1a and caption printed2770/PDF2 identify SECC and observed25–75m means; Results printed2771 right column and Methods printed2769 distinguish current, legs, dates and model.",
+      "qualification": "Conservative presence bound, not detected flow bottom, thickness or statistical significance. Qualitative contour/sign reading only; no speed digitization. Exclude westward SEC farther south, equatorial EUC60–140m, northern tentative NECC and Preparis Eddy. Figure1a25–75m is an averaging window, not paired physical boundaries; Figure1b nominal115m model layer and full ADCP300m sampling limit are not observed SECC endpoints. Eddy/recirculation variability and author discussion remain; no continuity along the full current or seasonal range.",
+      "observed_period": null,
+      "source_case_id": "indian-secc-hacker-1998-i9n-observed-100m",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "lower_bound_operator": ">=",
+      "depth_basis": "inclusive_reach_from_observed_flow_presence_at_labeled_figure_depth",
+      "source_current_branch": "eastern_northeast_monsoon_SECC",
+      "source_section_id": "I9N_eastern_leg",
+      "section_nominal_longitude_degrees_east": 95,
+      "figure_reading_latitude_neighborhood_degrees_north": -6,
+      "figure_location_precision": "approximate_neighborhood_not_digitized_position",
+      "campaign_window": {
+        "start_date": "1995-02-06",
+        "end_date": "1995-03-21"
+      },
+      "temporal_operator": "source_quasi_synoptic_cruise_section",
+      "source_figure_panel": "Figure2_bottom_observed_zonal_velocity",
+      "figure_reading_kind": "qualitative_flow_presence_at_labeled_depth",
+      "figure_reading_depth_m": 100,
+      "positive_zonal_velocity_direction": "eastward",
+      "figure_contour_interval_cm_s": 10,
+      "speed_digitization_performed": false,
+      "statistical_significance_established": false,
+      "branch_section_scope": "I9N_eastern_SECC_near_95E_6S",
+      "reference_route_id": "indian-south-equatorial-countercurrent-principal-reference-extent-v5",
+      "reference_route_projection_eligible": false,
+      "route_scope_relationship": "regional_observation_east_of_selected_90E_route_handoff",
+      "source_access_scope": "original_author_institution_hosted_PDF_pixels_and_prose"
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

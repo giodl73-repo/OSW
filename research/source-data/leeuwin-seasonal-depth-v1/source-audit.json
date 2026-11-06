@@ -1,0 +1,245 @@
+{
+  "schema": "osw.leeuwin-depth-source-audit.v1",
+  "source_url": "https://data.csiro.au/dap/ws/v2/collections/62713/data/75441556",
+  "collection_version": 3,
+  "collection_id": 62713,
+  "file_id": 75441556,
+  "source_bytes": 11898461,
+  "source_sha256": "240680c821d330836c5de4352021bb1c3d0d630f0c34d676c884940798da576a",
+  "source_licence": "CC-BY-4.0",
+  "source_citation": "Bui and Feng, doi:10.25919/myac-yx60, collection v3, cited by Feng et al.2025 doi:10.1029/2025JC022662",
+  "global_attributes": {
+    "Description": "Daily filled current profiles with a 5m vertical resolution derived from in situ mooring measurements off Western Australia coast at WATR50 station",
+    "Data_span": "20110801 and 20230501",
+    "Date_created": "05-Jun-2024 08:57:37",
+    "Site_code": "WATR50",
+    "Source": "Mooring",
+    "Source data": "https://portal.aodn.org.au",
+    "Data usage application": "Bui, T., Feng, M., & Snell, M. (2023). An updated dataset for \"A long-term, gridded, subsurface physical oceanography dataset and average annual cycles derived from in situ measurements off the Western Australia coast during 2009-2020\" https://doi.org/https://doi.org/10.25919/9gb1-ne81",
+    "Acknowledgement": "Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: \"Data were sourced from Australia’s Integrated Marine Observing System (IMOS) – IMOS is enabled by the National Collaborative Research Infrastructure Strategy (NCRIS). It is operated by a consortium of institutions as an unincorporated joint venture, with the University of Tasmania as Lead Agent.\" If relevant, also credit other organisations involved in collection of this particular datastream (as listed in \"credit\" in the metadata record.",
+    "Author": "Toan Bui",
+    "Author_email": "toan.bui@csiro.au",
+    "Disclaimer": "Data, products and services from IMOS are provided \"as is\" without any warranty as to fitness for a particular purpose.",
+    "File_version": "Level 2 - Derived Products",
+    "Naming_authority": "CSIRO",
+    "Principal_inverstigator": "Ming Feng",
+    "Principal_inverstigator_email": "ming.feng@csiro.au",
+    "Project": "Integrated Marine Observing System (IMOS)"
+  },
+  "variables": {
+    "LONGITUDE": {
+      "dimensions": [
+        "LONGITUDE"
+      ],
+      "shape": [
+        1
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "long_names": "longitude",
+        "units": "degree_east"
+      },
+      "coordinate_values": [
+        114.9567
+      ]
+    },
+    "LATTITUDE": {
+      "dimensions": [
+        "LATTITUDE"
+      ],
+      "shape": [
+        1
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "long_names": "lattitude",
+        "units": "degree_north"
+      }
+    },
+    "TIME": {
+      "dimensions": [
+        "TIME"
+      ],
+      "shape": [
+        4292
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "calendar": "gregorian",
+        "standard_name": "time",
+        "units": "days since 1950-01-01 00:00:00 UTC"
+      }
+    },
+    "UCUR": {
+      "dimensions": [
+        "TIME",
+        "DEPTH"
+      ],
+      "shape": [
+        4292,
+        86
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "standard_name": "Eastward_sea_water_velocity",
+        "units": "m s-1",
+        "reference_datum": "true east",
+        "coordinates": "TIME DEPTH"
+      }
+    },
+    "UCUR_quality_control": {
+      "dimensions": [
+        "TIME",
+        "DEPTH"
+      ],
+      "shape": [
+        4292,
+        86
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "standard_name": "Eastward_sea_water_velocity_flag",
+        "flag_values": "[ 1 2 3 4 ]",
+        "flag_meanings": "Observed_Current Extrapolated_Near_Surface Extrapolated_Near_Bottom SOM_Filled"
+      }
+    },
+    "VCUR": {
+      "dimensions": [
+        "TIME",
+        "DEPTH"
+      ],
+      "shape": [
+        4292,
+        86
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "standard_name": "northward_sea_water_velocity",
+        "units": "m s-1",
+        "reference_datum": "true north",
+        "coordinates": "TIME DEPTH"
+      }
+    },
+    "VCUR_quality_control": {
+      "dimensions": [
+        "TIME",
+        "DEPTH"
+      ],
+      "shape": [
+        4292,
+        86
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "standard_name": "Northward_sea_water_velocity_flag",
+        "flag_values": "[ 1 2 3 4 ]",
+        "flag_meanings": "Observed_Current Extrapolated_Near_Surface Extrapolated_Near_Bottom SOM_Filled"
+      }
+    },
+    "DEPTH": {
+      "dimensions": [
+        "DEPTH"
+      ],
+      "shape": [
+        86
+      ],
+      "dtype": "float64",
+      "attributes": {
+        "standard_name": "depth",
+        "units": "m",
+        "positive": "down",
+        "reference_datum": "sea surface"
+      },
+      "coordinate_values": [
+        50.0,
+        55.0,
+        60.0,
+        65.0,
+        70.0,
+        75.0,
+        80.0,
+        85.0,
+        90.0,
+        95.0,
+        100.0,
+        105.0,
+        110.0,
+        115.0,
+        120.0,
+        125.0,
+        130.0,
+        135.0,
+        140.0,
+        145.0,
+        150.0,
+        155.0,
+        160.0,
+        165.0,
+        170.0,
+        175.0,
+        180.0,
+        185.0,
+        190.0,
+        195.0,
+        200.0,
+        205.0,
+        210.0,
+        215.0,
+        220.0,
+        225.0,
+        230.0,
+        235.0,
+        240.0,
+        245.0,
+        250.0,
+        255.0,
+        260.0,
+        265.0,
+        270.0,
+        275.0,
+        280.0,
+        285.0,
+        290.0,
+        295.0,
+        300.0,
+        305.0,
+        310.0,
+        315.0,
+        320.0,
+        325.0,
+        330.0,
+        335.0,
+        340.0,
+        345.0,
+        350.0,
+        355.0,
+        360.0,
+        365.0,
+        370.0,
+        375.0,
+        380.0,
+        385.0,
+        390.0,
+        395.0,
+        400.0,
+        405.0,
+        410.0,
+        415.0,
+        420.0,
+        425.0,
+        430.0,
+        435.0,
+        440.0,
+        445.0,
+        450.0,
+        455.0,
+        460.0,
+        465.0,
+        470.0,
+        475.0
+      ]
+    }
+  },
+  "depth_values_admitted": false,
+  "full_goal_complete": false
+}

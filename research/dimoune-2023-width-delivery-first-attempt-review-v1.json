@@ -1,0 +1,28 @@
+{
+  "schema": "osw.dimoune-2023-width-delivery-attempt-review.v1",
+  "run_id": 40931858505,
+  "run_attempt": 1,
+  "source_commit": "ff111b8efbe344820dc178b412e186e30f7cd84e",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 12923342540,
+    "bytes": 28569,
+    "sha256": "5a9d7d795209ed9e2e96d112ac5760a7aa8b557e028e22849191030d8f9d8d22"
+  },
+  "retained_sha256": {
+    "research/dimoune-2023-width-delivery-first-attempt-v1/compile-inventory.json": "02e62a453506e261f2443d9b4966f2eacbeab72a7e4aa64117957c0fbf7c914f",
+    "research/dimoune-2023-width-delivery-first-attempt-v1/dependency-proof.json": "3e11b5367389b3567bbab665bba58ecabf5ea20c0641633c3ca43d80efca350b",
+    "research/dimoune-2023-width-delivery-first-attempt-v1/failure.json": "a78c729569fc182763dcd96a806411f988c6c802fc87cb9205a05be594410c98",
+    "research/dimoune-2023-width-delivery-first-attempt-v1/native-build.txt": "bbe23e955d8ee2f3043145271b23f0a2a801029a2b2746775422a7d0461f4db2",
+    "research/dimoune-2023-width-delivery-first-attempt-v1/rust-tests.txt": "13b34885f0a65ad8b06865cc86e97299301582e44277bd13a7b3c57d02d81c20",
+    "research/dimoune-2023-width-delivery-first-attempt-v1/wasm-build.txt": "de8effc0d375daa2cfad921de39adfcbbcf7f8217db5ec05a9fb90618453a7b9"
+  },
+  "rust_tests_passed": 298,
+  "compiler_dependency_proof_present": true,
+  "native_preservation_stage_completed": "Inferred from execution reaching the later WASM compare call; the retry now writes an explicit native preservation receipt.",
+  "failure": "The compare-main fixture exceeded the harness 134217728-byte input-file guard before comparison initialization. No scientific mismatch was reported.",
+  "fix": "Retain every ordered/repeated request and compare complete responses in sequential fixtures bounded to 67108864 UTF-8 bytes. Existing harness, heap, response and payload bounds stay unchanged.",
+  "new_partition_tests_passed": 3,
+  "installed": false,
+  "full_goal_complete": false
+}

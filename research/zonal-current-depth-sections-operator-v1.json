@@ -1,0 +1,277 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.zonal-current-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New exploratory fixed-longitude meridional sections for KuroshioExtension,AgulhasReturn and NorthPacific. Existing editorial routes,source naming/geography and prior frozen full-section method reviewed before declaration. No new meridional-section source-field outcomes inspected. No within-run gate widening,section replacement or success-conditioned cutoff change.",
+  "geometry_provenance": "All fixed longitudes and latitude gates are OSW exploratory choices,not digitized/source numerical sections or independently validated current axes. Keep every native increasing latitude profile in each gate. Nearest longitude is circular,so180/-180 and west-longitude sections require no source slab crossing. NPC definitions stay in declared eastward order160E,170E,180,170W,160W,150W,145W. Latitudinal windows are bounded reference searches,not full widths or uncertainty ranges.",
+  "column_selector": "Reuse frozen complete0–200m signed integral and connected-layer rules with one90degree true eastward geographic component through depth. KE/AgulhasReturn require surface>5cm/s and upper200m core>10cm/s;diffuseNorthPacific uses surface>2cm/s and core>5cm/s. Positive signed integral and complete finite native0–200m support required. Greatest integral selects one profile;first native increasing latitude(southern) index breaks exact ties. All candidates/local maxima retained. Cutoffs are declared OSW model diagnostics,not source-recovered physical boundaries.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Read and validate source coordinate axes first,then preflight every declared section/date shape before any velocity field read. Fixed native longitude index and contiguous increasing3–150latitude rows persection;full40depthlevels0–5000m. Frozen20000velocitypairs-per-patch and250000total caps plus7MBdecodedvelocity cap,precheck16bytes/pair. Exact requested times preflighted before field retrieval. Maximum nearest-longitude WGS84distance over every native row<=5km. Each sourcechunk<2.5MB;unchanged aggregate/inline publication caps. No wirehash/byte claim.",
+  "currents": {
+    "current:kuroshio-extension": {
+      "entity_id": "current:kuroshio-extension",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "NOAAglossary regional eastward KE145–160E convention only. Exclude upstreamcoastalKuroshio,recirculationgyres,detachededdies and downstreamNorthPacific beyond160E. Approximate naming interface is not universal physical termination;meridional model maxima are not independently identified observed KEaxes."
+    },
+    "current:agulhas-return": {
+      "entity_id": "current:agulhas-return",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Studied regional eastward AgulhasReturn reach21–60E only. Exclude westernAgulhasgenesis/retroflection loops,rings,downstreamSouthIndianOceanCurrent and neighboringACC/fronts. Source broader easterntermination66–70E is outside this partialcollection. Eastward component alone cannot distinguish adjacent fronts or mesoscale flow;source geostrophic1500m reference is not a bottom or ourvelocityframe."
+    },
+    "current:north-pacific": {
+      "entity_id": "current:north-pacific",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "NOAAglossary convention eastward NorthPacific regional160E–145W acrossdate line;145W is OSW gate somewhat beyond approximate150W context. Exclude upstreamKE,downstreamAlaska/Californiabranches,recirculationeddies and wholeJapan-to-Americasystem. Broad diffuse eastward maxima are model-reference proxies,not independently validated physical current axes or a universal nomenclature."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-145e",
+      "entity_id": "current:kuroshio-extension",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 145,
+      "latitude_gate_degrees_north": [
+        32,
+        37
+      ]
+    },
+    {
+      "id": "section-150e",
+      "entity_id": "current:kuroshio-extension",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 150,
+      "latitude_gate_degrees_north": [
+        33,
+        38
+      ]
+    },
+    {
+      "id": "section-155e",
+      "entity_id": "current:kuroshio-extension",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 155,
+      "latitude_gate_degrees_north": [
+        33,
+        38
+      ]
+    },
+    {
+      "id": "section-160e",
+      "entity_id": "current:kuroshio-extension",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 160,
+      "latitude_gate_degrees_north": [
+        34.5,
+        39.5
+      ]
+    },
+    {
+      "id": "section-21e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 21,
+      "latitude_gate_degrees_north": [
+        -42.5,
+        -37.5
+      ]
+    },
+    {
+      "id": "section-25e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 25,
+      "latitude_gate_degrees_north": [
+        -42,
+        -37
+      ]
+    },
+    {
+      "id": "section-30e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 30,
+      "latitude_gate_degrees_north": [
+        -43,
+        -38
+      ]
+    },
+    {
+      "id": "section-40e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 40,
+      "latitude_gate_degrees_north": [
+        -43.5,
+        -38.5
+      ]
+    },
+    {
+      "id": "section-50e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 50,
+      "latitude_gate_degrees_north": [
+        -45.5,
+        -40.5
+      ]
+    },
+    {
+      "id": "section-55e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 55,
+      "latitude_gate_degrees_north": [
+        -46,
+        -41
+      ]
+    },
+    {
+      "id": "section-60e",
+      "entity_id": "current:agulhas-return",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 60,
+      "latitude_gate_degrees_north": [
+        -47,
+        -42
+      ]
+    },
+    {
+      "id": "section-160e",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 160,
+      "latitude_gate_degrees_north": [
+        35,
+        40
+      ]
+    },
+    {
+      "id": "section-170e",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 170,
+      "latitude_gate_degrees_north": [
+        36.5,
+        41.5
+      ]
+    },
+    {
+      "id": "section-180e",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 180,
+      "latitude_gate_degrees_north": [
+        38,
+        43
+      ]
+    },
+    {
+      "id": "section-170w",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -170,
+      "latitude_gate_degrees_north": [
+        39,
+        44
+      ]
+    },
+    {
+      "id": "section-160w",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -160,
+      "latitude_gate_degrees_north": [
+        39,
+        44
+      ]
+    },
+    {
+      "id": "section-150w",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -150,
+      "latitude_gate_degrees_north": [
+        39,
+        44
+      ]
+    },
+    {
+      "id": "section-145w",
+      "entity_id": "current:north-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -145,
+      "latitude_gate_degrees_north": [
+        39,
+        44
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://tidesandcurrents.noaa.gov/glossary.html",
+      "locator": "KuroshioExtension andNorthPacificCurrent entries",
+      "scope": "OfficialHTML freshly reviewedNovember2,2026 for source naming convention and broad longitudinal geography only. No provider latitude gates,observed/model axes or velocity data extracted;all search windows are OSW choices."
+    },
+    {
+      "url": "https://www.cfoo.co.za/seaatlas/papers/agulhas_return_current.pdf",
+      "locator": "LutjeharmsAnsorge2001Abstract,Introduction and retained studied-reach route source context",
+      "scope": "OriginalpaperPDFtext freshly reviewedNovember2,2026 for variable eastward/front-connected geography,mean downstream latitude context and regional naming distinction. No neworiginalpixels/figure digitization,source numerical sections or hydrographic velocities extracted. Source1500mgeostrophicreference not adopted as flow bottom."
+    }
+  ],
+  "input_sha256": {
+    "research/kuroshio-extension-reference-path-candidate.json": "0d776be891ec1cdcff094e51c10117deb5f55da3229a03b6c125e8c52f7ad96e",
+    "research/agulhas-return-reach-reference-path-candidate.json": "66a28f8a81bbe975dcd0b339e5feaf4bf95d83f35179dfbcb8d7a5611bc00e12",
+    "research/north-pacific-reference-path-candidate.json": "ee25ff511216b68828cc270c19499fd16dbeed200f1c2f387072a07813a05d87",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  },
+  "maximum_nearest_longitude_distance_km": 5
+}

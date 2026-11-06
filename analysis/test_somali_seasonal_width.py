@@ -1,4 +1,5 @@
 """A seasonal prose span cannot become a monthly observation series."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_somali_seasonal_width import ROOT,AUDIT,validate_row
@@ -13,7 +14,7 @@ def test_source_calendar_and_no_inference():
     with pytest.raises(ValueError):validate_row(row,audit)
 
 def check_compiled_scope_and_independent_route_playback(tmp_path):
-    path=ROOT/'almanac/query-data.json';bundle=json.loads(path.read_bytes())
+    path=ROOT/'almanac/query-data.json';bundle=json.loads(read_bundle_bytes(path))
     plans=json.loads(subprocess.check_output([str(CLI),str(path),'--seasons'],encoding='utf8'))['phase_plans']
     plan=plans['somali'];assert len(plan['phases'])==3 and plan['can_play'] is True and plan['eligible_indices']==[1,2]
     assert plan['phases'][0]['playback_step_eligible'] is False

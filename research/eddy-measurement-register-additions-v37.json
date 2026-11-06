@@ -1,0 +1,128 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 392,
+  "baseline_evidence_sha256": "b229632d39a96b3ef1673648a6f64ea64c0eebac98d7ae01bde9aa0f6e6e07c2",
+  "baseline_measurement_csv_sha256": "9b23b388faf5c4a98b86fa87a238619948d0b0d22c973be618383caa882631df",
+  "sources": {
+    "mckone-2007": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-135bee8132c157fa38a8bda511600626/pdf/GOVPUB-I-135bee8132c157fa38a8bda511600626.pdf",
+      "citation": "McKone, Walker and Weeks (2007), Full-Water Column Currents Near the Sigsbee Escarpment (91–92 degrees W Longitude) and Relationships with the Loop Current and Associated Warm- and Cold-Core Eddies, MMS 2007-056.",
+      "access": "Original government report acquired. PDF page 30 / printed page 20 actual pixels reviewed for the November WCE K interaction current diagnostics; native cm/s retained. Figure 11 date is context, not exact current sample time.",
+      "original": {
+        "bytes": 9973139,
+        "sha256": "4090f4086e68caee5ae23cacb2acefa1c6fe790ea6d6978631a878bfd60f57ca",
+        "pages": 107
+      },
+      "reviewed_page_png_sha256": {
+        "30": "575e23f8b3c7b4be0bbea17b0262731e289365ba5bb3752187aef3e83e01f6ab",
+        "31": "9f5618d0c3255f9cde954e3562c6386003ea8cc9a54c5540dc25b5ad8c73dcb9"
+      },
+      "source_review_file": "research/eddy-kinetic-current-and-source-gap-review-v1.json",
+      "source_review_sha256": "4f0ae90ffefcbc5ba333c3f5ad81c2dde03119d53ddb9564dc3d9f76af4dc928"
+    },
+    "hamilton-2003-k-alias": {
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc955365/m2/1/high_res_d/3032.pdf",
+      "citation": "Hamilton et al. (2003), Deepwater Observations in the Northern Gulf of Mexico from In-Situ Current Meters and PIES, Volume II: Technical Report, MMS 2003-049.",
+      "access": "Original government report acquired. PDF page 24 / printed page 14 actual pixels reviewed for the explicit Kinetic / Eddy K alias and 2000 phase history. This is alias context, not an independent measurement of the November LSU site currents.",
+      "original": {
+        "bytes": 14492455,
+        "sha256": "6dc38ce0b88aabeca1ca3a7bc5d9c1eb262b43a04059eed51d801da3a83bcb81",
+        "pages": 103
+      },
+      "reviewed_page_png_sha256": {
+        "24": "6b1b2c1a5c9891ae20ab21f7308b09ac60fed46effa026bf54382ca21f24ced5"
+      },
+      "source_review_file": "research/eddy-kinetic-current-and-source-gap-review-v1.json",
+      "source_review_sha256": "4f0ae90ffefcbc5ba333c3f5ad81c2dde03119d53ddb9564dc3d9f76af4dc928"
+    }
+  },
+  "records": [
+    {
+      "id": "kinetic-mckone-2007-november-near-surface-current",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "mckone-2007",
+      "category": "kinematics",
+      "metric": "source_reported_local_interaction_current_speed",
+      "value": 50,
+      "unit": "cm/s",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Kinetic / WCE K, qualified 2000 interaction-site reference",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "source_event_phase_not_exact_sample_dates",
+      "period_label": "First two weeks of November 2000; exact current sample times unspecified; 3 November map is context only",
+      "source_locator": "MMS 2007-056, PDF page 30 / printed page 20, WCE K November paragraph; Figure 11, PDF page 31. Alias: MMS 2003-049, PDF page 24 / printed page 14.",
+      "definition": "Near-surface current reached value at the interaction site; depth unspecified.",
+      "scope": "Qualified 2000 WCE K / Kinetic source-case association. Different reports and mooring sites; no verified cross-report physical join. Source May/mid-June chronology and registry 2000-06-18 remain unreconciled.",
+      "qualification": "Site and event diagnostic between an anticyclone and a cyclone, not isolated eddy swirl or a whole-eddy maximum. Two depths do not establish simultaneous sampling, a vertical profile, shear or thickness. Exact current times, uncertainty and raw records unavailable. No size, annual envelope, lifetime, state containment, ranking or seasonal playback inferred.",
+      "profile_context": {
+        "method": "source_reported_k_2000_mooring_current",
+        "source_event_label": "WCE K",
+        "published_alias": "Kinetic / Eddy K",
+        "alias_reference_source_id": "hamilton-2003-k-alias",
+        "station": "LSU Sigsbee mooring, deployments 1–2",
+        "source_phase": "first_two_weeks_november_2000",
+        "source_map_context_date": "2000-11-03",
+        "sample_depth_m": null,
+        "statistic": "source_reached_site_value",
+        "interaction_context": "mooring_between_WCE_K_and_cyclone",
+        "event_flow_direction_as_reported": "westward",
+        "exact_sample_dates_known": false,
+        "map_date_is_sample_time": false,
+        "cross_report_case_association_verified": false,
+        "physical_crosswalk_verified": false,
+        "simultaneous_vertical_profile_inferred": false,
+        "vertical_shear_computed": false,
+        "whole_eddy_maximum_inferred": false,
+        "is_eddy_vertical_extent": false,
+        "source_uncertainty_quantified": false,
+        "raw_current_time_series_acquired": false
+      }
+    },
+    {
+      "id": "kinetic-mckone-2007-november-755m-current",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "mckone-2007",
+      "category": "kinematics",
+      "metric": "source_reported_local_interaction_current_speed",
+      "value": 30,
+      "unit": "cm/s",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Kinetic / WCE K, qualified 2000 interaction-site reference",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "source_event_phase_not_exact_sample_dates",
+      "period_label": "First two weeks of November 2000; exact current sample times unspecified; 3 November map is context only",
+      "source_locator": "MMS 2007-056, PDF page 30 / printed page 20, WCE K November paragraph; Figure 11, PDF page 31. Alias: MMS 2003-049, PDF page 24 / printed page 14.",
+      "definition": "Local sampled maximum current speed at instrument depth 755 m during the interaction event.",
+      "scope": "Qualified 2000 WCE K / Kinetic source-case association. Different reports and mooring sites; no verified cross-report physical join. Source May/mid-June chronology and registry 2000-06-18 remain unreconciled.",
+      "qualification": "Site and event diagnostic between an anticyclone and a cyclone, not isolated eddy swirl or a whole-eddy maximum. Two depths do not establish simultaneous sampling, a vertical profile, shear or thickness. Exact current times, uncertainty and raw records unavailable. No size, annual envelope, lifetime, state containment, ranking or seasonal playback inferred.",
+      "profile_context": {
+        "method": "source_reported_k_2000_mooring_current",
+        "source_event_label": "WCE K",
+        "published_alias": "Kinetic / Eddy K",
+        "alias_reference_source_id": "hamilton-2003-k-alias",
+        "station": "LSU Sigsbee mooring, deployments 1–2",
+        "source_phase": "first_two_weeks_november_2000",
+        "source_map_context_date": "2000-11-03",
+        "sample_depth_m": 755,
+        "statistic": "source_local_sampled_maximum",
+        "interaction_context": "mooring_between_WCE_K_and_cyclone",
+        "event_flow_direction_as_reported": "westward",
+        "exact_sample_dates_known": false,
+        "map_date_is_sample_time": false,
+        "cross_report_case_association_verified": false,
+        "physical_crosswalk_verified": false,
+        "simultaneous_vertical_profile_inferred": false,
+        "vertical_shear_computed": false,
+        "whole_eddy_maximum_inferred": false,
+        "is_eddy_vertical_extent": false,
+        "source_uncertainty_quantified": false,
+        "raw_current_time_series_acquired": false
+      },
+      "depth_m": 755
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+name: California Alaska and Madagascar depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/pacific-madagascar-velocity-curtains-v1.yml
+      - analysis/derive_pacific_madagascar_velocity_curtains_v1.py
+      - analysis/test_pacific_madagascar_velocity_curtains_v1.py
+      - plans/pacific-madagascar-velocity-curtains-protocol-v1.md
+      - research/pacific-madagascar-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/pacific-madagascar-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_pacific_madagascar_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_pacific_madagascar_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_pacific_madagascar_depth_sections_v1.py
+            analysis/test_pacific_madagascar_velocity_curtains_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            plans/pacific-madagascar-velocity-curtains-protocol-v1.md
+            research/alaska-reference-path-candidate.json
+            research/california-2011-abstract-width-scope-audit.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v11.json
+            research/current-depth-source-facts-v7.json
+            research/pacific-madagascar-depth-sections-operator-v1.json
+            research/pacific-madagascar-depth-sections-source-facts-v1.json
+            research/pacific-madagascar-depth-sections-source-review-v1.json
+            research/pacific-madagascar-velocity-curtains-operator-v1.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-48n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-50n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-52n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-54n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-56n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-alaska-section-57n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-23n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-25n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-28n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-31n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-34n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-37n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-40n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-california-section-43n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-20s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-21s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-22s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-23s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-24s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-01-15-southern-east-madagascar-section-25p5s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-48n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-50n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-52n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-54n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-56n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-alaska-section-57n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-23n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-25n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-28n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-31n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-34n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-37n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-40n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-california-section-43n.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-20s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-21s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-22s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-23s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-24s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/2022-07-15-southern-east-madagascar-section-25p5s.json
+            research/source-data/pacific-madagascar-depth-sections-v1/manifest.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pacific_madagascar_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pacific_madagascar_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_pacific_madagascar_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pacific-madagascar-velocity-curtains-v1
+          path: pacific-madagascar-velocity-curtains-v1/
+          retention-days: 7

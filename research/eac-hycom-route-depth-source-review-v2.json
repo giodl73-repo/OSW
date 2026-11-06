@@ -1,0 +1,86 @@
+{
+  "schema": "osw.eac-hycom-route-depth-source-review.v2",
+  "status": "PASS_BOUNDED_MODEL_COLLECTION_WITH_CURRENT_AXIS_REVIEW_PENDING",
+  "cloud_reviews": [
+    {
+      "run_id": 41432159359,
+      "source_commit": "f77dc790159dd9f817507d8ceadee6d7a9ad0a5e",
+      "conclusion": "success",
+      "tests_passed": 9,
+      "url": "https://github.com/giodl73-repo/OSW/actions/runs/41432159359"
+    }
+  ],
+  "prior_terminal_retrieval_failures": [
+    {
+      "run_id": 41431013960,
+      "attempt": 1,
+      "source_commit": "8cb424ea808465c61724937b64bf54d9c9c7d9b0",
+      "status": "completed",
+      "conclusion": "failure",
+      "reason": "NCSS read timeout after first three January route nodes; partial artifact retained. No physical data admission from failed run."
+    },
+    {
+      "run_id": 41431013960,
+      "attempt": 2,
+      "source_commit": "8cb424ea808465c61724937b64bf54d9c9c7d9b0",
+      "status": "completed",
+      "conclusion": "failure",
+      "reason": "NCSS read timeout after first three January route nodes; partial artifact retained. No physical data admission from failed run."
+    }
+  ],
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-hycom-route-depth-operator-v2.json": "56bcf090ef2736d963aba8dcf864f5b4f56766e47e78d501b189313e4084886f",
+    "research/eac-hycom-route-depth-operator-v1.json": "a37f809ddc326ea5cc10a883822384869785b45b376628d6cd473ebdb368c6e1",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/test_eac_hycom_route_depth_v1.py": "4fd8deccabc8501b4b80eba6407e66157b42e4f2246a5f15942823ea84ea4d6c",
+    "analysis/test_eac_hycom_route_depth_v2.py": "be526366ced7d02d640b8ccbe59670c7005aca7412d6c0b54f6643d87becea4d",
+    ".github/workflows/eac-hycom-route-depth-v1.yml": "416541cf822518dc8f040f3c673c1d26a5e6790ae719a34603b2584d2fd9fae7",
+    ".github/workflows/eac-hycom-route-depth-v2.yml": "e8ee83cc751ed330d9c65d54393072692145225be6eb7d431fd8b5275a0fe4d0",
+    "research/east-australian-reference-path-candidate.json": "f9e903221cf97d197e7b6f2f62094fd6bd7d99fe82d852af857b1f54e31a20d8",
+    "research/current-depth-register-v38.json": "748c2524180a5c20c377701bbce3681919aaf8ed77cf820301cbe7604ebb5fc4",
+    "research/current-depth-register-v38.csv": "49793aa7dcc4d074919dd1b55afc2ff5beeef683e2c17cfaef6ea83cac448cc2",
+    "research/current-depth-route-projections-v6.json": "065a256fb2def0f2d5ebabeec46f1ba02fa6bcfdff49f476ec378f2ed1a11d9c"
+  },
+  "counts": {
+    "snapshots": 2,
+    "route_vertices": 7,
+    "sampled_cases": 14,
+    "cases_with_adjacent_lower_isotach_crossing": 12,
+    "selected_horizontal_edge_maxima": 6,
+    "sampled_velocity_cell_pairs": 36480,
+    "decoded_velocity_array_bytes": 291840
+  },
+  "canonical_depth_register_counts_unchanged": {
+    "identities": 111,
+    "depth_references": 342,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "previous_depth_and_eddy_registers_preserved": true,
+  "scientific_review": [
+    "Two prespecified instantaneous HYCOM GOFS3.1 GLBy0.08 experiment93.0 dates,2022-01-15T00:00Z and2022-07-15T00:00Z, sampled at seven editorial EAC route vertices15/18/21/24/27/30/32S. Fourteen bounded model cases retain all five declared normal-offset profiles at forty standard z levels. These are interpolated standard-depth output levels, not forty independent observed levels or the forty-one native hybrid layers.",
+    "Source exact time, time index, available analysis lead, component metadata, sea-surface-positive-down metre coordinates, global hyperslab indices and canonical decoded-profile hashes are retained. NetCDF client decodes packed velocity scale/offset. OPeNDAP wire bytes and byte hashes are not instrumented or claimed.",
+    "Direct access used36480 velocity cell pairs and291840 decoded array bytes. Pre-read guards reject a global velocity request, a patch over20000 cell pairs or cumulative250000 pairs; decoded byte cap7MB also enforced. Computation and tests were cloud-only, sequential on one idle CPU. No local ocean-field execution, runtime/browser/WASM/server action.",
+    "Numerical operator projects east/north components onto the WGS84 downstream editorial tangent, selects the greatest positive upper0–200m core among offsets−40/−20/0/20/40km, then traces the first adjacent lower5cm/s crossing. Alternate10/20cm/s contours use the same horizontal node and retain their own qualifying core. These are declared model diagnostics, not observed full-flow bottoms or a universal physical current definition.",
+    "Twelve cases yield a primary adjacent lower-isotach crossing. Both32S snapshots are censored before missing/dry levels. Their lower depth remains unknown: a wet-grid limit, seabed or last available model level is not substituted as a current bottom.",
+    "Six selected sampled maxima lie at an outermost normal offset; their axes remain horizontally unresolved. Interior sampled maxima are also not independently validated axes. A nearby downstream velocity core alone does not prove named-current membership, a complete cross-section or full-route coverage. No search widening, switching to a convenient secondary profile or extrapolation is used to close these gaps.",
+    "The source route is a frozen, explicitly unreviewed editorial corridor for the coherent15–32S jet. Two dated snapshots cannot establish monthly means, a seasonal climatology, annual extrema or uncertainty bounds. The instantaneous HYCOM contour is not the Kerry/Roughan ROMS long-term mean-mask definition; products and time operators remain separate.",
+    "Nine cloud tests pass: downstream component rotation, first lower contour versus deeper return flow, missing/dry and deepest-level censoring, opposing-flow rejection, fixed-window tie selection, invalid depth/threshold rejection and pre-read global/cumulative-cell budget guards. Collection success establishes reproducible model diagnostics, not physical axis validity.",
+    "Canonical register remains342 qualified depth references across101 identities. Existing eight regional reference projection scenarios and the provisional EAC reference-geometry volume scenario remain unchanged. This pilot adds no canonical depth measurement, whole-route physical depth profile, width join, stored-water volume, physical-state passage or global total.",
+    "NCSS transport produced three valid January nodes before a terminal read timeout in each of two attempts. After verifying both attempts terminal, direct OPeNDAP transport completed the same declared experiment. The three initial scalar results agree with the NCSS readouts; transport was changed without tuning the scientific selection operator."
+  ],
+  "next_actions": [
+    "Review current-axis and branch identity against an independent regional path/source before admitting samples as named-current depth estimates.",
+    "Resolve the six edge-selected maxima and two vertically censored cases using predeclared source-backed spatial or depth support; retain their current flags until supported.",
+    "Integrate reviewed snapshot descriptors with route/season query records separately from observations, long-term mean masks and physical thickness. Expand dates only under an explicit temporal sampling protocol."
+  ],
+  "source_citation": "HYCOM Consortium/NRL GOFS3.1 GLBy0.08 experiment93.0 archive, COAPS/FSU. Source documentation https://www.hycom.org/dataserver/gofs-3pt1/analysis;2022 velocity catalog https://tds.hycom.org/thredds/catalogs/GLBy0.08/expt_93.0_uv3z.html?dataset=GLBy0.08-expt_93.0-uv3z-2022.",
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

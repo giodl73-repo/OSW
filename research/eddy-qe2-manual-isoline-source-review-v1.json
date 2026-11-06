@@ -1,0 +1,140 @@
+{
+  "schema": "osw.eddy-qe2-manual-isoline-source-review.v1",
+  "status": "PASS_QUALIFIED_MANUAL_PLOTTED_ISOLINE_EXTENT",
+  "review_date": "2026-11-01",
+  "original": {
+    "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-525d286afa5ddb6f922c65254a711651/pdf/GOVPUB-I-525d286afa5ddb6f922c65254a711651.pdf",
+    "bytes": 14471783,
+    "sha256": "87242ed9c88aa27f209c0e3994483af94d48af7ed9253b54ce7020aa29a70286",
+    "pages": 417
+  },
+  "citation": "Rowe and Kennicutt (2009), Northern Gulf of Mexico Continental Slope Habitats and Benthic Ecology Study, Final Report, MMS 2009-039, July 2009.",
+  "case": {
+    "owner_id": "eddy:horizon:loop-40-secondary",
+    "source_name": "QE2",
+    "source_map_date": "2002-08-08",
+    "source_ssh_contour_cm": 5,
+    "source_contour_interval_cm": 5,
+    "source_ssh_reference": "unspecified in reviewed source",
+    "contour_level_assignment": "intermediate line between labeled 0 and 10 cm contours, checked against the 5 cm color-key intervals",
+    "outline": {
+      "bbox_xyxy": [
+        475,
+        480,
+        554,
+        547
+      ]
+    },
+    "manual_extrema_xy": {
+      "west": [
+        475,
+        500
+      ],
+      "north": [
+        520,
+        480
+      ],
+      "east": [
+        554,
+        520
+      ],
+      "south": [
+        530,
+        547
+      ]
+    },
+    "axes": {
+      "longitude": [
+        [
+          314,
+          -93
+        ],
+        [
+          443,
+          -90
+        ],
+        [
+          574,
+          -87
+        ]
+      ],
+      "latitude": [
+        [
+          357,
+          27
+        ],
+        [
+          500,
+          24
+        ],
+        [
+          641,
+          21
+        ]
+      ]
+    },
+    "native_raster": {
+      "xref": 1202,
+      "width": 971,
+      "height": 950,
+      "samples_sha256": "16effa557108e628a495ce103c3d510cc1698854facb79efc96ed3b48e3aec24",
+      "png_sha256": "eaf7e5049b809c00673d04d1387eec566614ec4995ce1bb11872dc62c141168d"
+    },
+    "reading_allowance_pixels": 6,
+    "axis_sensitivity_pixels": 2,
+    "round_outward_km": 25,
+    "earth_radius_km": 6371,
+    "source_map_date_is_exact_observation_time": false,
+    "closed_boundary_topology_verified": false,
+    "missing_segments_reconstructed": false,
+    "whole_physical_eddy_extent_inferred": false,
+    "physical_crosswalk_verified": false,
+    "physical_footprint_admitted": false,
+    "physical_state_join_eligible": false,
+    "rights_screened_release_eligible": false,
+    "annual_extrema_inferred": false,
+    "principal_width_inferred": false,
+    "diameter_inferred": false,
+    "source_operator_equated_to_osw_speed_core": false
+  },
+  "source_locator": "Figure 8-5, printed page 82 / PDF page 104; named Quick-west/QE2-east split description on printed page 83 / PDF page 105.",
+  "actual_pdf_pixels_reviewed": [
+    104,
+    105
+  ],
+  "reviewed_render_sha256": {
+    ".pytest_cache/eddy-qe2-source-v52/page104.png": "e8037f0b56348952ba333abd12dd82ac5b669500abda45acea2580c4373968d2",
+    ".pytest_cache/eddy-qe2-source-v52/page105.png": "78d199413084e344845950f56b9cefd0f773d485c5a2e55dd52980bcdb35b31f"
+  },
+  "source_verification": {
+    "original_pdf_bytes_and_sha256_verified": true,
+    "native_raster_samples_verified": true,
+    "actual_source_pixels_reviewed": true,
+    "named_eastern_split_feature_text_reviewed": true,
+    "local_one_idle_cpu": true,
+    "ocean_fields_processed": false
+  },
+  "prior_position_review_file": "research/eddy-qe2-position-source-review-v1.json",
+  "prior_position_review_sha256": "b82e66d128b5167b2310e01ee18bf6ac809af230499fe148ea6150aa41b40d98",
+  "prior_speed_core_rejection_file": "research/eddy-qe2-speed-core-rejection-review-v1.json",
+  "prior_speed_core_rejection_sha256": "7d707ac307de1f5885bf2b22755e105a22d5f4d8a45aeb27fb6e5001c7b93d0e",
+  "prior_speed_core_rejection_preserved": true,
+  "prior_closed_ink_rejections_preserved": true,
+  "method_file": "analysis/eddy_manual_ssh_isoline_spans_v1.py",
+  "method_sha256": "01da03932050947c70b98373bdaec3a6b9f80071b7d5c019e90cf4be400c86bf",
+  "axis_math_file": "analysis/eddy_map_spans_v1.py",
+  "axis_math_sha256": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
+  "limitations": [
+    "Manual visible extremum readout of a particular plotted 5 cm SSH isoline, not an automated closed contour extraction or a physical eddy boundary. The 5 cm line is the intermediate line between the labeled 0 and 10 cm contours, consistent with the 5 cm color-key increments.",
+    "The source states Quick is west and QE2 east after a summer split. The source-case association to registry QE-2 is punctuation normalization and split context only; no physical identity crosswalk is established.",
+    "The selected contour is distinct from the labeled 10 cm inner contour, its text mask, the outer 0 cm contour, the western Quick feature, northern slope highs and the main Loop Current. Do not use a text-covered inner contour as a whole-eddy extent.",
+    "Six native pixels per extremum and two-pixel shifts on six axis anchors across 64 cases, followed by outward 25 km rounding, cover reading sensitivity only. Manual interpretation, raster distortion, source analysis error, SSH reference and physical-boundary uncertainty are unquantified.",
+    "The source specifies SSH but does not establish its datum here. The plotted 5 cm level is not assumed equivalent to modern native ADT or an OSW speed-core boundary.",
+    "The August 8, 2002 map label is not proof of exact simultaneous sampling or a formation date, lifetime or annual range.",
+    "The previous unique-peak speed-core test rejected both step sizes for multiple peaks. Both previous neutral-ink closure tests remain rejected. No gates relaxed, peaks moved, source gaps repaired or automatic closure inferred. This is a separate manual chart-isoline quantity.",
+    "No polygon, area, diameter, radius, principal width, state join, ranking, seasonal playback or source-asset republication admitted."
+  ],
+  "measurements_admitted_by_source_review": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

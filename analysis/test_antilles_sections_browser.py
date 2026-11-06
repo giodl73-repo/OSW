@@ -1,4 +1,5 @@
 """Pinned observed sections are reachable without promoting current width."""
+from query_packet import read_bundle_bytes
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -60,7 +61,7 @@ def main():
         assert failed.locator('#section-select').is_disabled()
         assert failed.locator('#section-samples tr').count()==0
         missing=browser.new_page()
-        bundle=json.loads((root/'almanac/query-data.json').read_bytes())
+        bundle=json.loads(read_bundle_bytes(root/'almanac/query-data.json'))
         del bundle['manifest']['atlas_receipts']['research/antilles-ab0505-400m-section-diagnostic.json']
         route_atlas_bundle(missing,bundle)
         missing.goto('http://127.0.0.1:8788/almanac/antilles-sections.html')

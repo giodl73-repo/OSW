@@ -1,0 +1,31 @@
+{
+  "schema": "osw.makassar-terrain-status-join-operator.v1",
+  "scope": "Compiled CSV status-string and exact model-GeoJSON join; no terrain pixels,native point-array report,source-data or provider access",
+  "input_sha256": {
+    "analysis/join_makassar_terrain_status_v1.py": "30acd3890cce0af2da0f265440bce62d8ab64ba0be67681adcefc7c6191efff9",
+    "analysis/test_makassar_terrain_status_join_v1.py": "3a2ed98e121a0562b1fd87d0faca1219ea79950fd62a77bb8ab3abfef80ee189",
+    "plans/makassar-terrain-reviewed-scenario-gates-v1.md": "85630957e3c15535e99131d5a62d99af84fdafe10c4dd11aa0eff00f0868e32d",
+    ".github/workflows/makassar-terrain-status-join-v1.yml": "db444ab8ee6623ce1f0ac1b7fccee9798e1d79580c6c7b05a99a1093628508b7",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/makassar-etopo-coarse-terrain-screen-v1.csv": "70d653146107d47bb0ae5b7809b7a64dec347c35e72a8c48b049b7dcbee01352",
+    "research/barents-makassar-conditional-depth-surface-segments-v1.csv": "7afa65fc41da21ed78699fce56e16cd04f85ae911f900534b32b3ba8500404bd",
+    "research/barents-makassar-conditional-depth-surfaces-v1.geojson": "6909d8de6425240df0a206911be509dbba13a031b91e4324723dc20783932eb6",
+    "research/current-depth-makassar-etopo-terrain-source-review-v1.json": "342e48b0f29189c9ea2f66416454e99b28b74b78364245ab2089215c92427321"
+  },
+  "combined_numeric_cap": 250000,
+  "combined_unique_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "csv_reservation": "all digit-runs in both CSV byte packets before string parsing; no numeric/scenario cell conversion",
+  "exact_compiled_geojson_exception": "research/barents-makassar-conditional-depth-surfaces-v1.geojson under unchanged before-decode JSON guard; generic reader unchanged",
+  "source_patches": 59,
+  "source_segment_slots": 24,
+  "shared_deadline_seconds": 60,
+  "maximum_output_bytes": 2400000,
+  "new_provider_requests": 0,
+  "new_native_terrain_values_decoded": 0,
+  "new_native_velocity_values_decoded": 0,
+  "closed_terrain_case_renewed": false,
+  "physical_volume_promotion_allowed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

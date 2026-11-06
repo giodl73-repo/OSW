@@ -1,0 +1,54 @@
+name: WSC F3 dated warm northward flow depth brackets v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_wsc_f3_warm_flow_brackets_v1.py
+      - analysis/test_wsc_f3_warm_flow_brackets_v1.py
+      - .github/workflows/wsc-f3-warm-flow-brackets-v1.yml
+      - research/wsc-f3-warm-flow-bracket-operator-v1.json
+      - plans/wsc-f3-warm-flow-brackets-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  measure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/derive_wsc_f3_warm_flow_brackets_v1.py
+            analysis/test_wsc_f3_warm_flow_brackets_v1.py
+            plans/wsc-f3-warm-flow-brackets-protocol-v1.md
+            .github/workflows/wsc-f3-warm-flow-brackets-v1.yml
+            research/wsc-f3-warm-flow-bracket-operator-v1.json
+            research/wsc-f3-original-preview-ledger-v1.json
+            research/wsc-f3-bounded-preview-metadata-v1.json
+            research/source-data/wsc-f3-bounded-preview-v1/preview.html
+            research/source-data/wsc-f3-bounded-preview-v1/landing.html
+            analysis/derive_wsc_f3_warm_flow_brackets_v1.py
+            research/wsc-f3-observed-depth-case-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one idle CPU semantic checks and original native query
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_F3_BRACKET_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_wsc_f3_warm_flow_brackets_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 65s python analysis/derive_wsc_f3_warm_flow_brackets_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wsc-f3-warm-flow-brackets-v1
+          path: wsc-f3-warm-flow-brackets-v1/
+          retention-days: 7
+          if-no-files-found: error

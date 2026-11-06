@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Current widths · OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    main{padding:1rem}h1{font-size:clamp(2.5rem,6vw,4rem);margin:1rem 0}.width-controls{display:flex;flex-wrap:wrap;gap:1rem;align-items:end;margin:1.5rem 0}label{display:grid;gap:.2rem}input,select{max-width:100%}
+    #width-summary{font-weight:700}.width-note{color:var(--muted);font-size:.85rem;display:block;margin:.35rem 0}.width-links{display:flex;flex-wrap:wrap;gap:1rem}
+    .width-scroll{overflow:auto}table{font-size:.9rem}th,td{padding:.65rem}details{max-width:42rem}details p{line-height:1.45;margin:.6rem 0}.width-record{padding:.8rem 0;border-bottom:1px solid var(--line)}.width-value{font-weight:750;font-variant-numeric:tabular-nums}.width-record h3{font-size:1rem;margin:.2rem 0}.width-record a{display:inline-block;margin:.2rem .8rem .2rem 0}.width-missing{color:#ffdc95}
+    @media(max-width:650px){.width-scroll table{min-width:0}thead{display:none}table,tbody,tr,td{display:block;max-width:100%;overflow-wrap:anywhere}tr{border-bottom:2px solid var(--line);padding:.6rem 0}td{border:0;padding:.35rem 0}td::before{content:attr(data-label) ': ';font-weight:700}details{max-width:100%}.width-controls{display:block}.width-controls label{margin:1rem 0}}
+  </style>
+  <script src="widths.js" defer></script>
+</head>
+<body><main>
+  <nav><a href="index.html">Almanac</a><a href="lengths.html">Lengths</a><a href="dashboard.html">Coverage</a><a href="reference-routes.html#route-atlas">Current atlas</a></nav>
+  <h1>Current widths</h1>
+  <p>Width depends on the feature, location, depth and season. Inspect the definition beside each value.</p>
+  <p id="width-summary" role="status">Loading source width register…</p>
+  <p>A local span, one-sided distance or fitted scale is not a constant width along the entire current. Ranges retain their source meaning; annual variation and uncertainty stay separate.</p>
+  <p class="width-links"><a href="../research/current-width-register-v1.csv" download>Download evidence CSV</a><a href="../research/current-width-register-v1.json">Data and source records</a><a href="../plans/current-width-register-v1.md">Width rules</a></p>
+  <form id="width-controls" class="width-controls">
+    <label>Find a current<input id="width-search" type="search" placeholder="Name or basin"></label>
+    <label>Show<select id="width-filter"><option value="all">All identities</option><option value="direct">Direct source references</option><option value="new_qualified_reference">New qualified references</option><option value="member_references">Family member references</option><option value="needs_width_evidence">Width evidence gaps</option></select></label>
+    <label>Definition<select id="width-metric"><option value="all">All definitions · kept separate</option></select></label>
+    <label>Order<select id="width-order"><option value="name">Name</option><option value="value" disabled>Value · select one definition</option></select></label>
+  </form>
+  <p id="width-results" aria-live="polite"></p>
+  <div class="width-scroll"><table><thead><tr><th>Current</th><th>Source quantities</th><th>Scope and source records</th></tr></thead><tbody id="width-rows"></tbody></table></div>
+</main></body></html>

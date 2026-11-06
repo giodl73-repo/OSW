@@ -1,0 +1,93 @@
+name: Check South Java context with saved WASM v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-saved-wasm-request-v1.json
+      - .github/workflows/south-java-saved-wasm-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  CARGO_TARGET_DIR: ${{ github.workspace }}/.pytest_cache/south-java-model-layer-cloud-build-v1/target
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  saved-engine-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read saved-engine request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/south-java-saved-wasm-request-v1.json').read_bytes())
+          assert request['schema']=='osw.south-java-saved-wasm-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+      - name: Verify source and saved-engine identity
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_saved_wasm_v1.py --cloud-check --preflight-only
+      - name: Check refusal and ABI buffer fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_saved_wasm_v1.py -v
+          taskset -c "$cpu" nice -n 15 node --test --test-concurrency=1 analysis/test_south_java_saved_wasm_v1.mjs
+      - name: Install native compiler only
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+      - name: Fetch locked dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Build native comparison CLI
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Reproduce exact candidate then compare saved WASM
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_saved_wasm_v1.py --cloud-check --cli "$CARGO_TARGET_DIR/debug/osw-query-cli"
+      - name: Retain compact compatibility receipt
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-saved-wasm-v1
+          path: |
+            .pytest_cache/south-java-saved-wasm-v1/result.json
+            .pytest_cache/south-java-saved-wasm-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

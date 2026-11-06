@@ -1,0 +1,121 @@
+{
+  "schema": "osw.published-satellite-core-width-runtime-contract.v4",
+  "status": "SOURCE_AND_VISUAL_PREPARED_RUNTIME_DELIVERY_PENDING",
+  "parent_coverage_checkpoint": "research/current-measurement-coverage-checkpoint-v7.json",
+  "parent_logical_sha256": "c27c5c8319ab59fa6069274df1b7d19c87cf5a2aea8a7a04ba808a1636b9e212",
+  "source_file": "research/agulhas-krug-2012-core-widths-source-facts-v1.json",
+  "source_sha256": "307c603c3b0604afc39d22fde86f9343de62a61f074dff416ca1c7644063ae7c",
+  "prepared_report_file": "research/agulhas-krug-2012-core-widths-prepared-v1.json",
+  "prepared_report_sha256": "af228957529b2782688d50e19f6115e557f1a534edfa85e3fb87be0e82b6ff8c",
+  "collection": "widths",
+  "owner": "current:agulhas",
+  "new_record_ids": [
+    "agulhas-krug-2012-altimetry-gaussian-core-mean-width",
+    "agulhas-krug-2012-sst-core-mean-width"
+  ],
+  "expected_reported_mean_widths_km": [
+    64,
+    80
+  ],
+  "source_pointers": [
+    "/records/0",
+    "/records/1"
+  ],
+  "preservation": {
+    "old_width_records": 172,
+    "old_width_records_preserved_byte_logically": true,
+    "old_width_samples": 463,
+    "old_width_samples_unchanged": true,
+    "old_scoped_width_owners": 87,
+    "expected_scoped_width_owners_after": 87,
+    "expected_width_records_after": 174,
+    "existing_owner_width_ids_preserved": true,
+    "only_allowed_object_changes": "Append two Agulhas width IDs, increment scoped_width from2 to4, and derive its object and measurements fingerprints using the exact source-bound v1 recipe. Every other field and owner remains unchanged.",
+    "old_reference_routes_unchanged": true,
+    "old_canonical_measurements_unchanged": true,
+    "old_pemba_speed_summaries_unchanged": true,
+    "old_six_atlantic_seasonal_core_velocities_unchanged": true,
+    "old_source_document_strings_preserved": 629,
+    "source_document_replacements": 0,
+    "expected_indexed_source_documents_after_one_facts_document": 630
+  },
+  "query_verification": [
+    "All Agulhas width records retain existing rows and include exactly two new means.",
+    "Exact new-ID filters preserve64 and80km means as separate operators with null annual ranges, errors, dates and geometry.",
+    "Source queries at records/0 and records/1 return exact original fact records.",
+    "Filtered scenes display only matching mean rows; the complete comparison figure is separately labeled as full context.",
+    "Native and shipped WASM complete responses agree before and after pagination.",
+    "Zero-match and unrelated-owner filters return no new width scene.",
+    "Source, owner, value, ambiguity, capability, row deletion, row duplication and geometry-promotion mutations reject."
+  ],
+  "presentation_verification": [
+    "Query, selected Agulhas atlas card and seasons page show method-specific widths, exact source/Inspect links and uncertainty limitations.",
+    "The two means are not displayed as a64-80km seasonal or uncertainty interval.",
+    "The unresolved Gaussian wording and reported non-detection of an annual width cycle remain accessible.",
+    "Selecting a new mean is a static evidence state. Preserve existing dated/sample playback behavior for other Agulhas evidence.",
+    "No geographic width bars, buffered footprints, state intersections or physical seasonal animation are generated from these means.",
+    "Review actual desktop and phone screenshots, horizontal navigation, legible text and exact record/source destinations.",
+    "Retain the original dashboard receipt and expose only the exact derived snapshot. Verify updated measurement indication using prior baseline."
+  ],
+  "resource_limits": {
+    "max_cloud_jobs": 1,
+    "max_heavy_local_jobs": 0,
+    "one_cpu_below_normal_or_nice15": true,
+    "numerical_workers": 1,
+    "source_field_processing_permitted": false,
+    "main_merge_permitted": false,
+    "local_bulk_preview_sync_permitted": false
+  },
+  "installed": false,
+  "full_goal_complete": false,
+  "previous_contract_file": "research/agulhas-krug-2012-core-widths-runtime-contract-v3.json",
+  "previous_contract_sha256": "d2d1e1e1b27d42638cf5311a50728815a7e869e123191db3d00597d9c566060d",
+  "dashboard_projection": {
+    "historical_receipt_and_source_index_strings_unchanged": true,
+    "allowed_row_changes": [
+      "width_ids when present",
+      "capabilities.scoped_width",
+      "fingerprint",
+      "section_fingerprints.measurements"
+    ],
+    "allowed_document_changes": [
+      "entries/current:agulhas",
+      "snapshot_fingerprint",
+      "published_satellite_core_width_projection_v1"
+    ],
+    "fingerprint_recipe": "SHA256 of UTF-8 osw.satellite-core-widths.v1, group, previous fingerprint, facts SHA256, first new ID, second new ID; each followed by newline. Groups object/measurements/snapshot.",
+    "complete_native_wasm_api_comparisons": [
+      "atlas",
+      "seasons",
+      "dashboard"
+    ],
+    "actual_browser_verification": "Prior snapshot baseline must show Agulhas Updated / Measurements changed and4 scoped width records, at1100px and320px. Other owner fingerprints unchanged."
+  },
+  "legacy_inventory_verification": {
+    "validators": [
+      "hansen_asar_widths",
+      "neuc_glider_widths",
+      "aleutian_onishi_width"
+    ],
+    "rule": "Retain exact preceding width inventory and order; append exactly the two source-bound satellite mean rows only when their admission is active. No arbitrary extra widths accepted.",
+    "new_regression_tests": 3,
+    "mutations_rejected": [
+      "altered satellite mean",
+      "duplicate appended row",
+      "preceding row order changed"
+    ],
+    "planned_complete_rust_test_count": 223
+  },
+  "legacy_case_adaptation": {
+    "query": {
+      "collection": "widths",
+      "limit": 1
+    },
+    "historical_expected_total": 172,
+    "candidate_expected_total": 174,
+    "exactly_one_case_changed": true,
+    "historical_case_sources_unchanged": true,
+    "other_query_expectations_unchanged": true,
+    "expectation_not_derived_from_response": true
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema": "osw.north-brazil-depth-sections-operator.v1",
+  "entity_id": "current:north-brazil",
+  "sections": [
+    {
+      "id": "section-05s",
+      "latitude_degrees_north": -5,
+      "longitude_gate_degrees_east": [
+        -37,
+        -32
+      ]
+    },
+    {
+      "id": "section-03s",
+      "latitude_degrees_north": -3,
+      "longitude_gate_degrees_east": [
+        -42,
+        -34
+      ]
+    },
+    {
+      "id": "section-01s",
+      "latitude_degrees_north": -1,
+      "longitude_gate_degrees_east": [
+        -48,
+        -38
+      ]
+    },
+    {
+      "id": "section-00p5n",
+      "latitude_degrees_north": 0.5,
+      "longitude_gate_degrees_east": [
+        -52,
+        -42
+      ]
+    },
+    {
+      "id": "section-02n",
+      "latitude_degrees_north": 2,
+      "longitude_gate_degrees_east": [
+        -54,
+        -44
+      ]
+    },
+    {
+      "id": "section-04n",
+      "latitude_degrees_north": 4,
+      "longitude_gate_degrees_east": [
+        -56,
+        -46
+      ]
+    },
+    {
+      "id": "section-07n",
+      "latitude_degrees_north": 7,
+      "longitude_gate_degrees_east": [
+        -57,
+        -47
+      ]
+    }
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "revision_context": "Exploratory revision after the fixed editorial-corridor pilot returned ten outer-window selections and four no-core cases, leaving both dates entirely blocked. Pilot outcomes and broad source geography were inspected before this declaration; this is not blinded registration. No source field outcomes from the new sections have been inspected. Old source values/operators/blocked cases stay frozen.",
+  "geometry_provenance": "All seven fixed latitude sections and longitude gates are OSW exploratory choices, guided by broad surface-branch/coastline context in the primary source. They are neither source-provided numerical HS1/HS2/HS3 endpoints nor digitized figure geometry. Collect every native longitude column in each declared gate. No within-run gate expansion, hidden replacement section or success-conditioned window change.",
+  "component_bearing_degrees_true": 315,
+  "component_definition": "Signed northwest component(-u+v)/sqrt(2),one315degree true reference direction fixed for every longitude/depth. This is an explicit geographic diagnostic, not a reproduction of the source45degree rotation convention or an independently measured flow tangent. Latitude sections are not flow-normal widths.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "primary_threshold_m_s": 0.1,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "column_selector": "Require complete finite native0–200m component support, native0m northwest component>5cm/s, qualifying upper200m maximum>10cm/s and positive signed trapezoidal0–200m integral. Select the largest integral, first native increasing-longitude index breaks ties. This targets a surface-connected upper branch rather than a single-depth spike or a detached subsurface core.",
+  "horizontal_support_policy": "Retain the selected maximum even if it is at a gate edge or has an immediately adjacent column lacking complete upper200m support. Mark these as unresolved axis brackets rather than selecting a weaker interior result. Retain every candidate score/eligibility and all local integral maxima; multiple peaks are not independently named currents or significance evidence.",
+  "vertical_operator": "At the one selected column retain frozen connected-layer5/10/20cm/s diagnoses, each with its own qualifying0–200m core, upper/lower status and adjacent finite brackets. Keep signed deep return flow. Native0m is a layer boundary only with contiguous threshold support. Missing/dry/domain edges remain unknown, not a seabed or5000m current bottom. Layer span is not admitted physical current thickness.",
+  "branch_scope": "Regional surface North Brazil branch from its surfacing/origin region near5S through7N retroflection approach. Exclude separately named upstream NBUC, Guiana above10N, eastward retroflected/NECC/EUC continuations and detached ring identities. A northwest model-column maximum inside a broad section remains an axis proxy, not independent named-current validation.",
+  "amazon_caveat": "The source altimetry study excludes unrealistic high-variability Amazon-region geostrophic estimates. This new product is instantaneous assimilating HYCOM velocity and full exploratory sections include coastal/Amazon environments. Do not transfer the altimetry filter/error values or claim this collection reproduces/validates its current axes or1993–2017widths.",
+  "source_review": {
+    "paper_url": "https://os.copernicus.org/articles/19/251/2023/",
+    "doi": "10.5194/os-19-251-2023",
+    "source_pdf_sha256": "af6714cebada272ae0936cfc685cd8d75dfb9a71f0ab1d9b2afa10b7acf2f404",
+    "actual_viewed_original_pdf_page": 3,
+    "actual_viewed_printed_page": 253,
+    "local_render_sha256": "d975ee2193f30d8812827a689d21046689ed666018a4d6747f73cb5c09b88f41",
+    "scope": "Original Figure1 and adjacent Section2.1 methods actually viewed from retained publisher-PDF render;HTMLIntroduction/Sections2.1/3 freshly reviewed. Figure gives branch/oblique-section context,not precise longitude-gate endpoints. No new pixel digitization, source width conversion or source depth measurement is performed.",
+    "web_pdf_screenshot_attempt_failed": true,
+    "local_retained_original_render_used": true,
+    "original_pdf_or_pixels_redistributed": false
+  },
+  "maximum_nearest_latitude_distance_km": 3,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "transport_budget": "Read coordinate axes first. Each fixed-latitude native longitude slice must be contiguous,increasing and3–150columns. Check the frozen20000cell-pair per-patch and250000total budgets before velocity read;precheck at16decodedbytes per component pair and7MB total cap. Retain indices/canonical decoded-column hashes;wire bytes/source-wire SHA not instrumented.",
+  "time_scope": "Two exact00Z2022snapshots matching the earlier pilot,not monthly means,annual extrema or seasonal climatology. Old variable-tangent and new315degree component definitions remain separately typed and are not interchangeable depth estimates.",
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "input_sha256": {
+    "research/source-data/atlantic-current-depth-v2/north-brazil.json": "0a01f19ef13a0734179c9e870c30ece92fc5bfdb8c5252a9d36665bd0b33dea5",
+    "research/atlantic-current-depth-source-review-v2.json": "2f7b1eaf647b7472c01a1f4d94c27fc85b67e2019395aa2238e22720f6cc7dc6",
+    "research/current-depth-route-projections-source-review-v14.json": "1b63600dba2445df1c6949300b393e44c2f9498a52f853330da3659489a0d102",
+    "research/current-depth-unresolved-reference-cases-v1.csv": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+    "research/dimoune-2023-section-width-records-prepared-v1.json": "846dcefa9b93671b83d6b6967a209e5f64a78fb66405f00e5a06eb7fed16a2c2",
+    "research/dimoune-2023-section-orientation-correction-v1.json": "a0770e1a4323de5b7d801b93b68a5811e4cdcda6e73510730b548ae518fd901b",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false
+}

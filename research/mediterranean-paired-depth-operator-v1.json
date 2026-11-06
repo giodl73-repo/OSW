@@ -1,0 +1,66 @@
+{
+  "schema": "osw.mediterranean-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_mediterranean_paired_depth_v1.py": "d2e92e7ae84f7e46e48bdf7fae594649dc5a425c8b22832092371963723753d4",
+    "analysis/test_mediterranean_paired_depth_v1.py": "43dadbc898423c3f7c01b1a5eee36a718088932f7ecaa6760c47c6b7bcb8aa74",
+    "plans/mediterranean-paired-depth-v1.md": "776d8ab50e644d3dd269666a27305be01d8453e8257610a41704897b9a714c02",
+    ".github/workflows/mediterranean-paired-depth-v1.yml": "deb05189f390558b3e6a035b3faafb5d02586f6d3342b93559f67be4edfc4f3e",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/mediterranean-regional-velocity-depth-curtains-v2.json": "490057ea12dec1f6379487b559b8e1c5abeeda9aed8ed2cb491afa64f845aa9e",
+    "research/current-depth-mediterranean-regional-velocity-curtains-source-review-v2.json": "822c4d1910646af5301d59ba394e33cfc314f700ea5b3b47c56f8bd2a65a1891",
+    "research/balearic-ligurian-interval-depth-sections-operator-v1.json": "3c5bc3a6ba76441751b59f5ffa46202cb3c2092ec0f5d4f500096348ea2411ec",
+    "research/mediterranean-boundary-interval-depth-sections-operator-v1.json": "fcfb215051c8f49c220950c2678c4fc6a2788e28ba220a1a9a7853bb24f3ebff"
+  },
+  "source_cases": 72,
+  "original_supported_cases": 63,
+  "original_axis_gap_cases": 9,
+  "source_primary_threshold_m_s_by_owner": {
+    "current:balearic": 0.05,
+    "current:ligurian": 0.1,
+    "current:northern-mediterranean": 0.1,
+    "current:algerian": 0.1
+  },
+  "source_component_bearing_degrees_true_by_owner": {
+    "current:balearic": 60,
+    "current:ligurian": 240,
+    "current:northern-mediterranean": 270,
+    "current:algerian": 90
+  },
+  "surface_gate_policy": "not_applied_in_original_method",
+  "source_core_search_and_selection_window_m": [
+    0,
+    200
+  ],
+  "source_geometry": "fixed_longitude_increasing_native_latitude",
+  "source_dates": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "ligurian_parent": "current:northern-mediterranean",
+  "parent_depth_inheritance_allowed": false,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "counts",
+    "all_report_runs"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

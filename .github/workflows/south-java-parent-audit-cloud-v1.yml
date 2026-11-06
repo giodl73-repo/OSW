@@ -1,0 +1,102 @@
+name: Audit installed South Java owner and publications v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-parent-audit-request-v1.json
+      - .github/workflows/south-java-parent-audit-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/south-java-parent-audit-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/south-java-parent-audit-request-v1.json').read_bytes())
+          assert r['schema']=='osw.south-java-parent-audit-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  parent-audit:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /.github/workflows/south-java-parent-audit-cloud-v1.yml
+            /.gitignore
+            /almanac/query-data.json
+            /almanac/query-engine.manifest.json
+            /almanac/query-parts/000000-7457f28ad5db3da4093c05789edeb77884c2fdac5e0322ec6b8fe4579651238b.bin
+            /almanac/query-parts/000001-182be37cb38024331af184f604d72e7f3f2c379ca7be27f68940d675b67c9425.bin
+            /almanac/query-parts/000002-1fe36d762ac8567ff1bc010648125a6d2c613f86a54b67c01ef9ca114008e532.bin
+            /almanac/query-parts/000003-25e9e34851433091f3e9d35d9f06af7e9fbeb59915ed6456e24c494b288c0d3f.bin
+            /almanac/query-parts/000004-9d181d8f7ce70962d738e73892b1e275fc808751297b0338706a7736268bc74c.bin
+            /almanac/query-parts/000005-c1c1b4e0962e3da1817df8491fee6398686e23c186a1d5b7b41fd7dc8f50b6fb.bin
+            /almanac/query-parts/000006-cc0d290d232d2882ad04b7501ef8b8a364e3a9e5663e955b7b4ab06b889c871f.bin
+            /almanac/query-parts/000007-f01e973f3357e7b31bc9435bb450a6eec7e1be9febd8d4fcd20bf96e0e8a8f75.bin
+            /almanac/query-parts/000008-47be51d5b007395618bc4cf8072b608152806059b8f497f7bf2d5fdac84fa742.bin
+            /almanac/query-parts/000009-2d67c8014e8c8a950580bdefc9c7595ebdd6e197a6d1aeb8e88e660615222584.bin
+            /almanac/query-parts/000010-150c829fcabc09b3baece39e71c3d0bb9505befc48054f5399586c358b77517f.bin
+            /almanac/query-parts/000011-592221d8a34b32af2cf6d30add53041c5421f6b412d460d30934074d78bdf172.bin
+            /analysis/check_south_java_parent_audit_v1.py
+            /analysis/query_packet.py
+            /analysis/test_south_java_parent_audit_v1.py
+            /figures/south-java-java-bali-reference-compact-v1.svg
+            /figures/south-java-java-bali-reference-path-v2-candidate.svg
+            /plans/south-java-installed-parent-audit-v1.md
+            /research/current-gap-delivery-phase.json
+            /research/current-measurement-coverage-checkpoint-v3.json
+            /research/indian-coastal-dimension-context-query-contract-v1.json
+            /research/indian-current-reference-route-planning-v1.json
+            /research/pacific-secc-installation-saved-engine-manifest-v1.json
+            /research/pacific-secc-installed-v1.json
+            /research/south-java-alongflow-source-review-v1.json
+            /research/south-java-java-bali-reference-path-v2-candidate.json
+            /research/south-java-model-layer-query-contract-v1.json
+            /research/south-java-parent-audit-preflight-v1.json
+            /research/south-java-parent-audit-request-v1.json
+            /research/south-java-reference-geography-result-v1.json
+            /research/south-java-reference-geography-v1.json
+            /research/south-java-reference-map-review-v2.json
+      - name: Publication identity and local pre-read refusal fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_parent_audit_v1.py -v
+      - name: Verify exact installed packet and select only South Java evidence
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_parent_audit_v1.py
+      - name: Retain compact selected records and audit receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-installed-parent-audit-v1
+          path: .pytest_cache/south-java-parent-audit-v1/*.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

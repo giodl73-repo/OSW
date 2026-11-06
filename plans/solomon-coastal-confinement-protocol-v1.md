@@ -24,3 +24,14 @@
 7. Preserve both current identities; do not inherit a gateway width or a
    neighboring current's scale. Keep unknowns and remaining primary-method gates
    visible in cards, inspector, dashboard and queries.
+8. Source integrity: retain the exact originally reviewed HAL wrapper pin and
+   acquisition receipt. HAL can regenerate its cover fonts and metadata while
+   leaving the journal edition unchanged. A full later download may be retained
+   separately only when its complete journal-page/resource graph and protected
+   PDF objects match the frozen integrity contract, with identical cover text
+   and bibliography metadata. Do not reconstruct an original, label a later
+   rendition as its byte-identical wrapper, normalize source bytes, accept
+   text-only equivalence, or substitute an edition. Stable measurement inputs
+   bind the journal integrity contract and verifier; actual response hashes are
+   reported at acquisition. The source-document fields retain the reviewed
+   acquisition snapshot, not a claim about a later wrapper's raw bytes.

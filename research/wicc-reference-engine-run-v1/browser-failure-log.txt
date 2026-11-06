@@ -1,0 +1,59 @@
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	﻿2026-10-28T11:56:32.2097263Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2097592Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2097939Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python analysis/check_wicc_winter_reference_delivery_v1.py browser^[[0m
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2148896Z shell: /usr/bin/bash -e {0}
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2149042Z env:
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2150413Z   GH_TOKEN: ***
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2150540Z   OSW_WICC_REFERENCE_DELIVERY_V1: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2150689Z   CARGO_BUILD_JOBS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2150810Z   RUST_TEST_THREADS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2150929Z   OMP_NUM_THREADS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2151052Z   OPENBLAS_NUM_THREADS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2151193Z   MKL_NUM_THREADS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2151311Z   NUMEXPR_NUM_THREADS: 1
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2151437Z   PYTHONPATH: analysis
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:56:32.2151559Z ##[endgroup]
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0562492Z Traceback (most recent call last):
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0563183Z   File "/home/runner/work/OSW/OSW/analysis/check_wicc_winter_reference_delivery_v1.py", line 196, in <module>
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0563639Z     elif action=='browser':browser()
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0563809Z                            ^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0564110Z   File "/home/runner/work/OSW/OSW/analysis/check_wicc_winter_reference_delivery_v1.py", line 185, in browser
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0564437Z     write(OUT/'browser.json',browser_review(ROOT,OUT))
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0564643Z                              ^^^^^^^^^^^^^^^^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0564960Z   File "/home/runner/work/OSW/OSW/analysis/check_wicc_winter_reference_browser_v1.py", line 58, in browser_review
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0565328Z     page.locator('#source-query-document').select_option(query.CANDIDATE)
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0565879Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 17630, in select_option
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0575555Z     self._sync(
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0576007Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0576299Z     return task.result()
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0576433Z            ^^^^^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0576828Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/_impl/_locator.py", line 597, in select_option
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0577173Z     return await self._frame.select_option(
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0577350Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0577696Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 781, in select_option
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0578251Z     return await self._channel.send("selectOption", self._timeout, params)
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0578880Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0579300Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0579704Z     return await self._connection.wrap_api_call(
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0579895Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0580215Z   File "/home/runner/.local/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0580580Z     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0580940Z playwright._impl._errors.TimeoutError: Locator.select_option: Timeout 180000ms exceeded.
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0581184Z Call log:
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0581342Z   - waiting for locator("#source-query-document")
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0581592Z     - locator resolved to <select id="source-query-document"></select>
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0581819Z   - attempting select option action
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0582286Z     2 × waiting for element to be visible and enabled
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0582481Z       - element is not visible
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0582643Z     - retrying select option action
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0582794Z     - waiting 20ms
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0583166Z     2 × waiting for element to be visible and enabled
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0583348Z       - element is not visible
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0583502Z     - retrying select option action
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0583648Z       - waiting 100ms
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0583844Z     359 × waiting for element to be visible and enabled
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0584031Z         - element is not visible
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0584194Z       - retrying select option action
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0584346Z         - waiting 500ms
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0584426Z 
+candidate-and-views	Verify actual desktop and narrow route, source, atlas, seasons and dashboard views	2026-10-28T11:59:43.0990453Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,61 @@
+{
+  "schema": "osw.current-depth-register-source-review.v43",
+  "status": "PASS24_EAC_CURRENT_FOLLOWING_CALENDAR_MEAN_DEPTH_DESCRIPTORS",
+  "cloud_reviews": [
+    {
+      "run_id": 41448848238,
+      "tests_passed": 24,
+      "source_commit": "26416caf78e1c6d472a49863b8a686d3dbb42539",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41448848238"
+    },
+    {
+      "run_id": 41448848211,
+      "tests_passed": 6,
+      "source_commit": "26416caf78e1c6d472a49863b8a686d3dbb42539",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41448848211"
+    }
+  ],
+  "cloud_tests_passed": 30,
+  "counts": {
+    "identities": 111,
+    "depth_references": 378,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v43.py": "7f593ccc3f04068c0eb382b7461858692fe30b0349dc6713129b769854166dfc",
+    "analysis/test_current_depth_register_v43.py": "9d1116e263492d17338d2e94645f23d10e88b77e81bbf494522483f461b0db38",
+    "research/current-depth-rules-v43.json": "5ec0e6e8633c749d2f71a73ee14aeeb065f0cec3c2003bfb951ef8a6ff499f61",
+    "research/current-depth-source-facts-v43.json": "902692d489b862f5a373d4d4acf8ec3fe171a1eb6081e938f8b92973c9c3fd1e",
+    "research/current-depth-register-v43.json": "4b9baf3a3beaa6e8be0c4c0be9fb4c275baa1ea4d251d58e7500e3bac9bb506b",
+    "research/current-depth-register-v43.csv": "008954835d55d7c085490c168b92498d7837eb8d77464e4e450a255d85c99122",
+    ".github/workflows/current-depth-register-source-v43.yml": "2e6ec780dc8e1b49738a17731871cc4f6e14e99f2d423941c6b7f7f30e0c7163",
+    "research/eac-chandler-seasonal-depth-operator-v1.json": "281b1618e4395fefdcbbc24fe79e26f6085dd1f94c6c135aaa37f5f988fdc283",
+    "research/eac-chandler-seasonal-depth-source-facts-v1.json": "3c9c886bd4b6ef6336ab458ba4187ab6a5d92db2171a7cc323d373bb5813fbf9",
+    "research/eac-chandler-seasonal-depth-source-review-v1.json": "1e2fe0ff9b69e4a400a9d1410c32270b2d120302accda95115e17b96c38d3ef7",
+    "research/source-data/eac-chandler-seasonal-depth-v1/candidate.json": "446f5a3879eb46c3be404aec7c5756537f2d6d57edcc72da645e8fba91ee5d34",
+    "research/current-depth-member-index-v6.json": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e",
+    "research/current-depth-route-projections-v10.json": "63ecd9fae0c1dae581fca57375bfb92f459156f5a8ac9e003881c555f0abd33c"
+  },
+  "scientific_review": [
+    "All354 older references and all old CSV cells remain exact.24 derived EAC descriptors represent12 calendar-mean profiles, with one sampled core and one5cm/s isotach descriptor per month; they are not24 independent observations. Direct depth coverage stays101 of111 identities.",
+    "Profiles follow192 monthly horizontal axes reconstructed from2004–2019 HR-XBT/Argo/SLA sections on one nominal regional PX30 transect. Every calendar mean requires all16 year-specific contributors at each retained depth. The moving-axis mean is not a fixed-site, synoptic or whole-route depth.",
+    "Core descriptors retain native sampled maxima including shallow-domain edge flags at2.5m. A2.5m maximum does not resolve an unsampled shallower maximum, physical top or true surface current speed. Native source coordinate is explicitly reported metres, positive down.",
+    "5cm/s descriptors retain unrounded derived crossings, native finite bracketing levels and10m display rounding. The threshold is part of the definition and is distinct from physical current bottom, vertical thickness, confidence bounds or temporal extrema.",
+    "Ten calendar-mean zero crossings remain right-censored at1975m. Two are numerically resolved; neither is automatically admitted as physical bottom.1975m remains a product limit. Statistical hydrographic extension below800m and time-invariant reference velocity remain explicit.",
+    "Source vel_err is reference-velocity standard error, not depth uncertainty. No numeric physical depth margin, significant annual-cycle claim, whole-current width/depth join, seasonal whole-route playback or volume is admitted.",
+    "Thirty cloud tests comprise nine new register checks, nine frozen EAC operator tests, six retained Canary conversion checks and six baseline checks. They verify source/candidate pins, paired case counts, calendar support, native core edges, threshold brackets, censored limits, uncertainty/identity promotion rejection and exact JSON/CSV reproduction. All tests ran in cloud; local work was metadata generation only."
+  ],
+  "new_independent_observations": 0,
+  "source_calendar_mean_profiles": 12,
+  "derived_descriptors_per_profile": 2,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

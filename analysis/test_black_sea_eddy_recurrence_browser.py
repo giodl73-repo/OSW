@@ -1,4 +1,5 @@
 """All nine summaries, original lifetime units, object and query WASM parity."""
+from query_packet import read_bundle_bytes
 import copy, hashlib, json, os, subprocess, tempfile
 from pathlib import Path
 from urllib.parse import quote
@@ -6,7 +7,7 @@ from playwright.sync_api import sync_playwright
 from test_rust_query_browser import CLI, ROOT, native
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     rows=bundle['collections']['eddy_recurrence']
     query={'collection':'eddy_recurrence','sort':{'field':'reported_occurrence_days_per_year_approx','direction':'desc'},'limit':50}
     expected=native(query);assert expected['total']==9

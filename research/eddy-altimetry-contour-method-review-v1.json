@@ -1,0 +1,76 @@
+{
+  "schema": "osw.eddy-altimetry-contour-method-review.v1",
+  "status": "EXPLORATORY_OPERATOR_CLOUD_VALIDATION_REQUESTED",
+  "source_acquisitions": [
+    {
+      "name": "duacs-dt2024.html",
+      "url": "https://duacs.cls.fr/duacs-system-description/operational-news/duacs-my-system-impacting-version-changes/nov-2024-duacs-dt-2024/",
+      "bytes": 74431,
+      "sha256": "e9e37eb04361edb701a39b036bb7427f58d35dba2058c976b891a46ecbf0a73f"
+    },
+    {
+      "name": "larranaga-table-a1.png",
+      "url": "https://os.copernicus.org/articles/22/821/2026/os-22-821-2026-t01.png",
+      "bytes": 1224627,
+      "sha256": "5e1a0bb9950de4e4b17c8c411d93e12c81f55cac4c86edb65b1203534cebaf01"
+    },
+    {
+      "name": "larranaga-2026.html",
+      "url": "https://os.copernicus.org/articles/22/821/2026/",
+      "bytes": 345290,
+      "sha256": "12aa8e7fe41f1371c28bf3189ccf9d48996ee53b43c10224851b5ef2dcffcb34"
+    }
+  ],
+  "table_a1_pixels_reviewed": true,
+  "provider_version_evidence": {
+    "url": "https://duacs.cls.fr/duacs-system-description/operational-news/duacs-my-system-impacting-version-changes/nov-2024-duacs-dt-2024/",
+    "basis": "The producer identifies DT-2024 as the November 2024 reprocessing, its new global 1/8-degree dataset, and its global CNES-CLS2022 MDT. The acquired NetCDF identifies the matching 202411 dataset version. This resolves the version at product-documentation level; the NetCDF itself does not state the MDT version.",
+    "metadata_correction": "The GRIIDC landing page cites the 008_057 climate-product PUM. The original NetCDF identifies 008_047 all-satellite product; use the matching 008_047 producer documentation, not the linked climate-product manual."
+  },
+  "published_method_evidence": {
+    "doi": "10.5194/os-22-821-2026",
+    "section": "2.1, ADT dataset and detachment classification",
+    "basis": "Daily spatial mean is removed over 99–80 W and 17–31 N, then 17 cm contours are used for LC/LCE fronts. The study uses CNES-CLS22 MDT with a 1/4-degree grid; this pilot uses the pinned 1/8-degree product, so exact reproduction is not claimed.",
+    "incomplete_reporting": "The paper does not state weighting in the spatial mean. Arithmetic finite-ocean gridpoint mean is the explicit OSW primary; cosine-latitude weighting is retained as a separate diagnostic."
+  },
+  "operator_contract": {
+    "levels_m": [
+      0.15,
+      0.17,
+      0.19
+    ],
+    "level_sensitivity_is_osw_choice": true,
+    "minimum_review_area_km2": 4000,
+    "screen_is_not_global_eddy_definition": true,
+    "sphere_radius_km": 6371,
+    "source_crs_inferred": false,
+    "closure": "Exact library CLOSEPOLY and repeated endpoint, never reconstructed.",
+    "reject": [
+      "Open or clipped loops",
+      "Missing gridpoint inside loop",
+      "Low-interior contours",
+      "Area below review screen"
+    ],
+    "metrics": [
+      "Signed spherical enclosed area",
+      "Planar area-equivalent diameter",
+      "EW bounding arc at bounding-box midlatitude",
+      "NS bounding meridian arc",
+      "Spherical perimeter"
+    ],
+    "not_metrics": [
+      "Along-flow length",
+      "Principal axes",
+      "Minimum width",
+      "Volume",
+      "Depth",
+      "Annual range",
+      "Lifetime"
+    ],
+    "uncertainty": "Level and mean-method sensitivity only. Grid effects, MDT/mapping errors, temporal aliasing and physical front error are not quantified.",
+    "identity": "Candidate IDs restart per date and scenario. No automatic name, across-level correspondence or track inference."
+  },
+  "physical_identity_joins_created": 0,
+  "measurements_admitted": 0,
+  "full_goal_complete": false
+}

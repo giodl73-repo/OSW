@@ -1,0 +1,232 @@
+{
+  "schema": "osw.pacific-neuc-precomputed-mean-source-assessment.v1",
+  "status": "ACCESS_AND_STORAGE_VERIFIED_TEMPORAL_OPERATOR_QUALIFIED_NO_DEPTH_CASE",
+  "entity_id": "current:pacific-north-equatorial-undercurrent",
+  "review_date_utc": "2026-11-03",
+  "header_inspection_file": "research/source-data/pacific-neuc-mean-header-inspection-v1/header-inspection.json",
+  "header_inspection_sha256": "908155f095ac6bfb5cbaf6487980f3e83cf8ab583e9a405f29ca358240e88042",
+  "provider_nominal_filename_period": "1994_01_2015_12",
+  "source_object_url": "https://data.hycom.org/datasets/GLBv0.08/expt_53.X/meanstd/netcdf/GLBv0.08_53X_archMN.1994_01_2015_12_uv3z.nc",
+  "source_object_bytes": 2340784400,
+  "source_last_modified": "Fri, 28 May 2021 13:33:00 GMT",
+  "storage_evidence": {
+    "format": "CDF2",
+    "record_count": 1,
+    "dimensions": [
+      {
+        "name": "lat",
+        "declared_length": 3251
+      },
+      {
+        "name": "lon",
+        "declared_length": 4500
+      },
+      {
+        "name": "depth",
+        "declared_length": 40
+      },
+      {
+        "name": "time",
+        "declared_length": 0
+      }
+    ],
+    "velocity_variables": [
+      {
+        "name": "water_u",
+        "dimension_names": [
+          "time",
+          "depth",
+          "lat",
+          "lon"
+        ],
+        "nc_type": 3,
+        "external_element_bytes": 2,
+        "vsize": 1170360000,
+        "begin": 64400,
+        "attributes": {
+          "long_name": {
+            "nc_type": 2,
+            "values": "Eastward Water Velocity",
+            "raw_value_base64": "RWFzdHdhcmQgV2F0ZXIgVmVsb2NpdHk="
+          },
+          "standard_name": {
+            "nc_type": 2,
+            "values": "eastward_sea_water_velocity",
+            "raw_value_base64": "ZWFzdHdhcmRfc2VhX3dhdGVyX3ZlbG9jaXR5"
+          },
+          "units": {
+            "nc_type": 2,
+            "values": "m/s",
+            "raw_value_base64": "bS9z"
+          },
+          "_FillValue": {
+            "nc_type": 3,
+            "values": [
+              -30000
+            ],
+            "raw_value_base64": "itA="
+          },
+          "missing_value": {
+            "nc_type": 3,
+            "values": [
+              -30000
+            ],
+            "raw_value_base64": "itA="
+          },
+          "scale_factor": {
+            "nc_type": 5,
+            "values": [
+              0.0010000000474974513
+            ],
+            "raw_value_base64": "OoMSbw=="
+          },
+          "add_offset": {
+            "nc_type": 5,
+            "values": [
+              0.0
+            ],
+            "raw_value_base64": "AAAAAA=="
+          },
+          "NAVO_code": {
+            "nc_type": 4,
+            "values": [
+              17
+            ],
+            "raw_value_base64": "AAAAEQ=="
+          }
+        }
+      },
+      {
+        "name": "water_v",
+        "dimension_names": [
+          "time",
+          "depth",
+          "lat",
+          "lon"
+        ],
+        "nc_type": 3,
+        "external_element_bytes": 2,
+        "vsize": 1170360000,
+        "begin": 1170424400,
+        "attributes": {
+          "long_name": {
+            "nc_type": 2,
+            "values": "Northward Water Velocity",
+            "raw_value_base64": "Tm9ydGh3YXJkIFdhdGVyIFZlbG9jaXR5"
+          },
+          "standard_name": {
+            "nc_type": 2,
+            "values": "northward_sea_water_velocity",
+            "raw_value_base64": "bm9ydGh3YXJkX3NlYV93YXRlcl92ZWxvY2l0eQ=="
+          },
+          "units": {
+            "nc_type": 2,
+            "values": "m/s",
+            "raw_value_base64": "bS9z"
+          },
+          "_FillValue": {
+            "nc_type": 3,
+            "values": [
+              -30000
+            ],
+            "raw_value_base64": "itA="
+          },
+          "missing_value": {
+            "nc_type": 3,
+            "values": [
+              -30000
+            ],
+            "raw_value_base64": "itA="
+          },
+          "scale_factor": {
+            "nc_type": 5,
+            "values": [
+              0.0010000000474974513
+            ],
+            "raw_value_base64": "OoMSbw=="
+          },
+          "add_offset": {
+            "nc_type": 5,
+            "values": [
+              0.0
+            ],
+            "raw_value_base64": "AAAAAA=="
+          },
+          "NAVO_code": {
+            "nc_type": 4,
+            "values": [
+              18
+            ],
+            "raw_value_base64": "AAAAEg=="
+          }
+        }
+      }
+    ],
+    "metadata_bytes_only": 2064,
+    "exact_sequential_metadata_range_requests": 251,
+    "axis_or_velocity_variable_data_read": false
+  },
+  "temporal_evidence": {
+    "netcdf_source_attribute": "HYCOM mean archive file",
+    "netcdf_field_type_attribute": "daily average",
+    "explicit_time_bounds_or_sampling_weights_in_header": false,
+    "native_descriptor_file": "research/source-data/pacific-neuc-mean-time-metadata-v1/native-longmean-descriptor.b",
+    "native_descriptor_sha256": "4c2b339eaf73179659b0cd6165da1fc3e83e5a6d830804b900817d7187a6e1f9",
+    "native_descriptor_first_layer_u_v_record_count_label": "7699",
+    "native_descriptor_first_layer_u_v_mean_day_label": "37951.78",
+    "record_count_interpretation_not_assumed": "Descriptor no.recs is retained literally;not converted to a count of complete calendar days,uniform3hourly sampling or a verified fixed-depth averaging operator.",
+    "current_conversion_source_observation": "Pinned current HYCOM horout_nc.f writes daily-average field_type for artype2 mean archives without testing mean duration in the inspected NAVO branch. This supports interpreting the attribute as generic,not evidence that this file contains only one day.",
+    "converter_source_locator": "archive/src/horout_nc.f lines4534-4541;mean-archive source labeling210-217;historical producer build not identified.",
+    "historical_converter_equivalence_proven": false,
+    "native_mean_method_documentation": "Pinned HYCOM meanstd README says layered means use layer-thickness weighting,while non-layered means use simple means. The exact production script/weights used for this object remain unverified.",
+    "fixed_depth_mean_equivalence_proven": false,
+    "important_operator_distinction": "A native-layer mean subsequently interpolated to fixed depths is not automatically the time mean of instantaneous fixed-depth velocity;vertical motion and weighting can change the result.",
+    "nominal_period_actual_support_and_missing_times_verified": false
+  },
+  "primary_source_code_review": [
+    {
+      "url": "https://raw.githubusercontent.com/HYCOM/HYCOM-tools/682ecaa0c464b85341f6be76275bf82db916823f/archive/src/horout_nc.f",
+      "repository_commit": "682ecaa0c464b85341f6be76275bf82db916823f",
+      "path": "archive/src/horout_nc.f",
+      "bytes": 272408,
+      "sha256": "9c6dc04f3b2c7b96681afba36c1dee4cc7dc70bf062a0c24694b5b7a84ab0e6e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/HYCOM/HYCOM-tools/682ecaa0c464b85341f6be76275bf82db916823f/README.tools/README.tools.meanstd.src",
+      "repository_commit": "682ecaa0c464b85341f6be76275bf82db916823f",
+      "path": "README.tools/README.tools.meanstd.src",
+      "bytes": 1178,
+      "sha256": "6a7a5264da463dd6ec89871730196a4a0c24e2448bf2d8c9ff8db569ed3e05d8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/HYCOM/HYCOM-tools/682ecaa0c464b85341f6be76275bf82db916823f/meanstd/src/hycom_wsum.f",
+      "repository_commit": "682ecaa0c464b85341f6be76275bf82db916823f",
+      "path": "meanstd/src/hycom_wsum.f",
+      "bytes": 2810,
+      "sha256": "feaf374f50f5963aa2ab2cbe5759ffc548caf31b76dc84647b9fb9757c930900"
+    }
+  ],
+  "source_documentation_urls": [
+    "https://www.hycom.org/dataserver/gofs-3pt1/reanalysis",
+    "https://www.hycom.org/faqs/471-did-you-know-there-are-missing-days-in-the-gofs-3pt1-global-reanalysis",
+    "https://www.nature.com/articles/s41598-018-35469-2"
+  ],
+  "remaining_scientific_limits": [
+    "Provider documents RyukyuTrench/PhilippineSea deep-water/interface problems;regional mean impact on NEUC still unassessed.",
+    "One record in a converted mean file does not mean one original observation.",
+    "This product is neither the source ArgoP-vector reconstruction nor LICOM velocity/geostrophic diagnostics.",
+    "Southern NEUC remains distinct from middle/northern jets and3NNSCC;no source300/450/600mupper limits imposed as bottoms."
+  ],
+  "next_actions": [
+    "Test bounded multipart ranges on metadata-only fragments before any ocean-field acquisition.",
+    "Declare a new cloud-only range reader with source identity,exact returned-range verification,shared cell/decoded/HTTP budgets and no successful replay under existing caps.",
+    "Read coordinate axes/time only under a separately declared cloud metadata plan.",
+    "Resolve or explicitly qualify exact producer averaging/coverage/weighting and fixed-depth equivalence;do not relabel provider-mean-derived fields as fully sampled Eulerian averages.",
+    "Then predeclare southern-jet regional geometry/depth/cutoff and bias/identity checks before velocity outcomes."
+  ],
+  "regional_field_subset_acquired": false,
+  "new_depth_measurements": 0,
+  "current_depth_m": null,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

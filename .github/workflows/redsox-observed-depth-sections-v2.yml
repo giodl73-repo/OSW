@@ -1,0 +1,108 @@
+name: REDSOX native-source depth support refinement v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_redsox_observed_depth_sections_v2.py
+      - analysis/redsox_native_union_depth_v2.py
+      - analysis/test_redsox_observed_depth_sections_v2.py
+      - plans/redsox-observed-depth-sections-protocol-v2.md
+      - research/redsox-observed-depth-sections-operator-v2.json
+      - .github/workflows/redsox-observed-depth-sections-v2.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/redsox-observed-depth-sections-v1.yml
+            analysis/acquire_loop_durante_2026.py
+            analysis/build_aleutian_p14n_vector_section.py
+            analysis/build_cartographic_current_state_join.py
+            analysis/build_current_reference_path_candidate.py
+            analysis/build_motion_state_join.py
+            analysis/build_p14n_component_spans.py
+            analysis/build_p14n_hydrography_companion.py
+            analysis/build_p14n_native_field_audit.py
+            analysis/build_p14n_native_metadata.py
+            analysis/build_p14n_run_composite.py
+            analysis/build_p14n_underway_averages.py
+            analysis/build_redsox_ctd_companion_inventory.py
+            analysis/build_redsox_ladcp_source_inventory.py
+            analysis/build_redsox_lower_nc_section.py
+            analysis/build_redsox_section3_repeat.py
+            analysis/build_redsox_section3_spans.py
+            analysis/current_research_evidence.py
+            analysis/derive_redsox_observed_depth_sections_v1.py
+            analysis/derive_redsox_observed_depth_sections_v2.py
+            analysis/loop_durante_composite_contours.py
+            analysis/prepare_p14n_ctd_receipt.py
+            analysis/redsox_native_union_depth_v2.py
+            analysis/redsox_saline_component_depth_v1.py
+            analysis/scientific_readback.py
+            analysis/test_redsox_lower_nc_section.py
+            analysis/test_redsox_observed_depth_sections_v1.py
+            analysis/test_redsox_observed_depth_sections_v2.py
+            analysis/test_redsox_section3_spans.py
+            plans/redsox-observed-depth-sections-protocol-v1.md
+            plans/redsox-observed-depth-sections-protocol-v2.md
+            plans/redsox-section3-width-protocol-v1.md
+            research/current-depth-coverage-audit-source-review-v14.json
+            research/current-depth-coverage-audit-v14.json
+            research/current-depth-pgw-core-depth-regimes-reference-inventory-source-review-v19.json
+            research/current-depth-redsox-observed-depth-sections-source-review-v1.json
+            research/current-depth-reference-inventory-v19.json
+            research/current-depth-route-projection-inventory-v48.json
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/redsox-cruise-log-metadata-reconciliation.json
+            research/redsox-ctd-companion-inventory.json
+            research/redsox-instrument-and-clock-source-review.json
+            research/redsox-ladcp-source-inventory.json
+            research/redsox-lower-nc-dated-section-diagnostic.json
+            research/redsox-observed-depth-sections-operator-v1.json
+            research/redsox-observed-depth-sections-operator-v2.json
+            research/redsox-observed-depth-sections-v1.json
+            research/redsox-provider-station-support.json
+            research/redsox-section3-source-selection.json
+            research/redsox-winter-section3-component-spans.json
+            research/source-data/ncei-redsox-2001/acquisition.json
+            research/source-data/ncei-redsox-2001/ctd-acquisition.json
+            research/source-data/ncei-redsox-2001/ctd-ascii-originals.zip
+            research/source-data/ncei-redsox-2001/ctd-preflight.json
+            research/source-data/ncei-redsox-2001/documentation.json
+            research/source-data/ncei-redsox-2001/ladcp-ascii-originals.zip
+            research/source-data/ncei-redsox-2001/preflight.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify original analytic functions and derive dated depth support without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 gsw==3.6.23 pyproj==3.7.2 pytest==8.4.2
+          taskset -c "$cpu" nice -n 15 python -m pytest -q analysis/test_redsox_lower_nc_section.py::test_layer_integral_preserves_actual_vertical_coordinates_and_units analysis/test_redsox_lower_nc_section.py::test_missing_support_is_not_filled_or_extrapolated analysis/test_redsox_section3_spans.py::test_geometry_and_normal_sign
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_redsox_observed_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_redsox_observed_depth_sections_v2.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_redsox_observed_depth_sections_v2.py --section lower-northern-channel
+          taskset -c "$cpu" nice -n 15 python analysis/derive_redsox_observed_depth_sections_v2.py --section winter-section3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: redsox-observed-depth-sections-lower-northern-channel-v2
+          path: redsox-observed-depth-sections-v2/lower-northern-channel/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: redsox-observed-depth-sections-winter-section3-v2
+          path: redsox-observed-depth-sections-v2/winter-section3/
+          retention-days: 7

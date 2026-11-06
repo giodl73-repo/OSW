@@ -1,0 +1,284 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.nec-subarctic-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New exploratory PacificNEC,AtlanticNEC and Aleutian/Subarctic meridional sections. Existing regional scope/source summaries and frozen transverse collector reviewed before declaration. No new section field outcomes inspected. Basin members stay separate from the parentNorthEquatorial family;Aleutian/Subarctic stays separate from westwardAlaskanStream. No within-run gate/cutoff expansion or success-conditioned replacement.",
+  "geometry_provenance": "All fixed longitudes/latitude windows are OSW exploratory selections,not source numerical sections,digitized axes,whole-current widths or uncertainty bands. PacificNEC is a partial170W–130E low-latitude reach acrossdate line,using11–16Nsearches within the broad westernPacific nominal8–17Ncontext;170W is an explicit extension east of that source context. AtlanticNEC is partial27–55Wwith latitude windows shifted toward the western low-latitude feed. Aleutian follows an eastward175E–140W regional schematic convention north ofNorthPacific. Each gate remains fixed regardless outcomes. Native increasing latitude is the within-section order;downstream longitude order differs bycurrent.",
+  "column_selector": "Reuse frozen complete finite0–200m signed trapezoidal integral selector and thresholdlayers. Pacific/AtlanticNEC use one270degree true westward component held through depth,primary10cm/s and surface>5cm/s. Aleutian/Subarctic uses90degree eastward,primary5cm/s and surface>2cm/s for broad diffuseflow. All require positive integral and qualifying upper200m core. Greatest integral selects oneprofile;first native increasing latitude breaks exact ties. Cutoffs are declared model diagnostics,not source physicalboundaries. Deep opposingflow remains signed.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Read and validate source coordinate axes first,then preflight every declared section/date shape before any velocity field read. Fixed native longitude index and contiguous increasing3–150latitude rows persection;full40depthlevels0–5000m. Frozen20000velocitypairs-per-patch and250000total caps plus7MBdecodedvelocity cap,precheck16bytes/pair. Exact requested times preflighted before field retrieval. Maximum nearest-longitude WGS84distance over every native row<=5km. Each sourcechunk<2.5MB;unchanged aggregate/inline publication caps. No wirehash/byte claim.",
+  "currents": {
+    "current:pacific-north-equatorial": {
+      "entity_id": "current:pacific-north-equatorial",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial Pacific surfacewestward NEC170W–130E,restricted11–16Nsearchband,not fullbasin/lateralextent or northernbranchcoverage. Exclude eastwardNECC/NEUCjets,SECorEUC,downstreamKuroshio/Mindanao and detachededdies as targetidentities. Nominal8–17Nsourceband and1000mgliderreach are contextual differentmetrics,not currentwidth/depthtargets. No member depths inherited by the parentfamily."
+    },
+    "current:atlantic-north-equatorial": {
+      "entity_id": "current:atlantic-north-equatorial",
+      "component_bearing_degrees_true": 270,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial Atlanticwestward surfaceNEC27–55Wwith fixed meridional searchwindows16–21N,14.5–19.5N,12.5–17.5N,10.5–15.5N. Exclude northernNECbandabove22Nat27W,nearAfricaeastof27W,NECC/NEUCbands,GuineaDome,downstreamCaribbean/Antilles/Guiana flows and detachededdies as targetidentities. Published2003ADCP/FLAMEbandbounds are contextual,not2022axes or depththresholdtargets. No familyinheritance."
+    },
+    "current:aleutian": {
+      "entity_id": "current:aleutian",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "Partial eastwardAleutian/Subarcticreach175E–140Wusing retainedFavorite1967schematic/AMS naming convention. Exclude westwardAlaskanStream,Bering-sideAleutianNorthSlopeCurrent,NorthPacificCurrent,warmIsoguchijets and downstreamAlaska/Californiabranches as targetidentities. Broadgeographic eastward maxima can still be unrelatedfronts/eddyflanks;no thermalidentityscreen or independent observedcurrentaxisvalidation claimed."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-170w",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -170,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-180e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 180,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-170e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 170,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-160e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 160,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-150e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 150,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-140e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 140,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-130e",
+      "entity_id": "current:pacific-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 130,
+      "latitude_gate_degrees_north": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "section-27w",
+      "entity_id": "current:atlantic-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -27,
+      "latitude_gate_degrees_north": [
+        16,
+        21
+      ]
+    },
+    {
+      "id": "section-35w",
+      "entity_id": "current:atlantic-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -35,
+      "latitude_gate_degrees_north": [
+        14.5,
+        19.5
+      ]
+    },
+    {
+      "id": "section-45w",
+      "entity_id": "current:atlantic-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -45,
+      "latitude_gate_degrees_north": [
+        12.5,
+        17.5
+      ]
+    },
+    {
+      "id": "section-55w",
+      "entity_id": "current:atlantic-north-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -55,
+      "latitude_gate_degrees_north": [
+        10.5,
+        15.5
+      ]
+    },
+    {
+      "id": "section-175e",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 175,
+      "latitude_gate_degrees_north": [
+        45,
+        50
+      ]
+    },
+    {
+      "id": "section-180e",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 180,
+      "latitude_gate_degrees_north": [
+        45.5,
+        50.5
+      ]
+    },
+    {
+      "id": "section-170w",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -170,
+      "latitude_gate_degrees_north": [
+        46,
+        51
+      ]
+    },
+    {
+      "id": "section-160w",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -160,
+      "latitude_gate_degrees_north": [
+        46.5,
+        51.5
+      ]
+    },
+    {
+      "id": "section-150w",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -150,
+      "latitude_gate_degrees_north": [
+        47.5,
+        52.5
+      ]
+    },
+    {
+      "id": "section-140w",
+      "entity_id": "current:aleutian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -140,
+      "latitude_gate_degrees_north": [
+        50,
+        55
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://www.soest.hawaii.edu/oceanography/bo/Qiu_etal_TOS2015.pdf",
+      "locator": "Qiu2015Abstract/Introduction/time-meanNECdiscussion;retained originalsourcefacts",
+      "scope": "AuthorPDFtext freshly reviewedNovember2,2026 for westwardbranch and bifurcation/subthermocline distinctions. Source nominal8–17Nband west ofdate line is not a dated velocityaxis/pairedwidth or our11–16Nsearchdefinition. No newfigurepixel/digitization or sourcefields acquired."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2005JC002939",
+      "locator": "Stramma2005Abstract,Section5.3 and retained2003ADCP/FLAMEsourcefacts",
+      "scope": "PublisherHTML freshly reviewedNovember2,2026;eastwardNECC/NEUC and northern/southernNECbands remain distinct. Published16–22Nobservation and14–20Nmodelband near27Ware not2022modelaxes.300mADCP/700mFLAMEplotlimits are not currentbottoms."
+    },
+    {
+      "url": "https://glossary.ametsoc.org/wiki/aleutian-current/",
+      "locator": "OfficialAleutian/Subarcticdefinition",
+      "scope": "OfficialHTML freshly reviewedNovember2,2026:distincteastwardsubpolarsouthernlimb north ofNorthPacific and distinctfromwestwardAlaskanStream. All geographicwindows OSW choices;no providergeometry copied."
+    },
+    {
+      "url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+      "locator": "Favorite1967retainededitorialroute/namingaudit",
+      "scope": "Use retained priorFigure27/textreview for schematicregionalconvention. Freshwebreopen failed on12.3MBcontentlimit;no neworiginalpixels/sourcecurve or figuregeometry extraction claimed."
+    }
+  ],
+  "input_sha256": {
+    "research/qiu-pacific-nec-2015-source-facts-v1.json": "2fb59997794a3b3b8fc3d3fb394eb54ac88aa4e83fa3e98719c7bcc018b79cb0",
+    "research/pacific-nec-nominal-width-prepared-v1.json": "174b72a7c7698bd6da2e5224e0d5c16ec3fe4ae90b32919c183ac69cc0f3470d",
+    "research/atlantic-nec-stramma-2005-source-facts-v2.json": "f187b5a9e4c11c39e0fc2bf8b829396fce0571087a3ebb07006260c5e186fc6d",
+    "research/current-depth-source-facts-v13.json": "6957b09ae487df62231856fe7efe0bdf3fc5695485e0e1f0341f0aa40e4a7107",
+    "research/current-depth-source-facts-v27.json": "6c5e99624683b555d710d00f722af0e35f4fb322d64022f990ceae7ecd5747aa",
+    "research/current-measurement-scopes/north-equatorial.json": "a84aace788b8a698b24d0cf9c42721ed9f564bed2491a063849cd75d33a000bd",
+    "research/aleutian-reach-reference-path-candidate.json": "efbc4a4a87bb8daf3649a89706f667456b356a6173aa524d729ad4326b5e07d2",
+    "research/aleutian-alaskan-stream-naming-scope-audit.json": "cba7e2ef24c3503ce5f9df057f84721001633db4c9c4d3095a0e9acac052c1fa",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  },
+  "maximum_nearest_longitude_distance_km": 5
+}

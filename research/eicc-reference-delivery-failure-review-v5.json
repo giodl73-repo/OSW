@@ -1,0 +1,81 @@
+{
+  "schema": "osw.eicc-reference-delivery-failure-review.v5",
+  "status": "COMPLETE_WIDTH_CHART_EXCEEDED_SCALAR_RESPONSE_BUDGET_DISABLED_NOT_INSTALLED",
+  "run_id": 40397136229,
+  "run_attempt": 2,
+  "job_id": 121834076028,
+  "source_commit": "c1cae67f388b6d25cce950ae55c4063bc7574c43",
+  "disabled_remote_commit": "2724c795d16ddd73fcbbe6dfefacebd746950513",
+  "artifact": {
+    "id": 12687048562,
+    "name": "eicc-reference-delivery-evidence-v5",
+    "bytes": 23399,
+    "sha256": "9eadd1280974c09f0ca4fa1674394bc0f8f10529c6ff53e39f025ffb1c628c3c"
+  },
+  "rust_planning_tests": {
+    "tests_passed": 6,
+    "exit_code": 0,
+    "stdout_sha256": "c9bad91a4d56049bf60c65ac70ee71fb20574717ec7f4f6ce1e0b81b99b6161d",
+    "stderr_sha256": "bfc54454a63883b064deaf395eeafbcd2271caba54ff89747a5eba8df3d8f657"
+  },
+  "rust_global_route_inventory_tests": {
+    "tests_passed": 2,
+    "exit_code": 0,
+    "stdout_sha256": "ef9e86b1f05981051c6ae18bbf989a0e38707dc1f605be10ac82550a6267e1fb",
+    "stderr_sha256": "00ffcd4a624d97fef7e45c558fce4cf5f4663489c159af65b7b89acba4655e4c",
+    "stdout_preview": "\nrunning 2 tests\ntest madagascar_coastal_curve::tests::eicc_extension_preserves_coastal_catalogue_and_rejects_route_changes ... ok\ntest nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 194 filtered out; finished in 0.15s\n\n",
+    "stderr_preview": "warning: unused variable: `b`\n   --> src/asca_calendar.rs:152:13\n    |\n152 |         let b = fixture();\n    |             ^ help: if this is intentional, prefix it with an underscore: `_b`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `osw-query` (lib test) generated 1 warning (run `cargo fix --lib -p osw-query --tests` to apply 1 suggestion)\n    Finished `test` profile [optimized + debuginfo] target(s) in 0.01s\n     Running unittests src/lib.rs (.pytest_cache/eicc-reference-delivery-v5/build/debug/deps/osw_query-ddc5e8708e56be26)\n"
+  },
+  "native_smoke": {
+    "status": "PASS",
+    "selected_route_id": "east-india-coastal-spring1987-paragraph8-reference-connection",
+    "mapped_features": 1,
+    "before_wasm_build": true
+  },
+  "native_successful_main_semantic_checks_before_width_inventory": 16,
+  "native_response_count_including_smoke_and_rejected_budget": 18,
+  "observed_response_budget_failure": {
+    "request": {
+      "collection": "widths",
+      "limit": 1
+    },
+    "mode": "main",
+    "exit_code": 0,
+    "stdout_bytes": 133699,
+    "response_limit_bytes": 131072,
+    "stdout_sha256": "dafc7935f6276ccdf3bda49baaff80aa238733c24128f0d59cecadbe3d6d7b0a",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_preview": ""
+  },
+  "observed_failure": {
+    "status": "FAIL",
+    "stage": "engine",
+    "source_commit": "c1cae67f388b6d25cce950ae55c4063bc7574c43",
+    "error": "ValueError: Native query failed or exceeded declared budget: {\"request\": {\"collection\": \"widths\", \"limit\": 1}, \"mode\": \"main\", \"exit_code\": 0, \"stdout_bytes\": 133699, \"response_limit_bytes\": 131072, \"stdout_sha256\": \"dafc7935f6276ccdf3bda49baaff80aa238733c24128f0d59cecadbe3d6d7b0a\", \"stderr_bytes\": 0, \"stderr_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"stderr_preview\": \"\"}",
+    "working_branch_installed": false
+  },
+  "native_and_wasm_compiled": true,
+  "failed_log_sha256": "cdf4fb4b52cf1f93141597527d0dc5b49bf25306cc0a2b9478d9f8f296c71162",
+  "candidate_bytes_unchanged_from_v3": true,
+  "source_diagnosis": {
+    "reason": "Width query chart scenes are built from all matching records before row pagination, so limit1 does not imply a scalar-sized complete response.",
+    "code_location": "rust/osw-query/src/lib.rs width chart_scene construction before matches.skip(offset).take(limit)",
+    "required_correction": "Classify widths with objects/reference_routes under the existing finite2MiB scene allowance in both native and WASM checks. Keep128KiB scalar and2MiB source limits. Compare complete responses without truncation or narrower query scope.",
+    "runtime_or_scientific_change_required": false
+  },
+  "native_wasm_parities_completed": 0,
+  "browser_started": false,
+  "working_dataset_updated": false,
+  "main_merged": false,
+  "full_goal_complete": false,
+  "compact_artifact_file_sha256": {
+    "prepared.json": "a06b214dafd9cb0c871e2c0c3ff487812b09b6cd04e1284d193683bf66d14464",
+    "parent-snapshots.json": "91c65ae8d78df3a0450be252560232e966c6c2dd52e854181ee18a413f673a50",
+    "planning-tests.json": "2f387582ab73e732f8a72b63a8f955c1f02b49296930e104448ca0bc4e56c23b",
+    "route-inventory-tests.json": "a7ced64da1340df0a2cb7ac778dd69cdb7b85339478102a023aee11a9549eaf6",
+    "native-smoke.json": "b478baa4de5c5cda71bb31b22fc583cb6d1c658dcdc4c9d13accab885eb9526e",
+    "native-response-custody.json": "b8596dd88ac241c7ab24640702acc78d8a0bafba793f64f67c8c6c6f91a39189",
+    "failure.json": "4037b1deea2ab3b1b07cb0fbbcfd100dde9a2c8ab19c1c9e71b4ad1aeea7c71b"
+  }
+}

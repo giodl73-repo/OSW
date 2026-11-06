@@ -1,0 +1,62 @@
+name: Audit installed Atlantic NEC regional band evidence parent v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/atlantic-nec-stramma-2005-parent-request-v1.json
+      - .github/workflows/atlantic-nec-stramma-2005-parent-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/atlantic-nec-stramma-2005-parent-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/atlantic-nec-stramma-2005-parent-request-v1.json').read_bytes())
+          assert r['schema']=='osw.atlantic-nec-stramma-2005-parent-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  parent-audit:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - name: Publication identity and pre-read refusal fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_atlantic_nec_stramma_2005_parent_v1.py -v
+      - name: Read bounded installed Pacific NEC and family metadata without changing data
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_atlantic_nec_stramma_2005_parent_v1.py
+      - name: Retain compact audit records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlantic-nec-stramma-2005-parent-audit-v1
+          path: .pytest_cache/atlantic-nec-stramma-2005-parent-v1/*.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

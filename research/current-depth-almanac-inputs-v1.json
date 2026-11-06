@@ -1,0 +1,277 @@
+{
+  "schema": "osw.current-depth-almanac-inputs.v1",
+  "datasets": [
+    {
+      "id": "north-brazil",
+      "csv": "research/north-brazil-paired-depth-geometry-v1.csv",
+      "pairing_operator": "research/north-brazil-paired-depth-geometry-operator-v1.json",
+      "review": "research/current-depth-north-brazil-paired-depth-geometry-source-review-v1.json",
+      "expected_review_status": "PASS_ALL14_PAIRED_COMPONENT_SECTIONS_AND_ORIGINAL_DEPTH_ANCHORS_RETAINED",
+      "scope_operators": [
+        "research/north-brazil-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/north-brazil-north-brazil-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "9a2d47bfba05092d5815ae3285df56f19313aa4690b4f4dc091bdf4b6bc8ef8a"
+    },
+    {
+      "id": "greenland-malvinas-eacc",
+      "csv": "research/greenland-malvinas-eacc-paired-depth-v3.csv",
+      "pairing_operator": "research/greenland-malvinas-eacc-paired-depth-operator-v3.json",
+      "review": "research/current-depth-greenland-malvinas-eacc-paired-depth-source-review-v3.json",
+      "expected_review_status": "PASS_FOUR_CURRENT_48_CASE_DEPTH_SHAPES_32_FINITE_11_CENSORED_ANCHORS_5_AXIS_GAPS",
+      "scope_operators": [
+        "research/greenland-depth-sections-operator-v1.json",
+        "research/malvinas-eacc-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/greenland-malvinas-eacc-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "d71c2c317e9e3d90ba9810288ecc70ef9829347616f7c96898e95784a1a96067"
+    },
+    {
+      "id": "atlantic-latitude",
+      "csv": "research/atlantic-latitude-paired-depth-v1.csv",
+      "pairing_operator": "research/atlantic-latitude-paired-depth-operator-v1.json",
+      "review": "research/current-depth-atlantic-latitude-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_FOUR_CURRENT_48_CASE_DEPTH_SHAPES_22_FINITE_15_CENSORED_ANCHORS_11_AXIS_GAPS",
+      "scope_operators": [
+        "research/florida-portugal-depth-sections-operator-v1.json",
+        "research/irminger-wsc-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/atlantic-latitude-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "cdfa50a7f212e2d7b9ef4f9aa06894a86c988a20fdb3d1ce456d4248e725cdc8"
+    },
+    {
+      "id": "mediterranean",
+      "csv": "research/mediterranean-paired-depth-v1.csv",
+      "pairing_operator": "research/mediterranean-paired-depth-operator-v1.json",
+      "review": "research/current-depth-mediterranean-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_72_CASES_FOUR_DATES_58_FINITE_5_CENSORED_ANCHORS_9_AXIS_GAPS",
+      "scope_operators": [
+        "research/balearic-ligurian-interval-depth-sections-operator-v1.json",
+        "research/mediterranean-boundary-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/mediterranean-regional-velocity-depth-curtains-v2.json",
+      "fallback_compiled_descriptor_sha256": "490057ea12dec1f6379487b559b8e1c5abeeda9aed8ed2cb491afa64f845aa9e"
+    },
+    {
+      "id": "caribbean-azores",
+      "csv": "research/caribbean-azores-paired-depth-v1.csv",
+      "pairing_operator": "research/caribbean-azores-paired-depth-operator-v1.json",
+      "review": "research/current-depth-caribbean-azores-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_20_CASES_19_FINITE_AXIS_ANCHORS_ONE_ORIGINAL_AXIS_GAP",
+      "scope_operators": [
+        "research/caribbean-azores-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/caribbean-azores-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "1aea473cac5703cd6c52d6fa3a5eac49edfbdccdf839d1e75bc8ef1fa93ab350"
+    },
+    {
+      "id": "shallow-coastal",
+      "csv": "research/shallow-coastal-paired-depth-v1.csv",
+      "pairing_operator": "research/shallow-coastal-paired-depth-operator-v1.json",
+      "review": "research/current-depth-shallow-coastal-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_SIX_COASTAL_SCOPES_96_CASES_34_FINITE_13_CENSORED_ANCHORS_49_AXIS_GAPS",
+      "scope_operators": [
+        "research/coastal-upper-layer-interval-depth-sections-operator-v1.json",
+        "research/guiana-egcc-upper-layer-interval-depth-sections-operator-v1.json",
+        "research/gaspe-jutland-shallow-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/shallow-coastal-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "cab2a5fde509e25985faa00590784e2c11ba4d0eaef740a38424309421accae2"
+    },
+    {
+      "id": "boundary-subsurface",
+      "csv": "research/boundary-subsurface-paired-depth-v1.csv",
+      "pairing_operator": "research/boundary-subsurface-paired-depth-operator-v1.json",
+      "review": "research/current-depth-boundary-subsurface-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_FOUR_SCOPES_60_CASES_39_FINITE_2_CENSORED_ANCHORS_19_AXIS_GAPS",
+      "scope_operators": [
+        "research/mauritania-baffin-interval-depth-sections-operator-v1.json",
+        "research/northern-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/boundary-subsurface-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "6683eb7d8530f865da5e61f9d3ef70f15a2b81b0a034b304c18c1d1bcaf0ef5b"
+    },
+    {
+      "id": "loop-antilles",
+      "csv": "research/loop-antilles-paired-depth-v1.csv",
+      "pairing_operator": "research/loop-antilles-paired-depth-operator-v1.json",
+      "review": "research/current-depth-loop-antilles-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_TWO_SCOPES_40_CASES_36_FINITE_3_CENSORED_ANCHORS_1_AXIS_GAP",
+      "scope_operators": [
+        "research/loop-antilles-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/loop-antilles-regional-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "a43dc7a929f60aa99c9ecd8962086a335b87465aaa4e69d9913c1dc37929a2c9"
+    },
+    {
+      "id": "nec-subarctic",
+      "csv": "research/nec-subarctic-paired-depth-v1.csv",
+      "pairing_operator": "research/nec-subarctic-paired-depth-operator-v1.json",
+      "review": "research/current-depth-nec-subarctic-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_SCOPES_34_CASES_29_FINITE_ANCHORS_5_AXIS_GAPS",
+      "scope_operators": [
+        "research/nec-subarctic-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/nec-subarctic-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "6bbfa3e7e5d943db666ba6ffd08b9135ffb55b53c138de2e2631270d2d3c02c5"
+    },
+    {
+      "id": "pacific-madagascar",
+      "csv": "research/pacific-madagascar-paired-depth-v1.csv",
+      "pairing_operator": "research/pacific-madagascar-paired-depth-operator-v1.json",
+      "review": "research/current-depth-pacific-madagascar-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_SCOPES_40_CASES_37_FINITE_ANCHORS_3_AXIS_GAPS",
+      "scope_operators": [
+        "research/pacific-madagascar-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/pacific-madagascar-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "10ac67028ed01404146d8b2959ce624ca4976b30ea5eeb498de8f66fee56c5cd"
+    },
+    {
+      "id": "zonal",
+      "csv": "research/zonal-paired-depth-v1.csv",
+      "pairing_operator": "research/zonal-paired-depth-operator-v1.json",
+      "review": "research/current-depth-zonal-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_SCOPES_36_CASES_26_FINITE_8_CENSORED_ANCHORS_2_AXIS_GAPS",
+      "scope_operators": [
+        "research/zonal-current-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "png-solomon",
+      "csv": "research/png-solomon-paired-depth-v1.csv",
+      "pairing_operator": "research/png-solomon-paired-depth-operator-v1.json",
+      "review": "research/current-depth-png-solomon-paired-depth-source-review-v2.json",
+      "expected_review_status": "PASS_THREE_UNDERCURRENT_SCOPES_48_CASES_40_FINITE_ANCHORS_8_AXIS_GAPS",
+      "scope_operators": [
+        "research/ngcuc-interval-depth-sections-operator-v1.json",
+        "research/solomon-undercurrents-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "antarctic",
+      "csv": "research/antarctic-paired-depth-v1.csv",
+      "pairing_operator": "research/antarctic-paired-depth-operator-v1.json",
+      "review": "research/current-depth-antarctic-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_ANTARCTIC_SCOPES_48_CASES_27_FINITE_2_CENSORED_ANCHORS_19_AXIS_GAPS",
+      "scope_operators": [
+        "research/acc-drake-interval-depth-sections-operator-v1.json",
+        "research/antarctic-slope-dml-interval-depth-sections-operator-v1.json",
+        "research/antarctic-coastal-bellingshausen-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/antarctic-regional-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "1585d4e3fbe690dab764157784b7a77c3be4660460e48402cf33a4983917f69a"
+    },
+    {
+      "id": "three-current",
+      "csv": "research/three-current-paired-depth-v1.csv",
+      "pairing_operator": "research/three-current-paired-depth-operator-v1.json",
+      "review": "research/current-depth-three-current-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_CURRENT_SCOPES_40_CASES_34_FINITE_ANCHORS_6_AXIS_GAPS_THERMAL_SELECTION_PRESERVED",
+      "scope_operators": [
+        "research/three-current-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/three-current-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "53020e9eabebba2be9c7b9fda2c663db1e27690d63fa02b64eaf2ec29f1a3cdc"
+    },
+    {
+      "id": "countercurrents-sioc",
+      "csv": "research/countercurrents-sioc-paired-depth-v1.csv",
+      "pairing_operator": "research/countercurrents-sioc-paired-depth-operator-v1.json",
+      "review": "research/current-depth-countercurrents-sioc-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_THREE_SCOPES_32_CASES_30_FINITE_1_CENSORED_ANCHOR_1_AXIS_GAP",
+      "scope_operators": [
+        "research/countercurrents-sioc-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "surface-regional",
+      "csv": "research/surface-regional-paired-depth-v1.csv",
+      "pairing_operator": "research/surface-regional-paired-depth-operator-v1.json",
+      "review": "research/current-depth-surface-regional-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_FIVE_SCOPES_80_CASES_63_FINITE_2_CENSORED_ANCHORS_15_AXIS_GAPS",
+      "scope_operators": [
+        "research/adriatic-surface-interval-depth-sections-operator-v1.json",
+        "research/alaska-coastal-shelikof-interval-depth-sections-operator-v1.json",
+        "research/hiri-zeehan-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/surface-regional-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "3e87857f3c12039a28fd6b194cc7b1e264c883f8f0aacbe79da9ab128bca8a75"
+    },
+    {
+      "id": "guinea",
+      "csv": "research/guinea-paired-depth-v3.csv",
+      "pairing_operator": "research/guinea-paired-depth-operator-v3.json",
+      "review": "research/current-depth-guinea-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_ALL_FOURTEEN_REGIONAL_PAIRED_COMPONENT_DEPTHS_WITH_ORIGINAL_SELECTION",
+      "scope_operators": [
+        "research/guinea-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": "research/guinea-velocity-depth-curtains-v1.json",
+      "fallback_compiled_descriptor_sha256": "0e27bd0ef4064036328e929db6b8c7744c9179bdf7e784634a1f077545b96747"
+    },
+    {
+      "id": "davidson-rim",
+      "csv": "research/davidson-rim-paired-depth-v1.csv",
+      "pairing_operator": "research/davidson-rim-paired-depth-operator-v1.json",
+      "review": "research/current-depth-davidson-rim-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_ALL_ORIGINAL_SURFACE_QUALIFIED_CASES_WITH_CENSORS_AND_GAPS",
+      "scope_operators": [
+        "research/davidson-rim-surface-qualified-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "spitsbergen-indian",
+      "csv": "research/spitsbergen-indian-paired-depth-v1.csv",
+      "pairing_operator": "research/spitsbergen-indian-paired-depth-operator-v1.json",
+      "review": "research/current-depth-spitsbergen-indian-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_SEPARATE_INTERVAL_AND_RELATIVE_CONTEXTS_ALL_ORIGINAL_CASES",
+      "scope_operators": [
+        "research/spitsbergen-atlantic-interval-depth-sections-operator-v1.json",
+        "research/indian-euc-relative-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "sec-basin",
+      "csv": "research/sec-basin-paired-depth-v1.csv",
+      "pairing_operator": "research/sec-basin-paired-depth-operator-v1.json",
+      "review": "research/current-depth-sec-basin-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_ALL_THREE_BASIN_CONTEXTS_ONE_CUMULATIVE_QUERY",
+      "scope_operators": [
+        "research/sec-basin-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    },
+    {
+      "id": "southern-context",
+      "csv": "research/southern-context-paired-depth-v1.csv",
+      "pairing_operator": "research/southern-context-paired-depth-operator-v1.json",
+      "review": "research/current-depth-southern-context-paired-depth-source-review-v1.json",
+      "expected_review_status": "PASS_DISTINCT_CUTOFFS_DATES_GEOMETRY_AND_ALL_ORIGINAL_CASES",
+      "scope_operators": [
+        "research/southern-reaches-depth-sections-operator-v1.json",
+        "research/southern-countercurrent-interval-depth-sections-operator-v1.json"
+      ],
+      "fallback_compiled_descriptor_file": null,
+      "fallback_compiled_descriptor_sha256": null
+    }
+  ],
+  "canonical_inventory": "research/current-depth-reference-inventory-v40.json",
+  "readiness": "research/current-depth-readiness-v2.json",
+  "pending_unadmitted_work_review": "research/current-depth-partitioned-paired-depth-query-failure-review-v1.json",
+  "scope": "All explicitly listed admitted paired products; no failed partitioned products or native data. Canonical references and derived pairs remain different record types.",
+  "native_source_case_reopened": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

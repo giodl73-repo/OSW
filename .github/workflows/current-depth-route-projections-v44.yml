@@ -1,0 +1,190 @@
+name: Current depth additive inventory v44
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v44.yml
+      - analysis/build_current_depth_route_projections_v44.py
+      - analysis/test_current_depth_route_projections_v44.py
+      - research/current-depth-route-projection-operator-v44.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_adriatic_surface_interval_depth_sections_v1.py
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/build_current_depth_route_projections_v44.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_adriatic_surface_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_current_depth_route_projections_v44.py
+            plans/adriatic-surface-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            research/adriatic-surface-interval-depth-sections-operator-v1.json
+            research/adriatic-surface-interval-depth-sections-source-facts-v1.json
+            research/adriatic-surface-interval-depth-sections-source-review-v1.json
+            research/atlantic-seuc-interval100-400-depth-reanalysis-v1.json
+            research/azcc-interval150-700-depth-reanalysis-v1.json
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-inventory-source-review-v29.json
+            research/current-depth-route-projection-inventory-v29.json
+            research/current-depth-route-projection-operator-v44.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-route-projections-v14.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v24.json
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/east-adriatic-naming-extent-scope-audit.json
+            research/east-adriatic-reference-path-input.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/pacific-sscc-interval100-400-depth-reanalysis-v1.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/manifest.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/transport-ledger.json
+            research/western-adriatic-chavanne-2007-mean-width-scope-audit.json
+            research/western-adriatic-reference-path-input.json
+            research/wsc-interval20-500-depth-reanalysis-v1.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify separate Adriatic surface-branch inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v44.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v44.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v44
+          path: current-depth-route-projections-v44/
+          retention-days: 7

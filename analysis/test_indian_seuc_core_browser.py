@@ -13,11 +13,11 @@ def main():
     assert current['capabilities']['scoped_width']==1
     assert current['latest_observation_date'] is None
     report=json.loads((root/'research/indian-seuc-mam-reach-reference-path-candidate.json').read_text(encoding='utf-8'))
-    catalog=json.loads((root/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+    catalog=json.loads((root/'research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
     row=next(r for r in catalog['candidates'] if r['current_id']=='indian-south-equatorial-undercurrent')
     assert row['id'] not in catalog['reference_route_length_order']
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1100})
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=indian-south-equatorial-undercurrent',wait_until='networkidle')

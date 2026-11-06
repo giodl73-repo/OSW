@@ -1,0 +1,123 @@
+{
+  "schema": "osw.eddy-korotaev-2003-archive-access-review.v1",
+  "status": "ARCHIVED_REDIRECTS_AND_AUTHOR_UPLOAD_CHECKED_NO_FIGURE_PIXELS",
+  "review_date": "2026-11-01",
+  "source": {
+    "doi": "10.1029/2002JC001508",
+    "citation": "Korotaev, Oguz, Nikiforov and Koblinsky (2003), Seasonal, interannual, and mesoscale variability of the Black Sea upper layer circulation derived from altimeter data, Journal of Geophysical Research: Oceans 108(C4), 3122.",
+    "publisher_text_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2002JC001508"
+  },
+  "targets": [
+    {
+      "owner_id": "eddy:geography:danube-eddy-region",
+      "required_source": "Dated individual Danube case and its separately identified contour or reported horizontal dimension."
+    },
+    {
+      "owner_id": "eddy:geography:constantsa-eddy-region",
+      "required_source": "Dated individual Constantsa case and its separately identified contour or reported horizontal dimension."
+    }
+  ],
+  "checks": {
+    "archive_availability_query": {
+      "original_url": "https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508",
+      "requested_timestamp": "20200101",
+      "maximum_bytes_per_response": 4000000,
+      "maximum_replay_responses": 2,
+      "ocean_field_processing": false,
+      "source_assets_republished": false,
+      "status": "UNAVAILABLE",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    "public_archive_replay": {
+      "url": "https://web.archive.org/web/20200101/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508",
+      "maximum_bytes_per_response": 4000000,
+      "attempts_per_url": 1,
+      "source_assets_republished": false,
+      "responses": [
+        {
+          "url": "https://web.archive.org/web/20200101/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508",
+          "final_url": "https://web.archive.org/web/20200325010706/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508",
+          "content_type": "text/html",
+          "bytes": 141954,
+          "sha256": "f3bbc02513cbabd526ba85bc9dc12ae7dd94fb371e70fbe04515bf9f0714403b"
+        }
+      ],
+      "status": "RECEIVED_NOT_YET_REVIEWED",
+      "content_file": ".pytest_cache\\eddy-public-archive-v60\\korotaev-direct-archive-2020\\response0.bin"
+    },
+    "observed_redirect_followed": {
+      "url": "https://web.archive.org/web/20200325010706/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508?cookieSet=1",
+      "maximum_bytes_per_response": 4000000,
+      "attempts_per_url": 1,
+      "source_assets_republished": false,
+      "responses": [
+        {
+          "url": "https://web.archive.org/web/20200325010706/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508?cookieSet=1",
+          "final_url": "https://web.archive.org/web/20200325010749/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2002JC001508?cookieSet=1",
+          "content_type": "text/html",
+          "bytes": 141902,
+          "sha256": "44302c1f31701ba29abc76c43bfdde61eff7b22f4b9efe927c40a11dcd6fd16e"
+        }
+      ],
+      "status": "RECEIVED_NOT_YET_REVIEWED",
+      "content_file": ".pytest_cache\\eddy-public-archive-v60\\korotaev-archive-redirect-2020\\response0.bin"
+    },
+    "archived_response_classification": "The responses are HTML for redirects captured at crawl time, not PDF data. The first points to the same source with cookieSet=1; the second points to action/cookieAbsent. No browser cookie, login or challenge workflow was attempted.",
+    "author_uploaded_source": {
+      "url": "https://www.researchgate.net/profile/Temel-Oguz/publication/228420504_Seasonal_interannual_and_mesoscale_variability_of_the_Black_Sea_upper_layer_circulation_derived_from_altimeter_data/links/0a85e53bfaffd6d747000000/Seasonal-interannual-and-mesoscale-variability-of-the-Black-Sea-upper-layer-circulation-derived-from-altimeter-data.pdf",
+      "maximum_bytes": 15000000,
+      "attempts": 1,
+      "source_page": "https://www.researchgate.net/publication/228420504_Seasonal_interannual_and_mesoscale_variability_of_the_Black_Sea_upper_layer_circulation_derived_from_altimeter_data",
+      "source_page_reports_author_upload": "Temel Oguz, July 11, 2014",
+      "source_assets_republished": false,
+      "status": "UNAVAILABLE",
+      "error": "<HTTPError 403: 'Forbidden'>"
+    },
+    "author_upload_context": "The public ResearchGate article page reports full text and figures uploaded by coauthor Temel Oguz on July 11, 2014. The returned download href included a relative profile path; one ordinary request to its normalized profile URL returned HTTP 403.",
+    "author_page_review_mode": "Web-indexed public full text and attribution, not original PDF or figure pixels."
+  },
+  "source_scope": "The publisher text explicitly names the regional cases in Figures 11-13 and describes their changing and sometimes merged structures. This establishes a useful source target but does not supply measurable original pixels in these acquisition attempts.",
+  "decision": "No size admitted. Do not turn a cookie-error HTML response, capture timestamp, figure caption, unnamed shelf feature or generic eddy population size into a Danube or Constantsa dimension.",
+  "next_evidence_needed": "A usable author/public repository copy, original named figure asset, or independent primary source with dated named boundaries. Repeating the identical live PDF and archived redirect requests is not a measurement strategy; require changed access evidence or a distinct source.",
+  "prior_reviews_preserved": [
+    "research/eddy-source-gap-review-v48.json",
+    "research/eddy-source-gap-review-v53.json"
+  ],
+  "baseline": {
+    "register_file": "research/eddy-measurement-register-v1.json",
+    "register_sha256": "21ca015ebbb69a0be7b7ba4c4e9171eb40ee38b0f385eb43b9982fdd1aa3ca2e",
+    "csv_file": "research/eddy-measurement-register-v1.csv",
+    "csv_sha256": "d343758d6f670a5d1edaf0f718f96bc5c7f70846f24c0d1445fae66dba1969cc",
+    "counts": {
+      "identities": 136,
+      "individual_source_records": 112,
+      "recurrent_regions": 20,
+      "families": 4,
+      "evidence_records": 466,
+      "size_records": 201,
+      "size_owners": 101,
+      "duration_owners": 101,
+      "recurrence_owners": 12,
+      "structure_owners": 15,
+      "kinematics_owners": 73,
+      "non_registry_entries": 40,
+      "non_registry_entries_with_references": 40,
+      "registry_entries_with_own_references": 85,
+      "linked_primary_context_entries": 11,
+      "secondary_entries_with_own_references": 4,
+      "entries_without_numeric_or_primary_context": 0,
+      "identities_with_measurements": 125,
+      "identities_without_measurements": 11,
+      "conflicted_size_records": 2,
+      "source_track_spans": 23
+    },
+    "remaining_size_reference_gaps": 35
+  },
+  "original_figure_pixels_reviewed": false,
+  "raw_ocean_fields_processed": false,
+  "source_assets_republished": false,
+  "measurements_admitted": 0,
+  "register_changed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

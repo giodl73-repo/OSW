@@ -1,0 +1,152 @@
+{
+  "schema": "osw.current-regional-flow-source-facts.v1",
+  "status": "PREPARED_PRIMARY_SOURCE_CONTEXT_NOT_INSTALLED_MEASUREMENTS",
+  "entity_id": "current:atlantic-south-equatorial-countercurrent",
+  "source": {
+    "author": "Robert L. Molinari",
+    "year": 1980,
+    "month": "May",
+    "title": "Physical oceanographic conditions in the tropical South Atlantic relative to the placement of a grazing OTEC plant",
+    "series": "NOAA Technical Memorandum ERL AOML-43",
+    "landing_url": "https://repository.library.noaa.gov/view/noaa/32523",
+    "original_url": "https://repository.library.noaa.gov/view/noaa/32523/noaa_32523_DS1.pdf",
+    "original_sha256": "596df6fe6b7b01aef8a72d83acfc0ad48a8c7a7cb0f965e680ae675238c0d8f7",
+    "original_bytes": 113448798,
+    "original_pdf_pages": 91,
+    "repository_rights": "CC0 Public Domain",
+    "acquisition_file": "research/source-data/molinari-aoml-43-1980/acquisition.json",
+    "review_file": "research/atlantic-secc-molinari-1980-original-source-review-v1.json"
+  },
+  "study_area": {
+    "latitude_bounds_deg_north": [
+      -15,
+      -5
+    ],
+    "longitude_bounds_deg_east": [
+      -30,
+      -20
+    ],
+    "locator": "Executive summary,printediii/PDF4",
+    "role": "OTEC study area, not current endpoints or a width box"
+  },
+  "measurement_operators": [
+    {
+      "id": "geostrophic-reference",
+      "locator": "Printed38/PDF48 and Figure23,printed42/PDF52",
+      "prose_reference_depth_m": 1000,
+      "figure_reference_pressure_db": 1000,
+      "quantity": "Geostrophic component inferred from hydrographic density; component perpendicular to the survey section, spatially averaged between stations.",
+      "caution": "Retain prose depth and figure pressure labels separately; no conversion between m and dbar performed. This omits Ekman drift and is not an absolute parcel trajectory."
+    },
+    {
+      "id": "cyclesonde-relative-velocity",
+      "locator": "Printed38/PDF48",
+      "reference_depth_m": 600,
+      "quantity": "Current vectors relative to the vector at600m; ship navigation was insufficient to determine absolute drift accurately.",
+      "current_thickness_m": null
+    },
+    {
+      "id": "satellite-drifter-upper-layer",
+      "locator": "Printed38/PDF48",
+      "nominal_drogue_depth_m": 30,
+      "quantity": "The author describes an average of the currents in the upper30m layer.",
+      "caution": "Not interchangeable with surface geostrophic flow; this30m support does not establish SECC thickness."
+    }
+  ],
+  "regional_flow_claims": [
+    {
+      "id": "atlantic-secc-molinari-1980-jul-aug-1978-geostrophic-context",
+      "prose_locator": "Printed41/PDF51,first paragraph",
+      "figure_locator": "Figure23,printed42/PDF52",
+      "reported_latitude_band_deg_north": [
+        -8,
+        -6
+      ],
+      "flow_component": "eastward surface geostrophic component relative to the declared reference",
+      "source_time_label": "July-August1978",
+      "map_printed_dates": [
+        "1978-07-25",
+        "1978-08-13"
+      ],
+      "dates_meaning": "Survey-map date bounds, not observation dates for every point or current-wide extrema",
+      "band_role": "Author-reported regional flow band, not paired flow-normal width edges",
+      "alongflow_endpoints": null,
+      "length_km": null,
+      "width_km": null,
+      "annual_dimension_range": null
+    },
+    {
+      "id": "atlantic-secc-molinari-1980-jul-1979-geostrophic-context",
+      "prose_locator": "Printed41/PDF51,first paragraph",
+      "figure_locator": "Figure26,printed45/PDF55",
+      "reported_latitude_band_deg_north": [
+        -7,
+        -6
+      ],
+      "flow_component": "eastward geostrophic component",
+      "source_time_label": "July1979",
+      "date_precision": "calendar_month",
+      "exact_observation_dates": null,
+      "band_role": "Author-reported regional flow band, not paired flow-normal width edges",
+      "alongflow_endpoints": null,
+      "length_km": null,
+      "width_km": null,
+      "annual_dimension_range": null
+    }
+  ],
+  "unresolved_source_discrepancy": {
+    "id": "january-february-year-conflict",
+    "prose_locator": "Printed41/PDF51,second paragraph",
+    "prose_year": 1980,
+    "figure28_locator": "Printed47/PDF57",
+    "figure28_printed_dates": [
+      "1979-01-20",
+      "1979-02-12"
+    ],
+    "figure29_locator": "Printed48/PDF58",
+    "figure29_caption_year": 1979,
+    "figure_list_pdf_pages": [
+      8,
+      9
+    ],
+    "figure_list_year": 1979,
+    "resolved_observation_year": null,
+    "decision": "Preserve both labels. No automatic date correction, dated-record admission or seasonal playback from this disputed episode."
+  },
+  "length_gate": {
+    "whole_current_length_km": null,
+    "reference_route": null,
+    "rank_eligible": false,
+    "reason": "The selected current section and maps describe a local geostrophic flow field over surveyed stations. Neither the OTEC box nor the dynamic-height contour endpoints defines the full named current.",
+    "do_not_infer": [
+      "Do not convert6-8S or6-7S bands into measured widths.",
+      "Do not use map-frame20-35W bounds or local contour endpoints as current start/end gates.",
+      "Do not join observations from separate cruises into a continuous current axis.",
+      "Do not transfer the executive-summary3-5S undercurrent description to the SECC.",
+      "Do not treat the600m reference vector or30m drifter support as current thickness.",
+      "Do not compute annual minima,maxima or confidence intervals from these regional episodes."
+    ]
+  },
+  "bibliographic_followup": {
+    "locator": "Printed61/PDF71",
+    "merle_work_actually_listed": {
+      "year": 1978,
+      "title": "Atlas Hydrologique Saisonnier de l\u2019Oc\u00e9an Atlantique Intertropical",
+      "series": "Travaux et Documents de l\u2019ORSTOM",
+      "number": 82
+    },
+    "merle_1977_workshop_original_acquired": false,
+    "merle_1978_atlas_original_acquired": false,
+    "note": "The1978 atlas and the1977 workshop item are distinct leads. This bibliography does not repair the1979 memorandum\u2019s printed25N endpoint."
+  },
+  "admission": {
+    "new_length_records": 0,
+    "new_width_records": 0,
+    "new_width_samples": 0,
+    "new_query_or_source_index_records": 0,
+    "new_independent_observations_admitted": 0,
+    "runtime_artifacts_changed": false,
+    "seasonal_playback_eligible": false,
+    "whole_current_length_gap_closed": false
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    100,
+    350
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all32section/date cases,all candidate scores/local maxima,no-selection,edge and primary-censored outcomes. No post-result retuning. Narrow island margins/native coastal masks can confound maxima and do not establish current absence or seabed depth. Geographic northward maxima do not independently validate current/branch identity.",
+  "vertical_operator": "Frozen connected layers trace on full native0-5000m support using finite adjacent brackets,without sign/cutoff/missing-gap bridging. Keep upper/lower/status/bounds/paired span separate.100/350m selection endpoints,235m historical NICU observed core,200m SICU model core,density layers24-26.5,instrument stops and bathymetry are not imposed current bottoms. Same-sign deep/surface flow can merge;no physical thickness or water-mass class is established.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.solomon-undercurrents-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New regional NICU/SICU declaration using a wrapper over unchanged frozen mixed collector. All numerical kernels,geometry,read budget,retries and source audit remain frozen;identity evidence differs explicitly by current.",
+  "geometry_provenance": "NICU four editorial latitude cuts4.4,3.8,3.2,2.6S with gates[153,155],[152.5,154.5],[152,154],[151,153]E. SICU short six-tenths-degree reach6.6,6.4,6.2,6S with155-157E gates around source6S/155.2-156.5E mean-section neighborhood. No source axis/coastline digitization or whole island-chain continuity is claimed.",
+  "column_selector": "Complete finite100-350m positive signed northward0degree integral with core>10cm/s. This editorial diagnostic brackets cited235m observed NICU and~200m modeled SICU cores without treating them as bottoms or transferring core evidence between identities. No surface,relative surface,temperature or salinity gate. Greatest integral wins,first western native index breaks ties;gate/support-edge winners remain unresolved without weaker replacement.5/10/20cm/s sensitivities keep same column with separate seeds.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous quarterly probes,not seasonal means,annual ranges,WEPOCS occupation dates or Melet1986-2004 model mean. Historical NICU observations and proposed SICU model results remain separate source contexts.",
+  "transport_budget": "Preflight all32targets before fields under unchanged250000pairs/7MBdecoded caps,40levels,3-150profiles/section,20000pairs/patch,5km axis tolerance. One shared frozen mixed reader,max3exactfailedcomponentNetCDFIOfailure attempts2/5seconds with future first-attempt reserve,no success replay or cap increase.",
+  "currents": {
+    "current:new-ireland-coastal-undercurrent": {
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        100,
+        350
+      ],
+      "selection_depth_interval_m": [
+        100,
+        350
+      ],
+      "branch_scope": "Partial east New Ireland regional reach4.4-2.6S. Exclude cross-basin Solomon Strait,NBCU/St Georges branches,northern Bismarck/EUC split and full current endpoints. Historical WEPOCS observed235m alongshore core cited by Melet2010 is regional core evidence,not a physical bottom or a2022observation. Fixed northward component does not reproduce a locally rotated alongshore axis.",
+      "identity_evidence_basis": "historically_observed_regional_current_source_summary"
+    },
+    "current:solomon-island-coastal-undercurrent": {
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        100,
+        350
+      ],
+      "selection_depth_interval_m": [
+        100,
+        350
+      ],
+      "branch_scope": "Short partial eastern Bougainville/Solomon Islands model-proposal context6.6-6S around the published6S model section. Do not infer continuous current along the full Solomon island chain,connection to NICU or observational confirmation. Melet2010 proposed SICU with modeled~200m core;later local cruise context is distinct. Fixed northward diagnostic does not reproduce source density mask or prove named-current identity.",
+      "identity_evidence_basis": "published_model_proposed_current_not_observationally_confirmed_by_this_diagnostic"
+    }
+  },
+  "sections": [
+    {
+      "id": "section-4p4s",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -4.4,
+      "longitude_gate_degrees_east": [
+        153,
+        155
+      ]
+    },
+    {
+      "id": "section-3p8s",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -3.8,
+      "longitude_gate_degrees_east": [
+        152.5,
+        154.5
+      ]
+    },
+    {
+      "id": "section-3p2s",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -3.2,
+      "longitude_gate_degrees_east": [
+        152,
+        154
+      ]
+    },
+    {
+      "id": "section-2p6s",
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -2.6,
+      "longitude_gate_degrees_east": [
+        151,
+        153
+      ]
+    },
+    {
+      "id": "section-6p6s",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -6.6,
+      "longitude_gate_degrees_east": [
+        155,
+        157
+      ]
+    },
+    {
+      "id": "section-6p4s",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -6.4,
+      "longitude_gate_degrees_east": [
+        155,
+        157
+      ]
+    },
+    {
+      "id": "section-6p2s",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -6.2,
+      "longitude_gate_degrees_east": [
+        155,
+        157
+      ]
+    },
+    {
+      "id": "section-6p0s",
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -6.0,
+      "longitude_gate_degrees_east": [
+        155,
+        157
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://hal.science/hal-00534041v1/file/2009jpo4264_2E1.pdf",
+      "locator": "Retained original Melet2010 PDF,printed1315-1316/PDF15-16 visually re-reviewed;Sec5c andFigure12;acquisition byte/hash receipt retained",
+      "scope": "NICU cited WEPOCS alongshore core235m within40km of eastern New Ireland is observation summary,not newly observed by Melet. SICU modeled~200m core near6S and100km confinement is a separate proposed-current model context. Figure12 SICU longitude span~155.2-156.5E informs a small regional search neighborhood,not digitized axes or exact current edges. Source model uses density-variable thermocline24-26.5,not fixed100-350m physical boundaries."
+    },
+    {
+      "url": "https://faculty.washington.edu/kessler/abstracts/melet_etal_2010.html",
+      "locator": "Fresh coauthor-hosted primary abstract",
+      "scope": "NICU,SICU,NBCU and NGCU are distinct branches;SICU was proposed in the model and NICU can connect toEUC. These relationships do not justify inherited depth numbers or extrapolated regional axes."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_ngcuc_interval_depth_sections_v1.py": "091b3f45246077147a6e1ba89ec4f1a59ca1491e66fd739b8272234437f8d2e3",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_solomon_undercurrents_interval_depth_sections_v1.py": "e2c7a29bd6c750070830bae8258a03573b1acab77eb47f973429d5915e481d3c",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_ngcuc_interval_depth_sections_v1.py": "51c98ec14f86659c74704d8ff6d5085213a0175b4ea76411c05ca2674454e201",
+    "analysis/test_solomon_undercurrents_interval_depth_sections_v1.py": "0532a7c0cbb6fa46a2b3f5f20aab16d48559a66a605b6ce62f025c9f2cb6ca0d",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/ngcuc-interval-depth-sections-protocol-v1.md": "4a67f2222056c804c7b49d8280bf6b2dad78f6b21965788587e58f1f7d49e0f4",
+    "plans/solomon-undercurrents-interval-depth-sections-protocol-v1.md": "df8b5a6c3f3a1ec1aa7cfa48186e68368f4215f72622f2743f1e5691ba196476",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/current-depth-source-facts-v6.json": "2d290fbd00f2aac18a693755afec35bd4676cef8f78345f9bc027e91fafe8ca1",
+    "research/current-depth-source-facts-v8.json": "83275b26997914e0b31c97601f8f09a504b01d27790a8c51d9242bc273ceb9db",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/new-guinea-coastal-undercurrent-reference-path-input.json": "56df70794a8941a39973c4a4627baa8a18eb91e2c3029d00eb03c9da5493fca8",
+    "research/new-ireland-coastal-undercurrent-reference-path-input.json": "78dc721e731fdc3144c5ebbbf68d3cdb70f282091a6cf9862815697b3915b5c3",
+    "research/ngcuc-interval-depth-sections-operator-v1.json": "7e3dc61ac8a0fcc33c69372f4df98bfaed8857fc43d095deca8808c8e25b09bf",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/solomon-island-coastal-undercurrent-reference-path-input.json": "d75e61291df10f438ddc2f2201bc272b56593b344baab03d521a91cc914f0b5b",
+    "research/solomon-melet-2010-coastal-confinement-scope-audit.json": "9479bb446cb945602bc253969ca71217d073c93d8b135883005dfffb35236656",
+    "research/source-data/melet-solomon-2010/acquisition.json": "f58625238cf51e5da47e4c426dd377b3fccdfc1d37830579d789c5f88936062a",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    100,
+    350
+  ],
+  "methodology_file": "plans/solomon-undercurrents-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent regional connectors do not replace or extrapolate canonical editorial routes. SICU near6S is a short published-section neighborhood,not a validated continuous island-chain current. No parent/branch depth inheritance,connection across Solomon Strait,volume/state join or global sum.",
+  "maximum_nearest_longitude_distance_km": 5,
+  "reviewed_primary_document": {
+    "acquisition_file": "research/source-data/melet-solomon-2010/acquisition.json",
+    "sha256": "9d41af95d2ccbcee1e1469ea45d703d9cb1005ce6d1701896f4a94b5e8f1da3d",
+    "bytes": 6048321,
+    "reviewed_pdf_pages": [
+      15,
+      16
+    ],
+    "original_document_redistributed": false
+  }
+}

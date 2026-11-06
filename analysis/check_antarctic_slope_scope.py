@@ -25,8 +25,10 @@ def validate(audit,inventory):
     review=audit['width_review']
     if review['decision']!='sources_reviewed_no_comparable_numeric_current_width' or any(review[k] is not None for k in ['whole_current_width_km','annual_width_range_km']):
         raise ValueError('Antarctic Slope review promoted to numeric width')
-    if reviews!=[audit['width_review']] or any(r['current_id']=='antarctic-slope' for r in inventory['measurements']):
-        raise ValueError('Antarctic Slope source review or unknown width changed')
+    from check_antarctic_slope_jet_constraint import load, validate_inventory
+    validate_inventory(inventory)
+    if reviews or load()['previous_source_review_record'] != audit['width_review']:
+        raise ValueError('Antarctic Slope source-specific review history changed')
     if hashlib.sha256((ROOT/audit['velocity_series_file']).read_bytes()).hexdigest()!=audit['velocity_series_sha256']:
         raise ValueError('Changed M6 velocity source binding')
 

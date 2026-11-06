@@ -1,0 +1,114 @@
+{
+  "schema": "osw.reported-regional-transect-width-preflight.v1",
+  "purpose": "Prospective exact-byte freeze before first actual Davidson source report/SVG generation",
+  "dependencies": {
+    "producer": {
+      "path": "analysis/davidson_wallace_reported_width_v1.py",
+      "bytes": 15458,
+      "sha256": "0b5ea10227c6c536da5ed2dd2df40d86a0282af5d7a90e56c5929737854a1eb2"
+    },
+    "tests": {
+      "path": "analysis/test_davidson_wallace_reported_width_v1.py",
+      "bytes": 9210,
+      "sha256": "a1d795172271caa5cfa5e1a3f53bcf9aa1fb5df9825e6203d269c018e73d9a2e"
+    },
+    "protocol": {
+      "path": "plans/davidson-wallace-reported-width-protocol-v1.md",
+      "bytes": 6972,
+      "sha256": "0e3e6ff25115b287f6d3174e6f2151b287976c1b1b02d1a10bbe34973ddbc31e"
+    },
+    "facts": {
+      "path": "research/davidson-wallace-2008-width-source-facts-v1.json",
+      "bytes": 2743,
+      "sha256": "7bc0152a94f612d8fdac290902daeb2ac65966a118779fb471bb44e161a3ef39"
+    },
+    "acquisition": {
+      "path": "research/source-data/wallace-davidson-2008/acquisition.json",
+      "bytes": 942,
+      "sha256": "3a09d437c8f58b6b6500353044a8c0d2b076724a34ea2e45f6e96e67175589ac"
+    },
+    "unit_definition": {
+      "path": "research/source-data/wallace-davidson-2008/international-nautical-mile-definition.json",
+      "bytes": 556,
+      "sha256": "7ec398a786b068984992b338215335947d095ac9ddc752e375d95a118bd06144"
+    },
+    "width_rules": {
+      "path": "plans/ocean-current-width-measurement-protocol-v1.md",
+      "bytes": 32308,
+      "sha256": "1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb"
+    },
+    "prose_rules": {
+      "path": "plans/published-prose-dimension-admission-protocol-v1.md",
+      "bytes": 3091,
+      "sha256": "b7193bdb4646472778713717cea509868ef59f2c86a5f1c2e8d30ab5b62a2d5a"
+    },
+    "source_review": {
+      "path": "research/davidson-wallace-2008-source-review-v1.json",
+      "bytes": 2930,
+      "sha256": "9b548bbd9f038e532c24fcabd799f119beb39ecb38cf839704f2b2f29a1b435e"
+    },
+    "environment": {
+      "path": "requirements-test.txt",
+      "bytes": 371,
+      "sha256": "78c44043345533a400e3f1c9ddbedf1f2471b913e3e2eec99cdb6434640dcb04"
+    },
+    "role_review": {
+      "path": "signals/roles/check/davidson-wallace-reported-width-v1-roles-check-2026-10-23.md",
+      "bytes": 7753,
+      "sha256": "6d4441a790db12bbd0de9a00cb05375511e15c3bf5dfd63fba2a9e02738d1f04"
+    }
+  },
+  "original": {
+    "path": "research/source-data/wallace-davidson-2008/journal-article.pdf",
+    "bytes": 678350,
+    "sha256": "e86d542866fcc58b593ced54815ec7bbc3e6bb7fb1f3b8d3079484bc22a3b037"
+  },
+  "source_page_anchors": [
+    {
+      "pdf_page": 1,
+      "anchors": [
+        "In-situ Observations of the Davidson Current"
+      ]
+    },
+    {
+      "pdf_page": 8,
+      "anchors": [
+        "27 – 59 meter",
+        "approximately 35 NM"
+      ]
+    },
+    {
+      "pdf_page": 9,
+      "anchors": [
+        "27 – 59 m data",
+        "23 – 25 January"
+      ]
+    },
+    {
+      "pdf_page": 22,
+      "anchors": [
+        "Mean 27-59 m",
+        "Figure 6."
+      ]
+    },
+    {
+      "pdf_page": 23,
+      "anchors": [
+        "Jan 30 2008",
+        "Line 67",
+        "Figure 8."
+      ]
+    }
+  ],
+  "source_class": "course_cruise_report_not_verified_peer_review",
+  "canonical_admission_verified": false,
+  "raw_values_reproduced": false,
+  "annual_range_or_geographic_footprint_admitted": false,
+  "first_actual_source_report_execution_permitted_only_after_git_freeze": true,
+  "runtime_requirements": {
+    "PyMuPDF": "1.28.2",
+    "numerical_calculation": "standard-library Decimal; independent integer-rational synthetic checks",
+    "worker_policy": "one logical CPU BelowNormal; no local atlas build or full packet parse"
+  },
+  "numerical_context": "Private Decimal precision50 for conversion, display rounding and marker position; exact conversion is not exact physical width."
+}

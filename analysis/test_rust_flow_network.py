@@ -1,4 +1,5 @@
 """Source integrity, bounded connectivity and accessible network query navigation."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -21,7 +22,7 @@ def main():
     assert native(limited)['network_paths']['hop_limit_reached']
     samples = {'collection':'passage_samples'}
     assert len(native(samples)['map_scene']['features']) == 8
-    bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with tempfile.TemporaryDirectory() as directory:
         for mutation in ['source','edge','transport','geometry','owner','orphan']:
             data = copy.deepcopy(bundle); c = data['collections']

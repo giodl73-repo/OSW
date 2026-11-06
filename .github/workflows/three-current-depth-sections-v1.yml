@@ -1,0 +1,56 @@
+name: Three current full depth sections v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/three-current-depth-sections-v1.yml
+      - analysis/acquire_three_current_depth_sections_v1.py
+      - analysis/test_three_current_depth_sections_v1.py
+      - research/three-current-depth-sections-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            research/three-current-depth-sections-operator-v1.json
+            research/mindanao-reference-path-candidate.json
+            research/oyashio-reference-path-candidate.json
+            research/leeuwin-reference-path-candidate.json
+            research/leeuwin-seasonal-depth-operator-v1.json
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify source column rules and acquire full fixed latitude sections on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_three_current_depth_sections_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: three-current-depth-sections-v1
+          path: three-current-depth-sections-v1/
+          retention-days: 7

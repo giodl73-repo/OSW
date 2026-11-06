@@ -1,0 +1,138 @@
+name: Greenland Malvinas and EACC depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/greenland-malvinas-eacc-velocity-curtains-v1.yml
+      - analysis/derive_greenland_malvinas_eacc_velocity_curtains_v1.py
+      - analysis/test_greenland_malvinas_eacc_velocity_curtains_v1.py
+      - plans/greenland-malvinas-eacc-velocity-curtains-protocol-v1.md
+      - research/greenland-malvinas-eacc-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/greenland-depth-sections-v1.yml
+            .github/workflows/malvinas-eacc-depth-sections-v1.yml
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_malvinas_eacc_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/derive_atlantic_latitude_velocity_curtains_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_greenland_malvinas_eacc_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_greenland_malvinas_eacc_velocity_curtains_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_malvinas_eacc_depth_sections_v1.py
+            plans/greenland-malvinas-eacc-velocity-curtains-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v11.json
+            research/current-depth-source-facts-v42.json
+            research/east-greenland-reference-path-candidate.json
+            research/greenland-depth-sections-operator-v1.json
+            research/greenland-depth-sections-source-facts-v1.json
+            research/greenland-depth-sections-source-review-v1.json
+            research/greenland-malvinas-eacc-velocity-curtains-operator-v1.json
+            research/malvinas-adcp-depth-audit-operator-v1.json
+            research/malvinas-eacc-depth-sections-operator-v1.json
+            research/malvinas-eacc-depth-sections-source-facts-v1.json
+            research/malvinas-eacc-depth-sections-source-review-v1.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-59n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-61n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-64n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-70n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-73n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-76n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-east-greenland-section-78p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-59p4n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-60p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-61p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-63n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-65n.json
+            research/source-data/greenland-depth-sections-v1/2022-01-15-west-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-59n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-61n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-64n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-70n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-73n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-76n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-east-greenland-section-78p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-59p4n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-60p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-61p5n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-63n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-65n.json
+            research/source-data/greenland-depth-sections-v1/2022-07-15-west-greenland-section-67n.json
+            research/source-data/greenland-depth-sections-v1/manifest.json
+            research/source-data/greenland-depth-sections-v1/transport-ledger.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-10s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-4s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-5p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-7s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-8p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-41s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-43s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-45s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-47s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-49s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-10s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-4s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-5p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-7s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-8p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-41s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-43s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-45s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-47s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-49s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/manifest.json
+            research/source-data/malvinas-eacc-depth-sections-v1/transport-ledger.json
+            research/west-greenland-pacini-2020-core-identity-visual-review-v1.json
+            research/west-greenland-reference-path-candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_latitude_depth_section_geometry_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_malvinas_eacc_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_greenland_malvinas_eacc_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_greenland_malvinas_eacc_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: greenland-malvinas-eacc-velocity-curtains-v1
+          path: greenland-malvinas-eacc-velocity-curtains-v1/
+          retention-days: 7

@@ -1,0 +1,3406 @@
+{
+  "schema": "osw.southern-countercurrent-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_INTERVAL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "e1b260774be022fe489d677868a3650c78b225c77e4fed76378551a3285a7ec3",
+  "operator_file": "research/southern-countercurrent-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "823e5133d0d2b1bc5da31ce628f37b43a6a49f78af755e921d2eeb972ec48e16",
+  "counts": {
+    "section_date_cases": 40,
+    "native_velocity_profiles": 4520,
+    "selected_axis_proxy_profiles": 33,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 26,
+      "no_qualifying_interval_component_column": 7,
+      "section_gate_edge_maximum_axis_unresolved": 7
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 33,
+      "0.1": 33,
+      "0.2": 26
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 33,
+      "0.1": 33,
+      "0.2": 26
+    },
+    "decoded_velocity_cell_pairs": 180800,
+    "decoded_velocity_array_bytes": 1446400,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:indian-south-equatorial-countercurrent": {
+      "section_date_cases": 20,
+      "native_velocity_profiles": 2020,
+      "selected_axis_proxy_profiles": 18,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 15,
+        "no_qualifying_interval_component_column": 2,
+        "section_gate_edge_maximum_axis_unresolved": 3
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 18,
+        "0.1": 18,
+        "0.2": 16
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 18,
+        "0.1": 18,
+        "0.2": 16
+      }
+    },
+    "current:pacific-south-equatorial-countercurrent": {
+      "section_date_cases": 20,
+      "native_velocity_profiles": 2500,
+      "selected_axis_proxy_profiles": 15,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 11,
+        "no_qualifying_interval_component_column": 5,
+        "section_gate_edge_maximum_axis_unresolved": 4
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 15,
+        "0.1": 15,
+        "0.2": 10
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 15,
+        "0.1": 15,
+        "0.2": 10
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-93e.json",
+      "source_sha256": "eb5c669d0d8fd9c386471330f95637d5bfdc8c747f9076309a9375ef23509850",
+      "source_profile_pointer": "/columns/99",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-93e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-93e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 93,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 92.9599609375,
+      "selected_lon_lat": [
+        92.9599609375,
+        -4.039999961853027
+      ],
+      "selected_column_index": 99,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        99
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2398.1481582406695,
+          "layer_thickness_m": 2398.1481582406695,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5220000147819519,
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 503.12501120497546,
+          "layer_thickness_m": 503.12501120497546,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5220000147819519,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 183.3333372290618,
+          "layer_thickness_m": 183.3333372290618,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5220000147819519,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 503.12501120497546,
+      "primary_layer_thickness_m": 503.12501120497546,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-94e.json",
+      "source_sha256": "39403ad692705d8a6e334180f2f71fa26082fadfe9e2ece426367fd0d1a3d499",
+      "source_profile_pointer": "/columns/100",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-94e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-94e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 94,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.0,
+      "selected_lon_lat": [
+        94.0,
+        -4.0
+      ],
+      "selected_column_index": 100,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1212.9629759938143,
+          "layer_thickness_m": 1212.9629759938143,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4830000102519989,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 603.7037163768437,
+          "layer_thickness_m": 603.7037163768437,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4830000102519989,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.66666855887713,
+          "layer_thickness_m": 86.66666855887713,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4830000102519989,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 603.7037163768437,
+      "primary_layer_thickness_m": 603.7037163768437,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-95e.json",
+      "source_sha256": "b7d763782963b5c9f6726aba1089a93631709c5050c6a17c7f870778d69070f2",
+      "source_profile_pointer": "/columns/100",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-95e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-95e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 95,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.9599609375,
+      "selected_lon_lat": [
+        94.9599609375,
+        -4.0
+      ],
+      "selected_column_index": 100,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 75.50000130385139,
+          "layer_thickness_m": 75.50000130385139,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30100002884864807,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 57.631580577827776,
+          "layer_thickness_m": 57.631580577827776,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30100002884864807,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 25.4166680636503,
+          "layer_thickness_m": 25.4166680636503,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30100002884864807,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 57.631580577827776,
+      "primary_layer_thickness_m": 57.631580577827776,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-96e.json",
+      "source_sha256": "f0cde617eb60bbd4e3a4045981cca0b1430b653ed37cf55ac04eee6f4ff7620a",
+      "source_profile_pointer": "/columns/100",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-96e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-96e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 96,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.0,
+      "selected_lon_lat": [
+        96.0,
+        -4.0
+      ],
+      "selected_column_index": 100,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        62,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 64.87804902647662,
+          "layer_thickness_m": 64.87804902647662,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.17400000989437103,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 28.750000407453655,
+          "layer_thickness_m": 28.750000407453655,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.17400000989437103,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 28.750000407453655,
+      "primary_layer_thickness_m": 28.750000407453655,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-97e.json",
+      "source_sha256": "eee3f1205fa28d79582105159a4b95dd49444dd6b3e91a70c5d54f8c92f1233c",
+      "source_profile_pointer": "/columns/51",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-97e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-97e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 97,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.9599609375,
+      "selected_lon_lat": [
+        96.9599609375,
+        -5.960000038146973
+      ],
+      "selected_column_index": 51,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        51,
+        64
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 40.40000020861625,
+          "layer_thickness_m": 40.40000020861625,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 23.859649631895593,
+          "layer_thickness_m": 23.859649631895593,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 23.859649631895593,
+      "primary_layer_thickness_m": 23.859649631895593,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-168e.json",
+      "source_sha256": "dc0c55fb434cd1e37ae153f88c766634a13bfcf8d4905974e9df42d511f6747e",
+      "source_profile_pointer": "/columns/34",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-168e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-168e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 168,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.0,
+      "selected_lon_lat": [
+        168.0,
+        -11.119999885559082
+      ],
+      "selected_column_index": 34,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        34,
+        79
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 285.00000248352677,
+          "layer_thickness_m": 285.00000248352677,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 201.66667246156246,
+          "layer_thickness_m": 201.66667246156246,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 139.4736912276904,
+          "layer_thickness_m": 139.4736912276904,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 201.66667246156246,
+      "primary_layer_thickness_m": 201.66667246156246,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-169e.json",
+      "source_sha256": "1d8151da1536c9a60062ac2e49fe8d1c597b605b314e09ec39a5cd631607321a",
+      "source_profile_pointer": "/columns/15",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-169e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-169e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 169,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.9599609375,
+      "selected_lon_lat": [
+        168.9599609375,
+        -11.880000114440918
+      ],
+      "selected_column_index": 15,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        15,
+        44,
+        46
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 531.5789543855878,
+          "layer_thickness_m": 531.5789543855878,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 232.81250523868863,
+          "layer_thickness_m": 232.81250523868863,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 129.78723680827312,
+          "layer_thickness_m": 129.78723680827312,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 232.81250523868863,
+      "primary_layer_thickness_m": 232.81250523868863,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-170e.json",
+      "source_sha256": "6cf89186e55e380cc8a4b0a89650f071d5b29b59373bf44ebb7d8d1f3b219f06",
+      "source_profile_pointer": "/columns/22",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": [
+        170.0,
+        -11.600000381469727
+      ],
+      "selected_column_index": 22,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        22,
+        86
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 242.30769693675114,
+          "layer_thickness_m": 242.30769693675114,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.24900001287460327,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 173.43750487489194,
+          "layer_thickness_m": 173.43750487489194,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.24900001287460327,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 25.238096454516683,
+          "layer_thickness_m": 25.238096454516683,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.24900001287460327,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 173.43750487489194,
+      "primary_layer_thickness_m": 173.43750487489194,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-171e.json",
+      "source_sha256": "c50ae0a1d41db90d9db602b803383971cec530fce564434c6f102103b1565716",
+      "source_profile_pointer": "/columns/44",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-171e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-171e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 171,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.9599609375,
+      "selected_lon_lat": [
+        170.9599609375,
+        -10.720000267028809
+      ],
+      "selected_column_index": 44,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        44,
+        71,
+        99,
+        101,
+        105
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 292.3076962754559,
+          "layer_thickness_m": 292.3076962754559,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 182.089556421355,
+          "layer_thickness_m": 182.089556421355,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.22727996234069,
+          "layer_thickness_m": 110.22727996234069,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.2970000207424164,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 182.089556421355,
+      "primary_layer_thickness_m": 182.089556421355,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-172e.json",
+      "source_sha256": "8aede33039d6daeec73c23803556e5cc8358769962748522a43b3d87ebd58d9d",
+      "source_profile_pointer": "/columns/65",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-172e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-172e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 172,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 172.0,
+      "selected_lon_lat": [
+        172.0,
+        -9.880000114440918
+      ],
+      "selected_column_index": 65,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        65
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 255.5555607678954,
+          "layer_thickness_m": 255.5555607678954,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 203.00000730156833,
+          "layer_thickness_m": 203.00000730156833,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 148.72881477932518,
+          "layer_thickness_m": 148.72881477932518,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.4050000309944153,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 203.00000730156833,
+      "primary_layer_thickness_m": 203.00000730156833,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-93e.json",
+      "source_sha256": "0fe5202620dd9c1fe03e0a1e33cd9208c586a50e92d9886016c4192de56fb8b4",
+      "source_profile_pointer": "/columns/34",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-93e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-93e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 93,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 92.9599609375,
+      "selected_lon_lat": [
+        92.9599609375,
+        -6.639999866485596
+      ],
+      "selected_column_index": 34,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        34
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1380.4348012703563,
+          "layer_thickness_m": 1380.4348012703563,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7980000376701355,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 587.5000089251746,
+          "layer_thickness_m": 587.5000089251746,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7980000376701355,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 143.08252509001096,
+          "layer_thickness_m": 143.08252509001096,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7980000376701355,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 587.5000089251746,
+      "primary_layer_thickness_m": 587.5000089251746,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-94e.json",
+      "source_sha256": "027325f9da251564aee2e44fe5f1ef620b1db281313a0898028a43c2544aeab7",
+      "source_profile_pointer": "/columns/31",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-94e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-94e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 94,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.0,
+      "selected_lon_lat": [
+        94.0,
+        -6.760000228881836
+      ],
+      "selected_column_index": 31,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        31
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 200.00003725296648,
+          "layer_thickness_m": 200.00003725296648,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7250000238418579,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 169.13580727834238,
+          "layer_thickness_m": 169.13580727834238,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7250000238418579,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 138.94230881283394,
+          "layer_thickness_m": 138.94230881283394,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.7250000238418579,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 169.13580727834238,
+      "primary_layer_thickness_m": 169.13580727834238,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-95e.json",
+      "source_sha256": "601816d52763021481ac6739d973aa4a0849bfbdf69ff8da0fe0020923d040b1",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-95e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-95e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 95,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.9599609375,
+      "selected_lon_lat": [
+        94.9599609375,
+        -6.519999980926514
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 484.61539960471805,
+          "layer_thickness_m": 484.61539960471805,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.5980000495910645,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 315.00001303851394,
+          "layer_thickness_m": 315.00001303851394,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.5980000495910645,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 140.66666898462498,
+          "layer_thickness_m": 140.66666898462498,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.5980000495910645,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 315.00001303851394,
+      "primary_layer_thickness_m": 315.00001303851394,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-96e.json",
+      "source_sha256": "6ea832fc60d47a5509090ff3b6b546c63216ed70b0a7b158458c145870ff15c4",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-96e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-96e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 96,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.0,
+      "selected_lon_lat": [
+        96.0,
+        -6.519999980926514
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 750.0000108654299,
+          "layer_thickness_m": 750.0000108654299,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.4960000216960907,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 358.33336644703996,
+          "layer_thickness_m": 358.33336644703996,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.4960000216960907,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 143.2142897436809,
+          "layer_thickness_m": 143.2142897436809,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.4960000216960907,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 358.33336644703996,
+      "primary_layer_thickness_m": 358.33336644703996,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-97e.json",
+      "source_sha256": "a9cc43b625f31664a92dc0db76787effd5e84d93d62b7172d338422dc2f3e53b",
+      "source_profile_pointer": "/columns/31",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-97e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-97e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 97,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.9599609375,
+      "selected_lon_lat": [
+        96.9599609375,
+        -6.760000228881836
+      ],
+      "selected_column_index": 31,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        31,
+        84
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 400.00000532184373,
+          "layer_thickness_m": 400.00000532184373,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 367.10526420273027,
+          "layer_thickness_m": 367.10526420273027,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 131.32911737416677,
+          "layer_thickness_m": 131.32911737416677,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 367.10526420273027,
+      "primary_layer_thickness_m": 367.10526420273027,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-168e.json",
+      "source_sha256": "51911088d0e7a3e13f095b74ddde4cd27ff18f850ff250241b504743cf9e4b66",
+      "source_profile_pointer": "/columns/81",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-168e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-168e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 168,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.0,
+      "selected_lon_lat": [
+        168.0,
+        -9.239999771118164
+      ],
+      "selected_column_index": 81,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        81
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 168.7500014967684,
+          "layer_thickness_m": 168.7500014967684,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.1600000113248825,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 5.599999006589294,
+          "lower_depth_m": 83.33333995606645,
+          "layer_thickness_m": 77.73334094947715,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.1600000113248825,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 83.33333995606645,
+      "primary_layer_thickness_m": 77.73334094947715,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-169e.json",
+      "source_sha256": "dd78e5b605b4b02f12eba9bd7266dc271efc63d3e96b3ada114960e8fd61a035",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-169e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-169e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 169,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-170e.json",
+      "source_sha256": "8b7a4b1765ff763bbdea5757d8109cae9ad05ca6228599a646d7d9d128955d95",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-171e.json",
+      "source_sha256": "2cbedf5b9640f91ddfacb3078b535341dccd2de230a731fd089395fd88847508",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-171e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-171e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 171,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-172e.json",
+      "source_sha256": "a07b0cdf34555511a8fa250d6db107483c03fdf6b7f3096e1d1a88da382f4491",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-172e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-172e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 172,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 172.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-93e.json",
+      "source_sha256": "c8224e2177e8822c792f4661ef35e7927eae209086828336c953e3a7b76f9f54",
+      "source_profile_pointer": "/columns/69",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-93e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-93e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 93,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 92.9599609375,
+      "selected_lon_lat": [
+        92.9599609375,
+        -5.239999771118164
+      ],
+      "selected_column_index": 69,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        15,
+        69,
+        88
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 611.6883162059091,
+          "layer_thickness_m": 611.6883162059091,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.4970000088214874,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 525.4545575232538,
+          "layer_thickness_m": 525.4545575232538,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.4970000088214874,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 111.7647082670542,
+          "layer_thickness_m": 111.7647082670542,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.4970000088214874,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 525.4545575232538,
+      "primary_layer_thickness_m": 525.4545575232538,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-94e.json",
+      "source_sha256": "1da8c17a838ceba05fe8d383b83477ebd75372c99b73cfd6a9342f0e2f391dad",
+      "source_profile_pointer": "/columns/58",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-94e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-94e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 94,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.0,
+      "selected_lon_lat": [
+        94.0,
+        -5.679999828338623
+      ],
+      "selected_column_index": 58,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        21,
+        58,
+        84,
+        86,
+        90
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 146.87500096042638,
+          "layer_thickness_m": 146.87500096042638,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.39900001883506775,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 131.25000133877617,
+          "layer_thickness_m": 131.25000133877617,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.39900001883506775,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.15384721191664,
+          "layer_thickness_m": 86.15384721191664,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.39900001883506775,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 131.25000133877617,
+      "primary_layer_thickness_m": 131.25000133877617,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-95e.json",
+      "source_sha256": "f272a1cdc94fdf66d76d496333fd0a6279dbd935945a57c0e9b1dca4e6a57482",
+      "source_profile_pointer": "/columns/39",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-95e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-95e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 95,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.9599609375,
+      "selected_lon_lat": [
+        94.9599609375,
+        -6.440000057220459
+      ],
+      "selected_column_index": 39,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        39,
+        41
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1054.0540672517586,
+          "layer_thickness_m": 1054.0540672517586,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.24800001084804535,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 137.2222266373809,
+          "layer_thickness_m": 137.2222266373809,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.24800001084804535,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 22.999991059294768,
+          "lower_depth_m": 87.09677918644475,
+          "layer_thickness_m": 64.09678812714998,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.24800001084804535,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 137.2222266373809,
+      "primary_layer_thickness_m": 137.2222266373809,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-96e.json",
+      "source_sha256": "cc5c9728e07d712ca3a88c51e006c14089ac7c23387cc65d59be57aa8c53a6fc",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-96e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-96e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 96,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-97e.json",
+      "source_sha256": "9a1cc443b9019835d91e59a56ac743cde75b9e23517e333c6135275ea9bdc953",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-97e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-97e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 97,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.9599609375,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-168e.json",
+      "source_sha256": "15ffd9e3663f0412639623d927cfe9e02f7c1fe7ea59569d488011a9e575bc38",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-168e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-168e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 168,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-169e.json",
+      "source_sha256": "d45d8faae8e4130962277a761e81b60451287f3ea4e7f9192424de74e4b36855",
+      "source_profile_pointer": "/columns/94",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-169e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-169e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 169,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.9599609375,
+      "selected_lon_lat": [
+        168.9599609375,
+        -8.720000267028809
+      ],
+      "selected_column_index": 94,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        94
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 93.33333995606641,
+          "layer_thickness_m": 93.33333995606641,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.16200000047683716,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 4.736841824576485,
+          "lower_depth_m": 60.45454705549666,
+          "layer_thickness_m": 55.717705230920174,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.16200000047683716,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 60.45454705549666,
+      "primary_layer_thickness_m": 55.717705230920174,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-170e.json",
+      "source_sha256": "893fa07f4c916bc0df7e684b75d143259a7d46d9e51b57b95ed4942a006d4649",
+      "source_profile_pointer": "/columns/124",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": [
+        170.0,
+        -7.519999980926514
+      ],
+      "selected_column_index": 124,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        87,
+        89,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 5.545454308390657,
+          "lower_depth_m": 117.26618778689549,
+          "layer_thickness_m": 111.72073347850483,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 11.999999751647204,
+          "lower_depth_m": 108.27338284274961,
+          "layer_thickness_m": 96.2733830911024,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            10.0,
+            12.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 108.27338284274961,
+      "primary_layer_thickness_m": 96.2733830911024,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-171e.json",
+      "source_sha256": "a52df0f8eadbec0fb9e03be0adb8c455978cdfabc52e872b55ffa880364a951f",
+      "source_profile_pointer": "/columns/119",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-171e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-171e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 171,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.9599609375,
+      "selected_lon_lat": [
+        170.9599609375,
+        -7.71999979019165
+      ],
+      "selected_column_index": 119,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        119
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.5454543083906558,
+          "lower_depth_m": 135.46511761888473,
+          "layer_thickness_m": 133.9196633104941,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 6.235293581411413,
+          "lower_depth_m": 56.96969803699778,
+          "layer_thickness_m": 50.734404455586365,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 56.96969803699778,
+      "primary_layer_thickness_m": 50.734404455586365,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-172e.json",
+      "source_sha256": "1f961dca7b6977674f5cd6b633d27fd60d59c2c6a2edc2efda814981ffe92579",
+      "source_profile_pointer": "/columns/118",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-172e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-172e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 172,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 172.0,
+      "selected_lon_lat": [
+        172.0,
+        -7.760000228881836
+      ],
+      "selected_column_index": 118,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        105,
+        118
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 173.52941279592807,
+          "layer_thickness_m": 173.52941279592807,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 121.7741945562699,
+          "layer_thickness_m": 121.7741945562699,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.09090765005300172,
+          "lower_depth_m": 78.51852187076938,
+          "layer_thickness_m": 78.42761422071638,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 121.7741945562699,
+      "primary_layer_thickness_m": 121.7741945562699,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-93e.json",
+      "source_sha256": "7377579bc35c7cd932955cb6297518bb75353a2fac440f05259a2aa53f6e85aa",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-93e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-93e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 93,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 92.9599609375,
+      "selected_lon_lat": [
+        92.9599609375,
+        -6.880000114440918
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        28,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 622.5806549300006,
+          "layer_thickness_m": 622.5806549300006,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42600002884864807,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 177.77778559628862,
+          "layer_thickness_m": 177.77778559628862,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42600002884864807,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 88.64865008542998,
+          "layer_thickness_m": 88.64865008542998,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42600002884864807,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 177.77778559628862,
+      "primary_layer_thickness_m": 177.77778559628862,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-94e.json",
+      "source_sha256": "7133120eabb1e5dfe022ec6f86275c134e33391365f4dd2718089e702046b1cf",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-94e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-94e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 94,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.0,
+      "selected_lon_lat": [
+        94.0,
+        -6.880000114440918
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        13,
+        28,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 147.75000031664968,
+          "layer_thickness_m": 147.75000031664968,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41600000858306885,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 135.2500005029142,
+          "layer_thickness_m": 135.2500005029142,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41600000858306885,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 101.95312980213123,
+          "layer_thickness_m": 101.95312980213123,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41600000858306885,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 135.2500005029142,
+      "primary_layer_thickness_m": 135.2500005029142,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-95e.json",
+      "source_sha256": "1afecda7e6da8db4ac43404ec0ff38330664212783d8be594ace4bccc22e31f9",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-95e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-95e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 95,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 94.9599609375,
+      "selected_lon_lat": [
+        94.9599609375,
+        -6.960000038146973
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        0,
+        26,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 384.1176483478513,
+          "layer_thickness_m": 384.1176483478513,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 238.46155301000496,
+          "layer_thickness_m": 238.46155301000496,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 96.11111377860193,
+          "layer_thickness_m": 96.11111377860193,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 238.46155301000496,
+      "primary_layer_thickness_m": 238.46155301000496,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-96e.json",
+      "source_sha256": "c3a8c4ae59587aebdadfc8c10b5876b93f346cc47847539df2e652044ef7154e",
+      "source_profile_pointer": "/columns/46",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-96e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-96e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 96,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.0,
+      "selected_lon_lat": [
+        96.0,
+        -6.159999847412109
+      ],
+      "selected_column_index": 46,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        7,
+        13,
+        46,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 129.83871055931687,
+          "layer_thickness_m": 129.83871055931687,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.606062367791,
+          "layer_thickness_m": 110.606062367791,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 66.80000143051113,
+          "layer_thickness_m": 66.80000143051113,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 110.606062367791,
+      "primary_layer_thickness_m": 110.606062367791,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-97e.json",
+      "source_sha256": "0b7c291501538616a0151052670823c7c3425080c8a45c320ebd7c80ebbd7abe",
+      "source_profile_pointer": "/columns/56",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-97e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-97e",
+        "entity_id": "current:indian-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 97,
+        "latitude_gate_degrees_north": [
+          -8,
+          -4
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 96.9599609375,
+      "selected_lon_lat": [
+        96.9599609375,
+        -5.760000228881836
+      ],
+      "selected_column_index": 56,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        3,
+        56,
+        94
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 116.10738330878387,
+          "layer_thickness_m": 116.10738330878387,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6790000200271606,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 107.71812228346236,
+          "layer_thickness_m": 107.71812228346236,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6790000200271606,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 96.68711739783677,
+          "layer_thickness_m": 96.68711739783677,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6790000200271606,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 107.71812228346236,
+      "primary_layer_thickness_m": 107.71812228346236,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-168e.json",
+      "source_sha256": "f78d2ad0da6a1666544798893f841018d57520d4a90a3de99231029fc0f129b1",
+      "source_profile_pointer": "/columns/63",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-168e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-168e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 168,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.0,
+      "selected_lon_lat": [
+        168.0,
+        -9.960000038146973
+      ],
+      "selected_column_index": 63,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        1,
+        14,
+        63
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.83333374725446,
+          "layer_thickness_m": 110.83333374725446,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.16700001060962677,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 78.2142877669969,
+          "layer_thickness_m": 78.2142877669969,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.16700001060962677,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 78.2142877669969,
+      "primary_layer_thickness_m": 78.2142877669969,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-169e.json",
+      "source_sha256": "dc0421102249284528e2cb5530680f8e64d383714ebebfb42ea075157b062411",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-169e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-169e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 169,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 168.9599609375,
+      "selected_lon_lat": [
+        168.9599609375,
+        -11.960000038146973
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        13,
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 39.28571462023011,
+          "layer_thickness_m": 39.28571462023011,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20200000703334808,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 33.11320792646248,
+          "layer_thickness_m": 33.11320792646248,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20200000703334808,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 0.2500008381901784,
+          "layer_thickness_m": 0.2500008381901784,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20200000703334808,
+          "lower_bracket_m": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 33.11320792646248,
+      "primary_layer_thickness_m": 33.11320792646248,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-170e.json",
+      "source_sha256": "4a30b0626e473fa4c565ac3928c29db5460028cc64f050080c96e84d809b89e7",
+      "source_profile_pointer": "/columns/124",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": [
+        170.0,
+        -7.519999980926514
+      ],
+      "selected_column_index": 124,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 197.01492829427968,
+          "layer_thickness_m": 197.01492829427968,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2160000056028366,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 159.70149638791412,
+          "layer_thickness_m": 159.70149638791412,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2160000056028366,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 0.6956523598254357,
+          "layer_thickness_m": 0.6956523598254357,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2160000056028366,
+          "lower_bracket_m": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 159.70149638791412,
+      "primary_layer_thickness_m": 159.70149638791412,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-171e.json",
+      "source_sha256": "2e8b71c84f36b001510815c5597f2eb84aaa20393277595ed07f2146faa5f1ed",
+      "source_profile_pointer": "/columns/124",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-171e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-171e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 171,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.9599609375,
+      "selected_lon_lat": [
+        170.9599609375,
+        -7.519999980926514
+      ],
+      "selected_column_index": 124,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 237.0000016391276,
+          "layer_thickness_m": 237.0000016391276,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.30800002813339233,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 188.39286191826102,
+          "layer_thickness_m": 188.39286191826102,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.30800002813339233,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 39.44444309536825,
+          "lower_depth_m": 140.17241567125205,
+          "layer_thickness_m": 100.7279725758838,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.30800002813339233,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 188.39286191826102,
+      "primary_layer_thickness_m": 188.39286191826102,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "source_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-172e.json",
+      "source_sha256": "8fcc448145a61152e7936703910c80244f20a8bef1f6e8eeba947f092549b2a2",
+      "source_profile_pointer": "/columns/124",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-172e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-172e",
+        "entity_id": "current:pacific-south-equatorial-countercurrent",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 172,
+        "latitude_gate_degrees_north": [
+          -12.5,
+          -7.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 172.0,
+      "selected_lon_lat": [
+        172.0,
+        -7.519999980926514
+      ],
+      "selected_column_index": 124,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        50,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 192.13483249064336,
+          "layer_thickness_m": 192.13483249064336,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 164.04494416354777,
+          "layer_thickness_m": 164.04494416354777,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 52.56409905679482,
+          "lower_depth_m": 129.1666674945089,
+          "layer_thickness_m": 76.6025684377141,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 164.04494416354777,
+      "primary_layer_thickness_m": 164.04494416354777,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "source_operator_metadata_clarifications": {
+    "transport_budget": "Inherited prose says20targets;actual declared10sections times4dates gives40targets. Frozen preflight and eight new source tests cover all40 before field reads. No budget or numerical behavior is changed."
+  },
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/southern-countercurrent-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "e2d812d8bb616ddd1f62bbac18f91045b3a1af1073b3c41f639191bfaf9ffde6",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-component-reads.v1",
+    "planned_successful_component_values": 361600,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 361600,
+    "successfully_returned_component_values": 361600,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 2892800,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty."
+  }
+}

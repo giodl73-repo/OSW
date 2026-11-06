@@ -1,0 +1,182 @@
+{
+  "schema": "osw.hycom-http-coordinate-source-review.v2",
+  "status": "EXACT_HTTP_FULL_COORDINATE_DIAGNOSIS_RETAINED",
+  "source_commit": "ea33135d0f78a0533b3edb0b7ec0e6c618a6c935",
+  "source_run": 41677383897,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41677383897",
+  "artifact_id": 13251126782,
+  "artifact_sha256": "58d67889a2a96ee49ae40ff6388fdcfc87a3edcc22b1414684eecaf6698c6ebf",
+  "tests_passed": 24,
+  "test_group_counts": [
+    17,
+    7
+  ],
+  "dds_projection": "depth,lat,lon,time",
+  "das_projection_applied": false,
+  "parent_status": "WORKER_PROCESS_COMPLETE",
+  "worker_status": "ALL8_COORDINATE_ARRAYS_EXACTLY_PAIRED",
+  "last_observed_stage": {
+    "operation": "WORKER_COMPLETE",
+    "dataset": null,
+    "axis": null,
+    "at_utc": "2026-11-03T16:45:34.132183+00:00"
+  },
+  "failure_stage": null,
+  "native_coordinate_pairing_established": true,
+  "retained_coordinate_controls": [
+    {
+      "file": "research/source-data/ncc-north-joint-sections-v1/2022-03-15-section-61p5n.json",
+      "status": "EXACT_RETAINED_COORDINATE_CONTROL_MATCH"
+    },
+    {
+      "file": "research/source-data/ncc-north-joint-sections-v1/2022-12-15-section-62p25n.json",
+      "status": "EXACT_RETAINED_COORDINATE_CONTROL_MATCH"
+    }
+  ],
+  "coordinate_pieces_registered_by_worker": [
+    "uv3z-depth.json",
+    "uv3z-lat.json",
+    "uv3z-lon.json",
+    "uv3z-time.json",
+    "ts3z-depth.json",
+    "ts3z-lat.json",
+    "ts3z-lon.json",
+    "ts3z-time.json"
+  ],
+  "http_request_outcomes": [
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.dds?depth,lat,lon,time",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.das",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.ascii?depth%5B0:1:39%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.ascii?lat%5B0:1:4250%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.ascii?lon%5B0:1:4499%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022.ascii?time%5B0:1:2919%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.dds?depth,lat,lon,time",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.das",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.ascii?depth%5B0:1:39%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.ascii?lat%5B0:1:4250%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.ascii?lon%5B0:1:4499%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    },
+    {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022.ascii?time%5B0:1:2919%5D",
+      "status": "HTTP_RESPONSE_RETAINED",
+      "http_status": 200,
+      "error_type": null
+    }
+  ],
+  "new_velocity_or_salinity_field_requests": 0,
+  "new_depth_references_admitted": 0,
+  "scientific_review": [
+    "Samefixed2022uv3z/ts3zsources andnativeDDSshapesviaHTTPASCIIFloat64 reader. Frozen full-coordinate finite/increasing/native-shape/units/calendar/exact-pairing checks reused under scopedoperator with120sparentdeadline. Parent launchesHTTPworker,notnativeCworker.",
+    "Fixed12DDS/DAS/full-coordinateURLs,oneattempt/no redirects/retries/duplicatequeries.15snetworkoperationtimeouts andper-responsebodycaps,pending/completionHTTPledger,exactrawbodybase64/hashreceipts. Coordinatequeriesonly;modelvariablenamesandpartial-coordinate slices rejected.",
+    "CompleteASCIIheaders/counts/labels/numerictokens validated. No rounding,regridding,tolerance,interpolation,gapfill,time substitution orphysicaldepthinference. RetainedMarch61.5NandDecember62.25Ncontrols require exact40depths,nativelatitude/index,allsampledlongitudes/indicesandoriginalGregorianhourtimestamp/index. No oldmodelfieldsre-fetched.",
+    "24cloudchecks passed:17originalHTTPparser/controlchecks+7newscopedDDSprojection/DASunchanged/parentworker/restoration/pinchecks. DDSprojectionreturnsallfourcoordinatevariables;DASremainsunconstrainedperprotocol. No fullarraysorcontrolsrelaxed. AlltestsandactualretrievalsequentialononeidleCPU;no localanalysisimports/numerics/tests.",
+    "Resultiscoordinate/transportdiagnosis,notnewcurrentdepthmeasurement. Fullpairedcoordinateandcontrolsuccess,ifrecorded,doesnotvalidatefuturepackedInt16fieldmask/scale decoding orcurrentaxisidentity. No newrefs,physicalbottom/thickness/width/area/volume/annualprofile. Prior791refs/modelv48/102eddybaseline/main/runtime/UIunchanged;goalactive."
+  ],
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/hycom-http-coordinate-probe-v2.yml": "f3a3aa58062334feaf8f559081f5dfe950c77d288d3d92694c3d004e23beae6b",
+    "analysis/probe_hycom_http_coordinates_v1.py": "f77b323d92eccd380b495485afb72d8e8e584f534f0b1c986a298f1cb1d78e7d",
+    "analysis/probe_hycom_http_coordinates_v2.py": "c2c2e74f42527961c4eee37b5c8f437aa1b4550461ce1b00bc7cde1b742beefe",
+    "analysis/probe_hycom_native_client_coordinates_v1.py": "f4a934e54259565ad1e290d81fa6f66459e6dd7a027cb4ee62ce658a0aed564b",
+    "analysis/test_hycom_http_coordinates_v1.py": "5010252d27bd1813ac6cdce28b01b9835205eeadff1445e68f2d30cbc26f7274",
+    "analysis/test_hycom_http_coordinates_v2.py": "05f97e0c7a00ee3eadb1734021744d812804153f5ea053f7f90e0e1ce498cfb9",
+    "analysis/test_hycom_native_client_coordinate_probe_v1.py": "a4d886de76d31262f264a3e4887444f839a631961301696f23e384871642b73e",
+    "plans/hycom-http-coordinate-probe-protocol-v1.md": "14fdf24e537fe29a8dcf139547e70ef052ece34248643d318911536fe261355d",
+    "plans/hycom-native-client-coordinate-probe-protocol-v1.md": "2548a4385930d930a8733a6d5536440fc861ddea639ff87e2e6164ef55e43efc",
+    "plans/hycom-projected-dds-coordinate-probe-protocol-v2.md": "d38c0ee997a59748f751cae286ad970f292eaefd797a024452d797dc416273ec",
+    "research/current-depth-hycom-http-coordinate-source-review-v1.json": "90e60229b245ab6af2454a6363b961ac63a0abf473573de8580f8074a2b356bb",
+    "research/current-depth-hycom-native-client-coordinate-source-review-v1.json": "eed76bd194aaa820fbda2953093f68afdbac54d3e988f7806fb11abc958916e9",
+    "research/current-depth-hycom-ncc-metadata-diagnosis-source-review-v1.json": "506141849976b2a87fbe2be5e3797cf28e53593e4ce7acccbf58855b97ab39e4",
+    "research/current-depth-ncc-mid-norway-source-attempt-result-v1.json": "79cbed144680e6321740046e413b119bff8ee73f027f6c6db45c60b156364f98",
+    "research/hycom-http-coordinate-probe-operator-v1.json": "5cf88a3bf5e4f5b99e059a0e7668d232d2a83f590e1d4cad2a04d84fae8b65a6",
+    "research/hycom-http-coordinate-probe-operator-v2.json": "fab009746c44c71550fa22e29f9a1a54d6717994fa578a4b624f39a79c3934a7",
+    "research/hycom-native-client-coordinate-probe-operator-v1.json": "4875e9a65833301449e03ab231f735c9f31f1f12e0b0c6e2d100a643285d74d6",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-ledger.json": "52c75e504e411b18883e762c702c53118f948e29186ae4d78f369b0c1a1bb6c0",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-1.json": "a453deba1e30096fc764d2af3e64b3e359a9fed216b16cf38a503069cd638423",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-10.json": "c439ed0212f58292e9f242abcb5d162fddb46395cddea6e978faf1066d2f97ba",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-11.json": "bbcb957135a2a28a6480c9ca0767181057e23314b13c2597b3774cdff7b320af",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-12.json": "be4f023997c9c973a9f33d5efecb76d4d86bff2932e574d2e0373059019782fd",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-2.json": "0dede416dbf4b9aaa57d9f15443719dd46b002e09ce63ffe9613b65a195b7349",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-3.json": "fe5a74b722bff8b8cc48c02025eb38eb64337f970829ab8fc9c66af0f4e50799",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-4.json": "b2a49c175af0296fbf1221c2bd4e206b531c3d5a97cf12c24faf2350277a9c09",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-5.json": "bce9b4b51c2be5467a6314b0331a659cf20704b394a4de5e9f55a66ed8682977",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-6.json": "55d39510053c73029ad3935d99cb115651afb2d8e07500ca9761b056d13d1833",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-7.json": "fa3827ace3a0ba8532404228c4108fa371e66d326dbcd107f6f9cd3098577f5c",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-8.json": "428ec511c6e45febda029f97d4b422f3938b6486f9e1b6397d6c5eebdc254601",
+    "research/source-data/hycom-http-coordinate-probe-v2/http-response-9.json": "af95be262c12e2e118ff878a906bb7edfc294e73130ec3591ca655fdc975110e",
+    "research/source-data/hycom-http-coordinate-probe-v2/probe-report.json": "c95b53150ab405e674a97b7cdc402f969a1d78393bf33ef05e70b4c5f7f17354",
+    "research/source-data/hycom-http-coordinate-probe-v2/process-log.json": "c51dea5c315ef5d65b6e305a339ff765dfd9086b1471157a949a21b707836ea0",
+    "research/source-data/hycom-http-coordinate-probe-v2/ts3z-depth.json": "e8d163df8605bfee6348cb7aa659684230278dc2bc320994c3b91278fce889b8",
+    "research/source-data/hycom-http-coordinate-probe-v2/ts3z-lat.json": "e1c46d3dda4722c0b7d3adfdb8552ca9924239dc4ce2c76a9342aa4360bbb75e",
+    "research/source-data/hycom-http-coordinate-probe-v2/ts3z-lon.json": "862e2fc9c19d2f90142401737a0533b2421973d9020681dae0acf0b7c9a2ed69",
+    "research/source-data/hycom-http-coordinate-probe-v2/ts3z-time.json": "7b5b4a7151cc17abd2693f6659a647bd74376fa476394151ec35e75c5f8be667",
+    "research/source-data/hycom-http-coordinate-probe-v2/uv3z-depth.json": "6d8f60d029589a5a6c9aff66ec2e39205bb4003d7c5851acf3abb28ec5770dcf",
+    "research/source-data/hycom-http-coordinate-probe-v2/uv3z-lat.json": "a3e937785a098ead96229bdaa0564fcf357ed37a187b29a40d7704ceae02854f",
+    "research/source-data/hycom-http-coordinate-probe-v2/uv3z-lon.json": "9d9fe8e8a87c8c2bfa01b84472baa366e1f51c92fafd6cdefda140d4a15aec30",
+    "research/source-data/hycom-http-coordinate-probe-v2/uv3z-time.json": "d32e7062fa9cf76272616e78460128b6975d692e0aa60399cd2e7838b29fac85",
+    "research/source-data/hycom-http-coordinate-probe-v2/worker-report.json": "245cf7df96c43397d9c8a3162b22798af466aed8c874134be3c16cd397eb8689",
+    "research/source-data/hycom-ncc-mid-norway-metadata-probe-v1/probe-report.json": "ab57364cd6ee71e023ed3572678e246bc442cb566a246939e1e97eece4c544e7",
+    "research/source-data/hycom-ncc-mid-norway-metadata-probe-v1/response-1.json": "81b2b8e39edff9291b38c155e25b65b41de82e8f506466d16b42d18fe3660e34",
+    "research/source-data/hycom-ncc-mid-norway-metadata-probe-v1/response-2.json": "0327f5e2670ee7f5e57a820c02a084afc1a926c412d47e6f88f4305857477b9c",
+    "research/source-data/hycom-ncc-mid-norway-metadata-probe-v1/response-7.json": "4ff68e4c0a86471992017ca33021799efbc0056c73320506a7bfe30af643718e",
+    "research/source-data/hycom-ncc-mid-norway-metadata-probe-v1/response-8.json": "77ef20bea6f418c0d422d1fcc8c7ed5611ff011a7fcb0e0d370a6c0fd52ca82e",
+    "research/source-data/ncc-north-joint-sections-v1/2022-03-15-section-61p5n.json": "af55cc83bd13caa9a4f58d47ebaf9df89d88088785a6af2cd47a7a1c0da6fcea",
+    "research/source-data/ncc-north-joint-sections-v1/2022-12-15-section-62p25n.json": "7b5043b2fcdb79c05f860ccb374cc2f494626039e64bdf2c8a6648eac7eaf6cb"
+  }
+}

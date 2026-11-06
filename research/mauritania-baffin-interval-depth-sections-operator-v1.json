@@ -1,0 +1,233 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    50,
+    300
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all40 section/date cases,all candidate scores/local maxima,no-selection,gate/support-edge and primary-censored cases. No post-result tuning or unsupported continuity/occupation claims. Coastal dry/slope support,ice-masked fields and out-of-gate branches may censor;geographic maxima may be neighboring/mesoscale flow.",
+  "vertical_operator": "Frozen connected-layer tracing searches above/below each qualifying seed on full native0-5000m support using adjacent finite brackets. Keep upper/lower contours,statuses,supported reach and paired span distinct. Selection endpoints,historical water-mass bands or core/reach scales,instrument ranges,sills,bed and missing limits are not physical current boundaries. Same-sign deep flow can connect;model span is not physical thickness. No thermal/density/salinity classification is performed.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.mauritania-baffin-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New quarterly Mauritania poleward and Baffin southward partial regional sections. Reuse validated latitude-interval collector logic,audits,geometry,component rotation,connected layers and bounded transport in a new source wrapper. Older validated sources/helpers remain unchanged. Frames,intervals and cutoffs are current-specific;no positive surface gate or thermal classification.",
+  "geometry_provenance": "OSW exploratory fixed-latitude windows: Mauritania17,17.5,18,18.5,19N/18.5-16W,including18N source context;Baffin74.5,73,71.5,70,68.5N with respectively78-71W,76-68W,73-66W,70-63W,67-60W gates. Gates/stops are editorial,not digitized axes,widths,errors or full-route bounds. Existing routes describe summer surface geography and are not assigned quarterly subsurface axes.",
+  "column_selector": "Frozen complete finite signed interval integrals,positive integral and qualifying core,with fixed geographic frame held through depth. Mauritania50-300m/0degree northward/core>10cm/s;Baffin100-300m/180degree southward/core>5cm/s. No positive surface gate,relative surface comparison or thermal gate. Greatest eligible integral wins;first western native tie. Gate/support-edge winners remain unresolved without weaker interior replacement.5/10/20cm/s sensitivities have their own seed at the same selected column.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z quarterly instantaneous probes. These are not seasonal means,annual envelopes,independent observed occupations or historical cruise/fjord replication. Local seasonal context and route layer conventions remain explicit.",
+  "transport_budget": "Preflight all40targets from10sections times4exactdates before fields. Frozen3-150nativecolumns,40levels,20000pairs/patch,250000total and7MBdecoded caps remain. Retry only an exact failed component/hyperslab on actualNetCDFI/Ofailure,max3attempts with2/5secondbackoff,while reserving all future first attempts. Successful components are not replayed. Ledger counts requested/decoded values,not wire bytes or precision.",
+  "currents": {
+    "current:mauritanian": {
+      "entity_id": "current:mauritanian",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        50,
+        300
+      ],
+      "selection_depth_interval_m": [
+        50,
+        300
+      ],
+      "branch_scope": "Partial17-19N/18.5-16W poleward Mauritania boundary-current context around18N. Klenz2018 proposes naming the poleward surface and undercurrent branches together. Winter upwelling can place the target below opposing equatorward surface flow;relaxation can bring it to the surface. Do not classify the equatorward Canary/coastal jet as the target or infer source water from velocity. Historical seasonal means,100-200m core band and250m reach are not2022 boundaries or annual limits. Fixed northward is not a curved alongshore axis. Existing summer surface route is not a winter/subsurface axis."
+    },
+    "current:baffin": {
+      "entity_id": "current:baffin",
+      "component_bearing_degrees_true": 180,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        100,
+        300
+      ],
+      "selection_depth_interval_m": [
+        100,
+        300
+      ],
+      "branch_scope": "Partial western Baffin Bay74.5-68.5N external coastal/slope context,following the declared southward direction toward Davis Strait. Exclude northward West Greenland Current,Lancaster Sound intrusion,Arctic strait feeders,fjord circulation and southern Davis Strait continuation. Source Arctic-water100-300m band is a component context,not a full-current thickness or bottom;no temperature/salinity class is diagnosed. Fixed southward does not rotate along curved coastal axes. Existing summer near-surface route is not a quarterly subsurface trajectory. Ice/dry/slope support and eddies may censor or confound selection."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-17n",
+      "entity_id": "current:mauritanian",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 17,
+      "longitude_gate_degrees_east": [
+        -18.5,
+        -16
+      ]
+    },
+    {
+      "id": "section-17p5n",
+      "entity_id": "current:mauritanian",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 17.5,
+      "longitude_gate_degrees_east": [
+        -18.5,
+        -16
+      ]
+    },
+    {
+      "id": "section-18n",
+      "entity_id": "current:mauritanian",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 18,
+      "longitude_gate_degrees_east": [
+        -18.5,
+        -16
+      ]
+    },
+    {
+      "id": "section-18p5n",
+      "entity_id": "current:mauritanian",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 18.5,
+      "longitude_gate_degrees_east": [
+        -18.5,
+        -16
+      ]
+    },
+    {
+      "id": "section-19n",
+      "entity_id": "current:mauritanian",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 19,
+      "longitude_gate_degrees_east": [
+        -18.5,
+        -16
+      ]
+    },
+    {
+      "id": "section-74p5n",
+      "entity_id": "current:baffin",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 74.5,
+      "longitude_gate_degrees_east": [
+        -78,
+        -71
+      ]
+    },
+    {
+      "id": "section-73n",
+      "entity_id": "current:baffin",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 73,
+      "longitude_gate_degrees_east": [
+        -76,
+        -68
+      ]
+    },
+    {
+      "id": "section-71p5n",
+      "entity_id": "current:baffin",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 71.5,
+      "longitude_gate_degrees_east": [
+        -73,
+        -66
+      ]
+    },
+    {
+      "id": "section-70n",
+      "entity_id": "current:baffin",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 70,
+      "longitude_gate_degrees_east": [
+        -70,
+        -63
+      ]
+    },
+    {
+      "id": "section-68p5n",
+      "entity_id": "current:baffin",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 68.5,
+      "longitude_gate_degrees_east": [
+        -67,
+        -60
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018JC014264",
+      "locator": "Klenz et al.2018,Abstract,Introduction and Sections3/4;fresh primary publisher HTML",
+      "scope": "Contrasts upwelling subsurface poleward flow beneath an equatorward surface jet with relaxation surface-reaching poleward flow. Authors propose Mauritania Current naming for both poleward branches. Historical remapped mean sections and geographic/depth domains do not validate2022 axes or paired boundaries.50-300m/10cm/s are declared OSW diagnostics,not source error bars or universal current edges."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JC014278",
+      "locator": "Carroll et al.2018,Section2.1 and Figure1 caption;fresh primary publisher HTML",
+      "scope": "Separates southward Baffin Island Current from northward WGC. Arctic-water100-300m band is component hydrographic context,not full-current thickness. Fjord2013-2015 records and Davis Strait/fjord sills do not establish2022 axis/bottom. Velocity-only100-300m/5cm/s selection does not diagnose Arctic water."
+    },
+    {
+      "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/63268.pdf",
+      "locator": "Retained Baffin route-input Fissel1982 abstract/Results scope,not freshly re-digitized",
+      "scope": "Existing summer near-surface external reach and exclusions remain distinct from new quarterly interval geometry;source routes and model contours are not jointly observed axes. No figure or trajectory copied. Source reach context is pinned by its existing route-input artifact."
+    }
+  ],
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "analysis/acquire_mauritania_baffin_interval_depth_sections_v1.py": "5a88b486b5f7fe5564c5668f2d4bf5f974be4d5d74e9fddd062d72fbb11e86e5",
+    "analysis/test_mauritania_baffin_interval_depth_sections_v1.py": "686dd6a963191c5376d04dda300823978910ee225e8948674b4c8db65c43b7ea",
+    "plans/mauritania-baffin-interval-depth-sections-protocol-v1.md": "e2ea8d733293ffaa02034f0f6d7e8426933fd09c0f17f7c36296df3c72d8f963",
+    "research/current-depth-source-facts-v2.json": "4c29800383f5504d893c7741a57995cdeb1d869de0180b61ac3691293c21b80d",
+    "research/current-depth-source-facts-v15.json": "a65baf1751f14de74be2def910d30e693f10dbc3a14d14a314976ce52b0287ae",
+    "research/baffin-reach-reference-path-input.json": "7ba69d2a3ad58a862b415d4015f2d720c32e45178ed677a6b09bd755078dc8be",
+    "research/mauritanian-summer-reach-reference-path-input.json": "61ee3cc34b92bddaf44969e552429b397abc60f21e1d32dc7b14ffa23aed42ba",
+    "research/mauritanian-summer-reach-scope-audit.json": "bb4021db99fcb5695194b143c343cad6407618f8a7a5fbb11e3fc4ec30525261"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    50,
+    300
+  ],
+  "methodology_file": "plans/mauritania-baffin-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent regional connectors between original sections may be projected later,but do not replace or extrapolate existing summer surface routes or establish seasonal/water-mass axes. Mauritania winter subsurface branch and Baffin100-300m context remain distinct from those route layers."
+}

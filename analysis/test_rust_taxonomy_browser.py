@@ -1,4 +1,5 @@
 """Taxonomy closure, source rejection, scoped measurements and browser navigation."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -7,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def query(root,relation='descendants',include=False):return {'collection':'objects','taxonomy':{'root_id':root,'relation':relation,'include_root':include},'limit':100}
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
     parent={"current:"+r['id']:"current:"+r['part_of_system'] for r in ledger['entries'] if r.get('part_of_system')}
     roots=set(parent)|set(parent.values());roots.add('eddy:horizon:loop-81-primary')
     def expected(root,relation):

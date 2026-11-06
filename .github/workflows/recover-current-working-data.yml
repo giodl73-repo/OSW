@@ -1,0 +1,79 @@
+name: Recover verified current working data
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .gitignore
+      - .github/workflows/recover-current-working-data.yml
+      - analysis/recover_current_gap_cloud_delivery.py
+      - analysis/test_current_gap_delivery_recovery.py
+
+permissions:
+  contents: read
+
+jobs:
+  recover-verified-current-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 8
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check fresh-checkout cache exclusion and strict recovery controls
+        run: python -m unittest discover -s analysis -p test_current_gap_delivery_recovery.py
+      - name: Load the exact source-run candidate
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40053831110
+          name: current-gap-derived-candidate
+          path: .
+      - name: Load the engine verified by the complete source-run browser matrix
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40053831110
+          name: front-level-query-engine
+          path: almanac
+      - name: Load source preservation proof
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40053831110
+          name: current-gap-cloud-candidate-audit
+          path: .pytest_cache/current-gap-recovery/source
+      - name: Load actual browser evidence from the same verified source run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40053831110
+          name: current-gap-admission-browser-receipts
+          path: .pytest_cache/current-gap-recovery/browser
+      - name: Read original completed gates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/40053831110" > .pytest_cache/current-gap-recovery/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/40053831110/jobs?per_page=100" > .pytest_cache/current-gap-recovery/jobs.json
+      - name: Recheck all original bindings and publish generated working data only
+        run: python analysis/recover_current_gap_cloud_delivery.py --publish --audit-dir .pytest_cache/current-gap-recovery
+      - name: Retain exact recovery delivery receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovered-current-working-delivery
+          path: research/current-gap-installed-delivery-v1.json
+          if-no-files-found: ignore

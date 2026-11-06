@@ -1,0 +1,238 @@
+name: Five regional surface current native depth curtains v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/surface-regional-velocity-curtains-v1.yml
+      - analysis/derive_surface_regional_velocity_curtains_v1.py
+      - analysis/test_surface_regional_velocity_curtains_v1.py
+      - plans/surface-regional-velocity-curtains-protocol-v1.md
+      - research/surface-regional-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/adriatic-surface-interval-depth-sections-v1.yml
+            .github/workflows/alaska-coastal-shelikof-interval-depth-sections-v1.yml
+            .github/workflows/hiri-zeehan-interval-depth-sections-v1.yml
+            analysis/acquire_adriatic_surface_interval_depth_sections_v1.py
+            analysis/acquire_alaska_coastal_shelikof_interval_depth_sections_v1.py
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_hiri_zeehan_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_adriatic_surface_interval_depth_sections_v1.py
+            analysis/test_alaska_coastal_shelikof_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_velocity_curtains_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_hiri_zeehan_interval_depth_sections_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_surface_regional_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/adriatic-surface-interval-depth-sections-protocol-v1.md
+            plans/alaska-coastal-shelikof-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-velocity-curtains-protocol-v1.md
+            plans/hiri-zeehan-interval-depth-sections-protocol-v1.md
+            plans/surface-regional-velocity-curtains-protocol-v1.md
+            research/adriatic-surface-interval-depth-sections-operator-v1.json
+            research/adriatic-surface-interval-depth-sections-source-facts-v1.json
+            research/adriatic-surface-interval-depth-sections-source-review-v1.json
+            research/alaska-coastal-shelikof-depth-method-prerequisites-v1.json
+            research/alaska-coastal-shelikof-interval-depth-sections-operator-v1.json
+            research/alaska-coastal-shelikof-interval-depth-sections-source-facts-v1.json
+            research/alaska-coastal-shelikof-interval-depth-sections-source-review-v1.json
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/barents-makassar-interval-depth-sections-source-review-v1.json
+            research/barents-makassar-velocity-curtains-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v10.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v18.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v24.json
+            research/current-depth-source-facts-v6.json
+            research/east-adriatic-naming-extent-scope-audit.json
+            research/east-adriatic-reference-path-input.json
+            research/greenland-depth-sections-operator-v1.json
+            research/guinea-velocity-depth-curtains-v1.json
+            research/hiri-reference-path-input.json
+            research/hiri-zeehan-interval-depth-sections-operator-v1.json
+            research/hiri-zeehan-interval-depth-sections-source-facts-v1.json
+            research/hiri-zeehan-interval-depth-sections-source-review-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43p5n.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/manifest.json
+            research/source-data/adriatic-surface-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-03-15-alaska-coastal-gulf-section-57p0n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-03-15-alaska-coastal-gulf-section-57p2n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-03-15-alaska-coastal-gulf-section-57p4n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-03-15-alaska-coastal-gulf-section-57p6n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-06-15-alaska-coastal-gulf-section-57p0n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-06-15-alaska-coastal-gulf-section-57p2n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-06-15-alaska-coastal-gulf-section-57p4n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-06-15-alaska-coastal-gulf-section-57p6n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-09-15-alaska-coastal-gulf-section-57p0n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-09-15-alaska-coastal-gulf-section-57p2n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-09-15-alaska-coastal-gulf-section-57p4n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-09-15-alaska-coastal-gulf-section-57p6n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-12-15-alaska-coastal-gulf-section-57p0n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-12-15-alaska-coastal-gulf-section-57p2n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-12-15-alaska-coastal-gulf-section-57p4n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/2022-12-15-alaska-coastal-gulf-section-57p6n.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/manifest.json
+            research/source-data/alaska-coastal-shelikof-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-26e.json
+            research/source-data/cresswell-zeehan-2000/acquisition.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-12s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-13s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-14s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-15s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-40p5s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-41p25s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-42p75s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-42s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-12s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-13s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-14s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-15s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-40p5s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-41p25s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-42p75s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-42s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-12s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-13s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-14s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-15s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-40p5s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-41p25s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-42p75s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-42s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-12s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-13s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-14s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-15s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-40p5s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-41p25s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-42p75s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-42s.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/manifest.json
+            research/source-data/hiri-zeehan-interval-depth-sections-v1/transport-ledger.json
+            research/surface-regional-velocity-curtains-operator-v1.json
+            research/western-adriatic-chavanne-2007-mean-width-scope-audit.json
+            research/western-adriatic-reference-path-input.json
+            research/zeehan-reference-path-input.json
+            research/zeehan-ridgway-2007-seasonal-scope-audit.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_barents_makassar_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_surface_regional_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_surface_regional_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: surface-regional-velocity-curtains-v1
+          path: surface-regional-velocity-curtains-v1/
+          retention-days: 7

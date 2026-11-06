@@ -1,0 +1,297 @@
+name: Check South Java source-bound native runtime v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-runtime-cloud-request-v2.json
+      - .github/workflows/south-java-runtime-cloud-v2.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/south-java-runtime-cloud-request-v2.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/south-java-runtime-cloud-request-v2.json').read_bytes())
+          assert r['schema']=='osw.south-java-runtime-cloud-request.v2'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  source-check:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /.github/workflows/south-java-runtime-cloud-v1.yml
+            /.github/workflows/south-java-runtime-cloud-v2.yml
+            /.gitignore
+            /almanac/index-catalog.json
+            /almanac/query-engine.manifest.json
+            /almanac/reference-routes.js
+            /almanac/south-java-reference-support.html
+            /analysis/acquire_eac_100m_source.py
+            /analysis/acquire_south_australian_hycom_2d.py
+            /analysis/asca_component_spans.py
+            /analysis/build_asca_100m_sections.py
+            /analysis/build_asca_component_spans.py
+            /analysis/build_eac_section_core_spans.py
+            /analysis/build_eac_source_profiles.py
+            /analysis/build_kuroshio_filtered_width_series.py
+            /analysis/build_ocean_motion_claims.py
+            /analysis/build_south_australian_flow_context.py
+            /analysis/caribbean_ru29_query.py
+            /analysis/caribbean_ru29_source_fields_v1.py
+            /analysis/caribbean_ru29_source_fields_v2.py
+            /analysis/check_asca_100m_source.py
+            /analysis/check_eac_100m_source.py
+            /analysis/check_south_java_parent_audit_v1.py
+            /analysis/check_south_java_runtime_cloud_v1.py
+            /analysis/check_south_java_runtime_cloud_v2.py
+            /analysis/current_section_measurements.py
+            /analysis/eac_core_readback.py
+            /analysis/eac_core_spans.py
+            /analysis/eac_source_fields.py
+            /analysis/indian_coastal_dimension_context_v1.py
+            /analysis/kuroshio_filtered_width.py
+            /analysis/loop_published_metrics_query_v1.py
+            /analysis/published_current_regional_reaches_v1.py
+            /analysis/published_regional_reaches_query.py
+            /analysis/query_packet.py
+            /analysis/south_australian_flow_context.py
+            /analysis/south_java_reference_fixture_v1.py
+            /analysis/south_java_reference_query_v1.py
+            /analysis/south_java_reference_runtime_scope_v1.py
+            /analysis/south_java_reference_runtime_v1.py
+            /analysis/test_south_java_reference_query_v1.py
+            /analysis/test_south_java_reference_runtime_v1.py
+            /figures/norwegian-baumann-2026-mean-core-widths.svg
+            /figures/ocean-motion-dashboard-ground.svg
+            /figures/south-java-java-bali-reference-compact-v1.svg
+            /figures/south-java-java-bali-reference-path-v2-candidate.svg
+            /plans/current-section-measurement-records-v1.md
+            /plans/south-java-reference-query-protocol-v1.md
+            /plans/south-java-reference-runtime-protocol-v1.md
+            /plans/south-java-runtime-cloud-check-v1.md
+            /plans/south-java-runtime-cloud-check-v2.md
+            /research/acc-park-2019-udintsev-breadths-scope-audit.json
+            /research/agulhas-asca-100m-dated-component-spans-figure.json
+            /research/agulhas-asca-100m-dated-component-spans.json
+            /research/agulhas-asca-100m-query-contract.json
+            /research/agulhas-guerra-2022-ring-radius-scope-audit.json
+            /research/agulhas-vinayachandran-2021-reported-dimensions.json
+            /research/alaska-weingartner-2002-regional-width-scope-audit.json
+            /research/aleutian-onishi-2001-width-admission.json
+            /research/aleutian-onishi-2001-width-contract.json
+            /research/aleutian-p14n-1993-component-spans.json
+            /research/aleutian-p14n-1993-hydrography-correspondence.json
+            /research/aleutian-p14n-1993-observed-vector-section.json
+            /research/algerian-cotroneo-2019-regional-width-scope-audit.json
+            /research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json
+            /research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json
+            /research/antarctic-slope-darelius-2024-scope-audit.json
+            /research/antarctic-slope-m6-velocity-series.json
+            /research/antilles-ab0505-sadcp-layer-span-diagnostics.json
+            /research/antilles-cainzos-2023-cruise-section-spans.json
+            /research/asca-component-calendar-distributions-figure.json
+            /research/asca-component-calendar-distributions.json
+            /research/astrid-2000-radial-scale-scope-audit.json
+            /research/atlantic-euc-gouriou-1988-background-width-scope-audit.json
+            /research/atlantic-euc-layer-island-scope-audit.json
+            /research/atlantic-seuc-molinari-1981-core-width-scope-audit.json
+            /research/australia-wijeratne-2018-section-transport-audit.json
+            /research/azores-carracedo-2014-model-core-width-scope-audit.json
+            /research/baffin-bound-owner-transition-v1.json
+            /research/baffin-fissel-1982-regional-width-scope-audit.json
+            /research/baffin-latitude-bound-admission-v1.json
+            /research/balearic-socib-2023-regional-width-scope-audit.json
+            /research/brazil-regional-reach-query-contract-v1.json
+            /research/california-2011-abstract-width-scope-audit.json
+            /research/caribbean-duncan-1982-dated-width-scope-audit.json
+            /research/caribbean-ru29-query-contract-v1.json
+            /research/current-gap-delivery-phase.json
+            /research/current-measurement-object-scope-index.json
+            /research/current-research-evidence-registry.json
+            /research/davidson-wallace-2008-width-admission-v1.json
+            /research/davidson-width-parent-owner-v1.json
+            /research/dwbc-richardson-1993-upper-core-width-scope-audit.json
+            /research/eac-csiro-100m-section-core-spans-summary.json
+            /research/eac-csiro-v23-100m-source-fields-figure.json
+            /research/eac-csiro-v23-100m-source-quality.json
+            /research/eac-csiro-v23-100m-source-query-contract.json
+            /research/eacc-local-extent-evidence-bundle-v1.json
+            /research/east-adriatic-pasaric-2019-inflow-extent-scope-audit.json
+            /research/eicc-reference-query-contract-v1.json
+            /research/eicc-regional-reference-admission-candidate-v1.json
+            /research/eicc-t24-published-width-admission-v1.json
+            /research/guinea-djakoure-2017-model-width-source-review.json
+            /research/gulf-stream-published-width-definitions-scope-audit.json
+            /research/gulf-stream-section-width-series.json
+            /research/hansen-2011-asar-surface-width-admissions.json
+            /research/hiri-hughes-1993-local-decay-scales-scope-audit.json
+            /research/humboldt-fuenzalida-2008-regional-width-scope-audit.json
+            /research/indian-coastal-dimension-context-query-contract-v1.json
+            /research/indian-current-evidence-query-contract-v1.json
+            /research/indian-current-identity-query-contract-v1.json
+            /research/indian-current-reference-route-planning-v1.json
+            /research/indian-sec-monthly-bifurcation-extraction.json
+            /research/indian-secc-eof-classification-feasibility.json
+            /research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json
+            /research/jutland-skov-2019-water-mass-breadth-scope-audit.json
+            /research/ke-qiu-regional-length-query-contract-v1.json
+            /research/ke-qiu-regional-plot-pathlength-v4.json
+            /research/kuroshio-ecs-filtered-width-time-series-figure.json
+            /research/kuroshio-ecs-filtered-width-time-series.json
+            /research/kuroshio-ecs-seasonal-width-profile-extraction.json
+            /research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json
+            /research/kuroshio-wang-2024-axis-normal-query-contract.json
+            /research/kuroshio-wang-2024-axis-normal-spans.json
+            /research/kuroshio-wang-2024-query-contract.json
+            /research/kuroshio-wang-2024-regional-dimensions.json
+            /research/labrador-latitude-gate-bound-v1.json
+            /research/leeuwin-a101-monthly-plot-extraction.json
+            /research/loop-uhlhorn-2008-core-width-scope-audit.json
+            /research/madagascar-coastline-comparison.json
+            /research/monsoon-webber-2018-distinct-widths-scope-audit.json
+            /research/neuc-glider-2015-width-admissions.json
+            /research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json
+            /research/ngcu-zenk-1999-width-constraint-scope-audit.json
+            /research/norkyst-ingoy-2024-map-frames.json
+            /research/norkyst-ingoy-2024-section-timeline.json
+            /research/north-atlantic-nominal-gate-bound.json
+            /research/north-pacific-tomczak-2005-broad-band-scope-audit.json
+            /research/norwegian-atlantic-branch-width-scope-audit.json
+            /research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json
+            /research/norwegian-atlantic-slope-working-admission.json
+            /research/norwegian-baumann-2026-mean-core-widths.json
+            /research/norwegian-fer-2020-gimsoy-width-scope-audit.json
+            /research/norwegian-front-bosse-2019-corrected-width-record.json
+            /research/nwasc-source-anchor-reference-route.json
+            /research/ocean-current-effective-catalogue.json
+            /research/ocean-current-effective-measurements.json
+            /research/ocean-current-identity-admissions.json
+            /research/ocean-current-inventory-expansion-candidates.json
+            /research/ocean-current-live-measurements.json
+            /research/ocean-current-measurements-asar-edition.json
+            /research/ocean-current-measurements-neuc-edition.json
+            /research/ocean-current-working-catalogue.json
+            /research/ocean-current-working-measurements.json
+            /research/ocean-current-working-reference-route-state-join.json
+            /research/ocean-current-working-reference-routes.json
+            /research/oyashio-2005-abstract-width-scope-audit.json
+            /research/pacific-euc-wang-2022-background-width-scope-audit.json
+            /research/pacific-nec-monthly-bifurcation-extraction.json
+            /research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json
+            /research/pacific-necc-oscar-2013-section-diagnostic.json
+            /research/pacific-necc-paired-vector-direction-evidence.json
+            /research/pacific-neuc-li-2018-isopycnal-breadth-scope-audit.json
+            /research/pacific-secc-installation-saved-engine-manifest-v1.json
+            /research/pacific-secc-reference-publication-admission-v1.json
+            /research/pacific-secc-reference-publication-fixture-v1.json
+            /research/pacific-secc-reference-runtime-contract-v1.json
+            /research/pacific-secc-reference-runtime-fixture-v1.json
+            /research/pacific-secc-rotschi-1972-width-range-scope-audit.json
+            /research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json
+            /research/portugal-perez-2013-orca-section-span-scope-audit.json
+            /research/published-regional-reaches-query-contract-v1.json
+            /research/radenac-ngcc-2016-journal-integrity-contract.json
+            /research/redsox-lower-nc-dated-section-diagnostic.json
+            /research/redsox-section3-repeat-surveys.json
+            /research/redsox-winter-section3-component-spans.json
+            /research/solomon-melet-2010-coastal-confinement-scope-audit.json
+            /research/somali-schott-2001-premonsoon-width-scope-audit.json
+            /research/source-data/dundas-fer-wsc-2026/figure.json
+            /research/source-data/loop-durante-2026-v0/quality.json
+            /research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json
+            /research/south-atlantic-stramma-1990-secondary-band-scope-audit.json
+            /research/south-australian-hycom-2d-flow-context-scene.json
+            /research/south-australian-miller-2006-model-width-scope-audit.json
+            /research/south-java-alongflow-source-review-v1.json
+            /research/south-java-java-bali-reference-path-v2-candidate.json
+            /research/south-java-parent-audit-execution-review-v1.json
+            /research/south-java-parent-audit-result-v1.json
+            /research/south-java-parent-audit-selected-records-v1.json
+            /research/south-java-reference-geography-result-v1.json
+            /research/south-java-reference-geography-v1.json
+            /research/south-java-reference-map-review-v2.json
+            /research/south-java-reference-query-contract-v1.json
+            /research/south-java-reference-runtime-contract-v1.json
+            /research/south-java-reference-runtime-fixture-v1.json
+            /research/south-java-reference-runtime-history-v1/atlas_data.rs.source
+            /research/south-java-reference-runtime-history-v1/lib.rs.source
+            /research/south-java-reference-runtime-history-v1/madagascar_coastal_curve.rs.source
+            /research/south-java-reference-runtime-history-v1/nwasc_reference_route.rs.source
+            /research/south-java-reference-runtime-history-v1/pacific_secc_reference.rs.source
+            /research/south-java-reference-runtime-history-v1/planning.rs.source
+            /research/south-java-reference-runtime-history-v1/reference-routes.executed.js.source
+            /research/south-java-reference-runtime-history-v1/seasons_data.rs.source
+            /research/south-java-reference-runtime-parent-source-bindings-v1.json
+            /research/south-java-reference-runtime-scope-v1.json
+            /research/south-java-runtime-cloud-failure-v1.json
+            /research/south-java-runtime-cloud-preflight-v1.json
+            /research/south-java-runtime-cloud-preflight-v2.json
+            /research/south-java-runtime-cloud-request-v1.json
+            /research/south-java-runtime-cloud-request-v2.json
+            /research/south-pacific-stramma-1995-width-constraint-scope-audit.json
+            /research/southern-current-width-source-limitations-audit.json
+            /research/southern-east-madagascar-coastal-reference-curve.json
+            /research/southern-east-madagascar-prose-dimension-admissions.json
+            /research/southern-east-madagascar-route-definition-diagnostic.json
+            /research/tasman-front-nilsson-1980-meander-band-scope-audit.json
+            /research/tsushima-matsuyama-1990-modal-width-scope-audit.json
+            /research/west-australian-glenn-2008-breadth-scope-audit.json
+            /research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json
+            /research/west-spitsbergen-kolas-2018-stream-tube-width-scope-audit.json
+            /research/western-adriatic-chavanne-2007-mean-width-scope-audit.json
+            /research/zeehan-cresswell-2000-width-section-scope-audit.json
+            /research/zeehan-ridgway-2007-seasonal-scope-audit.json
+            /rust/osw-query/
+      - name: Verify exact source, archive and fixture custody before compilation
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_runtime_cloud_v2.py preflight
+      - name: Install pinned native compiler and locked dependencies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Run Python, atlas syntax and24 native tests sequentially
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_runtime_cloud_v2.py tests
+      - name: Retain compact source-check evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-runtime-source-evidence-v2
+          path: .pytest_cache/south-java-runtime-cloud-v2/*
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

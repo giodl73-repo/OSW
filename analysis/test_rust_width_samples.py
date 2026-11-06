@@ -1,4 +1,5 @@
 """Actual Rust/WASM scoped sample queries, provenance binding and card navigation."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -6,15 +7,23 @@ from pathlib import Path
 import subprocess
 import tempfile
 from playwright.sync_api import sync_playwright, expect
-from test_rust_query_browser import native,browser_query
+from test_rust_query_browser import native,browser_query,CLI
 from build_query_width_samples import build
 
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());samples=bundle['collections']['width_samples']
-    assert samples==build(bundle['collections']['diagnostics']) and len(samples)==127
-    assert sum(row['value_km'] is None for row in samples)==5
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));samples=bundle['collections']['width_samples']
+    assert samples==build(bundle['collections']['diagnostics'])
+    assert len([r for r in samples if r['sample_family']!='basin_monthly_component_section'])==127
+    component=[r for r in samples if r['sample_family']=='basin_monthly_component_section' and not r['source_context'].get('is_climatology')]
+    assert len(component)==84
+    assert {r['current_id'] for r in component}=={'portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian','west-australian'}
+    assert all(sum(r['current_id']==owner for r in component)==12 for owner in {r['current_id'] for r in component})
+    legacy=[r for r in samples if not r['source_context'].get('is_climatology')]
+    climate=[r for r in samples if r['source_context'].get('is_climatology')]
+    assert len(legacy)==211 and sum(row['value_km'] is None for row in legacy)==5
+    assert len(climate)==60 and sum(row['value_km'] is None for row in climate)==19
     queries=[{'collection':'width_samples','limit':100},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'leeuwin'}],'sort':{'field':'month'}},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'kuroshio'},{'field':'phase_label','op':'eq','value':'winter'}],'sort':{'field':'longitude_degrees_east'}},
@@ -24,12 +33,13 @@ def main():
         {'collection':'objects','evidence':'width_samples'},
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:leeuwin'}]}]
     results=[native(q) for q in queries];assert all(r['ok'] for r in results)
-    assert results[0]['total']==127 and results[0]['map_scene']['mapped_objects']==27 and results[0]['map_scene']['unmapped_objects']==100
+    assert results[0]['total']==len(samples) and results[0]['map_scene']['mapped_objects']==152 and results[0]['map_scene']['unmapped_objects']==119
     assert results[1]['total']==12 and [r['month'] for r in results[1]['rows']]==list(range(1,13))
-    assert results[2]['total']==16 and results[3]['total']==5 and results[4]['total']==12
-    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==6
-    with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as temp:
-        path=Path(temp)/'bad-bundle.json';exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
+    assert results[2]['total']==16 and results[3]['total']==24 and results[4]['total']==12
+    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==len({r['entity_id'] for r in samples})
+    scratch=ROOT/'.pytest_cache/rust-width-samples';scratch.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=scratch) as temp:
+        path=Path(temp)/'bad-bundle.json';exe=str(CLI)
         for key,value in [('value_km',9999),('month',12),('metric','whole ocean width'),('plot_reading_interval_km',[1,2]),('is_confidence_interval',True),('entity_id','current:gulf-stream-system'),('sample_family','other'),('phase_path','/months/1')]:
             bad=copy.deepcopy(bundle);bad['collections']['width_samples'][0][key]=value;path.write_text(json.dumps(bad),encoding='utf-8')
             result=subprocess.run([exe,str(path),'-'],input='{}',capture_output=True,text=True,encoding='utf-8')
@@ -71,12 +81,12 @@ def main():
         page.screenshot(path=str(ROOT/'figures/rust-query-width-samples-review.png'))
         page.get_by_role('button',name='Inspect parent diagnostic').click()
         expect(page.locator('#query-detail')).to_contain_text('diagnostic:leeuwin-monthly-width')
-        browser_query(page,queries[3]);page.locator('#query-rows button').first.click()
+        browser_query(page,{'collection':'width_samples','filters':queries[3]['filters']+[{'field':'current_id','op':'eq','value':'kuroshio'}]});page.locator('#query-rows button').first.click()
         expect(page.locator('#query-detail')).to_contain_text('Unresolved')
         expect(page.locator('#query-detail')).to_contain_text('Calendar months for this source season are unresolved')
         page.set_viewport_size({'width':320,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         assert not errors
         browser.close()
-    print('PASS: 127 original scoped samples; five missing readings retained; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
+    print(f'PASS: {len(samples)} scoped samples; 211 one-year/dated prior samples retained; {sum(r["value_km"] is None for r in samples)} missing readings explicit; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
 
 if __name__=='__main__':main()

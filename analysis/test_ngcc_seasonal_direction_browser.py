@@ -1,4 +1,5 @@
 """Check local seasonal direction, exception handling, and atlas navigation."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -65,7 +66,7 @@ def main():
         assert not errors, errors
         altered = copy.deepcopy(audit)
         altered['phases'][2]['playback_eligible'] = True
-        bundle=json.loads(Path('almanac/query-data.json').read_bytes())
+        bundle=json.loads(read_bundle_bytes(Path('almanac/query-data.json')))
         replace_source(bundle,'directions',altered)
         route_bundle(page,bundle)
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=new-guinea-coastal-current', wait_until='networkidle')

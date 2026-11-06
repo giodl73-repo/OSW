@@ -1,0 +1,57 @@
+name: Bounded Makassar ETOPO terrain compatibility screen v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/screen_makassar_depth_surfaces_etopo_v1.py
+      - analysis/test_makassar_etopo_terrain_screen_v1.py
+      - plans/makassar-etopo-coarse-terrain-screen-v1.md
+      - .github/workflows/makassar-etopo-terrain-screen-v1.yml
+      - research/makassar-etopo-terrain-screen-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  screen:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/screen_makassar_depth_surfaces_etopo_v1.py
+            analysis/test_makassar_etopo_terrain_screen_v1.py
+            plans/makassar-etopo-coarse-terrain-screen-v1.md
+            .github/workflows/makassar-etopo-terrain-screen-v1.yml
+            research/makassar-etopo-terrain-screen-operator-v1.json
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            research/barents-makassar-conditional-depth-surfaces-v1.json
+            research/current-depth-barents-makassar-conditional-surfaces-source-review-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install frozen terrain decoder on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 rasterio==1.4.3
+      - name: Synthetic semantic checks and one bounded new terrain case
+        timeout-minutes: 3
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_TERRAIN_SCREEN_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_makassar_etopo_terrain_screen_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/screen_makassar_depth_surfaces_etopo_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: makassar-etopo-terrain-screen-v1
+          path: makassar-etopo-terrain-screen-v1/
+          retention-days: 7
+          if-no-files-found: error

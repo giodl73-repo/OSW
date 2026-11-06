@@ -1,4 +1,5 @@
 """Graph monthly readings: source binding, charts, playback and reduced motion."""
+from query_packet import read_bundle_bytes
 import copy,json,os,subprocess,tempfile
 from pathlib import Path
 from urllib.parse import quote
@@ -12,7 +13,7 @@ def main():
     assert result['chart_scene']['panels'][0]['title'].startswith('Florida Current')
     assert [r['month'] for r in result['rows']]==list(range(1,13))
     assert all(r['observation_date'] is None and r['year'] is None and r['annual_width_range_km'] is None for r in result['rows'])
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with tempfile.TemporaryDirectory() as directory:
         for key,value in [('value_km',99),('latitude_degrees_north',0),('annual_width_range_km',[53,64])]:
             bad=copy.deepcopy(bundle);next(r for r in bad['collections']['width_samples'] if r['current_id']=='florida')[key]=value

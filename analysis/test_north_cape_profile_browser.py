@@ -1,11 +1,12 @@
 """Verify branch-profile scope in width table, seasonal inspector and dashboard."""
+import os
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#width-title',wait_until='networkidle')

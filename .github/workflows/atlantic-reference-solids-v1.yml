@@ -1,0 +1,57 @@
+name: Atlantic four-current reference solids v1 explicit interpolation scenario
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_atlantic_reference_solids_v1.py
+      - analysis/test_atlantic_reference_solids_v1.py
+      - plans/atlantic-reference-solids-protocol-v1.md
+      - .github/workflows/atlantic-reference-solids-v1.yml
+      - research/atlantic-reference-solids-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/atlantic-reference-solids-v1.yml
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/derive_atlantic_reference_solids_v1.py
+            analysis/test_atlantic_reference_solids_v1.py
+            plans/atlantic-reference-solids-protocol-v1.md
+            research/current-depth-atlantic-latitude-paired-depth-source-review-v1.json
+            research/florida-portugal-depth-sections-operator-v1.json
+            research/irminger-wsc-depth-sections-operator-v1.json
+            research/atlantic-latitude-paired-depth-v1.json
+            research/atlantic-reference-solids-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Hypothetical reference geometry and guards on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_ATLANTIC_REFERENCE_SOLIDS_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_atlantic_reference_solids_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/derive_atlantic_reference_solids_v1.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlantic-reference-solids-v1
+          path: atlantic-reference-solids-v1/
+          retention-days: 7
+          if-no-files-found: error

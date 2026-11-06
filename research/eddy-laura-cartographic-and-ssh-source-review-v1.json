@@ -1,0 +1,147 @@
+{
+  "schema": "osw.eddy-cartographic-and-ssh-source-review.v1",
+  "status": "ORIGINAL_LAURA_CARTOGRAPHIC_EXTENT_AND_SSH_VERIFIED",
+  "review_date": "2026-11-01",
+  "owner_id": "eddy:geography:laura-1999",
+  "source": {
+    "url": "https://www.met.reading.ac.uk/~xv901096/research/Vanaken-2003.pdf",
+    "doi": "10.1016/S0967-0645(02)00383-1",
+    "citation": "van Aken et al. (2003), Observations of a young Agulhas ring, Astrid, during MARE in March 2000, Deep-Sea Research II 50, 167–195.",
+    "access": "Retained original institutional PDF. Actual PDF pages 6 and 8 / printed pages 172 and 174 reviewed; native Figure 3 raster, caption, month labels, axes and separate Laura SSH-anomaly text verified. The grey extent circle is an author illustration with an unspecified boundary operator, not an OSW-detected physical boundary.",
+    "original": {
+      "bytes": 1136090,
+      "sha256": "00f15a476e1584ae8666d3ab5198d4139b4b63da5d2c78ca7ddd179ee3836776",
+      "pages": 29
+    },
+    "source_review_file": "research/eddy-laura-cartographic-and-ssh-source-review-v1.json",
+    "source_assets_republished": false
+  },
+  "reviewed_page_png_sha256": {
+    "6": "a653ac33efa5981e34f0f55569248630cf7d4051b4bc52fd88d5d37ec671fc1c",
+    "8": "f1bf46e9dca9beb730749173fc4252f0fab4a098c2277bd642f925966c0ab516"
+  },
+  "source_native_image": {
+    "xref": 62,
+    "width": 794,
+    "height": 600,
+    "channels": 1,
+    "samples_sha256": "558121a3edbaa2de17a1838fb059edd37059839e56e18d79dde1622a8e8b47f3"
+  },
+  "source_figure_caption_interpretation": "Figure 3 identifies the dashed Laura track from November 1999 to March 2000 and says that the circles indicate the extension of the two rings. Read only the grey circle about the Laura Mar 00 marker. Do not use the larger black Astrid circle or its Table 3 model radii.",
+  "quantity_interpretation": {
+    "cartographic_circle": "Read separate east-west and north-south arcs from the illustration. The visually circular shape is not assumed geodesically circular; axis scales differ. No physical diameter, principal width, fitted circle, area or occupied footprint is derived.",
+    "time": "The circle surrounds a Mar 00 marker but has no precise survey instant; retain March 2000 context without invented March 1 date or daily series.",
+    "ssh_anomaly": "The prose reports a maximum SSH anomaly of about +40 cm for Laura at the time of MARE-1. This is sea-surface height relative to an unspecified source anomaly reference, not eddy vertical thickness or full-life/annual maximum.",
+    "position_warning": "The source warns that hydrographic and SSH centers differed and the hydrographic Laura survey was incomplete. Figure 3 is a tracking/extent illustration, not a synoptic hydrographic boundary. Do not join its drawn circle, March SSH center and station values into a physical polygon."
+  },
+  "operator": {
+    "method": "source_cartographic_extent_circle_spans_v1",
+    "source_ink_gates_maximum_gray": [
+      150,
+      190
+    ],
+    "native_windows": {
+      "west": [
+        161,
+        280,
+        173,
+        296
+      ],
+      "east": [
+        288,
+        279,
+        301,
+        296
+      ],
+      "north": [
+        224,
+        218,
+        240,
+        231
+      ],
+      "south": [
+        224,
+        344,
+        240,
+        359
+      ]
+    },
+    "extent_rule": "Four manually located cardinal-stroke windows on the source grey circle. Verify original dark pixels locally; retain min/max coordinate only inside each window. No tracing across labels, smoothing, hole filling or complete contour reconstruction.",
+    "reading_allowance_pixels": 6,
+    "independent_axis_anchor_shifts_pixels": [
+      -2,
+      2
+    ],
+    "total_scenarios_per_component": 512,
+    "earth_radius_km": 6371,
+    "round_outward_km": 25,
+    "spans": {
+      "east_west": {
+        "audit_span_km": 157.468493,
+        "audit_decimal_places": 6,
+        "audit_reading_interval_km": [
+          137.498915,
+          179.969189
+        ],
+        "range_km": [
+          125,
+          200
+        ],
+        "total_scenarios": 512,
+        "ink_maximum_gray_sensitivity": [
+          150,
+          190
+        ]
+      },
+      "north_south": {
+        "audit_span_km": 130.577529,
+        "audit_decimal_places": 6,
+        "audit_reading_interval_km": [
+          114.580337,
+          147.995422
+        ],
+        "range_km": [
+          100,
+          150
+        ],
+        "total_scenarios": 512,
+        "ink_maximum_gray_sensitivity": [
+          150,
+          190
+        ]
+      }
+    },
+    "margin_kind": "Ink selection, axis calibration and image reading only; not source-field error, confidence or seasonal variation."
+  },
+  "ssh_maximum": {
+    "value": 40,
+    "unit": "cm",
+    "sign": "positive",
+    "qualifier": "about",
+    "period": "MARE-1 cruise in March 2000",
+    "source_locator": "Printed page 172 / PDF page 6, section 2.2.1, final paragraph; Figure 2(c) referenced by prose.",
+    "anomaly_reference": null,
+    "is_eddy_depth": false
+  },
+  "other_leads_screened": [
+    {
+      "identity": "Danube recurrent region",
+      "source": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2002JC001508",
+      "finding": "About 55% narrow coastal configuration in summary paragraph 35 is already present as danube-korotaev-2003-presence in batch v3. No duplicate added and no conversion to annual days, event duration or total presence."
+    },
+    {
+      "identity": "Feldman",
+      "sources": [
+        "https://www.horizonmarine.com/loop-current-eddies",
+        "https://www.linkedin.com/posts/fernanda-s-kato-09800735_metocean-oceancurrents-offshoreoperations-activity-7414431017203109888-Exjy"
+      ],
+      "finding": "Registry separation 2025-06-23 and undated Active label; provider social post says western Gulf activity. No usable dimension or speed, no numeric reference added. Relative social-post ages conflict between indexed renderings; no exact observation date inferred."
+    }
+  ],
+  "measurements_admitted": 3,
+  "whole_eddy_dimensions_admitted": 0,
+  "physical_footprint_admitted": false,
+  "original_assets_republished": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,123 @@
+name: Verify full South Java regional reference data and WASM delivery v4
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-reference-full-delivery-request-v4.json
+      - .github/workflows/south-java-reference-full-delivery-v4.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  OSW_SOUTH_JAVA_REFERENCE_DELIVERY_V1: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/south-java-reference-full-delivery-request-v4.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/south-java-reference-full-delivery-request-v4.json').read_bytes())
+          assert r['schema']=='osw.south-java-reference-full-delivery-request.v4'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  full-delivery:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read exact full-delivery request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          r=json.loads(pathlib.Path('research/south-java-reference-full-delivery-request-v4.json').read_bytes())
+          assert r['schema']=='osw.south-java-reference-full-delivery-request.v4'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('enabled='+str(r['execute']).lower()+'\n')
+          PY
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+      - name: Verify frozen source and small preservation checks
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_reference_full_delivery_v4.py preflight
+          taskset -c "$cpu" nice -n 15 python -m unittest test_south_java_reference_engine_delivery_v4.EngineDelivery test_south_java_reference_delivery_v1.ReferenceDelivery test_south_java_reference_runtime_v1.RuntimeProjection test_south_java_reference_query_v1.ReferenceAdmission -v
+      - name: Install pinned compiler and locked dependencies on one CPU
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Verify parent preservation and matching native/WASM queries and complete snapshots
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_reference_full_delivery_v4.py engine
+      - name: Install cloud browser after verified engine phase
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify direct atlas/query/card links and actual desktop/mobile rendering
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_reference_full_delivery_v4.py browser
+      - name: Retain compact checks and actual images
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-reference-full-delivery-evidence-v4
+          path: |
+            .pytest_cache/south-java-reference-full-delivery-v4/*-failure.json
+            .pytest_cache/south-java-reference-full-delivery-v4/parent-custody.json
+            .pytest_cache/south-java-reference-full-delivery-v4/parent-snapshots.json
+            .pytest_cache/south-java-reference-full-delivery-v4/compile-inventory.json
+            .pytest_cache/south-java-reference-full-delivery-v4/prepared.json
+            .pytest_cache/south-java-reference-full-delivery-v4/*-tests.txt
+            .pytest_cache/south-java-reference-full-delivery-v4/native-smoke.json
+            .pytest_cache/south-java-reference-full-delivery-v4/*-parity.json
+            .pytest_cache/south-java-reference-full-delivery-v4/snapshot-preservation.json
+            .pytest_cache/south-java-reference-full-delivery-v4/engine.json
+            .pytest_cache/south-java-reference-full-delivery-v4/browser.json
+            .pytest_cache/south-java-reference-full-delivery-v4/result.json
+            .pytest_cache/south-java-reference-full-delivery-v4/*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Retain derived candidate files only in cloud
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-reference-full-delivery-candidate-v4
+          path: .pytest_cache/south-java-reference-full-delivery-v4/artifact/**
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

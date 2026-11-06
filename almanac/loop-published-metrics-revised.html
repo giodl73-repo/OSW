@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loop Current — published length metrics and events</title>
+<style>
+body{margin:0;background:#f5f8fa;color:#183343;font:16px/1.55 system-ui,sans-serif}main{max-width:900px;margin:auto;padding:24px 16px 50px}a{color:#08677d}h1{font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.2}h2{font-size:1.2rem;margin-top:2rem}.status{font-size:.85rem;color:#445969}.panel{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:16px;margin-top:18px}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.92rem}th,td{text-align:left;vertical-align:top;padding:9px 6px;border-bottom:1px solid #dfe7eb;overflow-wrap:anywhere}th:first-child,td:first-child{padding-left:0}img{display:block;width:100%;height:auto}caption{text-align:left;font-weight:650;margin-bottom:8px}.note{font-size:.92rem;color:#425466}a:focus-visible{outline:3px solid #147d92;outline-offset:4px}
+
+@media(max-width:480px){
+.length-summary thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.length-summary tbody{display:block}
+.length-summary tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;padding:12px 0;border-bottom:1px solid #dfe7eb}
+.length-summary tbody th{grid-column:1/-1;padding:0 0 10px;border:0;overflow-wrap:normal}
+.length-summary tbody td{padding:0;border:0;overflow-wrap:normal}
+.length-summary tbody td::before{display:block;font-size:.85em;color:#425466}
+.length-summary tbody td:nth-child(2)::before{content:"Mean"}
+.length-summary tbody td:nth-child(3)::before{content:"Temporal SD"}
+}
+</style>
+<main>
+<nav aria-label="Almanac"><a href="dashboard.html">Dashboard</a> · <a href="loop-current-recorded-dates.html">Recorded-date maps</a> · <a href="query.html">Query</a></nav>
+<p class="status">Published evidence · source transcription · method-specific contour lengths</p>
+<h1>Loop Current: length metrics and separation dates</h1>
+<p>Two published summaries describe the length of sea-level contours connecting Yucatan Channel and Florida Straits. They use the same daily altimetry product over 1993–2021. They are not independent measurements.</p>
+<section class="panel" aria-labelledby="lengths"><h2 id="lengths">Mean contour lengths</h2>
+<table class="length-summary"><caption>Author-reported statistics, Manta et al. (2023), section 4.1</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean</th><th scope="col">Temporal SD</th></tr></thead><tbody>
+<tr><th scope="row">Gulf-demeaned 0.17 m contour</th><td>1,449 km</td><td>487 km</td></tr>
+<tr><th scope="row">Maximum-velocity streamline</th><td>1,495 km</td><td>466 km</td></tr>
+</tbody></table>
+<p class="note">SD describes temporal spread. It is not an error bar, confidence interval or annual minimum–maximum range. A mean of daily lengths also differs from the length of a mean path. These rows do not enter the whole-current length ranking.</p></section>
+<section aria-labelledby="timeline"><h2 id="timeline">Reported final separations</h2>
+<p>The paper lists twelve TOEddies separation dates during overlap with moored measurements. These are a subset of 48 separations reported across the full altimetry period. “Separation” means final detachment without later reattachment under that source's convention; it does not necessarily identify an initial detachment or an eddy's birth.</p>
+<figure style="margin:16px 0"><img src="../figures/loop-manta-2023-published-metrics-v1.svg" alt="Two method-specific mean contour lengths, followed by twelve dated separation points from May 2013 to March 2020. Exact values and dates appear in the tables."><figcaption class="note"><a href="../figures/loop-manta-2023-published-metrics-v1.svg">Open full-size chart</a>. Points are events, with no interpolated track.</figcaption></figure>
+<div class="panel"><table><caption>Published overlap subset, section 4.1</caption><thead><tr><th scope="col">Reported date</th><th scope="col">Event</th></tr></thead><tbody>
+<tr><td><time datetime="2013-05-20">2013-05-20</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2014-11-05">2014-11-05</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2015-02-28">2015-02-28</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2015-05-15">2015-05-15</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2015-12-04">2015-12-04</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2016-04-09">2016-04-09</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2017-11-10">2017-11-10</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2017-11-21">2017-11-21</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2018-03-21">2018-03-21</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2018-07-21">2018-07-21</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2019-07-03">2019-07-03</time></td><td>Final separation</td></tr>
+<tr><td><time datetime="2020-03-30">2020-03-30</time></td><td>Final separation</td></tr>
+</tbody></table><p class="note">Calendar days are retained as published; clock times and timezone are unspecified. These records do not establish eddy names, positions, state intersections or NASA animation matches.</p></div></section>
+<section aria-labelledby="sources"><h2 id="sources">Sources and data</h2><p><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1156159/full">Manta et al. (2023)</a>, sections 2.2, 3.1 and 4.1. Factual transcription and redraw; daily paths and original figures were not reproduced.</p><p><a href="../research/loop-manta-2023-published-metrics-v1.json" download>Download structured evidence (JSON)</a></p><p class="note">A <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2026EA005115">subsequent 2026 study</a> describes the connecting-streamline method and seven-day forecasting bins. Its numerical archive has not been equated with these records.</p></section>
+</main>
+</html>

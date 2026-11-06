@@ -1,0 +1,93 @@
+name: Install reviewed equatorial basin identities v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/equatorial-basin-installation-request-v1.json
+      - .github/workflows/install-equatorial-basin-saved-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_EQUATORIAL_BASIN_INSTALL_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/equatorial-basin-installation-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/equatorial-basin-installation-request-v1.json').read_bytes())
+          assert r['schema']=='osw.equatorial-basin-installation-request.v1'
+          assert type(r['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execution_permitted']).lower()+'\n')
+          PY
+  install-saved-artifacts:
+    permissions:
+      contents: write
+      actions: read
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read saved installation request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/equatorial-basin-installation-request-v1.json').read_bytes())
+          assert request['schema']=='osw.equatorial-basin-installation-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - name: Verify exact parent, source, requests and reviewed results
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_equatorial_basin_saved_v1.py --cloud-install --preflight-only
+      - name: Check archive refusal and artifact custody
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_equatorial_basin_saved_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_published_current_speed_saved_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_verified_artifact_git_transport_v1.py -v
+      - name: Install exact verified artifacts through guarded nonforce Git transport
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_equatorial_basin_saved_v1.py --cloud-install
+      - name: Retain compact installation receipt
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: equatorial-basin-installation-receipts-v1
+          path: |
+            .pytest_cache/equatorial-basin-installation-v1/result.json
+            .pytest_cache/equatorial-basin-installation-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

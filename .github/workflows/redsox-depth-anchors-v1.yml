@@ -1,0 +1,46 @@
+name: REDSOX conditional regional depth anchors v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/build_redsox_depth_anchors_v1.py
+      - analysis/test_redsox_depth_anchors_v1.py
+      - plans/redsox-depth-anchors-protocol-v1.md
+      - research/redsox-depth-anchors-operator-v1.json
+      - .github/workflows/redsox-depth-anchors-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_redsox_depth_anchors_v1.py
+            analysis/test_redsox_depth_anchors_v1.py
+            plans/redsox-depth-anchors-protocol-v1.md
+            research/redsox-depth-anchors-operator-v1.json
+            research/redsox-observed-depth-reference-source-facts-v1.json
+            research/current-depth-redsox-observed-core-reach-reference-inventory-source-review-v20.json
+            research/current-depth-reference-inventory-v20.json
+            research/redsox-observed-depth-sections-lower-northern-channel-v2.json
+            research/redsox-observed-depth-sections-winter-section3-v2.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Validate source-bound anchors and construct regional collection
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_redsox_depth_anchors_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_redsox_depth_anchors_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: redsox-depth-anchors-v1
+          path: redsox-depth-anchors-v1/
+          retention-days: 7

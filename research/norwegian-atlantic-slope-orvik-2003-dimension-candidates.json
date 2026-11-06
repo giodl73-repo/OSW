@@ -1,0 +1,79 @@
+{
+  "schema": "osw.source-reported-dimension-candidates.v1",
+  "as_of": "2026-10-21",
+  "proposed_current_id": "norwegian-atlantic-slope",
+  "name": "Norwegian Atlantic Slope Current",
+  "status": "provisional_source_reported_evidence_pending_original_acquisition_and_identity_admission",
+  "source": {
+    "doi": "10.1029/2003GL017932",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2003GL017932",
+    "citation": "Orvik, K. A. and Skagseth, Ø. (2003), The impact of the wind stress curl in the North Atlantic on the Atlantic inflow to the Norwegian Sea toward the Arctic, Geophysical Research Letters, 30(17), 1884, doi:10.1029/2003GL017932.",
+    "access": "Publisher-indexed introduction paragraphs inspected through web search. Direct publisher retrieval returned HTTP 403. Original HTML/PDF bytes and figures not acquired or reviewed.",
+    "retrieved_date": "2026-10-21",
+    "original_file": null,
+    "original_sha256": null,
+    "redistribution_license": null
+  },
+  "measurements": [
+    {
+      "id": "norwegian-atlantic-slope-orvik-2003-reported-length-candidate",
+      "dimension": "length",
+      "value_km": 3500,
+      "approximate": true,
+      "locator": "Introduction, paragraph [2], eastern-branch description.",
+      "short_excerpt": "eastern branch about 3500 km long",
+      "support": "Eastern shelf-edge branch along the Norwegian shelf; exact start/end gates not specified in the inspected statement.",
+      "statistic": "author_reported_approximate_branch_extent",
+      "observation_period": null,
+      "fixed_layer_bounds_m": null,
+      "paired_boundary_coordinates": null,
+      "uncertainty_km": null,
+      "seasonal_range_km": null,
+      "calculation": null
+    },
+    {
+      "id": "norwegian-atlantic-slope-orvik-2003-reported-mean-width-candidate",
+      "dimension": "width",
+      "value_km": 40,
+      "approximate": true,
+      "locator": "Introduction, paragraph [4], Svinøy annual-mean description citing Orvik et al. (2001).",
+      "short_excerpt": "annual mean NwASC appears as a stable flow about 40 km wide",
+      "support": "Local Svinøy section; not a width along the entire branch.",
+      "statistic": "width_of_described_annual_mean_flow_not_mean_of_instantaneous_widths",
+      "observation_period": null,
+      "fixed_layer_bounds_m": null,
+      "paired_boundary_coordinates": null,
+      "uncertainty_km": null,
+      "seasonal_range_km": null,
+      "calculation": null,
+      "cited_original_doi": "10.1016/S0967-0637(00)00038-8",
+      "independent_width_observation": false,
+      "existing_related_record_id": "norwegian-atlantic-slope-orvik-2001-regional-width",
+      "context_exclusions": [
+        "The 200–900 m isobaths describe slope bathymetry, not a fixed measurement layer.",
+        "The 1995–2003 transport record does not establish the exact width averaging interval.",
+        "The explicitly reported 40 km is not computed as a midpoint of the older 30–50 km range.",
+        "Annual mean does not establish annual minimum, maximum, confidence interval or seasonal samples."
+      ]
+    }
+  ],
+  "eligibility": {
+    "canonical_current_admitted": false,
+    "canonical_measurement_inventory_admitted": false,
+    "length_rank_eligible": false,
+    "width_rank_eligible": false,
+    "annual_extrema_eligible": false,
+    "seasonal_playback_eligible": false,
+    "map_geometry_eligible": false,
+    "state_intersection_eligible": false
+  },
+  "excluded_canonical_owners": ["norwegian", "norwegian-coastal"],
+  "remaining_work": [
+    "Acquire the original article and inspect its branch map and measurement context.",
+    "Review proposed slope-current identity separately from ambiguous Norwegian Current and coastal flow.",
+    "Resolve length gates, layer and time convention before constructing route geometry.",
+    "Inspect the cited 2001 original before counting independent width support.",
+    "Acquire dated repeated boundaries for seasonal widths and lengths; do not manufacture a range from these prose estimates."
+  ],
+  "figure_file": "figures/norwegian-atlantic-slope-reported-dimensions.svg"
+}

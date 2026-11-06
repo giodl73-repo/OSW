@@ -1,0 +1,97 @@
+{
+  "schema": "osw.florida-spray-seasonal-depth-operator.v1",
+  "datasets": {
+    "mean": "https://spraydata.ucsd.edu/erddap/griddap/gsMean",
+    "annual_cycle": "https://spraydata.ucsd.edu/erddap/griddap/gsAnnualCycleDaily"
+  },
+  "source_dataset_doi": "10.21238/S8TC9W",
+  "source_paper_doi": "10.1038/s41558-023-01835-w",
+  "source_documentation_url": "https://spraydata.ucsd.edu/products/gulf-stream-climatology/",
+  "source_mean_metadata_url": "https://spraydata.ucsd.edu/erddap/info/gsMean/index.html",
+  "source_annual_metadata_url": "https://spraydata.ucsd.edu/erddap/griddap/gsAnnualCycleDaily.html",
+  "source_attribution": "Todd, Robert E. and Alice S. Ren(2023), Gulf Stream mean and annual cycle from Spray underwater glider measurements. WHOI/Scripps Institution of Oceanography Instrument Development Group, doi:10.21238/S8TC9W. Underlying observations doi:10.21238/S8SPRAY2675 and10.21238/S8SPRAY0880. CC BY4.0.",
+  "source_kind": "Published observation-based three-dimensional spatially mapped time mean and two-harmonic annual cycle, not raw independent casts, instantaneous velocities or model snapshots.",
+  "source_observation_period_documented": [
+    "2015-07-16",
+    "2023-05-30"
+  ],
+  "source_metadata_discrepancy": "The mean ERDDAP metadata sets time_coverage_start and time_coverage_end to the same2015-07-16 timestamp, while its summary and primary product documentation describe2015-07-16 through2023-05-30. Preserve raw provider attributes and report documented fit period separately; do not treat the single mean coordinate as an observation date or silently repair provider metadata.",
+  "source_access_review": "Primary Spray product page, mean metadata and annual-cycle access-form/DAS read2026-11-02. Annual DDS metadata retrieved confirms four-dimensional fields. No original paper figure pixels or digitization claimed.",
+  "regional_identity": "NOAA independently documents Florida Current surveys across the Straits at27N. Restrict this Gulf Stream-system product to its Florida Straits section; no assignment to downstream current:gulf-stream, North Atlantic Current or family-level physical depth.",
+  "regional_identity_source_url": "https://www.aoml.noaa.gov/phod/floridacurrent/data_access.php",
+  "section_latitude": 27.0,
+  "longitude_gate": [
+    -80.1,
+    -79.1
+  ],
+  "spatial_selection": "Fixed source0.1degree grid at27N and longitudes80.1–79.1W, chosen as a Florida Straits corridor before velocity retrieval. Preserve all retained northward columns and section bounds. A maximum at an outermost column is axis-unresolved; do not broaden the window to force an interior peak.",
+  "horizontal_core_operator": "Among columns with complete finite native10–200m northward support and at least one sample>0.05m/s, maximize positive signed trapezoidal integral over10–200m. First longitude in source order breaks ties. Equal integration support prevents a missing shallow bin from gaining an incomparable score. This is an OSW fitted-section axis proxy, not independently observed instantaneous axis tracking.",
+  "vertical_core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "vertical_operator": "First adjacent finite downward northward-component threshold crossing below a qualifying sampled0–200m core, using frozen connected-layer logic. Missing/dry levels or native domain end censor the crossing; do not jump disconnected deep flow or substitute seabed depth. Native10m shallowest level is not the surface.",
+  "relative_core_operator": "Retain a separately typed first descending half-sampled-upper200m-core-component depth as a vertical decay descriptor. This is neither an absolute5/10/20cm/s contour nor a physical current bottom, full thickness or uncertainty bound.",
+  "temporal_selection": "Time mean plus one unique nominal annual-cycle daily phase on calendar day15 per month. Provider aggregate coordinate timestamps alternate a few minutes either side of midnight. Retain actual timestamps unmodified, and derive a separate nominal daily phase key only when within600seconds of nearest midnight; reject larger offsets or duplicated recovered phase dates. These are12 fitted phase samples, not actual observed dates, monthly averages or annual extrema.",
+  "fit_support_fields": [
+    "along_stream_scale",
+    "cross_stream_scale",
+    "downstream_direction",
+    "n_pts_fit",
+    "n_missions_fit",
+    "max_gap",
+    "arc_fit"
+  ],
+  "support_interpretation": "Retain provider mapping scales, downstream direction, observation/mission fit counts, max-gap and angular coverage at each selected profile. Mapping scales are Gaussian weights, not current widths; counts are not independent replicate numbers; source component standard errors are not propagated depth confidence intervals.",
+  "maximum_field_scalars": 100000,
+  "input_sha256": {
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "research/current-depth-register-source-review-v46.json": "5e8999716630d97688083ab841c0cca0ea22d00886e6b04dd01727571de6ce72"
+  },
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_extrema": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Sequential coordinate-first OPeNDAP subsets and tests on one idle cloud CPU. Before each case enforce100 fitted depth levels, at most20 section longitudes and cumulative100000 scalar budget including selected fit-support values. Retain decoded profiles and source metadata; no full-source/wire-byte hash claim. No local tests or ocean-field processing.",
+  "full_goal_complete": false,
+  "source_identity_attribute_spellings": [
+    "10.21238/S8TC9W",
+    "https://doi.org/10.21238/S8TC9W"
+  ],
+  "source_identity_attribute_review": "Mean declares bare DOI; annual-cycle DAS declares its https://doi.org/ URL. Both exact forms identify the same published product; retain original attributes. No other DOI or arbitrary URL suffix is accepted.",
+  "prior_terminal_collection_failure": {
+    "run_id": 41461878321,
+    "source_commit": "c7ccce83f1cd812c05ca2c333a7757f97e8dd218",
+    "conclusion": "failure",
+    "reason": "Mean profile retrieved, annual source rejected by strict bare-DOI comparison because its DOI attribute is the equivalent published resolver URL. Twenty tests passed before source identity check halted the full collection. No canonical measurement admission from this partial run.",
+    "scientific_operator_changed": false
+  },
+  "phase_coordinate_review": {
+    "metadata_url": "https://spraydata.ucsd.edu/erddap/griddap/gsAnnualCycleDaily.csv?time",
+    "actual_coordinate_examples": [
+      "2015-09-14T23:56:40Z",
+      "2015-09-16T00:06:40Z"
+    ],
+    "source_files_index": "https://spraydata.ucsd.edu/erddap/files/gsAnnualCycleDaily/",
+    "source_daily_phase_intent": "Provider describes a daily annual cycle with month/day phases; original files named d001 through d365. Clock-coordinate rounding does not authorize changing source velocity values or treating phase labels as observations.",
+    "nominal_phase_tolerance_seconds": 600,
+    "original_source_time_coordinates_modified": false
+  },
+  "prior_terminal_phase_failure": {
+    "run_id": 41462250568,
+    "source_commit": "4d2bb3bd6602d442cb4dcd6f320a708bd9353095",
+    "conclusion": "failure",
+    "reason": "All21 tests and mean retrieval passed; strict literal UTC day15 matching rejected duplicate/missing dates caused by near-midnight coordinate rounding. No canonical admission from partial output.",
+    "source_temporal_phase_key_operator_changed": true,
+    "horizontal_or_vertical_measurement_operator_changed": false
+  }
+}

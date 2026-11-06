@@ -1,0 +1,46 @@
+.support-page { max-width: 1080px; }
+.support-page h1 { max-width: 20ch; font-size: clamp(2.1rem,8vw,5rem); overflow-wrap: anywhere; }
+.support-page .support-limit { padding: .8rem 1rem; border-left: 3px solid #586a7b; background: #edf2f4; color: #233e51; }
+.support-skip { position: absolute; left: 1rem; top: -5rem; z-index: 10; padding: .7rem; background: white; color: #123b4c; }
+.support-skip:focus { top: .5rem; }
+.support-page :is(a,button,select,input,summary):focus-visible { outline: 3px solid #ac5310; outline-offset: 3px; }
+.support-stages { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .6rem; list-style: none; padding: 0; margin: 1.5rem 0; }
+.support-stages li { border: 1px solid #b8c8ce; border-radius: .5rem; padding: .75rem; }
+.support-stages span { display: block; margin-top: .35rem; font-size: .85rem; }
+.support-moorings { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); gap: .4rem; }
+.support-moorings button { padding: .6rem .35rem; min-height: 5rem; border: 1px solid #90aab5; border-radius: .4rem; background: #f2f7f8; color: #173e4e; cursor: pointer; }
+.support-moorings button[aria-pressed="true"] { border: 2px solid #145369; background: #dfedf1; }
+.support-moorings strong,.support-moorings span { display: block; }
+.support-moorings span { margin-top: .3rem; font-size: .75rem; }
+.support-filters { display: grid; grid-template-columns: 1fr 1.2fr 1.5fr; gap: .8rem; }
+.support-filters label { display: grid; gap: .35rem; }
+.support-filters :is(select,input) { width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; }
+.support-axis { display: flex; justify-content: space-between; margin: 1rem 0 .35rem; font-size: .8rem; }
+.support-instruments { border-top: 1px solid #bdcbd1; }
+.support-instruments details { border-bottom: 1px solid #bdcbd1; margin: 0; border-radius: 0; padding: 0; }
+.support-instruments summary { min-height: 44px; padding: .45rem .5rem; cursor: pointer; }
+.support-row { display: grid; grid-template-columns: 3.5rem 8rem minmax(80px,1fr); align-items: center; gap: .5rem; }
+.support-row .support-role { font-size: .8rem; }
+.support-bar-track { display: block; height: 6px; background: #e0e6e9; border-radius: 3px; }
+.support-bar { display: block; height: 6px; background: #315f76; border-radius: 3px; }
+.support-tracks { display: grid; gap: 4px; }
+.support-month-track { position: relative; display: block; height: 6px; background: #e0e6e9; border-radius: 3px; }
+.support-month { position: absolute; top: 0; height: 6px; background: #315f76; border-right: 1px solid #e0e6e9; }
+.support-period { display: block; margin: .2rem 0 0 4rem; font-size: .75rem; }
+.support-availability { display: block; font-size: .75rem; margin: .2rem 0 0 4rem; }
+.support-instrument-body { padding: .4rem .9rem 1rem; overflow-wrap: anywhere; }
+.support-instrument-body dl { display: grid; grid-template-columns: minmax(100px,1fr) minmax(0,3fr); gap: .5rem 1rem; }
+.support-instrument-body :is(dt,dd) { margin: 0; }
+.support-instrument-body dt { font-weight: 600; }
+.support-evidence-links li { margin-bottom: .5rem; }
+.support-months { min-width: 0; width: 100%; table-layout: fixed; font-size: .8rem; }
+.support-months :is(th,td) { padding: .45rem .3rem; overflow-wrap: anywhere; }
+@media(max-width:700px) {
+  .support-stages { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .support-moorings { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .support-filters { grid-template-columns: 1fr; }
+  .support-row { grid-template-columns: 2.5rem 6.5rem minmax(40px,1fr); gap: .3rem; }
+  .support-period,.support-availability { margin-left: 2.8rem; }
+  .support-instrument-body dl { grid-template-columns: 1fr; gap: .25rem; }
+  .support-instrument-body dd { margin-bottom: .5rem; }
+}

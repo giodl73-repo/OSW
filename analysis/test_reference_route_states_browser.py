@@ -1,4 +1,5 @@
 """Verify every state's reference-route inventory and optional-data fallback."""
+import os
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -7,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     join=json.loads((ROOT/'research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/',wait_until='networkidle')

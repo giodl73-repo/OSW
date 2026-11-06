@@ -1,0 +1,124 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 325,
+  "baseline_evidence_sha256": "0732f62e22a423652f61c3f638494df8c840a69a27219f7304796b5149f64845",
+  "baseline_measurement_csv_sha256": "cea186ea971e0fa6865b505aea01eea925c096754d535f8df4261f922f195318",
+  "sources": {
+    "loncaric-2006": {
+      "url": "https://doi.org/10.4154/GC.2006.03",
+      "citation": "Lončarić (2006), Planktic Foraminiferal Content in a Mature Agulhas Eddy from the SE Atlantic: Any Influence on Foraminiferal Export Fluxes?, Geologia Croatica 59(1), 41–50.",
+      "access": "Original publisher PDF acquired from Geologia Croatica; Table 1 and methods on printed page 42 / PDF page 2, and Figure 3 and section 4.1 on printed page 44 / PDF page 4 visually reviewed. Section 3 on printed pages 43–44 read.",
+      "original": {
+        "url": "https://www.geologia-croatica.hr/index.php/GC/article/download/GC.2006.03/pdf_11/1433",
+        "bytes": 1796678,
+        "sha256": "54da7a54790e5048c4775c5a3761b41513d3541f656a95181486067b9e58eedc",
+        "pages": 10
+      },
+      "reviewed_page_png_sha256": {
+        "2": "7e4e170603ca1f65a7aa2705e45d91b091c0e9be4efc03585cd615f1d42f57d0",
+        "4": "65ffa8dba7eb55f4f46debc4dc6db4835b57b1b83fa061f82f2573ce381ff0e9"
+      },
+      "original_pdf_retained_in_ignored_cache_only": true,
+      "source_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "entity_id": "eddy:geography:agulhas-eddy-w-2000",
+      "source_id": "loncaric-2006",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Agulhas Eddy W, February 2000 MARE sampling",
+      "value": null,
+      "period_start": null,
+      "period_end": null,
+      "scope": "Explicitly named mature Eddy W, sampled in the northern Cape Basin in February 2000. Individual source-case reference, not a family constant.",
+      "id": "agulhas-w-loncaric-2006-center-edge-station-separation",
+      "category": "size",
+      "metric": "calculated_sampled_center_to_edge_station_separation",
+      "unit": "km",
+      "range_value": [
+        150,
+        225
+      ],
+      "range_kind": "assumed_coordinate_allowance_and_outward_rounding_sensitivity",
+      "calculation": {
+        "method": "spherical_sampled_station_separation_v1",
+        "earth_radius_km": 6371,
+        "center_station": {
+          "id": "06",
+          "latitude": -29.2,
+          "longitude": 8.2,
+          "source_role": "sampled_center"
+        },
+        "edge_station": {
+          "id": "05",
+          "latitude": -28.8,
+          "longitude": 6.3,
+          "source_role": "sampled_edge"
+        },
+        "coordinate_order": "latitude_longitude",
+        "coordinate_allowance_degrees": 0.05,
+        "coordinate_allowance_assumed": true,
+        "allowance_basis": "OSW sensitivity assumption of half the printed 0.1-degree increment per coordinate, not source-reported position accuracy.",
+        "unrounded_nominal_km": 190.056275,
+        "triangle_inequality_allowance_km": 22.238985,
+        "round_outward_km": 25,
+        "range_km": [
+          150,
+          225
+        ],
+        "simultaneity_verified": false,
+        "boundary_operator_specified": false,
+        "whole_eddy_radius_inferred": false,
+        "diameter_inferred": false,
+        "closed_footprint_inferred": false,
+        "source_accuracy_quantified": false,
+        "annual_extrema_inferred": false
+      },
+      "period_precision": "month",
+      "period_label": "February 2000 station pair; exact edge-station date and simultaneity unverified",
+      "source_locator": "Table 1 and section 2, printed page 42 / PDF page 2; section 4.2, printed page 44 / PDF page 4. Figure 1 is dated 18 February; center sampling is explicitly 22 February.",
+      "definition": "Great-circle separation between table station 06, described as the sampled center, and station 05, described as the edge. OSW calculation from published coordinates; not an author-reported radius.",
+      "qualification": "Sampled station separation, not whole-eddy radius or diameter. Haversine on a 6371 km sphere. OSW assumes ±0.05° per printed coordinate as sensitivity only; triangle inequality bounds the four coordinate perturbations, then rounds outward to 25 km. Source position accuracy, center/edge definition, exact edge sample date, simultaneity and movement corrections are unquantified. The interval is not measurement uncertainty, confidence, physical min/max or a seasonal range. No radius doubling, area, closed boundary or state containment inferred."
+    },
+    {
+      "entity_id": "eddy:geography:agulhas-eddy-w-2000",
+      "source_id": "loncaric-2006",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Agulhas Eddy W, February 2000 MARE sampling",
+      "value": 60,
+      "period_start": "2000-02-22",
+      "period_end": "2000-02-22",
+      "scope": "Explicitly named mature Eddy W, sampled in the northern Cape Basin in February 2000. Individual source-case reference, not a family constant.",
+      "id": "agulhas-w-loncaric-2006-center-mixed-layer-depth",
+      "category": "structure",
+      "metric": "source_reported_sampled_center_surface_mixed_layer_depth",
+      "unit": "m",
+      "period_precision": "day",
+      "period_label": "2000-02-22, center station 06 CTD profile",
+      "source_locator": "Section 4.1 and Figure 3, printed page 44 / PDF page 4.",
+      "definition": "Source-reported surface mixed-layer depth of 60 m at Eddy W center station 06; numerical mixed-layer threshold unspecified.",
+      "qualification": "One center CTD profile. Mixed-layer depth is not whole-eddy depth or thickness, and supplies no seasonal extrema. The 35 m outside mixed layer is retained as comparison context only; neither seafloor depth nor plankton tow depth is assigned as eddy extent."
+    }
+  ],
+  "excluded_context": [
+    {
+      "quantity": "250 km diameter and 1000 m depth",
+      "reason": "General Agulhas-ring description, not an individual Eddy W measurement."
+    },
+    {
+      "quantity": "35 m mixed layer at CWR",
+      "reason": "Outside reference station, not Eddy W depth."
+    },
+    {
+      "quantity": "50 km or half-degree typical SSH center offset",
+      "reason": "General source-method statement attributed to prior studies, not measured uncertainty for this station pair."
+    },
+    {
+      "quantity": "water depth 5036 m and CTD/plankton sampling to 800 m",
+      "reason": "Seafloor depth and sampling support are not eddy vertical extent."
+    }
+  ]
+}

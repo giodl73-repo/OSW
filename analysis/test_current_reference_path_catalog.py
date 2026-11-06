@@ -13,6 +13,32 @@ def row(name, low, high, group='osw_approximate_reference_routes'):
 
 
 class EnvelopeOrderingTests(unittest.TestCase):
+    def test_supporting_original_cannot_be_dropped_or_replaced_silently(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            digest = lambda name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in ['original.pdf', 'contrary.pdf']:
+                (root / name).write_bytes(b'reviewed bytes')
+            for name, document in [('acquisition.json', 'original.pdf'), ('contrary.json', 'contrary.pdf')]:
+                (root / name).write_text(json.dumps({'sha256': digest(document), 'bytes': 14, 'source_url': 'https://example.org/' + document}))
+            extra = {'source_document_file': 'contrary.pdf', 'source_document_sha256': digest('contrary.pdf'),
+                     'source_document_bytes': 14, 'acquisition_file': 'contrary.json',
+                     'acquisition_sha256': digest('contrary.json'), 'source_url': 'https://example.org/contrary.pdf'}
+            audit = {'current_id': 'sample', 'source_document_file': 'original.pdf',
+                     'source_document_sha256': digest('original.pdf'), 'acquisition_file': 'acquisition.json',
+                     'acquisition_sha256': digest('acquisition.json'), 'supporting_originals': [extra]}
+            (root / 'audit.json').write_text(json.dumps(audit))
+            receipt = {k: v for k, v in audit.items() if k not in ['current_id', 'supporting_originals']}
+            receipt.update(audit_file='audit.json', audit_sha256=digest('audit.json'))
+            record = {'current_id': 'sample', 'source_review_receipt': receipt}
+            self.assertEqual(len(validate_source_receipt(record, root)), 5)
+            (root / 'contrary.pdf').write_bytes(b'replaced bytes')
+            with self.assertRaisesRegex(ValueError, 'Changed supporting'):
+                validate_source_receipt(record, root)
+            (root / 'contrary.pdf').unlink()
+            with self.assertRaises(FileNotFoundError):
+                validate_source_receipt(record, root)
+
     def test_retained_original_receipts_reject_changed_bytes_and_wrong_owner(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)

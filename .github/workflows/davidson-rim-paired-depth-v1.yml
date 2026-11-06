@@ -1,0 +1,58 @@
+name: Davidson southern Rim paired component depths v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_davidson_rim_paired_depth_v1.py
+      - analysis/test_davidson_rim_paired_depth_v1.py
+      - plans/davidson-rim-paired-depth-v1.md
+      - .github/workflows/davidson-rim-paired-depth-v1.yml
+      - research/davidson-rim-paired-depth-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/derive_davidson_rim_paired_depth_v1.py
+            analysis/test_davidson_rim_paired_depth_v1.py
+            plans/davidson-rim-paired-depth-v1.md
+            .github/workflows/davidson-rim-paired-depth-v1.yml
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            research/davidson-rim-davidson-velocity-depth-curtains-v1.json
+            research/current-depth-davidson-rim-davidson-velocity-curtains-source-review-v1.json
+            research/davidson-rim-black-sea-rim-velocity-depth-curtains-v1.json
+            research/current-depth-davidson-rim-black-sea-rim-velocity-curtains-source-review-v1.json
+            research/davidson-rim-surface-qualified-depth-sections-operator-v1.json
+            research/davidson-rim-paired-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Synthetic checks and bounded mixed-axis descriptor geometry on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_DAVIDSON_RIM_PAIRED_DEPTH_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_davidson_rim_paired_depth_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/derive_davidson_rim_paired_depth_v1.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: davidson-rim-paired-depth-v1
+          path: davidson-rim-paired-depth-v1/
+          retention-days: 7
+          if-no-files-found: error

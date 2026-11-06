@@ -1,4 +1,5 @@
 """Verify the source-convention route is visible without canonical promotion."""
+import os
 import hashlib,json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -15,7 +16,7 @@ def main():
     assert abs(report['nominal_reference_path_km']-800)>10
     assert report['whole_system_length'] is False and report['rank_eligible_published_estimates'] is False
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aeast-adriatic#route-atlas',wait_until='networkidle')

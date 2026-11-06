@@ -1,0 +1,191 @@
+{
+  "schema": "osw.sun2023-143e-published-mean-boundary-source-facts.v1",
+  "doi": "10.1175/JPO-D-22-0210.1",
+  "source_url": "https://journals.ametsoc.org/view/journals/phoc/53/10/JPO-D-22-0210.1.xml",
+  "source_citation": "Sun,Z.,and coauthors(2023),Mooring Measurements of Full-Depth Zonal Currents along the143E Meridian in the Northwestern Pacific Ocean,JPO53,2491-2510,doi10.1175/JPO-D-22-0210.1.",
+  "source_review_tier": "PROVISIONAL_PRIMARY_INDEXED_TEXT_TRANSCRIPTION_PENDING_ORIGINAL_SOURCE_CROSSCHECK",
+  "source_access": "Primary publisher indexed Sections2a,3,4d,5 and Data Availability Statement reviewed2026-11-05UTC. Direct full-text access returned403. No original source asset custody or image review.",
+  "full_article_obtained": false,
+  "exact_html_bytes_retained": false,
+  "source_html_sha256": null,
+  "original_pdf_obtained": false,
+  "source_pdf_sha256": null,
+  "source_figures_visually_reviewed": false,
+  "figures_digitized": false,
+  "raw_velocity_profiles_reanalysed": false,
+  "source_longitude_degrees_east": 143,
+  "reported_observational_months": [
+    "2016-01",
+    "2017-02"
+  ],
+  "exact_common_averaging_endpoints_resolved": false,
+  "calendar_annual_or_climatological_mean": false,
+  "methods": {
+    "mooring_count": 17,
+    "mooring_latitude_domain_degrees_north": [
+      0,
+      22
+    ],
+    "ADCP_frequency_kHz": 75,
+    "ADCP_bins": 37,
+    "ADCP_native_bin_interval_m": 16,
+    "ADCP_record_interval_minutes": 30,
+    "ADCP_first_minute_average_per_record": true,
+    "deep_RCM_nominal_vertical_spacing_m": 1000,
+    "hourly_average_before_filter": true,
+    "interpolated_vertical_spacing_m": 5,
+    "interpolated_meridional_spacing_degrees": 0.25,
+    "native_meridional_spacing_by_band": [
+      {
+        "latitude_interval": [
+          0,
+          16
+        ],
+        "spacing_degrees": 2
+      },
+      {
+        "latitude_interval": [
+          16,
+          20
+        ],
+        "spacing_degrees": 1
+      },
+      {
+        "latitude_interval": [
+          20,
+          22
+        ],
+        "spacing_degrees": 0.5
+      }
+    ],
+    "lowpass_kind": "fourth_order_Butterworth",
+    "latitude_dependent_lowpass_cutoff_hours": [
+      {
+        "latitude_interval": [
+          0,
+          4
+        ],
+        "hours": 360
+      },
+      {
+        "latitude_interval": [
+          6,
+          8
+        ],
+        "hours": 144
+      },
+      {
+        "latitude_interval": [
+          10,
+          22
+        ],
+        "hours": 96
+      }
+    ],
+    "daily_average_after_lowpass": true,
+    "unsampled_upper_layer_m": [
+      0,
+      50
+    ],
+    "upper_layer_filled_using": "linear_interpolation_altimeter_geostrophic_and_uppermost_ADCP",
+    "meridional_linear_interpolation": true,
+    "native_point_coverage_or_source_QC_independently_verified": false,
+    "processed_mooring_data_access": "contact_corresponding_author_no_direct_dataset_link_reviewed"
+  },
+  "records": [
+    {
+      "id": "sun2023-143e-sec-mean-lower",
+      "entity_id": "current:pacific-south-equatorial",
+      "metric": "lower_flow_boundary_depth",
+      "approximate_value_m": 90,
+      "reported_latitude_band_degrees_north": [
+        0,
+        4
+      ],
+      "source_zonal_flow_direction": "westward",
+      "source_branch_scope": "equatorial_SEC",
+      "source_statistic": "reported_observational_period_mean_section",
+      "source_locator": "Section3 equatorial_SEC paragraph and Figure2 caption; Section2a processing; Section4d for EUC interpolation limitation."
+    },
+    {
+      "id": "sun2023-143e-euc-mean-upper",
+      "entity_id": "current:pacific-equatorial-undercurrent",
+      "metric": "upper_flow_boundary_depth",
+      "approximate_value_m": 100,
+      "reported_latitude_band_degrees_north": [
+        0,
+        4
+      ],
+      "source_zonal_flow_direction": "eastward",
+      "source_branch_scope": "equatorial_EUC",
+      "source_statistic": "reported_observational_period_mean_section",
+      "source_locator": "Section3 equatorial_EUC paragraph and Figure2 caption; Section2a processing; Section4d for EUC interpolation limitation."
+    },
+    {
+      "id": "sun2023-143e-euc-mean-lower",
+      "entity_id": "current:pacific-equatorial-undercurrent",
+      "metric": "lower_flow_boundary_depth",
+      "approximate_value_m": 300,
+      "reported_latitude_band_degrees_north": [
+        0,
+        4
+      ],
+      "source_zonal_flow_direction": "eastward",
+      "source_branch_scope": "equatorial_EUC",
+      "source_statistic": "reported_observational_period_mean_section",
+      "source_locator": "Section3 equatorial_EUC paragraph and Figure2 caption; Section2a processing; Section4d for EUC interpolation limitation."
+    },
+    {
+      "id": "sun2023-143e-necc-mean-upper-layer-extent",
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": 150,
+      "reported_latitude_band_degrees_north": [
+        3,
+        8
+      ],
+      "source_zonal_flow_direction": "eastward",
+      "source_branch_scope": "upper_NECC",
+      "source_statistic": "reported_observational_period_mean_section",
+      "source_locator": "Section3 upper_NECC paragraph and Figure2 caption; Section2a processing; Section4d for EUC interpolation limitation."
+    },
+    {
+      "id": "sun2023-143e-neuc-middle-jet-mean-upper",
+      "entity_id": "current:pacific-north-equatorial-undercurrent",
+      "metric": "upper_flow_boundary_depth",
+      "approximate_value_m": 350,
+      "reported_latitude_band_degrees_north": [
+        11,
+        15
+      ],
+      "source_zonal_flow_direction": "eastward",
+      "source_branch_scope": "middle_NEUC_jet_only",
+      "source_statistic": "reported_observational_period_mean_section",
+      "source_locator": "Section3 middle_NEUC_jet_only paragraph and Figure2 caption; Section2a processing; Section4d for EUC interpolation limitation."
+    }
+  ],
+  "unadmitted_candidates": [
+    {
+      "id": "neuc-deep-reach",
+      "source_claim_at_least_depth_m": 3000,
+      "numeric_reference_admitted": false,
+      "reason": "Section3 deep claim conflicts with Section5 lack of statistically significant off-equatorial3000m means. Sparse deep meters/interpolation do not establish continuous named-current membership or a bottom. Retain for original-source/profile crosscheck."
+    },
+    {
+      "id": "stcc-nicc-nesc-eic-and-unnamed-abyssal-flows",
+      "numeric_reference_admitted": false,
+      "reason": "Distinct source currents/branches without separately resolved owners in this catalog batch. STCC is not NSCC, and separate deep eastward flow is not a full-thickness STCC. No forced mapping."
+    }
+  ],
+  "qualifications": [
+    "Regional reported mean section, not continuous instantaneous extent, calendar-year mean, climatology or annual extrema.",
+    "Author processing blends observation and interpolation. Five-metre and0.25degree grids are not native resolution or depth error; upper50m uses altimetry.",
+    "EUC boundary pair is two scoped references from one mean field, not two independent campaigns or an admitted physical thickness. Coarse lateral sampling leaves current separation uncertain.",
+    "2015/16ENSO decay affects representativeness. No whole-route/state/width/seasonal/volume join. Provisional primary-indexed evidence requires original crosscheck."
+  ],
+  "new_ocean_field_requests": 0,
+  "new_raw_measurements": 0,
+  "physical_current_bottom_established": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

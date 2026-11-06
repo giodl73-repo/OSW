@@ -1,0 +1,124 @@
+{
+  "schema": "osw.atlantic-current-depth-operator.v2",
+  "currents": [
+    {
+      "current_id": "north-brazil",
+      "entity_id": "current:north-brazil",
+      "route_file": "research/north-brazil-reference-path-candidate.json",
+      "expected_route_vertices": 7,
+      "primary_threshold_m_s": 0.1,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Surface North Brazil branch from5S to7N retroflection approach; exclude upstream North Brazil Undercurrent, retroflected return, Guiana continuation, NECC/EUC and detached rings.",
+      "threshold_basis": "Exploratory OSW upper200m signed-component contour diagnostic,10cm/s primary for the fast North Brazil surface branch and5cm/s for the regional North Atlantic/Labrador branches. Same-node5/10/20cm/s sensitivity is retained. No author-adopted unique physical boundary, universal current definition, water-mass interface or uncertainty interval is asserted."
+    },
+    {
+      "current_id": "north-atlantic",
+      "entity_id": "current:north-atlantic",
+      "route_file": "research/north-atlantic-reference-path-candidate.json",
+      "expected_route_vertices": 6,
+      "primary_threshold_m_s": 0.05,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Selected upper-ocean North Atlantic continuation from40N50W toward west-of-Ireland approach. Exclude upstream Gulf Stream, Iceland/Norwegian/Canary branches, recirculation and whole Gulf Stream System.",
+      "threshold_basis": "Exploratory OSW upper200m signed-component contour diagnostic,10cm/s primary for the fast North Brazil surface branch and5cm/s for the regional North Atlantic/Labrador branches. Same-node5/10/20cm/s sensitivity is retained. No author-adopted unique physical boundary, universal current definition, water-mass interface or uncertainty interval is asserted."
+    },
+    {
+      "current_id": "labrador",
+      "entity_id": "current:labrador",
+      "route_file": "research/labrador-reference-path-candidate.json",
+      "expected_route_vertices": 9,
+      "primary_threshold_m_s": 0.05,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Main offshore upper-ocean Labrador branch60–43N via western Flemish Pass/Grand Banks reference corridor. Exclude feeder branches, inshore Avalon flow, Hudson Strait intrusion, deep western boundary current and downstream extensions.",
+      "threshold_basis": "Exploratory OSW upper200m signed-component contour diagnostic,10cm/s primary for the fast North Brazil surface branch and5cm/s for the regional North Atlantic/Labrador branches. Same-node5/10/20cm/s sensitivity is retained. No author-adopted unique physical boundary, universal current definition, water-mass interface or uncertainty interval is asserted."
+    }
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_field_kind": "instantaneous_assimilating_model_output_not_observation_or_monthly_mean",
+  "normal_offsets_km": [
+    -40,
+    -20,
+    0,
+    20,
+    40
+  ],
+  "maximum_nearest_cell_distance_km": 8,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "route_role": "Exact retained undated editorial current reference routes, not dated or mean model axes, source-digitized curves, bathymetric contours or physical polygons. Preserve all original vertices and route owner. No source geometry is expanded or changed in response to the sampled velocities.",
+  "longitude_policy": "Select nearest source longitude by circular angular distance, preserving first source index in a tie. Keep native0–360 longitude and global source index alongside normalized[-180,180) sampled longitude. A cyclic window whose naive bounding slab spans too much of the grid must fail the pre-read cell budget, never request a global patch.",
+  "horizontal_selection": "WGS84 neighboring reference vertices define a one-sided endpoint/interior tangent. Sample the five fixed normals at nearest source nodes. Frozen peak-core selector chooses greatest positive downstream component above the per-object primary threshold within0–200m; first offset order breaks ties. Keep outer-offset maxima as axis unresolved; no window expansion or alternate-node contour selection.",
+  "vertical_operator": "Project east/north velocity onto one declared reference tangent bearing held fixed through all40standard depths0–5000m. Retain signed deep counterflow. Frozen connected-layer operator diagnoses both boundaries connected to the qualifying0–200m core and first adjacent crossings. Missing/dry/domain-edge support remains censored;0m is an upper layer boundary only with contiguous native surface support. No seabed or terminal-grid substitution.",
+  "threshold_comparison": "All5/10/20cm/s diagnoses stay at the primary-selected node and retain their own qualifying cores. Differences are operator sensitivity, not confidence bounds or physical errors. The poleward word in the frozen helper no-core status is explicitly relabelled downstream for equatorward branches while retaining the original status separately.",
+  "transport_budget": "Only coordinates read first; at most20000cell-pairs per velocity slab and250000 for the entire three-current run. Precheck each patch at16decodedbytes per east/north pair;7MB decoded total cap. Retain source hyperslab indices and canonical decoded-profile hashes. NetCDF wire bytes and wire-byte SHA are not instrumented.",
+  "time_scope": "Two exact00Z2022snapshots for comparison with the existing EAC pilot; neither monthly averages, an annual cycle, climate trend, observed seasonal extrema nor independent occupations.",
+  "source_access": "HYCOM Consortium/NRL/COAPS-FSU public release, distribution unlimited; exact returned global/variable attributes retained.",
+  "source_context_reviews": [
+    {
+      "url": "https://os.copernicus.org/articles/19/251/2023/",
+      "scope": "Primary publisher Introduction: surface North Brazil origin, NBUC surfacing, retroflection and separate Guyana continuation. Regional naming support only, not current-axis coordinates or our vertical thresholds."
+    },
+    {
+      "url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+      "scope": "Official NOAA North Atlantic Current entry for Grand Banks/British Isles regional continuation and separate downstream currents; Labrador entry confirms broad southeastward coastal setting. Not source axes or depth measurements."
+    },
+    {
+      "url": "https://waves-vagues.dfo-mpo.gc.ca/Library/40621704.pdf",
+      "scope": "Government report originalPDFtext, printed11/PDFindex12: distinct stronger offshore Labrador branch, western Flemish Pass and tail of Grand Banks, inshore Avalon branch. Screenshot request failed; no visual figure review or digitization claimed. Figure arrow lengths describe velocity classes, not route lengths."
+    }
+  ],
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "input_sha256": {
+    "research/north-brazil-reference-path-candidate.json": "250d6b1f2c4a497dcf6461ef545536b176f01b677eb5f85acdc008cb60706257",
+    "research/north-atlantic-reference-path-candidate.json": "288f4507f53008bda00d14aeb189cadf17ccf3a7e277208dbf364da71f461c93",
+    "research/labrador-reference-path-candidate.json": "bf791711602b646daf1af7b0e67e2a8f88e4907ab56eae5a794683e475fe0c05",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "research/atlantic-current-depth-source-review-v1.json": "1599c8a4f2845b856d00afe49e9a0db551d5aabd5110c5be04d85154685af3f4",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/current-depth-route-projections-source-review-v13.json": "7c38c8a3a2265346a8debbd642b63bf8d27d0804f30a968ac525462c6c9b1c4c"
+  },
+  "processing_policy": "Cloud-only sequential acquisition/diagnosis of44date-vertex cases and220velocity profiles on one idle CPU. Reuse frozen v1pure helpers; numerical retrieval main remains identical except output schema versions. No local field retrieval/calculations/tests or runtime/UI/browser/server/native/WASM changes.",
+  "full_goal_complete": false,
+  "previous_operator_file": "research/atlantic-current-depth-operator-v1.json",
+  "previous_operator_sha256": "8a272f6ecd816424653c9732c4a9a105c25c13cc6c98ef8d01e4caf9fcf81676"
+}

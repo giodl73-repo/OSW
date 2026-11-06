@@ -1,0 +1,97 @@
+{
+  "schema": "osw.current-depth-independent-source-triage.v1",
+  "status": "EDITORIAL_SOURCE_QUALIFICATION_NO_MEASUREMENT_ADMISSION",
+  "review_date": "2026-11-05",
+  "purpose": "Find independent vertical observations rather than count another rendering of existing model profiles as new evidence.",
+  "new_source": {
+    "doi": "10.1016/j.dsr2.2026.105639",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0967064526000500",
+    "title": "Year-round vertically resolved observations of upper ocean hydrography and biogeochemistry in the Atlantic Water inflow north of Svalbard",
+    "review_basis": "Publisher search-index abstract, introduction, results excerpt and data-availability statement; no full-method verification, retained article bytes, raw-data download or figure digitization.",
+    "source_locators": ["Abstract", "Introduction: Svalbard Branch deployment", "Results: upper-water-column Atlantic Water", "Data availability"],
+    "published_context": {
+      "source_named_flow": "Svalbard Branch of Atlantic Water inflow",
+      "profile_count": 85,
+      "profile_interval_days_approximate": 4,
+      "sampled_depth_interval_m_approximate": [10, 125],
+      "reported_persistent_atlantic_water_interval_m": [40, 125],
+      "article_period_description": "July 2022 to July 2023",
+      "metric": "Published water-mass occurrence within the sampled upper ocean; not paired velocity-current boundaries."
+    },
+    "interpretation": [
+      "This is useful seasonal observational context. The deepest reported water-mass depth coincides with the profiler's approximate sampling limit; it cannot establish a finite lower boundary or total thickness.",
+      "Do not subtract these depths to manufacture current thickness, use mixed-layer depth as a current bottom, or infer a seasonal thickness range from year-round sampling alone.",
+      "The source names a downstream branch. Do not automatically assign its observations to the whole West Spitsbergen Current, the distinct Spitsbergen Atlantic catalogue entry, or the broad Norwegian Current.",
+      "Archive metadata ends in June 2023 whereas the article describes July 2023. Exact analysed dates require verification before pairing or seasonal statistics.",
+      "Hydrography at Y2-1 and velocity at Y1-1 are different moorings. Proximity does not establish collocated profiles, a common water parcel, or interchangeable vertical and temporal coordinates."
+    ]
+  },
+  "archive_metadata_review": [
+    {
+      "doi": "10.1594/PANGAEA.974309",
+      "url": "https://doi.pangaea.de/10.1594/PANGAEA.974309",
+      "mooring": "Y1-1",
+      "license": "CC BY 4.0",
+      "declared_content": "Raw hydrography and current records, with upward-looking ADCPs at nominal 50 m and 301 m; instrument depths are not current boundaries.",
+      "metadata_time_start": "2022-07-18T02:44:46",
+      "metadata_time_end": "2023-06-25T11:50:36",
+      "scientific_payload_downloaded": false,
+      "payload_size_verified": false,
+      "binary_inventory_request": "https://doi.pangaea.de/10.1594/PANGAEA.974309?format=html",
+      "inventory_request_outcome": "Web tool cache miss; no inventory or binary bytes retained.",
+      "case_disposition": "CLOSED_FAILED_INVENTORY_NO_RETRY_OR_ALTERNATE_FORMAT_MIRROR_INSTRUMENT_BYPASS"
+    },
+    {
+      "doi": "10.1594/PANGAEA.974312",
+      "url": "https://doi.pangaea.de/10.1594/PANGAEA.974312",
+      "mooring": "Y2-1",
+      "license": "CC BY 4.0",
+      "declared_content": "Raw hydrography and profiling-winch records; upper segment recovered in 2023, lower segment recovered in 2024. Metadata names a processed version, which was not requested.",
+      "metadata_time_start": "2022-07-18T08:24:04",
+      "metadata_time_end": "2023-06-25T15:31:38",
+      "scientific_payload_downloaded": false,
+      "payload_size_verified": false,
+      "binary_inventory_request": "https://doi.pangaea.de/10.1594/PANGAEA.974312?format=html",
+      "inventory_request_outcome": "Web tool cache miss; no inventory or binary bytes retained.",
+      "case_disposition": "CLOSED_FAILED_INVENTORY_NO_RETRY_OR_PROCESSED_VERSION_FORMAT_MIRROR_BYPASS"
+    }
+  ],
+  "other_leads": [
+    {
+      "doi": "10.5194/os-22-1003-2026",
+      "disposition": "ALREADY_RETAINED_NOT_NEW_EVIDENCE",
+      "existing_review": "research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json",
+      "note": "Selected-core width and instrument reach do not independently establish a current bottom. Original retained paper must not be downloaded again."
+    },
+    {
+      "doi": "10.1016/j.aquaculture.2026.744061",
+      "url": "https://doi.org/10.1016/j.aquaculture.2026.744061",
+      "disposition": "CLOSED_FAILED_DIRECT_FETCH_SEARCH_EXCERPT_ONLY",
+      "access_outcome": "Direct DOI open failed with a non-retryable redirect to inaccessible Elsevier linkinghub. Subsequent search returned publisher-index text; no alternate direct fetch or raw archive request was made.",
+      "qualitative_evidence": "The publisher-index results describe limited coastal-water influence at a deeper sensor. This is potentially useful local water-mass evidence, but no universal current bottom follows from it.",
+      "admission": "None. Do not retry the failed target, obtain a mirror, or infer exact boundary coordinates from sensor placement."
+    },
+    {
+      "doi": "10.3389/fmars.2025.1600994",
+      "disposition": "ALREADY_REVIEWED_NOT_NEW_EVIDENCE",
+      "existing_review": "research/ncc-enge2025-depth-identity-source-scope-review-v1.json"
+    },
+    {
+      "doi": "10.1029/2003JC002146",
+      "disposition": "ALREADY_RETAINED_NOT_NEW_EVIDENCE",
+      "existing_review": "research/pgw-pous-2004-regional-core-thickness-source-facts-v1.json"
+    }
+  ],
+  "admission_decision": {
+    "new_canonical_depth_references": 0,
+    "new_regional_projection_cases": 0,
+    "new_whole_route_depth_profiles": 0,
+    "new_physical_volumes": 0,
+    "canonical_reference_inventory_unchanged": true,
+    "eddy_inventory_unchanged": true,
+    "runtime_unchanged": true,
+    "main_unchanged": true,
+    "full_goal_complete": false
+  },
+  "next_evidence_requirement": "Prioritize an independent accessible publication or previously retained document that reports a source-defined regional layer thickness or paired boundaries. For native profiles, qualify identity, license, exact dates, vertical coordinates, QC, size and prospective combined case budget before acquisition. Preserve instrument-limit censoring, branch ownership and unknowns. Do not reopen any closed acquisition above."
+}

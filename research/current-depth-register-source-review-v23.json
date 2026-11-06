@@ -1,0 +1,76 @@
+{
+  "schema": "osw.current-depth-register-source-review.v23",
+  "status": "PASS_ANTARCTIC_COMPOSITE_DEPTHS_WITH_EXACT_WIDTH_JOINS",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41402096600,
+      "tests_passed": 8,
+      "source_commit": "d2fdd523f884f05de3d34f2d9eb2ba4b24179ebd",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41402096600"
+    },
+    {
+      "run_id": 41402096470,
+      "tests_passed": 6,
+      "source_commit": "d2fdd523f884f05de3d34f2d9eb2ba4b24179ebd",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41402096470"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 305,
+    "identities_with_scoped_depth_reference": 90,
+    "identities_not_yet_assessed": 21,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 28,
+    "core_lower_boundary_depth": 7,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 13,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 8,
+    "reported_near_zero_flow_depth": 1,
+    "reported_vertical_extent": 56,
+    "reported_vertical_scale_length": 1,
+    "reported_vertical_thickness": 5,
+    "transport_selected_depth_extent": 64,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v23.py": "a8752544a47297ca0d1a9f2a586594f42ea18c8c401d371ef86f9488baa2bb8f",
+    "analysis/test_current_depth_register_v23.py": "080634f3f14add80a7d791c4f5fb0d1a3c668cca0a0f159098f5806c98a3ea0e",
+    "research/current-depth-rules-v23.json": "06a8bd5329a85bdbfac1730541f00f0ac86e4f9f94d0c1c0c5c161d185f83a16",
+    "research/current-depth-source-facts-v23.json": "27f0f18139b1862bdd365715dfcef3b75f35e84bbb64126146f6661d9dac1886",
+    "research/current-depth-register-v23.json": "09aef77c13bc0023784510df5aa4dc489455f28ff6bf24301a23b35a36bf3ce7",
+    "research/current-depth-register-v23.csv": "54d613bcafa21014ea5b2850638300d1e2dcda1a1fb2a1d851cbc3a69206ebf9",
+    ".github/workflows/current-depth-register-source-v23.yml": "4f6ecf226212c52a3c7693b9f07e183b6b1a4eda08216f7a11690738800fbff7",
+    "research/ocean-current-width-inventory.json": "929527ad7c4a500eca26d495c59e6eadd3d62e82b3bc9b9cd1ff57084b1aacb8",
+    "research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json": "088b17a20ccbc2c99b406675bca7b46c519d08fa671b97d97dc61fbd59e05a5e"
+  },
+  "previous_298_references_and_v22_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding298 references retained. Seven Antarctic Coastal Current section references give90 identities with scoped evidence and21 not yet assessed. No whole-route profile or volume established.",
+    "Original Schubert2021 Table2 section means125.7,137.3,164.6,193.9,184.3,183.6,218.0m and respective spatial ranges108–161,109–161,117–215,143–230,109–254,92–230,158–267m checked against original PDF pixels and existing width audit. One reference per section retains both statistics without counting the range as an independent observation.",
+    "Seven exact width joins retain current identity, section number, pinned width/audit paths and JSON pointers, moving-median composite operator,34.4psu integration base,400m geostrophic reference, coast/ice-face shoreward edge and15% center-integrated-velocity offshore edge. The400m processing reference is not layer thickness.",
+    "Table1 winter/summer/total counts remain183/221/404,494/67/561,1040/145/1185,753/243/996,348/168/516,117/150/267,147/59/206. Sections1 and6 are summer dominated; section6 discrepancy with winter-dominance prose retained.",
+    "Disjoint source sampling periods remain2005 to May2006,2007–2010,austral summer2013 and2014,and June2015. They do not define continuous coverage, seven dated synoptic sections or independent seasonal repeats.",
+    "Matching width/depth support does not recover precise weighting of the reported mean depth. Cross-sectional area and volume eligibility remain false; no rectangular geometry, seasonal extrema or physical state intersection inferred.",
+    "Mutation checks reject section/pointer/hash substitutions, wrong means/ranges, operator changes, slope-current inheritance, seasonal/profile-count promotion and unsupported weighting, area or volume claims. JSON/CSV reproduce and preserve joined metadata with unique columns.",
+    "Adriatic candidates remain deferred: offshore shallow plume filament is not principal-route depth; intermediate LIW depth does not automatically establish the catalog eastern surface-current depth.",
+    "No local tests, raw ocean-field processing, runtime or preview changes. Original width inventory and audit remain unchanged."
+  ],
+  "source_review_scope": "Retained original Schubert2021 PDF Section2.1/PDF3 periods, Section2.3/PDF4–5 methods, Table1/PDF5 and Table2/PDF11. Pages5 and11 rendered and actually viewed; hashes retained in source facts. No raw MEOP profiles ingested, geographic digitization, independent study reproduction or mean-depth weighting recovery. Author scripts are described as available on request; no author contact or code acquisition performed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,46 @@
+name: A20 cumulative depth resource accounting audit v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/a20-depth-resource-accounting-v1.yml
+      - analysis/audit_a20_depth_resource_accounting_v1.py
+      - analysis/test_a20_depth_resource_accounting_v1.py
+      - research/a20-depth-resource-accounting-operator-v1.json
+      - plans/a20-depth-resource-accounting-audit-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/a20-depth-resource-accounting-v1.yml
+            analysis/audit_a20_depth_resource_accounting_v1.py
+            analysis/test_a20_depth_resource_accounting_v1.py
+            plans/a20-depth-resource-accounting-audit-protocol-v1.md
+            research/a20-depth-resource-accounting-operator-v1.json
+            research/a20-gulf-stream-core-direction-depths-v2.json
+            analysis/test_a20_gulf_stream_core_direction_depths_v2.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check accounting with synthetic values and charge one retained packet read
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_A20_ACCOUNTING_PHASE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_a20_depth_resource_accounting_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/audit_a20_depth_resource_accounting_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a20-depth-resource-accounting-v1
+          path: a20-depth-resource-accounting-v1/
+          retention-days: 7
+          if-no-files-found: error

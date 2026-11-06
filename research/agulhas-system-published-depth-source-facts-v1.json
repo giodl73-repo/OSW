@@ -1,0 +1,69 @@
+{
+  "schema": "osw.agulhas-system-published-depth-facts.v1",
+  "id": "agulhas-system-observed-band-and-model-extent-v1",
+  "eligibility": {
+    "whole_current_representative": false,
+    "physical_current_bottom_established": false,
+    "physical_current_thickness_established": false,
+    "volume_eligible": false,
+    "annual_extrema_eligible": false,
+    "seasonal_playback_eligible": false,
+    "physical_state_join_eligible": false,
+    "reference_route_projection_eligible": false,
+    "independent_observation_count_claimed": false
+  },
+  "cases": [
+    {
+      "entity_id": "current:agulhas-return",
+      "source_doi": "10.1016/S0967-0645(02)00377-6",
+      "source_url": "https://www7320.nrlssc.navy.mil/pubs/2003/barron4.pdf",
+      "source_citation": "Boebel,O.,Rossby,T.,Lutjeharms,J.,Zenk,W.,and Barron,C.(2003),Path and variability of the Agulhas Return Current,Deep-Sea ResearchII50,35-56.",
+      "source_locator": "Sections2.1,3.2-3.3;printed44-46/PDF10-12;especiallySection3.3 final transport paragraphs",
+      "source_text_excerpt": "1000-1150 m depth range",
+      "range_m": [
+        1000,
+        1150
+      ],
+      "approximate_value_m": null,
+      "metric": "reported_flow_depth_band",
+      "evidence_kind": "published_observed_float_velocity_band",
+      "site_scope": "SelectedKAPEXARCtrajectory segments mapped relative to current center;not a fixed section orwhole route",
+      "temporal_scope": "KAPEX1997-1999 synthesis;no exact common-date bin period recovered",
+      "reported_period_years": [
+        1997,
+        1999
+      ],
+      "definition": "Authors report nonzero directly measured float velocity average within this depth band;not a detected upper/lower edge.",
+      "qualification": "Thermal mapping assumes rigid field from one resolvedXBTsection;subjective trajectory preselection plus speed>10cm/s and mapped distance<=70km. Band average does not establish nonzero flow exactly at1150m.1500mzero is assumed linear extrapolation,not observed.",
+      "source_velocity_cutoff_m_s": null,
+      "model_name": null
+    },
+    {
+      "entity_id": "current:agulhas",
+      "source_doi": "10.1029/2018JC014333",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JC014333",
+      "source_citation": "Zhu,Y.,Qiu,B.,Lin,X.,and Wang,F.(2018),Interannual Eddy Kinetic Energy Modulations in the Agulhas Return Current,JGR Oceans123,6449-6462.",
+      "source_locator": "Section2 ECCO2 specification;Section4 first paragraph andFigure5 caption",
+      "source_text_excerpt": "1,000-m depth",
+      "range_m": null,
+      "approximate_value_m": 1000,
+      "metric": "reported_model_mean_current_vertical_extent",
+      "evidence_kind": "published_ecco2_model_mean_velocity_extent",
+      "site_scope": "UpstreamAgulhasCurrent at31S,30-32E;not AgulhasReturnCurrent despite article title",
+      "temporal_scope": "Authors1993-2016ECCO2time-mean section from3-day-averaged output;not observed seasonal extrema",
+      "reported_period_years": [
+        1993,
+        2016
+      ],
+      "definition": "Reported modeled mean southward current extent to about1000m where meridional velocity magnitude is0.1m/s;not zero-flow bottom.",
+      "qualification": "ECCO2cube92eddy-permitting state estimate;surface validation does not validate vertical boundary.Upper500mtransport/EKEintegrationbox and2000mringreach are separate quantities.",
+      "source_velocity_cutoff_m_s": 0.1,
+      "model_name": "ECCO2_cube92"
+    }
+  ],
+  "original_source_bytes_verified": false,
+  "original_source_pixels_inspected": false,
+  "new_provider_field_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

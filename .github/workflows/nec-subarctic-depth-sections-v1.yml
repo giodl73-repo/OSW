@@ -1,0 +1,67 @@
+name: NEC Subarctic full depth sections v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/nec-subarctic-depth-sections-v1.yml
+      - analysis/acquire_nec_subarctic_depth_sections_v1.py
+      - analysis/test_nec_subarctic_depth_sections_v1.py
+      - research/nec-subarctic-depth-sections-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_nec_subarctic_depth_sections_v1.py
+            analysis/test_nec_subarctic_depth_sections_v1.py
+            research/nec-subarctic-depth-sections-operator-v1.json
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            research/qiu-pacific-nec-2015-source-facts-v1.json
+            research/pacific-nec-nominal-width-prepared-v1.json
+            research/atlantic-nec-stramma-2005-source-facts-v2.json
+            research/current-depth-source-facts-v13.json
+            research/current-depth-source-facts-v27.json
+            research/current-measurement-scopes/north-equatorial.json
+            research/aleutian-reach-reference-path-candidate.json
+            research/aleutian-alaskan-stream-naming-scope-audit.json
+            research/zonal-current-depth-sections-operator-v1.json
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Acquire mixed direction transverse sections on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_zonal_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_nec_subarctic_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_nec_subarctic_depth_sections_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nec-subarctic-depth-sections-v1
+          path: nec-subarctic-depth-sections-v1/
+          retention-days: 7

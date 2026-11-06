@@ -1,0 +1,550 @@
+{
+  "schema": "osw.baffin-latitude-bound-admission-contract.v1",
+  "status": "prepared_records_delivery_unverified",
+  "entity_id": "current:baffin",
+  "accepted_entity": {
+    "almanac_url": "index.html#current-baffin",
+    "basin": "Baffin Bay",
+    "id": "current:baffin",
+    "identity_level": "current",
+    "label": "Baffin Current",
+    "setting": "polar_or_subpolar_margin",
+    "source_id": "source:7d77d9146f863efd",
+    "source_kind": "southward polar boundary current",
+    "source_record_id": "baffin",
+    "time_behavior": "persistent_variable",
+    "type": "named_current"
+  },
+  "prior_length_assessment": {
+    "entity_id": "current:baffin",
+    "evidence_status": "no_numeric_length",
+    "gate_distance_method_source_id": null,
+    "gate_distance_sensitivity": null,
+    "id": "length_assessment:baffin",
+    "illustrated_span_km": null,
+    "illustrated_span_rank": null,
+    "illustration_ledger_source_id": "source:3e0c99ee52e26d36",
+    "illustration_limit": "Drawn map-arrow span, not a physical current length or lower bound",
+    "illustration_source_id": null,
+    "length_source_id": null,
+    "length_source_locator": null,
+    "lower_bound_km": null,
+    "proposed_system_length_km": null,
+    "published_length_km": null,
+    "published_rank": null,
+    "rank_eligible": false,
+    "scope": "The source identifies Baffin Island Current flow along western Baffin Bay; the atlas point is regional, with no source-defined whole-current centerline or length.",
+    "source_id": "source:803229fe82eb2360"
+  },
+  "length_assessment": {
+    "entity_id": "current:baffin",
+    "evidence_status": "derived_lower_bound",
+    "gate_distance_method_source_id": "source:baffin-latitude-gate-bound-v1",
+    "gate_distance_sensitivity": {
+      "scenario_count": 9,
+      "scenario_min_km": 892.631487,
+      "scenario_max_km": 1115.781183,
+      "perturbation_degrees": 0.5,
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability."
+    },
+    "id": "length_assessment:baffin",
+    "illustrated_span_km": null,
+    "illustrated_span_rank": null,
+    "illustration_ledger_source_id": "source:3e0c99ee52e26d36",
+    "illustration_limit": "Drawn map-arrow span, not a physical current length or lower bound",
+    "illustration_source_id": null,
+    "length_source_id": "source:baffin-fissel-1982-length-selected-original",
+    "length_source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+    "lower_bound_km": 1000,
+    "proposed_system_length_km": null,
+    "published_length_km": null,
+    "published_rank": null,
+    "rank_eligible": false,
+    "scope": "Conditional WGS84 geographic floor between the source-described 67 and 76 degrees N gates. Summer near-surface observations in 1978 and 1979; exact gate dates and common fixed layer unknown. The author extends historical Baffin Current naming north to Lady Ann Strait. No simultaneous connected axis, whole-current length or guaranteed physical minimum established. Lancaster Sound intrusion and meanders are not reconstructed.",
+    "source_id": "source:803229fe82eb2360",
+    "measurement_id": "measurement:baffin:described-latitude-floor",
+    "measurement_admission_file": "research/baffin-latitude-bound-admission-v1.json",
+    "conditional_on_nominal_gates": true,
+    "guaranteed_physical_minimum": false
+  },
+  "measurement": {
+    "id": "measurement:baffin:described-latitude-floor",
+    "entity_id": "current:baffin",
+    "claim_id": "claim:measurement:baffin:described-latitude-floor",
+    "quantity": "length_lower_bound",
+    "value": 1000,
+    "unit": "km",
+    "source_id": "source:baffin-fissel-1982-length-selected-original",
+    "source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+    "method_source_id": "source:baffin-latitude-gate-bound-v1",
+    "method_file": "plans/baffin-latitude-gate-bound-protocol-v1.md",
+    "scope": "Conditional WGS84 geographic floor between the source-described 67 and 76 degrees N gates. Summer near-surface observations in 1978 and 1979; exact gate dates and common fixed layer unknown. The author extends historical Baffin Current naming north to Lady Ann Strait. No simultaneous connected axis, whole-current length or guaranteed physical minimum established. Lancaster Sound intrusion and meanders are not reconstructed.",
+    "evidence_status": "derived_lower_bound",
+    "gate_type": "source_latitude_span",
+    "rank_eligible": false,
+    "direct_gate_distance_km": 1004.206947,
+    "conditional_on_nominal_gates": true,
+    "guaranteed_physical_minimum": false,
+    "whole_current_representative": false,
+    "observation_time": null,
+    "uncertainty_km": null,
+    "fixed_layer_bounds_m": null,
+    "endpoint_coordinates_lon_lat": null,
+    "annual_length_range_km": null,
+    "geometry_id": null,
+    "historical_release_admitted": false,
+    "length_bound_admission_id": "current_length_bound_admission:baffin:described-latitudes-v1"
+  },
+  "claim": {
+    "id": "claim:measurement:baffin:described-latitude-floor",
+    "subject_id": "current:baffin",
+    "object_id": null,
+    "predicate": "length_lower_bound",
+    "value": 1000,
+    "unit": "km",
+    "target_collection": "measurements",
+    "target_id": "measurement:baffin:described-latitude-floor",
+    "source_id": "source:baffin-fissel-1982-length-selected-original",
+    "source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+    "source_locator_status": "specific",
+    "evidence_class": "derived_lower_bound",
+    "assertion_status": "reported_or_derived_measurement",
+    "scope": "Conditional WGS84 geographic floor between the source-described 67 and 76 degrees N gates. Summer near-surface observations in 1978 and 1979; exact gate dates and common fixed layer unknown. The author extends historical Baffin Current naming north to Lady Ann Strait. No simultaneous connected axis, whole-current length or guaranteed physical minimum established. Lancaster Sound intrusion and meanders are not reconstructed.",
+    "method_source_id": "source:baffin-latitude-gate-bound-v1",
+    "method": "plans/baffin-latitude-gate-bound-protocol-v1.md",
+    "method_status": "described",
+    "source_date": null,
+    "source_publication_year": 1982,
+    "source_snapshot_id": null,
+    "support_claim_id": null,
+    "observation_time": null,
+    "review_status": "not_individually_reviewed",
+    "reviewer": null,
+    "review_date": null,
+    "review_note": "Internal selected-source, arithmetic and role-lens review; no external scientific review claimed.",
+    "review_fingerprint": "06e538a87b93d1dc57abbd09fb7e78fc1b674accdf9f8b70802f12b054964f2e"
+  },
+  "source_records": [
+    {
+      "id": "source:baffin-fissel-1982-length-selected-original",
+      "kind": "paper",
+      "label": "Fissel et al. 1982 selected original Baffin extent",
+      "title": "Major Features of the Summer Near-Surface Circulation of Western Baffin Bay, 1978 and 1979",
+      "url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/63268.pdf",
+      "doi": "10.14430/arctic2318",
+      "publication_year": 1982,
+      "source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+      "original_sha256": "23347326454aa485a98444d98ccd141fe73bc75bbcf9c6b6943f66e2d4e8e266",
+      "source_facts_file": "research/baffin-fissel-1982-length-source-review-v1.json",
+      "material_use_class": "metadata_and_factual_extraction",
+      "provider_asset_redistributed": false,
+      "review_scope": "Verified the retained original digest, read selected-page text and visually inspected both rendered pages. No full-paper or raw-field review is claimed.",
+      "metadata_note": "Same underlying original as existing regional width support; a separate provenance reference is not an independent observation."
+    },
+    {
+      "id": "source:baffin-latitude-gate-bound-v1",
+      "kind": "internal",
+      "label": "OSW Baffin latitude-gate geographic bound v1",
+      "url": "../plans/baffin-latitude-gate-bound-protocol-v1.md",
+      "path": "plans/baffin-latitude-gate-bound-protocol-v1.md",
+      "repository_path": "plans/baffin-latitude-gate-bound-protocol-v1.md",
+      "source_report_file": "research/baffin-latitude-gate-bound-v1.json",
+      "source_report_sha256": "d893388cea395d9f19017a5cbd77794d26cad963c7d3ef3b13e4f87e293235e5",
+      "source_execution_proof_file": "research/baffin-latitude-gate-bound-execution-proof-v1.json",
+      "material_use_class": "internal_calculation_method",
+      "provider_asset_redistributed": false,
+      "scientific_approval_inferred": false
+    }
+  ],
+  "admission": {
+    "id": "current_length_bound_admission:baffin:described-latitudes-v1",
+    "entity_id": "current:baffin",
+    "current_id": "baffin",
+    "schema": "osw.baffin-latitude-bound-working-admission.v1",
+    "status": "conditional_described_latitude_geographic_floor_unranked",
+    "source_id": "source:baffin-fissel-1982-length-selected-original",
+    "method_source_id": "source:baffin-latitude-gate-bound-v1",
+    "measurement_id": "measurement:baffin:described-latitude-floor",
+    "source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+    "source_report_file": "research/baffin-latitude-gate-bound-v1.json",
+    "figure_file": "figures/baffin-latitude-gate-bound-v1.svg",
+    "calculation": {
+      "nominal_latitudes_degrees_north": [
+        67,
+        76
+      ],
+      "direct_gate_distance_km": 1004.206947,
+      "rounded_conditional_geographic_floor_km": 1000,
+      "scenario_min_km": 892.631487,
+      "scenario_max_km": 1115.781183,
+      "scenario_count": 9,
+      "scenarios": [
+        {
+          "start_shift_degrees": -0.5,
+          "end_shift_degrees": -0.5,
+          "nominal_latitudes_degrees_north": [
+            66.5,
+            75.5
+          ],
+          "geographic_separation_km": 1004.153281
+        },
+        {
+          "start_shift_degrees": -0.5,
+          "end_shift_degrees": 0.0,
+          "nominal_latitudes_degrees_north": [
+            66.5,
+            76.0
+          ],
+          "geographic_separation_km": 1059.966077
+        },
+        {
+          "start_shift_degrees": -0.5,
+          "end_shift_degrees": 0.5,
+          "nominal_latitudes_degrees_north": [
+            66.5,
+            76.5
+          ],
+          "geographic_separation_km": 1115.781183
+        },
+        {
+          "start_shift_degrees": 0.0,
+          "end_shift_degrees": -0.5,
+          "nominal_latitudes_degrees_north": [
+            67.0,
+            75.5
+          ],
+          "geographic_separation_km": 948.394151
+        },
+        {
+          "start_shift_degrees": 0.0,
+          "end_shift_degrees": 0.0,
+          "nominal_latitudes_degrees_north": [
+            67.0,
+            76.0
+          ],
+          "geographic_separation_km": 1004.206947
+        },
+        {
+          "start_shift_degrees": 0.0,
+          "end_shift_degrees": 0.5,
+          "nominal_latitudes_degrees_north": [
+            67.0,
+            76.5
+          ],
+          "geographic_separation_km": 1060.022054
+        },
+        {
+          "start_shift_degrees": 0.5,
+          "end_shift_degrees": -0.5,
+          "nominal_latitudes_degrees_north": [
+            67.5,
+            75.5
+          ],
+          "geographic_separation_km": 892.631487
+        },
+        {
+          "start_shift_degrees": 0.5,
+          "end_shift_degrees": 0.0,
+          "nominal_latitudes_degrees_north": [
+            67.5,
+            76.0
+          ],
+          "geographic_separation_km": 948.444283
+        },
+        {
+          "start_shift_degrees": 0.5,
+          "end_shift_degrees": 0.5,
+          "nominal_latitudes_degrees_north": [
+            67.5,
+            76.5
+          ],
+          "geographic_separation_km": 1004.259389
+        }
+      ]
+    },
+    "scope": "Conditional WGS84 geographic floor between the source-described 67 and 76 degrees N gates. Summer near-surface observations in 1978 and 1979; exact gate dates and common fixed layer unknown. The author extends historical Baffin Current naming north to Lady Ann Strait. No simultaneous connected axis, whole-current length or guaranteed physical minimum established. Lancaster Sound intrusion and meanders are not reconstructed.",
+    "naming_scope": "The Results paragraph explicitly extends the name Baffin Current north of its previous eastern-Baffin-Island usage to Lady Ann Strait. This historical author convention must remain visible.",
+    "study_years": [
+      1978,
+      1979
+    ],
+    "study_season": "summer",
+    "exact_gate_occupation_dates": null,
+    "fixed_layer_bounds_m": null,
+    "whole_current_length_km": null,
+    "annual_length_range_km": null,
+    "uncertainty_km": null,
+    "rank_eligible": false,
+    "physical_state_join_eligible": false,
+    "seasonal_playback_eligible": false,
+    "historical_release_admitted": false,
+    "independent_scientific_review_completed": false
+  },
+  "scenario_records": [
+    {
+      "id": "length_bound_scenario:baffin:1",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 1,
+      "start_shift_degrees": -0.5,
+      "end_shift_degrees": -0.5,
+      "nominal_latitudes_degrees_north": [
+        66.5,
+        75.5
+      ],
+      "geographic_separation_km": 1004.153281,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:2",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 2,
+      "start_shift_degrees": -0.5,
+      "end_shift_degrees": 0.0,
+      "nominal_latitudes_degrees_north": [
+        66.5,
+        76.0
+      ],
+      "geographic_separation_km": 1059.966077,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:3",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 3,
+      "start_shift_degrees": -0.5,
+      "end_shift_degrees": 0.5,
+      "nominal_latitudes_degrees_north": [
+        66.5,
+        76.5
+      ],
+      "geographic_separation_km": 1115.781183,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:4",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 4,
+      "start_shift_degrees": 0.0,
+      "end_shift_degrees": -0.5,
+      "nominal_latitudes_degrees_north": [
+        67.0,
+        75.5
+      ],
+      "geographic_separation_km": 948.394151,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:5",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 5,
+      "start_shift_degrees": 0.0,
+      "end_shift_degrees": 0.0,
+      "nominal_latitudes_degrees_north": [
+        67.0,
+        76.0
+      ],
+      "geographic_separation_km": 1004.206947,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:6",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 6,
+      "start_shift_degrees": 0.0,
+      "end_shift_degrees": 0.5,
+      "nominal_latitudes_degrees_north": [
+        67.0,
+        76.5
+      ],
+      "geographic_separation_km": 1060.022054,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:7",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 7,
+      "start_shift_degrees": 0.5,
+      "end_shift_degrees": -0.5,
+      "nominal_latitudes_degrees_north": [
+        67.5,
+        75.5
+      ],
+      "geographic_separation_km": 892.631487,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:8",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 8,
+      "start_shift_degrees": 0.5,
+      "end_shift_degrees": 0.0,
+      "nominal_latitudes_degrees_north": [
+        67.5,
+        76.0
+      ],
+      "geographic_separation_km": 948.444283,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    },
+    {
+      "id": "length_bound_scenario:baffin:9",
+      "entity_id": "current:baffin",
+      "current_id": "baffin",
+      "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+      "measurement_id": "measurement:baffin:described-latitude-floor",
+      "scenario_index": 9,
+      "start_shift_degrees": 0.5,
+      "end_shift_degrees": 0.5,
+      "nominal_latitudes_degrees_north": [
+        67.5,
+        76.5
+      ],
+      "geographic_separation_km": 1004.259389,
+      "source_id": "source:baffin-fissel-1982-length-selected-original",
+      "method_source_id": "source:baffin-latitude-gate-bound-v1",
+      "scenario_kind": "editorial_latitude_sensitivity",
+      "unit": "km",
+      "interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+      "is_observation": false,
+      "is_confidence_interval": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observation_time": null
+    }
+  ],
+  "manifest_fields": {
+    "baffin_latitude_gate_bound_version": "1"
+  },
+  "input_sha256": {
+    "analysis/baffin_latitude_gate_bound_v1.py": "7e2403d3491048e78452d85b1d8909349fc4384240f18da768a467910eafdaf2",
+    "analysis/test_baffin_latitude_gate_bound_v1.py": "a388fb23118e1185f2b973885343923bd79e8d25c6c94b3a107be9c80ef62b23",
+    "research/baffin-fissel-1982-length-source-review-v1.json": "39309599c85dbbe54646af4786e48209fd0d98d8a87fb03681dc5f5f87e8b33a",
+    "plans/baffin-latitude-gate-bound-protocol-v1.md": "b7599351c794dc60b952c44febc5b036e0a9bba0fc473893fc6771de028679cb",
+    "analysis/north_atlantic_gate_bound.py": "46c2c710a6f6f3f93c5503b1e6e1aed92e65f0f0b7bd1ee1fb535951ad0f57b4",
+    "analysis/build_ocean_motion_claims.py": "7c20984880d77ed449ba29e74bef624ab2c15e46fa4ac326065ac9b192e3e13c",
+    "requirements-test.txt": "78c44043345533a400e3f1c9ddbedf1f2471b913e3e2eec99cdb6434640dcb04",
+    "research/source-data/fissel-baffin-1982/acquisition.json": "3ad63612e11ff0d17d1edf09c9d6668fa38cd50356a7f45650b33505cff60bf4",
+    "signals/roles/check/baffin-latitude-gate-bound-v1-roles-check-2026-10-23.md": "c0314b5ce5b9ebc6430f43d1737f151c7ff415f37cda997054c95ad3e47470ba",
+    "research/baffin-latitude-gate-bound-preflight-v1.json": "9817b0097c8ece1fd46a235fed64a25adc15bf8bdb9a0123892695a33b85b8e8",
+    "research/baffin-latitude-gate-bound-v1.json": "d893388cea395d9f19017a5cbd77794d26cad963c7d3ef3b13e4f87e293235e5",
+    "figures/baffin-latitude-gate-bound-v1.svg": "e53513daa3fa8ba62dc4af3547c2dbfab087f6188459dc241ce234365ee9b671",
+    "research/baffin-latitude-gate-bound-execution-proof-v1.json": "565031be69c16064545ac340beca1517ff57ffbd454ee530ad0f32843eb956c2",
+    "research/ocean-current-measurements-aleutian-edition.json": "a6d934343a186cd8aaba63bbdfe524578b3791fbb9b17186a12c8e39e6e652be",
+    "almanac/release/v0.1.0/entities.json": "aa2e66c1c344b67ba53c6b5735740de9c1e9888587f72a95842a3a53487f9d59"
+  },
+  "card_links": [
+    {
+      "label": "Inspect the conditional 1,000 km Baffin geographic floor",
+      "url": "../figures/baffin-latitude-gate-bound-v1.svg"
+    },
+    {
+      "label": "Query the Baffin length assessment",
+      "url": "query.html?q=%7B%22collection%22%3A%22length_assessments%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Abaffin%22%7D%5D%2C%22limit%22%3A1%7D"
+    },
+    {
+      "label": "Audit the Baffin bound and historical naming scope",
+      "url": "query.html?q=%7B%22collection%22%3A%22current_length_bound_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_length_bound_admission%3Abaffin%3Adescribed-latitudes-v1%22%7D%5D%2C%22limit%22%3A1%7D"
+    },
+    {
+      "label": "Compare all nine editorial latitude scenarios",
+      "url": "query.html?q=%7B%22collection%22%3A%22current_length_bound_scenarios%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Abaffin%22%7D%5D%2C%22limit%22%3A9%7D"
+    }
+  ],
+  "working_delivery_verified": false,
+  "scientific_release_published": false
+}

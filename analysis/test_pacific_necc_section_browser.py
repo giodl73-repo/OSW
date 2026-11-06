@@ -1,4 +1,5 @@
 """Verify source-derived section table and atlas navigation on desktop and mobile."""
+from query_packet import read_bundle_bytes
 import os,json,subprocess
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
@@ -32,9 +33,10 @@ def main():
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:pacific-north-equatorial-countercurrent"')
         assert panel.get_by_role('link',name='2013 monthly surface-section diagnostics (not climatology) →',exact=True).is_visible()
         row=page.locator('#width-decision-pacific-north-equatorial-countercurrent')
-        page.wait_for_function('document.querySelector("#width-decision-pacific-north-equatorial-countercurrent").textContent.includes("derived width candidate requires review")')
+        page.wait_for_function('document.querySelector("#width-decision-pacific-north-equatorial-countercurrent").textContent.includes("scoped width evidence present")')
         page.locator('summary').filter(has_text='Width coverage for all 100 names').click()
-        assert 'derived width candidate requires review' in row.inner_text()
+        assert 'scoped width evidence present' in row.inner_text()
+        assert 'Separate derived section-width candidate still requires scientific review.' in row.inner_text()
         row.get_by_role('link',name='Inspect derived section-width candidate').click()
         page.wait_for_function('document.querySelectorAll("#section-rows tr").length===12')
         failed=browser.new_page();failed.route('**/query-data.json',lambda r:r.fulfill(status=503,body='Unavailable'))
@@ -42,7 +44,7 @@ def main():
         expect(failed.locator('#section-status')).to_contain_text('HTTP 503',timeout=90000)
         assert failed.locator('#section-rows tr').count()==0
         missing=browser.new_page()
-        bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         del bundle['manifest']['atlas_receipts']['research/pacific-necc-oscar-2013-section-diagnostic.json']
         route_atlas_bundle(missing,bundle)
         missing.goto('http://127.0.0.1:8788/almanac/necc-section.html')

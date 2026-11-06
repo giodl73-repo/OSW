@@ -1,0 +1,2088 @@
+{
+  "schema": "osw.south-java-direction-depth-source-facts.v1",
+  "status": "NATIVE_FIELDS_WITH_SEPARATE_DIRECTION_DIAGNOSES_NOT_ROUTE_PROJECTIONS",
+  "manifest_file": "research/source-data/south-java-direction-depth-sections-v1/manifest.json",
+  "manifest_sha256": "6ceae8cd821d05cb4159ddde73abe379d511a94a4d9462c666c731daf140a3b8",
+  "operator_file": "research/south-java-direction-depth-sections-operator-v1.json",
+  "operator_sha256": "fa7b0fb33492217955dd9c40417035187048a4894ff80e3aaaf609a54f124efc",
+  "counts": {
+    "raw_section_date_cases": 16,
+    "native_velocity_profiles": 812,
+    "direction_diagnoses": 32,
+    "decoded_velocity_cell_pairs": 32480,
+    "decoded_velocity_array_bytes": 259840,
+    "additional_direction_field_requests": 0,
+    "new_independent_observations": 0,
+    "new_physical_depth_measurements": 0,
+    "by_context": {
+      "eastward": {
+        "diagnoses": 16,
+        "selected_profiles": 11,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 7,
+          "no_qualifying_interval_component_column": 5,
+          "section_gate_edge_maximum_axis_unresolved": 3,
+          "selection_interval_support_edge_maximum_axis_unresolved": 1
+        }
+      },
+      "westward": {
+        "diagnoses": 16,
+        "selected_profiles": 14,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 12,
+          "no_qualifying_interval_component_column": 2,
+          "section_gate_edge_maximum_axis_unresolved": 1,
+          "selection_interval_support_edge_maximum_axis_unresolved": 1
+        }
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json",
+      "source_sha256": "384b702f9e30c3f1014b972a0017944d306a1390a21c366f4c03677c001554e5",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/direction_contexts/eastward/profiles/27",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/columns/27",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 27,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 26.339285585664616,
+          "lower_depth_m": 646.1538493280578,
+          "layer_thickness_m": 619.8145637423933,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.15000000596046445,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 29.017856820190723,
+          "lower_depth_m": 533.3333388522816,
+          "layer_thickness_m": 504.31548203209087,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.15000000596046445,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 33.30508435193714,
+          "lower_depth_m": 75.26315880284078,
+          "layer_thickness_m": 41.95807445090364,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.15000000596046445,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json",
+      "source_sha256": "384b702f9e30c3f1014b972a0017944d306a1390a21c366f4c03677c001554e5",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/direction_contexts/westward/profiles/13",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-105e.json#/columns/13",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 1.727272576933413,
+          "lower_depth_m": 666.6666713853674,
+          "layer_thickness_m": 664.939398808434,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 11.71428489320123,
+          "lower_depth_m": 579.5918419789595,
+          "layer_thickness_m": 567.8775570857582,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "upper_bracket_m": [
+            10.0,
+            12.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 20.14705783097785,
+          "lower_depth_m": 438.88892016291925,
+          "layer_thickness_m": 418.7418623319414,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5180000066757202,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json",
+      "source_sha256": "9c4adb9fa80128fb2ec0338276d621a36275adcb14e649a483d1dde5044daa86",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/direction_contexts/eastward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/columns/0",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 15.178571199542109,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.15200001001358032,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 20.238095052253104,
+          "lower_depth_m": 88.490566722054,
+          "layer_thickness_m": 68.2524716698009,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.15200001001358032,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 24.206348722033347,
+          "lower_depth_m": 78.07692552371132,
+          "layer_thickness_m": 53.87057680167798,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.15200001001358032,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json",
+      "source_sha256": "9c4adb9fa80128fb2ec0338276d621a36275adcb14e649a483d1dde5044daa86",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/direction_contexts/westward/profiles/22",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-108e.json#/columns/22",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 22,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 39.85714263970756,
+          "lower_depth_m": 217.36111175283258,
+          "layer_thickness_m": 177.50396911312504,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 45.399999821186114,
+          "lower_depth_m": 188.0952411362917,
+          "layer_thickness_m": 142.6952413151056,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 55.62499862241871,
+          "lower_depth_m": 122.36842177498698,
+          "layer_thickness_m": 66.74342315256828,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json",
+      "source_sha256": "f9694c46a926ced4df54ea7487c81b14680752c4eb9d87b9684d59df7a6920ae",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json",
+      "source_sha256": "f9694c46a926ced4df54ea7487c81b14680752c4eb9d87b9684d59df7a6920ae",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json#/direction_contexts/westward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-111e.json#/columns/0",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 264.5833343826881,
+          "layer_thickness_m": 264.5833343826881,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.281000018119812,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 226.5306150221862,
+          "layer_thickness_m": 226.5306150221862,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.281000018119812,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 172.72727826902693,
+          "layer_thickness_m": 172.72727826902693,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.281000018119812,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json",
+      "source_sha256": "3a52d62b669ffb002d553a530df671a59135ef891470a3a9dbb944b077a85040",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json",
+      "source_sha256": "3a52d62b669ffb002d553a530df671a59135ef891470a3a9dbb944b077a85040",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json#/direction_contexts/westward/profiles/1",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-03-15-south-java-section-114e.json#/columns/1",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 1,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1038.461540018335,
+          "layer_thickness_m": 1038.461540018335,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4360000193119049,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 375.71428814712806,
+          "layer_thickness_m": 375.71428814712806,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4360000193119049,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 282.7586263595383,
+          "layer_thickness_m": 282.7586263595383,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4360000193119049,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json",
+      "source_sha256": "cc7dbe39c7621d8e7565e2bc550f0c00d8666ab8c30db49c349fc960a29fa2a5",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/direction_contexts/eastward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/columns/0",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 18.41463417592661,
+          "lower_depth_m": 63.83177581859244,
+          "layer_thickness_m": 45.417141642665825,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.13400000333786008,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 26.428571010426563,
+          "lower_depth_m": 61.028037716367976,
+          "layer_thickness_m": 34.59946670594141,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.13400000333786008,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 35.19230641380536,
+          "lower_depth_m": 54.657534772268406,
+          "layer_thickness_m": 19.465228358463044,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.13400000333786008,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json",
+      "source_sha256": "cc7dbe39c7621d8e7565e2bc550f0c00d8666ab8c30db49c349fc960a29fa2a5",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/direction_contexts/westward/profiles/25",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-105e.json#/columns/25",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 25,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 649.0566072402663,
+          "layer_thickness_m": 649.0566072402663,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5950000286102294,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 587.8787993727965,
+          "layer_thickness_m": 587.8787993727965,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5950000286102294,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 443.2432538014069,
+          "layer_thickness_m": 443.2432538014069,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5950000286102294,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json",
+      "source_sha256": "3f66b6c76a02d0c0d5b94332f5d75f578d747e9ff6b53881a765887a3b3d5b32",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/direction_contexts/eastward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/columns/0",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 19.999999906867746,
+          "lower_depth_m": 220.58823736300727,
+          "layer_thickness_m": 200.58823745613952,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.07200000435113907,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 22.94117627938245,
+          "lower_depth_m": 77.14285901817321,
+          "layer_thickness_m": 54.201682738790765,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.07200000435113907,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json",
+      "source_sha256": "3f66b6c76a02d0c0d5b94332f5d75f578d747e9ff6b53881a765887a3b3d5b32",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/direction_contexts/westward/profiles/23",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-108e.json#/columns/23",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 23,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 538.4615405335934,
+          "layer_thickness_m": 538.4615405335934,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 277.65957745303905,
+          "layer_thickness_m": 277.65957745303905,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 238.57143140974486,
+          "layer_thickness_m": 238.57143140974486,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json",
+      "source_sha256": "a137c39070ca5144587516a3edfa2b81a6fd6dfce0e793c61fb5903f19c6c7e0",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json#/direction_contexts/eastward/profiles/4",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json#/columns/4",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 4,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 816.6666758246712,
+          "layer_thickness_m": 816.6666758246712,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.4090000092983246,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 676.4706067972973,
+          "layer_thickness_m": 676.4706067972973,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.4090000092983246,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 362.5000072436203,
+          "layer_thickness_m": 362.5000072436203,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.4090000092983246,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json",
+      "source_sha256": "a137c39070ca5144587516a3edfa2b81a6fd6dfce0e793c61fb5903f19c6c7e0",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-111e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json",
+      "source_sha256": "9d31ecb2360c4e4e1132703852c1dad0fdcd38bc7682116bacb528800417123a",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json",
+      "source_sha256": "9d31ecb2360c4e4e1132703852c1dad0fdcd38bc7682116bacb528800417123a",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json#/direction_contexts/westward/profiles/23",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-06-15-south-java-section-114e.json#/columns/23",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 23,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1411.7647115460184,
+          "layer_thickness_m": 1411.7647115460184,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7300000190734863,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1264.705896679947,
+          "layer_thickness_m": 1264.705896679947,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7300000190734863,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1060.4838803681885,
+          "layer_thickness_m": 1060.4838803681885,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7300000190734863,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json",
+      "source_sha256": "b30e56ad7eb1e52d92fa06654a931c908aa68bebdb23a16fd51c1fbcb65f6c54",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/direction_contexts/eastward/profiles/28",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/columns/28",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 28,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 9.249999646097482,
+          "lower_depth_m": 164.1509432065801,
+          "layer_thickness_m": 154.90094356048263,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2410000115633011,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 16.599999463558166,
+          "lower_depth_m": 101.92308221342991,
+          "layer_thickness_m": 85.32308274987174,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2410000115633011,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 23.74999919567609,
+          "lower_depth_m": 88.00000149011606,
+          "layer_thickness_m": 64.25000229443998,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2410000115633011,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json",
+      "source_sha256": "b30e56ad7eb1e52d92fa06654a931c908aa68bebdb23a16fd51c1fbcb65f6c54",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/direction_contexts/westward/profiles/16",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-105e.json#/columns/16",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1615.3846780973367,
+          "layer_thickness_m": 1615.3846780973367,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1130000352859497,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 725.0000130385139,
+          "layer_thickness_m": 725.0000130385139,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1130000352859497,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 285.29413363100605,
+          "layer_thickness_m": 285.29413363100605,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.1130000352859497,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json",
+      "source_sha256": "bbc52c1af47b27e11b66c3d284282ab5f0f9ee54332a4490f98714080fbc6f47",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/direction_contexts/eastward/profiles/13",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/columns/13",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 31.16279055069772,
+          "lower_depth_m": 727.2727293816725,
+          "layer_thickness_m": 696.1099388309748,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.11500000208616257,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 34.65116244969965,
+          "lower_depth_m": 653.3333355409128,
+          "layer_thickness_m": 618.6821730912131,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.11500000208616257,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 136.1111066652906,
+          "lower_depth_m": 283.33335485723194,
+          "layer_thickness_m": 147.22224819194133,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.11500000208616257,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json",
+      "source_sha256": "bbc52c1af47b27e11b66c3d284282ab5f0f9ee54332a4490f98714080fbc6f47",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/direction_contexts/westward/profiles/27",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-108e.json#/columns/27",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 27,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 241.8181824277748,
+          "layer_thickness_m": 241.8181824277748,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6100000143051147,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 214.54545454545453,
+          "layer_thickness_m": 214.54545454545453,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6100000143051147,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 159.5238121424941,
+          "layer_thickness_m": 159.5238121424941,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6100000143051147,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json",
+      "source_sha256": "68566d30ae8f0877e6b0d81667065d269738db6b713152848883035695b1bd2e",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json#/direction_contexts/eastward/profiles/13",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json#/columns/13",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1059.0909065971198,
+          "layer_thickness_m": 1059.0909065971198,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.921000063419342,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 966.0000026822088,
+          "layer_thickness_m": 966.0000026822088,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.921000063419342,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 878.7500048894436,
+          "layer_thickness_m": 878.7500048894436,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.921000063419342,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json",
+      "source_sha256": "68566d30ae8f0877e6b0d81667065d269738db6b713152848883035695b1bd2e",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-111e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json",
+      "source_sha256": "72d9a8abdb6d2b9acaae18da74f2ad1319ff319a44e7cef90e369fbdbebee12a",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/direction_contexts/eastward/profiles/20",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/columns/20",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1833.333352994586,
+          "layer_thickness_m": 1833.333352994586,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.6540000438690186,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 900.0000248352799,
+          "layer_thickness_m": 900.0000248352799,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.6540000438690186,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 431.25002095475446,
+          "layer_thickness_m": 431.25002095475446,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.6540000438690186,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json",
+      "source_sha256": "72d9a8abdb6d2b9acaae18da74f2ad1319ff319a44e7cef90e369fbdbebee12a",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/direction_contexts/westward/profiles/33",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-09-15-south-java-section-114e.json#/columns/33",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 33,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 30.000000283122045,
+          "layer_thickness_m": 30.000000283122045,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.14800000190734863,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 25.588235500362092,
+          "layer_thickness_m": 25.588235500362092,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.14800000190734863,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.333334657881599,
+          "layer_thickness_m": 8.333334657881599,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.14800000190734863,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json",
+      "source_sha256": "6f7ea54df7961c57babb0b634b125fed140fa6823b12518f73ecbed3be125497",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/direction_contexts/eastward/profiles/10",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/columns/10",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 10,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2818.181828085138,
+          "layer_thickness_m": 2818.181828085138,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6010000109672546,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2371.4286018391012,
+          "layer_thickness_m": 2371.4286018391012,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6010000109672546,
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1125.0000931322172,
+          "layer_thickness_m": 1125.0000931322172,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6010000109672546,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-105e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json",
+      "source_sha256": "6f7ea54df7961c57babb0b634b125fed140fa6823b12518f73ecbed3be125497",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/direction_contexts/westward/profiles/48",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-105e.json#/columns/48",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 48,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 130.23255855961222,
+          "layer_thickness_m": 130.23255855961222,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 50.00000149011645,
+          "layer_thickness_m": 50.00000149011645,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 38.75000027939673,
+          "layer_thickness_m": 38.75000027939673,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.25600001215934753,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json",
+      "source_sha256": "c0037303c52c4c8844f7144b776b2b0887e90b8ce4c601c6d6f2516c5f078e83",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-108e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json",
+      "source_sha256": "c0037303c52c4c8844f7144b776b2b0887e90b8ce4c601c6d6f2516c5f078e83",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json#/direction_contexts/westward/profiles/12",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-108e.json#/columns/12",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 700.0000157290026,
+          "layer_thickness_m": 700.0000157290026,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.49800002574920654,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 553.3333366447027,
+          "layer_thickness_m": 553.3333366447027,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.49800002574920654,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 417.0731872196038,
+          "layer_thickness_m": 417.0731872196038,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.49800002574920654,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json",
+      "source_sha256": "ff0a14a3fed61d0e441d7a98292aba152bdef59ceb10ab5b9de27f9555b46a96",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/direction_contexts/eastward/profiles/28",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/columns/28",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 28,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 72.74509825233494,
+          "layer_thickness_m": 72.74509825233494,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5600000023841858,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 67.7142859879805,
+          "layer_thickness_m": 67.7142859879805,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5600000023841858,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.5714288755339,
+          "layer_thickness_m": 60.5714288755339,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5600000023841858,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-111e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json",
+      "source_sha256": "ff0a14a3fed61d0e441d7a98292aba152bdef59ceb10ab5b9de27f9555b46a96",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/direction_contexts/westward/profiles/14",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-111e.json#/columns/14",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 14,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 480.00001043081295,
+          "layer_thickness_m": 480.00001043081295,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.24200001358985895,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 340.3225861109879,
+          "layer_thickness_m": 340.3225861109879,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.24200001358985895,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 275.9615418231169,
+          "layer_thickness_m": 275.9615418231169,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.24200001358985895,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json",
+      "source_sha256": "20cb3f52bc0bc4007e462f0ee31517d32f3f0cf806b41b4265ba6ba1b27af5a1",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": null,
+      "source_native_model_profile_ref": null,
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": [],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:south-java",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-114e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json",
+      "source_sha256": "20cb3f52bc0bc4007e462f0ee31517d32f3f0cf806b41b4265ba6ba1b27af5a1",
+      "source_diagnosis_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json#/direction_contexts/westward/profiles/27",
+      "source_native_model_profile_ref": "research/source-data/south-java-direction-depth-sections-v1/2022-12-15-south-java-section-114e.json#/columns/27",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        150
+      ],
+      "primary_threshold_m_s": 0.05,
+      "selected_column_index": 27,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 838.636364111646,
+          "layer_thickness_m": 838.636364111646,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5960000157356262,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 593.750002328306,
+          "layer_thickness_m": 593.750002328306,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5960000157356262,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 478.26087576229764,
+          "layer_thickness_m": 478.26087576229764,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5960000157356262,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}

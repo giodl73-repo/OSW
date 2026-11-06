@@ -1,0 +1,52 @@
+{
+  "schema": "osw.pacific-nec-monthly-dimensions-source-review.v1",
+  "reviewed_on": "2026-10-29",
+  "entity_id": "current:pacific-north-equatorial",
+  "status": "SOURCE_SUPPORTED_REGIONAL_DIAGNOSTIC_PREPARATION_NO_MEASUREMENT_ADMITTED",
+  "sources": [
+    {
+      "doi": "10.1029/2019JC015895",
+      "citation": "Liu and Zhou (2020), Seasonal Variations of the North Equatorial Current Across the Pacific Ocean",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019JC015895",
+      "access": "Publisher-indexed full-text sections inspected; direct PDF and original figures unavailable (HTTP403). No figure digitization or reproduction claimed.",
+      "locators": ["2.1 Data", "2.2 INT and Y_CM", "3 mean-state discussion"],
+      "latitude_integration_limits_north": [8, 18],
+      "stable_westward_flow_west_of_longitude_east": 240,
+      "surface_and_depth_integrated_axes_are_distinct": true,
+      "integration_limits_are_measured_width_edges": false,
+      "paper_datasets": ["AVISO/CMEMS", "Argo", "ORAS4"],
+      "oscar_is_paper_reproduction": false
+    },
+    {
+      "doi": "10.1029/2023JC020174",
+      "citation": "Liu, Zhou and Liu (2024), Interannual Variations of the North Equatorial Current Across the Pacific Ocean",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023JC020174",
+      "access": "Publisher full text inspected, sections2.1-2.2 and Figure1 caption; image not digitized.",
+      "confirms_latitude_integration_limits_north": [8, 18],
+      "surface_axis_equals_whole_depth_axis": false,
+      "basin_width_statement_is_measured_current_length": false
+    },
+    {
+      "provider": "Earth & Space Research, NOAA PIFSC ERDDAP mirror",
+      "metadata_url": "https://oceanwatch.pifsc.noaa.gov/erddap/info/yearly_336c_0b32_9cd3/index.json",
+      "dataset_id": "yearly_336c_0b32_9cd3",
+      "version": "2017.0",
+      "cadence": "approximately five days",
+      "grid_degrees": 0.3333333333333333,
+      "depth_coordinate_m": 15,
+      "velocity_units": "m s-1",
+      "variables": ["u", "v"],
+      "layer_interpretation": "Satellite-derived near-surface diagnostic product; nominal15m coordinate is not a direct instrument section or depth-resolved profile.",
+      "redistribution": "Provider metadata permits free use and redistribution; retain the complete source license in cloud evidence."
+    }
+  ],
+  "oras4_access": {
+    "provider_documentation": "https://www.geo.uni-hamburg.de/en/service/icdc/data/ocean/easy-init-ocean/ecmwf-ocean-reanalysis-system-4-oras4.html",
+    "catalog_url": "https://icdc.cen.uni-hamburg.de/thredds/aggregationOras4Catalog.html",
+    "catalog_xml_request_http_status": 504,
+    "fields_downloaded": false
+  },
+  "source_facts_are_distinct_from_osw_parameter_choices": true,
+  "new_installed_measurements": 0,
+  "full_goal_complete": false
+}

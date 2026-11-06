@@ -1,0 +1,28 @@
+{
+  "schema": "osw.madagascar-owner-projection-failure-review.v2",
+  "status": "FAIL_RETAINED_WITH_SPECIFIC_SOURCE_JOIN_FIX_REQUIRED",
+  "source_commit": "20b2a602be1915f053f91bdf7f1bec09679eb29b",
+  "run_id": 40729416511,
+  "run_attempt": 2,
+  "request_file": "research/madagascar-dimensions-delivery-request-v2.json",
+  "request_disabled": true,
+  "native_build_completed": true,
+  "rust_tests_passed": 253,
+  "source_index_original_strings_preserved": 634,
+  "failing_check": {
+    "file": "rust/osw-query/src/madagascar_coastal_curve.rs",
+    "message": "Coastal reference promoted or rebound to a dated physical axis",
+    "reason": "The coastal guard equates all owner source IDs to route-only source IDs. The new independently validated publication belongs to the current width/events, not to the editorial route."
+  },
+  "related_guard_audit": {
+    "file": "rust/osw-query/src/current_catalogue.rs",
+    "finding": "An older identity-admission guard also fixes Madagascar scoped-width capability to the original prose-only count1."
+  },
+  "required_fix": "Project only the exact validated new owner back to its compiled prior owner for these legacy admission/route guards. Keep current route geometry, date, state-link, source and rank invariants, and reject arbitrary owner edits.",
+  "missing_test_scope": "Module evidence tests did not exercise legacy coastal/identity owner guards together with an additive source and width.",
+  "followup_test": "Exercise both legacy guard integrations with exact admitted owner evidence and reject unknown sources or physical route promotions before rerunning full candidate load.",
+  "wasm_verified": false,
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}

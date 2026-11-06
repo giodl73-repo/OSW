@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EACC local extent evidence — OSW</title>
+  <link rel="stylesheet" href="local-extents.css">
+  <script src="local-extents.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#evidence-main">Skip to evidence</a>
+<header><a href="index.html">OSW almanac</a><nav aria-label="Almanac"><a href="dashboard.html">Coverage</a><a href="query.html">Atlas queries</a><a href="reference-routes.html">Route atlas</a></nav></header>
+<main id="evidence-main">
+  <p class="eyebrow">Current measurement research · East African Coastal candidate region</p>
+  <h1>Local extent evidence</h1>
+  <p>Explore all 72 source cases and 864 attempted extents from the 2013 monthly mean fields at 15 m. These are local model diagnostics. Physical current boundaries, whole-current widths, annual ranges, and state intersections remain unresolved.</p>
+  <p id="engine-status" role="status">Loading the small evidence snapshot…</p>
+  <button id="reload" type="button" hidden>Retry loading evidence</button>
+  <section aria-labelledby="chart-title">
+    <h2 id="chart-title">Monthly primary-case evidence</h2>
+    <p>Bars show retained lower and upper extent bounds for the 5 km and 10 km sampling cases. Missing outcomes are shown below the axes. Bounds describe source-scale support; they are not physical uncertainty intervals.</p>
+    <a href="../figures/eacc-local-extent-primary-months-v1.svg"><img id="evidence-chart" src="../figures/eacc-local-extent-primary-months-v1.svg" width="1300" height="1000" alt="Four panels compare monthly local extent bounds for fine and coarse sampling, with unresolved attempts marked below the axes."></a>
+    <p><a href="../figures/eacc-local-extent-primary-months-v1.svg">Open full-size chart</a> · <a href="../research/eacc-local-extent-primary-months-figure-v1.json">Chart provenance</a> · <a href="../plans/current-local-extent-evidence-v1.md">Measurement rules</a></p>
+  </section>
+  <section aria-labelledby="query-title">
+    <h2 id="query-title">Query retained outcomes</h2>
+    <div id="query-controls" inert>
+      <div class="presets" aria-label="Example queries"><button type="button" data-preset="primary">Primary 5 km core extents</button><button type="button" data-preset="missing">Missing coarse primary cases</button><button type="button" data-preset="all">All 864 attempts</button><button type="button" data-preset="cases">All 72 source cases</button></div>
+      <form id="filters">
+        <div class="fields">
+          <label>Collection<select id="collection"><option value="current_local_extents">Attempted extents</option><option value="current_local_extent_cases">Source cases</option></select></label>
+          <label>Month<select id="month"><option value="">All months</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></label>
+          <label>Sampling step<select id="step"><option value="">Both</option><option value="5">5 km</option><option value="10">10 km</option></select></label>
+          <label>Native latitude offset<select id="offset"><option value="">All three</option><option value="0">Primary (0)</option><option value="-1">−1</option><option value="1">+1</option></select></label>
+          <label>Extent reference<select id="quantity"><option value="">All four</option><option value="core_to_positive_normal_threshold_extent">Core → positive-normal threshold</option><option value="local_two_sided_threshold_span">Local paired span</option><option value="finite_paired_support_to_positive_threshold_extent">Support boundary → threshold</option><option value="shore_reference_to_positive_threshold_extent">Shore reference → threshold</option></select></label>
+          <label>Threshold fraction<select id="fraction"><option value="">All three</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option></select></label>
+        </div>
+        <button type="submit">Apply filters</button>
+      </form>
+      <details><summary>JSON query and available fields</summary><label for="query-json">Query</label><textarea id="query-json" rows="10" spellcheck="false"></textarea><button id="run-json" type="button">Run JSON query</button><details><summary>Available fields</summary><pre id="field-list"></pre></details></details>
+    </div>
+    <p id="query-status" role="status"></p>
+    <p>Table bounds are rounded to two decimal places for readability; this does not imply measurement precision. Inspect a record for exact stored values. Scroll the table horizontally on narrow screens.</p>
+    <div class="table-scroll"><table><caption class="sr">Retained source cases or attempted local extents</caption><thead id="result-head"></thead><tbody id="result-body"></tbody></table></div>
+    <div class="pagination"><button id="previous" disabled type="button">Previous</button><span id="page-status"></span><button id="next" disabled type="button">Next</button></div>
+  </section>
+  <section id="record-panel" aria-labelledby="record-title" hidden tabindex="-1">
+    <h2 id="record-title">Selected evidence</h2><p id="record-summary"></p><p id="case-link"></p>
+    <details open><summary>Retained record</summary><pre id="record-json"></pre></details>
+    <details id="case-context"><summary>Original source case</summary><pre id="case-json"></pre></details>
+  </section>
+  <section aria-labelledby="source-title"><h2 id="source-title">Source and scope</h2>
+    <p>The investigated current name identifies the research target. It does not certify that these sampled edges are current boundaries. The positive normal is not verified as offshore. Physical uncertainty and whole-current width remain null.</p>
+    <ul><li><a href="../research/eacc-local-extent-evidence-bundle-v1.json">Exact scalar snapshot (836 KB)</a></li><li><a href="../research/eacc-coastal-reference-extent-geographic-review-v1.json">Geographic evidence review</a></li><li><a href="../plans/eacc-coastal-reference-extent-outcome-v1.md">Scientific case outcome</a></li><li><a href="../research/current-local-extent-query-execution-review-v2.json">Verified query-engine provenance</a></li></ul>
+    <details><summary>Snapshot provenance</summary><pre id="provenance"></pre></details>
+  </section>
+</main>
+</body></html>

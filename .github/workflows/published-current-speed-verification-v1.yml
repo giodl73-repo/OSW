@@ -1,0 +1,93 @@
+name: Sequential published current speed verification v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/published-current-speed-verification-request-v1.json
+      - .github/workflows/published-current-speed-verification-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_SPEED_VERIFICATION_V1: "1"
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/published-current-speed-verification-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/published-current-speed-verification-request-v1.json').read_bytes())
+          assert r['schema']=='osw.published-current-speed-verification-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  verify:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Verify frozen source and installed artifacts before builds
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_published_current_speeds_v1.py preflight
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_published_current_speed*.py' -v
+          taskset -c "$cpu" nice -n 15 node analysis/test_published_current_speeds_ui_v1.mjs
+      - name: Install pinned Rust toolchain and fetch locked dependencies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Verify native tests, matching WASM queries and complete APIs
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_published_current_speeds_v1.py
+      - name: Retain compact verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-current-speed-verification-evidence-v1
+          path: |
+            .pytest_cache/published-current-speed-verification-v1/result.json
+            .pytest_cache/published-current-speed-verification-v1/compile-inventory.json
+            .pytest_cache/published-current-speed-verification-v1/dependency-proof.json
+            .pytest_cache/published-current-speed-verification-v1/query-parity.json
+            .pytest_cache/published-current-speed-verification-v1/snapshots-parity.json
+            .pytest_cache/published-current-speed-verification-v1/parent-snapshots.json
+            .pytest_cache/published-current-speed-verification-v1/rust-tests.txt
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Save verified candidate and binary for subsequent browser delivery
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-current-speed-engine-candidate-v1
+          path: |
+            .pytest_cache/published-current-speed-verification-v1/candidate.json
+            .pytest_cache/published-current-speed-verification-v1/build/wasm32-unknown-unknown/release/osw_query.wasm
+            .pytest_cache/published-current-speed-verification-v1/result.json
+          compression-level: 6
+          retention-days: 14

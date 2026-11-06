@@ -1,0 +1,2402 @@
+{
+  "schema": "osw.monsoon-direction-depth-source-facts.v1",
+  "status": "NATIVE_FIELDS_WITH_SEPARATE_DIRECTION_DIAGNOSES_NOT_ROUTE_PROJECTIONS",
+  "manifest_file": "research/source-data/monsoon-direction-depth-sections-v1/manifest.json",
+  "manifest_sha256": "7a68764825de7209d44630df4ad1440e0233e219d6c9e808ec20c2e6bc529ce0",
+  "operator_file": "research/monsoon-direction-depth-sections-operator-v1.json",
+  "operator_sha256": "da47c9f6f3e383715e65527b62c26a210254eeb28ee7075737d3f06bec8dc88a",
+  "counts": {
+    "raw_section_date_cases": 16,
+    "native_velocity_profiles": 1616,
+    "direction_diagnoses": 32,
+    "decoded_velocity_cell_pairs": 64640,
+    "decoded_velocity_array_bytes": 517120,
+    "additional_direction_field_requests": 0,
+    "new_independent_observations": 0,
+    "new_physical_depth_measurements": 0,
+    "by_context": {
+      "eastward": {
+        "diagnoses": 16,
+        "selected_profiles": 16,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 13,
+          "section_gate_edge_maximum_axis_unresolved": 3
+        }
+      },
+      "westward": {
+        "diagnoses": 16,
+        "selected_profiles": 16,
+        "horizontal_status_counts": {
+          "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 12,
+          "section_gate_edge_maximum_axis_unresolved": 4
+        }
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json",
+      "source_sha256": "3a20daeb2bb1c4c57c12a0a307ba1dc6af171c92e9a230929e89fa88356f42eb",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/direction_contexts/eastward/profiles/18",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/columns/18",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 18,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 134.82142988407062,
+          "layer_thickness_m": 134.82142988407062,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 42.07317015108505,
+          "lower_depth_m": 113.70967898932632,
+          "layer_thickness_m": 71.63650883824127,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 53.673468183746486,
+          "lower_depth_m": 96.11764763630792,
+          "layer_thickness_m": 42.444179452561436,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json",
+      "source_sha256": "3a20daeb2bb1c4c57c12a0a307ba1dc6af171c92e9a230929e89fa88356f42eb",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/direction_contexts/westward/profiles/97",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-77p5e.json#/columns/97",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 97,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 111.45038225030667,
+          "layer_thickness_m": 111.45038225030667,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5660000443458557,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 101.90839813181537,
+          "layer_thickness_m": 101.90839813181537,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5660000443458557,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 95.36082541059513,
+          "layer_thickness_m": 95.36082541059513,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5660000443458557,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json",
+      "source_sha256": "566399b243961ad22bc6444e2ca9c5f2c459c59b44745cd6f05d8c508bb71c47",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/direction_contexts/eastward/profiles/27",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/columns/27",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 27,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 117.41071444014277,
+          "layer_thickness_m": 117.41071444014277,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18200001120567322,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 96.85714364781663,
+          "layer_thickness_m": 96.85714364781663,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18200001120567322,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json",
+      "source_sha256": "566399b243961ad22bc6444e2ca9c5f2c459c59b44745cd6f05d8c508bb71c47",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/direction_contexts/westward/profiles/100",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-78p5e.json#/columns/100",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 100,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 113.72727288490485,
+          "layer_thickness_m": 113.72727288490485,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4010000228881836,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 109.18181843797036,
+          "layer_thickness_m": 109.18181843797036,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4010000228881836,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 100.09090954410142,
+          "layer_thickness_m": 100.09090954410142,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4010000228881836,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json",
+      "source_sha256": "b658ef713f4521b564eeede174619613948d882646bd57e294dcfb1baf027593",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/direction_contexts/eastward/profiles/38",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/columns/38",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 38,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 95.48387159573052,
+          "layer_thickness_m": 95.48387159573052,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.33100003004074097,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 84.59016459919177,
+          "layer_thickness_m": 84.59016459919177,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.33100003004074097,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 68.09523969460665,
+          "layer_thickness_m": 68.09523969460665,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.33100003004074097,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json",
+      "source_sha256": "b658ef713f4521b564eeede174619613948d882646bd57e294dcfb1baf027593",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/direction_contexts/westward/profiles/87",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-79p5e.json#/columns/87",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 87,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 178.66666770974794,
+          "layer_thickness_m": 178.66666770974794,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.5730000138282776,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 148.76760612708412,
+          "layer_thickness_m": 148.76760612708412,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.5730000138282776,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 131.16197382443357,
+          "layer_thickness_m": 131.16197382443357,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.5730000138282776,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json",
+      "source_sha256": "98bd00c932dd957d7453e39fce3e21f30f1a4efe4394d9a0f461a1298b5ad7c4",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/direction_contexts/eastward/profiles/12",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/columns/12",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 169.3965531111551,
+          "layer_thickness_m": 169.3965531111551,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 98.00000022924861,
+          "layer_thickness_m": 98.00000022924861,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 26.363631930230024,
+          "lower_depth_m": 90.30769313651423,
+          "layer_thickness_m": 63.9440612062842,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json",
+      "source_sha256": "98bd00c932dd957d7453e39fce3e21f30f1a4efe4394d9a0f461a1298b5ad7c4",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/direction_contexts/westward/profiles/76",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-03-15-monsoon-section-80p5e.json#/columns/76",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 76,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 158.48214486768285,
+          "layer_thickness_m": 158.48214486768285,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.5950000286102295,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 142.3267337907449,
+          "layer_thickness_m": 142.3267337907449,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.5950000286102295,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 108.69565449781794,
+          "layer_thickness_m": 108.69565449781794,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.5950000286102295,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json",
+      "source_sha256": "24679597758e9b82f693f45f48ca5e9de8ebe8a2dad9acfad7cdc0058fdca51b",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/direction_contexts/eastward/profiles/100",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/columns/100",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 100,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 730.0000260770278,
+          "layer_thickness_m": 730.0000260770278,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5770000219345093,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 410.3448513288364,
+          "layer_thickness_m": 410.3448513288364,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5770000219345093,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 142.3728861503305,
+          "layer_thickness_m": 142.3728861503305,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5770000219345093,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json",
+      "source_sha256": "24679597758e9b82f693f45f48ca5e9de8ebe8a2dad9acfad7cdc0058fdca51b",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/direction_contexts/westward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-77p5e.json#/columns/0",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 43.478260603724564,
+          "lower_depth_m": 163.63636472492246,
+          "layer_thickness_m": 120.1581041211979,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5120000243186951,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 48.91304282334222,
+          "lower_depth_m": 144.05737759230584,
+          "layer_thickness_m": 95.14433476896363,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5120000243186951,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 57.031249539795674,
+          "lower_depth_m": 124.37722460125212,
+          "layer_thickness_m": 67.34597506145644,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5120000243186951,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json",
+      "source_sha256": "4af61cdd24255034e4ee2e47992bd1bff38ec81de9793d444fcfd71c881ae971",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/direction_contexts/eastward/profiles/89",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/columns/89",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 89,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 151.61290762560282,
+          "layer_thickness_m": 151.61290762560282,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5920000076293945,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 123.72262815800605,
+          "layer_thickness_m": 123.72262815800605,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5920000076293945,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 105.47445323751923,
+          "layer_thickness_m": 105.47445323751923,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5920000076293945,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json",
+      "source_sha256": "4af61cdd24255034e4ee2e47992bd1bff38ec81de9793d444fcfd71c881ae971",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/direction_contexts/westward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-78p5e.json#/columns/0",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 190.86021517436484,
+          "layer_thickness_m": 190.86021517436484,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 6.999997392297208,
+          "lower_depth_m": 163.9784953817217,
+          "layer_thickness_m": 156.97849798942448,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 35.89285611650155,
+          "lower_depth_m": 133.771931338068,
+          "layer_thickness_m": 97.87907522156644,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json",
+      "source_sha256": "1bb83a5253636f327563562956671073029029c5c4c3794c6e7f0b599762cc4a",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/direction_contexts/eastward/profiles/84",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/columns/84",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 84,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 576.9230936758613,
+          "layer_thickness_m": 576.9230936758613,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 245.09804597592,
+          "layer_thickness_m": 245.09804597592,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 108.73494444201079,
+          "layer_thickness_m": 108.73494444201079,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.44600000977516174,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json",
+      "source_sha256": "1bb83a5253636f327563562956671073029029c5c4c3794c6e7f0b599762cc4a",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/direction_contexts/westward/profiles/2",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-79p5e.json#/columns/2",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 2,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 724.3902490438271,
+          "layer_thickness_m": 724.3902490438271,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.45000001788139343,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 648.7179577311418,
+          "layer_thickness_m": 648.7179577311418,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.45000001788139343,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 211.93182516673636,
+          "layer_thickness_m": 211.93182516673636,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.45000001788139343,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json",
+      "source_sha256": "40d53f81087f529e9c2755390814b2c8ceb61722627111b2eafb34dba8d5a142",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/direction_contexts/eastward/profiles/90",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/columns/90",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 897.5000060535968,
+          "layer_thickness_m": 897.5000060535968,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6720000505447388,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 747.6190682306259,
+          "layer_thickness_m": 747.6190682306259,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6720000505447388,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 445.1612954395241,
+          "layer_thickness_m": 445.1612954395241,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6720000505447388,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json",
+      "source_sha256": "40d53f81087f529e9c2755390814b2c8ceb61722627111b2eafb34dba8d5a142",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/direction_contexts/westward/profiles/0",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-06-15-monsoon-section-80p5e.json#/columns/0",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 0,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 761.1111148766436,
+          "layer_thickness_m": 761.1111148766436,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.550000011920929,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 683.7837986958265,
+          "layer_thickness_m": 683.7837986958265,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.550000011920929,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 122.47983987019646,
+          "layer_thickness_m": 122.47983987019646,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.550000011920929,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json",
+      "source_sha256": "b3cef7a218c5cd6791401ed94838bc383f4b2b5876cd970106a8d4e1ce293905",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/direction_contexts/eastward/profiles/30",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/columns/30",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 30,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 965.7894771927939,
+          "layer_thickness_m": 965.7894771927939,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.7690000534057617,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 828.5714449931146,
+          "layer_thickness_m": 828.5714449931146,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.7690000534057617,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 464.2857553399381,
+          "layer_thickness_m": 464.2857553399381,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.7690000534057617,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json",
+      "source_sha256": "b3cef7a218c5cd6791401ed94838bc383f4b2b5876cd970106a8d4e1ce293905",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/direction_contexts/westward/profiles/64",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-77p5e.json#/columns/64",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 64,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 68.37837873757364,
+          "layer_thickness_m": 68.37837873757364,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4210000336170196,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 61.62162206789451,
+          "layer_thickness_m": 61.62162206789451,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4210000336170196,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 50.53763576278315,
+          "layer_thickness_m": 50.53763576278315,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.4210000336170196,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json",
+      "source_sha256": "0a6dcc7a50ce4510ffea2f84d8989085bfefc176a91c5355865015745fa0583b",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/direction_contexts/eastward/profiles/30",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/columns/30",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 30,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 889.8550748737437,
+          "layer_thickness_m": 889.8550748737437,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9170000553131104,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 817.3913088547935,
+          "layer_thickness_m": 817.3913088547935,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9170000553131104,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 537.2549255643157,
+          "layer_thickness_m": 537.2549255643157,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9170000553131104,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json",
+      "source_sha256": "0a6dcc7a50ce4510ffea2f84d8989085bfefc176a91c5355865015745fa0583b",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/direction_contexts/westward/profiles/73",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-78p5e.json#/columns/73",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 73,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 69.77777794947839,
+          "layer_thickness_m": 69.77777794947839,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3730000257492065,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 66.07407449514938,
+          "layer_thickness_m": 66.07407449514938,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3730000257492065,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 57.9545467168339,
+          "layer_thickness_m": 57.9545467168339,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3730000257492065,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json",
+      "source_sha256": "bac7b12ac3d0fd5cd15d312a6438ea8bac82bce19327be522befaae85263d6ed",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/direction_contexts/eastward/profiles/24",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/columns/24",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 691.4893654459684,
+          "layer_thickness_m": 691.4893654459684,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0070000886917114,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 638.2978784789751,
+          "layer_thickness_m": 638.2978784789751,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0070000886917114,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 415.3846735785147,
+          "layer_thickness_m": 415.3846735785147,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.0070000886917114,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json",
+      "source_sha256": "bac7b12ac3d0fd5cd15d312a6438ea8bac82bce19327be522befaae85263d6ed",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/direction_contexts/westward/profiles/71",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-79p5e.json#/columns/71",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 71,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 212.8571472666696,
+          "layer_thickness_m": 212.8571472666696,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 150.00000181721487,
+          "layer_thickness_m": 150.00000181721487,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 52.222220934468034,
+          "lower_depth_m": 80.58823745968468,
+          "layer_thickness_m": 28.366016525216644,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.22800001502037048,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json",
+      "source_sha256": "33a6b7878f0b25c8cfa2e6509d879c8f85702a1d6ca5e3065465381859b5e0e1",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/direction_contexts/eastward/profiles/32",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/columns/32",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 32,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 187.50000299353675,
+          "layer_thickness_m": 187.50000299353675,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9920000433921814,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 139.93055697122327,
+          "layer_thickness_m": 139.93055697122327,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9920000433921814,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 117.08333457509671,
+          "layer_thickness_m": 117.08333457509671,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.9920000433921814,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json",
+      "source_sha256": "33a6b7878f0b25c8cfa2e6509d879c8f85702a1d6ca5e3065465381859b5e0e1",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/direction_contexts/westward/profiles/67",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-09-15-monsoon-section-80p5e.json#/columns/67",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 67,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 219.3965531111551,
+          "layer_thickness_m": 219.3965531111551,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.356000006198883,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.37037163768436,
+          "layer_thickness_m": 60.37037163768436,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.356000006198883,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 48.396227757206674,
+          "layer_thickness_m": 48.396227757206674,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.356000006198883,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json",
+      "source_sha256": "b55e4e7d479ee7a092c3c03d2d6e9c764be81777fe4922d79ffc773d8bd75f9a",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/direction_contexts/eastward/profiles/34",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/columns/34",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 34,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 38.4999995343387,
+          "lower_depth_m": 1203.1250063058299,
+          "layer_thickness_m": 1164.6250067714911,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 44.39999943375592,
+          "lower_depth_m": 786.4865008542998,
+          "layer_thickness_m": 742.0865014205439,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 53.3636361542812,
+          "lower_depth_m": 199.22480814467386,
+          "layer_thickness_m": 145.86117199039265,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-77p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json",
+      "source_sha256": "b55e4e7d479ee7a092c3c03d2d6e9c764be81777fe4922d79ffc773d8bd75f9a",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/direction_contexts/westward/profiles/76",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-77p5e.json#/columns/76",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 76,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 787.8787993727965,
+          "layer_thickness_m": 787.8787993727965,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5320000052452086,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 381.45162050111156,
+          "layer_thickness_m": 381.45162050111156,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5320000052452086,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 181.63265908126758,
+          "layer_thickness_m": 181.63265908126758,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.5320000052452086,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json",
+      "source_sha256": "23778cf0ebc3b8521f27e3ecea19bd6fc28b2205b2d9ade7432d5fb578728ece",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/direction_contexts/eastward/profiles/100",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/columns/100",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 100,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 130.6122453479109,
+          "layer_thickness_m": 130.6122453479109,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 22.142856602225454,
+          "lower_depth_m": 122.310127385117,
+          "layer_thickness_m": 100.16727078289155,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 29.444444122505764,
+          "lower_depth_m": 106.4873433032157,
+          "layer_thickness_m": 77.04289918070992,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-78p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json",
+      "source_sha256": "23778cf0ebc3b8521f27e3ecea19bd6fc28b2205b2d9ade7432d5fb578728ece",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/direction_contexts/westward/profiles/56",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-78p5e.json#/columns/56",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 56,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1246.323538596087,
+          "layer_thickness_m": 1246.323538596087,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.8840000629425048,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 78.2828282554616,
+          "layer_thickness_m": 78.2828282554616,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.8840000629425048,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 73.23232317758985,
+          "layer_thickness_m": 73.23232317758985,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.8840000629425048,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json",
+      "source_sha256": "3deed1c53bc2676fac894547333af041b22755325a36eb1c866c0787d0c08ea7",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/direction_contexts/eastward/profiles/100",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/columns/100",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 100,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1720.588285727324,
+          "layer_thickness_m": 1720.588285727324,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.6230000257492065,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 281.25000069849193,
+          "layer_thickness_m": 281.25000069849193,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.6230000257492065,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 37.77026960630327,
+          "lower_depth_m": 142.4757317229663,
+          "layer_thickness_m": 104.70546211666301,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.6230000257492065,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-79p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json",
+      "source_sha256": "3deed1c53bc2676fac894547333af041b22755325a36eb1c866c0787d0c08ea7",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/direction_contexts/westward/profiles/50",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-79p5e.json#/columns/50",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 50,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1240.384639080988,
+          "layer_thickness_m": 1240.384639080988,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 1.2650001049041748,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 831.2500209547544,
+          "layer_thickness_m": 831.2500209547544,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 1.2650001049041748,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 124.13793311639297,
+          "layer_thickness_m": 124.13793311639297,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 1.2650001049041748,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "eastward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json",
+      "source_sha256": "9a40b8dfa3e8b510a5a46e723e3ad00c937c580394816adaa8b60e884732e018",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/direction_contexts/eastward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/direction_contexts/eastward/profiles/88",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/columns/88",
+      "component_bearing_degrees_true": 90,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 88,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2320.512831105773,
+          "layer_thickness_m": 2320.512831105773,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2000.0000095520263,
+          "layer_thickness_m": 2000.0000095520263,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 22.499999751647326,
+          "lower_depth_m": 187.95181216063952,
+          "layer_thickness_m": 165.4518124089922,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    },
+    {
+      "entity_id": "current:monsoon",
+      "diagnostic_context_id": "westward",
+      "section_id": "section-80p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "source_file": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json",
+      "source_sha256": "9a40b8dfa3e8b510a5a46e723e3ad00c937c580394816adaa8b60e884732e018",
+      "source_diagnosis_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/direction_contexts/westward/diagnosis",
+      "source_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/direction_contexts/westward/profiles/52",
+      "source_native_model_profile_ref": "research/source-data/monsoon-direction-depth-sections-v1/2022-12-15-monsoon-section-80p5e.json#/columns/52",
+      "component_bearing_degrees_true": 270,
+      "selection_depth_interval_m": [
+        0,
+        100
+      ],
+      "primary_threshold_m_s": 0.1,
+      "selected_column_index": 52,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1275.0000651925695,
+          "layer_thickness_m": 1275.0000651925695,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 1.1350001096725466,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 616.6667101283798,
+          "layer_thickness_m": 616.6667101283798,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 1.1350001096725466,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 403.03031890298536,
+          "layer_thickness_m": 403.03031890298536,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 1.1350001096725466,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "direction_contexts_are_additive": false,
+      "contexts_are_independent_observations": false,
+      "surface_undercurrent_separation_performed": false
+    }
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}

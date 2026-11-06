@@ -1,0 +1,83 @@
+{
+  "schema": "osw.eicc-spring-regional-reference-protocol.v1",
+  "status": "DECLARED_BEFORE_DISTANCE_CALCULATION",
+  "source_file": "research/eicc-gangopadhyay-2013-regional-reference-source-v1.json",
+  "source_sha256": "860b9e05f119603b7e11860f1fc9ef022bccd7f0d17ca64aac44ddeb46bfe1c1",
+  "geometry_role": "regional_editorial_source_anchor_connection_not_reconstructed_axis",
+  "quantity_to_calculate": "Sum of shortest WGS84 ellipsoidal geodesic legs through reported anchors",
+  "datum_assumption": "OSW display/calculation assumes WGS84 for source longitude/latitude; source datum is unspecified. This is a declared convention, not source positional accuracy.",
+  "source_coordinate_variants": [
+    {
+      "id": "paragraph8",
+      "coordinates_lon_lat": [
+        [
+          84,
+          14
+        ],
+        [
+          83,
+          16
+        ],
+        [
+          85.5,
+          18
+        ]
+      ]
+    },
+    {
+      "id": "caption2-eastern-core",
+      "coordinates_lon_lat": [
+        [
+          84,
+          14
+        ],
+        [
+          83,
+          16
+        ],
+        [
+          85.5,
+          18.5
+        ]
+      ],
+      "coordinate_association": "Figure2 caption latitude paired with the85.5E section identified in paragraph8/Figure2c; retain as a separate source-text convention."
+    }
+  ],
+  "preserve_every_variant": true,
+  "bend_probes_km": [
+    -10,
+    0,
+    10
+  ],
+  "bend_probe_rule": "For each of two legs insert its geodesic midpoint displaced on its local right normal by the selected offset. Retain all9 Cartesian offset pairs per source-coordinate variant. The10km scale is an editorial sensitivity probe, not physical/positional/annual uncertainty.",
+  "public_rounding_km": 10,
+  "distance_serialization_decimals": 6,
+  "land_check_spacing_km": 1,
+  "land_check_requirements": [
+    "Coarse OSW land mask",
+    "Retained Natural Earth1:10M land5.1.1; both raw and serialized display points"
+  ],
+  "land_region_lon_lat": [
+    80,
+    12,
+    88,
+    20
+  ],
+  "admission_on_land_contact": false,
+  "calculations_must_run_sequentially": true,
+  "heavy_work_cloud_only": true,
+  "source_velocity_or_profile_processing": false,
+  "source_figure_digitization": false,
+  "full_current_rank_eligible": false,
+  "annual_range_eligible": false,
+  "seasonal_playback_eligible": false,
+  "physical_state_join_eligible": false,
+  "measurement_output_yet_created": false,
+  "required_next_outputs": [
+    "All18 variant/probe cases including failures",
+    "Separate2-leg nominal reference lengths, rounded only for display",
+    "Local cartographic checks and source-anchor map with interpolation scope",
+    "Retained source differences and naming convention",
+    "Pure candidate validation and later existing-branch query integration"
+  ]
+}

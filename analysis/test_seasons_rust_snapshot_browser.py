@@ -1,4 +1,7 @@
 """Checked seasonal source parity, projection rejection and worker-only loading."""
+from browser_inventory_expectations import CURRENT_COUNT
+
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -27,7 +30,7 @@ def replace_source(bundle,key,doc):
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--seasons'],encoding='utf-8'))
     assert native['ok']
     for key,receipt in bundle['manifest']['seasons_receipts'].items():
@@ -57,7 +60,7 @@ def main():
         url='http://127.0.0.1:8788/almanac/seasons.html?current=florida'
         page.goto(url)
         page.wait_for_function('window.oswSeasonSnapshot',timeout=90000)
-        expect(page.locator('#season-current option')).to_have_count(100,timeout=90000)
+        expect(page.locator('#season-current option')).to_have_count(CURRENT_COUNT,timeout=90000)
         assert page.evaluate('window.oswSeasonSnapshot')==native
         assert page.locator('#season-loading').get_attribute('data-engine')=='rust-osw-query-v1'
         assert not raw_requests,raw_requests
@@ -70,7 +73,7 @@ def main():
         expect(rejected.locator('#season-loading')).to_contain_text('Invalid local direction scope',timeout=90000)
         assert rejected.locator('#season-current option').count()==0
         browser.close()
-    print('PASS: four exact source documents, eight loader rejections, native/WASM parity, 100 current phase plans/controls, no direct JSON reads, unavailable and invalid first loads')
+    print('PASS: four exact source documents, eight loader rejections, native/WASM parity, 101 current phase plans/controls, no direct JSON reads, unavailable and invalid first loads')
 
 
 if __name__=='__main__':main()

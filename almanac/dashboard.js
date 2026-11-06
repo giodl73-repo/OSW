@@ -1,9 +1,20 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport',section_transport:'Published section transport statistics'};
+  const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_model_core_sections:'Published model mean-core sections',reported_flow_events:'Dated flow examples',reported_length:'Published ranked length',reported_regional_reaches:'Reported regional reaches',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',characteristic_velocity:'Characteristic velocity summaries',core_migration_profile:'Core movement by depth',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport',section_transport:'Published section transport statistics'};
+  labels.model_dimension_samples='Regional model dimension attempts';
+  labels.axis_normal_samples='Axis-normal model span attempts';
+  const contextMetrics = {direction_calendars:'Qualitative direction calendars',
+    direction_descriptions:'Qualitative month descriptions',reported_width_evidence:'Reported width source statements',
+    cross_shore_context:'Offshore position / extent descriptions',regime_context:'Dated survey regime descriptions'};
+  Object.assign(labels,contextMetrics);
+  for(const [value,label] of Object.entries(contextMetrics)){
+    const option=document.createElement('option');option.value=value;option.textContent=label;option.disabled=true;
+    $('dashboard-metric').append(option);
+  }
+  const normalOption=document.createElement('option');normalOption.value='axis_normal_samples';normalOption.textContent=labels.axis_normal_samples;$('dashboard-metric').append(normalOption);
   const kinds = {named_current:'Current',named_eddy:'Named eddy',operational_eddy_detection:'Dated detection'};
   const key = 'osw-motion-dashboard-seen-v2';
-  const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence'};
+  const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence',mean_model_core_sections:'Mean model-core sections',reported_flow_events:'Dated flow examples'};
   let data, baseline, busy = false, interval, client, renderGeneration=0;
   function rustClient() {
     const worker=new Worker('query-worker.js?v=5');
@@ -24,7 +35,7 @@
   if (!baseline || typeof baseline !== 'object' || Array.isArray(baseline)) baseline = null;
   const element = (tag,text,parent) => { const el=document.createElement(tag); if(text!=null) el.textContent=text; if(parent) parent.append(el); return el; };
   const link = (label,url,parent) => { const a=element('a',label,parent); a.href=url; };
-  const atlasUrl = row => ['dated_diagnostics','flow_network','passage_transport'].includes($('dashboard-metric').value)&&row.evidence_links?.length ? row.evidence_links[0].url : `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
+  const atlasUrl = row => $('dashboard-metric').value==='core_migration_profile' ? (row.evidence_links?.find(link=>link.url.includes('current_core_migration_profiles'))?.url || `query.html?q=${encodeURIComponent(JSON.stringify({collection:'current_core_migration_profiles',filters:[{field:'current_id',op:'eq',value:row.id.replace('current:','')}],limit:100}))}`) : $('dashboard-metric').value==='reported_regional_reaches' ? (row.evidence_links?.find(link=>link.url.includes('current_regional_reaches'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : $('dashboard-metric').value==='reported_flow_events' ? (row.evidence_links?.find(link=>link.url.includes('current_reported_flow_events'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : $('dashboard-metric').value==='reported_model_core_sections' ? (row.evidence_links?.find(link=>link.url.includes('current_mean_core_sections'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : ['dated_diagnostics','flow_network','passage_transport'].includes($('dashboard-metric').value)&&row.evidence_links?.length ? row.evidence_links[0].url : `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
   const changed = row => baseline && baseline[row.id]?.fingerprint !== row.fingerprint;
   function markSeen() {
     baseline = Object.fromEntries(data.entries.map(r => [r.id,{fingerprint:r.fingerprint,sections:r.section_fingerprints}]));
@@ -149,15 +160,26 @@
     try {
       candidate=rustClient();await candidate.request('load');
       const loaded=await candidate.request('dashboard'),next=JSON.parse(loaded.snapshot_json);
-      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||Object.keys(groupLabels).some(k=>typeof r.section_fingerprints[k]!=='string')||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||Object.keys(labels).some(k=>{const value=r.capabilities[k]??(k==='section_transport'?0:undefined);return !Number.isInteger(value)||value<0;})||!Array.isArray(r.series)||!Array.isArray(r.scope_notes)||!Array.isArray(r.evidence_links)||r.evidence_links.some(e=>typeof e.label!=='string'||typeof e.url!=='string'))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
+      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||!window.oswDashboardEvidenceSchema.validFingerprints(r.section_fingerprints,groupLabels)||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||!window.oswDashboardEvidenceSchema.validCapabilities(r.capabilities,labels,contextMetrics)||!Array.isArray(r.series)||!Array.isArray(r.scope_notes)||!Array.isArray(r.evidence_links)||r.evidence_links.some(e=>typeof e.label!=='string'||typeof e.url!=='string'))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
       if(next.entries.some(r=>!Array.isArray(r.map_features)))throw Error('Snapshot has no atlas location evidence');
       data=next;
+      for(const metric of [...Object.keys(contextMetrics),'core_migration_profile']) {
+        const option=$('dashboard-metric').querySelector(`option[value="${metric}"]`);
+        option.disabled=!next.entries.some(row=>Object.hasOwn(row.capabilities,metric));
+        if(option.disabled&&$('dashboard-metric').value===metric)$('dashboard-metric').value='reference_route';
+      }
       const previous=client;client=candidate;candidate=null;previous?.close();
       window.oswDashboardSnapshot={...loaded,snapshot:next};
       $('dashboard-status').dataset.engine=loaded.engine;
       const first=!baseline;if(first)markSeen();
       const totals=$('dashboard-totals');totals.replaceChildren();for(const [kind,count] of Object.entries(data.counts)){const tile=element('div',null,totals);tile.className='dashboard-total';element('strong',count,tile);element('span',kind==='named_current'?'Currents':kind==='named_eddy'?'Named eddies':'Dated detections',tile);}
       $('dashboard-update-note').textContent=`Coverage snapshot built ${data.built_at_utc}. ${first?'First visit establishes your comparison snapshot. ':''}Update indicators compare record contents with your last marked snapshot. Checking reloads available data; it does not acquire new provider observations.`;
+      const sourceViews=$('dashboard-source-views');sourceViews.replaceChildren();
+      for(const source of data.proposed_source_views||[]){const li=document.createElement('li');link(source.label,source.url,li);li.append(document.createTextNode(' · '+source.status+' '));link('Query source inventory',source.query_url,li);sourceViews.append(li)}
+      $('dashboard-source-section').hidden=!sourceViews.children.length;
+      document.getElementById('dashboard-product-axis-status')?.remove();
+      const diagnostic=data.surface_product_axis_diagnostics;
+      if(diagnostic){const section=element('section',null,$('dashboard-proposals').parentElement);section.id='dashboard-product-axis-status';element('h3','Experimental product diagnostics',section);element('p',`${diagnostic.monthly_path_count} monthly paths · ${diagnostic.series_count} analysis windows · ${diagnostic.method_scenario_count} related operator scenarios · ${diagnostic.withheld_scenario_count} withheld scenarios. Physical measurement coverage is unchanged.`,section);link(diagnostic.label,diagnostic.object_url,section);link('Explore monthly paths on the global atlas',`reference-routes.html?atlas-feature=${encodeURIComponent(diagnostic.entity_id)}#route-atlas`,section);}
       const proposals=$('dashboard-proposals');proposals.replaceChildren();link(`${data.proposed_current_additions} additional current names await inventory review`,'reference-routes.html#inventory-addition-cards',proposals);
       await render();
     } catch(error) { $('dashboard-status').textContent=`Update check failed: ${error.message}.${data?' Showing the previously loaded snapshot.':''}`; }

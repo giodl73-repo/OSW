@@ -1,0 +1,54 @@
+# Selective retained ACT point-instrument extraction
+
+Originalacquisition41989841811passed9methodchecks,downloadedexactREADMEand
+2NetCDFswithmatchingproviderhashes,thenstoppedBEFOREarraysbecauseTIMEaxes
+41552/41551exceeditsfrozen40000guard. Preserveitsfailure/bytes/journal/pins;
+neverrerunprovidercollectororredownload. Newscopedretainedconsumeronly,
+zeroFTP/HTTP/providerrequests withnetworktripwire. No physicalgateretuning.
+
+Schemafromcapturedheaders:CF1.6timeSeries/mooringB,NortekAquadoppDW,
+20minute sampling,nominal496/996metrelabels(notactualsamples). Handle only
+uncompressedclassicNetCDFandprimitivepointvariables,singletonlat/lon.
+Newbefore-valuesaxisguard50000/file supportsactualknownschema; do notedit
+validatedv1. Loadonly fullTIMEcoordinatesplus3fixedtimestampu/v/z/scalar
+positionreadsperfile. No fullvelocity/deptharrays or HDF5compressedchunks.
+NativeTIMEload83103,conservative72selectedscalarreadsforprimary+independent
+checks,plus2000oldmetadata=85175,undernew112000readbound andoriginal
+238000reservation/250000cap/7MB. Originalv1consumed0arraysatfirstguard;
+newreaderusesitsunconsumedallowance,noscalarreset/expandedglobalbudget.
+No falseclaimall4*83103unselectedarrayvalues decoded.
+
+SourceCFdepthmetres/positiveDown/standard_namedepth/axisZsupportsprovider
+verticalcoordinate. Itdoesnotindependentlyverifyseasurface/gaugedatum.
+Nativeu/vlongnames explicitlyeastward/northward;standard_nameu/varelegacy
+labels,notproofeveryvariableisfullyCFconformant. Minimalmagnetic/soundvelocity
+processing,notverifieddespiking/tides/sampleQC. Retainallprovenance/unknowns.
+Separateobservednativezfromnominalinstrumentdepthstrings.
+
+Samefixed2011June14/15/16noonlabels,1secondtolerance,no nearest/bestdate.
+CFmask/scale/validrange,missingnull,sourceindices/actualtimes/frame/coords
+retained. Independentselectedscalar/time/unitreads checkprimaryextraction;
+independentslopeformula checksall3thresholdcontexts per supportedpair.
+Original0.05/0.1/0.2m/snegative-northcomponent,500mmaxgap,sourcegeometry
+andQCpendinggates unchanged. Resultsrenamed NATIVE-COORDINATE isotach
+scenarios,not verifiedsea-surfacedepths/currentbottom/thickness. Missing,
+reverse,largergap,deeperstillqualifyingpoint remaincensored/notabsence.
+No coreselection/continuouspenetration from2points;source1e-4degreeposition
+agreementisnotcurrentaxis. Physicalbottom/thickness/uncertainty/yearrange/
+volume null andreferenceadmissionfalse.
+
+Correct sourcecounteraccounting: inheritedmetadatajournal ocean_field_requests
+zeroisSTALEfornewfieldphase,notglobaltruth. ImmutabletypedRETRreceipts
+show2verifiednativefiletransfers. Reportcorrectedcountswithscope,neveredit
+frozenoriginaljournal ortrustinheritedzeroheaders. Cumulativeremoteops10of18,
+8remaining;metadata-stage6capstaysclosed. Priorcase54.225964938scharge;
+retainedauditprocessingtimeaddedinside210scase,notreset. Nativegeometry
+6points+atmost9crossingsunder1000reserve/6000cap,3profiles/2levelsunder40.
+Alloutputs<2.4MB;allsourceparse/tests/cloudonlysingleidleCPU. Preserve858refs,
+102eddyrefs/21UTF8/runtime/main. No newprovider/authorcontact/UIqueries.
+
+Officialtechnicaldocsreviewedbeforevalues: CFdimensionalverticalcoordinate
+https://github.com/cf-convention/cf-conventions/blob/main/ch04.adoc and
+Unidatanetcdf4-pythonAPI https://unidata.github.io/netcdf4-python/ describe
+positiveDown/standarddepthandscalarindexing/classicunchunkedaccess. This
+isimplementationsupport,notindependentvalidationofprovidercurrentidentity.

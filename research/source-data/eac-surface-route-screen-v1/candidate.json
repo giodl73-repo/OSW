@@ -1,0 +1,2366 @@
+{
+  "schema": "osw.eac-surface-route-screen.v1",
+  "status": "SECOND_PRODUCT_SURFACE_SUPPORT_NOT_AXIS_VALIDATION",
+  "source_metadata": [
+    {
+      "source_date": "2022-01-15",
+      "opendap_url": "https://thredds.aodn.org.au/thredds/dodsC/IMOS/OceanCurrent/GSLA/DM/2022/IMOS_OceanCurrent_HV_20220115T000000Z_GSLA_FV02_DM03.nc",
+      "actual_time_utc": "2022-01-15T00:00:00Z",
+      "global_attributes": {
+        "author": "Cahill, Madeleine; Pilo, Gabriela S.",
+        "author_email": "gabriela.semolinipilo@csiro.au",
+        "citation": "The citation in a list of references is: \"IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access].\"",
+        "Conventions": "CF-1.8,IMOS-1.4",
+        "date_created": "2026-02-24T08:52:12Z",
+        "geospatial_lat_max": "10.0",
+        "geospatial_lat_min": "-60.0",
+        "geospatial_lat_units": "degrees_north",
+        "geospatial_lon_max": "185.0",
+        "geospatial_lon_min": "57.0",
+        "geospatial_lon_units": "degrees_east",
+        "geospatial_vertical_max": "0.0",
+        "geospatial_vertical_min": "0.0",
+        "geospatial_vertical_units": "m",
+        "history": " ",
+        "institution": "CSIRO Marine and Atmospheric Research",
+        "naming_authority": "IMOS",
+        "netcdf_version": "4.0",
+        "platform_code": "GSLA",
+        "principal_investigator": "Cahill, Madeleine; Pilo, Gabriela S.",
+        "principal_investigator_email": "gabriela.semolinipilo@csiro.au",
+        "product_type": "DM03",
+        "project": "Integrated Marine Observing System (IMOS)",
+        "time_coverage_start": "2022-01-15T00:00:00Z",
+        "time_coverage_end": "2022-01-15T00:00:00Z",
+        "abstract": "Gridded (adjusted) sea level anomaly (GSLA), gridded sea level (GSL) and surface geostrophic velocity (UCUR,VCUR) for the Australasian region. GSLA is mapped using optimal interpolation of detided, de-meaned, inverse-barometer-adjusted altimeter and tidegauge estimates of sea level. GSL is GSLA plus an estimate of the departure of mean sea level from the geoid. The geostrophic velocities are derived from GSL.",
+        "acknowledgement": "Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: \"Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government.\" If relevant, also credit other organisations involved in collection of this particular datastream (as listed in \"credit\" in the metadata record).",
+        "references": "http://imos.aodn.org.au/oceancurrent",
+        "data_centre": "Australian Ocean Data Network (AODN)",
+        "data_centre_email": "info@aodn.org.au",
+        "disclaimer": "Data, products and services from IMOS are provided \"as is\" without any warranty as to fitness for a particular purpose.",
+        "distribution_statement": "Data may be re-used, provided that related metadata explaining the data has been reviewed by the user, and the data is appropriately acknowledged.",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "standard_name_vocabulary": "NetCDF Climate and Forecast (CF) Metadata Convention Standard Name Table 60",
+        "title": "Gridded Sea Level Anomaly - Australia Region",
+        "DODS_EXTRA.Unlimited_Dimension": "TIME"
+      },
+      "variable_attributes": {
+        "UCUR": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "eastward geostrophic velocity derived from GSLA + UCUR_MEAN",
+          "long_name": "total eastward geostrophic velocity",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "VCUR": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "northward geostrophic velocity derived from GSLA + VCUR_MEAN",
+          "long_name": "total northward geostrophic velocity",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "UCUR_MEAN": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "Mean velocity obtained from the 18year average of surface velocities from the OFAM3 spinup run, a non-data-assimilating version of the 0.1 degree Bluelink Model with atmospheric forcing from ERA Interim",
+          "long_name": "OFAM3 mean eastward geostrophic velocity",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "VCUR_MEAN": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "Mean velocity obtained from the 18year average of surface velocities from the OFAM3 spinup run, a non-data-assimilating version of the 0.1 degree Bluelink Model with atmospheric forcing from ERA Interim",
+          "long_name": "OFAM3 mean northward geostrophic velocity",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity",
+          "units": "m/s",
+          "scale_factor": "0.00015259487586406848",
+          "add_offset": "0.0",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "GSL": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "GSLA + OFAM3 mean dynamic height",
+          "long_name": "gridded (adjusted) sea level",
+          "standard_name": "sea_surface_height_above_sea_level",
+          "units": "m",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        }
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "opendap_url": "https://thredds.aodn.org.au/thredds/dodsC/IMOS/OceanCurrent/GSLA/DM/2022/IMOS_OceanCurrent_HV_20220715T000000Z_GSLA_FV02_DM03.nc",
+      "actual_time_utc": "2022-07-15T00:00:00Z",
+      "global_attributes": {
+        "author": "Cahill, Madeleine; Pilo, Gabriela S.",
+        "author_email": "gabriela.semolinipilo@csiro.au",
+        "citation": "The citation in a list of references is: \"IMOS [year-of-data-download], [Title], [data-access-URL], accessed [date-of-access].\"",
+        "Conventions": "CF-1.8,IMOS-1.4",
+        "date_created": "2026-02-24T09:04:00Z",
+        "geospatial_lat_max": "10.0",
+        "geospatial_lat_min": "-60.0",
+        "geospatial_lat_units": "degrees_north",
+        "geospatial_lon_max": "185.0",
+        "geospatial_lon_min": "57.0",
+        "geospatial_lon_units": "degrees_east",
+        "geospatial_vertical_max": "0.0",
+        "geospatial_vertical_min": "0.0",
+        "geospatial_vertical_units": "m",
+        "history": " ",
+        "institution": "CSIRO Marine and Atmospheric Research",
+        "naming_authority": "IMOS",
+        "netcdf_version": "4.0",
+        "platform_code": "GSLA",
+        "principal_investigator": "Cahill, Madeleine; Pilo, Gabriela S.",
+        "principal_investigator_email": "gabriela.semolinipilo@csiro.au",
+        "product_type": "DM03",
+        "project": "Integrated Marine Observing System (IMOS)",
+        "time_coverage_start": "2022-07-15T00:00:00Z",
+        "time_coverage_end": "2022-07-15T00:00:00Z",
+        "abstract": "Gridded (adjusted) sea level anomaly (GSLA), gridded sea level (GSL) and surface geostrophic velocity (UCUR,VCUR) for the Australasian region. GSLA is mapped using optimal interpolation of detided, de-meaned, inverse-barometer-adjusted altimeter and tidegauge estimates of sea level. GSL is GSLA plus an estimate of the departure of mean sea level from the geoid. The geostrophic velocities are derived from GSL.",
+        "acknowledgement": "Any users of IMOS data are required to clearly acknowledge the source of the material derived from IMOS in the format: \"Data was sourced from the Integrated Marine Observing System (IMOS) - IMOS is a national collaborative research infrastructure, supported by the Australian Government.\" If relevant, also credit other organisations involved in collection of this particular datastream (as listed in \"credit\" in the metadata record).",
+        "references": "http://imos.aodn.org.au/oceancurrent",
+        "data_centre": "Australian Ocean Data Network (AODN)",
+        "data_centre_email": "info@aodn.org.au",
+        "disclaimer": "Data, products and services from IMOS are provided \"as is\" without any warranty as to fitness for a particular purpose.",
+        "distribution_statement": "Data may be re-used, provided that related metadata explaining the data has been reviewed by the user, and the data is appropriately acknowledged.",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "standard_name_vocabulary": "NetCDF Climate and Forecast (CF) Metadata Convention Standard Name Table 60",
+        "title": "Gridded Sea Level Anomaly - Australia Region",
+        "DODS_EXTRA.Unlimited_Dimension": "TIME"
+      },
+      "variable_attributes": {
+        "UCUR": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "eastward geostrophic velocity derived from GSLA + UCUR_MEAN",
+          "long_name": "total eastward geostrophic velocity",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "VCUR": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "northward geostrophic velocity derived from GSLA + VCUR_MEAN",
+          "long_name": "total northward geostrophic velocity",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "UCUR_MEAN": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "Mean velocity obtained from the 18year average of surface velocities from the OFAM3 spinup run, a non-data-assimilating version of the 0.1 degree Bluelink Model with atmospheric forcing from ERA Interim",
+          "long_name": "OFAM3 mean eastward geostrophic velocity",
+          "standard_name": "surface_geostrophic_eastward_sea_water_velocity",
+          "units": "m/s",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "VCUR_MEAN": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "Mean velocity obtained from the 18year average of surface velocities from the OFAM3 spinup run, a non-data-assimilating version of the 0.1 degree Bluelink Model with atmospheric forcing from ERA Interim",
+          "long_name": "OFAM3 mean northward geostrophic velocity",
+          "standard_name": "surface_geostrophic_northward_sea_water_velocity",
+          "units": "m/s",
+          "scale_factor": "0.00015259487586406848",
+          "add_offset": "0.0",
+          "_ChunkSizes": "[  1 351 641]"
+        },
+        "GSL": {
+          "_FillValue": "0",
+          "coordinates": "TIME LATITUDE LONGITUDE",
+          "description": "GSLA + OFAM3 mean dynamic height",
+          "long_name": "gridded (adjusted) sea level",
+          "standard_name": "sea_surface_height_above_sea_level",
+          "units": "m",
+          "add_offset": "0.0",
+          "scale_factor": "0.00015259487586406848",
+          "_ChunkSizes": "[  1 351 641]"
+        }
+      }
+    }
+  ],
+  "samples": [
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 0,
+      "editorial_lon_lat": [
+        147.5,
+        -15
+      ],
+      "downstream_reference_bearing_degrees_true": 147.53052736112164,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          224,
+          226
+        ],
+        "longitude": [
+          451,
+          454
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            147.81349740955105,
+            -14.80570956021096
+          ],
+          "sampled_lon_lat": [
+            147.8,
+            -14.8
+          ],
+          "source_grid_index": [
+            226,
+            454
+          ],
+          "nearest_cell_distance_km": 1.5843724081649018,
+          "source_values": {
+            "UCUR": -0.23697984221689836,
+            "VCUR": -0.18753910243694016,
+            "UCUR_MEAN": -0.2716188790380419,
+            "VCUR_MEAN": -0.09613477179436314,
+            "GSL": 0.7512245738788091
+          },
+          "along_total_m_s": 0.03099987128833348,
+          "along_OFAM3_mean_m_s": -0.06471188792951679
+        },
+        {
+          "target_lon_lat": [
+            147.65681899224117,
+            -14.90290881549477
+          ],
+          "sampled_lon_lat": [
+            147.6,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            453
+          ],
+          "nearest_cell_distance_km": 12.360072298812456,
+          "source_values": {
+            "UCUR": -0.22812933941678237,
+            "VCUR": -0.0169380312209116,
+            "UCUR_MEAN": -0.2667358430103917,
+            "VCUR_MEAN": -0.09613477179436314,
+            "GSL": 0.7635847588237987
+          },
+          "along_total_m_s": -0.10818103724977993,
+          "along_OFAM3_mean_m_s": -0.06209042920482022
+        },
+        {
+          "target_lon_lat": [
+            147.5,
+            -14.999999999999998
+          ],
+          "sampled_lon_lat": [
+            147.4,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            452
+          ],
+          "nearest_cell_distance_km": 10.755048780230378,
+          "source_values": {
+            "UCUR": -0.24247325774800482,
+            "VCUR": 0.04013245235225001,
+            "UCUR_MEAN": -0.26459951474829474,
+            "VCUR_MEAN": -0.09430363328399433,
+            "GSL": 0.7757923488929241
+          },
+          "along_total_m_s": -0.16403066091749213,
+          "along_OFAM3_mean_m_s": -0.06248843155813172
+        },
+        {
+          "target_lon_lat": [
+            147.34303950396068,
+            -15.09698228319003
+          ],
+          "sampled_lon_lat": [
+            147.4,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            452
+          ],
+          "nearest_cell_distance_km": 12.355851237366902,
+          "source_values": {
+            "UCUR": -0.24247325774800482,
+            "VCUR": 0.04013245235225001,
+            "UCUR_MEAN": -0.26459951474829474,
+            "VCUR_MEAN": -0.09430363328399433,
+            "GSL": 0.7757923488929241
+          },
+          "along_total_m_s": -0.16403066091749213,
+          "along_OFAM3_mean_m_s": -0.06248843155813172
+        },
+        {
+          "target_lon_lat": [
+            147.18593657653193,
+            -15.193854832798582
+          ],
+          "sampled_lon_lat": [
+            147.2,
+            -15.200000000000003
+          ],
+          "source_grid_index": [
+            224,
+            451
+          ],
+          "nearest_cell_distance_km": 1.657070684256735,
+          "source_values": {
+            "UCUR": -0.2092075748096379,
+            "VCUR": -0.03784352921428898,
+            "UCUR_MEAN": -0.24613553476874248,
+            "VCUR_MEAN": -0.0978133154288679,
+            "GSL": 0.7994445546518548
+          },
+          "along_total_m_s": -0.08038538429864892,
+          "along_OFAM3_mean_m_s": -0.04961500054342076
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 1,
+        "status": "poleward_surface_component_not_corroborated_not_current_absence",
+        "surface_component_at_frozen_model_node_m_s": -0.10818103724977993,
+        "sampled_surface_peak_index": null,
+        "sampled_surface_peak_at_window_edge": null,
+        "unique_surface_grid_nodes": 4,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 1,
+      "editorial_lon_lat": [
+        149.5,
+        -18
+      ],
+      "downstream_reference_bearing_degrees_true": 142.17571426524933,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          209,
+          211
+        ],
+        "longitude": [
+          461,
+          464
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            149.7979700679684,
+            -17.778142774627867
+          ],
+          "sampled_lon_lat": [
+            149.8,
+            -17.8
+          ],
+          "source_grid_index": [
+            211,
+            464
+          ],
+          "nearest_cell_distance_km": 2.428669923870611,
+          "source_values": {
+            "UCUR": -0.04669403201440495,
+            "VCUR": 0.05142447316619108,
+            "UCUR_MEAN": -0.05783345795248195,
+            "VCUR_MEAN": -0.0933880640288099,
+            "GSL": 0.7300138861337037
+          },
+          "along_total_m_s": -0.06925467976559119,
+          "along_OFAM3_mean_m_s": 0.03830087822464942
+        },
+        {
+          "target_lon_lat": [
+            149.64907757405524,
+            -17.88912898743893
+          ],
+          "sampled_lon_lat": [
+            149.6,
+            -17.8
+          ],
+          "source_grid_index": [
+            211,
+            463
+          ],
+          "nearest_cell_distance_km": 11.152289500953904,
+          "source_values": {
+            "UCUR": -0.0953717974150428,
+            "VCUR": 0.14343918331222438,
+            "UCUR_MEAN": -0.0677521248836464,
+            "VCUR_MEAN": -0.07385591991820914,
+            "GSL": 0.7501564097477607
+          },
+          "along_total_m_s": -0.1717878993637979,
+          "along_OFAM3_mean_m_s": 0.01678998996719868
+        },
+        {
+          "target_lon_lat": [
+            149.5,
+            -18.0
+          ],
+          "sampled_lon_lat": [
+            149.4,
+            -18.0
+          ],
+          "source_grid_index": [
+            210,
+            462
+          ],
+          "nearest_cell_distance_km": 10.590498145678588,
+          "source_values": {
+            "UCUR": -0.2188210519890742,
+            "VCUR": 0.17029588146430044,
+            "UCUR_MEAN": -0.07614484305617017,
+            "VCUR_MEAN": -0.07156699678024812,
+            "GSL": 0.7863213953275449
+          },
+          "along_total_m_s": -0.2687061327107151,
+          "along_OFAM3_mean_m_s": 0.009835214086519786
+        },
+        {
+          "target_lon_lat": [
+            149.35073608071448,
+            -18.11075491226044
+          ],
+          "sampled_lon_lat": [
+            149.4,
+            -18.200000000000003
+          ],
+          "source_grid_index": [
+            209,
+            462
+          ],
+          "nearest_cell_distance_km": 11.168886118291283,
+          "source_values": {
+            "UCUR": -0.2627683762379259,
+            "VCUR": 0.14084507042253522,
+            "UCUR_MEAN": -0.0730929455388888,
+            "VCUR_MEAN": -0.08163825858727664,
+            "GSL": 0.8057009445622816
+          },
+          "along_total_m_s": -0.2723934213114466,
+          "along_OFAM3_mean_m_s": 0.01966200643998004
+        },
+        {
+          "target_lon_lat": [
+            149.20128455075775,
+            -18.221392821256337
+          ],
+          "sampled_lon_lat": [
+            149.2,
+            -18.200000000000003
+          ],
+          "source_grid_index": [
+            209,
+            461
+          ],
+          "nearest_cell_distance_km": 2.371712944269174,
+          "source_values": {
+            "UCUR": -0.2032563746509392,
+            "VCUR": 0.053560801428288035,
+            "UCUR_MEAN": -0.05493415531106465,
+            "VCUR_MEAN": -0.09842369493232417,
+            "GSL": 0.8252330886728824
+          },
+          "along_total_m_s": -0.16695274645684433,
+          "along_OFAM3_mean_m_s": 0.04405647257117119
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 0,
+        "status": "poleward_surface_component_not_corroborated_not_current_absence",
+        "surface_component_at_frozen_model_node_m_s": -0.06925467976559119,
+        "sampled_surface_peak_index": null,
+        "sampled_surface_peak_at_window_edge": null,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 2,
+      "editorial_lon_lat": [
+        152.5,
+        -21
+      ],
+      "downstream_reference_bearing_degrees_true": 145.6249158532918,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          194,
+          196
+        ],
+        "longitude": [
+          476,
+          479
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            152.8171062677554,
+            -20.795720354705658
+          ],
+          "sampled_lon_lat": [
+            152.8,
+            -20.8
+          ],
+          "source_grid_index": [
+            196,
+            479
+          ],
+          "nearest_cell_distance_km": 1.8428814904128608,
+          "source_values": {
+            "UCUR": 0.3260952497215143,
+            "VCUR": -0.32228037782491264,
+            "UCUR_MEAN": 0.4239085651503822,
+            "VCUR_MEAN": -0.32472189583873773,
+            "GSL": 0.6694337204156684
+          },
+          "along_total_m_s": 0.45011307563771635,
+          "along_OFAM3_mean_m_s": 0.5073543986661291
+        },
+        {
+          "target_lon_lat": [
+            152.6586604242157,
+            -20.897934323175214
+          ],
+          "sampled_lon_lat": [
+            152.6,
+            -20.8
+          ],
+          "source_grid_index": [
+            196,
+            478
+          ],
+          "nearest_cell_distance_km": 12.443399880321914,
+          "source_values": {
+            "UCUR": 0.3346405627699022,
+            "VCUR": -0.19730517449224055,
+            "UCUR_MEAN": 0.4139898982192178,
+            "VCUR_MEAN": -0.2542230631895381,
+            "GSL": 0.6575313200982711
+          },
+          "along_total_m_s": 0.3517884070976508,
+          "along_OFAM3_mean_m_s": 0.4435673852573931
+        },
+        {
+          "target_lon_lat": [
+            152.5,
+            -21.0
+          ],
+          "sampled_lon_lat": [
+            152.4,
+            -21.0
+          ],
+          "source_grid_index": [
+            195,
+            477
+          ],
+          "nearest_cell_distance_km": 10.39703995238935,
+          "source_values": {
+            "UCUR": 0.08392718172523767,
+            "VCUR": -0.017853600476096014,
+            "UCUR_MEAN": 0.1335205163810599,
+            "VCUR_MEAN": -0.0711092121526559,
+            "GSL": 0.6251812064150886
+          },
+          "along_total_m_s": 0.06212160150221521,
+          "along_OFAM3_mean_m_s": 0.13407740577580923
+        },
+        {
+          "target_lon_lat": [
+            152.34112386748077,
+            -21.101916398877748
+          ],
+          "sampled_lon_lat": [
+            152.4,
+            -21.200000000000003
+          ],
+          "source_grid_index": [
+            194,
+            477
+          ],
+          "nearest_cell_distance_km": 12.463110211303423,
+          "source_values": {
+            "UCUR": -0.04928814490409412,
+            "VCUR": 0.046541437138540885,
+            "UCUR_MEAN": -0.014954297834678712,
+            "VCUR_MEAN": 0.016632841469183465,
+            "GSL": 0.6157203241115163
+          },
+          "along_total_m_s": -0.06624188657609315,
+          "along_OFAM3_mean_m_s": -0.022171385387453134
+        },
+        {
+          "target_lon_lat": [
+            152.18203090077685,
+            -21.20368253049798
+          ],
+          "sampled_lon_lat": [
+            152.2,
+            -21.200000000000003
+          ],
+          "source_grid_index": [
+            194,
+            476
+          ],
+          "nearest_cell_distance_km": 1.9097632594988483,
+          "source_values": {
+            "UCUR": -0.004120061648329849,
+            "VCUR": -0.027314482779668258,
+            "UCUR_MEAN": 0.010376451558756657,
+            "VCUR_MEAN": -0.04852517052477378,
+            "GSL": 0.6242656371599041
+          },
+          "along_total_m_s": 0.020218036693772104,
+          "along_OFAM3_mean_m_s": 0.04590932025497814
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 1,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.3517884070976508,
+        "sampled_surface_peak_index": 0,
+        "sampled_surface_peak_at_window_edge": true,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 3,
+      "editorial_lon_lat": [
+        154,
+        -24
+      ],
+      "downstream_reference_bearing_degrees_true": 167.3643660212117,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          180,
+          180
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.38335795383622,
+            -23.920519606732928
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            487
+          ],
+          "nearest_cell_distance_km": 8.96454721552462,
+          "source_values": {
+            "UCUR": 0.38820136419819024,
+            "VCUR": -0.6099217188286817,
+            "UCUR_MEAN": -0.0904887613873926,
+            "VCUR_MEAN": -0.1355042497672928,
+            "GSL": 0.6428822120153205
+          },
+          "along_total_m_s": 0.6800690729208146,
+          "along_OFAM3_mean_m_s": 0.11242802899512118
+        },
+        {
+          "target_lon_lat": [
+            154.19173772830828,
+            -23.960379562491006
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            486
+          ],
+          "nearest_cell_distance_km": 4.468106521988303,
+          "source_values": {
+            "UCUR": 0.4217722368882853,
+            "VCUR": -0.45442754032319593,
+            "UCUR_MEAN": -0.073550730166481,
+            "VCUR_MEAN": -0.1844872049196588,
+            "GSL": 0.5821494514214213
+          },
+          "along_total_m_s": 0.5356844564382335,
+          "along_OFAM3_mean_m_s": 0.16392985811401434
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -24.0
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            485
+          ],
+          "nearest_cell_distance_km": 0.0,
+          "source_values": {
+            "UCUR": 0.40742831855706285,
+            "VCUR": -0.25925869409305236,
+            "UCUR_MEAN": -0.054781560435200584,
+            "VCUR_MEAN": -0.2410999038652282,
+            "GSL": 0.5464422504692292
+          },
+          "along_total_m_s": 0.34210468905732666,
+          "along_OFAM3_mean_m_s": 0.2232772073498246
+        },
+        {
+          "target_lon_lat": [
+            153.808145188284,
+            -24.039380330357307
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            484
+          ],
+          "nearest_cell_distance_km": 4.43972551087064,
+          "source_values": {
+            "UCUR": 0.369889979094502,
+            "VCUR": -0.1127676132635466,
+            "UCUR_MEAN": -0.03204492393145438,
+            "VCUR_MEAN": -0.28886210001068163,
+            "GSL": 0.5354554194070164
+          },
+          "along_total_m_s": 0.1909499724383934,
+          "along_OFAM3_mean_m_s": 0.274856288925333
+        },
+        {
+          "target_lon_lat": [
+            153.61617371896952,
+            -24.078519967077177
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            483
+          ],
+          "nearest_cell_distance_km": 8.851023456514664,
+          "source_values": {
+            "UCUR": 0.32472189583873773,
+            "VCUR": -0.08102787908382036,
+            "UCUR_MEAN": -0.007629743793203424,
+            "VCUR_MEAN": -0.3279263882318832,
+            "GSL": 0.5371339630415211
+          },
+          "along_total_m_s": 0.15009842090173636,
+          "along_OFAM3_mean_m_s": 0.31831529972354156
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 0,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.6800690729208146,
+        "sampled_surface_peak_index": 0,
+        "sampled_surface_peak_at_window_edge": true,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 4,
+      "editorial_lon_lat": [
+        154,
+        -27
+      ],
+      "downstream_reference_bearing_degrees_true": 180.0,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          165,
+          165
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.4030014436176,
+            -26.99942362368063
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            487
+          ],
+          "nearest_cell_distance_km": 0.3046773382064757,
+          "source_values": {
+            "UCUR": 0.0064089847862908765,
+            "VCUR": -0.3311308806250286,
+            "UCUR_MEAN": -0.019532144110600766,
+            "VCUR_MEAN": -0.34867929134939646,
+            "GSL": 0.6926281415470068
+          },
+          "along_total_m_s": 0.3311308806250286,
+          "along_OFAM3_mean_m_s": 0.34867929134939646
+        },
+        {
+          "target_lon_lat": [
+            154.2015012354678,
+            -26.999855905293476
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            486
+          ],
+          "nearest_cell_distance_km": 0.14985802089267902,
+          "source_values": {
+            "UCUR": -0.06958326339401523,
+            "VCUR": -0.5485785787313262,
+            "UCUR_MEAN": -0.033570872690095066,
+            "VCUR_MEAN": -0.5093616956342606,
+            "GSL": 0.6418140478842721
+          },
+          "along_total_m_s": 0.5485785787313262,
+          "along_OFAM3_mean_m_s": 0.5093616956342606
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -26.999999999999996
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            485
+          ],
+          "nearest_cell_distance_km": 0.0,
+          "source_values": {
+            "UCUR": -0.11734545953946866,
+            "VCUR": -0.8273694169349793,
+            "UCUR_MEAN": -0.05935940671112264,
+            "VCUR_MEAN": -0.7039201623609479,
+            "GSL": 0.5600231944211314
+          },
+          "along_total_m_s": 0.8273694169349793,
+          "along_OFAM3_mean_m_s": 0.7039201623609479
+        },
+        {
+          "target_lon_lat": [
+            153.7984987645322,
+            -26.999855905293476
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            484
+          ],
+          "nearest_cell_distance_km": 0.14985802089267902,
+          "source_values": {
+            "UCUR": -0.1016281873254696,
+            "VCUR": -0.764347733203119,
+            "UCUR_MEAN": -0.06119054522149146,
+            "VCUR_MEAN": -0.5874902720766637,
+            "GSL": 0.4623624738681275
+          },
+          "along_total_m_s": 0.764347733203119,
+          "along_OFAM3_mean_m_s": 0.5874902720766637
+        },
+        {
+          "target_lon_lat": [
+            153.5969985563824,
+            -26.99942362368063
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            483
+          ],
+          "nearest_cell_distance_km": 0.3046773382064757,
+          "source_values": {
+            "UCUR": -0.018463979979552285,
+            "VCUR": -0.43459020646086705,
+            "UCUR_MEAN": -0.01312315932430989,
+            "VCUR_MEAN": -0.25880090946546014,
+            "GSL": 0.3819449742877634
+          },
+          "along_total_m_s": 0.43459020646086705,
+          "along_OFAM3_mean_m_s": 0.25880090946546014
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 3,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.764347733203119,
+        "sampled_surface_peak_index": 2,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 5,
+      "editorial_lon_lat": [
+        154,
+        -30
+      ],
+      "downstream_reference_bearing_degrees_true": 184.87784107443915,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          150,
+          150
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.41319061346735,
+            -30.03003433609312
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            487
+          ],
+          "nearest_cell_distance_km": 3.5642852898816435,
+          "source_values": {
+            "UCUR": -0.005340820655242397,
+            "VCUR": -0.2392687653548594,
+            "UCUR_MEAN": -0.06027497596630705,
+            "VCUR_MEAN": -0.3300627164939801,
+            "GSL": 0.8565150382250164
+          },
+          "along_total_m_s": 0.2388563336630328,
+          "along_OFAM3_mean_m_s": 0.3339925906273739
+        },
+        {
+          "target_lon_lat": [
+            154.20656418233548,
+            -30.015179332939457
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            486
+          ],
+          "nearest_cell_distance_km": 1.7979008566562313,
+          "source_values": {
+            "UCUR": -0.1098683106221293,
+            "VCUR": -0.6477652480429708,
+            "UCUR_MEAN": -0.07431370454580136,
+            "VCUR_MEAN": -0.478995315337311,
+            "GSL": 0.7973082263897578
+          },
+          "along_total_m_s": 0.6547614848508505,
+          "along_OFAM3_mean_m_s": 0.483579529104671
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -29.99999999999999
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            485
+          ],
+          "nearest_cell_distance_km": 7.069288649822941e-13,
+          "source_values": {
+            "UCUR": -0.2371324370927624,
+            "VCUR": -1.0744205209589062,
+            "UCUR_MEAN": -0.12512779820853615,
+            "VCUR_MEAN": -0.6724856179329498,
+            "GSL": 0.6766056795812797
+          },
+          "along_total_m_s": 1.0906929919998283,
+          "along_OFAM3_mean_m_s": 0.6806898622984937
+        },
+        {
+          "target_lon_lat": [
+            153.7934993519199,
+            -29.98449663177506
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            484
+          ],
+          "nearest_cell_distance_km": 1.8294813361724738,
+          "source_values": {
+            "UCUR": -0.31968626493522345,
+            "VCUR": -1.2819495521340394,
+            "UCUR_MEAN": -0.1786885996368242,
+            "VCUR_MEAN": -0.7538186867684983,
+            "GSL": 0.5133291624067263
+          },
+          "along_total_m_s": 1.3044900889698245,
+          "along_OFAM3_mean_m_s": 0.7662827233936503
+        },
+        {
+          "target_lon_lat": [
+            153.58706351864274,
+            -29.9686695287757
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            483
+          ],
+          "nearest_cell_distance_km": 3.6906040283351227,
+          "source_values": {
+            "UCUR": -0.2586483145895961,
+            "VCUR": -0.9372377275571087,
+            "UCUR_MEAN": -0.13489387026383654,
+            "VCUR_MEAN": -0.40315566203286896,
+            "GSL": 0.3495948606045809
+          },
+          "along_total_m_s": 0.9558365686536827,
+          "along_OFAM3_mean_m_s": 0.41316577503263285
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 3,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 1.3044900889698245,
+        "sampled_surface_peak_index": 3,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-01-15",
+      "route_vertex_index": 6,
+      "editorial_lon_lat": [
+        153.5,
+        -32
+      ],
+      "downstream_reference_bearing_degrees_true": 192.0250833122172,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          140,
+          140
+        ],
+        "longitude": [
+          480,
+          485
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            153.91435839912762,
+            -32.07447711807985
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            485
+          ],
+          "nearest_cell_distance_km": 11.560294529901123,
+          "source_values": {
+            "UCUR": -0.1873865075610761,
+            "VCUR": -0.2662780583827995,
+            "UCUR_MEAN": -0.09811850518059603,
+            "VCUR_MEAN": -0.3065631056109136,
+            "GSL": 0.8121099293485725
+          },
+          "along_total_m_s": 0.2994750665879766,
+          "along_OFAM3_mean_m_s": 0.32027803247356834
+        },
+        {
+          "target_lon_lat": [
+            153.70709534296358,
+            -32.03740792468582
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            484
+          ],
+          "nearest_cell_distance_km": 9.707900671261827,
+          "source_values": {
+            "UCUR": -0.21775288785802574,
+            "VCUR": -0.3781301023911617,
+            "UCUR_MEAN": -0.09933926418750859,
+            "VCUR_MEAN": -0.38713320006714175,
+            "GSL": 0.7690781743549051
+          },
+          "along_total_m_s": 0.41519921206176946,
+          "along_OFAM3_mean_m_s": 0.39933446873967393
+        },
+        {
+          "target_lon_lat": [
+            153.5,
+            -32.0
+          ],
+          "sampled_lon_lat": [
+            153.4,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            482
+          ],
+          "nearest_cell_distance_km": 9.449313845719253,
+          "source_values": {
+            "UCUR": -0.3746204202462881,
+            "VCUR": -0.8806250286115392,
+            "UCUR_MEAN": -0.11642989028428426,
+            "VCUR_MEAN": -0.6090061495734973,
+            "GSL": 0.5967985595043719
+          },
+          "along_total_m_s": 0.9393493984150624,
+          "along_OFAM3_mean_m_s": 0.6198994052643236
+        },
+        {
+          "target_lon_lat": [
+            153.29307351054587,
+            -31.962254103351295
+          ],
+          "sampled_lon_lat": [
+            153.2,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            481
+          ],
+          "nearest_cell_distance_km": 9.741602405241526,
+          "source_values": {
+            "UCUR": -0.4626676636198556,
+            "VCUR": -1.1066180397662246,
+            "UCUR_MEAN": -0.14115026017426335,
+            "VCUR_MEAN": -0.6486808172981551,
+            "GSL": 0.45351197106801155
+          },
+          "along_total_m_s": 1.1787270818375457,
+          "along_OFAM3_mean_m_s": 0.663853710524123
+        },
+        {
+          "target_lon_lat": [
+            153.08631700202488,
+            -31.924170999113386
+          ],
+          "sampled_lon_lat": [
+            153.0,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            480
+          ],
+          "nearest_cell_distance_km": 11.716737770072589,
+          "source_values": {
+            "UCUR": -0.4637358277509041,
+            "VCUR": -1.0208597195306182,
+            "UCUR_MEAN": -0.13901393191216638,
+            "VCUR_MEAN": -0.4440510887644393,
+            "GSL": 0.29221918727969115
+          },
+          "along_total_m_s": 1.0950731416927106,
+          "along_OFAM3_mean_m_s": 0.46326919488754803
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 4,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 1.0950731416927106,
+        "sampled_surface_peak_index": 3,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 0,
+      "editorial_lon_lat": [
+        147.5,
+        -15
+      ],
+      "downstream_reference_bearing_degrees_true": 147.53052736112164,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          224,
+          226
+        ],
+        "longitude": [
+          451,
+          454
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            147.81349740955105,
+            -14.80570956021096
+          ],
+          "sampled_lon_lat": [
+            147.8,
+            -14.8
+          ],
+          "source_grid_index": [
+            226,
+            454
+          ],
+          "nearest_cell_distance_km": 1.5843724081649018,
+          "source_values": {
+            "UCUR": -0.25819052996200387,
+            "VCUR": -0.13245235225001145,
+            "UCUR_MEAN": -0.2716188790380419,
+            "VCUR_MEAN": -0.09613477179436314,
+            "GSL": 0.7606854561823814
+          },
+          "along_total_m_s": -0.026862547286836444,
+          "along_OFAM3_mean_m_s": -0.06471188792951679
+        },
+        {
+          "target_lon_lat": [
+            147.65681899224117,
+            -14.90290881549477
+          ],
+          "sampled_lon_lat": [
+            147.6,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            453
+          ],
+          "nearest_cell_distance_km": 12.360072298812456,
+          "source_values": {
+            "UCUR": -0.2009674515129782,
+            "VCUR": -0.12222849556711886,
+            "UCUR_MEAN": -0.2667358430103917,
+            "VCUR_MEAN": -0.09613477179436314,
+            "GSL": 0.7698411487342255
+          },
+          "along_total_m_s": -0.004767966735093582,
+          "along_OFAM3_mean_m_s": -0.06209042920482022
+        },
+        {
+          "target_lon_lat": [
+            147.5,
+            -14.999999999999998
+          ],
+          "sampled_lon_lat": [
+            147.4,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            452
+          ],
+          "nearest_cell_distance_km": 10.755048780230378,
+          "source_values": {
+            "UCUR": -0.2188210519890742,
+            "VCUR": -0.12894267010513788,
+            "UCUR_MEAN": -0.26459951474829474,
+            "VCUR_MEAN": -0.09430363328399433,
+            "GSL": 0.7683151999755848
+          },
+          "along_total_m_s": -0.00868807653092235,
+          "along_OFAM3_mean_m_s": -0.06248843155813172
+        },
+        {
+          "target_lon_lat": [
+            147.34303950396068,
+            -15.09698228319003
+          ],
+          "sampled_lon_lat": [
+            147.4,
+            -15.0
+          ],
+          "source_grid_index": [
+            225,
+            452
+          ],
+          "nearest_cell_distance_km": 12.355851237366902,
+          "source_values": {
+            "UCUR": -0.2188210519890742,
+            "VCUR": -0.12894267010513788,
+            "UCUR_MEAN": -0.26459951474829474,
+            "VCUR_MEAN": -0.09430363328399433,
+            "GSL": 0.7683151999755848
+          },
+          "along_total_m_s": -0.00868807653092235,
+          "along_OFAM3_mean_m_s": -0.06248843155813172
+        },
+        {
+          "target_lon_lat": [
+            147.18593657653193,
+            -15.193854832798582
+          ],
+          "sampled_lon_lat": [
+            147.2,
+            -15.200000000000003
+          ],
+          "source_grid_index": [
+            224,
+            451
+          ],
+          "nearest_cell_distance_km": 1.657070684256735,
+          "source_values": {
+            "UCUR": -0.19333770771977477,
+            "VCUR": -0.10971571574626524,
+            "UCUR_MEAN": -0.24613553476874248,
+            "VCUR_MEAN": -0.0978133154288679,
+            "GSL": 0.7762501335205164
+          },
+          "along_total_m_s": -0.011228689537758171,
+          "along_OFAM3_mean_m_s": -0.04961500054342076
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 4,
+        "status": "poleward_surface_component_not_corroborated_not_current_absence",
+        "surface_component_at_frozen_model_node_m_s": -0.011228689537758171,
+        "sampled_surface_peak_index": null,
+        "sampled_surface_peak_at_window_edge": null,
+        "unique_surface_grid_nodes": 4,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 1,
+      "editorial_lon_lat": [
+        149.5,
+        -18
+      ],
+      "downstream_reference_bearing_degrees_true": 142.17571426524933,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          209,
+          211
+        ],
+        "longitude": [
+          461,
+          464
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            149.7979700679684,
+            -17.778142774627867
+          ],
+          "sampled_lon_lat": [
+            149.8,
+            -17.8
+          ],
+          "source_grid_index": [
+            211,
+            464
+          ],
+          "nearest_cell_distance_km": 2.428669923870611,
+          "source_values": {
+            "UCUR": 0.04837257564890971,
+            "VCUR": -0.29618665405215694,
+            "UCUR_MEAN": -0.05783345795248195,
+            "VCUR_MEAN": -0.0933880640288099,
+            "GSL": 0.7245204706025972
+          },
+          "along_total_m_s": 0.26362049289506195,
+          "along_OFAM3_mean_m_s": 0.03830087822464942
+        },
+        {
+          "target_lon_lat": [
+            149.64907757405524,
+            -17.88912898743893
+          ],
+          "sampled_lon_lat": [
+            149.6,
+            -17.8
+          ],
+          "source_grid_index": [
+            211,
+            463
+          ],
+          "nearest_cell_distance_km": 11.152289500953904,
+          "source_values": {
+            "UCUR": 0.01709062609677567,
+            "VCUR": -0.27924862283124535,
+            "UCUR_MEAN": -0.0677521248836464,
+            "VCUR_MEAN": -0.07385591991820914,
+            "GSL": 0.704072757236812
+          },
+          "along_total_m_s": 0.23105782141113917,
+          "along_OFAM3_mean_m_s": 0.01678998996719868
+        },
+        {
+          "target_lon_lat": [
+            149.5,
+            -18.0
+          ],
+          "sampled_lon_lat": [
+            149.4,
+            -18.0
+          ],
+          "source_grid_index": [
+            210,
+            462
+          ],
+          "nearest_cell_distance_km": 10.590498145678588,
+          "source_values": {
+            "UCUR": -0.03280789831077473,
+            "VCUR": -0.1722796148505333,
+            "UCUR_MEAN": -0.07614484305617017,
+            "VCUR_MEAN": -0.07156699678024812,
+            "GSL": 0.6824042848641143
+          },
+          "along_total_m_s": 0.115963653872511,
+          "along_OFAM3_mean_m_s": 0.009835214086519786
+        },
+        {
+          "target_lon_lat": [
+            149.35073608071448,
+            -18.11075491226044
+          ],
+          "sampled_lon_lat": [
+            149.4,
+            -18.200000000000003
+          ],
+          "source_grid_index": [
+            209,
+            462
+          ],
+          "nearest_cell_distance_km": 11.168886118291283,
+          "source_values": {
+            "UCUR": -0.08270642271832512,
+            "VCUR": -0.14084507042253522,
+            "UCUR_MEAN": -0.0730929455388888,
+            "VCUR_MEAN": -0.08163825858727664,
+            "GSL": 0.6808783361054735
+          },
+          "along_total_m_s": 0.06053379282164101,
+          "along_OFAM3_mean_m_s": 0.01966200643998004
+        },
+        {
+          "target_lon_lat": [
+            149.20128455075775,
+            -18.221392821256337
+          ],
+          "sampled_lon_lat": [
+            149.2,
+            -18.200000000000003
+          ],
+          "source_grid_index": [
+            209,
+            461
+          ],
+          "nearest_cell_distance_km": 2.371712944269174,
+          "source_values": {
+            "UCUR": -0.09888147955991637,
+            "VCUR": -0.06286908885599622,
+            "UCUR_MEAN": -0.05493415531106465,
+            "VCUR_MEAN": -0.09842369493232417,
+            "GSL": 0.6804205514778814
+          },
+          "along_total_m_s": -0.010978279794782483,
+          "along_OFAM3_mean_m_s": 0.04405647257117119
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 1,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.23105782141113917,
+        "sampled_surface_peak_index": 0,
+        "sampled_surface_peak_at_window_edge": true,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 2,
+      "editorial_lon_lat": [
+        152.5,
+        -21
+      ],
+      "downstream_reference_bearing_degrees_true": 145.6249158532918,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          194,
+          196
+        ],
+        "longitude": [
+          476,
+          479
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            152.8171062677554,
+            -20.795720354705658
+          ],
+          "sampled_lon_lat": [
+            152.8,
+            -20.8
+          ],
+          "source_grid_index": [
+            196,
+            479
+          ],
+          "nearest_cell_distance_km": 1.8428814904128608,
+          "source_values": {
+            "UCUR": -0.03738574458669678,
+            "VCUR": 0.005188225779378329,
+            "UCUR_MEAN": 0.4239085651503822,
+            "VCUR_MEAN": -0.32472189583873773,
+            "GSL": 0.583827995055926
+          },
+          "along_total_m_s": -0.025390445023622345,
+          "along_OFAM3_mean_m_s": 0.5073543986661291
+        },
+        {
+          "target_lon_lat": [
+            152.6586604242157,
+            -20.897934323175214
+          ],
+          "sampled_lon_lat": [
+            152.6,
+            -20.8
+          ],
+          "source_grid_index": [
+            196,
+            478
+          ],
+          "nearest_cell_distance_km": 12.443399880321914,
+          "source_values": {
+            "UCUR": 0.07141440190438406,
+            "VCUR": -0.047609601269589366,
+            "UCUR_MEAN": 0.4139898982192178,
+            "VCUR_MEAN": -0.2542230631895381,
+            "GSL": 0.5998504570216532
+          },
+          "along_total_m_s": 0.07961617033476702,
+          "along_OFAM3_mean_m_s": 0.4435673852573931
+        },
+        {
+          "target_lon_lat": [
+            152.5,
+            -21.0
+          ],
+          "sampled_lon_lat": [
+            152.4,
+            -21.0
+          ],
+          "source_grid_index": [
+            195,
+            477
+          ],
+          "nearest_cell_distance_km": 10.39703995238935,
+          "source_values": {
+            "UCUR": -0.0875894587459753,
+            "VCUR": -0.07995971495277189,
+            "UCUR_MEAN": 0.1335205163810599,
+            "VCUR_MEAN": -0.0711092121526559,
+            "GSL": 0.5943570414905468
+          },
+          "along_total_m_s": 0.016541757457825636,
+          "along_OFAM3_mean_m_s": 0.13407740577580923
+        },
+        {
+          "target_lon_lat": [
+            152.34112386748077,
+            -21.101916398877748
+          ],
+          "sampled_lon_lat": [
+            152.4,
+            -21.200000000000003
+          ],
+          "source_grid_index": [
+            194,
+            477
+          ],
+          "nearest_cell_distance_km": 12.463110211303423,
+          "source_values": {
+            "UCUR": -0.1869287229334839,
+            "VCUR": -0.04318434986953138,
+            "UCUR_MEAN": -0.014954297834678712,
+            "VCUR_MEAN": 0.016632841469183465,
+            "GSL": 0.6035127340423908
+          },
+          "along_total_m_s": -0.06989888190809179,
+          "along_OFAM3_mean_m_s": -0.022171385387453134
+        },
+        {
+          "target_lon_lat": [
+            152.18203090077685,
+            -21.20368253049798
+          ],
+          "sampled_lon_lat": [
+            152.2,
+            -21.200000000000003
+          ],
+          "source_grid_index": [
+            194,
+            476
+          ],
+          "nearest_cell_distance_km": 1.9097632594988483,
+          "source_values": {
+            "UCUR": -0.1312315932430989,
+            "VCUR": -0.12894267010513788,
+            "UCUR_MEAN": 0.010376451558756657,
+            "VCUR_MEAN": -0.04852517052477378,
+            "GSL": 0.5989348877664687
+          },
+          "along_total_m_s": 0.0323295811254905,
+          "along_OFAM3_mean_m_s": 0.04590932025497814
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 0,
+        "status": "poleward_surface_component_not_corroborated_not_current_absence",
+        "surface_component_at_frozen_model_node_m_s": -0.025390445023622345,
+        "sampled_surface_peak_index": 1,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 3,
+      "editorial_lon_lat": [
+        154,
+        -24
+      ],
+      "downstream_reference_bearing_degrees_true": 167.3643660212117,
+      "frozen_model_horizontal_selection_status": "edge_maximum_axis_unresolved",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          180,
+          180
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.38335795383622,
+            -23.920519606732928
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            487
+          ],
+          "nearest_cell_distance_km": 8.96454721552462,
+          "source_values": {
+            "UCUR": -0.15381563487098104,
+            "VCUR": -0.07690781743549052,
+            "UCUR_MEAN": -0.0904887613873926,
+            "VCUR_MEAN": -0.1355042497672928,
+            "GSL": 0.6569209405948149
+          },
+          "along_total_m_s": 0.041397986165008956,
+          "along_OFAM3_mean_m_s": 0.11242802899512118
+        },
+        {
+          "target_lon_lat": [
+            154.19173772830828,
+            -23.960379562491006
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            486
+          ],
+          "nearest_cell_distance_km": 4.468106521988303,
+          "source_values": {
+            "UCUR": -0.1684647429539316,
+            "VCUR": -0.15076373735369966,
+            "UCUR_MEAN": -0.073550730166481,
+            "VCUR_MEAN": -0.1844872049196588,
+            "GSL": 0.6495963865533395
+          },
+          "along_total_m_s": 0.11026068780868283,
+          "along_OFAM3_mean_m_s": 0.16392985811401434
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -24.0
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            485
+          ],
+          "nearest_cell_distance_km": 0.0,
+          "source_values": {
+            "UCUR": -0.184944989547251,
+            "VCUR": -0.22278851876154,
+            "UCUR_MEAN": -0.054781560435200584,
+            "VCUR_MEAN": -0.2410999038652282,
+            "GSL": 0.634947278470389
+          },
+          "along_total_m_s": 0.17693603763634724,
+          "along_OFAM3_mean_m_s": 0.2232772073498246
+        },
+        {
+          "target_lon_lat": [
+            153.808145188284,
+            -24.039380330357307
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            484
+          ],
+          "nearest_cell_distance_km": 4.43972551087064,
+          "source_values": {
+            "UCUR": -0.19211694871286222,
+            "VCUR": -0.3039689927212244,
+            "UCUR_MEAN": -0.03204492393145438,
+            "VCUR_MEAN": -0.28886210001068163,
+            "GSL": 0.6119054522149147
+          },
+          "along_total_m_s": 0.2545815266962463,
+          "along_OFAM3_mean_m_s": 0.274856288925333
+        },
+        {
+          "target_lon_lat": [
+            153.61617371896952,
+            -24.078519967077177
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -24.0
+          ],
+          "source_grid_index": [
+            180,
+            483
+          ],
+          "nearest_cell_distance_km": 8.851023456514664,
+          "source_values": {
+            "UCUR": -0.17166923534707704,
+            "VCUR": -0.3805716204049868,
+            "UCUR_MEAN": -0.007629743793203424,
+            "VCUR_MEAN": -0.3279263882318832,
+            "GSL": 0.5786397692765477
+          },
+          "along_total_m_s": 0.33380184832766857,
+          "along_OFAM3_mean_m_s": 0.31831529972354156
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 4,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.33380184832766857,
+        "sampled_surface_peak_index": 4,
+        "sampled_surface_peak_at_window_edge": true,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 4,
+      "editorial_lon_lat": [
+        154,
+        -27
+      ],
+      "downstream_reference_bearing_degrees_true": 180.0,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          165,
+          165
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.4030014436176,
+            -26.99942362368063
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            487
+          ],
+          "nearest_cell_distance_km": 0.3046773382064757,
+          "source_values": {
+            "UCUR": -0.04272656524193918,
+            "VCUR": -0.23469091907893733,
+            "UCUR_MEAN": -0.019532144110600766,
+            "VCUR_MEAN": -0.34867929134939646,
+            "GSL": 0.6271649398013215
+          },
+          "along_total_m_s": 0.23469091907893733,
+          "along_OFAM3_mean_m_s": 0.34867929134939646
+        },
+        {
+          "target_lon_lat": [
+            154.2015012354678,
+            -26.999855905293476
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            486
+          ],
+          "nearest_cell_distance_km": 0.14985802089267902,
+          "source_values": {
+            "UCUR": -0.010681641310484795,
+            "VCUR": -0.30854683899714647,
+            "UCUR_MEAN": -0.033570872690095066,
+            "VCUR_MEAN": -0.5093616956342606,
+            "GSL": 0.5969511543802359
+          },
+          "along_total_m_s": 0.30854683899714647,
+          "along_OFAM3_mean_m_s": 0.5093616956342606
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -26.999999999999996
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            485
+          ],
+          "nearest_cell_distance_km": 0.0,
+          "source_values": {
+            "UCUR": -0.01907435948300856,
+            "VCUR": -0.4673981047716418,
+            "UCUR_MEAN": -0.05935940671112264,
+            "VCUR_MEAN": -0.7039201623609479,
+            "GSL": 0.5586498405383548
+          },
+          "along_total_m_s": 0.4673981047716418,
+          "along_OFAM3_mean_m_s": 0.7039201623609479
+        },
+        {
+          "target_lon_lat": [
+            153.7984987645322,
+            -26.999855905293476
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            484
+          ],
+          "nearest_cell_distance_km": 0.14985802089267902,
+          "source_values": {
+            "UCUR": -0.027467077655532326,
+            "VCUR": -0.40407123128805333,
+            "UCUR_MEAN": -0.06119054522149146,
+            "VCUR_MEAN": -0.5874902720766637,
+            "GSL": 0.5137869470343186
+          },
+          "along_total_m_s": 0.40407123128805333,
+          "along_OFAM3_mean_m_s": 0.5874902720766637
+        },
+        {
+          "target_lon_lat": [
+            153.5969985563824,
+            -26.99942362368063
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -27.0
+          ],
+          "source_grid_index": [
+            165,
+            483
+          ],
+          "nearest_cell_distance_km": 0.3046773382064757,
+          "source_values": {
+            "UCUR": -0.0025941128896891643,
+            "VCUR": -0.1829612561610181,
+            "UCUR_MEAN": -0.01312315932430989,
+            "VCUR_MEAN": -0.25880090946546014,
+            "GSL": 0.476858987075214
+          },
+          "along_total_m_s": 0.1829612561610181,
+          "along_OFAM3_mean_m_s": 0.25880090946546014
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 1,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.30854683899714647,
+        "sampled_surface_peak_index": 2,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 5,
+      "editorial_lon_lat": [
+        154,
+        -30
+      ],
+      "downstream_reference_bearing_degrees_true": 184.87784107443915,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          150,
+          150
+        ],
+        "longitude": [
+          483,
+          487
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            154.41319061346735,
+            -30.03003433609312
+          ],
+          "sampled_lon_lat": [
+            154.4,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            487
+          ],
+          "nearest_cell_distance_km": 3.5642852898816435,
+          "source_values": {
+            "UCUR": -0.12192330581539072,
+            "VCUR": 0.25666458120336316,
+            "UCUR_MEAN": -0.06027497596630705,
+            "VCUR_MEAN": -0.3300627164939801,
+            "GSL": 0.5675003433384707
+          },
+          "along_total_m_s": -0.24536767606675827,
+          "along_OFAM3_mean_m_s": 0.3339925906273739
+        },
+        {
+          "target_lon_lat": [
+            154.20656418233548,
+            -30.015179332939457
+          ],
+          "sampled_lon_lat": [
+            154.2,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            486
+          ],
+          "nearest_cell_distance_km": 1.7979008566562313,
+          "source_values": {
+            "UCUR": -0.15900386065035935,
+            "VCUR": -0.05600231944211313,
+            "UCUR_MEAN": -0.07431370454580136,
+            "VCUR_MEAN": -0.478995315337311,
+            "GSL": 0.5862695130697512
+          },
+          "along_total_m_s": 0.0693198435291496,
+          "along_OFAM3_mean_m_s": 0.483579529104671
+        },
+        {
+          "target_lon_lat": [
+            154.0,
+            -29.99999999999999
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            485
+          ],
+          "nearest_cell_distance_km": 7.069288649822941e-13,
+          "source_values": {
+            "UCUR": -0.1675491736987472,
+            "VCUR": -0.38865914882578245,
+            "UCUR_MEAN": -0.12512779820853615,
+            "VCUR_MEAN": -0.6724856179329498,
+            "GSL": 0.5566661071521218
+          },
+          "along_total_m_s": 0.40149849665703685,
+          "along_OFAM3_mean_m_s": 0.6806898622984937
+        },
+        {
+          "target_lon_lat": [
+            153.7934993519199,
+            -29.98449663177506
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            484
+          ],
+          "nearest_cell_distance_km": 1.8294813361724738,
+          "source_values": {
+            "UCUR": -0.15152671173302001,
+            "VCUR": -0.5053942288617949,
+            "UCUR_MEAN": -0.1786885996368242,
+            "VCUR_MEAN": -0.7538186867684983,
+            "GSL": 0.4985274594479117
+          },
+          "along_total_m_s": 0.516448376837607,
+          "along_OFAM3_mean_m_s": 0.7662827233936503
+        },
+        {
+          "target_lon_lat": [
+            153.58706351864274,
+            -29.9686695287757
+          ],
+          "sampled_lon_lat": [
+            153.6,
+            -30.0
+          ],
+          "source_grid_index": [
+            150,
+            483
+          ],
+          "nearest_cell_distance_km": 3.6906040283351227,
+          "source_values": {
+            "UCUR": -0.0701936428974715,
+            "VCUR": -0.13474127538797248,
+            "UCUR_MEAN": -0.13489387026383654,
+            "VCUR_MEAN": -0.40315566203286896,
+            "GSL": 0.45198602230937085
+          },
+          "along_total_m_s": 0.1402219536709675,
+          "along_OFAM3_mean_m_s": 0.41316577503263285
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 3,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.516448376837607,
+        "sampled_surface_peak_index": 3,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    },
+    {
+      "source_date": "2022-07-15",
+      "route_vertex_index": 6,
+      "editorial_lon_lat": [
+        153.5,
+        -32
+      ],
+      "downstream_reference_bearing_degrees_true": 192.0250833122172,
+      "frozen_model_horizontal_selection_status": "interior_sampled_maximum_not_validated_axis",
+      "source_hyperslab_indices_inclusive": {
+        "latitude": [
+          140,
+          140
+        ],
+        "longitude": [
+          480,
+          485
+        ]
+      },
+      "profiles_at_frozen_targets": [
+        {
+          "target_lon_lat": [
+            153.91435839912762,
+            -32.07447711807985
+          ],
+          "sampled_lon_lat": [
+            154.0,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            485
+          ],
+          "nearest_cell_distance_km": 11.560294529901123,
+          "source_values": {
+            "UCUR": -0.30045931057635084,
+            "VCUR": -0.04013245235225001,
+            "UCUR_MEAN": -0.09811850518059603,
+            "VCUR_MEAN": -0.3065631056109136,
+            "GSL": 0.6039705186699831
+          },
+          "along_total_m_s": 0.10184946521607474,
+          "along_OFAM3_mean_m_s": 0.32027803247356834
+        },
+        {
+          "target_lon_lat": [
+            153.70709534296358,
+            -32.03740792468582
+          ],
+          "sampled_lon_lat": [
+            153.8,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            484
+          ],
+          "nearest_cell_distance_km": 9.707900671261827,
+          "source_values": {
+            "UCUR": -0.26215799673446966,
+            "VCUR": -0.30808905436955425,
+            "UCUR_MEAN": -0.09933926418750859,
+            "VCUR_MEAN": -0.38713320006714175,
+            "GSL": 0.5765034410144507
+          },
+          "along_total_m_s": 0.3559464662760022,
+          "along_OFAM3_mean_m_s": 0.39933446873967393
+        },
+        {
+          "target_lon_lat": [
+            153.5,
+            -32.0
+          ],
+          "sampled_lon_lat": [
+            153.4,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            482
+          ],
+          "nearest_cell_distance_km": 9.449313845719253,
+          "source_values": {
+            "UCUR": -0.17685746112645537,
+            "VCUR": -0.4141424930950819,
+            "UCUR_MEAN": -0.11642989028428426,
+            "VCUR_MEAN": -0.6090061495734973,
+            "GSL": 0.4484763401644973
+          },
+          "along_total_m_s": 0.441901215638922,
+          "along_OFAM3_mean_m_s": 0.6198994052643236
+        },
+        {
+          "target_lon_lat": [
+            153.29307351054587,
+            -31.962254103351295
+          ],
+          "sampled_lon_lat": [
+            153.2,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            481
+          ],
+          "nearest_cell_distance_km": 9.741602405241526,
+          "source_values": {
+            "UCUR": -0.13306273175346772,
+            "VCUR": -0.2844368486106236,
+            "UCUR_MEAN": -0.14115026017426335,
+            "VCUR_MEAN": -0.6486808172981551,
+            "GSL": 0.4048342056673737
+          },
+          "along_total_m_s": 0.3059175796421299,
+          "along_OFAM3_mean_m_s": 0.663853710524123
+        },
+        {
+          "target_lon_lat": [
+            153.08631700202488,
+            -31.924170999113386
+          ],
+          "sampled_lon_lat": [
+            153.0,
+            -32.0
+          ],
+          "source_grid_index": [
+            140,
+            480
+          ],
+          "nearest_cell_distance_km": 11.716737770072589,
+          "source_values": {
+            "UCUR": -0.0706514275250637,
+            "VCUR": -0.039979857476385945,
+            "UCUR_MEAN": -0.13901393191216638,
+            "VCUR_MEAN": -0.4440510887644393,
+            "GSL": 0.3880487693223262
+          },
+          "along_total_m_s": 0.05382206959801397,
+          "along_OFAM3_mean_m_s": 0.46326919488754803
+        }
+      ],
+      "screen": {
+        "frozen_model_selected_profile_index": 3,
+        "status": "poleward_surface_component_supported_not_current_identity",
+        "surface_component_at_frozen_model_node_m_s": 0.3059175796421299,
+        "sampled_surface_peak_index": 2,
+        "sampled_surface_peak_at_window_edge": false,
+        "unique_surface_grid_nodes": 5,
+        "named_current_axis_validated": false,
+        "physical_depth_validated": false
+      }
+    }
+  ],
+  "counts": {
+    "surface_route_cases": 14,
+    "surface_target_samples": 70,
+    "decoded_field_scalars_retrieved": 570,
+    "poleward_component_supported_at_model_node": 10,
+    "poleward_component_not_corroborated_at_model_node": 4,
+    "missing_surface_support_at_model_node": 0,
+    "named_current_axes_validated": 0,
+    "whole_route_physical_depth_profiles": 0
+  },
+  "input_sha256": {
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e",
+    "research/current-depth-register-source-review-v46.json": "5e8999716630d97688083ab841c0cca0ea22d00886e6b04dd01727571de6ce72",
+    "research/eac-surface-route-screen-operator-v1.json": "ea5b86d607de54e57d1dd773e2c935e3dca6db5ff1f1c6615c510db526330d31",
+    "analysis/acquire_eac_surface_route_screen_v1.py": "99a034441970f09549915370eb0684d5340ac6aad6d9aa5f9644385b65edaab1"
+  },
+  "statistically_independent_validation_claimed": false,
+  "wire_byte_hash_claimed": false,
+  "eligibility": {
+    "named_current_axis_validation": false,
+    "physical_current_depth_validation": false,
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "full_goal_complete": false
+}

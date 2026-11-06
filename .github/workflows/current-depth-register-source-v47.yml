@@ -1,0 +1,96 @@
+name: Current depth source and route review v47
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-register-source-v47.yml
+      - analysis/build_current_depth_register_v47.py
+      - analysis/test_current_depth_register_v47.py
+      - research/current-depth-rules-v47.json
+      - research/current-depth-source-facts-v47.json
+      - research/current-depth-register-v47.json
+      - research/current-depth-register-v47.csv
+      - research/current-depth-member-index-v6.json
+      - research/nwasc-core-geometry-source-facts-v1.json
+      - research/source-data/leeuwin-seasonal-depth-v1/sensitivity-v1.json
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_register_v*.py
+            analysis/build_atlantic_cruise_widths.py
+            analysis/test_current_depth_register_v47.py
+            analysis/build_current_depth_route_projections_v*.py
+            analysis/test_current_depth_route_projections_v*.py
+            analysis/convert_canary_pies_depth_v1.py
+            analysis/test_canary_pies_depth_conversion_v1.py
+            research/canary-pies-*.json
+            analysis/derive_eac_chandler_seasonal_depth_v1.py
+            analysis/test_eac_chandler_seasonal_depth_v1.py
+            research/eac-chandler-*.json
+            research/source-data/eac-chandler-seasonal-depth-v1/candidate.json
+            analysis/derive_agulhas_chandler_seasonal_depth_v1.py
+            analysis/test_agulhas_chandler_seasonal_depth_v1.py
+            analysis/build_agulhas_individual_depth_distributions_v1.py
+            analysis/test_agulhas_individual_depth_distributions_v1.py
+            research/agulhas-chandler-*.json
+            research/source-data/agulhas-chandler-seasonal-depth-v1/candidate.json
+            analysis/derive_kuroshio_chandler_seasonal_depth_v1.py
+            analysis/test_kuroshio_chandler_seasonal_depth_v1.py
+            research/kuroshio-chandler-*.json
+            research/source-data/kuroshio-chandler-seasonal-depth-v1/candidate.json
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/acquire_eac_mooring_depth_benchmark_v1.py
+            analysis/test_eac_mooring_depth_benchmark_v1.py
+            research/eac-mooring-depth-benchmark-*.json
+            research/source-data/eac-mooring-depth-benchmark-v1/candidate.json
+            analysis/acquire_florida_spray_seasonal_depth_v1.py
+            analysis/test_florida_spray_seasonal_depth_v1.py
+            research/florida-spray-seasonal-depth-*.json
+            research/source-data/florida-spray-seasonal-depth-v1/candidate.json
+            research/current-depth-*.json
+            research/leeuwin-*.json
+            research/nwasc-core-geometry-source-facts-v1.json
+            research/source-data/leeuwin-seasonal-depth-v1/*.json
+            research/caribbean-current-depth-*.json
+            research/current-depth-register-v*.csv
+            research/current-depth-route-projections-v*.csv
+            research/ocean-current-reference-path-candidates.json
+            research/somali-winter-reference-path-candidate.json
+            research/agulhas-reference-path-candidate.json
+            research/east-australian-reference-path-candidate.json
+            research/current-regional-core-volume-scenarios-v*.json
+            research/current-regional-core-volume-scenarios-v*.csv
+            research/current-length-estimate-register-v1.json
+            research/current-length-family-conventions-v1.json
+            research/current-length-reference-extents-v1.json
+            research/current-length-reference-extents-v4.json
+            research/current-length-reference-extents-v5.json
+            research/ocean-current-width-inventory.json
+            research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json
+            research/source-data/cainzos-atlantic-2023/table-*.xlsx
+            research/source-data/cainzos-atlantic-2023/article.xml
+            research/source-data/li-neuc-2018/journal-article.xml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned reference geometry dependency
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2 gsw==3.6.23 numpy==2.4.1 netCDF4==1.7.4
+      - name: Verify Florida fitted phases supported reach bounds and relative decay depths
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -c "import sys,unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite([loader.discover('analysis',pattern='test_current_depth_register_v47.py'),loader.discover('analysis',pattern='test_canary_pies_depth_conversion_v1.py'),loader.discover('analysis',pattern='test_eac_chandler_seasonal_depth_v1.py'),loader.discover('analysis',pattern='test_agulhas_chandler_seasonal_depth_v1.py'),loader.discover('analysis',pattern='test_agulhas_individual_depth_distributions_v1.py'),loader.discover('analysis',pattern='test_kuroshio_chandler_seasonal_depth_v1.py'),loader.discover('analysis',pattern='test_eac_connected_layer_thickness_v1.py'),loader.discover('analysis',pattern='test_eac_mooring_depth_benchmark_v1.py'),loader.discover('analysis',pattern='test_florida_spray_seasonal_depth_v1.py')]); result=unittest.TextTestRunner(verbosity=2).run(suite); sys.exit(not result.wasSuccessful())"

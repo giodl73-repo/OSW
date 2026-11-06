@@ -1,0 +1,25 @@
+{
+  "schema": "osw.south-java-saved-wasm-execution-review.v1",
+  "status": "ABI_HARNESS_SIZE_GUARD_FAILED",
+  "run_id": 40147475639,
+  "run_attempt": 2,
+  "job_id": 121032047510,
+  "source_commit": "70fd796af6e905ae53a43a679d3b5944fda666c7",
+  "artifact_id": 12581239180,
+  "artifact_bytes": 580,
+  "artifact_sha256": "e438565b7b7e0a5c69c4fc52cb8dfa84adedf9ecb3a7373ac834f0ebfcb79f91",
+  "artifact_members": [
+    "failure.json"
+  ],
+  "executed_preflight_sha256": "4e6c7876974b6a616cb09eb5cea3a86628947237a6b21a932494bc180ea52d48",
+  "native_candidate_reproduction_passed": true,
+  "native_exact_queries_passed": 11,
+  "node_stderr": "AssertionError [ERR_ASSERTION]: Unexpected ABI result size",
+  "exact_failed_abi_function_and_length_retained": false,
+  "wasm_query_count_known": false,
+  "saved_wasm_compatibility_verified": false,
+  "execution_disabled": true,
+  "installed_assets_modified": false,
+  "new_physical_dimensions_admitted": 0,
+  "correction": "Separate 4MiB initialization metadata from 128KiB query responses; compare initialization to native too; retain bounded Node stderr and ABI function/length in subsequent errors. Keep candidate, scientific inputs, Rust and installed engine unchanged."
+}

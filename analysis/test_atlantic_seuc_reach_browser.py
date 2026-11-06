@@ -1,4 +1,5 @@
 """Verify subsurface study truncation, width rejection and inline atlas navigation."""
+import os
 import hashlib,json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -7,7 +8,7 @@ def main():
     ledger=Path('research/ocean-current-almanac.json')
     assert hashlib.sha256(ledger.read_bytes()).hexdigest()=='6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e'
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
@@ -23,7 +24,8 @@ def main():
         assert card.locator('.route-map').is_visible()
         assert 'surface drift' in card.inner_text()
         card.locator('.route-map').screenshot(path='figures/atlantic-seuc-reach-reference-path-review.png')
-        assert page.locator('#reference-route-rows tr').count()==37
+        catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_bytes())
+        assert page.locator('#reference-route-rows tr').count()==len(catalog['reference_route_length_order'])
         assert page.locator('#reference-route-rows a[href="#atlantic-seuc-reach-reference-path-candidate"]').count()==0
         card.get_by_role('link',name='Back to global current map').click()
         assert page.url.endswith('#route-atlas')
@@ -31,11 +33,11 @@ def main():
         row=next(r for r in json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))['entries'] if r['id']=='current:atlantic-south-equatorial-undercurrent')
         assert row['capabilities']['reference_route']==1
         assert row['capabilities']['scope_notes']==1
-        assert row['capabilities']['scoped_width']==0
+        assert row['capabilities']['scoped_width']==1
         assert row['latest_observation_date'] is None
         width=json.loads(Path('research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
         decision=next(r for r in width['current_decisions'] if r['current_id']=='atlantic-south-equatorial-undercurrent')
-        assert decision['width_decision']=='sources_reviewed_no_comparable_numeric_current_width'
+        assert decision['width_decision']=='scoped_width_evidence_present'
         assert decision['whole_current_width_km'] is None
         page.set_viewport_size({'width':320,'height':800})
         page.locator('#route-atlas-select').select_option('current:atlantic-south-equatorial-undercurrent')

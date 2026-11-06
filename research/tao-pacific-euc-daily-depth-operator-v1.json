@@ -1,0 +1,75 @@
+{
+  "schema": "osw.tao-pacific-euc-daily-depth-operator.v1",
+  "source_dataset": "pmelTaoDyAdcp",
+  "source_erddap_root": "https://data.pmel.noaa.gov/pmel/erddap/",
+  "source_context_methodology_url": "https://journals.ametsoc.org/view/journals/atot/40/12/JTECH-D-23-0013.1.xml",
+  "source_table_api_documentation_url": "https://data.pmel.noaa.gov/pmel/erddap/tabledap/documentation.html",
+  "nominal_longitudes_degrees_east": [
+    165,
+    190,
+    220,
+    250
+  ],
+  "nominal_latitude_degrees_north": 0,
+  "year": 2005,
+  "months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "days": [
+    14,
+    15,
+    16
+  ],
+  "primary_threshold_m_s": 0.1,
+  "threshold_contexts_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "core_search_depth_interval_m": [
+    50,
+    250
+  ],
+  "source_query_depth_interval_m": [
+    5,
+    350
+  ],
+  "vertical_original_row_subsampling": "orderByClosest(station,time,depth/10)",
+  "maximum_contiguous_returned_depth_gap_m": 15,
+  "quality_flags_accepted": [
+    1,
+    2
+  ],
+  "maximum_http_requests": 18,
+  "maximum_attempts_per_target": 1,
+  "maximum_request_seconds": 25,
+  "programme_deadline_seconds": 210,
+  "minimum_seconds_before_starting_request": 26,
+  "maximum_metadata_response_bytes": 200000,
+  "maximum_field_response_bytes": 50000,
+  "maximum_total_body_bytes": 1200000,
+  "maximum_profiles": 48,
+  "maximum_levels_per_profile": 40,
+  "maximum_rows_per_patch": 120,
+  "field_scalar_reserve": 11520,
+  "metadata_coordinate_scalar_reserve": 1000,
+  "global_scalar_reserve": 12520,
+  "global_scalar_cap": 250000,
+  "global_decoded_byte_cap": 7000000,
+  "maximum_output_chunk_bytes": 2400000,
+  "norKyst_programme_budget_unchanged": true,
+  "physical_current_thickness_eligible": false,
+  "volume_eligible": false,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    ".github/workflows/tao-pacific-euc-daily-depth-v1.yml": "a0e9a7842617338d16cf1c9447fafb1da19770ecc5b652a56a66bf095c8f6a27",
+    "analysis/collect_tao_pacific_euc_daily_depth_v1.py": "f6d062012851993c327b3edfb928645ba8eb486e3e602cd78ac8f70285d0ab26",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/test_tao_pacific_euc_daily_depth_v1.py": "df57cdc8c62c6acefcb61e561a9072e577dd4e427137140cdb6f8147ed1a38cf",
+    "plans/tao-pacific-euc-daily-depth-protocol-v1.md": "5171c4bae349c04e4d6a05f4689ed4b3e6f07f65efd869fe44357a772c6b7eab"
+  }
+}

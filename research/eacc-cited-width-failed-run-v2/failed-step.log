@@ -1,0 +1,51 @@
+delivery	Assemble indexed candidate, build once and verify parity	﻿2026-10-28T09:18:41.4254397Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4272980Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4273505Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python analysis/check_eacc_cited_width_delivery_v2.py engine^[[0m
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4291101Z shell: /usr/bin/bash -e {0}
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4291303Z env:
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4293526Z   GH_TOKEN: ***
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4293729Z   OSW_EACC_CITED_WIDTH_DELIVERY_V2: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4293950Z   CARGO_BUILD_JOBS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4294131Z   RUST_TEST_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4294312Z   OMP_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4294492Z   OPENBLAS_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4294675Z   MKL_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4294843Z   NUMEXPR_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4295026Z   PYTHONPATH: analysis
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:18:41.4295198Z ##[endgroup]
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1171448Z node:internal/modules/run_main:107
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1172016Z     triggerUncaughtException(
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1172399Z     ^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1172524Z 
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1172888Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1173267Z 
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1173389Z undefined !== '1'
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1173554Z 
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1173944Z     at file:///home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_parity_v1.mjs:10:8
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1174566Z     at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1175069Z     at async node:internal/modules/esm/loader:647:26
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1175653Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1176213Z   generatedMessage: true,
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1176488Z   code: 'ERR_ASSERTION',
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1176758Z   actual: undefined,
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1177017Z   expected: '1',
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1177267Z   operator: 'strictEqual',
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1177724Z   diff: 'simple'
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1177971Z }
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1178097Z 
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.1178205Z Node.js v24.22.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2383803Z Traceback (most recent call last):
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2384449Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v2.py", line 204, in <module>
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2384884Z     elif action=='engine':engine()
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2385127Z                           ^^^^^^^^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2385531Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v2.py", line 114, in engine
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2386339Z     parity('parent',ROOT/delivery.WASM,parent_path,fixture,OUT/'parent-speeds.json',delivery.PARENT_WASM)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2387044Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v2.py", line 97, in parity
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2388363Z     run(['node','--max-old-space-size=1536','analysis/check_eacc_cited_width_parity_v1.mjs',mode,str(wasm),str(payload),str(fixture),str(OUT/(mode+'-metadata.json')),str(output),wasm_sha])
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2389570Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v2.py", line 37, in run
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2390272Z     def run(args,**kwargs):return subprocess.run(args,cwd=ROOT,check=True,timeout=3600,**kwargs)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2390706Z                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2391054Z   File "/usr/lib/python3.12/subprocess.py", line 571, in run
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2391540Z     raise CalledProcessError(retcode, process.args,
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2394334Z subprocess.CalledProcessError: Command '['node', '--max-old-space-size=1536', 'analysis/check_eacc_cited_width_parity_v1.mjs', 'parent', '/home/runner/work/OSW/OSW/almanac/query-engine.wasm', '/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v2/parent.json', '/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v2/parent-speeds-fixture.json', '/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v2/parent-metadata.json', '/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v2/parent-speeds.json', '037b6cfcee4d21bff80443bc77e0ab12c797eccc419e4ff39665cb09441e0ee0']' returned non-zero exit status 1.
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:19:01.2586361Z ##[error]Process completed with exit code 1.

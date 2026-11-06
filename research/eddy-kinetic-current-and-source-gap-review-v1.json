@@ -1,0 +1,126 @@
+{
+  "schema": "osw.eddy-mooring-current-source-review.v1",
+  "status": "QUALIFIED_KINETIC_2000_INTERACTION_SITE_CURRENTS_VERIFIED",
+  "review_date": "2026-11-01",
+  "sources": {
+    "mckone-2007": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-135bee8132c157fa38a8bda511600626/pdf/GOVPUB-I-135bee8132c157fa38a8bda511600626.pdf",
+      "citation": "McKone, Walker and Weeks (2007), Full-Water Column Currents Near the Sigsbee Escarpment (91–92 degrees W Longitude) and Relationships with the Loop Current and Associated Warm- and Cold-Core Eddies, MMS 2007-056.",
+      "access": "Original government report acquired. PDF page 30 / printed page 20 actual pixels reviewed for the November WCE K interaction current diagnostics; native cm/s retained. Figure 11 date is context, not exact current sample time.",
+      "original": {
+        "bytes": 9973139,
+        "sha256": "4090f4086e68caee5ae23cacb2acefa1c6fe790ea6d6978631a878bfd60f57ca",
+        "pages": 107
+      },
+      "reviewed_page_png_sha256": {
+        "30": "575e23f8b3c7b4be0bbea17b0262731e289365ba5bb3752187aef3e83e01f6ab",
+        "31": "9f5618d0c3255f9cde954e3562c6386003ea8cc9a54c5540dc25b5ad8c73dcb9"
+      }
+    },
+    "hamilton-2003-k-alias": {
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc955365/m2/1/high_res_d/3032.pdf",
+      "citation": "Hamilton et al. (2003), Deepwater Observations in the Northern Gulf of Mexico from In-Situ Current Meters and PIES, Volume II: Technical Report, MMS 2003-049.",
+      "access": "Original government report acquired. PDF page 24 / printed page 14 actual pixels reviewed for the explicit Kinetic / Eddy K alias and 2000 phase history. This is alias context, not an independent measurement of the November LSU site currents.",
+      "original": {
+        "bytes": 14492455,
+        "sha256": "6dc38ce0b88aabeca1ca3a7bc5d9c1eb262b43a04059eed51d801da3a83bcb81",
+        "pages": 103
+      },
+      "reviewed_page_png_sha256": {
+        "24": "6b1b2c1a5c9891ae20ab21f7308b09ac60fed46effa026bf54382ca21f24ced5"
+      }
+    }
+  },
+  "source_case_association": {
+    "published_alias": "Kinetic / Eddy K",
+    "measurement_report_label": "WCE K",
+    "year": 2000,
+    "association_basis": [
+      "Explicit Kinetic (K) name in MMS 2003-049.",
+      "Both reports describe a weak 2000 anticyclone, summer mooring influence and subsequent interaction with the Loop Current/cyclones.",
+      "Shared regional event sequence includes Juggernaut/J before K and the 2001 major ring after K."
+    ],
+    "cross_report_case_association_verified": false,
+    "physical_crosswalk_verified": false,
+    "registry_source_number": 34,
+    "registry_initial_separation": "2000-06-18",
+    "date_conventions": "2003 report discusses a May precursor; 2007 report gives mid-June detachment. Neither convention is silently reconciled."
+  },
+  "accepted_diagnostics": [
+    {
+      "value_cm_s": 50,
+      "support": "near-surface reached value; exact depth unspecified"
+    },
+    {
+      "value_cm_s": 30,
+      "support": "local sampled maximum at 755 m"
+    }
+  ],
+  "event_context": "First two weeks of November 2000, LSU Sigsbee mooring between WCE K and a cyclone; source Figure 11 is labelled 3 November.",
+  "source_map_date_is_not_exact_current_sample_time": true,
+  "simultaneous_vertical_profile_inferred": false,
+  "raw_current_time_series_acquired": false,
+  "original_source_assets_republished": false,
+  "reviewed_size_gaps": [
+    {
+      "name": "Arnold / Slim Chance",
+      "source": "MMS 85-0094, Years 1 and 2 technical report",
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-9d33d31f952e689cd8176a24b799a4b8/pdf/GOVPUB-I-9d33d31f952e689cd8176a24b799a4b8.pdf",
+      "bytes": 14381042,
+      "sha256": "f6eefd6317e64d0f7b7174d65e9d102e0302249fffe2ff7f15cfb1f83c2e5c57",
+      "pages": 406,
+      "text_pages_reviewed": [
+        101,
+        192,
+        195,
+        249,
+        253
+      ],
+      "decision": "No supported Arnold alias found for its numeric historical ring sizes; leave them unassigned. Generic major-ring sizes are not individual estimates."
+    },
+    {
+      "name": "Nansen / Odessa",
+      "source": "MMS 2007-056",
+      "text_pages_reviewed": [
+        52,
+        53
+      ],
+      "source_map_page_visually_reviewed": 54,
+      "decision": "The report names Odessa in an N/O merger. No explicit Nansen alias established for N; merged footprint dimensions are not assigned to either individual."
+    },
+    {
+      "name": "Nautilus II",
+      "source": "Saenz-Avalos (2024), UABC MSc thesis, Distribucion y posible origen de hidrocarburos ... XIXIMI IV-VI (2015-2017)",
+      "url": "https://repositorioinstitucional.uabc.mx/server/api/core/bitstreams/7594d1f3-a8dd-493a-9bc1-28aaa1b26da1/content",
+      "bytes": 6156391,
+      "sha256": "14cdf509d2c52f789f7593a30ea7392ba1a1819c92dd4c45ba994320564eaca9",
+      "pages": 117,
+      "text_pages_reviewed": [
+        54,
+        55
+      ],
+      "source_pixels_pages_reviewed": [
+        55
+      ],
+      "decision": "Body names western Nautilus II, but Figure 6 groups Nautilus/Nautilus II and is modified from Pulster et al. 2020. Its shared contour is not assigned as an individual child width."
+    },
+    {
+      "name": "Nautilus II",
+      "source": "Linacre et al. (2019), DOI 10.1029/2019JC015103, indexed primary article",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JC015103",
+      "decision": "Figures 2 and 5 group Nautilus and Nautilus II. Shared hydrographic criteria and cruise averages do not supply an individual secondary measurement. Original PDF not acquired."
+    }
+  ],
+  "other_access_observations": [
+    "Haley et al. OCEANS 2023 original MIT PDF: normal HTTPS and HTTP requests timed out; no PDF accepted.",
+    "BOEM-hosted Sigsbee PDF local request returned HTTP 403; original obtained from GovInfo mirror."
+  ],
+  "measurements_not_admitted": [
+    "Generally below 20 cm/s in an earlier Kinetic phase is not a strict universal upper bound.",
+    "January 2001 60 cm/s is associated with mixed LC/LCFE activity, not isolated Kinetic motion.",
+    "Warm water through 600 m is not eddy thickness."
+  ],
+  "new_size_measurements": 0,
+  "runtime_installed": false,
+  "full_goal_complete": false
+}

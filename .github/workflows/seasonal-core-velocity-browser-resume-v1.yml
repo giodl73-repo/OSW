@@ -1,0 +1,92 @@
+name: Sequential saved-engine seasonal core browser review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/seasonal-core-velocity-browser-resume-request-v1.json
+      - .github/workflows/seasonal-core-velocity-browser-resume-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_CORE_VELOCITY_DELIVERY_V1: "1"
+  OSW_CORE_BROWSER_RESUME_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/seasonal-core-velocity-browser-resume-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/seasonal-core-velocity-browser-resume-request-v1.json').read_bytes())
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Lightweight source and preservation checks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_resume_seasonal_core_browser_v1.py' -v
+          taskset -c "$cpu" nice -n 15 node analysis/test_published_seasonal_core_velocities_ui_v3.mjs
+          taskset -c "$cpu" nice -n 15 node analysis/test_published_current_speeds_ui_v1.mjs
+          taskset -c "$cpu" nice -n 15 node analysis/test_published_current_speed_source_links_v1.mjs
+      - name: Install pinned browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - id: browser
+        name: Verify exact saved candidate and browser views without rebuilding
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_seasonal_core_browser_v1.py
+      - name: Retain browser evidence and exact engine metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seasonal-core-velocity-browser-resume-evidence-v1
+          path: |
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/browser-failure.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/browser.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/result.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/engine.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/source-engine-manifest.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/candidate-engine-manifest.json
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/*.png
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/*.geometry.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Retain exact browser-verified candidate
+        if: always() && steps.browser.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: seasonal-core-velocity-browser-verified-candidate-v1
+          path: |
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/artifact/**
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/engine.json
+          retention-days: 14

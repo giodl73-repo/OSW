@@ -1,0 +1,114 @@
+name: NEC Subarctic transport completion v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/nec-subarctic-depth-completion-v1.yml
+      - analysis/acquire_nec_subarctic_depth_completion_v1.py
+      - analysis/assemble_nec_subarctic_depth_completion_v1.py
+      - analysis/test_nec_subarctic_depth_completion_v1.py
+      - research/nec-subarctic-depth-completion-operator-v1.json
+      - research/nec-subarctic-depth-transport-recovery-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  complete:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_nec_subarctic_depth_completion_v1.py
+            analysis/assemble_nec_subarctic_depth_completion_v1.py
+            analysis/test_nec_subarctic_depth_completion_v1.py
+            research/nec-subarctic-depth-completion-operator-v1.json
+            research/nec-subarctic-depth-transport-recovery-v1.json
+            research/nec-subarctic-depth-sections-operator-v1.json
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_three_current_depth_sections_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            analysis/test_nec_subarctic_depth_sections_v1.py
+            research/qiu-pacific-nec-2015-source-facts-v1.json
+            research/pacific-nec-nominal-width-prepared-v1.json
+            research/atlantic-nec-stramma-2005-source-facts-v2.json
+            research/current-depth-source-facts-v13.json
+            research/current-depth-source-facts-v27.json
+            research/current-measurement-scopes/north-equatorial.json
+            research/aleutian-reach-reference-path-candidate.json
+            research/aleutian-alaskan-stream-naming-scope-audit.json
+            research/zonal-current-depth-sections-operator-v1.json
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-140w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-150w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-160w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-175e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-27w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-35w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-45w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-55w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-130e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-140e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-150e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-160e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-175e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-27w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-35w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-45w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-55w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-130e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-140e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-150e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-160e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-180e.json
+      - uses: actions/download-artifact@v4
+        if: hashFiles('research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-140w.json') == ''
+        with:
+          name: nec-subarctic-depth-sections-v1
+          run-id: 41503490696
+          github-token: ${{ github.token }}
+          path: research/source-data/nec-subarctic-depth-sections-v1/
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Audit recovered bytes retrieve only missing five sections and assemble on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_three_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_zonal_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_nec_subarctic_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_nec_subarctic_depth_completion_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_nec_subarctic_depth_completion_v1.py
+          taskset -c "$cpu" nice -n 15 python analysis/assemble_nec_subarctic_depth_completion_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nec-subarctic-completed-depth-sections-v1
+          path: |
+            nec-subarctic-depth-sections-v1/
+            nec-subarctic-depth-completion-v1/
+          retention-days: 7

@@ -1,0 +1,124 @@
+{
+  "schema": "osw.current-depth-mediterranean-paired-depth-source-review.v1",
+  "status": "PASS_72_CASES_FOUR_DATES_58_FINITE_5_CENSORED_ANCHORS_9_AXIS_GAPS",
+  "source_commit": "9a87187e8740ec1e76db8fb843823a447e99c0da",
+  "producer_run_id": 42110627251,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42110627251",
+  "cloud_semantic_tests_passed": 20,
+  "actual_complete_72_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13453811220,
+    "bytes": 185755,
+    "sha256": "01fd21494b0dacba6eaabbb14a64419d00c021eab944a85a8235301a16e4c7e4",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/mediterranean-paired-depth-v1.json": {
+      "bytes": 2062752,
+      "sha256": "b62674acd92577e5f409752473656b87c5d2c51356e941dba0b7b2551da5830e"
+    },
+    "research/mediterranean-paired-depth-v1.csv": {
+      "bytes": 117631,
+      "sha256": "7fe84780fc40e59de419c96fb7893b1e388e555c56c3a8a87c28c05b26ef51ce"
+    },
+    "research/mediterranean-depth-anchors-v1.csv": {
+      "bytes": 21693,
+      "sha256": "eae26e8f0a46016e4dc4fb32417d31b235f39c2da437fc393f789f3470a04b2c"
+    },
+    "research/mediterranean-paired-depth-query-ledger-v1.json": {
+      "bytes": 1503,
+      "sha256": "af11ae0a4ea7272e7e2db3829cf68379938713bff06fd777dc4688309ce78d78"
+    }
+  },
+  "cloud_reported_counts": {
+    "source_cases": 72,
+    "original_unresolved_cases": 9,
+    "cases_with_integrable_partial_geometry": 63,
+    "retained_column_descriptors": 2838,
+    "retained_vertical_runs": 1239,
+    "finite_paired_column_runs": 1173,
+    "censored_runs_with_minimum_support": 66,
+    "conditional_strip_patches": 928,
+    "strips_without_integrable_geometry": 1891,
+    "rejected_ambiguous_links": 195,
+    "original_axis_proxy_anchors": 63,
+    "finite_paired_axis_anchors": 58,
+    "censored_axis_anchors_with_minimum_support": 5,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:balearic": {
+      "cases": 16,
+      "finite_paired_anchors": 11,
+      "censored_anchors_with_minimum_support": 1,
+      "axis_gaps": 4,
+      "primary_threshold_m_s": 0.05,
+      "component_bearing_degrees_true": 60
+    },
+    "current:ligurian": {
+      "cases": 16,
+      "finite_paired_anchors": 16,
+      "censored_anchors_with_minimum_support": 0,
+      "axis_gaps": 0,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 240
+    },
+    "current:northern-mediterranean": {
+      "cases": 20,
+      "finite_paired_anchors": 13,
+      "censored_anchors_with_minimum_support": 3,
+      "axis_gaps": 4,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 270
+    },
+    "current:algerian": {
+      "cases": 20,
+      "finite_paired_anchors": 18,
+      "censored_anchors_with_minimum_support": 1,
+      "axis_gaps": 1,
+      "primary_threshold_m_s": 0.1,
+      "component_bearing_degrees_true": 90
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 69245,
+    "query_unique_json_bytes": 3464267,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.2426463309999995,
+    "whole_output_bytes": 2203583,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All72original corrected-v2 source cases retained across Balearic,Ligurian,Northern Mediterranean and Algerian scopes. Exact March15,June15,September15,December15,2022 model snapshots remain separate. These are not seasonal means,annual extrema,independent occupations or a complete temporal envelope. Nine original axis gaps remain explicit.",
+    "Use the corrected Mediterranean curtain v2source,not superseded v1Balearic10cm/s contours. Original Balearic strict0.05m/s primary and60degree component retained; Ligurian0.1m/s240degrees,Northern0.1m/s270degrees,Algerian0.1m/s90degrees retained.16Balearic0.05cases and56other0.1cases remain separate method contexts,not one physical boundary definition or depth ranking.",
+    "Original methods apply no surface-component gate. The source0\u2013200mcore-search/selection intervals remain selection metadata,never a current bottom or thickness. No surface-connected layer,positive-surface requirement or widened selection window is introduced. Both CSV views expose cutoff,direction,explicit no-surface-gate policy and original selection window.",
+    "All original sections are fixed longitude with increasing native latitude. Original5kmnearest-longitude tolerance is checked with latitude scaling; consecutive native latitude indices and fixed longitude indices are preserved. Source geometry remains the original longitude tag. Geometry is not relabeled as fixed latitude or independently flow-normal.",
+    "All1239available original runs and2838available column descriptors retained; source-declared native counts for unresolved cases are not relabeled as available descriptors.1173runs have finite paired component contours and66censored runs retain minimum native support without invented finite depth/thickness. Original compiled source object and bytes remain exact.",
+    "Sixty-three original selected core-containing axis proxies remain:58finite paired anchors and5censored anchors with minimum support. Balearic11finite/1censored/4gaps;Ligurian16finite;Northern13finite/3censored/4gaps;Algerian18finite/1censored/1gap. Unresolved cases keep null coordinates/anchors and exact original candidate diagnoses; no stronger or better-resolved core/run/date replaces an original selection.",
+    "Minimum support is original first-to-last contiguous qualifying native sample span under the declared piecewise-linear signed-component definition. It is not depth from the sea surface,a finite bottom,physical named-current thickness bound or uncertainty. Single-level zero span is uninformative,never absent flow or zero actual thickness. Physical-bound flags remain false and censored boundaries/thickness remain null.",
+    "All63supported cases have some partial transverse geometry:928accepted partial strip patches,1891strips without integrable geometry and195rejected ambiguous split/merge links. Only uniquely overlapping runs on consecutive original latitude columns within20km spherical geodesic separation at radius6371008.8m form linear-contour strips. Missing/censored/ambiguous patches are not filled from another column,an endpoint,a sample limit or bathymetry.",
+    "Fixed-longitude partial component areas are not independently flow-normal current widths/areas. Area/span thickness omits gaps and is not representative whole-current depth. Native-bracket scenarios are conditional geometry,not confidence intervals,physical uncertainty,guaranteed true-boundary bounds or annual ranges. No between-section depth surface,independent terrain clearance,whole-route physical profile or water volume is established.",
+    "Ligurian retains its source-declared parent current:northern-mediterranean and regional_segment_not_additive_parent_system relationship,with parent_depth_values_inherited false. Original source identity fields are copied only when declared; missing taxonomy is not invented. Parent depth summaries are not assigned to the segment,segment depths are not copied to the parent and the two scopes do not imply additive volumes. CSV exposes source parent context explicitly.",
+    "Balearic island-margin and mainland Northern Current remain distinct source scopes; fixed60degree Balearic component is not an independently identified front. Ligurian limited coastal segment excludes upstream/downstream full-system routes. Northern Mediterranean preserves wind,curved-axis,bifurcation and narrow-grid qualifications. Algerian broad eastward-component windows can include eddy/recirculation flow; no attached Atlantic-water identity is independently established. Historical source surveys,water-mass layers,references and sills do not become2022current bottoms.",
+    "Boundary,run_geometry,separation,strip,run_support,counts and report-run functions are AST-identical to the validated Atlantic implementation. New bindings preserve original corrected cutoff,longitude axis,four dates and source identity/selection metadata. Shared-note JSON schema osw.mediterranean-paired-depth.v2 expands through the new producer to the exact full scientific dictionary and both original CSV byte streams. No values,precision,cases,runs,censors,source pointers or qualifications are dropped.",
+    "Twenty cloud tests cover analytic units/scenarios,finite/censored/surface limits,adjacency,split/merge/disjoint support,all72cases/63anchors/9gaps,four dates,owner/frame/primary/geometry/time mutations,minimum-span/zero semantics,source immutability,corrected Balearic5cm/s substitution rejection,visible cutoff/direction,no imposed surface gate/window widening,longitude indices,Ligurian relationship/no inherited parent depth,and exact lossless JSON/both-CSV parity. Actual full72case roundtrips passed.",
+    "Offline sequential one idle cloud CPU,fresh output,shared absolute60s including tests/SIGTERM. Ordinary DescriptorQueryv3 starts explicit0prior numeric/bytes and reserves69245tokens/3464267unique JSON bytes before decode/cache under250k/32MB/2.5MBpacket. Whole output2203583bytes under2.4MB,cumulative1.2426463309999995seconds. No source-data/native field,old producer/validator,provider target,archive or closed acquisition case is replayed or renewed.",
+    "Single four-member artifact retained once after all branch jobs terminal and installed byte-for-byte. HYCOM Consortium,NRL,COAPS-FSU credit preserved. No new observations or canonical scalar references. Existing111identities,908reference inventory,projection inventory,102eddy references,main,runtime,query UI and WASM unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

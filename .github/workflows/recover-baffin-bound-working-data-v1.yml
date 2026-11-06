@@ -1,0 +1,105 @@
+name: Recover verified Baffin working data v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/recover-baffin-bound-working-data-v1.yml
+      - analysis/recover_baffin_bound_cloud_delivery_v1.py
+      - analysis/test_baffin_bound_delivery_recovery_v1.py
+      - research/baffin-working-data-recovery-request-v1.json
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  CARGO_BUILD_JOBS: "1"
+  RUSTUP_TOOLCHAIN: 1.95.0
+
+jobs:
+  recover-verified-baffin-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 8
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check strict recovery controls with small fixtures
+        run: python -m unittest discover -s analysis -p test_baffin_bound_delivery_recovery_v1.py
+      - name: Check out the original validated source in an isolated cloud directory
+        uses: actions/checkout@v6
+        with:
+          ref: 4fcdc388de1fdc7458e77829e08bc89197608fd3
+          path: .pytest_cache/baffin-recovery/source-checkout
+      - name: Install only the pinned formatter toolchain; no compilation
+        run: rustup toolchain install 1.95.0 --profile minimal --component rustfmt
+      - name: Retrieve the exact validated candidate
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: baffin-derived-candidate
+          path: .pytest_cache/baffin-recovery/source-checkout
+      - name: Retrieve the matching validated engine
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: baffin-query-engine
+          path: .pytest_cache/baffin-recovery/source-checkout/almanac
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: baffin-candidate-audit
+          path: .pytest_cache/baffin-recovery/audit/source
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: baffin-browser-receipts
+          path: .pytest_cache/baffin-recovery/audit/browser
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: davidson-browser-receipts
+          path: .pytest_cache/baffin-recovery/audit/prior-davidson
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40088222914
+          name: baffin-prior-card-receipts
+          path: .pytest_cache/baffin-recovery/audit/prior-cards
+      - name: Read the original completed gates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/40088222914" > .pytest_cache/baffin-recovery/audit/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/40088222914/jobs?per_page=100" > .pytest_cache/baffin-recovery/audit/jobs.json
+      - name: Reproduce compiled-source formatting, verify original pins and publish atomically
+        run: python analysis/recover_baffin_bound_cloud_delivery_v1.py --publish
+      - name: Retain installed and source-format recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovered-baffin-working-delivery
+          path: |
+            research/baffin-bound-installed-delivery-v1.json
+            .pytest_cache/baffin-recovery/recovery-result.json
+          include-hidden-files: true
+          if-no-files-found: ignore

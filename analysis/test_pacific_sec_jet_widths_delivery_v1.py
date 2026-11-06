@@ -1,0 +1,144 @@
+"""Scientific scope and complete-response preservation without loading packets."""
+import copy
+import subprocess
+import unittest
+import pacific_sec_jet_widths_query_v1 as query
+import pacific_sec_jet_widths_delivery_rules_v1 as rules
+from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT, OUT, WORK, failure_report
+import pacific_sec_jet_widths_index_v1 as index
+import pacific_sec_jet_widths_engine_v1 as engine
+
+
+class DeliveryTests(unittest.TestCase):
+    def setUp(self):
+        self.contract = query.build_contract()
+
+    def test_workflow_reads_the_actual_scoped_request(self):
+        workflow = (query.ROOT / '.github/workflows/pacific-sec-gourdeau-2008-delivery-v1.yml').read_text(encoding='utf-8')
+        self.assertEqual(workflow.count(REQUEST), 3)
+        self.assertNotIn('delivery-request-v2.json', workflow)
+        self.assertIn('path: ' + OUT.relative_to(query.ROOT).as_posix() + '/', workflow)
+        self.assertIn('path: ' + WORK.relative_to(query.ROOT).as_posix() + '/artifact/', workflow)
+        self.assertNotIn('delivery-work-v2/', workflow)
+        self.assertTrue((query.ROOT / REQUEST).is_file())
+        self.assertTrue((query.ROOT / PREFLIGHT).is_file())
+        self.assertIn('group: osw-current-gap-delivery', workflow)
+        self.assertIn('cancel-in-progress: false', workflow)
+
+    def test_native_failure_keeps_underlying_invariant(self):
+        message = b'Changed fixture source identity\n'
+        error = subprocess.CalledProcessError(2, ['probe'], stderr=message)
+        report = failure_report(error, 'source')
+        self.assertEqual(report['stderr_text'], message.decode())
+        self.assertEqual(report['stderr_bytes'], len(message))
+        self.assertFalse(report['stderr_truncated'])
+        self.assertEqual(failure_report(ValueError('no subprocess'), 'source'),
+                         {'status': 'FAIL', 'error': 'no subprocess', 'source_commit': 'source'})
+
+    def test_large_native_diagnostic_is_bounded_without_dropping_its_hash(self):
+        report = failure_report(subprocess.CalledProcessError(2, ['probe'], stderr=b'x'*20000), 'source')
+        self.assertEqual(len(report['stderr_text']), 16384)
+        self.assertEqual(report['stderr_bytes'], 20000)
+        self.assertEqual(len(report['stderr_sha256']), 64)
+        self.assertTrue(report['stderr_truncated'])
+
+    def test_complete_compiler_receipt_accepts_inventory_fix_but_refuses_unrelated_changes(self):
+        inventory = copy.deepcopy(query.read(PREFLIGHT)['compile_inventory'])
+        for group in ('rust_source_sha256', 'compile_time_data_sha256'):
+            for path in inventory[group]:
+                if path != 'almanac/index-catalog.json':
+                    inventory[group][path] = query.sha(path)
+        parent = query.read('research/richardson-walsh-1986-characteristic-velocity-delivery-run-v2/engine-manifest.json')
+        proof = copy.deepcopy(query.read('research/richardson-walsh-1986-characteristic-velocity-delivery-run-v2/dependency-proof.json'))
+        proof['production_dependencies'] = sorted(set(proof['production_dependencies']) | engine.RUST_ADDED | {engine.CONTRACT})
+        proof['production_dependency_count'] = len(proof['production_dependencies'])
+        self.assertEqual(proof['production_dependency_count'], 282)
+        replacements = {**inventory['rust_source_sha256'], **inventory['compile_time_data_sha256'],
+                        **{p: query.sha(p) for p in engine.PRESENTATION | set(index.DOCUMENTS)},
+                        'almanac/query-engine.wasm': 'e'*64}
+        options = dict(inventory=inventory, proof=proof, source_commit='candidate',
+                       logical_sha='f'*64, wasm_sha='e'*64, compiler='rustc 1.95.0 (fixture)',
+                       source_documents=index.DOCUMENTS)
+        result = engine.engine_manifest(parent, replacements, **options)
+        for name in ('hansen_asar_widths.rs', 'neuc_glider_widths.rs', 'aleutian_onishi_width.rs'):
+            path = 'rust/osw-query/src/' + name
+            self.assertNotEqual(result['sha256'][path], parent['sha256'][path])
+        self.assertEqual({k:v for k,v in result.items() if k not in ('sha256','rustc',engine.KEY)},
+                         {k:v for k,v in parent.items() if k not in ('sha256','rustc')})
+        with self.assertRaises(ValueError):
+            engine.engine_manifest(parent, {**replacements, 'almanac/query-charts.js': '0'*64}, **options)
+
+    def test_distinct_components_and_unknowns_survive_scene(self):
+        rows = self.contract['width_records']
+        scene = rules.scene(rows, query.OWNERS[0], self.contract)
+        self.assertEqual(scene['width_records'], rows)
+        self.assertIn('17 July–17 October 2005', scene['scope'])
+        self.assertIn('0–600 m', scene['scope'])
+        self.assertNotIn('2003', scene['scope'])
+        self.assertNotIn('27°W', scene['scope'])
+        self.assertEqual({r['approximate_width_km'] for r in rows}, {100, 300})
+        self.assertEqual(len({r['phase_label'] for r in rows}), 2)
+        self.assertTrue(all(r['annual_width_range_km'] is None for r in rows))
+
+    def test_pagination_preserves_matching_context_without_family_inheritance(self):
+        request = {'collection': 'widths', 'filters': [
+            {'field': 'current_id', 'op': 'eq', 'value': 'pacific-south-equatorial'}],
+            'limit': 1, 'offset': 1}
+        old = {'total': 0, 'rows': [], 'chart_scene': None, 'map_scene': None}
+        result = rules.expected_query(request, old, self.contract, {'widths': []})
+        self.assertEqual(result['total'], 2)
+        self.assertEqual(len(result['rows']), 1)
+        self.assertEqual(len(result['chart_scene']['width_records']), 2)
+        request['filters'][0]['value'] = 'south-equatorial'
+        self.assertEqual(rules.expected_query(request, old, self.contract, {'widths': []}), old)
+
+    def test_dashboard_updates_only_owner_and_preserves_characteristic_evidence(self):
+        entries = [copy.deepcopy(v['objects'][0]) for v in self.contract['prior_owners'].values()]
+        old = {'entries': entries, 'snapshot_fingerprint': 'parent',
+               'published_characteristic_velocities_v1': {'records': 10}}
+        before = copy.deepcopy(old)
+        after = rules.dashboard_document(old, self.contract)
+        self.assertEqual(old, before)
+        self.assertEqual(after['published_characteristic_velocities_v1'], before['published_characteristic_velocities_v1'])
+        self.assertEqual(next(r for r in after['entries'] if r['id'] == query.FAMILY),
+                         next(r for r in before['entries'] if r['id'] == query.FAMILY))
+        owner = next(r for r in after['entries'] if r['id'] == query.OWNERS[0])
+        self.assertEqual(owner['capabilities']['scoped_width'], 2)
+
+    def test_extension_preserves_unrelated_measurements_and_sources(self):
+        doc = copy.deepcopy(self.contract)
+        rows = {name: [] for name in doc['parent_collection_counts']}
+        rows['sources'] = copy.deepcopy(doc['prior_source_inventory']) + [{'id': 'source:unrelated', 'note': 'preserve'}]
+        for prior in doc['prior_owners'].values():
+            for name in ('objects', 'entities', 'widths'):
+                rows[name].extend(copy.deepcopy(prior[name]))
+        rows['current_speed_statistics'] = [{'id': 'old-speed', 'mean': .83}]
+        doc['parent_collection_counts'] = {name: len(values) for name, values in rows.items()}
+        parent = {'schema': 'osw.query-bundle.v1', 'collections': rows, 'manifest': {'input_sha256': {}}}
+        collections, manifest = query.apply_verified(rows, parent['manifest'], doc,
+            parent_logical_sha256=query.PARENT, contract_sha256=query.digest(doc))
+        child = {**parent, 'collections': collections, 'manifest': manifest}
+        rules.verify_extension(parent, child, doc)
+        for name in ('current_speed_statistics', 'sources'):
+            broken = copy.deepcopy(child)
+            broken['collections'][name][0]['changed'] = True
+            with self.assertRaises(ValueError):
+                rules.verify_extension(parent, broken, doc)
+
+    def test_complete_historical_cases_are_extended_with_explicit_new_scopes(self):
+        cases = new_requests(self.contract)
+        self.assertEqual(len(cases), 11)
+        self.assertEqual(sum(r['kind'] == 'query' for r in cases), 6)
+        self.assertEqual(sum(r['kind'] == 'object' for r in cases), 2)
+        self.assertEqual({r['name'] for r in cases if r['kind'] == 'snapshot'}, {'atlas', 'seasons', 'dashboard'})
+        self.assertEqual(len(index.DOCUMENTS), 4)
+        good = {'original_sources_verified': 668, 'original_source_strings_preserved': 668,
+                'replaced_source_paths': [], 'added_source_paths': index.DOCUMENTS,
+                'scientific_source_documents_replaced': 0}
+        index.verify_audit(good)
+        with self.assertRaises(ValueError):
+            index.verify_audit({**good, 'original_source_strings_preserved': 667})
+
+
+if __name__ == '__main__':
+    unittest.main()

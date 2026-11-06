@@ -1,0 +1,82 @@
+name: Qualify current reference and profile integration v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-reference-profile-native-request-v1.json
+      - .github/workflows/current-reference-profile-native-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_REFERENCE_PROFILE_NATIVE_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  CARGO_BUILD_JOBS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-reference-profile-native-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/current-reference-profile-native-request-v1.json').read_bytes())
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  native-regressions:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Verify frozen inputs before compiler work
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_reference_profile_native_v1.py --preflight-only
+      - name: Install pinned compiler on one CPU
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+      - name: Source contract and keyboard/filter regression checks
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_current_reference_profile_batch_query_v1.py -v
+          taskset -c "$cpu" nice -n 15 node analysis/test_core_migration_profiles_v1.mjs
+      - name: Run all native Rust regressions without runtime packet processing
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_reference_profile_native_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-reference-profile-native-evidence-v1
+          path: |
+            .pytest_cache/current-reference-profile-native-v1/result.json
+            .pytest_cache/current-reference-profile-native-v1/failure.json
+            .pytest_cache/current-reference-profile-native-v1/rust-tests.txt
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

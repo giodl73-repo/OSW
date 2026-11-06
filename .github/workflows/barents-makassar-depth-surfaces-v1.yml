@@ -1,0 +1,53 @@
+name: Regional matched depth surfaces and volume scenarios v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/project_barents_makassar_depth_surfaces_v1.py
+      - analysis/test_barents_makassar_depth_surfaces_v1.py
+      - plans/barents-makassar-conditional-depth-surfaces-v1.md
+      - .github/workflows/barents-makassar-depth-surfaces-v1.yml
+      - research/barents-makassar-depth-surface-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/project_barents_makassar_depth_surfaces_v1.py
+            analysis/test_barents_makassar_depth_surfaces_v1.py
+            plans/barents-makassar-conditional-depth-surfaces-v1.md
+            .github/workflows/barents-makassar-depth-surfaces-v1.yml
+            research/barents-makassar-depth-surface-operator-v1.json
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            research/barents-makassar-paired-section-geometry-v1.json
+            research/current-depth-barents-makassar-paired-section-geometry-source-review-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Synthetic surface checks then bounded offline projection on one idle CPU
+        timeout-minutes: 3
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_DEPTH_SURFACE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_barents_makassar_depth_surfaces_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/project_barents_makassar_depth_surfaces_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: barents-makassar-depth-surfaces-v1
+          path: barents-makassar-depth-surfaces-v1/
+          retention-days: 7
+          if-no-files-found: error

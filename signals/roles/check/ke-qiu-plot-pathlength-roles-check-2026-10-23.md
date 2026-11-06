@@ -1,0 +1,186 @@
+---
+skill: roles-check
+topic: ke-qiu-plot-pathlength-v1
+date: 2026-10-23
+roles_used: [CURRENT, SOUNDER, CHART, BEACON, HARBOR, KEEL, LOGBOOK]
+p1_count: 0
+verdict: APPROVED-WITH-CONDITIONS
+---
+
+# Prospective Kuroshio Extension regional length extraction
+
+Source commit:2abc1cb8e245bc03a3aef585d9b73a8c9dec1a1a. Reviewed proposed
+producer, synthetic tests, protocol and original-source facts before numerical
+red-trace extraction. Seven internal functional lenses; not independent
+scientific peer review. ORBIT is excluded: no planetary comparison is proposed.
+Roles are selected for physical support, source custody, charts, editing,
+accessibility, reproducibility and repository maintenance respectively.
+
+| Role | Finding and evidence | Severity | Recommendation / disposition |
+|---|---|---|---|
+| CURRENT | Figure2a gates141E–153E cover the upstream KE, not the complete current. | P3 | Report regional support explicitly; whole-current length and rank remain null/false. |
+| CURRENT | A pathlength trace does not recover the geographic axis or transverse width. | P3 | Producer keeps geographic_centerline and physical_width_km null. |
+| CURRENT | Daily source SSH does not establish daily plot sampling or seasonal extrema. | P3 | Precise dates, seasonal eligibility and annual extrema remain absent/false. |
+| SOUNDER | Complete original bytes and selected pages have separate custody and review support. | P3 | Exact hash/size/page count pinned; selected pages1,3,4 only; complete article stays private. |
+| SOUNDER | Equal x positions can arise from finite plot precision. | P3 | Preserve distinct vertices; no duplicate-time averaging or invented timestamps. |
+| SOUNDER | Reading allowances require a stroke/calibration limit. | P3 | Added maximum0.5-point source stroke; justify50km/0.1year allowances and test rejection above limit. |
+| CHART | The red time-series trace could be confused with a mapped current route. | P3 | Separate scalar year/km chart with regional gates in title and visible scope. |
+| CHART | Joining separate runs would manufacture graph continuity. | P3 | Separate SVG polylines for every retained run; preserve breaks and all vertices. |
+| CHART | A time axis without a label may imply exact dates. | P3 | Added visible Approximate year axis label and reading allowances. |
+| BEACON | Plotted minima/maxima do not establish all-source or physical extrema. | P3 | Name plotted_vertex_reading_range_km and attach range_scope. |
+| BEACON | Fractional-year six-decimal storage can imply excessive precision. | P3 | Every row has explicit0.1year reading allowance; chart omits artificial exact dates. |
+| BEACON | A standardized KE index mixes several quantities. | P3 | Select only red panel2a pathlength; exclude index, transport, position and recirculation. |
+| HARBOR | A colored line alone cannot supply equivalent numerical access. | P2 | Complete samples must reach query/table UI alongside described SVG before delivery. |
+| HARBOR | Current-card links must be usable with keyboard and a phone. | P2 | Focused browser proof required after integration; prospective freeze is not UI completion. |
+| HARBOR | Vector SVG should retain semantic description and visible units. | P3 | SVG title/desc, year/km axes and visible scope/allowances provided; inspect actual rendering after build. |
+| KEEL | A live original download cannot be the default arithmetic replay dependency. | P3 | Retained factual trace supports offline replay; exact original replay is a separate command. |
+| KEEL | Parser and selection changes after seeing a result would compromise prospective custody. | P3 | Pin PyMuPDF1.28.2 and method/tests/protocol/facts in preflight and Git before extraction; never overwrite products. |
+| KEEL | Synthetic calibration does not verify actual selectors or source support. | P2 | Require original trace replay, independent actual readback and all-vertex accounting after extraction. |
+| LOGBOOK | Method freeze is distinct from admitted/publicly indexed evidence. | P3 | Record phase accurately; query/source catalog and admission are pending. |
+| LOGBOOK | One PR per increment conflicts with the accepted batch workflow. | P3 | Continue existing branch and draftPR83; freeze commit precedes final delivery. |
+| LOGBOOK | Existing remote scientific proof cannot cover a new extraction. | P3 | Retain pending focused and fresh remote gates; do not claim full regression green. |
+
+Roles reviewed:7. P1:0; P2:3; P3:18.
+Verdict: APPROVED-WITH-CONDITIONS for prospective freeze and actual extraction;
+not approval to claim a delivered, seasonal or whole-current measurement.
+CURRENT, SOUNDER and CHART agree on regional plotted support and approximate time.
+
+## Required amendments and remaining gates
+
+1. Keep all vertices, equal-x readings and explicit breaks, and validate source
+   custody and actual calibration independently after extraction.
+2. Expose complete numeric rows with chart/source links and verify keyboard,
+   phone and native/WASM equality before publishing the completed increment.
+3. Freeze all scientific inputs first, retain failures and use a new version
+   for corrections. Local jobs remain sequential, below-normal priority, one
+   logical CPU; full regression is an exclusive eventual batch gate.
+
+## Prospective v2 operator-support amendment
+
+V1 failed closed on a cubic command, before calibrated target readings. Keep
+the frozen v1 method/protocol/tests/preflight and first extraction failure.
+The raw operator diagnostic (1532 lines,4 cubics) justifies the explicit v2
+correction; it contains no calibrated km/year series. V2 source commit before
+freeze:f323484. The same seven lenses and21 findings apply, with these
+specific dispositions:
+
+- CURRENT: derived cubic graphic readings are never called observed samples;
+  all regional, width, seasonal and physical-extrema exclusions are retained.
+- SOUNDER: retain all original commands and control points as source evidence;
+  exact-original replay and public offline command-mirror replay are separate.
+- CHART: preserve cubic shape with a declared0.01-point interpolation bound,
+  all y-stationary points and explicit run breaks.
+- BEACON: count original graph knots and derived readings separately; say
+  graphic range rather than implying original samples or physical extrema.
+- HARBOR: visible scope, numeric table and phone/keyboard proof remain required.
+- KEEL:47 combined prospective synthetic tests pass. Three initial synthetic
+  count assertions incorrectly expected16 intervals where the declared error
+  bound requires32; expectations corrected before v2 freeze, not the algorithm.
+- LOGBOOK: this is an explicit new version, not an edit to the failed frozen
+  method. No target calibrated range has been inspected. Delivery conditions
+  and the continuing PR workflow remain unchanged.
+
+Verdict remains APPROVED-WITH-CONDITIONS for prospective freeze/extraction;
+P1:0, P2:3, P3:18. Actual calibration, UI integration and fresh39-report
+scientific replay remain pending. The previous38-report Labrador replay passes
+on Linux but cannot establish the new extraction's correctness.
+
+## Prospective v3 source-stroke amendment
+
+V2 rejected the original0.600000024-point strokes before calibrating target
+year/km readings. Its frozen method, protocol, tests and preflight remain
+unchanged atc82442e, and its failed log is retained. V3 admits positive source
+strokes up to0.75point without clamping or rewriting the actual width.
+The independently inspected axis scale gives under31km and0.067year half-stroke
+allowances; rounding, curve error and calibration precision remain inside the
+unchanged50km/0.1year editorial allowances. No calibrated target outcome was
+inspected to choose this correction. Raw stroke diagnostics are pinned.
+
+CURRENT/SOUNDER: scope and error type stay explicit. CHART/BEACON: graph
+knots, derived readings and original stroke width stay distinct. HARBOR:
+numeric/UI access conditions stay open. KEEL:66 prospective synthetic checks
+pass across v1/v2/v3; v3 adds true-stroke retention. LOGBOOK: retain both
+failures and label the new version; no completed-delivery claim follows.
+The earlier21 findings and their3 remaining delivery conditions still apply;
+verdict APPROVED-WITH-CONDITIONS for freeze/extraction only, P1:0/P2:3/P3:18.
+
+## Prospective v4 run-boundary precision amendment
+
+V3 at5da1cae rejected two graphics-coordinate overlaps before calibration.
+The retained raw diagnostic establishes16 internally ordered runs with boundary
+overlaps0.001572 and0.001007point; no target km/year series was inspected.
+V4 preserves those coordinates, original ownership and run breaks exactly,
+permits only the existing0.02-point coordinate tolerance between runs, and
+reports permitted overlaps rather than silently repairing them. Larger
+overlaps and every internal reversal still reject. Original knot counts
+explicitly include retained shared endpoint instances, not observed samples.
+
+CURRENT/SOUNDER: no physical or time-cadence claim changes. CHART: no hidden
+joining or coordinate adjustment. BEACON: describe graph readings and knot
+records precisely. HARBOR: table/keyboard/phone gates stay open. KEEL:86
+prospective synthetic checks across four versions pass, including exact small
+overlap retention and large overlap rejection. LOGBOOK: all three failed
+frozen versions, diagnostics and logs remain retained; v4 is a new version.
+The same21 findings/3 pending delivery conditions apply. Verdict remains
+APPROVED-WITH-CONDITIONS for freeze/extraction, P1:0/P2:3/P3:18.
+
+## Terminal scientific extraction update
+
+V4 frozen atef2b3b8 passes extraction, build, exact JSON/SVG replay and
+exact-original replay. Complete1532 line/4 cubic commands,16 runs,1552
+graph-knot records and60 added cubic readings are retained. The rounded
+regional graphic range is1120–4660km with declared50km/0.1year editorial
+reading allowances. The standalone SVG was rendered and visually inspected.
+
+Seven independent actual checks pass, including Decimal length/year/rounding
+for every reading, exact source-knot accounting, cubic reconstruction,
+unchanged run boundaries/overlaps and complete SVG point accounting. No frozen
+scientific code or output was changed after calculation. The local source
+readback condition is satisfied. Numeric query/table/card integration,
+native/WASM equality, actual browser/phone/keyboard access, source catalog
+admission and fresh39-report remote replay remain open. The verdict remains
+conditional for atlas delivery; the full objective is not complete.
+
+
+## Query-admission delivery review
+
+The continuing draft adds an explicit regional_plot_series evidence class:
+the KE whole-current status remains unmeasured, no published length/lower
+bound/rank or physical annual range is populated. The header preserves
+source-facts phase; every graph reading retains type, source, original
+identity and reading allowances. No observed-date capability is inferred.
+The five mapped-card links lead to chart, complete header, ordered readings,
+source custody and the qualified assessment.
+
+The native gate binds all header/measurement/claim/source/assessment rows
+and every one of1612 readings to the frozen scientific report and pinned
+delivery contract. The historical-table overlay requires the full gate;
+other assessments remain exact. Atomic Python admission and independent
+readback tests pass16 checks. The existing21 findings remain applicable;
+HARBOR browser/phone access and KEEL full native/WASM/preservation/fresh
+remote CI conditions await terminal receipts. No frozen numeric producer,
+protocol, synthetic test or scientific product was changed.
+
+
+## Terminal local delivery conditions
+
+All143 Rust tests, complete native atlas validation, WASM build and102
+focused source/admission checks pass. Complete native/WASM equality covers
+the header and every1612 graph reading across four pages. Keyboard card-to-
+chart navigation, full record access and320px reflow pass; actual Chromium
+card/chart screenshots were inspected. All524 previous source documents and
+106819 previous rows remain exact. Only the two declared KE rows change;
+widths170, routes78 and whole-current ranks13 remain unchanged. All627 prior
+protected source/method inputs and671 current engine pins verify; two native
+delivery registry/module declarations are explicitly updated.
+
+The three local P2 conditions in the original21-finding review are satisfied.
+Staged-byte proof, publication and fresh39-report/source-UI remote gates remain
+open. The broad full regression is not claimed passed. APPROVED-WITH-CONDITIONS
+for the continuing draft; no external scientific review or complete objective
+is claimed. The new generic regional-length admission rules preserve the
+same source, time, geometry, uncertainty and whole-current-rank distinctions.
+
+Staged-byte proof: PASS for992 unique Git index blobs covering671 engine
+pins and535 source documents. All overlapping descriptors agree; no frozen
+scientific bytes differ. Same-PR publication and fresh remote CI follow.

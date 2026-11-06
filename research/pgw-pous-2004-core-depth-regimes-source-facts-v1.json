@@ -1,0 +1,86 @@
+{
+  "schema": "osw.pgw-pous-core-depth-regimes-source-facts.v1",
+  "entity_id": "current:persian-gulf-saline-overflow",
+  "doi": "10.1029/2003JC002146",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC002146",
+  "source_citation": "Pous, Carton and Lazure (2004), Hydrology and circulation in the Strait of Hormuz and the Gulf of Oman: Results from the GOGP99 Experiment, part 2, JGR Oceans 109, doi:10.1029/2003JC002146.",
+  "source_locator": "Section 3.2, paragraphs 14-17; core-depth evolution in paragraph 15. Table 1 and Section 2 for campaign/section occupation context.",
+  "primary_publisher_text_reviewed": true,
+  "reviewed_at_utc_date": "2026-11-05",
+  "source_html_sha256": null,
+  "exact_html_bytes_retained": false,
+  "source_figure_digitized": false,
+  "raw_casts_reanalysed": false,
+  "source_plot_inspection_failure_preserved": "research/pgw-source-plot-inspection-failure-review-v1.json",
+  "earlier_author_version_custody_file": "research/source-data/pous-oman-2004/acquisition.json",
+  "earlier_author_version_sha256": "3666cd028afd96bd4e1ca33bca27e6de43ed3cd4b17c4eeb40f48f672aeeaaf7",
+  "earlier_author_version_figure_visually_reviewed": true,
+  "author_version_reacquired_in_this_admission": false,
+  "campaign_window": {"start": "1999-10-08", "end": "1999-11-10"},
+  "campaign_window_is_exact_common_occupation": false,
+  "core_definition": "Depth of maximum salinity of the Persian Gulf Water core; not a velocity maximum, top, bottom, or physical current thickness.",
+  "records": [
+    {
+      "id": "pgw-pous-2004-strait-shelf-core-depth-span",
+      "entity_id": "current:persian-gulf-saline-overflow",
+      "geographic_role": "strait_and_northwestern_gulf_shelf_before_detachment",
+      "geographic_scope": "Strait of Hormuz and northwestern Gulf of Oman shelf before the R18-R17 descending transition; exact section-wise assignments and coordinates are not reconstructed.",
+      "approximate_value_m": null,
+      "range_m": [70, 120],
+      "range_interpretation": "Author-described downstream increase in salinity-core depth across the strait and shelf reach; a spatial description, not thickness, uncertainty, sampled extrema or annual range.",
+      "value_qualifier": "source_reported_spatial_depth_span",
+      "section_ids": [],
+      "source_locator": "Section 3.2 paragraph 15, first two sentences after the R12 exclusion.",
+      "reference_route_projection_eligible": false
+    },
+    {
+      "id": "pgw-pous-2004-r18-r17-detached-core-depth",
+      "entity_id": "current:persian-gulf-saline-overflow",
+      "geographic_role": "r18_r17_descent_to_neutral_buoyancy",
+      "geographic_scope": "R18-R17 descent from the northwestern Gulf of Oman shelf to the detached PGW core near neutral buoyancy; not a uniform downstream or entire-current depth.",
+      "approximate_value_m": 200,
+      "range_m": null,
+      "range_interpretation": null,
+      "value_qualifier": "approximately_in_regional_narrative",
+      "section_ids": ["R18", "R17"],
+      "source_locator": "Section 3.2 paragraph 15, descent between R18 and R17.",
+      "reference_route_projection_eligible": false
+    }
+  ],
+  "downstream_profile_context": {
+    "coordinate_kind": "source_named_regions_and_relative_distances_not_georeferenced_route",
+    "regional_progression": ["strait_and_shelf", "R18_R17_descent", "post_R17", "R14_to_R02"],
+    "post_R17": {
+      "reported_core_depth_approximately_m": 200,
+      "reported_distance_approximately_km": 200,
+      "R15_exception": "Source reports a slightly shallower core at R15; do not make a uniform 200m layer or a new independent depth observation."
+    },
+    "R14_to_R02": {
+      "reported_distance_approximately_km": 300,
+      "reported_core_shoaling_exclusive_upper_bound_m": 30,
+      "absolute_endpoint_depths_m": null,
+      "bound_is_absolute_depth_or_annual_range": false
+    },
+    "R12_excluded_by_authors": true,
+    "plotted_vertices_extracted": 0,
+    "mapped_section_positions": null,
+    "interpolation_performed": false,
+    "top_bottom_inferred_by_centering_thickness_on_core": false,
+    "related_existing_thickness_reference_ids": ["pgw-pous-2004-upstream-through-r18-core-thickness", "pgw-pous-2004-r17-core-thickness"],
+    "thickness_or_width_values_joined": false,
+    "new_independent_observations_claimed": false
+  },
+  "qualifications": [
+    "These rows transcribe distinct regional source descriptions from the same GOGP99 campaign, not new independent casts or a reconstructed continuous profile.",
+    "The 70-120m span is depth below the sea surface, not a 50m layer thickness; no midpoint or uncertainty is invented.",
+    "The regional narrative near 200m and the existing approximately220m thermohaline-core reference use different spatial summaries; preserve both without treating their difference as uncertainty or a seasonal range.",
+    "The downstream less-than30m shoaling is a relative change bound over a source-described reach; it cannot supply either absolute endpoint or an annual range.",
+    "Core depth and previously reported half-salinity-contrast core thickness do not locate a symmetric top/bottom. No geographic station coordinates, width join, physical bottom, whole-route profile, seasonal extrema or volume is inferred.",
+    "Earlier original-document timeout and zero plot extraction remain unchanged; this admission uses freshly reviewed primary publisher prose, not a new document/field retrieval or a successful vector digitization."
+  ],
+  "new_ocean_field_requests": 0,
+  "new_raw_measurements": 0,
+  "original_pdf_or_figure_redistributed": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

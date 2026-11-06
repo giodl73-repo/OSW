@@ -1,0 +1,100 @@
+name: Agulhas ACT original source geometry qualification v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/act2011-source-geometry-v1.yml
+      - research/act2011-source-geometry-operator-v1.json
+      - analysis/qualify_act2011_source_geometry_v1.py
+      - analysis/test_act2011_source_geometry_v1.py
+      - plans/act2011-source-geometry-qualification-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/act2010-instrument-metadata-v1.yml
+            .github/workflows/act2010-retained-manifest-v1.yml
+            .github/workflows/act2010-version-metadata-v2.yml
+            .github/workflows/act2011-observed-pair-v1.yml
+            .github/workflows/act2011-retained-pair-v2.yml
+            .github/workflows/act2011-source-geometry-v1.yml
+            analysis/audit_act2011_retained_pair_v2.py
+            analysis/collect_act2011_observed_pair_v1.py
+            analysis/discover_act2010_instrument_metadata_v1.py
+            analysis/discover_act2010_version_metadata_v2.py
+            analysis/index_act2010_retained_manifest_v1.py
+            analysis/qualify_act2011_source_geometry_v1.py
+            analysis/test_act2010_instrument_metadata_v1.py
+            analysis/test_act2010_retained_manifest_v1.py
+            analysis/test_act2010_version_metadata_v2.py
+            analysis/test_act2011_observed_pair_v1.py
+            analysis/test_act2011_retained_pair_v2.py
+            analysis/test_act2011_source_geometry_v1.py
+            plans/act2010-instrument-metadata-protocol-v1.md
+            plans/act2010-retained-manifest-index-protocol-v1.md
+            plans/act2010-version-metadata-continuation-protocol-v2.md
+            plans/act2011-observed-pair-protocol-v1.md
+            plans/act2011-retained-pair-selective-read-protocol-v2.md
+            plans/act2011-source-geometry-qualification-protocol-v1.md
+            research/act2010-instrument-depth-source-context-v1.json
+            research/act2010-instrument-metadata-operator-v1.json
+            research/act2010-retained-instrument-manifest-index-v1.json
+            research/act2010-retained-manifest-operator-v1.json
+            research/act2010-version-metadata-operator-v2.json
+            research/act2011-native-point-observations-v2.json
+            research/act2011-observed-pair-operator-v1.json
+            research/act2011-observed-pair-source-context-v1.json
+            research/act2011-retained-native-point-audit-v2.json
+            research/act2011-retained-pair-operator-v2.json
+            research/act2011-source-geometry-context-v1.json
+            research/act2011-source-geometry-operator-v1.json
+            research/current-depth-act2010-instrument-metadata-source-review-v1.json
+            research/current-depth-act2010-retained-manifest-source-review-v1.json
+            research/current-depth-act2010-version-metadata-source-review-v2.json
+            research/current-depth-act2011-observed-pair-source-review-v1.json
+            research/current-depth-act2011-retained-native-point-source-review-v2.json
+            research/source-data/act2010-instrument-metadata-v1/journal.json
+            research/source-data/act2010-instrument-metadata-v1/listing-01.raw
+            research/source-data/act2010-instrument-metadata-v1/report.json
+            research/source-data/act2010-version-metadata-v2/journal.json
+            research/source-data/act2010-version-metadata-v2/phase2-data-list.raw
+            research/source-data/act2010-version-metadata-v2/phase2-provider-xml.raw
+            research/source-data/act2010-version-metadata-v2/phase2-version-list.raw
+            research/source-data/act2010-version-metadata-v2/report.json
+            research/source-data/act2011-observed-pair-v1/instrument-01.raw
+            research/source-data/act2011-observed-pair-v1/instrument-02.raw
+            research/source-data/act2011-observed-pair-v1/journal.json
+            research/source-data/act2011-observed-pair-v1/profiles.json
+            research/source-data/act2011-observed-pair-v1/readme.raw
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify source discrepancy and original case budget guards
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_act2011_source_geometry_v1.py' -v
+      - name: Acquire two exact original public location documents once
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/qualify_act2011_source_geometry_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: act2011-source-geometry-v1
+          path: act2011-source-geometry-v1/
+          retention-days: 7
+          if-no-files-found: error

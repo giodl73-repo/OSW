@@ -1,0 +1,3244 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "pacific-north-equatorial-undercurrent",
+  "name": "Pacific NEUC - northern jet",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Declared western-to-central northern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 18 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+  "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+  "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+  "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+  "source_locator": "Li et al. (2018) complete JATS Results / Mean Structures of NEUCs: three Argo jets near 8/13/18 N at 130-135 E, tilting southwest-northeast. Figure 1(a) reviewed; Figure 2 samples 135-140 E and 175-180 E. Neither source curve nor velocity field digitized.",
+  "source_citation": "Li, Liu and Lin (2018), Interannual and decadal variability of the North Equatorial Undercurrents in an eddy-resolving ocean model, Scientific Reports 8, 17112, doi:10.1038/s41598-018-35469-2.",
+  "source_license": "CC BY 4.0 original article; attributed source facts and independent OSW geography. Existing licensed Figure 1 retained separately; no source curve digitization.",
+  "source_retrieved_date": "2026-10-13",
+  "coordinate_selection": "Source supports the declared regional geography or study-domain convention. OSW selects all gates, rounded connecting vertices and alternative bends; no velocity axis or source trajectory reconstructed. Independent longitude and endpoint-latitude shifts describe drawing choices, not current width, source position errors or seasonal extrema.",
+  "coordinates_lon_lat": [
+    [
+      135,
+      18
+    ],
+    [
+      145,
+      18.6
+    ],
+    [
+      155,
+      19.2
+    ],
+    [
+      165,
+      19.8
+    ],
+    [
+      175,
+      20.5
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "southern_bend",
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the declared regional gates; not a measured seasonal state."
+    },
+    {
+      "id": "northern_bend",
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the declared regional gates; not a measured seasonal state."
+    }
+  ],
+  "longitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -0.5,
+    0,
+    0.5
+  ],
+  "scenario_rule": "Three declared shapes with three longitude shifts and independent three-value endpoint latitude shifts: 81 retained editorial scenarios, not statistical uncertainty or annual variation.",
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_studied_reach_routes",
+  "whole_system_length": false,
+  "remaining_gates": [
+    "Independently validate component/naming,layer,gates,fine coastline and bathymetry before physical admission.",
+    "Acquire compatible dated velocity geometry before measuring a current axis or seasonal dimensions.",
+    "Do not sum component reaches or transfer neighboring current/channel widths.",
+    "Whole-current dimensions,annual ranges,occupied width polygons,physical state containment and NASA identity remain unresolved."
+  ],
+  "map_view_box": [
+    1330,
+    300,
+    210,
+    230
+  ],
+  "map_label_size": 2.6,
+  "legend_line_spacing": 4.16,
+  "map_symbol_scale": 0.65,
+  "endpoint_labels": [
+    "135 E OSW gate",
+    "175 E OSW gate"
+  ],
+  "figure_source_label": "Li et al. (2018), Argo Figure 1(a)",
+  "route_extent_kind": "northern NEUC isopycnal reference reach",
+  "source_component_id": "NEUCN",
+  "component_routes_are_additive": false,
+  "source_operator": "Argo P-vector absolute geostrophic zonal velocity",
+  "source_review_receipt": {
+    "source_document_file": "research/source-data/li-neuc-2018/journal-article.xml",
+    "source_document_sha256": "2321fff1a540d19d5da1409f16218efb748968e01e29c21926f9262fd0c6efc8",
+    "acquisition_file": "research/source-data/li-neuc-2018/acquisition.json",
+    "acquisition_sha256": "ad24957de2cd575ab44f3184e98bec00fb072ebea45e85d1293f92aa027abb76",
+    "audit_file": "research/pacific-neuc-northern-reach-scope-audit.json",
+    "audit_sha256": "1afbd7effdcb82a736a1ec9202b33783f2efb9d9d9155dcb3371e04622c48774"
+  },
+  "input_sha256": "89a3873f1a116460050343176ebd73b7e25cbb63c0e5ad2aea9f3e176e930751",
+  "generator_file": "analysis/build_current_reference_path_candidate.py",
+  "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+  "method": "Sum shortest WGS84 geodesic distances between successive OSW editorial vertices; no velocity field or current core is reconstructed.",
+  "nominal_reference_path_km": 4214.538,
+  "reported_approximate_reference_path_km": 4200,
+  "scenario_range_km": [
+    4200.728,
+    4237.7
+  ],
+  "reported_scenario_range_km": [
+    4200,
+    4300
+  ],
+  "scenario_count": 81,
+  "scenarios": [
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4219.959,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4220.927,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4224.785,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4213.57,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4214.538,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4218.396,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4210.02,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4210.989,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.6
+        ],
+        [
+          154.75,
+          19.2
+        ],
+        [
+          164.75,
+          19.8
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4214.847,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4219.959,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4220.927,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4224.785,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4213.57,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4214.538,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4218.396,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4210.02,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4210.989,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.6
+        ],
+        [
+          155,
+          19.2
+        ],
+        [
+          165,
+          19.8
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4214.847,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4219.959,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4220.927,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4224.785,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4213.57,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4214.538,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4218.396,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4210.02,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4210.989,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.6
+        ],
+        [
+          155.25,
+          19.2
+        ],
+        [
+          165.25,
+          19.8
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4214.847,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4227.092,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4230.972,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4237.7,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4223.589,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4227.468,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4234.197,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4222.945,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4226.825,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          18.1
+        ],
+        [
+          154.75,
+          18.7
+        ],
+        [
+          164.75,
+          19.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4233.553,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4227.092,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4230.972,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4237.7,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4223.589,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4227.468,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4234.197,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4222.945,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4226.825,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4233.553,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4227.092,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4230.972,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4237.7,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4223.589,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4227.468,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4234.197,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4222.945,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4226.825,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "southern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          18.1
+        ],
+        [
+          155.25,
+          18.7
+        ],
+        [
+          165.25,
+          19.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4233.553,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4218.38,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4216.41,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          17.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4217.348,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4209.141,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4207.171,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4208.109,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.0
+        ]
+      ],
+      "length_km": 4202.697,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          20.5
+        ]
+      ],
+      "length_km": 4200.728,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          134.75,
+          18.5
+        ],
+        [
+          144.75,
+          19.1
+        ],
+        [
+          154.75,
+          19.7
+        ],
+        [
+          164.75,
+          20.3
+        ],
+        [
+          174.75,
+          21.0
+        ]
+      ],
+      "length_km": 4201.666,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4218.38,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4216.41,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          17.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4217.348,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4209.141,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4207.171,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4208.109,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.0
+        ]
+      ],
+      "length_km": 4202.697,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "length_km": 4200.728,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135,
+          18.5
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          21.0
+        ]
+      ],
+      "length_km": 4201.666,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4218.38,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4216.41,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          17.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4217.348,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4209.141,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4207.171,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4208.109,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.0
+        ]
+      ],
+      "length_km": 4202.697,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          20.5
+        ]
+      ],
+      "length_km": 4200.728,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    },
+    {
+      "route_variant_id": "northern_bend",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          135.25,
+          18.5
+        ],
+        [
+          145.25,
+          19.1
+        ],
+        [
+          155.25,
+          19.7
+        ],
+        [
+          165.25,
+          20.3
+        ],
+        [
+          175.25,
+          21.0
+        ]
+      ],
+      "length_km": 4201.666,
+      "atlas_state_crossings": [
+        "CHIN",
+        "NPSW",
+        "WARM"
+      ]
+    }
+  ],
+  "map_land_check": "All 81 routes, geodesically densified at spacing no greater than 10 km, avoid the coarse OSW atlas land mask in display coordinates. This is not a shelf-break, reef, bathymetric or high-resolution land-clearance verification.",
+  "state_relation_role": "Editorial line/display-region crossing; physical current passage unresolved.",
+  "atlas_map_sha256": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+  "nominal_atlas_state_crossings": [
+    "CHIN",
+    "NPSW",
+    "WARM"
+  ],
+  "nasa_movie_context": [
+    {
+      "tile_id": "level2_G_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_G_4",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_4.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_F_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_F_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.500417,
+      "scenario_display_route_fraction_range": [
+        0.492489,
+        0.508303
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_F_4",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_F_4.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.500417,
+      "scenario_display_route_fraction_range": [
+        0.492489,
+        0.508303
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.499583,
+      "scenario_display_route_fraction_range": [
+        0.491697,
+        0.507511
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_4",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_4.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.499583,
+      "scenario_display_route_fraction_range": [
+        0.491697,
+        0.507511
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_C_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_C_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_C_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_C_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_D_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_D_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_D_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_D_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    }
+  ],
+  "nasa_tiles_sha256": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+  "recommended_nasa_tile_id": "level2_G_3",
+  "nasa_crop_recommendation_rule": "Highest zoom crop covering the entire display route in every retained scenario, with tile ID as deterministic tie-break. No physical identification asserted.",
+  "input_file": "research/pacific-neuc-northern-reach-reference-path-input.json",
+  "figure": "figures/pacific-neuc-northern-reach-reference-path-candidate.svg"
+}

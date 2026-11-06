@@ -1,0 +1,73 @@
+{
+  "schema": "osw.meijers2016-asc-pressure-facts.v1",
+  "id": "meijers2016-asc-regional-pressure-bands-v1",
+  "entity_id": "current:antarctic-slope",
+  "source_doi": "10.1002/2016JC011757",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016JC011757",
+  "source_citation": "Meijers,A.J.S.,Meredith,M.P.,Abrahamsen,E.P.,MoralesMaqueda,M.A.,Jones,D.C.,and NaveiraGarabato,A.C.(2016),Wind-driven export of Weddell Sea slope water,JGR Oceans121,7530-7546.",
+  "review_scope": "selected_primary_publisher_html_observational_methods_results_and_discussion",
+  "source_text_excerpts": [
+    "between 600 and 2000 dbar",
+    "between 1000 and 2500 dbar"
+  ],
+  "reported_rows": [
+    {
+      "id": "asc-meijers2016-bottom-intensified-pressure-band",
+      "range_dbar": [
+        600,
+        2000
+      ],
+      "metric": "reported_regional_bottom_intensified_flow_pressure_band",
+      "excerpt_index": 0,
+      "locator": "Abstract,intermittent slope current and bottom intensification",
+      "definition": "Regional pressure band in which the intermittent westward ASC extension is often bottom-intensified; not paired boundaries at one station."
+    },
+    {
+      "id": "asc-meijers2016-ladcp-westward-slope-pressure-band",
+      "range_dbar": [
+        1000,
+        2500
+      ],
+      "metric": "reported_regional_ladcp_flow_pressure_band",
+      "excerpt_index": 1,
+      "locator": "Section3.1 opening paragraph,Figure2",
+      "definition": "Reported pressure domain of westward slope current in almost all13 occupations with LADCP; not fixed occupied layer or annual depth extrema."
+    }
+  ],
+  "temporal_scope": "22 full-depth SR1b occupations since November1993,all austral summer November-March;13 occupations have LADCP. Exact final campaign date unresolved. Five-year lander thermohaline series December2006-December2011 is separate,not a velocity profile time series.",
+  "source_processing": {
+    "velocity_product": "LDEO LADCP inversion combining downcast/upcast;bottom track,shipboard ADCP and GPS referencing",
+    "processing_varies_between_voyages": true,
+    "typical_horizontal_velocity_error_m_s": [
+      0.02,
+      0.05
+    ],
+    "velocity_error_is_depth_error": false,
+    "native_reconstruction_by_OSW": false
+  },
+  "regional_band_is_single_column_layer": false,
+  "pressure_to_depth_conversion_performed": false,
+  "lander_measures_velocity": false,
+  "original_source_bytes_verified": false,
+  "original_source_pixels_inspected": false,
+  "new_provider_field_requests": 0,
+  "eligibility": {
+    "whole_current_representative": false,
+    "physical_current_bottom_established": false,
+    "physical_current_thickness_established": false,
+    "volume_eligible": false,
+    "annual_extrema_eligible": false,
+    "seasonal_playback_eligible": false,
+    "physical_state_join_eligible": false,
+    "reference_route_projection_eligible": false,
+    "independent_observation_count_claimed": false
+  },
+  "identity_mapping": "Authors identify intermittent westward slope flow north of Elephant Island as extension of Antarctic Slope Current crossing South Scotia Ridge west of OrkneyPlateau. Existing system owner current:antarctic-slope,local scope only;not entire Antarctic route.",
+  "intermittence": "2001,2002,2009 weak narrow nonsurface examples;2000,2007 full water-column slope/shelf examples. No numerical event-specific layer edges inferred from prose or unread pixels.",
+  "excluded_coordinates": "Slope habitat600-2500m,lander1000/2000dbar orisobaths,SR4thermal offsets500dbar,tracer-releaseboxes andsecondaryPalmer600-1600m are not independent measured physical current boundaries. Mixed source units retained;no1dbar=1m assumption.",
+  "instrument_limits": "Bottom landers measured pressure,conductivity andtemperature;no direct velocity. Shallow lander pressure differed100dbar between deployments;deep pressure trend0.25dbar/year not corrected by authors. No depth-error limits inferred.",
+  "source_review_access": "Selected primary publisher HTML Abstract,Methods2.1.1-2.1.2,Results3.1 andDiscussion4.1 actually reviewed;no source-byte hash,pixels,PDF,native archives or supplemental data. Completed review,no reopen for these quantities.",
+  "rights": "Ten short excerpt words;facts andcitation only,no article orfigure redistribution.",
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "osw.antarctic-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_antarctic_paired_depth_v1.py": "57f11987a19cb6af557600790de879826b58d00601f4297876022d185143310d",
+    "analysis/test_antarctic_paired_depth_v1.py": "88bdc805dd7e455cb383e3eebecd479721bdfdf99efa53453b02f461336f4a85",
+    "plans/antarctic-paired-depth-v1.md": "e265489c9b096b653581ebe214f1a414833cebf6277d1c3ef296110623805be8",
+    ".github/workflows/antarctic-paired-depth-v1.yml": "5d3e21dfc25c3e9f077d13ba1f35d3de11270ae84846840bc9479646d66e149c",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/antarctic-regional-velocity-depth-curtains-v1.json": "1585d4e3fbe690dab764157784b7a77c3be4660460e48402cf33a4983917f69a",
+    "research/current-depth-antarctic-regional-velocity-curtains-source-review-v1.json": "911e4d141f8783f96a074e20136bbcd2c5cfd53f29411e9cae4467cc0e6615b6",
+    "research/acc-drake-interval-depth-sections-operator-v1.json": "cf3d3b5dcfb4a5d1eb0f4ab74565ac7d0b84e44c142e33398931f10c5f2bd9ae",
+    "research/antarctic-slope-dml-interval-depth-sections-operator-v1.json": "1fd2fa3bdabec49f8346117a1ed7e5fa5acbe11e35f6fea3d8c89a7dcfd48509",
+    "research/antarctic-coastal-bellingshausen-interval-depth-sections-operator-v1.json": "4f706f37b3658e59185219df4b2dc4536511919b7dc697589fb44aa3cd368bf5"
+  },
+  "source_cases": 48,
+  "original_supported_cases": 29,
+  "original_axis_gap_cases": 19,
+  "source_owner_case_counts": {
+    "current:acc": 16,
+    "current:antarctic-slope": 16,
+    "current:antarctic-coastal": 16
+  },
+  "source_owner_axis_gaps": {
+    "current:acc": 2,
+    "current:antarctic-slope": 5,
+    "current:antarctic-coastal": 12
+  },
+  "source_core_and_selection_windows_m": {
+    "current:acc": [
+      0,
+      1000
+    ],
+    "current:antarctic-slope": [
+      0,
+      500
+    ],
+    "current:antarctic-coastal": [
+      0,
+      200
+    ]
+  },
+  "primary_thresholds_m_s": {
+    "current:acc": 0.1,
+    "current:antarctic-slope": 0.05,
+    "current:antarctic-coastal": 0.05
+  },
+  "identity_context_policy": "Exact original operator relationships/evidence/window basis,null parents,false depth inheritance;no physical classification",
+  "all_three_original_cohorts_one_cumulative_query": true,
+  "surface_and_temperature_gates": null,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case"
+  ],
+  "encoding_ast_identical_except_cohort_schema_names": [
+    "compact_report",
+    "expand_report"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

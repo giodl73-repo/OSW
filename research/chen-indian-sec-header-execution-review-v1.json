@@ -1,0 +1,90 @@
+{
+  "schema": "osw.chen-indian-sec-header-execution-review.v1",
+  "status": "PASS_ACTUAL_CLOUD_HEADERS_REVIEWED_NO_MEASUREMENT_ADMITTED",
+  "input_sha256": {
+    "research/chen-indian-sec-header-run-v1/report.json": "25b60c5ddc9fc017a7d3c6dabb0e3bcf8bfe1dac1e1d8bd5955fffccfde7d7d6",
+    "research/chen-indian-sec-header-run-v1/run-receipt.json": "300697e9466579bd9a224c9f282a12431907622458e550a69f8399c7ecd2e3d7",
+    "research/chen-indian-sec-header-run-v1/executed-request.json": "2f60b5f0d7ef32d1cc0358e4df3d882199341a7a7c7e7bac13b1cfa1405f9e10",
+    "research/chen-indian-sec-header-request-v1.json": "75513a2fa91885c80c056f46b3859fb1c103d7d877d1c6287034d85e32df4550"
+  },
+  "run_id": 40825995926,
+  "run_attempt": 2,
+  "source_commit": "1c3d07b8d7eefb843d3bf0cedc224d78606b06a9",
+  "focused_tests_passed": 6,
+  "actual_source_headers_inspected": true,
+  "source_original_bytes": 5816818,
+  "source_original_sha256": "ce174a089a2379cd8c5a79ede226982749d9102a7e7b7d2d0a9180c75ac23cb7",
+  "provider_checksum_available": false,
+  "variable_inventory": [
+    {
+      "name": "hyear",
+      "shape": [
+        76,
+        212,
+        24
+      ],
+      "matlab_class": "double"
+    },
+    {
+      "name": "lat",
+      "shape": [
+        1,
+        76
+      ],
+      "matlab_class": "double"
+    },
+    {
+      "name": "lon",
+      "shape": [
+        1,
+        212
+      ],
+      "matlab_class": "double"
+    },
+    {
+      "name": "time_year",
+      "shape": [
+        1,
+        24
+      ],
+      "matlab_class": "double"
+    },
+    {
+      "name": "uyear",
+      "shape": [
+        76,
+        212,
+        24
+      ],
+      "matlab_class": "double"
+    },
+    {
+      "name": "vyear",
+      "shape": [
+        76,
+        212,
+        24
+      ],
+      "matlab_class": "double"
+    }
+  ],
+  "metadata_interpretation": "A small model sample contains matching latitude, longitude and year-shaped coordinate variables, plus three76x212x24 fields. Header names and shapes do not validate coordinate values, calendar, masks, layer or velocity semantics.",
+  "known_source_scope": "Provider describes upper100m SON HYCOM1993\u20132016; do not substitute for the paper Figure4 surface-geostrophic routes.",
+  "remaining_validation": [
+    "Actual coordinate/time values and orientation",
+    "Field units and missing-value handling",
+    "Model averaging and source period",
+    "Flow operator, continuity and regional gates",
+    "Sensitivity and physical interpretation",
+    "Query and atlas visualization delivery"
+  ],
+  "next_action": "Freeze a coordinate-metadata-only followup bound to the acquired original SHA256. Load only lat,lon,time_year on the cloud runner; do not load hyear,uyear,vyear. Establish time coverage and usable regional support before considering any separately scoped scientific route calculation.",
+  "local_ocean_field_downloads": 0,
+  "field_values_loaded": false,
+  "new_measurements": 0,
+  "geometry_admitted": false,
+  "request_disabled": true,
+  "main_unchanged": true,
+  "local_bulk_preview_unchanged": true,
+  "full_goal_complete": false
+}

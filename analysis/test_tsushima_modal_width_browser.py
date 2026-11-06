@@ -1,4 +1,5 @@
 """Modal estimate on map card, inspector and lossless native/WASM queries."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -57,7 +58,7 @@ def main():
             assert page.locator('.modal-decay-width').count()==0
             assert not errors,errors
             browser.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for key,value in [('approximate_width_km',23.076923),('width_range_km',[20,22]),('calendar_months',[7,8]),('seasonal_playback_eligible',True),('modal_decay_context',{})]:
             bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
             next(r for r in doc['measurements'] if r['current_id']=='tsushima')[key]=value

@@ -1,0 +1,44 @@
+name: Leeuwin seasonal depth v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/leeuwin-seasonal-depth-v1.yml
+      - analysis/derive_leeuwin_seasonal_depth_v1.py
+      - analysis/test_leeuwin_seasonal_depth_v1.py
+      - research/leeuwin-seasonal-depth-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/audit_leeuwin_depth_source_v1.py
+            analysis/derive_leeuwin_seasonal_depth_v1.py
+            analysis/test_leeuwin_seasonal_depth_v1.py
+            research/leeuwin-seasonal-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify boundary rules and derive local profiles on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_leeuwin_seasonal_depth_v1.py -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_leeuwin_seasonal_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: leeuwin-seasonal-depth-v1
+          path: leeuwin-seasonal-depth-v1/
+          retention-days: 7

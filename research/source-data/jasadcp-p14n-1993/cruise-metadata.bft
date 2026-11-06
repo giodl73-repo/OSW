@@ -1,0 +1,186 @@
+ #DATA_DATES: 1993/06/29 13:59:00 --- to --- 1993/08/11 11:55:00
+ #LON_RANGE: 172.84 E --- to --- 135.31 W
+ #LAT_RANGE:   1.22 N --- to ---  59.00 N
+ #DEPTH_RANGE:     19 --- to --- 495 m
+ #SAC_CRUISE_ID: 00016 
+ #PLATFORM_NAME: Thompson,Thomas G. (KTDQ AS OF 1992)  
+ #PRINCIPAL_INVESTIGATOR_NAME: Gunnar Roden            
+ #PI_INSTITUTION: University of Washington             
+ #PI_COUNTRY: USA                                      
+ #PROJECT: WOCE (One-time line)
+ #CRUISE_NAME: ship_tag=tt9306 woce_tag=P14N EXPOCODE= 325023_1 
+ #PORTS: Sitka - Dutch Harbor - Tarawa                
+ #GEOGRAPHIC_REGION: N. Pacific                        
+ #PROCESSED_BY: University of Hawaii                   
+ #NAVIGATION: GPS                          
+ #QUALITY_NAV: good
+ #GENERAL_INFORMATION: 
+CRUISE NOTES
+  CHIEF SCIENTIST ON SHIP     : Gunnar Roden
+    INSTITUTE                 : University of Washington
+    COUNTRY                   : USA
+  SIGNIFICANT DATA GAPS       :
+  SPECIAL SHIP TRACK PATTERNS : Transect along 180 W meridian
+  COMMENTS                    :
+
+ADCP INSTRUMENTATION
+  MANUFACTURER                : RD Instruments (RDI)
+  HARDWARE MODEL              : RD-VM150
+  SERIAL NUMBERS              :  
+  FIRMWARE VERSION            : 
+  TRANSMIT FREQUENCY          : 153 kHz
+  TRANSDUCER CONFIGURATION    : JANUS CONCAVE
+  ACOUSTIC BEAM WIDTH         :  
+  TRANSDUCER BEAM ANGLE       : 30 deg.
+  COMMENTS                    : 
+
+ADCP INSTALLATION
+  METHOD/DESCRIPTION OF THE
+    ATTACHMENT TO THE HULL    :
+  LOCATION/DEPTH ON HULL      : the transducer well is close to amidships
+  REPEATABLE ATTACHMENT       : < NO > < YES >
+  DATE OF MOST RECENT ATTACH. :
+  ACOUSTIC WINDOW             : < NO > < YES - EXPLAIN >
+  COMMENTS                    :
+
+ADCP INSTRUMENT CONFIGURATION     
+  DEPTH RANGE                 : 19 - 495 m
+  BIN LENGTH                  :  4 m
+  NUMBER OF BINS              : 120
+  TRANSMIT PULSE LENGTH       : 16 m
+  BLANKING INTERVAL           :  4 m
+  ENSEMBLE AVERAGING INTERVAL : 300 s
+  SOUND SPEED CALCULATION     : CONSTANT during acquisition; adjusted during 
+                                processing
+  BOTTOM TRACKING             : at times
+  DIRECT COMMANDS             : "FH00001" "E0004020099" "B009001" "CF63"
+  COMMENTS                    :
+
+ADCP DATA ACQUISITION SYSTEM
+  SOFTWARE DEVELOPERS         :
+  SOFTWARE VERSIONS           :
+  DATA LOGGER, MAKE/MODEL     :
+  ADCP/LOGGER COMMUNICATION   :
+  USER BUFFER VERSION         :  2240
+  CLOCK                       :  PC clock reset for drifts beyond 2 sec
+  COMMENTS                    :  3-beam solutions were  used during data acquisition
+
+SHIP HEADING                      
+  INSTRUMENT MAKE/MODEL       : Sperry MK-37
+  SYNCHRO OR STEPPER          :
+  SYNCHRO RATIO               :
+  COMPENSATION APPLIED        :
+  GPS ATTITUDE SYSTEM         : YES, Ashtect
+    LOCATION OF ANTENNAS      :
+    RIGID ATTACHMENT          : < NO > < YES >
+    LOGGING RATE              :
+
+ANCILLARY MEASUREMENTS            
+  SURFACE TEMP AND SALINITY   : yes
+  PITCH/ROLL MEASUREMENTS     : no
+  HYDRO CAST MEASUREMENTS     : no
+  BIOMASS DETERMINATION       :
+    DATE OF LAST CALIBRATION  :
+    CALIBRATION COEFFICIENTS  :
+    BEAM-AVERAGED AGC AVAILABLE?: < NO > < YES >
+    CALIBRATION NET TOWS?     :   < NO > < YES >
+  COMMENTS                    :
+
+ADCP DATA PROCESSING/EDITING
+  PERSONNEL IN CHARGE         : E.Kestenare, E.Firing
+  DATE OF PROCESSING          : 93/09
+  NOTABLE SCATTERING LAYERS   :
+  COMMENTS                    :
+             transducer temperature/soundspeed correction:
+             Comparison ADCP temperature and temperature from Thermo-Salino;
+             apply an offset -0.22 on ADCP temperature from the decimal day 200.
+             Salinity from Thermo-Salino is interpolated on ADCP time.  
+
+             Wire interference:
+             The error velocity did indicate sections where the CTD wire
+             may have interfered with the ADCP.  It seems to affect a wider
+             bin range from around bin 5 down to bin 20 (or more) at times.
+             The bad bins were flagged using the program badbin, before
+             the flagging program was run again for the amplitude, etc. passes.
+
+             Bottom editing:
+             The last blocks:profiles (86:47 to 88:50) have bogus data,
+             collected in port, shallow water. They have been deleted.
+             All the flags are noisier than usual because the data
+             collection was done with four-meters bins.
+
+NAVIGATION
+  GPS                         : YES
+    MAKE/MODEL                : 4200 receiver and Ashtect
+    SELECTIVE AVAILABILITY    : YES
+    P-CODE                    : 
+    DIFFERENTIAL              :
+    SAMPLE INTERVAL           :
+    LOCATION OF ANTENNA
+      RELATIVE TO TRANSDUCER  : Antennas for both were located near
+the aft end of the 02 level, which is frame 97.  The forward
+part of the Ashtech array was probably about frame 85.  Assuming
+standard frame spacing of 2 ft, any way you look at it the
+transducer was roughly 25 meters forward of the GPS antenna.
+    TIME OBTAINED RELATIVE TO
+      START/END OF ENSEMBLE   :
+    AVERAGING/EDITING APPLIED :
+    LOGGED WITH ADCP DATA     : YES using user buffer ue3 configuration
+    LOGGED INDEPENDENTLY      : 
+    COMMENTS                  :
+  OTHER                       : 
+
+CALIBRATION 
+    GYROCOMPASS CORRECTION      : YES 
+            The following describes the calibration done using ashtech:
+ 
+            In most of cases, the heading error is obtained by a 10 minutes
+            median filter Ashtech data interpolation on ADCP time (here, Ashtech
+            data mean "one-minute mean (ashtech - gyro) heading").
+            When there are some "big" gaps in the Ashtech data, a gyro model
+            is used to fill them. In fact, three models are used depending on the
+            velocity compensation, assuming an once per day latitude update
+            + model 1: no velocity compensation
+            + model 2: constant velocity compensation (10 knots)
+            + model 3: velocity compensation when underway only
+            However, for some time-ranges, none of these models work well. In
+            these cases, the gyro model is simply an linear interpolation of
+            10 minutes median filter Ashtech data.
+            WHAT I DID:
+            + linear interpolation of 10 minutes median filter Ashtech data:
+              time-range 190.6 to 190.6 about
+              time-range 220.5 to 221.05 about
+            + gyro model:
+              time-range 209.93 to 210.52 about --> model 2 with an offset +1
+              time-range 215.09 to 216.09 about --> model 2 with an offset +1.6
+              time-range 217.47 to 217.99 about --> model 1 with an offset +1.4
+
+    BOTTOM TRACK METHOD         : Four sections but not used.
+    WATER TRACK METHOD          : YES
+       REFERENCE LEVELS USED    : 5 - 40
+       TOTAL No. CALIBRATION PTS:  272
+       TOTAL No. AFTER EDITING  :  231
+    FINAL SELECTION             : AMPLITUDE= 0.993 PHASE= 2.52
+    AGREEMENT WITH PREVIOUS 
+      CRUISES                   : 
+    SOUND SPEED CORRECTIONS     : 
+    COMMENTS                    : 
+
+NAVIGATION CALCULATION
+    NAVIGATION USED             : gps
+    REFERENCE LAYER DEPTH RANGE : bins 5 - 40
+    FILTERING METHOD FOR
+      SMOOTHING REFERENCE LAYER
+      VELOCITY (FORM/WIDTH)     :a Blackman window function of width T:
+         w(t) = 0.42 - 0.5 * cos(2 * pi *t / T) + 0.08 * cos(4 * pi * t / T).
+         filter_hwidth=        0.0208333     /* half an hour */
+    FINALIZED SHIP VEL/POSITIONS
+    STORED IN DATABASE          : YES
+    COMMENTS                    :
+ 
+ GENERAL_ASSESSMENT             :
+    ON-STATION VS. UNDERWAY     : good
+    VECTOR, CONTOUR, STICK PLOTS: good
+    COMMENTS                    : data quality good
+
+ REFERENCES (DATA REPORTS,ETC.) : 

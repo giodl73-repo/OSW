@@ -1,0 +1,1168 @@
+# Preserve original paper bytes and avoid applying text whitespace checks to PDFs.
+*.pdf binary
+# Frozen RU29 methods and selected provider products retain exact source bytes.
+research/source-data/caribbean-ru29-2024-v1/** -text -whitespace
+research/caribbean-ru29-* -text
+analysis/caribbean_ru29_source_fields_v*.py -text
+analysis/test_caribbean_ru29_source_fields_v*.py -text
+plans/caribbean-ru29-source-fields-protocol-v*.md -text
+figures/caribbean-ru29-velocity-sections-v*.svg -text
+analysis/caribbean_ru29_query.py -text
+analysis/build_caribbean_ru29_source_page.py -text
+almanac/caribbean-source.* -text
+# Exact provider custody, source plotting example and compressed NetCDF original.
+research/source-data/kuroshio-wang-2026-v1/** -text -whitespace
+# Preserve archived JATS bytes, including whitespace in the author's math markup.
+research/source-data/li-neuc-2018/journal-article.xml -text -whitespace
+research/source-data/exley-loop-2022/journal-article.xml -text -whitespace
+
+# Preserve exact provider responses for the archived OSCAR vector sections.
+research/source-data/oscar-basin-sections-2013/*.csv -text -whitespace
+research/source-data/oscar-basin-sections-2013/metadata.json -text -whitespace
+
+# Preserve exact ASCA provider bytes and the source-bound generated contracts.
+research/source-data/asca-2016-2018-100m/** -text -whitespace
+research/agulhas-asca-100m-*.json -text
+analysis/build_asca_100m_sections.py -text
+plans/agulhas-asca-100m-section-aggregation-protocol-v1.md -text
+
+# Preserve the exact licensed NMDC provider metadata snapshot.
+research/source-data/dundas-fer-wsc-2026/dataset-landing.html -text -whitespace
+
+# Exact OSCAR paired-vector source responses; retain original bytes.
+research/source-data/oscar-necc-vectors-2013/*.csv -text -whitespace
+research/source-data/oscar-necc-vectors-2013/metadata.json -text -whitespace
+
+# Exact custody and operator inputs for the published western-Pacific model scale.
+analysis/acquire_pacific_width_papers.py -text
+analysis/build_necc_chen_spread_scale.py -text
+plans/pacific-necc-model-axis-spread-protocol-v1.md -text
+research/source-data/chen-necc-2016/acquisition.json -text
+research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json -text
+
+# Exact JASADCP provider bytes and the declared section/extraction contract.
+research/source-data/jasadcp-p14n-1993/* -text -whitespace
+analysis/acquire_jasadcp_p14n_1993.py -text
+analysis/build_aleutian_p14n_vector_section.py -text
+plans/aleutian-p14n-1993-vector-section-preflight-v1.md -text
+research/aleutian-p14n-1993-observed-vector-section.json -text
+# Preserve Matplotlib's generated path-data serialization and its source pin.
+figures/aleutian-p14n-1993-observed-vectors.svg -text -whitespace
+
+# Exact CCHDO hydrography, custody metadata and declared join inputs.
+research/source-data/cchdo-p14n-1993/* -text -whitespace
+analysis/acquire_p14n_1993_ctd.py -text
+analysis/prepare_p14n_ctd_receipt.py -text
+analysis/build_p14n_hydrography_companion.py -text
+analysis/build_p14n_hydrography_figure.py -text
+plans/aleutian-p14n-1993-hydrography-join-preflight-v1.md -text
+plans/aleutian-p14n-1993-hydrography-metadata-clarifications-v1.md -text
+research/aleutian-p14n-1993-hydrography-correspondence.json -text
+analysis/build_p14n_component_spans.py -text
+analysis/build_p14n_component_span_figure.py -text
+plans/aleutian-p14n-component-span-protocol-v1.md -text
+research/aleutian-p14n-1993-component-spans.json -text
+research/aleutian-p14n-1993-component-spans-figure.json -text
+
+# Preserve original native products and the declared metadata/field operators.
+research/source-data/jasadcp-p14n-1993-native/* -text
+analysis/acquire_p14n_native_products.py -text
+analysis/build_p14n_native_metadata.py -text
+analysis/build_p14n_native_field_audit.py -text
+analysis/build_p14n_native_support_figure.py -text
+plans/aleutian-p14n-native-source-preflight-v1.md -text
+plans/aleutian-p14n-native-field-audit-protocol-v1.md -text
+research/aleutian-p14n-1993-native-product-metadata.json -text
+research/aleutian-p14n-1993-native-vector-support.json -text
+research/aleutian-p14n-1993-native-vector-support-figure.json -text
+analysis/build_p14n_underway_averages.py -text
+analysis/build_p14n_underway_average_figure.py -text
+plans/aleutian-p14n-underway-averaging-protocol-v1.md -text
+research/aleutian-p14n-1993-underway-averages.json -text
+research/aleutian-p14n-1993-underway-averages-figure.json -text
+figures/aleutian-p14n-1993-underway-averages.svg -text -whitespace
+research/guiana-reference-path-input.json -text
+research/guiana-reference-path-candidate.json -text
+figures/guiana-reference-path-candidate.svg -text -whitespace
+research/equatorial-basin-family-inventory-audit.json -text
+analysis/build_current_measurement_scopes.py -text
+plans/current-measurement-object-scope-protocol-v1.md -text
+research/current-measurement-scopes/*.json -text
+research/current-measurement-object-scope-index.json -text
+figures/current-measurement-scopes/*.svg -text
+analysis/build_p14n_run_composite.py -text
+analysis/build_p14n_run_composite_figure.py -text
+plans/aleutian-p14n-run-composite-protocol-v1.md -text
+research/aleutian-p14n-1993-run-composite.json -text
+research/aleutian-p14n-1993-run-composite-figure.json -text
+figures/aleutian-p14n-1993-run-composite.svg -text -whitespace
+analysis/build_kuroshio_filtered_width_series.py -text
+analysis/build_kuroshio_filtered_width_figure.py -text
+analysis/kuroshio_filtered_width.py -text
+plans/kuroshio-filtered-width-time-series-protocol-v1.md -text
+research/source-data/kuroshio-liu-gan-2012/figure7a-time-extraction.json -text
+research/kuroshio-ecs-filtered-width-time-series.json -text
+research/kuroshio-ecs-filtered-width-time-series-figure.json -text
+figures/kuroshio-ecs-filtered-width-time-series.svg -text -whitespace
+analysis/build_asca_component_spans.py -text
+analysis/build_asca_component_span_figure.py -text
+analysis/asca_component_spans.py -text
+plans/agulhas-asca-100m-component-span-protocol-v1.md -text
+research/agulhas-asca-100m-dated-component-spans.json -text
+research/agulhas-asca-100m-dated-component-spans-figure.json -text
+figures/agulhas-asca-100m-dated-component-spans.svg -text -whitespace
+analysis/acquire_eac_100m_source.py -text
+analysis/check_eac_100m_source.py -text
+analysis/build_eac_source_profiles.py -text
+analysis/build_eac_100m_source_figure.py -text
+analysis/eac_source_fields.py -text
+plans/eac-csiro-v23-100m-source-selection-protocol-v1.md -text
+research/source-data/eac-csiro-v23-100m/*.json -text
+research/source-data/eac-csiro-v23-100m/selected-source.npz binary
+research/eac-csiro-v23-100m-*.json -text
+figures/eac-csiro-v23-100m-source-fields.svg -text -whitespace
+analysis/build_eac_section_core_spans.py -text
+analysis/build_eac_section_core_span_figure.py -text
+analysis/eac_core_spans.py -text
+plans/eac-csiro-100m-section-core-span-protocol-v1.md -text
+research/eac-csiro-100m-section-core-spans*.json -text
+figures/eac-csiro-100m-section-core-spans.svg -text -whitespace
+# Preserve native HYCOM responses and the exact source/method contracts.
+research/source-data/hycom-south-australian-2d-2012/** -text -whitespace
+research/source-data/hycom-south-australian-2d-2012/source-vectors.npz binary
+analysis/acquire_south_australian_hycom_2d.py -text
+analysis/build_south_australian_flow_context.py -text
+analysis/build_south_australian_flow_context_figure.py -text
+analysis/build_south_australian_hycom_2d_figure.py -text
+plans/south-australian-hycom-2d-source-selection-protocol-v1.md -text
+plans/south-australian-hycom-2d-flow-context-protocol-v1.md -text
+research/south-australian-hycom-2d-*.json -text
+figures/south-australian-hycom-2d-*.svg -text -whitespace
+analysis/south_australian_flow_context.py -text
+# Exact author-processed Durante2026 source, metadata and source-view contracts.
+research/source-data/loop-durante-2026-v0/** -text -whitespace
+research/source-data/loop-durante-2026-v0/*.mat binary
+research/source-data/loop-durante-2026-v0/*.zip binary
+analysis/acquire_loop_durante_2026.py -text
+analysis/build_loop_durante_source_view.py -text
+plans/loop-durante-2026-source-selection-protocol-v1.md -text
+plans/loop-durante-2026-source-view-protocol-v1.md -text
+research/loop-durante-2026-source-view*.json -text
+figures/loop-durante-2026-source-view.svg -text -whitespace
+analysis/loop_durante_composite_contours.py -text
+analysis/build_loop_durante_contour_figure.py -text
+plans/loop-durante-2026-composite-contour-protocol-v1.md -text
+research/loop-durante-2026-composite-contour-*.json -text
+figures/loop-durante-2026-composite-contours.svg -text -whitespace
+analysis/scientific_readback.py -text
+plans/scientific-calculation-readback-protocol-v1.md -text
+# Exact calendar aggregation protocol, operators and derived source records.
+analysis/build_eac_calendar_distributions.py -text
+analysis/build_eac_calendar_distribution_figure.py -text
+plans/eac-section-calendar-distribution-protocol-v1.md -text
+research/eac-section-calendar-distributions*.json -text
+figures/eac-section-calendar-distributions.svg -text -whitespace
+# Exact surrounding OSCAR source responses and declared monthly calculation.
+research/source-data/oscar-west-australian-2d-2013/** -text -whitespace
+research/source-data/oscar-west-australian-2d-2013/*.zip binary
+analysis/acquire_west_australian_oscar_2d.py -text
+analysis/build_west_australian_oscar_2d_source.py -text
+analysis/build_west_australian_oscar_2d_source_figure.py -text
+plans/west-australian-oscar-2d-source-selection-protocol-v1.md -text
+research/west-australian-oscar-2d-*.json -text
+figures/west-australian-oscar-2d-source.svg -text -whitespace
+# Retained Euler baseline and separately declared numerical refinement.
+analysis/west_australian_regional_streamlines.py -text
+analysis/west_australian_regional_streamlines_rk4.py -text
+analysis/west_australian_streamline_evidence.py -text
+analysis/build_west_australian_regional_streamline_figures.py -text
+analysis/build_west_australian_regional_streamline_rk4_figures.py -text
+plans/west-australian-regional-streamline-*.md -text
+research/west-australian-regional-streamline*.json -text
+figures/west-australian-regional-streamline*.svg -text -whitespace
+# Dated observed REDSOX section, exact calculation/source/figure bindings.
+analysis/build_redsox_section3_spans.py -text
+analysis/build_redsox_section3_figure.py -text
+plans/redsox-section3-width-protocol-v1.md -text
+research/redsox-section3-source-selection.json -text
+research/redsox-winter-section3-*.json -text
+figures/redsox-winter-section3-*.svg -text -whitespace
+analysis/build_redsox_section3_repeat.py -text
+analysis/build_redsox_section3_repeat_figure.py -text
+plans/redsox-section3-repeat-survey-protocol-v1.md -text
+research/redsox-section3-repeat-*.json -text
+figures/redsox-section3-repeat-*.svg -text -whitespace
+analysis/current_section_measurements.py -text
+plans/current-section-measurement-records-v1.md -text
+rust/osw-query/src/current_section_measurements.rs -text
+almanac/current-research-evidence.js -text
+almanac/query.js -text
+plans/asca-alignment-indicator-readback-v1.md -text
+plans/eac-fixed-array-distance-readback-v1.md -text
+analysis/eac_core_readback.py -text
+plans/eac-section-core-calculation-readback-v1.md -text
+plans/eac-section-core-calculation-readback-v2.md -text
+almanac/query-parts/** binary
+# Preserve bytes used by the transport/engine provenance checks on every checkout.
+almanac/query-data.json -text
+almanac/query-packet.js -text
+analysis/query_packet.py -text
+rust/osw-query/src/packet.rs -text
+rust/osw-query/src/main.rs -text
+plans/query-packet-transport-protocol-v1.md -text
+analysis/kuroshio_axis_normal.py -text
+analysis/build_kuroshio_axis_normal_figure.py -text
+plans/kuroshio-axis-normal-width-protocol-v1.md -text
+research/kuroshio-wang-2024-axis-normal-*.json -text
+figures/kuroshio-wang-2024-axis-normal-spans.svg -text -whitespace
+analysis/kuroshio_axis_normal_query.py -text
+plans/kuroshio-axis-normal-query-atlas-protocol-v1.md -text
+rust/osw-query/src/kuroshio_normal.rs -text
+research/source-data/vinayachandran-indian-upwelling-2021/** -text -whitespace
+analysis/agulhas_reported_dimensions.py -text
+analysis/acquire_indian_upwelling_review.py -text
+plans/agulhas-reported-dimensions-protocol-v1.md -text
+research/agulhas-vinayachandran-2021-reported-dimensions.json -text
+research/ocean-current-effective-measurements.json -text
+figures/agulhas-vinayachandran-2021-reported-dimensions.svg -text
+rust/osw-query/src/agulhas_reported.rs -text
+research/source-data/baumann-nwasc-2026/** -text -whitespace
+analysis/nwasc_mean_core_widths.py -text
+plans/nwasc-mean-core-width-protocol-v1.md -text
+research/norwegian-baumann-2026-mean-core-widths.json -text
+figures/norwegian-baumann-2026-mean-core-widths.svg -text
+rust/osw-query/src/nwasc_mean_core.rs -text
+research/source-data/oscar-indian-secc-2d-2013/** -text -whitespace
+analysis/acquire_indian_secc_oscar_2d.py -text
+analysis/build_indian_secc_oscar_2d_source.py -text
+analysis/build_indian_secc_oscar_2d_source_figure.py -text
+plans/indian-secc-oscar-2d-source-protocol-v1.md -text
+research/indian-secc-oscar-2d-monthly-source-fields.json -text
+research/indian-secc-oscar-2d-source-figure.json -text
+analysis/indian_secc_positive_bands.py -text
+analysis/build_indian_secc_positive_band_figure.py -text
+plans/indian-secc-positive-band-connectivity-protocol-v1.md -text
+research/indian-secc-positive-band-connectivity.json -text
+research/indian-secc-positive-band-figure.json -text
+figures/indian-secc-positive-band-connectivity.svg -text -whitespace
+plans/indian-secc-band-calculation-readback-protocol-v1.md -text
+plans/indian-secc-local-axis-normal-protocol-v1.md -text
+analysis/indian_secc_local_normals.py -text
+analysis/build_indian_secc_local_normal_figure.py -text
+research/indian-secc-local-axis-normal-spans.json -text
+research/indian-secc-local-axis-normal-figure.json -text
+figures/indian-secc-local-axis-normal-spans.svg -text -whitespace
+
+# Preserve the working nominal-section bound and original licensed publisher XML.
+research/source-data/cainzos-atlantic-2023/article.xml -text -whitespace
+research/source-data/cainzos-atlantic-2023/article-acquisition.json -text
+analysis/north_atlantic_gate_bound.py -text
+research/north-atlantic-nominal-gate-bound.json -text
+plans/north-atlantic-nominal-gate-bound-protocol-v1.md -text
+figures/north-atlantic-nominal-gate-bound.svg -text
+
+# Preserve the separate slope-current admission and its effective working exports.
+research/norwegian-atlantic-slope-working-admission.json -text
+research/ocean-current-effective-catalogue.json -text
+research/ocean-current-live-measurements.json -text
+research/source-data/orvik-niiler-ices-2001/acquisition.json -text
+analysis/nwasc_working_admission.py -text
+plans/nwasc-working-admission-protocol-v1.md -text
+figures/norwegian-atlantic-slope-admitted-dimensions.svg -text
+
+# Independent ASAR factual reports; copyrighted original remains ignored.
+analysis/hansen_asar_widths.py -text
+research/hansen-2011-asar-surface-width-admissions.json -text
+research/ocean-current-measurements-asar-edition.json -text
+research/source-data/hansen-asar-2011/acquisition.json -text
+plans/hansen-asar-width-admission-protocol-v1.md -text
+figures/hansen-2011-asar-surface-widths.svg -text
+
+# Source-anchor regional connection; retain exact source/report bytes.
+analysis/nwasc_source_anchor_route.py -text
+research/nwasc-source-anchor-reference-route.json -text
+research/nwasc-source-anchor-reference-route-input.json -text
+plans/nwasc-source-anchor-route-protocol-v1.md -text
+figures/nwasc-source-anchor-reference-route.svg -text
+
+# NEUC primary-HTML factual transcription; no archived publisher original.
+analysis/neuc_glider_widths.py -text
+research/neuc-glider-2015-width-source-input.json -text
+research/neuc-glider-2015-source-review.json -text
+research/neuc-glider-2015-width-admissions.json -text
+research/ocean-current-measurements-neuc-edition.json -text
+plans/neuc-glider-width-admission-protocol-v1.md -text
+figures/neuc-glider-2015-width-ranges.svg -text
+
+# Archived-publisher Aleutian width constraint; original stays private.
+analysis/aleutian_onishi_width.py -text
+research/aleutian-onishi-2001-width-input.json -text
+research/aleutian-onishi-2001-width-admission.json -text
+research/aleutian-onishi-2001-width-contract.json -text
+research/ocean-current-measurements-aleutian-edition.json -text
+research/source-data/onishi-aleutian-2001/acquisition.json -text
+plans/aleutian-onishi-width-admission-protocol-v1.md -text
+figures/aleutian-onishi-2001-width-constraint.svg -text
+
+# Finer-grid Indian SECC source selection,exact declared bytes.
+research/indian-secc-hycom-2013-source-preflight.json -text
+plans/indian-secc-hycom-2013-source-protocol-v1.md -text
+analysis/acquire_indian_secc_hycom_2013.py -text
+analysis/indian_secc_hycom_local_normals.py -text
+analysis/package_indian_secc_hycom_2013.py -text
+analysis/build_indian_secc_hycom_view.py -text
+plans/indian-secc-hycom-local-normal-protocol-v1.md -text
+research/indian-secc-hycom-2013-diagnostic-preflight.json -text
+research/indian-secc-hycom-2013-local-normal-spans.json -text
+research/source-data/hycom-indian-secc-2013/** -text -whitespace
+figures/indian-secc-hycom-2013/** -text -whitespace
+plans/indian-secc-hycom-array-serialization-protocol-v1.md -text
+
+# Frozen paired South Indian hydrography source selection.
+analysis/acquire_south_indian_hycom_hydrography.py -text
+plans/south-indian-hycom-hydrography-source-protocol-v1.md -text
+research/south-indian-hycom-hydrography-source-preflight.json -text
+analysis/package_south_indian_hycom_hydrography.py -text
+analysis/build_south_indian_hydrography_view.py -text
+analysis/south_indian_hydrography_view.html -text
+analysis/south_indian_paired_profiles.py -text
+plans/south-indian-paired-profile-diagnostic-protocol-v1.md -text
+research/south-indian-paired-profile-diagnostic-preflight.json -text
+research/stramma-1992-south-indian-full-paper-review.json -text
+analysis/south_indian_hydrography_query.py -text
+research/sparrow-1996-south-indian-front-definition-review.json -text
+research/source-data/sparrow-south-indian-1996/acquisition.json -text
+analysis/resume_south_indian_hycom_transport.py -text
+plans/south-indian-hycom-transport-resume-v1.md -text
+research/south-indian-hycom-longer-timeout-resume.json -text
+research/source-data/hycom-south-indian-hydrography-2013/** -text
+research/south-indian-hycom-2013-paired-profile-candidates.json -text
+figures/south-indian-hydrography-2013/** -text
+analysis/south_indian_hycom_single_date_resume.py -text
+plans/south-indian-hycom-single-date-transport-v1.md -text
+research/south-indian-hycom-single-date-resume.json -text
+# Preserve the provider's coordinate-response trailing blank line byte for byte.
+research/source-data/hycom-south-indian-hydrography-2013/coordinates.ascii -whitespace
+analysis/wgs84_decimal_meridian.py -text
+analysis/south_indian_paired_profiles_v2.py -text
+plans/south-indian-paired-profile-diagnostic-protocol-v2.md -text
+research/south-indian-paired-profile-diagnostic-preflight-v2.json -text
+research/south-indian-hycom-2013-paired-profile-candidates-v2.json -text
+
+# Preserve licensed Angola provider custody and the frozen native-array method.
+research/source-data/kopte-angola-2017/** -text -whitespace
+analysis/angola_nansen_native_sections.py -text
+analysis/test_angola_nansen_native_sections.py -text
+plans/angola-nansen-native-section-protocol-v1.md -text
+research/angola-nansen-native-sections-preflight-v1.json -text
+
+# Freeze the explicit Angola v2 identity-JSON transport correction.
+analysis/angola_nansen_portable_sections_v2.py -text
+analysis/test_angola_nansen_portable_sections_v2.py -text
+plans/angola-nansen-portable-transport-protocol-v2.md -text
+research/angola-nansen-native-sections-preflight-v2.json -text
+research/angola-nansen-native-v1-linux-transport-diagnostic.json -text
+
+# Preserve prospective Labrador latitude-bound method and declaration bytes.
+analysis/labrador_latitude_gate_bound_v1.py -text
+analysis/test_labrador_latitude_gate_bound_v1.py -text
+plans/labrador-latitude-gate-bound-protocol-v1.md -text
+research/labrador-latitude-gate-bound-preflight-v1.json -text
+
+research/labrador-latitude-gate-bound-v1.json -text
+figures/labrador-latitude-gate-bound-v1.svg -text
+
+# Preserve the prospective KE plot operator and all subsequent factual products.
+analysis/ke_qiu_plot_pathlength_v1.py -text
+analysis/test_ke_qiu_plot_pathlength_v1.py -text
+plans/kuroshio-extension-plot-pathlength-protocol-v1.md -text
+research/kuroshio-extension-qiu-2023-pathlength-source.json -text
+research/ke-qiu-plot-pathlength-preflight-v1.json -text
+research/source-data/ke-qiu-2023/figure2a-vector-trace-v1.json -text
+research/ke-qiu-regional-plot-pathlength-v1.json -text
+figures/ke-qiu-regional-plot-pathlength-v1.svg -text
+analysis/ke_qiu_plot_pathlength_v2.py -text
+analysis/test_ke_qiu_plot_pathlength_v2.py -text
+plans/kuroshio-extension-plot-pathlength-protocol-v2.md -text
+research/ke-qiu-plot-pathlength-preflight-v2.json -text
+research/ke-qiu-v1-pdf-operator-diagnostic.json -text
+research/source-data/ke-qiu-2023/figure2a-vector-trace-v2.json -text
+research/ke-qiu-regional-plot-pathlength-v2.json -text
+figures/ke-qiu-regional-plot-pathlength-v2.svg -text
+analysis/ke_qiu_plot_pathlength_v3.py -text
+analysis/test_ke_qiu_plot_pathlength_v3.py -text
+plans/kuroshio-extension-plot-pathlength-protocol-v3.md -text
+research/ke-qiu-plot-pathlength-preflight-v3.json -text
+research/ke-qiu-v2-stroke-diagnostic.json -text
+research/source-data/ke-qiu-2023/figure2a-vector-trace-v3.json -text
+research/ke-qiu-regional-plot-pathlength-v3.json -text
+figures/ke-qiu-regional-plot-pathlength-v3.svg -text
+analysis/ke_qiu_plot_pathlength_v4.py -text
+analysis/test_ke_qiu_plot_pathlength_v4.py -text
+plans/kuroshio-extension-plot-pathlength-protocol-v4.md -text
+research/ke-qiu-plot-pathlength-preflight-v4.json -text
+research/ke-qiu-v3-topology-diagnostic.json -text
+research/source-data/ke-qiu-2023/figure2a-vector-trace-v4.json -text
+research/ke-qiu-regional-plot-pathlength-v4.json -text
+figures/ke-qiu-regional-plot-pathlength-v4.svg -text
+research/ke-qiu-regional-length-query-contract-v1.json -text
+analysis/published_current_regional_reaches_v1.py -text
+analysis/test_published_current_regional_reaches_v1.py -text
+plans/published-current-regional-reaches-protocol-v1.md -text
+research/algerian-arnone-1990-reach-source-facts.json -text
+research/published-current-regional-reaches-preflight-v1.json -text
+research/algerian-arnone-1990-reported-reach-v1.json -text
+figures/algerian-arnone-1990-reported-reach-v1.svg -text
+research/source-data/arnone-algerian-1990/* -text
+analysis/published_regional_reaches_query.py -text
+analysis/test_published_regional_reaches_query.py -text
+research/published-regional-reaches-query-contract-v1.json -text
+analysis/published_current_regional_reaches_v2.py -text
+analysis/test_published_current_regional_reaches_v2.py -text
+research/brazil-tomczak-initial-reach-source-facts-v1.json -text
+plans/published-current-regional-reaches-protocol-v2.md -text
+research/published-current-regional-reaches-preflight-v2.json -text
+research/brazil-tomczak-initial-reach-v2.json -text
+figures/brazil-tomczak-initial-reach-v2.svg -text
+analysis/brazil_regional_reach_query.py -text
+analysis/test_brazil_regional_reach_query.py -text
+analysis/object_source_links.py -text
+analysis/test_object_source_links.py -text
+research/brazil-regional-reach-query-contract-v1.json -text
+research/object-source-link-count-audit-2026-10-23.json -text
+research/indian-current-naming-candidates-v1.json -text
+analysis/reported_current_direction_calendars_v1.py -text
+analysis/test_reported_current_direction_calendars_v1.py -text
+research/indian-current-direction-calendar-source-facts-v1.json -text
+research/indian-coastal-current-identity-review-v1.json -text
+plans/reported-current-direction-calendar-protocol-v1.md -text
+research/reported-current-direction-calendar-preflight-v1.json -text
+research/indian-current-reported-direction-calendars-v1.json -text
+figures/indian-current-reported-direction-calendars-v1.svg -text
+research/wicc-march-1994-regime-source-facts-v1.json -text
+analysis/reported_current_width_evidence_v1.py -text
+analysis/test_reported_current_width_evidence_v1.py -text
+plans/reported-current-width-evidence-protocol-v1.md -text
+research/eicc-wijesekera-2015-width-source-facts-v1.json -text
+research/reported-current-width-evidence-preflight-v1.json -text
+research/source-data/wijesekera-eicc-2015/acquisition.json -text
+research/eicc-wijesekera-2015-width-evidence-v1.json -text
+figures/eicc-wijesekera-2015-width-evidence-v1.svg -text
+research/eacc-painter-2020-cross-shore-source-facts-v1.json -text
+research/source-data/painter-eacc-2020/acquisition.json -text
+analysis/indian_current_identity_query.py -text
+analysis/test_indian_current_identity_query.py -text
+analysis/inventory_source_links.py -text
+analysis/test_inventory_source_links.py -text
+research/indian-current-identity-query-contract-v1.json -text
+analysis/indian_current_evidence_query.py -text
+analysis/current_gap_admission_batch.py -text
+analysis/test_current_gap_admission_batch.py -text
+analysis/check_current_gap_batch_delivery.py -text
+research/indian-current-evidence-query-contract-v1.json -text
+analysis/eicc_t24_width_admission.py -text
+analysis/current_gap_width_admission_batch.py -text
+analysis/test_eicc_t24_width_admission.py -text
+analysis/check_eicc_t24_width_delivery.py -text
+research/eicc-t24-published-width-admission-v1.json -text
+research/indian-current-reference-route-planning-v1.json -text
+analysis/check_current_gap_parent_rehearsal.py -text
+analysis/test_current_gap_parent_rehearsal.py -text
+research/current-gap-parent-rehearsal-proof-v1.json -text
+rust/osw-query/src/current_gap_admissions.rs -text
+analysis/current_gap_candidate_metadata.py -text
+analysis/test_current_gap_candidate_metadata.py -text
+analysis/current_gap_index_extension.py -text
+analysis/test_current_gap_index_extension.py -text
+analysis/export_current_gap_cloud_candidate.py -text
+almanac/current-source-evidence-ui.js -text
+analysis/test_current_gap_admission_browser.py -text
+research/current-gap-cloud-candidate-proof-v1.json -text
+research/current-gap-native-candidate-proof-v1.json -text
+research/east-gyral-identity-scope-review-v1.json -text
+research/source-data/grand-south-indian-2015/acquisition.json -text
+research/current-gap-parent-query-packet-v1.json -text
+analysis/prepare_current_gap_cloud_delivery.py -text
+analysis/test_current_gap_cloud_delivery.py -text
+research/current-gap-installed-delivery-v1.json -text
+analysis/test_rust_query_browser_server.py -text
+research/current-gap-browser-proof-v1.json -text
+analysis/davidson_wallace_reported_width_v1.py -text
+analysis/test_davidson_wallace_reported_width_v1.py -text
+plans/davidson-wallace-reported-width-protocol-v1.md -text
+research/davidson-wallace-2008-source-review-v1.json -text
+research/davidson-wallace-2008-width-source-facts-v1.json -text
+research/davidson-wallace-2008-reported-width-preflight-v1.json -text
+research/davidson-wallace-2008-reported-width-v1.json -text
+research/source-data/wallace-davidson-2008/acquisition.json -text
+research/source-data/wallace-davidson-2008/international-nautical-mile-definition.json -text
+figures/davidson-wallace-2008-reported-width-v1.svg -text
+signals/roles/check/davidson-wallace-reported-width-v1-roles-check-2026-10-23.md -text
+research/davidson-wallace-2008-source-replay-proof-v1.json -text
+analysis/davidson_wallace_width_admission.py -text
+analysis/test_davidson_wallace_width_admission.py -text
+research/davidson-wallace-2008-width-admission-v1.json -text
+rust/osw-query/src/davidson_reported_width.rs -text
+research/davidson-width-parent-query-packet-v1.json -text
+research/davidson-width-installed-delivery-v1.json -text
+research/davidson-width-parent-owner-v1.json -text
+research/davidson-wallace-card-visual-review-v1.json -text
+research/wicc-width-literature-discrepancy-review-v1.json -text
+research/baffin-fissel-1982-length-source-review-v1.json -text
+plans/baffin-latitude-gate-bound-protocol-v1.md -text
+analysis/baffin_latitude_gate_bound_v1.py -text
+analysis/test_baffin_latitude_gate_bound_v1.py -text
+research/baffin-latitude-gate-bound-preflight-v1.json -text
+research/baffin-latitude-gate-bound-v1.json -text
+figures/baffin-latitude-gate-bound-v1.svg -text
+signals/roles/check/baffin-latitude-gate-bound-v1-roles-check-2026-10-23.md -text
+research/baffin-latitude-gate-bound-execution-proof-v1.json -text
+research/baffin-latitude-gate-bound-source-visual-review-v1.json -text
+analysis/baffin_bound_admission.py -text
+analysis/test_baffin_bound_admission.py -text
+research/baffin-latitude-bound-admission-v1.json -text
+rust/osw-query/src/baffin_latitude_bound.rs -text
+research/baffin-bound-parent-owner-v1.json -text
+research/baffin-bound-owner-transition-v1.json -text
+analysis/baffin_bound_owner_projection.py -text
+analysis/test_baffin_bound_owner_projection.py -text
+analysis/baffin_bound_candidate_metadata.py -text
+analysis/test_baffin_bound_candidate_metadata.py -text
+analysis/export_baffin_bound_candidate.py -text
+analysis/test_baffin_bound_candidate_export.py -text
+analysis/test_baffin_bound_browser.py -text
+analysis/test_baffin_bound_browser_policy.py -text
+analysis/prepare_baffin_bound_delivery.py -text
+analysis/test_baffin_bound_delivery.py -text
+.github/workflows/baffin-bound-candidate.yml -text
+research/current-gap-delivery-phase.json -text
+research/baffin-bound-installed-delivery-v1.json -text
+research/west-greenland-length-lead-review-v1.json -text
+research/davidson-wallace-card-visual-review-v2.json -text
+analysis/test_browser_current_catalogue_fixture.py -text
+
+# Preserve the prospective OSNAP source-header freeze across platforms.
+analysis/inspect_osnap_wg_2016_2018_source_v1.py -text
+analysis/test_osnap_wg_2016_2018_source_inspection_v1.py -text
+plans/osnap-wg-2016-2018-source-inspection-protocol-v1.md -text
+research/west-greenland-osnap-2016-2018-archive-inventory-v1.json -text
+research/west-greenland-osnap-2016-2018-metadata-review-v1.json -text
+signals/roles/check/osnap-wg-source-inspection-v1-roles-check-2026-10-24.md -text
+.github/workflows/osnap-wg-source-inspection-v1.yml -text
+research/osnap-wg-2016-2018-source-inspection-preflight-v1.json -text
+research/osnap-wg-2016-2018-source-headers-v1.json -text
+research/osnap-wg-2016-2018-original-custody-v1.json -text
+research/osnap-wg-2016-2018-source-header-execution-review-v1.json -text
+
+# Prospective OSNAP sample-support version: preserve its committed freeze.
+analysis/audit_osnap_wg_sample_support_v1.py -text
+analysis/test_osnap_wg_sample_support_v1.py -text
+plans/osnap-wg-2016-2018-sample-support-protocol-v1.md -text
+.github/workflows/osnap-wg-sample-support-v1.yml -text
+signals/roles/check/osnap-wg-sample-support-v1-roles-check-2026-10-24.md -text
+research/osnap-wg-2016-2018-sample-support-preflight-v1.json -text
+research/osnap-wg-2016-2018-sample-support-v1.json -text
+research/osnap-wg-2016-2018-sample-support-execution-review-v1.json -text
+
+# Prospective West Greenland regional-core method and original execution.
+analysis/west_greenland_core_width_math_v1.py -text
+analysis/test_west_greenland_core_width_math_v1.py -text
+plans/west-greenland-monthly-core-width-protocol-v1.md -text
+analysis/build_west_greenland_core_width_v1.py -text
+analysis/test_west_greenland_core_width_operator_v1.py -text
+plans/west-greenland-monthly-core-width-execution-protocol-v1.md -text
+.github/workflows/west-greenland-core-width-v1.yml -text
+signals/roles/check/west-greenland-core-width-v1-roles-check-2026-10-24.md -text
+research/west-greenland-core-width-preflight-v1.json -text
+
+# Retain exact original regional diagnostic outputs and execution review.
+research/west-greenland-regional-core-diagnostic-v1.json -text
+figures/west-greenland-regional-core-diagnostic-v1.svg -text
+research/west-greenland-core-width-execution-review-v1.json -text
+
+# Preserve the prepared Indian coastal dimension source batch.
+research/eacc-painter-2020-regional-reach-source-facts-v1.json -text
+research/south-java-sprintall-2010-confinement-source-facts-v1.json -text
+research/indian-coastal-dimension-source-batch-v1.json -text
+research/source-data/sprintall-sjc-2010/acquisition-metadata-v1.json -text
+plans/indian-coastal-dimension-context-batch-v1.md -text
+analysis/indian_coastal_dimension_context_v1.py -text
+analysis/test_indian_coastal_dimension_context_v1.py -text
+signals/roles/check/indian-coastal-dimension-context-v1-roles-check-2026-10-24.md -text
+research/indian-coastal-dimension-context-query-contract-v1.json -text
+rust/osw-query/src/indian_coastal_context.rs -text
+analysis/indian_coastal_context_candidate.py -text
+analysis/test_indian_coastal_context_candidate.py -text
+analysis/export_indian_coastal_context_candidate.py -text
+analysis/test_indian_coastal_context_export.py -text
+plans/indian-coastal-context-candidate-delivery-v1.md -text
+analysis/test_indian_coastal_context_browser.py -text
+.github/workflows/indian-coastal-context-candidate.yml -text
+signals/roles/check/indian-coastal-runtime-delivery-v1-roles-check-2026-10-24.md -text
+research/indian-coastal-context-candidate-export-execution-review-v1.json -text
+analysis/indian_coastal_delivery_receipts_v1.py -text
+analysis/test_indian_coastal_delivery_receipts_v1.py -text
+research/indian-coastal-context-card-visual-review-v1.json -text
+analysis/indian_coastal_card_presentation_v1.py -text
+analysis/test_indian_coastal_card_presentation_v1.py -text
+analysis/check_indian_coastal_card_presentation_v1.py -text
+.github/workflows/indian-coastal-card-presentation-v1.yml -text
+plans/indian-coastal-card-presentation-v1.md -text
+signals/roles/check/indian-coastal-card-presentation-v1-roles-check-2026-10-24.md -text
+analysis/verify_indian_coastal_installation_v1.py -text
+analysis/test_verify_indian_coastal_installation_v1.py -text
+research/source-data/shetye-wicc-1991/author-copy-access-attempt-v1.json -text
+research/wicc-shetye-1991-author-copy-access-review-v1.json -text
+research/eacc-width-primary-source-followup-v1.json -text
+plans/eacc-regional-model-core-width-method-draft-v1.md -text
+analysis/install_indian_coastal_context_v1.py -text
+analysis/test_install_indian_coastal_context_v1.py -text
+research/indian-coastal-context-full-validation-review-v1.json -text
+.github/workflows/install-indian-coastal-context-v1.yml -text
+plans/indian-coastal-context-installation-v1.md -text
+signals/roles/check/indian-coastal-context-installation-v1-roles-check-2026-10-24.md -text
+research/indian-coastal-context-card-visual-review-v2.json -text
+research/indian-coastal-context-installation-request-v1.json -text
+research/indian-coastal-context-installed-execution-review-v1.json -text
+research/source-data/eacc-hycom-2013-metadata-v1/** -text -whitespace
+research/eacc-hycom-metadata-review-v1.json -text
+analysis/eacc_model_core_seed_v1.py -text
+analysis/test_eacc_model_core_seed_v1.py -text
+analysis/eacc_model_core_diagnostic_v1.py -text
+analysis/test_eacc_model_core_diagnostic_v1.py -text
+plans/eacc-regional-model-core-width-protocol-v1.md -text
+research/eacc-regional-model-core-preparation-review-v1.json -text
+signals/roles/check/eacc-regional-model-core-preparation-v1-roles-check-2026-10-24.md -text
+analysis/eacc_hycom_source_selection_v1.py -text
+analysis/test_eacc_hycom_source_selection_v1.py -text
+analysis/eacc_model_core_seed_v2.py -text
+analysis/test_eacc_model_core_seed_v2.py -text
+analysis/eacc_model_core_diagnostic_v2.py -text
+analysis/test_eacc_model_core_diagnostic_v2.py -text
+plans/eacc-regional-model-core-width-protocol-v2.md -text
+research/source-data/eacc-hycom-2013-coordinates-v1/** -text -whitespace
+research/eacc-hycom-2013-source-selection-candidate-v1.json -text
+research/eacc-regional-model-core-preparation-review-v2.json -text
+signals/roles/check/eacc-regional-model-core-preparation-v2-roles-check-2026-10-24.md -text
+analysis/eacc_hycom_source_compilation_v1.py -text
+analysis/test_eacc_hycom_source_compilation_v1.py -text
+plans/eacc-hycom-source-compilation-protocol-v1.md -text
+research/eacc-hycom-source-compilation-preparation-review-v1.json -text
+signals/roles/check/eacc-hycom-source-compilation-v1-roles-check-2026-10-24.md -text
+analysis/eacc_hycom_cloud_acquisition_v1.py -text
+analysis/test_eacc_hycom_cloud_acquisition_v1.py -text
+analysis/eacc_model_core_figures_v1.py -text
+analysis/test_eacc_model_core_figures_v1.py -text
+requirements-eacc-core-v2.txt -text
+.github/workflows/eacc-regional-model-core-v2.yml -text
+plans/eacc-regional-model-core-execution-protocol-v2.md -text
+signals/roles/check/eacc-regional-model-core-original-case-v2-roles-check-2026-10-24.md -text
+research/eacc-regional-model-core-cloud-preparation-review-v1.json -text
+research/eacc-regional-model-core-preflight-v2.json -text
+analysis/eacc_hycom_cloud_acquisition_v2.py -text
+analysis/test_eacc_hycom_cloud_acquisition_v2.py -text
+requirements-eacc-core-v2-execution-v2.txt -text
+plans/eacc-regional-model-core-execution-recovery-v1.md -text
+research/eacc-original-startup-yaml-rejection-review-v1.json -text
+research/eacc-original-execution-recovery-preparation-v1.json -text
+research/eacc-regional-model-core-preflight-v2-execution-v2.json -text
+signals/roles/check/eacc-original-execution-recovery-v1-roles-check-2026-10-24.md -text
+research/eacc-hycom-partial-source-execution-review-v1.json -text
+plans/eacc-hycom-source-resume-protocol-v1.md -text
+.github/workflows/eacc-hycom-source-resume-v1.yml -text
+analysis/eacc_hycom_source_resume_v1.py -text
+analysis/test_eacc_hycom_source_resume_v1.py -text
+analysis/run_eacc_hycom_source_resume_v1.py -text
+analysis/test_run_eacc_hycom_source_resume_v1.py -text
+plans/current-gap-execution-sequence.md -text
+signals/roles/check/eacc-hycom-source-resume-v1-roles-check-2026-10-24.md -text
+research/eacc-hycom-source-resume-preflight-v1.json -text
+.github/workflows/eacc-hycom-source-resume-v2.yml -text
+analysis/run_eacc_hycom_source_resume_v2.py -text
+analysis/test_run_eacc_hycom_source_resume_v2.py -text
+plans/eacc-hycom-source-resume-protocol-v2.md -text
+signals/roles/check/eacc-hycom-source-resume-v2-roles-check-2026-10-24.md -text
+research/eacc-hycom-source-resume-startup-failure-v1.json -text
+research/eacc-hycom-source-resume-preflight-v2.json -text
+research/eacc-hycom-2013-model-core-result-v1.json -text
+research/eacc-hycom-2013-model-core-figures-manifest-v1.json -text
+research/eacc-hycom-source-resume-execution-review-v1.json -text
+plans/eacc-completed-diagnostic-support-inspection-v1.md -text
+analysis/eacc_diagnostic_support_inspection_v1.py -text
+analysis/test_eacc_diagnostic_support_inspection_v1.py -text
+.github/workflows/eacc-diagnostic-support-inspection-v1.yml -text
+requirements-eacc-support-v1.txt -text
+research/eacc-diagnostic-support-request-v1.json -text
+research/eacc-diagnostic-support-preflight-v1.json -text
+signals/roles/check/eacc-diagnostic-support-inspection-v1-roles-check-2026-10-24.md -text
+research/eacc-diagnostic-support-inspection-result-v1.json -text
+research/eacc-diagnostic-support-inspection-review-v1.json -text
+plans/coastal-current-extent-measurement-design-v1.md -text
+analysis/coastal_reference_extent_v1.py -text
+analysis/test_coastal_reference_extent_v1.py -text
+analysis/render_coastal_reference_extent_synthetic_v1.py -text
+plans/coastal-reference-extent-protocol-v1.md -text
+figures/coastal-reference-extent-v1-synthetic.svg -text
+research/coastal-reference-extent-v1-synthetic-figure.json -text
+research/coastal-reference-extent-preparation-review-v1.json -text
+signals/roles/check/coastal-reference-extent-preparation-v1-roles-check-2026-10-24.md -text
+analysis/eacc_coastal_reference_extent_adapter_v1.py -text
+analysis/test_eacc_coastal_reference_extent_adapter_v1.py -text
+analysis/eacc_coastal_reference_extent_evidence_v1.py -text
+analysis/test_eacc_coastal_reference_extent_evidence_v1.py -text
+analysis/run_eacc_coastal_reference_extent_case_v1.py -text
+analysis/test_run_eacc_coastal_reference_extent_case_v1.py -text
+.github/workflows/eacc-coastal-reference-extent-case-v1.yml -text
+plans/eacc-coastal-reference-extent-execution-v1.md -text
+signals/roles/check/eacc-coastal-reference-extent-case-v1-roles-check-2026-10-24.md -text
+research/eacc-coastal-reference-extent-preflight-v1.json -text
+research/eacc-coastal-reference-extent-request-v1.json -text
+research/eacc-coastal-reference-extent-result-v1.json -text
+research/eacc-coastal-reference-extent-figures-manifest-v1.json -text
+research/eacc-coastal-reference-extent-execution-review-v1.json -text
+plans/eacc-coastal-reference-extent-outcome-v1.md -text
+signals/roles/check/eacc-coastal-reference-extent-outcome-v1-roles-check-2026-10-24.md -text
+analysis/current_local_extent_evidence_v1.py -text
+analysis/test_current_local_extent_evidence_v1.py -text
+analysis/render_current_local_extent_evidence_v1.py -text
+analysis/test_render_current_local_extent_evidence_v1.py -text
+plans/current-local-extent-evidence-v1.md -text
+research/eacc-coastal-reference-extent-geographic-review-v1.json -text
+research/eacc-local-extent-evidence-bundle-v1.json -text
+research/eacc-local-extent-primary-months-figure-v1.json -text
+research/eacc-local-extent-evidence-preparation-v1.json -text
+figures/eacc-local-extent-primary-months-v1.svg -text
+signals/roles/check/current-local-extent-evidence-v1-roles-check-2026-10-24.md -text
+rust/osw-query/src/local_extents.rs -text
+rust/osw-query/src/lib.rs -text
+analysis/check_current_local_extent_query_parity_v1.mjs -text
+analysis/check_current_local_extent_query_cloud_v1.py -text
+analysis/test_current_local_extent_query_cloud_v1.py -text
+.github/workflows/current-local-extent-query-check-v1.yml -text
+plans/current-local-extent-query-integration-v1.md -text
+signals/roles/check/current-local-extent-query-v1-roles-check-2026-10-24.md -text
+research/current-local-extent-query-check-request-v1.json -text
+research/current-local-extent-query-check-preflight-v1.json -text
+research/current-local-extent-query-parity-result-v1.json -text
+research/current-local-extent-query-gate-result-v1.json -text
+research/current-local-extent-query-execution-review-v1.json -text
+plans/current-local-extent-query-check-outcome-v1.md -text
+signals/roles/check/current-local-extent-query-outcome-v1-roles-check-2026-10-24.md -text
+rust/osw-query/src/scalar_query.rs -text
+rust/osw-local-extents/Cargo.toml -text
+rust/osw-local-extents/Cargo.lock -text
+rust/osw-local-extents/src/lib.rs -text
+rust/osw-local-extents/src/main.rs -text
+analysis/check_current_local_extent_query_cloud_v2.py -text
+analysis/test_current_local_extent_query_cloud_v2.py -text
+analysis/check_current_local_extent_query_parity_v2.mjs -text
+.github/workflows/current-local-extent-query-check-v2.yml -text
+plans/current-local-extent-query-small-target-v2.md -text
+signals/roles/check/current-local-extent-query-v2-roles-check-2026-10-24.md -text
+research/current-local-extent-query-check-request-v2.json -text
+research/current-local-extent-query-check-preflight-v2.json -text
+research/current-local-extent-query-parity-result-v2.json -text
+research/current-local-extent-query-gate-result-v2.json -text
+research/current-local-extent-query-execution-review-v2.json -text
+plans/current-local-extent-query-check-outcome-v2.md -text
+almanac/local-extents.html -text
+almanac/local-extents.css -text
+almanac/local-extents.js -text
+almanac/local-extents-worker.js -text
+almanac/local-extents-engine.wasm -text -diff
+almanac/local-extents-engine.manifest.json -text
+analysis/check_current_local_extent_ui_v1.py -text
+.github/workflows/current-local-extent-ui-v1.yml -text
+plans/current-local-extent-ui-v1.md -text
+signals/roles/check/current-local-extent-ui-v1-roles-check-2026-10-24.md -text
+research/current-local-extent-ui-preflight-v1.json -text
+research/current-local-extent-ui-request-v1.json -text
+almanac/query.html -text
+almanac/dashboard.html -text
+research/current-local-extent-ui-browser-result-v1.json -text
+research/current-local-extent-ui-executed-preflight-r2.json -text
+research/current-local-extent-ui-execution-review-v1.json -text
+research/current-local-extent-ui-browser-result-v2.json -text
+research/current-local-extent-ui-executed-preflight-r3.json -text
+research/current-local-extent-ui-execution-review-v2.json -text
+almanac/local-extents-verification.json -text
+plans/current-local-extent-ui-outcome-v1.md -text
+signals/roles/check/current-local-extent-ui-outcome-v1-roles-check-2026-10-24.md -text
+research/south-java-iskandar-2006-layer-source-facts-v1.json -text
+analysis/render_south_java_layer_context_v1.py -text
+figures/south-java-iskandar-2006-layer-context-v1.svg -text
+research/south-java-iskandar-2006-layer-figure-v1.json -text
+signals/roles/check/south-java-layer-evidence-v1-roles-check-2026-10-24.md -text
+plans/south-java-layer-evidence-v1.md -text
+analysis/south_java_layer_query_v1.py -text
+analysis/test_south_java_layer_query_v1.py -text
+research/south-java-model-layer-query-contract-v1.json -text
+plans/published-model-layer-context-protocol-v1.md -text
+plans/south-java-model-layer-query-v1.md -text
+signals/roles/check/south-java-model-layer-query-v1-roles-check-2026-10-24.md -text
+research/south-java-model-layer-query-preparation-v1.json -text
+analysis/check_south_java_model_layer_cloud_v1.py -text
+analysis/test_south_java_model_layer_cloud_v1.py -text
+.github/workflows/south-java-model-layer-cloud-v1.yml -text
+plans/south-java-model-layer-cloud-check-v1.md -text
+signals/roles/check/south-java-model-layer-cloud-v1-roles-check-2026-10-24.md -text
+research/south-java-model-layer-cloud-preflight-v1.json -text
+research/south-java-model-layer-cloud-request-v1.json -text
+research/south-java-model-layer-cloud-execution-review-v1.json -text
+analysis/south_java_model_context_projection_v1.py -text
+analysis/test_south_java_model_context_projection_v1.py -text
+research/south-java-model-layer-cloud-native-failure-v1.json -text
+research/south-java-model-layer-cloud-execution-review-v2.json -text
+# Preserve the exact screened Pacific SECC query preparation and source pins.
+analysis/pacific_secc_reference_query_v1.py -text
+analysis/test_pacific_secc_reference_query_v1.py -text
+plans/pacific-secc-reference-query-protocol-v1.md -text
+research/pacific-secc-reference-query-contract-v1.json -text
+research/pacific-secc-reference-query-preparation-v1.json -text
+almanac/pacific-secc-reference-support.html -text
+# Source runtime and archived parent bytes retain their declared identities.
+analysis/pacific_secc_reference_runtime_v1.py -text
+analysis/test_pacific_secc_reference_runtime_v1.py -text
+plans/pacific-secc-reference-runtime-protocol-v1.md -text
+research/pacific-secc-reference-runtime-*.json -text
+research/pacific-secc-reference-runtime-history-v1/** -text
+rust/osw-query/src/pacific_secc_reference.rs -text
+rust/osw-query/src/planning.rs -text
+rust/osw-query/src/atlas_data.rs -text
+rust/osw-query/src/seasons_data.rs -text
+rust/osw-query/src/madagascar_coastal_curve.rs -text
+rust/osw-query/src/nwasc_reference_route.rs -text
+analysis/pacific_secc_runtime_scope_v1.py -text
+analysis/check_pacific_secc_runtime_cloud_v1.py -text
+plans/pacific-secc-runtime-cloud-check-v1.md -text
+research/pacific-secc-runtime-cloud-*.json -text
+.github/workflows/pacific-secc-runtime-cloud-v1.yml -text
+analysis/check_pacific_secc_parent_audit_v1.py -text
+plans/pacific-secc-installed-parent-audit-v1.md -text
+research/pacific-secc-parent-audit-*.json -text
+.github/workflows/pacific-secc-parent-audit-cloud-v1.yml -text
+analysis/pacific_secc_publication_admission_v1.py -text
+analysis/test_pacific_secc_publication_admission_v1.py -text
+plans/pacific-secc-publication-admission-v1.md -text
+research/pacific-secc-reference-publication-*.json -text
+research/pacific-secc-reference-runtime-history-v2/** -text
+analysis/pacific_secc_runtime_scope_v2.py -text
+analysis/pacific_secc_reference_delivery_v1.py -text
+analysis/test_pacific_secc_reference_delivery_v1.py -text
+plans/pacific-secc-reference-packet-delivery-v1.md -text
+analysis/pacific_secc_reference_delivery_v2.py -text
+analysis/pacific_secc_engine_delivery_v1.py -text
+analysis/pacific_secc_runtime_scope_v3.py -text
+analysis/test_pacific_secc_engine_delivery_v1.py -text
+plans/pacific-secc-full-delivery-v1.md -text
+research/pacific-secc-reference-runtime-history-v3/** -text
+research/pacific-secc-reference-presentation-history-v1/** -text
+analysis/pacific_secc_full_delivery_cases_v1.py -text
+analysis/check_pacific_secc_parity_v1.mjs -text
+analysis/check_pacific_secc_browser_v1.py -text
+analysis/check_pacific_secc_full_delivery_v1.py -text
+.github/workflows/pacific-secc-full-delivery-v1.yml -text
+research/pacific-secc-full-delivery-*.json -text
+analysis/pacific_secc_compact_map_v1.py -text
+analysis/test_pacific_secc_compact_map_v1.py -text
+analysis/check_pacific_secc_compact_cloud_v1.py -text
+plans/pacific-secc-compact-map-presentation-v1.md -text
+research/pacific-secc-compact-map-*.json -text
+figures/pacific-secc-western-reference-compact-v1.svg -text
+.github/workflows/pacific-secc-compact-map-cloud-v1.yml -text
+analysis/check_pacific_secc_compact_cloud_v2.py -text
+.github/workflows/pacific-secc-compact-map-cloud-v2.yml -text
+plans/pacific-secc-compact-map-cloud-v2.md -text
+analysis/install_pacific_secc_saved_v1.py -text
+analysis/test_install_pacific_secc_saved_v1.py -text
+.github/workflows/install-pacific-secc-saved-v1.yml -text
+plans/pacific-secc-saved-installation-v1.md -text
+research/pacific-secc-installation-*.json -text
+analysis/install_pacific_secc_saved_v2.py -text
+analysis/test_install_pacific_secc_saved_v2.py -text
+analysis/pacific_secc_git_transport_v1.py -text
+analysis/test_pacific_secc_git_transport_v1.py -text
+.github/workflows/install-pacific-secc-saved-v2.yml -text
+plans/pacific-secc-saved-installation-v2.md -text
+research/pacific-secc-installed-v1.json -text
+research/current-measurement-coverage-checkpoint-v3.json -text
+analysis/check_south_java_reference_cloud_v1.py -text
+analysis/test_south_java_reference_cloud_v1.py -text
+.github/workflows/south-java-reference-cloud-v1.yml -text
+plans/south-java-reference-reach-v1.md -text
+research/south-java-alongflow-source-review-v1.json -text
+research/south-java-java-bali-reference-*.json -text
+research/south-java-reference-cloud-*.json -text
+analysis/south_java_reference_map_v2.py -text
+analysis/test_south_java_reference_map_v2.py -text
+plans/south-java-reference-map-correction-v2.md -text
+research/south-java-reference-presentation-history-v1/** -text
+research/south-java-reference-geography*.json -text
+research/south-java-reference-map-*.json -text
+figures/south-java-java-bali-reference-*.svg -text
+analysis/check_south_java_parent_audit_v1.py -text
+analysis/test_south_java_parent_audit_v1.py -text
+.github/workflows/south-java-parent-audit-cloud-v1.yml -text
+plans/south-java-installed-parent-audit-v1.md -text
+research/south-java-parent-audit-*.json -text
+analysis/south_java_reference_query_v1.py -text
+analysis/test_south_java_reference_query_v1.py -text
+plans/south-java-reference-query-protocol-v1.md -text
+research/south-java-reference-query-*.json -text
+almanac/south-java-reference-support.html -text
+analysis/south_java_reference_runtime_v1.py -text
+analysis/south_java_reference_runtime_scope_v1.py -text
+analysis/south_java_reference_fixture_v1.py -text
+analysis/test_south_java_reference_runtime_v1.py -text
+analysis/check_south_java_runtime_cloud_v1.py -text
+.github/workflows/south-java-runtime-cloud-v1.yml -text
+plans/south-java-reference-runtime-protocol-v1.md -text
+plans/south-java-runtime-cloud-check-v1.md -text
+research/south-java-reference-runtime-*.json -text
+research/south-java-reference-runtime-history-v1/** -text
+research/south-java-runtime-cloud-*.json -text
+rust/osw-query/src/south_java_reference.rs -text
+analysis/check_south_java_runtime_cloud_v2.py -text
+.github/workflows/south-java-runtime-cloud-v2.yml -text
+plans/south-java-runtime-cloud-check-v2.md -text
+analysis/south_java_reference_delivery_v1.py -text
+analysis/test_south_java_reference_delivery_v1.py -text
+plans/south-java-reference-packet-delivery-v1.md -text
+research/south-java-reference-packet-preparation-v1.json -text
+analysis/south_java_reference_engine_delivery_v1.py -text
+analysis/test_south_java_reference_engine_delivery_v1.py -text
+plans/south-java-reference-engine-delivery-v1.md -text
+research/south-java-reference-engine-preparation-v1.json -text
+.github/workflows/south-java-reference-full-delivery-v1.yml -text
+analysis/check_south_java_reference_browser_v1.py -text
+analysis/check_south_java_reference_full_delivery_v1.py -text
+analysis/check_south_java_reference_parity_v1.mjs -text
+analysis/south_java_reference_full_delivery_cases_v1.py -text
+plans/south-java-reference-full-delivery-v1.md -text
+research/south-java-reference-full-delivery-preflight-v1.json -text
+research/south-java-reference-full-delivery-request-v1.json -text
+analysis/south_java_reference_engine_delivery_v2.py -text
+analysis/test_south_java_reference_engine_delivery_v2.py -text
+analysis/south_java_reference_runtime_scope_v2.py -text
+analysis/check_south_java_reference_full_delivery_v2.py -text
+.github/workflows/south-java-reference-full-delivery-v2.yml -text
+plans/south-java-reference-full-delivery-v2.md -text
+research/south-java-reference-runtime-history-v2/** -text
+research/south-java-reference-full-delivery-*.json -text
+analysis/south_java_reference_runtime_scope_v3.py -text
+analysis/test_south_java_reference_engine_delivery_v3.py -text
+analysis/check_south_java_reference_full_delivery_v3.py -text
+.github/workflows/south-java-reference-full-delivery-v3.yml -text
+plans/south-java-reference-full-delivery-v3.md -text
+research/south-java-reference-runtime-history-v3/** -text
+analysis/south_java_reference_engine_delivery_v4.py -text
+analysis/south_java_reference_runtime_scope_v4.py -text
+analysis/test_south_java_reference_engine_delivery_v4.py -text
+analysis/check_south_java_reference_full_delivery_v4.py -text
+.github/workflows/south-java-reference-full-delivery-v4.yml -text
+plans/south-java-reference-full-delivery-v4.md -text
+research/south-java-reference-runtime-history-v4/** -text
+analysis/install_south_java_reference_saved_v1.py -text
+analysis/test_install_south_java_reference_saved_v1.py -text
+analysis/south_java_reference_git_transport_v1.py -text
+analysis/test_south_java_reference_git_transport_v1.py -text
+.github/workflows/install-south-java-reference-saved-v1.yml -text
+plans/south-java-reference-saved-installation-v1.md -text
+research/south-java-reference-installation-*.json -text
+research/south-java-reference-installed-v1.json -text
+research/current-measurement-coverage-checkpoint-v4.json -text
+research/wicc-winter-source-access-review-v2.json -text
+analysis/build_azores_2009_section_context_v1.py -text
+figures/azores-2009-section-context-v1.svg -text
+research/azores-2009-section-original-review-v1.json -text
+research/azores-2009-section-visual-review-v1.json -text
+research/azores-2009-section-record-bindings-v1.json -text
+research/azores-2009-section-card-visual-review-v1.json -text
+analysis/azores_2009_section_projection_v1.py -text
+analysis/test_azores_2009_section_projection_v1.py -text
+analysis/test_azores_2009_section_ui_v1.cjs -text
+rust/osw-query/src/azores_section_review.rs -text
+almanac/azores-2009-section.js -text
+figures/azores-2009-section-card-v1.svg -text
+plans/azores-2009-section-delivery-v1.md -text
+analysis/azores_2009_section_engine_v1.py -text
+analysis/azores_2009_section_cases_v1.py -text
+analysis/test_azores_2009_section_engine_v1.py -text
+analysis/test_azores_2009_section_cases_v1.py -text
+research/azores-2009-section-runtime-scope-v1.json -text
+research/azores-2009-section-runtime-history-v1/** -text
+research/azores-2009-section-delivery-preparation-review-v1.json -text
+analysis/check_azores_2009_section_delivery_v1.py -text
+analysis/check_azores_2009_section_browser_v1.py -text
+analysis/check_azores_2009_section_parity_v1.mjs -text
+analysis/test_azores_2009_section_delivery_controls_v1.py -text
+.github/workflows/azores-2009-section-delivery-v1.yml -text
+research/azores-2009-section-delivery-request-v1.json -text
+research/azores-2009-section-delivery-preflight-v1.json -text
+analysis/check_azores_2009_section_browser_v2.py -text
+analysis/test_azores_2009_section_browser_observer_v2.py -text
+analysis/resume_azores_2009_section_browser_v1.py -text
+analysis/test_resume_azores_2009_section_browser_v1.py -text
+.github/workflows/azores-2009-section-browser-resume-v1.yml -text
+plans/azores-2009-section-browser-resume-v1.md -text
+research/azores-2009-section-engine-evidence-v1.json -text
+research/azores-2009-section-main-parity-v1.json -text
+research/azores-2009-section-index-parity-v1.json -text
+research/azores-2009-section-snapshots-parity-v1.json -text
+research/azores-2009-section-parent-custody-v1.json -text
+research/azores-2009-section-snapshot-preservation-v1.json -text
+research/azores-2009-section-prepared-v1.json -text
+research/azores-2009-section-browser-failure-review-v1.json -text
+research/azores-2009-section-browser-resume-request-v1.json -text
+research/azores-2009-section-browser-resume-preflight-v1.json -text
+research/azores-2009-section-browser-resume-restored-v1.json -text
+research/azores-2009-section-browser-resume-browser-v1.json -text
+research/azores-2009-section-browser-resume-result-v1.json -text
+research/azores-2009-section-runtime-visual-review-v1.json -text
+research/azores-2009-section-delivery-execution-review-v1.json -text
+analysis/verified_artifact_git_transport_v1.py -text
+analysis/test_verified_artifact_git_transport_v1.py -text
+analysis/install_azores_2009_section_saved_v1.py -text
+analysis/test_install_azores_2009_section_saved_v1.py -text
+.github/workflows/install-azores-2009-section-saved-v1.yml -text
+plans/azores-2009-section-saved-installation-v1.md -text
+research/azores-2009-section-compile-inventory-v1.json -text
+research/azores-2009-section-installation-*.json -text
+research/azores-2009-section-installed-v1.json -text
+research/current-measurement-coverage-checkpoint-v5.json -text
+research/eacc-pemba-semba-2019-*.json -text
+figures/eacc-pemba-*-speed-v1.svg -text
+analysis/build_eacc_pemba_seasonal_speed_v1.py -text
+analysis/published_current_speed_statistics_v1.py -text
+analysis/test_published_current_speed_statistics_v1.py -text
+research/published-current-speed-runtime-history-v1/** -text
+research/published-current-speed-runtime-scope-v1.json -text
+rust/osw-query/src/published_current_speeds.rs -text
+almanac/published-current-speeds.js -text
+analysis/test_published_current_speeds_ui_v1.mjs -text
+research/published-current-speed-query-cases-v1.json -text
+analysis/check_published_current_speeds_v1.py -text
+analysis/check_published_current_speed_parity_v1.mjs -text
+analysis/test_published_current_speed_verification_v1.py -text
+research/published-current-speed-verification-*.json -text
+.github/workflows/published-current-speed-verification-v1.yml -text
+research/published-current-speed-*.json -text
+research/published-current-speed-rust-tests-v1.txt -text -whitespace
+analysis/published_current_speed_source_index_v1.py -text
+analysis/test_published_current_speed_source_index_v1.py -text
+analysis/test_published_current_speed_source_links_v1.mjs -text
+research/published-current-speed-delivery-history-v1/** -text
+analysis/published_current_speed_delivery_v1.py -text
+analysis/test_published_current_speed_delivery_v1.py -text
+analysis/check_published_current_speed_delivery_v1.py -text
+analysis/check_published_current_speed_delivery_parity_v1.mjs -text
+analysis/check_published_current_speed_browser_v1.py -text
+.github/workflows/published-current-speed-delivery-v1.yml -text
+research/published-current-speed-delivery-rust-tests-v1.txt -text -whitespace
+analysis/install_published_current_speed_saved_v1.py -text
+analysis/test_install_published_current_speed_saved_v1.py -text
+.github/workflows/install-published-current-speed-saved-v1.yml -text
+research/current-measurement-coverage-checkpoint-v6.json -text
+# Exact installed runtime sources retained before seasonal core-velocity delivery.
+research/atlantic-ax08-core-velocity-runtime-history-v1/** -text
+research/atlantic-ax08-goes-2013-seasonal-core-speeds-v1.json -text
+analysis/seasonal_core_velocity_delivery_v1.py -text
+analysis/check_seasonal_core_velocity* -text
+analysis/resume_seasonal_core_browser_v1.py -text
+analysis/test_resume_seasonal_core_browser_v1.py -text
+analysis/test_published_seasonal_core_velocities_ui_v2.mjs -text
+.github/workflows/seasonal-core-velocity-browser-resume-v1.yml -text
+analysis/test_seasonal_core_velocity_delivery_v1.py -text
+research/seasonal-core-velocity-* -text
+research/seasonal-core-velocity-delivery-history-v1/** -text
+research/seasonal-core-velocity-failed-run-v1/** -text -whitespace
+research/seasonal-core-velocity-engine-run-v1/** -text -whitespace
+research/seasonal-core-velocity-browser-history-v1/** -text
+research/atlantic-ax08-core-velocity-runtime-scope-v2.json -text
+.github/workflows/seasonal-core-velocity-delivery-v1.yml -text
+
+research/seasonal-core-velocity-browser-history-v2/** -text
+analysis/test_published_seasonal_core_velocities_ui_v3.mjs -text
+
+research/seasonal-core-velocity-browser-pass-v1/** -text -whitespace
+
+analysis/install_seasonal_core_velocity_saved_v1.py -text
+analysis/test_install_seasonal_core_velocity_saved_v1.py -text
+.github/workflows/install-seasonal-core-velocity-saved-v1.yml -text
+
+research/current-measurement-coverage-checkpoint-v7.json -text
+
+analysis/build_agulhas_krug_2012_core_widths_v1.py -text
+analysis/test_agulhas_krug_2012_core_widths_v1.py -text
+plans/agulhas-krug-2012-core-widths-protocol-v1.md -text
+research/agulhas-krug-2012-* -text
+research/source-data/agulhas-krug-2012/acquisition.json -text
+figures/agulhas-krug-2012-core-widths-v1.svg -text -whitespace
+
+analysis/published_satellite_core_widths_v1.py -text
+analysis/published_satellite_core_width_index_v1.py -text
+analysis/test_published_satellite_core_widths_v1.py -text
+analysis/test_satellite_core_widths_ui_v1.mjs -text
+almanac/satellite-core-widths.js -text
+research/agulhas-krug-2012-core-widths-runtime-history-v1/** -text
+
+analysis/satellite_core_width* -text
+analysis/check_satellite_core_width* -text
+analysis/test_satellite_core_width_delivery_v1.py -text
+research/satellite-core-width-* -text
+.github/workflows/satellite-core-width-delivery-v1.yml -text
+
+research/satellite-core-width-failed-run-v1/** -text -whitespace
+research/satellite-core-width-revision-history-v2/** -text
+research/satellite-core-width-revision-history-v3/** -text
+research/satellite-core-width-failed-run-v2/** -text -whitespace
+research/satellite-core-width-revision-history-v4/** -text
+research/satellite-core-width-failed-run-v3/** -text -whitespace
+research/satellite-core-width-revision-history-v5/** -text
+research/satellite-core-width-failed-run-v4/** -text -whitespace
+
+research/satellite-core-width-engine-run-v1/** -text -whitespace
+analysis/install_satellite_core_width_saved_v1.py -text
+analysis/test_install_satellite_core_width_saved_v1.py -text
+.github/workflows/install-satellite-core-width-saved-v1.yml -text
+research/satellite-core-width-installer-revision-history-v2/** -text
+research/wicc-vinayachandran-2021-* -text
+plans/wicc-vinayachandran-2021-surface-width-protocol-v1.md -text
+analysis/build_wicc_review_width_v1.py -text
+analysis/test_wicc_review_width_v1.py -text
+figures/wicc-vinayachandran-2021-surface-width-v1.svg -text -whitespace
+research/wicc-vinayachandran-2021-runtime-history-v1/** -text
+analysis/published_wicc_review_width* -text
+analysis/test_published_wicc_review_width_v1.py -text
+analysis/wicc_review_width* -text
+analysis/check_wicc_review_width* -text
+almanac/review-cited-widths.js -text
+analysis/test_review_cited_widths_ui_v1.mjs -text
+analysis/test_wicc_review_width_delivery_v1.py -text
+research/wicc-review-width-* -text
+analysis/test_wicc_review_width_cloud_v1.py -text
+.github/workflows/wicc-review-width-delivery-v1.yml -text
+research/wicc-review-width-engine-run-v1/** -text -whitespace
+analysis/resume_wicc_review_width_browser_v1.py -text
+analysis/test_resume_wicc_review_width_browser_v1.py -text
+.github/workflows/wicc-review-width-browser-resume-v1.yml -text
+research/wicc-review-width-browser-run-v1/** -text -whitespace
+analysis/install_wicc_review_width_saved_v1.py -text
+analysis/test_install_wicc_review_width_saved_v1.py -text
+.github/workflows/install-wicc-review-width-saved-v1.yml -text
+research/current-measurement-coverage-checkpoint-v9.json -text
+research/current-dimension-gap-priorities-v2.json -text
+research/eacc-dekeyzer-2012-* -text
+research/eacc-width-primary-source-followup-v2.json -text
+research/source-data/dekeyzer-thesis-2012/acquisition.json -text
+plans/eacc-dekeyzer-2012-cited-width-lower-bound-protocol-v1.md -text
+analysis/eacc_dekeyzer_width_constraint_v1.py -text
+analysis/test_eacc_dekeyzer_width_constraint_v1.py -text
+analysis/build_eacc_dekeyzer_width_constraint_v1.py -text
+analysis/test_build_eacc_dekeyzer_width_constraint_v1.py -text
+figures/eacc-dekeyzer-2012-cited-width-lower-bound-v1.svg -text -whitespace
+research/eacc-dekeyzer-2012-visual-history-v1/** -text
+analysis/build_eacc_dekeyzer_width_constraint_v2.py -text
+analysis/test_build_eacc_dekeyzer_width_constraint_v2.py -text
+plans/eacc-dekeyzer-2012-cited-width-lower-bound-protocol-v2.md -text
+figures/eacc-dekeyzer-2012-cited-width-lower-bound-v2.svg -text -whitespace

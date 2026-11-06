@@ -1,0 +1,50 @@
+name: ACT original deployment position diagnostic v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/act-deployment-position-diagnostic-v1.yml
+      - analysis/diagnose_act_deployment_positions_v1.py
+      - analysis/test_act_deployment_positions_v1.py
+      - research/act2010-primary-deployment-position-context-v1.json
+      - plans/act-deployment-position-diagnostic-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/diagnose_act_deployment_positions_v1.py
+            analysis/test_act_deployment_positions_v1.py
+            research/act2010-primary-deployment-position-context-v1.json
+            research/act2011-native-point-observations-v2.json
+            research/source-data/act2011-source-geometry-v1/qualification.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check sign hypothesis and immutable geographic gates
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_act_deployment_positions_v1.py' -v
+      - name: Diagnose retained metadata offline
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/diagnose_act_deployment_positions_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: act-deployment-position-diagnostic-v1
+          path: act-deployment-position-diagnostic-v1/
+          retention-days: 7
+          if-no-files-found: error

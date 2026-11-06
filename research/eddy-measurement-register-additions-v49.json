@@ -1,0 +1,368 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 430,
+  "baseline_evidence_sha256": "d6371a5ed114a0250afee319b9e8c31810f3b98d0c0676555bb22c595645e33c",
+  "baseline_measurement_csv_sha256": "484a549c35e606400ff0fdc0c5cac19c643c144329d7b2a8346a4ec46bac85ee",
+  "sources": {
+    "griidc-adt-speed-core-nansen": {
+      "url": "https://data.griidc.org/data/U2.x856.000:0001",
+      "doi": "10.7266/5j651zn1",
+      "citation": "DUACS (2025), Gridded absolute dynamic topography – Gulf subset – daily time series 1993–2019, GRIIDC.",
+      "access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one daily slice. Original report pages 102 and 105 and the diagnostic image actually reviewed. Nineteen geometry/speed-core tests passed. Qualified core and numerical range only; no physical outer boundary or seasonal envelope.",
+      "original": {
+        "url": "https://data.griidc.org/api/file/download/947138",
+        "bytes": 757416604,
+        "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+      },
+      "source_review_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+      "source_review_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+    }
+  },
+  "records": [
+    {
+      "id": "nansen-2001-06-10-speed-core-area",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "griidc-adt-speed-core-nansen",
+      "category": "size",
+      "metric": "osw_speed_contour_area",
+      "value": null,
+      "unit": "km2",
+      "range_value": [
+        10000,
+        15000
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "2001-06-10",
+      "period_end": "2001-06-10",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "June 10, 2001 daily gridded snapshot; source map date is not formation or lifetime",
+      "case_label": "Nansen dated source-case speed core; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT June 10, 2001; Rowe and Kennicutt (2009), MMS 2009-039, printed page 83 / PDF page 105, named approximate Nansen center; Figure 8-3, printed page 80 / PDF page 102, June 10 SSH map.",
+      "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+      "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Nansen center is reported approximately; the June map, registry April separation and other reports May formation remain distinct definitions. No physical continuity, full footprint, state containment, ranking, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_area",
+        "unit": "km2",
+        "component": "area",
+        "source_case_name": "Nansen",
+        "date": "2001-06-10",
+        "scenario_values": [
+          10224.543082065784,
+          10224.543082065784
+        ],
+        "nominal_audit_value": 10224.543082065784,
+        "unrounded_extrema": [
+          10224.543082065784,
+          10224.543082065784
+        ],
+        "round_outward_to": 5000,
+        "range_value": [
+          10000,
+          15000
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -88.5,
+          28
+        ],
+        "grid_peak_lon_lat": [
+          -88.3125,
+          27.8125
+        ],
+        "source_point_role": "source_reported_satellite_center",
+        "peak_distance_from_source_point_km": 27.823522488553586,
+        "selected_interior_gridpoints": [
+          60,
+          60
+        ],
+        "report_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+        "report_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+      }
+    },
+    {
+      "id": "nansen-2001-06-10-speed-core-radius",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "griidc-adt-speed-core-nansen",
+      "category": "size",
+      "metric": "osw_speed_contour_equivalent_radius",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        50,
+        60
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "2001-06-10",
+      "period_end": "2001-06-10",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "June 10, 2001 daily gridded snapshot; source map date is not formation or lifetime",
+      "case_label": "Nansen dated source-case speed core; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT June 10, 2001; Rowe and Kennicutt (2009), MMS 2009-039, printed page 83 / PDF page 105, named approximate Nansen center; Figure 8-3, printed page 80 / PDF page 102, June 10 SSH map.",
+      "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+      "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Nansen center is reported approximately; the June map, registry April separation and other reports May formation remain distinct definitions. No physical continuity, full footprint, state containment, ranking, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_equivalent_radius",
+        "unit": "km",
+        "component": "radius",
+        "source_case_name": "Nansen",
+        "date": "2001-06-10",
+        "scenario_values": [
+          57.04886628789063,
+          57.04886628789063
+        ],
+        "nominal_audit_value": 57.04886628789063,
+        "unrounded_extrema": [
+          57.04886628789063,
+          57.04886628789063
+        ],
+        "round_outward_to": 10,
+        "range_value": [
+          50,
+          60
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -88.5,
+          28
+        ],
+        "grid_peak_lon_lat": [
+          -88.3125,
+          27.8125
+        ],
+        "source_point_role": "source_reported_satellite_center",
+        "peak_distance_from_source_point_km": 27.823522488553586,
+        "selected_interior_gridpoints": [
+          60,
+          60
+        ],
+        "report_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+        "report_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+      }
+    },
+    {
+      "id": "nansen-2001-06-10-speed-core-east-west",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "griidc-adt-speed-core-nansen",
+      "category": "size",
+      "metric": "osw_speed_contour_east_west_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        100,
+        125
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "2001-06-10",
+      "period_end": "2001-06-10",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "June 10, 2001 daily gridded snapshot; source map date is not formation or lifetime",
+      "case_label": "Nansen dated source-case speed core; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT June 10, 2001; Rowe and Kennicutt (2009), MMS 2009-039, printed page 83 / PDF page 105, named approximate Nansen center; Figure 8-3, printed page 80 / PDF page 102, June 10 SSH map.",
+      "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+      "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Nansen center is reported approximately; the June map, registry April separation and other reports May formation remain distinct definitions. No physical continuity, full footprint, state containment, ranking, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_east_west_bounding_arc",
+        "unit": "km",
+        "component": "east_west",
+        "source_case_name": "Nansen",
+        "date": "2001-06-10",
+        "scenario_values": [
+          120.39804078608577,
+          120.39804078608577
+        ],
+        "nominal_audit_value": 120.39804078608577,
+        "unrounded_extrema": [
+          120.39804078608577,
+          120.39804078608577
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          100,
+          125
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -88.5,
+          28
+        ],
+        "grid_peak_lon_lat": [
+          -88.3125,
+          27.8125
+        ],
+        "source_point_role": "source_reported_satellite_center",
+        "peak_distance_from_source_point_km": 27.823522488553586,
+        "selected_interior_gridpoints": [
+          60,
+          60
+        ],
+        "report_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+        "report_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+      }
+    },
+    {
+      "id": "nansen-2001-06-10-speed-core-north-south",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "griidc-adt-speed-core-nansen",
+      "category": "size",
+      "metric": "osw_speed_contour_north_south_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        100,
+        125
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "2001-06-10",
+      "period_end": "2001-06-10",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "June 10, 2001 daily gridded snapshot; source map date is not formation or lifetime",
+      "case_label": "Nansen dated source-case speed core; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT June 10, 2001; Rowe and Kennicutt (2009), MMS 2009-039, printed page 83 / PDF page 105, named approximate Nansen center; Figure 8-3, printed page 80 / PDF page 102, June 10 SSH map.",
+      "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+      "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Nansen center is reported approximately; the June map, registry April separation and other reports May formation remain distinct definitions. No physical continuity, full footprint, state containment, ranking, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_north_south_bounding_arc",
+        "unit": "km",
+        "component": "north_south",
+        "source_case_name": "Nansen",
+        "date": "2001-06-10",
+        "scenario_values": [
+          112.64857239897836,
+          112.64857239897836
+        ],
+        "nominal_audit_value": 112.64857239897836,
+        "unrounded_extrema": [
+          112.64857239897836,
+          112.64857239897836
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          100,
+          125
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -88.5,
+          28
+        ],
+        "grid_peak_lon_lat": [
+          -88.3125,
+          27.8125
+        ],
+        "source_point_role": "source_reported_satellite_center",
+        "peak_distance_from_source_point_km": 27.823522488553586,
+        "selected_interior_gridpoints": [
+          60,
+          60
+        ],
+        "report_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+        "report_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+      }
+    },
+    {
+      "id": "nansen-2001-06-10-speed-core-speed",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "griidc-adt-speed-core-nansen",
+      "category": "kinematics",
+      "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+      "value": null,
+      "unit": "m/s",
+      "range_value": [
+        0.5,
+        0.55
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "2001-06-10",
+      "period_end": "2001-06-10",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "June 10, 2001 daily gridded snapshot; source map date is not formation or lifetime",
+      "case_label": "Nansen dated source-case speed core; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT June 10, 2001; Rowe and Kennicutt (2009), MMS 2009-039, printed page 83 / PDF page 105, named approximate Nansen center; Figure 8-3, printed page 80 / PDF page 102, June 10 SSH map.",
+      "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+      "scope": "OSW-derived speed-core diagnostic for this dated named source case. Physical registry crosswalk unverified; no neighboring/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct ADCP observation. Nansen center is reported approximately; the June map, registry April separation and other reports May formation remain distinct definitions. No physical continuity, full footprint, state containment, ranking, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+        "unit": "m/s",
+        "component": "speed",
+        "source_case_name": "Nansen",
+        "date": "2001-06-10",
+        "scenario_values": [
+          0.534461397685694,
+          0.534461397685694
+        ],
+        "nominal_audit_value": 0.534461397685694,
+        "unrounded_extrema": [
+          0.534461397685694,
+          0.534461397685694
+        ],
+        "round_outward_to": 0.05,
+        "range_value": [
+          0.5,
+          0.55
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -88.5,
+          28
+        ],
+        "grid_peak_lon_lat": [
+          -88.3125,
+          27.8125
+        ],
+        "source_point_role": "source_reported_satellite_center",
+        "peak_distance_from_source_point_km": 27.823522488553586,
+        "selected_interior_gridpoints": [
+          60,
+          60
+        ],
+        "report_file": "research/eddy-nansen-speed-core-source-review-v1.json",
+        "report_sha256": "a6f36ea35709d96225c4a5fa87db6530df8300dca16d0ace7cbf2b684fd87721"
+      }
+    }
+  ]
+}

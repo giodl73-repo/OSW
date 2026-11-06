@@ -53,7 +53,7 @@ def main():
         assert page.locator('#cruise-span-panel').inner_text() == ''
         page.goto(BASE)
         page.wait_for_function('window.oswLastQueryResult', timeout=90000)
-        query = {'collection': 'widths', 'filters': [{'field': 'phase_kind', 'op': 'eq', 'value': 'inverse_hydrographic_section_span'}], 'sort': {'field': 'id'}, 'limit': 100}
+        query = {'collection': 'widths', 'filters': [{'field': 'phase_kind', 'op': 'eq', 'value': 'inverse_hydrographic_section_span'}, {'field':'extraction_file','op':'eq','value':'research/atlantic-cruise-section-width-extraction.json'}], 'sort': {'field': 'id'}, 'limit': 100}
         result = browser_query(page, query)
         assert result == native(query)
         assert result['total'] == 32

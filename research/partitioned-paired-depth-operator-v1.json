@@ -1,0 +1,50 @@
+{
+  "schema": "osw.partitioned-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_partitioned_paired_depth_v1.py": "5060b9bf6c7e530cffa1637a1d5782d2810220cc10d67fb08d3af9ff50be55c7",
+    "analysis/test_partitioned_paired_depth_v1.py": "e316b685805f841d9b752610f484fa6d47de36b32bc9d92179f2e37d957c49f3",
+    "plans/partitioned-paired-depth-v1.md": "f78725d2088e5635d16b2112adcba3afe1a9783e0c8296310e4e947373da0d10",
+    ".github/workflows/partitioned-paired-depth-v1.yml": "902732c41c9522951416a49ee760eb959a6b3b13cb90983ba46dc80f805512a9",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "analysis/current_depth_search_partitions_v1.py": "9b3252aac065c1b2453aaa1f04aec639740218dd9180022380d657f5929938f7",
+    "research/partitioned-ocean-depth-sections-operator-v1.json": "923b47bf6c1c049fe086c65ef09f51a47bf074308c56cbbe86b24ecd5efe06f8",
+    "research/partitioned-ocean-sac-northern-search-velocity-depth-curtains-v1.json": "e05865aca456b9df0f94b5d3b8489b6d3b5bc2a0051ff29bf3a6589ab2b06c48",
+    "research/current-depth-partitioned-ocean-sac-northern-search-velocity-curtains-source-review-v1.json": "47cca20e7161d385e66e1982c6573cfa8bc04d8d146ec1df4f041e44eb38b5cc",
+    "research/partitioned-ocean-sac-southern-search-velocity-depth-curtains-v1.json": "47c465305f93d7f787d069ec16a370aef89ffae22fb8cc87e3a982d9993ae88d",
+    "research/current-depth-partitioned-ocean-sac-southern-search-velocity-curtains-source-review-v1.json": "dce1b78fd793fbfb3c6f63d06ae94d2aa2181aadfb1d0a70dd826627f9944c0a",
+    "research/partitioned-ocean-tasman-north-bank-search-velocity-depth-curtains-v1.json": "053d442b02f10676919beabc5764a6e7bd25825981c6953b030c7206a0688f76",
+    "research/current-depth-partitioned-ocean-tasman-north-bank-search-velocity-curtains-source-review-v1.json": "ae18b539420216c40ba678a324ea96b74e131d26bbf39027ed087df913cada13",
+    "research/partitioned-ocean-tasman-south-bank-search-velocity-depth-curtains-v1.json": "97c5c47a5f54b0e24046eac90408c1f8610c4cafec09a1c0ee413b47fdabd335",
+    "research/current-depth-partitioned-ocean-tasman-south-bank-search-velocity-curtains-source-review-v1.json": "680fc2489da3367e859f71d05c79800ed0c06452e14fb75ebe5ca43c45804b92"
+  },
+  "source_cases": 64,
+  "original_supported_cases": 53,
+  "original_unresolved_cases": 11,
+  "partition_axis_gaps": {
+    "sac-northern-search": 0,
+    "sac-southern-search": 0,
+    "tasman-north-bank-search": 6,
+    "tasman-south-bank-search": 5
+  },
+  "canonical_current_count": 2,
+  "editorial_search_context_count": 4,
+  "source_owner_cutoffs_m_s": {
+    "current:south-atlantic": 0.05,
+    "current:tasman-front": 0.1
+  },
+  "positive_surface_and_thermal_gates": null,
+  "all_four_partitions_one_cumulative_query": true,
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "prior_active_seconds_upper": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

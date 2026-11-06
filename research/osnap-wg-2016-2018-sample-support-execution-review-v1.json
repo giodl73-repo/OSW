@@ -1,0 +1,123 @@
+{
+  "schema": "osw.osnap-sample-support-execution-review.v1",
+  "status": "VERIFIED_SAMPLE_AVAILABILITY_DIMENSION_METHOD_PENDING",
+  "source_run_id": 40093031002,
+  "source_job_id": 120869762612,
+  "execution_commit": "7b92bfdf3222070e996a8e80bd8bb3e80e75433f",
+  "run_conclusion": "success",
+  "preflight_sha256": "26d09152bd23b46f95cfe04806daa806f9138ea62b6bb13f2275a182b807d244",
+  "artifact": {
+    "id": 12559593180,
+    "name": "osnap-wg-sample-support-v1",
+    "bytes": 1728407
+  },
+  "support_report": {
+    "path": "research/osnap-wg-2016-2018-sample-support-v1.json",
+    "bytes": 1728271,
+    "sha256": "453eab8ad0e7319e46bd7b2c3a092327e05061d3a2dc3b837864cd5c7697df81"
+  },
+  "synthetic_tests": {
+    "passed": 25,
+    "cloud_seconds": 0.25
+  },
+  "instrument_count": 78,
+  "strictly_increasing_complete_time_arrays": 78,
+  "singleton_in_bounds_positions": 78,
+  "velocity_instruments": 37,
+  "adcp_instruments": 8,
+  "point_velocity_instruments": 29,
+  "adcp_support": [
+    {
+      "member": "LS1/OS_OSNAP-LS1_201608_ADCP_143m.nc",
+      "paired_cells": 228619,
+      "total_cells": 472810,
+      "paired_availability_fraction": 0.4835324971976058,
+      "supplied_depth_min_m": -69.63361358642578,
+      "supplied_depth_max_m": 133.87245178222656
+    },
+    {
+      "member": "LS2/OS_OSNAP-LS2_201608_ADCP_156m.nc",
+      "paired_cells": 202071,
+      "total_cells": 364500,
+      "paired_availability_fraction": 0.5543786008230452,
+      "supplied_depth_min_m": -55.38981628417969,
+      "supplied_depth_max_m": 138.0973663330078
+    },
+    {
+      "member": "LS3/OS_OSNAP-LS3_201608_ADCP_191m.nc",
+      "paired_cells": 242961,
+      "total_cells": 419543,
+      "paired_availability_fraction": 0.5791086968439468,
+      "supplied_depth_min_m": -50.500831604003906,
+      "supplied_depth_max_m": 173.98931884765625
+    },
+    {
+      "member": "LS4/OS_OSNAP-LS4_201608_ADCP_114m.nc",
+      "paired_cells": 389147,
+      "total_cells": 716120,
+      "paired_availability_fraction": 0.5434103222923532,
+      "supplied_depth_min_m": -67.1026611328125,
+      "supplied_depth_max_m": 256.0542297363281
+    },
+    {
+      "member": "LS5/OS_OSNAP-LS5_201608_ADCP_171m.nc",
+      "paired_cells": 523247,
+      "total_cells": 715720,
+      "paired_availability_fraction": 0.7310777957860616,
+      "supplied_depth_min_m": -63.77840805053711,
+      "supplied_depth_max_m": 393.8236389160156
+    },
+    {
+      "member": "LS6/OS_OSNAP-LS6_201608_ADCP_126m.nc",
+      "paired_cells": 387577,
+      "total_cells": 718840,
+      "paired_availability_fraction": 0.5391700517500417,
+      "supplied_depth_min_m": -65.14079284667969,
+      "supplied_depth_max_m": 685.467041015625
+    },
+    {
+      "member": "LS7/OS_OSNAP-LS7_201608_ADCP_107m.nc",
+      "paired_cells": 358864,
+      "total_cells": 719080,
+      "paired_availability_fraction": 0.4990599098848529,
+      "supplied_depth_min_m": -63.8039665222168,
+      "supplied_depth_max_m": 426.8211669921875
+    },
+    {
+      "member": "LS8/OS_OSNAP-LS8_201608_ADCP_102m.nc",
+      "paired_cells": 358185,
+      "total_cells": 719960,
+      "paired_availability_fraction": 0.497506805933663,
+      "supplied_depth_min_m": -66.07197570800781,
+      "supplied_depth_max_m": 217.8665313720703
+    }
+  ],
+  "point_velocity_availability_fraction_min": 0.9913978494623656,
+  "point_velocity_availability_fraction_max": 1.0,
+  "interpretation": [
+    "All 78 time arrays are unmasked, finite, strictly increasing and have no duplicate timestamps. This does not imply complete velocity coverage.",
+    "All 78 coordinate records have singleton finite values within geographic bounds. A reviewed observation map and cross-instrument position consistency remain separate.",
+    "ADCP paired availability varies substantially. These are full-record paired unmasked finite velocity cells divided by all time-by-bin cells, not fractions of current area or physically valid flow.",
+    "Supplied ADCP depth arrays include negative minima. The audit did not impose a physical layer or verify that negative-depth cells contain paired velocity; use these as support diagnostics, not accepted water-column observations.",
+    "Point-meter pressure variation is retained in decibar and is not converted to moving depth. Nominal depth labels cannot define fixed observed layers.",
+    "Float64 days-since-1950 produces microsecond-scale offsets around nominal hourly/half-hourly times. Calendar-boundary normalization and cross-instrument synchronization need explicit rules in the later measurement method; the audit labels follow the decoded values without snapping.",
+    "No tides were removed, velocities rotated, observations interpolated, current identities joined, width edges selected or physical dimensions calculated."
+  ],
+  "remaining_requirements": [
+    "Review physical QC and processing notes, including surface interference, depth validity and motion/blowdown.",
+    "Freeze timestamp normalization, synchronized overlap and common physical layer rules.",
+    "Resolve coastal versus slope/deep current identity and whether both velocity edges are observed.",
+    "Freeze width/edge/censoring and seasonal aggregation methods before deriving dimensions.",
+    "Verify an accessible observation-support viewer in a separate serialized cloud browser stage."
+  ],
+  "new_current_widths_or_lengths": 0,
+  "new_annual_current_ranges": 0,
+  "new_geometry_or_state_joins": 0,
+  "working_dataset_admitted": false,
+  "scientific_release_published": false,
+  "original_archive_synced_locally": false,
+  "fresh_provider_download": false,
+  "local_native_or_wasm_builds": 0,
+  "local_browser_runs": 0,
+  "review_scope": "One assistant reviewing exact successful cloud support results. No independent scientific peer review or current-measurement approval."
+}

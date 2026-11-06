@@ -23,7 +23,8 @@ def edit(page,label,summary):
 
 def ready(page):
     page.goto(BASE)
-    page.wait_for_function('window.oswLastQueryResult',timeout=60000)
+    page.wait_for_function('window.oswLastQueryResult || document.querySelector("#query-status").classList.contains("error")',timeout=60000)
+    assert page.evaluate('!!window.oswLastQueryResult'),page.locator('#query-status').inner_text()
     page.locator('#workspace-controls').evaluate('(el)=>el.open=true')
     expect(page.locator('#workspace-status')).to_contain_text('Revision')
 

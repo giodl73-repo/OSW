@@ -1,0 +1,832 @@
+{
+  "schema": "osw.current-length-reference-extents-input.v5",
+  "source": {
+    "title": "Source context for eleven basin-scale jet and subarctic reference estimates",
+    "review": "Source text/captions guide named-flow geography; OSW declares reference gates and interpolating coordinates. Conditional extensions are explicit.",
+    "documents": [
+      {
+        "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL098163",
+        "source_locators": [
+          "Chen et al.2022 abstract and section3/Figure2b explicitly describe the basin-wide SEUC from about60E8S to105E10S; March-May BRAN isopycnal27.9-28.7 context, not a uniform depth or digitized axis."
+        ]
+      },
+      {
+        "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL069433",
+        "source_locators": [
+          "Chen et al.2016 introduction and Figure1: winter-spring EUC across equatorial Indian basin, February-April; eastern branch turns near98.5E. Schott/McCreary2001 section3.2.1 records observations53-91E."
+        ]
+      },
+      {
+        "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019JC015483",
+        "source_locators": [
+          "Winter circulation discussion/Figures5-6 and13: eastward SECC reaches about90E then recirculates into SEC. Schott/McCreary2001 and Tomczak/Godfrey chapter11 describe western EACC/Somali confluence feeding winter countercurrent."
+        ]
+      },
+      {
+        "url": "https://doi.org/10.1038/s41598-018-35469-2",
+        "source_locators": [
+          "Li et al.2018 Mean Structures and Figures1-2: southern/middle/northern NEUCs near8/13/18N west, tilted northeast across basin; Argo2004-2014 and LICOM1969-2007 differ. Figure1 original reviewed; no current-axis extraction."
+        ]
+      },
+      {
+        "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_7/b_fdi_51-52/010019670.pdf",
+        "source_locators": [
+          "Bourles et al.1999 section4.8 and6.1: western source/retroflection and NEUC near5N at35W. Huttl-Kabus and Boning2008 DOI10.1029/2007JC004700 discusses off-equatorial export toward eastern upwelling. Tomczak/Godfrey chapter14 printed235 identifies a separate narrow NEUC."
+        ]
+      },
+      {
+        "url": "https://iprc.soest.hawaii.edu/users/zuojun/papers/MLY2002.pdf",
+        "source_locators": [
+          "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2 original reviewed: northern Tsuchiya jet recirculates in eastern interior, turns north near Costa Rica Dome8N90W rather than continuing to eastern coast. Johnson/Moore1997 supports155W/110W cores.",
+          "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2: southern Tsuchiya reaches eastern boundary near12S, supplies Peru-Chile undercurrent; source distinguishes primary/secondary branches. Johnson/Moore1997 regional core context retained."
+        ]
+      },
+      {
+        "url": "https://journals.ametsoc.org/view/journals/phoc/28/10/1520-0485_1998_028_1904_tapotu_2.0.co_2.xml",
+        "source_locators": [
+          "Schott et al.1998 section on SECC: apparent formation near30W, belt7-9S. Tomczak/Godfrey chapter14 printed237 and Figure14.2 describe eastward SECC turning into Angola Current; Gordon/Bosley1991 describe northern Angola Gyre limb."
+        ]
+      },
+      {
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0924796307001704",
+        "source_locators": [
+          "Urbano et al.2008, On the interaction between the subtropical gyre and the Subtropical Cell on the shelf of the SE Atlantic: SEUC nearly across basin, transport at9W, turns south into coastal northeastern Angola Basin. Fischer et al.2008 DOI10.1029/2008GL035753 supports western-central study reach."
+        ]
+      },
+      {
+        "url": "https://www.soest.hawaii.edu/oceanography/bo/CQ04.pdf",
+        "source_locators": [
+          "Chen/Qiu2004 introduction and Figure1: mean SECC near8-11S in western basin, supplied near Solomons by SEC/North Queensland flow and turns south to join SEC. Map context is0-200m geostrophy relative1500dbar. Nominal path is not a digitization."
+        ]
+      },
+      {
+        "url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+        "source_locators": [
+          "Favorite1967 printed2,11-12, Figure27 printed19: Aleutian/Subarctic naming, eastward Subarctic flow distinguished from westward Alaskan Stream. Prior source review retained in the regional record."
+        ]
+      }
+    ],
+    "mccreary_original_pdf_sha256": "1719058753f7a18be25677c4f534b625af1753eab10befc7ef117af94d716bf4",
+    "mccreary_original_figure2_visually_reviewed": true,
+    "li2018_original_figure1_visually_reviewed": true,
+    "li2018_retained_fulltext_sha256": "2321fff1a540d19d5da1409f16218efb748968e01e29c21926f9262fd0c6efc8"
+  },
+  "method": "WGS84 geodesic leg sums through explicit geographic reference extents. Source text/maps identify named-flow geography; OSW chooses the handoffs and connecting controls.",
+  "rounding_km": 100,
+  "sensitivity": {
+    "uniform_offsets_degrees": [
+      -0.5,
+      0,
+      0.5
+    ],
+    "interior_offsets_degrees": [
+      -1,
+      0,
+      1
+    ],
+    "cases_per_current": 36,
+    "interpretation": "Route-specific endpoint/drawing sensitivity. Coastal entries can declare smaller or one-sided offshore offsets. These are not physical confidence limits or annual variation; all cases retained."
+  },
+  "dateline_policy": "Shortest geodesics; continuous display unwrapping and periodic coarse land copies.",
+  "currents": [
+    {
+      "entity_id": "current:atlantic-north-equatorial-undercurrent",
+      "id": "atlantic-north-equatorial-undercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          -44,
+          4.5
+        ],
+        [
+          -35,
+          5
+        ],
+        [
+          -25,
+          5
+        ],
+        [
+          -15,
+          6
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          -44,
+          4.5
+        ],
+        [
+          -41.5,
+          4.5
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -15,
+          6
+        ],
+        [
+          -20,
+          6
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "atlantic-jets",
+      "source_url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_7/b_fdi_51-52/010019670.pdf",
+      "source_locator": "Bourles et al.1999 section4.8 and6.1: western source/retroflection and NEUC near5N at35W. Huttl-Kabus and Boning2008 DOI10.1029/2007JC004700 discusses off-equatorial export toward eastern upwelling. Tomczak/Godfrey chapter14 printed235 identifies a separate narrow NEUC.",
+      "scope": "Conditional principal NEUC envelope from offshore western retroflection handoff near44W to an assumed eastern-ventilation handoff near15W6N. Excludes NBC source legs, surface NECC, Guinea Dome recirculation and coastal currents.",
+      "source_time_convention": "Undated geographic interpretation assembled from studies with different years, not a continuous observed or year-round axis.",
+      "identity_interpretation": "Eastern termination and continuous western feed are unresolved. The15W handoff is an OSW working hypothesis; the retained35W-23W study reach does not establish this full extent.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100,
+      "conditional_extent": true
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-undercurrent",
+      "id": "atlantic-south-equatorial-undercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          -35,
+          -3
+        ],
+        [
+          -25,
+          -4
+        ],
+        [
+          -10,
+          -4.5
+        ],
+        [
+          0,
+          -5
+        ],
+        [
+          8,
+          -6
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          -35,
+          -3
+        ],
+        [
+          -32.5,
+          -3
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          8,
+          -6
+        ],
+        [
+          5.5,
+          -6
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "atlantic-jets",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0924796307001704",
+      "source_locator": "Urbano et al.2008, On the interaction between the subtropical gyre and the Subtropical Cell on the shelf of the SE Atlantic: SEUC nearly across basin, transport at9W, turns south into coastal northeastern Angola Basin. Fischer et al.2008 DOI10.1029/2008GL035753 supports western-central study reach.",
+      "scope": "Declared western SEUC handoff near35W3S to offshore northeastern Angola Basin handoff near8E6S. Excludes NBUC source, southward Angola coast, other equatorial jets and recirculating float loops.",
+      "source_time_convention": "Geographic principal-route convention; source study/model years differ and continuity is layer dependent.",
+      "identity_interpretation": "Broad transbasin interpretation informed by the eastern continuation study; the earlier35W-10W float reach stays separate.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-countercurrent",
+      "id": "atlantic-south-equatorial-countercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          -30,
+          -8
+        ],
+        [
+          -20,
+          -8
+        ],
+        [
+          -5,
+          -8
+        ],
+        [
+          5,
+          -8.5
+        ],
+        [
+          12,
+          -9
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          -30,
+          -8
+        ],
+        [
+          -27.5,
+          -8
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          12,
+          -9
+        ],
+        [
+          9.5,
+          -9
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "atlantic-jets",
+      "source_url": "https://journals.ametsoc.org/view/journals/phoc/28/10/1520-0485_1998_028_1904_tapotu_2.0.co_2.xml",
+      "source_locator": "Schott et al.1998 section on SECC: apparent formation near30W, belt7-9S. Tomczak/Godfrey chapter14 printed237 and Figure14.2 describe eastward SECC turning into Angola Current; Gordon/Bosley1991 describe northern Angola Gyre limb.",
+      "scope": "Declared eastward SECC principal envelope from near30W formation neighborhood to offshore Angola turning handoff near12E9S. Excludes southward Angola limb, SEC source recirculation and SEUC.",
+      "source_time_convention": "Geographic convention for the weak/variable eastward branch, not all months or a reconstructed observed axis.",
+      "identity_interpretation": "Westward flow can occur in sampled seasons. Reference length applies to the named eastward branch, not to a claim of permanent eastward flow.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "id": "indian-equatorial-undercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          50,
+          0
+        ],
+        [
+          60,
+          0
+        ],
+        [
+          75,
+          0
+        ],
+        [
+          90,
+          0
+        ],
+        [
+          95,
+          0
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          50,
+          0
+        ],
+        [
+          52.5,
+          0
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          95,
+          0
+        ],
+        [
+          92.5,
+          0
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "indian-jets",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL069433",
+      "source_locator": "Chen et al.2016 introduction and Figure1: winter-spring EUC across equatorial Indian basin, February-April; eastern branch turns near98.5E. Schott/McCreary2001 section3.2.1 records observations53-91E.",
+      "scope": "Declared spring equatorial subsurface envelope from offshore western-basin50E handoff to95E pre-Sumatra turn handoff. Excludes southward coastal branches, surface Wyrtki jets and anomalous westward undercurrent.",
+      "source_time_convention": "February-April winter-spring interpretation; weaker August-September recurrence is distinct, not a permanent annual axis.",
+      "identity_interpretation": "The equatorial line and full-envelope gates are editorial; no actual2016 model axis has been digitized.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "id": "indian-south-equatorial-countercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          44,
+          -4
+        ],
+        [
+          50,
+          -5
+        ],
+        [
+          65,
+          -6
+        ],
+        [
+          80,
+          -6
+        ],
+        [
+          90,
+          -6
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          44,
+          -4
+        ],
+        [
+          46.5,
+          -4
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          90,
+          -6
+        ],
+        [
+          87.5,
+          -6
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "indian-jets",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019JC015483",
+      "source_locator": "Winter circulation discussion/Figures5-6 and13: eastward SECC reaches about90E then recirculates into SEC. Schott/McCreary2001 and Tomczak/Godfrey chapter11 describe western EACC/Somali confluence feeding winter countercurrent.",
+      "scope": "Declared winter principal SECC envelope from offshore western confluence near44E4S to90E return/branch handoff. Excludes EACC/Somali boundary legs, South Java coastal continuation, returning SEC and subsurface SEUC.",
+      "source_time_convention": "December-March winter convention, not a whole-year uninterrupted axis or annual maximum.",
+      "identity_interpretation": "The western confluence moves seasonally.44E4S is a representative geographic handoff, not a fixed measured origin.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-undercurrent",
+      "id": "indian-south-equatorial-undercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          60,
+          -8
+        ],
+        [
+          70,
+          -8.5
+        ],
+        [
+          80,
+          -9
+        ],
+        [
+          90,
+          -9.5
+        ],
+        [
+          105,
+          -10
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          60,
+          -8
+        ],
+        [
+          62.5,
+          -8
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          105,
+          -10
+        ],
+        [
+          102.5,
+          -10
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "indian-jets",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL098163",
+      "source_locator": "Chen et al.2022 abstract and section3/Figure2b explicitly describe the basin-wide SEUC from about60E8S to105E10S; March-May BRAN isopycnal27.9-28.7 context, not a uniform depth or digitized axis.",
+      "scope": "Declared complete source-described southeastward basin-scale named-jet envelope60-105E. Connecting coordinates are editorial. Excludes upstream ridge recirculation, ITF, surface SEC and SECC.",
+      "source_time_convention": "March-May reference geography; source says mainly January-June and weakening July-August. No annual length range measured.",
+      "identity_interpretation": "Unlike the prior record classified as regional, the newly reviewed abstract explicitly characterizes60-105E as the named basin-scale extent. This is a new full-reference convention, not a promotion of the old numeric reach.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-undercurrent",
+      "id": "pacific-north-equatorial-undercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          130,
+          8
+        ],
+        [
+          150,
+          9
+        ],
+        [
+          175,
+          10
+        ],
+        [
+          -160,
+          11.5
+        ],
+        [
+          -140,
+          13
+        ],
+        [
+          -120,
+          14.5
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          130,
+          8
+        ],
+        [
+          132.5,
+          8
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -120,
+          14.5
+        ],
+        [
+          -130,
+          14
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "pacific-neuc",
+      "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+      "source_locator": "Li et al.2018 Mean Structures and Figures1-2: southern/middle/northern NEUCs near8/13/18N west, tilted northeast across basin; Argo2004-2014 and LICOM1969-2007 differ. Figure1 original reviewed; no current-axis extraction.",
+      "scope": "Conditional southern-jet principal-route convention for the multi-jet NEUC identity, from130E8N western feed to an assumed eastern-basin dispersal handoff120W14.5N. Excludes northern/middle jets from the numerical total, MUC/LUC source legs and3N Tsuchiya jet.",
+      "source_time_convention": "Long-term-mean jet geography, not a monthly or instantaneous continuous current; nearly decadal averaging needed in source.",
+      "identity_interpretation": "A principal member is explicitly chosen rather than summing three jets or copying their regional study reaches. Eastern dispersal gate is uncertain; this does not establish an observed termination.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100,
+      "conditional_extent": true
+    },
+    {
+      "entity_id": "current:pacific-north-subsurface-countercurrent",
+      "id": "pacific-north-subsurface-countercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          145,
+          2.5
+        ],
+        [
+          170,
+          3
+        ],
+        [
+          -160,
+          3.5
+        ],
+        [
+          -130,
+          4
+        ],
+        [
+          -110,
+          4.5
+        ],
+        [
+          -95,
+          6
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          145,
+          2.5
+        ],
+        [
+          147.5,
+          2.5
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -95,
+          6
+        ],
+        [
+          -97.5,
+          6
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "pacific-tsuchiya",
+      "source_url": "https://iprc.soest.hawaii.edu/users/zuojun/papers/MLY2002.pdf",
+      "source_locator": "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2 original reviewed: northern Tsuchiya jet recirculates in eastern interior, turns north near Costa Rica Dome8N90W rather than continuing to eastern coast. Johnson/Moore1997 supports155W/110W cores.",
+      "scope": "Declared northern Tsuchiya principal envelope from western145E2.5N feed to95W6N pre-Dome turning handoff. Excludes source water pathways, northward Dome turn, NEC/EIC returns and8N NEUC.",
+      "source_time_convention": "Geographic synthesis of mean jet structure, not an observed dated continuous path.",
+      "identity_interpretation": "Eastern endpoint is an editorial pre-turn handoff. Source explicitly does not support extending this northern jet to the American coast.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    },
+    {
+      "entity_id": "current:pacific-south-subsurface-countercurrent",
+      "id": "pacific-south-subsurface-countercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          150,
+          -2.5
+        ],
+        [
+          152,
+          -1.5
+        ],
+        [
+          175,
+          -3
+        ],
+        [
+          -160,
+          -3.5
+        ],
+        [
+          -130,
+          -4.5
+        ],
+        [
+          -105,
+          -6
+        ],
+        [
+          -85,
+          -8
+        ],
+        [
+          -79,
+          -12
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          150,
+          -2.5
+        ],
+        [
+          152.5,
+          -2.5
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -79,
+          -12
+        ],
+        [
+          -81.5,
+          -12
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "pacific-tsuchiya",
+      "source_url": "https://iprc.soest.hawaii.edu/users/zuojun/papers/MLY2002.pdf",
+      "source_locator": "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2: southern Tsuchiya reaches eastern boundary near12S, supplies Peru-Chile undercurrent; source distinguishes primary/secondary branches. Johnson/Moore1997 regional core context retained.",
+      "scope": "Declared primary southern Tsuchiya principal envelope from western150E2.5S feed to offshore Peru handoff79W12S. Excludes secondary southern jet, upstream source-water route, southward Peru undercurrent and EIC recirculation.",
+      "source_time_convention": "Mean geographic interpretation, not a dated observed trajectory or annual maximum.",
+      "identity_interpretation": "Primary branch convention avoids adding the secondary jet. Eastern boundary connection follows the cited source interpretation.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100,
+      "fixed_drawing_vertex_indices": [
+        1
+      ],
+      "fixed_drawing_vertex_rationale": "Explicit north-New-Ireland offshore passage control prevents a straight interpolating leg crossing the island. Other controls and both endpoint alternatives still vary; initial failures retained."
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "id": "pacific-south-equatorial-countercurrent-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          163,
+          -9
+        ],
+        [
+          170,
+          -9.5
+        ],
+        [
+          -180,
+          -10
+        ],
+        [
+          -170,
+          -11
+        ],
+        [
+          -165,
+          -12
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          163,
+          -9
+        ],
+        [
+          165,
+          -9
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -165,
+          -12
+        ],
+        [
+          -170,
+          -11
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "pacific-counter",
+      "source_url": "https://www.soest.hawaii.edu/oceanography/bo/CQ04.pdf",
+      "source_locator": "Chen/Qiu2004 introduction and Figure1: mean SECC near8-11S in western basin, supplied near Solomons by SEC/North Queensland flow and turns south to join SEC. Map context is0-200m geostrophy relative1500dbar. Nominal path is not a digitization.",
+      "scope": "Declared western mean SECC envelope from offshore Solomon source confluence163E9S to assumed eastern southward-return handoff165W12S. Excludes upstream island passages, SEC return leg, STCC and subsurface Tsuchiya jets.",
+      "source_time_convention": "Mean-circulation convention; source contrasts seasons and datasets, no fixed monthly endpoint or annual extrema inferred.",
+      "identity_interpretation": "Eastern turning gate is an OSW approximate handoff for the western mean jet, with a five-degree alternative. Seasonal eastward extensions are not silently treated as fixed.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis. Initial161E gate variants clip coarse Solomon land; revised163E/165E gates begin offshore east of the source confluence. This excludes island feeder passages and changes the estimate, rather than deleting failed cases.",
+      "rounding_km": 100,
+      "conditional_extent": true
+    },
+    {
+      "entity_id": "current:aleutian",
+      "id": "aleutian-principal-reference-extent-v5",
+      "coordinates_lon_lat": [
+        [
+          160,
+          47
+        ],
+        [
+          175,
+          48
+        ],
+        [
+          -170,
+          49
+        ],
+        [
+          -150,
+          50
+        ],
+        [
+          -135,
+          50
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          160,
+          47
+        ],
+        [
+          162.5,
+          47
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -135,
+          50
+        ],
+        [
+          -137.5,
+          50
+        ]
+      ],
+      "uniform_offset_axis": "latitude",
+      "uniform_offsets_degrees": [
+        -0.25,
+        0,
+        0.25
+      ],
+      "interior_offsets_degrees": [
+        -0.5,
+        0,
+        0.5
+      ],
+      "map_group": "aleutian",
+      "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+      "source_locator": "Favorite1967 printed2,11-12, Figure27 printed19: Aleutian/Subarctic naming, eastward Subarctic flow distinguished from westward Alaskan Stream. Prior source review retained in the regional record.",
+      "scope": "Declared historical eastward Aleutian/Subarctic principal corridor from offshore western return/feed near160E47N to eastern bifurcation handoff135W50N. Excludes Oyashio upstream, westward Alaskan Stream, Bering Sea branches and downstream Alaska/California flows.",
+      "source_time_convention": "Historical schematic geographic interpretation, not a specific-year observed complete axis.",
+      "identity_interpretation": "Uses the eastward Subarctic/Aleutian naming convention. Broader West Wind Drift/North Pacific usage is not an additional length to sum.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "rounding_km": 100
+    }
+  ],
+  "independent_observations_added": 0
+}

@@ -82,9 +82,146 @@ def build():
     claims = read(base + 'claims.json')
     media = read(base + 'media.json')
     sources = {source['id']: source for source in read(base + 'sources.json')}
-    routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
+    from current_identity_admissions import verify_inputs as verify_identities, additions as identity_additions
+    identity_document,identity_inputs=verify_identities();inputs.update(identity_inputs)
+    identity_rows=identity_additions(identity_document)
+    entities.extend(identity_rows['entities'])
+    sources.update({r['id']:r for r in identity_rows['sources']})
+    from current_measurement_admissions import verify_inputs as verify_prose_dimensions
+    prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
+    sources[prose_dimensions['source_record']['id']]=prose_dimensions['source_record']
+    measurements.append(prose_dimensions['measurement']);claims.append(prose_dimensions['claim'])
+    from north_atlantic_gate_bound import verify_inputs as verify_nac_bound
+    nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
+    measurements.append(nac_bound['measurement']);claims.append(nac_bound['claim'])
+    sources[nac_bound['method_source']['id']]=nac_bound['method_source']
+    from labrador_gate_bound_query import evidence as labrador_bound_evidence, links as labrador_bound_links
+    labrador_bound,labrador_bound_inputs=labrador_bound_evidence();inputs.update(labrador_bound_inputs)
+    measurements.append(labrador_bound['measurement']);claims.append(labrador_bound['claim'])
+    sources[labrador_bound['source_record']['id']]=labrador_bound['source_record']
+    sources[labrador_bound['method_source']['id']]=labrador_bound['method_source']
+    from ke_length_series_query import evidence as ke_length_evidence, links as ke_length_links
+    ke_length,ke_length_inputs=ke_length_evidence();inputs.update(ke_length_inputs)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence
+    caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
+    sources[caribbean_source['source_record']['id']]=caribbean_source['source_record']
+    sources[caribbean_source['method_source']['id']]=caribbean_source['method_source']
+    from published_regional_reaches_query import evidence as regional_reach_evidence
+    regional_reach,regional_reach_inputs=regional_reach_evidence();inputs.update(regional_reach_inputs)
+    sources[regional_reach['source_record']['id']]=regional_reach['source_record']
+    sources[regional_reach['method_source']['id']]=regional_reach['method_source']
+    claims.append(regional_reach['claim'])
+    measurements.append(ke_length['measurement']);claims.append(ke_length['claim'])
+    sources[ke_length['source_record']['id']]=ke_length['source_record']
+    sources[ke_length['method_source']['id']]=ke_length['method_source']
+    from nwasc_working_admission import verify_inputs as verify_nwasc_admission
+    nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
+    from hansen_asar_widths import verify_inputs as verify_asar_widths
+    asar_widths,asar_inputs=verify_asar_widths();inputs.update(asar_inputs)
+    from neuc_glider_widths import verify_inputs as verify_neuc_glider
+    neuc_glider,neuc_glider_inputs=verify_neuc_glider();inputs.update(neuc_glider_inputs)
+    from aleutian_onishi_width import verify_inputs as verify_aleutian_width
+    aleutian_width,aleutian_width_inputs=verify_aleutian_width();inputs.update(aleutian_width_inputs)
+    sources[aleutian_width['source_record']['id']]=aleutian_width['source_record']
+    sources[neuc_glider['source_record']['id']]=neuc_glider['source_record']
+    sources[asar_widths['source_record']['id']]=asar_widths['source_record']
+    entities.append(nwasc_admission['entity'])
+    measurements.append(nwasc_admission['measurement']);claims.append(nwasc_admission['claim'])
+    sources.update({r['id']:r for r in nwasc_admission['source_records']})
+    from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, ID as AGULHAS_REPORTED_ID
+    agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
+    sources[agulhas_reported['source_record']['id']]=agulhas_reported['source_record']
+    from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source
+    _,working_routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
+    sources[coastal_land_source()['id']]=coastal_land_source()
+    sources[working_routes['primary_source_record']['id']]=working_routes['primary_source_record']
+    from nwasc_source_anchor_route import verify_inputs as verify_nwasc_route, extend_catalogue as extend_nwasc_routes
+    nwasc_route,nwasc_route_inputs=verify_nwasc_route();inputs.update(nwasc_route_inputs)
+    working_routes=extend_nwasc_routes(working_routes,nwasc_route)
+    sources[nwasc_route['method_source']['id']]=nwasc_route['method_source']
+    routes = working_routes['candidates']
+    from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily, SOURCE_ID as KUROSHIO_DAILY_SOURCE
+    kuroshio_daily_contract,kuroshio_daily=verify_kuroshio_daily()
+    inputs.update(kuroshio_daily_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-query-contract.json')
+    sources[KUROSHIO_DAILY_SOURCE]=kuroshio_daily_contract['source_record']
+    from kuroshio_axis_normal_query import verify_inputs as verify_normals, ID as NORMAL_ID
+    normal_contract,normal_document=verify_normals()
+    inputs.update(normal_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-axis-normal-query-contract.json')
+    from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+    basin_sections={}
+    read('research/basin-surface-section-inventory.json')
+    for calculated in rebuild_basin():
+        path='research/'+calculated['section_id']+'-2013-monthly-component-spans.json'
+        saved=read(path)
+        if not basin_matches(saved,calculated):raise ValueError('Stale basin component section')
+        basin_sections[calculated['current_id']]=saved
+    from build_south_australian_hycom_spans import build as rebuild_hycom
+    saved=read('research/south-australian-132e-100m-2012-monthly-component-spans.json')
+    if not basin_matches(saved,rebuild_hycom()):raise ValueError('Stale HYCOM component section')
+    basin_sections['south-australian']=saved
+    from south_australian_flow_context import verify_inputs as verify_sac_context, ID as SAC_CONTEXT_ID
+    sac_context,sac_context_inputs=verify_sac_context();inputs.update(sac_context_inputs)
+    from build_west_australian_oscar_spans import build as rebuild_offshore
+    saved=read('research/west-australian-32s-2013-monthly-component-spans.json')
+    if not basin_matches(saved,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
+    basin_sections['west-australian']=saved
+    from check_indian_secc_oscar_climatology import saved as indian_saved, DOCUMENTS as INDIAN_DOCS, OWNER as INDIAN_OWNER
+    indian_sections=indian_saved()
+    from check_southern_basin_oscar_climatology import saved as southern_saved, DOCUMENTS as SOUTHERN_DOCS
+    climatological_sections=indian_sections+southern_saved()
+    for path,doc in zip([*INDIAN_DOCS,*SOUTHERN_DOCS],climatological_sections):
+        read(path)
+        for dependency,pin in doc['input_sha256'].items():
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+            if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
+    read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
+    source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    from current_research_evidence import PATH as RESEARCH_EVIDENCE_PATH, verify as verify_research_evidence
+    research_evidence=verify_research_evidence();read(RESEARCH_EVIDENCE_PATH)
+    for path in research_evidence['documents']:read(path)
+    inputs.update(research_evidence['input_sha256'])
+    inputs['analysis/current_research_evidence.py']=hashlib.sha256((ROOT/'analysis/current_research_evidence.py').read_bytes()).hexdigest()
+    for source in source_limits['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    inputs['analysis/check_southern_current_width_source_limits.py']=hashlib.sha256((ROOT/'analysis/check_southern_current_width_source_limits.py').read_bytes()).hexdigest()
+    from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
+    portugal_audit=read(PORTUGAL_AUDIT)
+    read(portugal_audit['source_event_file'])
+    for path in [portugal_audit['protocol_file'],portugal_audit['figure_file'],'analysis/check_portugal_orca_section_span.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_south_atlantic_secondary_band import AUDIT as SAC_AUDIT
+    sac_audit=read(SAC_AUDIT);read(sac_audit['acquisition_file'])
+    for path in [sac_audit['source_document_file'],sac_audit['protocol_file'],sac_audit['figure_file'],'analysis/check_south_atlantic_secondary_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_south_pacific_band_constraint import AUDIT as SPC_AUDIT
+    spc_audit=read(SPC_AUDIT);read(spc_audit['acquisition_file'])
+    for path in [spc_audit['source_document_file'],spc_audit['protocol_file'],spc_audit['figure_file'],'analysis/check_south_pacific_band_constraint.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from radenac_hal_source import integrity_inputs as radenac_inputs
+    for path in radenac_inputs()+['plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
+    azores_core_audit=read('research/azores-carracedo-2014-model-core-width-scope-audit.json')
+    azcc_coordinate_audit=read('research/azores-countercurrent-posaf-coordinate-meaning-audit.json')
+    from build_azcc_coordinate_meaning_figure import validate as validate_coordinate_meaning
+    validate_coordinate_meaning(azcc_coordinate_audit)
+    read('research/source-data/carracedo-caibox-2012/acquisition.json')
+    for path in ['research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
+        read(path)
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
+    from build_asca_100m_sections import checked_packets as checked_asca
+    _, asca_sections, asca_contract = checked_asca()
+    del _
+    asca_path=asca_contract['monthly_section_file']
+    read('research/agulhas-asca-100m-query-contract.json')
+    for file_key,hash_key in [('raw_profile_file','raw_profile_sha256'),('monthly_section_file','monthly_section_sha256'),('source_acquisition_file','source_acquisition_sha256'),('protocol_file','protocol_sha256'),('builder_file','builder_sha256')]:
+        path=asca_contract[file_key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=asca_contract[hash_key]:raise ValueError('Changed ASCA section dependency: '+path)
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
     from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
     transports=transport_document();read(TRANSPORT_SOURCE);read(transports['acquisition_file'])
@@ -102,7 +239,21 @@ def build():
     validate_slope(slope_audit,width_inventory)
     read('research/source-data/darelius-asc-2024/acquisition.json')
     inputs[slope_audit['source_pdf_file']]=slope_audit['source_pdf_sha256']
-    widths = width_inventory['measurements']
+    from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core, AUDIT as LOOP_CORE_AUDIT
+    validate_loop_core(width_inventory)
+    loop_core_audit=read(LOOP_CORE_AUDIT)
+    read(loop_core_audit['acquisition_file']);read(loop_core_audit['integrity_contract_file'])
+    for path in [loop_core_audit['protocol_file'],'analysis/check_loop_uhlhorn_core_width.py','analysis/uhlhorn_thesis_source.py','analysis/melet_hal_source.py','figures/loop-uhlhorn-2008-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
+    validate_gulf(width_inventory)
+    gulf_audit=read(GULF_AUDIT)
+    for source in gulf_audit['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']+asar_widths['width_records']+neuc_glider['width_records']+aleutian_width['width_records']
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
@@ -111,6 +262,8 @@ def build():
     proposals_document = read('research/ocean-current-inventory-expansion-candidates.json')
     from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
     validate_proposed_widths(proposals_document)
+    from check_nordic_section_widths import validate_proposal
+    validate_proposal(proposals_document)
     read(AUDIT);read(ACQUISITION)
     inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
     proposals = proposals_document['entries']
@@ -125,6 +278,58 @@ def build():
     read(necc['source_inventory_file'])
     kuroshio_profile_path='research/kuroshio-ecs-seasonal-width-profile-extraction.json'
     kuroshio_profiles=read(kuroshio_profile_path)
+    from kuroshio_filtered_width import verify_inputs as verify_filtered_width, ID as FILTERED_WIDTH_ID
+    filtered_width,filtered_figure,filtered_inputs=verify_filtered_width()
+    read('research/kuroshio-ecs-filtered-width-time-series.json')
+    read('research/kuroshio-ecs-filtered-width-time-series-figure.json')
+    inputs.update(filtered_inputs)
+    from asca_component_spans import verify_inputs as verify_asca_spans, ID as ASCA_SPAN_ID
+    asca_span_document,_,asca_span_inputs=verify_asca_spans()
+    inputs.update(asca_span_inputs)
+    from build_asca_calendar_distributions import verify_inputs as verify_asca_calendar, ID as ASCA_CALENDAR_ID, REPORT as ASCA_CALENDAR_REPORT
+    asca_calendar,_,asca_calendar_inputs=verify_asca_calendar()
+    inputs.update(asca_calendar_inputs)
+    from eac_source_fields import verify_inputs as verify_eac_fields, ID as EAC_FIELDS_ID
+    eac_fields,_,_,eac_inputs=verify_eac_fields()
+    inputs.update(eac_inputs)
+    from eac_core_spans import verify_inputs as verify_eac_cores, ID as EAC_CORE_ID
+    eac_cores,eac_core_inputs=verify_eac_cores()
+    inputs.update(eac_core_inputs)
+    from build_eac_calendar_distributions import verify as verify_eac_calendar, REPORT as EAC_CALENDAR
+    eac_calendar,eac_calendar_inputs=verify_eac_calendar()
+    inputs.update(eac_calendar_inputs)
+    from build_west_australian_oscar_2d_source import verify as verify_wac_context, REPORT as WAC_CONTEXT
+    wac_context,wac_context_inputs=verify_wac_context()
+    inputs.update(wac_context_inputs)
+    from build_indian_secc_oscar_2d_source import verify as verify_secc_context, REPORT as SECC_CONTEXT
+    secc_context,secc_context_inputs=verify_secc_context()
+    inputs.update(secc_context_inputs)
+    from indian_secc_positive_bands import verify as verify_secc_bands, REPORT as SECC_BANDS
+    secc_bands,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
+    from indian_secc_local_normals import verify as verify_secc_normals, REPORT as SECC_NORMALS
+    secc_normals,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
+    from indian_secc_hycom_local_normals import verify as verify_secc_hycom, REPORT as SECC_HYCOM
+    secc_hycom,secc_hycom_inputs=verify_secc_hycom();inputs.update(secc_hycom_inputs)
+    from south_indian_hydrography_query import evidence as south_indian_evidence
+    south_indian_cells,_,south_indian_profiles,south_indian_inputs=south_indian_evidence()
+    inputs.update(south_indian_inputs)
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    front_level_cells,_,front_level_report,front_level_inputs=front_level_evidence()
+    inputs.update(front_level_inputs)
+    from south_indian_front_property_query import view_evidence as property_evidence
+    property_report,_,property_inputs=property_evidence()
+    inputs.update(property_inputs)
+    from current_gap_source_evidence import evidence as gap_source_evidence
+    boundary_audit,redsea_width_review,_,gap_source_inputs=gap_source_evidence()
+    inputs.update(gap_source_inputs)
+    from redsox_station_support_query import evidence as station_support_evidence
+    station_support,_,station_support_inputs=station_support_evidence()
+    inputs.update(station_support_inputs)
+    from angola_nansen_source_query import evidence as angola_native_evidence, dashboard_link as angola_native_link
+    _,_,angola_native_inputs=angola_native_evidence();inputs.update(angola_native_inputs)
+    from west_australian_streamline_evidence import verify as verify_wac_paths
+    wac_paths,wac_path_inputs=verify_wac_paths()
+    inputs.update(wac_path_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -143,6 +348,8 @@ def build():
 
     antilles_section_path='research/antilles-ab0505-400m-section-diagnostic.json'
     antilles_sections=read(antilles_section_path)
+    shipboard_path='research/antilles-ab0505-sadcp-layer-span-diagnostics.json'
+    shipboard=read(shipboard_path)
     antilles_inventory=read(antilles_sections['inventory_file'])
     if (antilles_sections.get('schema')!='osw.ladcp-section-diagnostic.v1' or antilles_sections.get('current_id')!='antilles'
         or antilles_sections.get('inventory_sha256')!=inputs[antilles_sections['inventory_file']]
@@ -158,6 +365,9 @@ def build():
     guinea_width_audit=read('research/guinea-djakoure-2017-model-width-source-review.json')
     algerian_width_audit=read('research/algerian-cotroneo-2019-regional-width-scope-audit.json')
     alaska_width_audit=read('research/alaska-weingartner-2002-regional-width-scope-audit.json')
+    from check_hiri_east_adriatic_local_widths import AUDITS as LOCAL_AUDITS
+    local_width_audits = {owner: read(path) for owner, (path, _) in LOCAL_AUDITS.items()}
+    caribbean_width_audit=read('research/caribbean-duncan-1982-dated-width-scope-audit.json')
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -187,7 +397,8 @@ def build():
     for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/solomon-melet-2010-coastal-confinement-scope-audit.json');read('research/source-data/melet-solomon-2010/acquisition.json')
-    for path in ['research/source-data/melet-solomon-2010/journal-article.pdf','plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
+    from melet_hal_source import integrity_inputs as melet_inputs
+    for path in melet_inputs()+['plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json');read('research/source-data/nielsen-jutland-2000/acquisition.json')
     for path in ['research/source-data/nielsen-jutland-2000/journal-article.pdf','plans/jutland-satellite-width-support-protocol-v1.md','analysis/check_jutland_satellite_widths.py']:
@@ -235,8 +446,18 @@ def build():
     for shape in route_shapes.values():
         inputs.update(validate_source_receipt(shape))
     connections = read('research/ocean-current-connectivity-candidates.json')['entries']
+    from build_current_measurement_scopes import verify as verify_measurement_scopes
+    scope_index=verify_measurement_scopes()
+    read('research/current-measurement-object-scope-index.json')
+    inputs.update(scope_index['input_sha256'])
+    inputs[scope_index['generator_file']]=scope_index['generator_sha256']
+    inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
     scope_notes = read('research/ocean-current-scope-notes.json')['entries']
     scope_audits = {note['audit_file']: read(note['audit_file']) for note in scope_notes}
+    from check_south_australian_miller_model_width import verify as verify_miller_width
+    miller=verify_miller_width()
+    inputs.update(miller['input_sha256'])
+    inputs['analysis/check_south_australian_miller_model_width.py']=hashlib.sha256((ROOT/'analysis/check_south_australian_miller_model_width.py').read_bytes()).hexdigest()
     for audit in scope_audits.values():
         if audit.get('current_id')=='persian-gulf-saline-overflow':validate_persian_gulf_scope(audit)
         if audit.get('current_id')=='red-sea-saline-overflow':validate_red_sea_scope(audit)
@@ -354,6 +575,10 @@ def build():
             state_evidence.append({'state_code': code, 'state_name': state_names[code],
                                    'kind': kind, 'label': label, 'observation_date': date,
                                    'source_file': source_file, 'source_record_id': source_record})
+        for route in own_routes:
+            if route['comparison_group']=='osw_offshore_coastal_reference_curves':
+                for code in route['nominal_atlas_state_crossings']:
+                    state_record(code,'editorial_coastal_reference_curve','Undated geographic reference curve crosses display state; physical current passage unresolved',None,route['candidate_file'],route['id'])
         if loop:
             for code in loop['state_locator_candidates']:
                 state_record(code, 'shared_regional_gateway', 'Shared source-region gateway; individual containment unresolved', None,
@@ -389,13 +614,27 @@ def build():
         own_media = [m for m in media if m['entity_id'] == ident]
         own_phases = [p for p in phases if current_id and p['current_id'] == current_id]
         source_ids = {row.get(key) for row in [entity, *own_measures, *own_geometry, *own_claims, *own_media] for key in ['source_id', 'source_snapshot_id', 'method_source_id'] if row.get(key)}
+        source_ids.update(source for route in own_routes for source in route.get('source_ids',[]))
+        if current_id=='norwegian-atlantic-slope':source_ids.update(r['id'] for r in nwasc_admission['source_records'])
+        if current_id=='kuroshio':source_ids.add(KUROSHIO_DAILY_SOURCE)
+        if current_id=='caribbean':source_ids.update([caribbean_source['source_record']['id'],caribbean_source['method_source']['id']])
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
+        if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:source_ids.add(asar_widths['source_record']['id'])
+        if current_id=='pacific-north-equatorial-undercurrent':source_ids.add(neuc_glider['source_record']['id'])
+        if current_id=='aleutian':source_ids.add(aleutian_width['source_record']['id'])
         own_sources = [sources[key] for key in sorted(source_ids)]
         linked_widths = {ident for phase in own_phases for ident in phase['width_measurement_ids']}
         temporal_widths = [w for w in own_widths if w['id'] not in linked_widths and w.get('phase_kind') in {'seasonal_summary', 'dated_section', 'survey_summary', 'ensemble_summary', 'survey_profile_composite', 'monthly_climatological_fit'}]
         temporal_widths += [w for w in own_widths if w.get('phase_kind')=='stream_mean_threshold_summary' and w.get('stream_mean_context',{}).get('season') is not None]
         series = []
+        if current_id=='gulf-stream':
+            source_query={'document':GULF_AUDIT,'pointer':'/measurements/0/original_regional_context/complete_crossing_occupations','limit':10}
+            series.append({'label':'1967 transport-float widths / three multi-day occupations',
+                'url':'query.html?source-q='+quote(json.dumps(source_query,separators=(',',':')),safe=''),
+                'frames':3,'evidence_role':'published_campaign_width_occupations_not_monthly_or_seasonal',
+                'diagnostic_url':'../'+GULF_AUDIT,'evidence_sha256':inputs[GULF_AUDIT]})
+
         if current_id == kuroshio_profiles['current_id']:
             temporal_widths=[w for w in temporal_widths if w['id'] not in kuroshio_profiles['regional_prose_measurement_ids']]
             series.append({'label':'Four historical ECS seasonal width profiles (graph extraction)',
@@ -404,6 +643,14 @@ def build():
                            'diagnostic_url':'../'+kuroshio_profile_path,'evidence_sha256':inputs[kuroshio_profile_path],
                            'source_pdf_sha256':kuroshio_profiles['source_pdf_sha256'],'protocol_sha256':kuroshio_profiles['protocol_sha256'],
                            'config_sha256':kuroshio_profiles['config_sha256']})
+            filtered_query={'collection':'width_samples','filters':[{'field':'sample_family','op':'eq','value':'kuroshio_filtered_curve_plot'}],
+                            'sort':{'field':'plot_year','direction':'asc'},'limit':250}
+            series.append({'label':'1993–2008 half-year-filtered regional width curve (192 plot samples)',
+                           'url':'query.html?q='+quote(json.dumps(filtered_query,separators=(',',':')),safe=''),
+                           'frames':filtered_width['sample_count'],'evidence_role':'filtered_curve_plot_samples_not_raw_monthly_observations',
+                           'diagnostic_url':'../research/kuroshio-ecs-filtered-width-time-series.json',
+                           'evidence_sha256':inputs['research/kuroshio-ecs-filtered-width-time-series.json'],
+                           'sample_time_is_observation_date':False})
         if current_id == florida_plot['current_id']:
             series.append({'label':'2005-2006 monthly surface-jet widths at 25.42 N (graph readings)',
                            'url':'query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22florida%22%7D%5D%2C%22limit%22%3A100%7D',
@@ -422,11 +669,30 @@ def build():
             series.append({'label':'2013 monthly surface-section diagnostics (not climatology)','url':'necc-section.html','frames':len(necc['months']),
                            'evidence_role':'monthly_mean_section_width_candidate','diagnostic_url':'../'+necc_path,
                            'evidence_sha256':inputs[necc_path],'inventory_sha256':inputs[necc['source_inventory_file']]})
+        if current_id in basin_sections:
+            doc=basin_sections[current_id]
+            series.append({'label':str(doc['year'])+' monthly local component spans (current width unresolved)',
+                'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':current_id}],'sort':{'field':'month','direction':'asc'},'limit':100},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':12,'evidence_role':'monthly_local_component_spans_current_width_unresolved',
+                'diagnostic_url':'../research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json',
+                'evidence_sha256':inputs['research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json']})
+        if any(d['current_id']==current_id for d in climatological_sections):
+            for doc in (d for d in climatological_sections if d['current_id']==current_id):
+                query={'collection':'width_samples','filters':[{'field':'diagnostic_id','op':'eq','value':doc.get('diagnostic_id','diagnostic:basin-'+doc['section_id'])}],'sort':{'field':'month','direction':'asc'},'limit':100}
+                path='research/'+doc['section_id']+'-1995-2016-climatological-component-spans.json'
+                series.append({'label':doc['period_label']+' (current width unresolved)',
+                    'url':'query.html?q='+quote(json.dumps(query,separators=(',',':')),safe='')+'#query-chart-section',
+                    'frames':12,'evidence_role':'climatological_local_component_spans_current_width_unresolved',
+                    'diagnostic_url':'../'+path,'evidence_sha256':inputs[path]})
         if current_id == timeline['current_id']:
             series.append({'label': 'Dated surface diagnostics', 'url': 'dated-current.html', 'frames': len(timeline['frames']) + len(annual['frames'])})
         if current_id == 'norwegian-coastal':
             series.append({'label': 'Regional model samples (not current footprint)', 'url': 'norkyst-section.html', 'frames': len(norkyst['frames'])})
         if current_id == 'antilles':
+            series.append({'label':'Shipboard component profiles · 2 occupations / 10 depths',
+                           'url':'query.html?q='+quote(json.dumps({'collection':'observed_section_spans','filters':[{'field':'depth_m','op':'eq','value':95}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section',
+                           'frames':2,'evidence_role':'local_component_spans_not_current_width',
+                           'diagnostic_url':'../'+shipboard_path,'evidence_sha256':inputs[shipboard_path]})
             series.append({'label':'Observed May 2005 sections (not an annual cycle)','url':'antilles-sections.html','frames':2,
                            'evidence_role':'observed_sections_with_unadmitted_one_sided_span',
                            'diagnostic_url':'../research/antilles-ab0505-400m-section-diagnostic.json',
@@ -443,6 +709,30 @@ def build():
                 'source_file':velocity_path,'source_sha256':inputs[velocity_path],
                 'paired_source_readings':velocity['selected_paired_readings'],'source_period':velocity['source_period'],
                 'nominal_depth_m':velocity['station']['nominal_depth_m']})
+        if current_id == 'agulhas':
+            series.append({'label':'ASCA 100 m / 27 recorded monthly sections / 931 source profiles',
+                'url':'query.html?q='+quote(json.dumps({'collection':'current_sections','filters':[{'field':'current_id','op':'eq','value':'agulhas'}],'limit':100},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':len(asca_sections['frames']),'evidence_role':'processed_observational_fixed_section_not_current_dimensions',
+                'source_file':asca_path,'source_sha256':inputs[asca_path],
+                'source_profiles':931,'source_period':['2016-04-19','2018-06-03'],'depth_m':100,
+                'partial_calendar_bins':['2016-04','2018-06'],'climatology':False})
+            series.append({'label':'ASCA100m dated component spans / 330 resolved of 931 profiles',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':ASCA_SPAN_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':931,'evidence_role':'derived_component_diagnostics_from_existing_profiles_not_independent_width_observations',
+                'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
+                'source_sha256':inputs['research/agulhas-asca-100m-dated-component-spans.json'],
+                'source_profiles':931,'resolved_primary_spans':330,'unresolved_primary_spans':601,
+                'source_period':['2016-04-19','2018-06-03'],'depth_m':100,'whole_current_representative':False})
+        if current_id == 'east-australian':
+            series.append({'label':'CSIRO100m daily source fields / 3141 dates with data / 629 missing dates retained',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_FIELDS_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':3141,'calendar_records':3770,'unavailable_calendar_records':629,
+                'frame_count_rule':'at_least_one_finite_paired_velocity_cell_not_independent_observations',
+                'evidence_role':'SOM_filled_mapped_source_fields_and_provider_uncertainty_not_current_dimensions',
+                'source_file':'research/eac-csiro-v23-100m-source-quality.json',
+                'source_sha256':inputs['research/eac-csiro-v23-100m-source-quality.json'],
+                'source_period':[eac_fields['first_source_time'],eac_fields['last_source_time']],
+                'source_positions':124,'source_fields':8,'depth_m':100,'source_time_is_independent_observation_time':False})
         capabilities = {
             'observed_velocity': len(velocity['samples']) if current_id==velocity['current_id'] else 0,
             'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
@@ -453,15 +743,128 @@ def build():
             'time_samples': sum(s['frames'] for s in series) + len(own_phases) + len(temporal_widths),
             'source_connectivity': len(own_connections),
             'scope_notes': len(own_notes),
-            'dated_diagnostics': len(loop_documents) if current_id == 'loop' else 0,
+            'dated_diagnostics': len(loop_documents) if current_id == 'loop' else 3770 if current_id == 'east-australian' else 0,
             'flow_network': int(ident == network['entity_id']),
             'passage_transport': len(network['passage_samples']) if ident == network['entity_id'] else 0,
         }
+        if current_id == 'agulhas': capabilities['current_sections']=len(asca_sections['frames'])
         payload = {'entity': entity, 'measurements': own_measures, 'routes': own_routes,
                    'widths': own_widths, 'geometry': own_geometry, 'claims': own_claims,
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
                    'map_features': map_features, 'connections': own_connections}
         evidence_links = []
+        if entity.get('identity_admission_id'):
+            evidence_links.append({'label':'Current identity and separately scoped dimension evidence','url':entity['almanac_url']})
+            evidence_links.append({'label':'Query the identity admission','url':'query.html?q='+quote(json.dumps({'collection':'current_identity_admissions','filters':[{'field':'id','op':'eq','value':entity['identity_admission_id']}],'limit':1}),safe='')})
+        if current_id == 'norwegian-atlantic-slope':
+            evidence_links.append({'label':'Compare separately scoped reported dimensions','url':'../'+nwasc_admission['figure_file']})
+            evidence_links.append({'label':'Query all admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
+            evidence_links.append({'label':'Audit the working branch admission and rank changes','url':'query.html?q='+quote(json.dumps({'collection':'current_measurement_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:'+current_id}],'limit':1}),safe='')})
+        if current_id == 'kuroshio-extension':
+            evidence_links.extend(ke_length_links(ke_length))
+        if current_id == 'labrador':
+            evidence_links.extend(labrador_bound_links(labrador_bound))
+        if current_id == 'north-atlantic':
+            evidence_links.append({'label':'Inspect the nominal-section geographic bound','url':'../'+nac_bound['figure_file']})
+            evidence_links.append({'label':'Query the working North Atlantic length assessment','url':'query.html?q='+quote(json.dumps({'collection':'length_assessments','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
+            evidence_links.append({'label':'Audit all nine geographic gate scenarios','url':'query.html?q='+quote(json.dumps({'collection':'current_length_bound_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
+        if current_id == 'east-australian':
+            evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+            evidence_links.append({'label':'Compare calendar-month and year section-span distributions',
+                'url':'../'+eac_calendar['comparison_figure']})
+            evidence_links.append({'label':'Query all calendar-month distributions and missing-date counts',
+                'url':'query.html?source-q='+quote(json.dumps({'document':EAC_CALENDAR,'pointer':'/calendar_month_groups','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+        if current_id == 'indian-south-equatorial-countercurrent':
+            evidence_links.append({'label':'Compare twelve surrounding Indian Ocean source-vector maps',
+                'url':'../'+secc_context['comparison_figure']})
+            evidence_links.append({'label':'Query surrounding Indian Ocean monthly fields and paired support',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_CONTEXT,'pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Query monthly source coverage and component ranges',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_CONTEXT,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Download retained source vectors and metadata (ZIP)',
+                'url':'../research/source-data/oscar-indian-secc-2d-2013/source-responses.zip'})
+            evidence_links.append({'label':'Inspect connected eastward bands and section spans',
+                'url':'../'+secc_bands['comparison_figure']})
+            evidence_links.append({'label':'Query monthly band connectivity and unresolved current geometry',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Compare all 72 historical and extended-domain threshold cases',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/historical_section_comparisons','limit':72,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Inspect velocity-normal sections and candidate-axis checks',
+                'url':'../'+secc_normals['comparison_figure']})
+            for label,pointer,limit in [('Query all 144 local-axis outcomes','/case_summaries',100),
+                ('Query monthly normal-section support','/monthly_summary',12),
+                ('Compare 72 sampling-step scenarios','/step_comparisons',72),
+                ('Inspect complete normal sections and source-cell support','/cases',1)]:
+                evidence_links.append({'label':label,'url':'query.html?source-q='+quote(json.dumps({'document':SECC_NORMALS,'pointer':pointer,'limit':limit,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            payload['local_normal_evidence']={'source_file':SECC_NORMALS,'source_sha256':inputs[SECC_NORMALS],
+                'attempts':secc_normals['counts']['attempts'],'current_geometry_admitted':False}
+            groups['sources'].append(payload['local_normal_evidence'])
+            evidence_links.append({'label':'Explore finer-grid HYCOM monthly source and candidate tests',
+                'url':'../'+secc_hycom['comparison_figure']})
+            for label,pointer,limit in [('Query HYCOM monthly candidate outcomes','/monthly_summary',12),
+                ('Query every HYCOM normal-section attempt','/cases',1),
+                ('Compare HYCOM sampling-step and resolution gates','/step_comparisons',72)]:
+                evidence_links.append({'label':label,'url':'query.html?source-q='+quote(json.dumps({'document':SECC_HYCOM,'pointer':pointer,'limit':limit,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Query unrounded HYCOM native-grid monthly vectors',
+                'url':'query.html?source-q='+quote(json.dumps({'document':'research/source-data/hycom-indian-secc-2013/monthly-fields.json','pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            payload['hycom_local_normal_evidence']={'source_file':SECC_HYCOM,'source_sha256':inputs[SECC_HYCOM],
+                'attempts':secc_hycom['counts']['attempts'],'current_geometry_admitted':False,
+                'source_model_year':2013,'source_provider_depth_m':15}
+            groups['sources'].append(payload['hycom_local_normal_evidence'])
+            payload['positive_band_evidence']={'source_file':SECC_BANDS,'source_sha256':inputs[SECC_BANDS],
+                'monthly_columns':1452,'current_geometry_admitted':False}
+            groups['sources'].append(payload['positive_band_evidence'])
+            payload['surrounding_source_context']={'source_file':SECC_CONTEXT,'source_sha256':inputs[SECC_CONTEXT],
+                'source_vector_positions':secc_context['quality']['vector_positions'],'historical_overlap_vectors':4464,
+                'current_association_verified':False,'current_geometry_admitted':False}
+            groups['sources'].append(payload['surrounding_source_context'])
+        if current_id == 'south-indian':
+            from south_indian_hydrography_query import card_links as south_indian_links
+            evidence_links.extend(south_indian_links())
+            source_file='research/source-data/hycom-south-indian-hydrography-2013/monthly-fields.json'
+            payload['paired_hydrography_source']={'source_file':source_file,'source_sha256':inputs[source_file],
+                'source_model_year':2013,'native_depths_m':[15,1000],'native_monthly_cells':len(south_indian_cells),
+                'diagnostic_cases':len(south_indian_profiles['cases']),'current_association_verified':False,
+                'physical_width_admitted':False,'current_geometry_admitted':False}
+            groups['sources'].append(payload['paired_hydrography_source'])
+            from south_indian_front_level_query import card_links as front_level_links
+            evidence_links.extend(front_level_links())
+            source_file='research/source-data/hycom-south-indian-front-levels-2013/monthly-fields.json'
+            payload['supplementary_hydrography_source']={
+                'source_file':source_file,'source_sha256':inputs[source_file],
+                'source_model_year':2013,'native_depths_m':[100,200],
+                'native_monthly_cells':len(front_level_cells),
+                'derived_temperature_file':'research/south-indian-2013-front-level-potential-temperature.json',
+                'temperature_scale_verified':False,'temperature_scale_assumption':'ITS-90',
+                'current_association_verified':False,'physical_width_admitted':False,
+                'current_geometry_admitted':False}
+            own_sources.append(payload['supplementary_hydrography_source'])
+            from south_indian_front_property_query import card_links as property_links
+            evidence_links.extend(property_links())
+            source_file='research/south-indian-2013-front-property-windows-v2.json'
+            payload['front_property_assessment']={
+                'source_file':source_file,'source_sha256':inputs[source_file],
+                'model_year':2013,'cases':len(property_report['cases']),'criteria_per_case':4,
+                'temperature_scale_verified':False,'front_identification_verified':False,
+                'current_association_verified':False,'physical_width_admitted':False}
+        if current_id == 'west-australian':
+            evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
+                'url':'../'+wac_context['comparison_figure']})
+            evidence_links.append({'label':'Query surrounding monthly source fields and paired support',
+                'url':'query.html?source-q='+quote(json.dumps({'document':WAC_CONTEXT,'pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Compare refined regional lengths with the Euler baseline',
+                'url':'../'+wac_paths['comparison_figure']})
+            evidence_links.append({'label':'See refined regional paths and retained failures',
+                'url':'../'+wac_paths['path_figure']})
+            evidence_links.append({'label':'Query all117refined regional path attempts',
+                'url':'query.html?source-q='+quote(json.dumps({'document':'research/west-australian-regional-streamlines-rk4.json','pointer':'/cases','limit':25,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+        if current_id == 'west-spitsbergen':
+            evidence_links.append({'label':'Compare WSC source widths and their separate methods',
+                'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id == 'norwegian':
+            evidence_links.append({'label':'Norwegian Atlantic Slope Current widths · separate identity',
+                'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'norwegian-atlantic-slope'}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
         def query_link(label, collection, record_id=None, filters=None):
             query = {'collection': collection, 'limit': 50}
             if record_id: query['filters'] = [{'field':'id','op':'eq','value':record_id}]
@@ -504,6 +907,7 @@ def build():
         observation_dates = [c.get('observation_time') for c in own_claims] + [g.get('observation_date') for g in own_geometry] + [w.get('observed_period') for w in own_widths]
         observation_dates += [note.get('observed_period') for note in own_notes]
         if current_id == velocity['current_id']: observation_dates += velocity['source_period']
+        if current_id == 'agulhas': observation_dates += ['2016-04-19','2018-06-03']
         if current_id == 'loop': observation_dates += [d['observation_date'] for _, d in loop_documents]
         # Pin the actual time series contents, not just their frame counts.
         if current_id == timeline['current_id']:
@@ -523,14 +927,154 @@ def build():
         if current_id == leeuwin_plot['current_id']:
             payload['monthly_width_plot']=leeuwin_plot
         if current_id == kuroshio_profiles['current_id']:payload['seasonal_width_profiles']=kuroshio_profiles
+        if current_id == 'kuroshio':payload['filtered_width_diagnostic_id']=FILTERED_WIDTH_ID
         own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context') or w.get('regional_range_context') or w.get('regional_scalar_context') or w.get('mean_offshore_context') or w.get('adcp_threshold_context')] if context})]
         if own_width_audits:payload['width_scope_audits']=own_width_audits
         groups = {
-            'identity': entity, 'sources': [own_sources, own_notes, own_audits] if own_notes else own_sources, 'claims': own_claims,
+            'identity': entity, 'sources': [list(own_sources), own_notes, own_audits] if own_notes else list(own_sources), 'claims': own_claims,
             'measurements': [own_measures, own_widths, payload.get('derived_width_series')],
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='south-indian':
+            groups['sources'].append(payload['front_property_assessment'])
+        if current_id in ['indian-south-equatorial-countercurrent','red-sea-saline-overflow']:
+            from current_gap_source_evidence import card_links as gap_source_links, REPORT as BOUNDARY_REPORT, REDSEA as REDSEA_REVIEW
+            evidence_links.extend(gap_source_links(current_id))
+            source_file=BOUNDARY_REPORT if current_id=='indian-south-equatorial-countercurrent' else REDSEA_REVIEW
+            context={'source_file':source_file,'source_sha256':inputs[source_file],
+                     'physical_width_admitted':False,'current_geometry_admitted':False}
+            if current_id=='indian-south-equatorial-countercurrent':
+                context.update(attempts=len(boundary_audit['attempt_inventory']),terminal_records=len(boundary_audit['terminal_rows']),
+                    unresolved_half_peak_source_edges=sum(m['half_peak_source_censored_edges'] for m in boundary_audit['monthly_summary']))
+                payload['source_boundary_audit']=context
+            else:
+                context.update(source_original_sha256=redsea_width_review['source_identity']['sha256'],channel_values_are_current_dimensions=False)
+                payload['channel_width_source_review']=context
+            groups['sources'].append(context)
+        if ident==regional_reach['entity_id']:
+            evidence_links.extend(regional_reach['card_links'])
+            payload['regional_reach']=regional_reach['record']
+            groups['measurements']=[groups['measurements'],regional_reach['record']]
+        if current_id=='caribbean':
+            evidence_links.extend(caribbean_source['card_links'])
+            payload['provider_velocity_source']=caribbean_source['card_context']
+            groups['sources']=[groups['sources'],caribbean_source['card_context']]
+        if current_id=='red-sea-saline-overflow':
+            from redsox_station_support_query import card_links as station_support_links, REPORT as STATION_SUPPORT_REPORT
+            evidence_links.extend(station_support_links())
+            support={'source_file':STATION_SUPPORT_REPORT,'source_sha256':inputs[STATION_SUPPORT_REPORT],
+                     'velocity_records':station_support['counts']['velocity_records'],
+                     'ctd_records':station_support['counts']['ctd_records'],
+                     'metadata_status_counts':station_support['counts']['status_counts'],
+                     'physical_cast_identity_verified':False,'sample_level_synchronization_verified':False,
+                     'physical_width_admitted':False,'current_geometry_admitted':False}
+            payload['provider_station_support']=support
+            groups['sources'].append(support)
+        if current_id=='kuroshio':
+            capabilities['model_dimension_samples']=6588
+            capabilities['axis_normal_samples']=16470
+            normal_dimensions={'source_file':normal_contract['source_report_file'],'source_sha256':normal_contract['source_report_sha256'],
+                'attempts':16470,'primary_resolved':4680,'primary_attempts':5490,'scope':normal_contract['scope']}
+            payload['axis_normal_dimensions']=normal_dimensions
+            groups['measurements'].append(normal_dimensions)
+            groups['time_evidence'].append(normal_document['summaries'])
+            evidence_links.append({'label':'Explore Kuroshio2024 axis-normal model spans','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':NORMAL_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+            model_dimensions={'source_file':kuroshio_daily_contract['source_report_file'],'source_sha256':kuroshio_daily_contract['source_report_sha256'],'daily_depth_cases':1098,'section_cases':5490,'scope':kuroshio_daily_contract['scope']}
+            payload['model_dimensions']=model_dimensions
+            groups['measurements'].append(model_dimensions)
+            groups['time_evidence'].append(kuroshio_daily['summaries'])
+            evidence_links.append({'label':'Explore Kuroshio2024 dated model dimensions','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':'diagnostic:kuroshio-wang-2024-dimensions'}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:
+            groups['measurements'].append(asar_widths)
+            evidence_links.append({'label':'Compare ASAR separate and mixed surface-width reports','url':'../'+asar_widths['figure_file']})
+            evidence_links.append({'label':'Query ASAR local surface-width source report','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':asar_widths['id'] if current_id=='norwegian-atlantic-slope' else asar_widths['id']+':coastal'}],'limit':1},separators=(',',':')),safe='')})
+        if current_id=='pacific-north-equatorial-undercurrent':
+            groups['measurements'].append(neuc_glider)
+            evidence_links.append({'label':'Compare NEUC multi-year glider width ranges','url':'../'+neuc_glider['figure_file']})
+            evidence_links.append({'label':'Query NEUC glider range methods and mean-breadth comparison','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':neuc_glider['id']}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id=='aleutian':
+            groups['measurements'].append(aleutian_width)
+            evidence_links.append({'label':'Inspect Aleutian published width greater than400km','url':'../'+aleutian_width['figure_file']})
+            evidence_links.append({'label':'Query Aleutian source width constraint','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':aleutian_width['id']}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id=='agulhas':
+            payload['reported_dimension_context']=agulhas_reported
+            groups['measurements'].append(agulhas_reported)
+            evidence_links.append({'label':'Inspect Agulhas source-reported dimension context','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':AGULHAS_REPORTED_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        study=next((s for s in research_evidence['scenes'] if s['current_id']==current_id),None)
+        if study:
+            payload['research_evidence_ids']=[study['diagnostic_id']]
+            research_source={**study,'source_file_sha256':research_evidence['documents'][study['source_file']]}
+            payload['research_evidence_source_fingerprint']=fingerprint(research_source)
+            groups['sources'].append(research_source)
+            if study.get('observation_kind')=='direct_shipboard_adcp_velocity':
+                observed_times=study.get('observation_times_utc',[])
+                observation_dates+=observed_times
+                payload['research_observation_times_utc']=observed_times
+                groups['time_evidence'].append({'source_file':study['observation_source_file'],'observation_kind':study['observation_kind'],'observation_times_utc':observed_times})
+            capabilities['scope_notes']+=1
+            evidence_query={'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':study['diagnostic_id']}],'limit':100}
+            evidence_links.append({'label':'View current research evidence','url':'query.html?q='+quote(json.dumps(evidence_query,separators=(',',':')))+'#query-chart-section'})
+        source_review=next((r for r in source_limits['reviews'] if r['current_id']==current_id),None)
+        if source_review:
+            payload['width_source_review']=source_review
+            groups['sources'].append(source_review)
+            groups['sources'].append(source_limits['sources'][source_review['source_index']])
+            capabilities['scope_notes']+=1
+            source_pointer='/reviews/'+str(source_limits['reviews'].index(source_review))
+            evidence_links.append({'label':'Why physical width remains unresolved','url':'query.html?source-q='+quote(json.dumps({'document':SOURCE_LIMITS_AUDIT,'pointer':source_pointer,'limit':100}))})
+        if current_id=='portugal':
+            groups['measurements'].append(portugal_audit);groups['sources'].append(portugal_audit)
+            groups['time_evidence'].append(portugal_audit)
+            evidence_links.append({'label':'ORCA 2009 published section limits and calculated span','url':'../figures/portugal-orca-2009-section-span.svg'})
+        if current_id=='south-atlantic':
+            groups['measurements'].append(sac_audit);groups['sources'].append(sac_audit)
+            groups['time_evidence'].append(sac_audit)
+            evidence_links.append({'label':'October 1983 southern component band breadth','url':'../figures/south-atlantic-stramma-1983-secondary-band.svg'})
+        if current_id=='south-australian':
+            sac_support={'diagnostic_id':SAC_CONTEXT_ID,'source_file':'research/south-australian-hycom-2d-flow-context-scene.json',
+                'source_sha256':sac_context_inputs['research/south-australian-hycom-2d-flow-context-scene.json'],
+                'months':12,'threshold_cases':36,'physical_width_admitted':False,'current_association_verified':False}
+            groups['measurements'].append(sac_support);groups['time_evidence'].append(sac_support)
+            groups['sources']=[groups['sources'],sac_support]
+            evidence_links.append({'label':'Explore surrounding monthly model flow','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':SAC_CONTEXT_ID}],'limit':1},separators=(',',':')))+'#query-chart-section'})
+        if current_id=='south-pacific':
+            groups['measurements'].append(spc_audit);groups['sources'].append(spc_audit)
+            groups['time_evidence'].append(spc_audit)
+            evidence_links.append({'label':'March 1990 reported band width constraint','url':'../figures/south-pacific-stramma-1990-band-constraint.svg'})
+        if current_id=='loop':
+            groups['measurements'].append(loop_core_audit);groups['sources'].append(loop_core_audit)
+            evidence_links.append({'label':'Pre-Lili geostrophic core width definition','url':'../figures/loop-uhlhorn-2008-core-width.svg'})
+        if current_id=='gulf-stream':
+            groups['measurements'].append(gulf_audit);groups['sources'].append(gulf_audit)
+            groups['time_evidence'].append(gulf_audit)
+            evidence_links.append({'label':'Published transport / isopycnal width definitions','url':'../figures/gulf-stream-published-width-definitions.svg'})
+        if current_id=='azores':
+            groups['measurements'].append(azores_core_audit)
+            groups['sources'].append(azores_core_audit)
+            groups['time_evidence'].append(azores_core_audit)
+            evidence_links.append({'label':'Reported seasonal model-core comparison','url':'../figures/azores-carracedo-2014-climatological-core-widths.svg'})
+            evidence_links.append({'label':'Inspect Azores seasonal model core','url':'seasons.html?current=azores&phase=azores-carracedo-2014-spring-core-width'})
+        if current_id=='azores-countercurrent':
+            groups['sources'].append(azcc_coordinate_audit)
+            evidence_links.append({'label':'Section positions and width interpretation','url':'../figures/azores-countercurrent-posaf-coordinate-meaning.svg'})
+            evidence_links.append({'label':'Inspect primary and secondary quantity meanings','url':'query.html?source-q='+quote(json.dumps({'document':'research/azores-countercurrent-posaf-coordinate-meaning-audit.json','pointer':'/','limit':50}),safe='')})
+        if current_id=='pacific-south-equatorial-countercurrent':
+            groups['measurements'].append(pacific_secc_width_audit)
+            groups['sources'].append(pacific_secc_width_audit)
+        if current_id in basin_sections:
+            doc=basin_sections[current_id]
+            groups['time_evidence'].append(doc)
+            groups['measurements'].append(doc)
+            groups['sources'].append(doc['input_sha256'] if 'input_sha256' in doc else {'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
+            evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-profiles.svg'})
+        if any(d['current_id']==current_id for d in climatological_sections):
+            for doc in (d for d in climatological_sections if d['current_id']==current_id):
+                groups['time_evidence'].append(doc)
+                groups['measurements'].append(doc)
+                groups['sources'].append(doc['input_sha256'])
+                evidence_links.append({'label':doc['period_label']+' profiles','url':'../'+doc['profile_figure']})
+            evidence_links.append({'label':'1995–2016 year-by-year monthly section spans','url':'../'+next(d for d in climatological_sections if d['current_id']==current_id)['interannual_figure']})
         if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:
             groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)
@@ -543,12 +1087,62 @@ def build():
             groups['measurements'].append(kuroshio_profiles)
             groups['time_evidence'].append(kuroshio_profiles)
             groups['sources']=[groups['sources'],{key:kuroshio_profiles[key] for key in ['source_pdf_sha256','source_url','source_locator','config_sha256','protocol_sha256','scope_audit_sha256']}]
+            filtered_support={'diagnostic_id':FILTERED_WIDTH_ID,'source_file':'research/kuroshio-ecs-filtered-width-time-series.json',
+                'source_sha256':inputs['research/kuroshio-ecs-filtered-width-time-series.json'],'sample_count':filtered_width['sample_count'],
+                'metric':filtered_width['width_metric'],'sample_time_is_observation_date':False,'samples_are_raw_monthly_means':False}
+            groups['measurements'].append(filtered_support)
+            groups['time_evidence'].append(filtered_support)
+            groups['sources'].append(filtered_support)
         if own_width_audits:
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
-        if current_id in {'algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension','new-guinea-coastal-undercurrent','zeehan'}:
-            original_width_audit={'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit,'new-guinea-coastal-undercurrent':ngcu_width_audit,'zeehan':zeehan_width_audit}[current_id]
+        if current_id == 'east-australian':
+            eac_support={'diagnostic_id':EAC_FIELDS_ID,'source_file':'research/eac-csiro-v23-100m-source-quality.json',
+                'source_sha256':inputs['research/eac-csiro-v23-100m-source-quality.json'],
+                'calendar_records':3770,'profiles_with_data':3141,'missing_profiles':629,'physical_width_admitted':False}
+            groups['sources'].append(eac_support)
+            groups['measurements'].append(eac_support)
+            groups['time_evidence'].append(eac_support)
+            core_support={'diagnostic_id':EAC_CORE_ID,'source_file':'research/eac-csiro-100m-section-core-spans-summary.json',
+                'source_sha256':inputs['research/eac-csiro-100m-section-core-spans-summary.json'],
+                'dated_outcomes':3770,'primary_resolved':2883,'primary_unresolved':887,'scenario_attempts':33930,
+                'physical_width_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(core_support)
+            groups['measurements'].append(core_support)
+            groups['time_evidence'].append(core_support)
+            calendar_support={'source_file':EAC_CALENDAR,'source_sha256':inputs[EAC_CALENDAR],
+                'calendar_month_groups':12,'calendar_year_groups':11,'cases_per_group':9,
+                'source_dates':3770,'new_independent_observations':0,'physical_width_admitted':False}
+            groups['sources'].append(calendar_support)
+            groups['time_evidence'].append(calendar_support)
+        if current_id == 'west-australian':
+            context_support={'source_file':WAC_CONTEXT,'source_sha256':inputs[WAC_CONTEXT],
+                'vector_positions':304200,'source_times':72,'monthly_source_fields':12,
+                'current_geometry_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(context_support)
+            groups['time_evidence'].append(context_support)
+            path_support={'source_file':'research/west-australian-regional-streamlines-rk4.json',
+                'source_sha256':inputs['research/west-australian-regional-streamlines-rk4.json'],
+                'refined_attempts':117,'baseline_attempts':117,'refined_matching_pairs':wac_paths['counts']['status_counts'].get('both_regional_gates_reached',0),
+                'primary_matching_fields':wac_paths['counts']['primary_resolved_fields'],'whole_current_length_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(path_support)
+            groups['measurements'].append(path_support)
+            groups['time_evidence'].append(path_support)
+        if current_id in local_width_audits:
+            if current_id == 'agulhas':
+                span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
+                    'source_sha256':inputs['research/agulhas-asca-100m-dated-component-spans.json'],
+                    'profiles':931,'resolved_primary_spans':330,'physical_width_admitted':False}
+                groups['measurements'].append(span_support)
+                groups['time_evidence'].append(span_support)
+                groups['sources'].append(span_support)
+            payload['original_regional_width_scope'] = local_width_audits[current_id]
+            groups['measurements'].append(local_width_audits[current_id])
+            groups['sources'].append(local_width_audits[current_id])
+            groups['time_evidence'].append(local_width_audits[current_id])
+        if current_id in {'caribbean','algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension','new-guinea-coastal-undercurrent','zeehan'}:
+            original_width_audit={'caribbean':caribbean_width_audit,'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit,'new-guinea-coastal-undercurrent':ngcu_width_audit,'zeehan':zeehan_width_audit}[current_id]
             payload['original_regional_width_scope']=original_width_audit
             groups['measurements'].append(original_width_audit)
             groups['sources'].append(original_width_audit)
@@ -580,6 +1174,16 @@ def build():
             payload['observed_velocity']=velocity
             groups['time_evidence'].append(velocity)
             groups['sources'].append({'source_url':velocity['source_url'],'source_sha256':velocity['source_sha256'],'source_file':velocity['source_file']})
+        if current_id == 'agulhas':
+            payload['current_sections']={'source_file':asca_path,'source_sha256':inputs[asca_path],'counts':asca_sections['counts'],'scope':asca_sections['scope']}
+            calendar_support={'diagnostic_id':ASCA_CALENDAR_ID,'source_file':ASCA_CALENDAR_REPORT,'source_sha256':inputs[ASCA_CALENDAR_REPORT],
+                'conditional_records':len(asca_calendar['records']),'unique_source_profiles':931,'physical_width_admitted':False}
+            payload['asca_calendar_support']=calendar_support
+            for group in ['sources','measurements','time_evidence']:groups[group].append(calendar_support)
+            evidence_links.append({'label':'Explore calendar sample ranges and coverage','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':ASCA_CALENDAR_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+            groups['time_evidence'].append(asca_sections)
+            groups['sources'].append({'source_file':asca_path,'source_sha256':inputs[asca_path],'source_contract':asca_contract})
+            evidence_links.append({'label':'Explore ASCA 100 m monthly sections','url':series[-1]['url']})
         owned_transports=[r for collection in transport_rows.values() for r in collection if r['entity_id']==ident]
         if owned_transports:
             capabilities['section_transport']=len(owned_transports)
@@ -613,19 +1217,27 @@ def build():
                      'object_url': 'object.html?id=' + quote(ident, safe=''),
                      'route_url': 'reference-routes.html#' + own_routes[0]['id'] if own_routes else None,
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})
-        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'}:
+        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'} or any(n.get('measurement_scope_assessment') for n in own_notes) or any(a.get('schema')=='osw.published-model-width-scope.v1' for a in own_audits):
             rows[-1]['scope_audits']=own_audits
+        if current_id=='caribbean':
+            rows[-1]['provider_velocity_source']=caribbean_source['card_context']
+            rows[-1]['source_ids']=sorted(source_ids)
+        if ident==regional_reach['entity_id']:
+            rows[-1]['regional_reach_ids']=[regional_reach['id']]
+            rows[-1]['linked_source_count']=len(source_ids)
+            rows[-1]['source_ids']=sorted(source_ids)
         if ident in recurrence:
             rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]
     order = {'named_current': 0, 'named_eddy': 1, 'operational_eddy_detection': 2}
     rows.sort(key=lambda row: (order[row['type']], row['label'].casefold(), row['id']))
     counts = {kind: sum(r['type'] == kind for r in rows) for kind in ['named_current', 'named_eddy', 'operational_eddy_detection']}
-    if counts != {'named_current': 100, 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
+    if counts != {'named_current': 101+len(identity_document['entries']), 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
         raise ValueError('Dashboard inventory must reconcile with the release ledger')
     return {'schema': 'osw.motion-dashboard.v1', 'status': 'local_research_coverage_not_scientific_approval',
-            'counts': counts, 'proposed_current_additions': len(proposals), 'input_sha256': inputs,
+            'counts': counts, 'proposed_current_additions': len(proposals)-len(identity_document['entries'])-1, 'input_sha256': inputs,
             'snapshot_fingerprint': fingerprint(rows), 'entries': rows,
             'connections': connections,
+            'proposed_source_views': [angola_native_link()],
             'fingerprint_version': 2,
             'coverage_meaning': 'Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.'}
 

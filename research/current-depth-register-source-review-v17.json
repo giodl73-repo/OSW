@@ -1,0 +1,73 @@
+{
+  "schema": "osw.current-depth-register-source-review.v17",
+  "status": "PASS_PACIFIC_BRANCH_SEQUENCE_AND_CENSORED_DEPTH_REFERENCES",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41395343971,
+      "tests_passed": 8,
+      "source_commit": "32e68ce597e3046d1a886f7b4586ffca1d42c661",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41395343971"
+    },
+    {
+      "run_id": 41395343901,
+      "tests_passed": 6,
+      "source_commit": "32e68ce597e3046d1a886f7b4586ffca1d42c661",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41395343901"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 279,
+    "identities_with_scoped_depth_reference": 75,
+    "identities_not_yet_assessed": 36,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 26,
+    "core_lower_boundary_depth": 6,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 13,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 6,
+    "reported_near_zero_flow_depth": 1,
+    "reported_vertical_extent": 44,
+    "reported_vertical_thickness": 5,
+    "transport_selected_depth_extent": 56,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v17.py": "1576d6e0c1e2976444a381ae38fc0b7090a81ec1d435cdb9f3a495ca5397adb6",
+    "analysis/test_current_depth_register_v17.py": "3d724c1224f5b467b11768f667bceedc783982409a540807548bb67dbebe0eb9",
+    "research/current-depth-rules-v17.json": "01246082af74ed91e2207c07f615fe3cd5c0aba6dec59253be23d8cb16cd83e8",
+    "research/current-depth-source-facts-v17.json": "2710e8a9ecddc99075128f25da5aab304d26ccd9ee07a6305cf6ef699b85d8cb",
+    "research/current-depth-register-v17.json": "161d5f02ab03ce867ec9030bb9b3a194a0a0104f84a163754a04e14212aaacf8",
+    "research/current-depth-register-v17.csv": "8c7390f23ddcce72b875fb0bddbf166f0faf0dbc794b586c2f70367945ae1c42",
+    ".github/workflows/current-depth-register-source-v17.yml": "12488a74edef2a14204d74196afb03a783cfc0b5c5e3a3713eb49e84c769d8b9"
+  },
+  "previous_269_references_and_v16_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding269 references retained; ten references add three owners, giving75 identities with scoped depth evidence and36 gaps.",
+    "Peru Coastal Current50m is a7–13S modeled mean coastal-jet description, not all branches of the Humboldt system. Climatological ROMS analysis years3–10 are simulation indices, not calendar years or a new observation.",
+    "Six model Peru-Chile Undercurrent sections retain source-selected2cm/s poleward isotach depths: Punta Falsa240m, Chimbote280m, Callao310m, Pisco470m, San Juan550m and Arica620m, with section latitudes and a shared source branch sequence ID.",
+    "The six-depth sequence is spatial and modeled. It does not inherit separate potential-vorticity prediction values marked by stars in the paper, establish seasonal extrema, or supply whole-Humboldt route geometry.",
+    "Offshore Peru Oceanic Current at least500m retains inclusive lower-bound semantics, calibrated/interpolated SADCP reconstruction and uneven2008–2012 survey support. It is distinct from PCC, PCUC and CPDCC, and not joined to the earlier model dimensions.",
+    "Oyashio shallower than2000m retains a strict upper bound for summer/fall flow southeast of Hokkaido, without arbitrary months or a numeric winter bottom from qualitative surface-to-bottom language.",
+    "Kuroshio Extension original PDF prose reports a component at1000m. The retained inclusive reach is explicitly inferred from that component; no strict greater-than sign is imported from indexed publisher text. Deep recirculation and eddy influence remain explicit, and no inheritance into North Pacific Current or the excluded offshore Oyashio Front occurs.",
+    "Mutation checks reject branch and model swaps, theoretical depth substitutions, section coordinates, dated simulation indices, altered bound inclusivity, season changes, removed eddy context and unsupported geometry/volume promotion.",
+    "JSON/CSV reproduce with unique columns and branch-sequence, operator, simulation-year and bound-interpretation fields. No local test execution, raw ocean-field processing, runtime or preview change."
+  ],
+  "source_review_scope": "Penven2005 final primary publisher full HTML Sections2.2–2.3,3.3–3.4 and Figure8/9 captions. Chaigneau2013 primary publisher full HTML Sections2,3.1–3.2. Qiu2019 original author-hosted PDF printed392/PDF9 and Qu2001 printed2586/PDF12 actually viewed, with Qu methods text checked. No figure digitization or original-PDF redistribution; acquisition and render hashes retained in source facts.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

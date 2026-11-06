@@ -1,0 +1,94 @@
+{
+  "schema": "osw.atlantic-current-depth-manifest.v1",
+  "operator_file": "research/atlantic-current-depth-operator-v1.json",
+  "operator_sha256": "8a272f6ecd816424653c9732c4a9a105c25c13cc6c98ef8d01e4caf9fcf81676",
+  "input_sha256": {
+    "research/brazil-reference-path-candidate.json": "0b8bd13661715e0f7e66ed62172e9b6f768325cf57d1081b650798f2c7b27592",
+    "research/benguela-reference-path-candidate.json": "df056c4963ecc719dd1c7e2021f1dea2572ce60f0771d4107924e6c8d65c9577",
+    "research/canary-reference-path-candidate.json": "b5a8dad9c074d00432e07cb45640469551f1686d3b96e31a4356d0861c7c4309",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/current-depth-route-projections-source-review-v12.json": "1a1ab70d07a77c595ba64a6f30abe3a8776933c6b1032794059c9fd7e8f43c49",
+    "research/kuroshio-hycom-depth-source-review-v1.json": "57e5c20764c10a7c6483cfcb39328d658ebfc18a515971d647227ccc08c96532"
+  },
+  "currents": [
+    {
+      "entity_id": "current:brazil",
+      "file": "brazil.json",
+      "sha256": "53a04f5b4cfa4d6998806213a9316062c6066c7101bc6257b1fd75e11ff1d2dd",
+      "bytes": 517697,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 8,
+        "sampled_cases": 16,
+        "retained_velocity_profiles": 80,
+        "selected_primary_lower_crossings": 11,
+        "selected_horizontal_edge_maxima": 8,
+        "no_qualifying_core_cases": 1,
+        "selected_resolved_threshold_layers": {
+          "0.05": 9,
+          "0.1": 11,
+          "0.2": 14
+        },
+        "decoded_velocity_cell_pairs": 57600,
+        "decoded_velocity_array_bytes": 460800,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    },
+    {
+      "entity_id": "current:benguela",
+      "file": "benguela.json",
+      "sha256": "ce67b241cb96735f2d06d31467af440c77769f49a145ca3155141d3070e3cabe",
+      "bytes": 464544,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 7,
+        "sampled_cases": 14,
+        "retained_velocity_profiles": 70,
+        "selected_primary_lower_crossings": 12,
+        "selected_horizontal_edge_maxima": 7,
+        "no_qualifying_core_cases": 2,
+        "selected_resolved_threshold_layers": {
+          "0.05": 12,
+          "0.1": 11,
+          "0.2": 8
+        },
+        "decoded_velocity_cell_pairs": 39360,
+        "decoded_velocity_array_bytes": 314880,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    },
+    {
+      "entity_id": "current:canary",
+      "file": "canary.json",
+      "sha256": "69dbc8e5f2391d4732e0168a8e86000fa7bba49b1e1200046819c330a4ad9001",
+      "bytes": 611008,
+      "counts": {
+        "snapshots": 2,
+        "route_vertices": 9,
+        "sampled_cases": 18,
+        "retained_velocity_profiles": 90,
+        "selected_primary_lower_crossings": 18,
+        "selected_horizontal_edge_maxima": 11,
+        "no_qualifying_core_cases": 0,
+        "selected_resolved_threshold_layers": {
+          "0.05": 18,
+          "0.1": 15,
+          "0.2": 9
+        },
+        "decoded_velocity_cell_pairs": 57760,
+        "decoded_velocity_array_bytes": 462080,
+        "whole_route_physical_depth_profiles": 0,
+        "water_volume_estimates": 0
+      }
+    }
+  ],
+  "total_decoded_velocity_cell_pairs": 154720,
+  "total_decoded_velocity_array_bytes": 1237760,
+  "full_goal_complete": false
+}

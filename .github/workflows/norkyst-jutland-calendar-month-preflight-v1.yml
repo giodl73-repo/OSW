@@ -1,0 +1,68 @@
+name: NorKyst Jutland complete-month depth preflight v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/plan_norkyst_jutland_calendar_months_v1.py
+      - analysis/test_norkyst_jutland_calendar_month_preflight_v1.py
+      - plans/norkyst-jutland-calendar-month-preflight-protocol-v1.md
+      - research/norkyst-jutland-calendar-month-preflight-operator-v1.json
+      - .github/workflows/norkyst-jutland-calendar-month-preflight-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/collect_norkyst_jutland_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/norkyst_continuous_source.py
+            analysis/plan_norkyst_jutland_calendar_months_v1.py
+            analysis/test_norkyst_jutland_calendar_month_preflight_v1.py
+            plans/norkyst-jutland-calendar-month-preflight-protocol-v1.md
+            research/current-depth-norkyst-jutland-dated-depth-summary-source-review-v1.json
+            research/current-depth-norkyst-native-aggregate-metadata-source-review-v1.json
+            research/norkyst-jutland-calendar-month-preflight-operator-v1.json
+            research/norkyst-jutland-depth-operator-v1.json
+            research/source-data/norkyst-ingoy-months-2024/acquisition-year.json
+            research/source-data/norkyst-ingoy-months-2024/originals-year-2024-03.zip
+            research/source-data/norkyst-ingoy-months-2024/originals-year-2024-06.zip
+            research/source-data/norkyst-ingoy-months-2024/originals-year-2024-09.zip
+            research/source-data/norkyst-ingoy-months-2024/originals-year-2024-12.zip
+            research/source-data/norkyst-jutland-depth-v1/case-00.json
+            research/source-data/norkyst-jutland-depth-v1/case-01.json
+            research/source-data/norkyst-jutland-depth-v1/case-02.json
+            research/source-data/norkyst-jutland-depth-v1/case-03.json
+            research/source-data/norkyst-jutland-depth-v1/case-04.json
+            research/source-data/norkyst-jutland-depth-v1/case-05.json
+            research/source-data/norkyst-jutland-depth-v1/case-06.json
+            research/source-data/norkyst-jutland-depth-v1/case-07.json
+            research/source-data/norkyst-jutland-depth-v1/case-08.json
+            research/source-data/norkyst-jutland-depth-v1/case-09.json
+            research/source-data/norkyst-jutland-depth-v1/case-10.json
+            research/source-data/norkyst-jutland-depth-v1/case-11.json
+            research/source-data/norkyst-jutland-depth-v1/preflight.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Verify metadata custody and complete-time global source budget
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_norkyst_jutland_calendar_month_preflight_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/plan_norkyst_jutland_calendar_months_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: norkyst-jutland-calendar-month-preflight-v1
+          path: norkyst-jutland-calendar-month-preflight-v1/
+          retention-days: 7

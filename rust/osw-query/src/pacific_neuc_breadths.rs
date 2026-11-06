@@ -75,7 +75,9 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
         })
         .cloned()
         .collect();
-    if actual != expected() {
+    let mut admitted = expected();
+    admitted.extend(crate::neuc_glider_widths::widths(bundle));
+    if actual != admitted {
         return Err("Pacific NEUC breadth inventory, identity or isopycnal support differs".into());
     }
     Ok(())
@@ -83,7 +85,12 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
 pub(crate) fn scene(matches: &[&Value], widths: &[Value]) -> Value {
     let mut matching: Vec<_> = matches
         .iter()
-        .filter(|r| r["current_id"] == OWNER)
+        .filter(|r| {
+            r["current_id"] == OWNER
+                && r["id"]
+                    .as_str()
+                    .is_some_and(|id| id.starts_with("pacific-neuc-li-2018-"))
+        })
         .map(|r| r["id"].clone())
         .collect();
     // Query sort order does not alter the shared scientific comparison scene.
@@ -91,13 +98,29 @@ pub(crate) fn scene(matches: &[&Value], widths: &[Value]) -> Value {
     if matching.is_empty() {
         return Value::Null;
     }
-    let rows: Vec<_> = widths.iter().filter(|r| r["current_id"] == OWNER).collect();
+    let rows: Vec<_> = widths
+        .iter()
+        .filter(|r| {
+            r["current_id"] == OWNER
+                && r["id"]
+                    .as_str()
+                    .is_some_and(|id| id.starts_with("pacific-neuc-li-2018-"))
+        })
+        .collect();
     let points:Vec<_>=rows.iter().enumerate().map(|(i,r)|json!({"record":r,"matching":matching.contains(&r["id"]),"x_start":220,"x_end":220.0+r["approximate_width_km"].as_f64().unwrap()/400.0*480.0,"y":70+i*70})).collect();
     let doc: Value = serde_json::from_str(RAW).unwrap();
     json!({"kind":"pacific_neuc_isopycnal_breadths","title":"Pacific NEUC isopycnal jet breadths","scope":"Distinct southern and northern jets in the 2004–2014 Argo-based absolute-geostrophic mean on the 27.0 σθ density surface. Source meridional breadths are approximately 3° and 1° latitude; rounded WGS84 unit conversions are about 330 and 110 km. These are different components, not annual minimum and maximum widths.","source_file":SOURCE,"source_url":doc["source_url"],"source_citation":doc["source_citation"],"points":points,"records":rows,"matching_ids":matching,"view_box":[0,0,1000,240],"axis_max_km":400,"ticks":[0,100,200,300,400],"middle_component":doc["middle_component"],"notes":doc["scope_notes"],"geometry_role":"abstract_component_comparison_no_edges_or_footprint","source_image":{"href":"../figures/li-neuc-2018-source-isopycnal-jets.jpg","figure":1,"license_url":"https://creativecommons.org/licenses/by/4.0/","changes":"None; original source image.","caption":"Li, Liu and Lin (2018), Figure 1. Top-left: Argo absolute-geostrophic mean 2004–2014 on 27.0 σθ. Other panels are SODA/LICOM 1969–2007 comparisons; their widths are not the admitted measurements. Black curves are source zero-velocity contours, not OSW-digitized width edges. Units: cm/s. CC BY 4.0."},"interpretation":"The density surface has spatially varying depth. Meridional breadth is not a measured flow-normal section. No fixed longitude, paired endpoints, width error or monthly width series is supplied. Source degrees are retained; conversion origins are units only, not measured jet locations."})
 }
 pub(crate) fn full(widths: &[Value]) -> Value {
-    let rows: Vec<_> = widths.iter().filter(|r| r["current_id"] == OWNER).collect();
+    let rows: Vec<_> = widths
+        .iter()
+        .filter(|r| {
+            r["current_id"] == OWNER
+                && r["id"]
+                    .as_str()
+                    .is_some_and(|id| id.starts_with("pacific-neuc-li-2018-"))
+        })
+        .collect();
     scene(&rows, widths)
 }
 #[cfg(test)]

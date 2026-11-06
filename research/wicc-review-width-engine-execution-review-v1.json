@@ -1,0 +1,66 @@
+{
+  "schema": "osw.wicc-review-width-engine-execution-review.v1",
+  "status": "ENGINE_VERIFIED_BROWSER_CAPTURE_REPAIR_REQUIRED_NOT_INSTALLED",
+  "run_id": 40647043885,
+  "run_attempt": 2,
+  "source_commit": "93ae2beb342200f39ef22ad9ec91e824ebc9e83c",
+  "logical_sha256": "360e775a1dbb49d5c7934cca1f288ab2f2f8cd71bfa8fd1368fb35b086f4e1e0",
+  "logical_bytes": 190547331,
+  "wasm_sha256": "037b6cfcee4d21bff80443bc77e0ab12c797eccc419e4ff39665cb09441e0ee0",
+  "rust_tests_passed": 230,
+  "main_native_wasm_whole_response_comparisons": 61,
+  "source_native_wasm_whole_response_comparisons": 25,
+  "complete_api_native_wasm_comparisons": 3,
+  "engine_evidence_sha256": {
+    "research/wicc-review-width-engine-run-v1/engine.json": "54650c8479209f400d24cfa10b95e3262353a5b0c96fce72457ffc0b5280d77f",
+    "research/wicc-review-width-engine-run-v1/compile-inventory.json": "a5b0852de3c502807e919b1d0d2a0c64efc64b95b1410ad4d03ef4612b18fd63",
+    "research/wicc-review-width-engine-run-v1/dependency-proof.json": "28d9bffae1573cb3b759edcbd03bf1e105ac2362e0c4cb132f511155bde174c4",
+    "research/wicc-review-width-engine-run-v1/index-parity.json": "4e956d246ef3d62a6f9f6e73de3d594d55ac91c9d984e7a2bb2130071081521d",
+    "research/wicc-review-width-engine-run-v1/main-parity.json": "e54e811de0a9ea130812f342c164cac90cf3fc71cb995be7d4e7fe10bd8aff0f",
+    "research/wicc-review-width-engine-run-v1/parent-snapshots.json": "cff18783d34b167e8f2124a13396d8bdd815d4bd9b4b253e50f0df04428164cc",
+    "research/wicc-review-width-engine-run-v1/parent-speeds.json": "f22a9912a460014776c441e188e795df68b635043b5209382f954232e1bc57e7",
+    "research/wicc-review-width-engine-run-v1/rust-tests.txt": "33f09ef39e514c15347d7ba2b35b60de5a9fdae7205939935ebf93c7b84971fe",
+    "research/wicc-review-width-engine-run-v1/snapshots-parity.json": "143e7560ccc8a86a20f081c6b0b1ac0786e3c0f28a18089f372a33e7b9f9b783",
+    "research/wicc-review-width-engine-run-v1/source-index-audit.json": "415bf3a46961a8fbffc0cfd4555b41a17c562bd82f4bd9897675847b421d9ac0",
+    "research/wicc-review-width-engine-run-v1/browser-failure.json": "8712da161a663519561f895f6d9b3f2600d8240ea93a19a1e0e788469a071dce",
+    "research/wicc-review-width-engine-run-v1/wicc-atlas-1100px.png.geometry.json": "50890343870c647d4555b0e8b16ab34bc52e2fbcd630aff48b697b9c4f3ef12c"
+  },
+  "candidate_artifact": {
+    "id": 12798651340,
+    "bytes": 96271344,
+    "sha256": "ade6f51185032f8907d034321f7b2bf8c08123b20cee8930e716a528bfaf4b3f",
+    "downloaded_locally": false
+  },
+  "evidence_artifact": {
+    "id": 12797619450,
+    "bytes": 621994,
+    "sha256": "2a14a07a64ebd8314e8bef9ff012d539dbe4d06a54e91055d448c174f87e43a8"
+  },
+  "actual_images_individually_reviewed": [
+    "wicc-query-1100px.png",
+    "wicc-source-1100px.png",
+    "debug-wicc-atlas-1100px.png"
+  ],
+  "finding": "Whole atlas evidence panel exceeds the scrollable sidebar viewport. Query card and source display are readable; capture actual visible sidebar sections individually. This is not a native/WASM data failure.",
+  "repair": {
+    "historical_harness": "analysis/check_wicc_review_width_browser_v1.py",
+    "historical_sha256": "4008686cb2661680bc762b2c334e5a650b317c8270fa78489b49bc3d9f3fa39c",
+    "candidate_harness": "analysis/check_wicc_review_width_browser_v2.py",
+    "candidate_sha256": "ef01d14732b9986220a2505d628c89d4739ad7c60715a78d41b14b4c65d33714",
+    "clipping_guard_unchanged": true,
+    "atlas_sections": [
+      "title",
+      "scope",
+      "lineage",
+      "width",
+      "figure"
+    ],
+    "required_actual_screenshots": 20,
+    "runtime_assets_changed": false,
+    "saved_engine_rebuild_required": false
+  },
+  "browser_verified": false,
+  "visual_review_complete": false,
+  "installed": false,
+  "full_goal_complete": false
+}

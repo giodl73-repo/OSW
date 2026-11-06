@@ -1,0 +1,43 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v14",
+  "previous_projection_file": "research/current-depth-route-projections-v13.json",
+  "previous_projection_csv": "research/current-depth-route-projections-v13.csv",
+  "depth_register_file": "research/current-depth-register-v48.json",
+  "current_source_files": [
+    "research/source-data/atlantic-current-depth-v2/north-brazil.json",
+    "research/source-data/atlantic-current-depth-v2/north-atlantic.json",
+    "research/source-data/atlantic-current-depth-v2/labrador.json"
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "interpolation_assumption": "Use the frozen adjacent-node regional projection operator unchanged: piecewise linear primary model lower contour only between eligible original neighbors; paired upper depth/layer span only with paired supported endpoints. Preserve source-order nodes, blocked exact locations and both adjacent gaps. No threshold substitution, skipping, extrapolation, widening search, inferred seabed or current-axis validation. Editorial reference geometry does not replace current length.",
+  "projection_inventory_rule": "A new case must contain at least one eligible lower-depth source node to enter projections and its ownership count. Fully blocked cases remain in unresolved_reference_cases with every original node, source value/pointer and block reason. Their projected values stay unknown, they are excluded from projectionCSV and they do not count as supported regional projection coverage. Export their raw evidence in a separately typed unresolvedCSV. Preserve prior35projection objects unchanged.",
+  "interpretation": "Six dated North Brazil/North Atlantic/Labrador reference cases are assessed from frozen220velocity profiles. Keep original per-object10cm/s(North Brazil)/5cm/s(North Atlantic/Labrador) primaries and branch exclusions. Fully blocked reference corridors are evidence of a failed axis bracket or missing support, not current absence and not usable depth-profile coverage. Interior resolved model descriptors remain conditional regional scenarios; no physical thickness, volume, annual envelope or independent axis claim. All previous35objects and CSVcells remain preserved.",
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "physical_state_join": false,
+    "seasonal_envelope": false
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v13.json": "7b179c473f248fc5d325b466aaab8a041a38ca8d7073d2e365ab59c69d567177",
+    "research/current-depth-route-projections-v13.csv": "de3118f645696ed56d12c10b414e5b2a42399e7c47bcf124e5d6c8785ff86b36",
+    "research/current-depth-route-projections-source-review-v13.json": "7c38c8a3a2265346a8debbd642b63bf8d27d0804f30a968ac525462c6c9b1c4c",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/atlantic-current-depth-source-review-v2.json": "2f7b1eaf647b7472c01a1f4d94c27fc85b67e2019395aa2238e22720f6cc7dc6",
+    "research/atlantic-current-depth-operator-v2.json": "a4a841a7781a6d87b0ece55b59fcdbe11719d0e0532302e6e28eb2ab777d4267",
+    "research/source-data/atlantic-current-depth-v2/manifest.json": "7b7bdb09f22122fe0b13532bc6d3a66fa7d28a5ac1e5eb4fefb282ffc4b65152",
+    "research/source-data/atlantic-current-depth-v2/north-brazil.json": "0a01f19ef13a0734179c9e870c30ece92fc5bfdb8c5252a9d36665bd0b33dea5",
+    "research/source-data/atlantic-current-depth-v2/north-atlantic.json": "27c6c384c2197f2a59367c3c9d43d4fd16eccf25449494df067d016e4bc668e6",
+    "research/source-data/atlantic-current-depth-v2/labrador.json": "75979ad4b6da5f9f694238d0b9b51ee0caf753401c1d3933072c9a4ce93d820d",
+    "analysis/build_current_depth_route_projections_v13.py": "930e21fb4b2baf28b542a3c08cc6992160720b9ce03a9989c4f8d19f3d6a5cbb",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c"
+  },
+  "processing_policy": "Cloud-only classification/geometry/interpolation/tests on one idle CPU using frozen sources. Local metadata/code/proof retention only; no field retrieval, numerical tests, native/WASM/browser/server/runtime/UI changes.",
+  "full_goal_complete": false
+}

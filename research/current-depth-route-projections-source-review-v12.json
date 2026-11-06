@@ -1,0 +1,550 @@
+{
+  "schema": "osw.current-depth-route-projections-source-review.v12",
+  "status": "PASS_FOUR_DATED_MODEL_DEPTH_AND_LAYER_SPAN_SCENARIOS_WITH_GAPS",
+  "cloud_reviews": [
+    {
+      "run_id": 41474569578,
+      "tests_passed": 14,
+      "source_commit": "42fa3c0178fe7b5ddbf41f7856945fb3b98c4944",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41474569578"
+    },
+    {
+      "run_id": 41474569380,
+      "tests_passed": 6,
+      "source_commit": "42fa3c0178fe7b5ddbf41f7856945fb3b98c4944",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41474569380"
+    }
+  ],
+  "cloud_tests_passed": 20,
+  "cloud_test_groups": [
+    "14 new dated model projection checks",
+    "6 baseline source inventory checks"
+  ],
+  "cloud_review_commit_scope": "Both workflows passed at42fa3c0178fe7b5ddbf41f7856945fb3b98c4944. Baseline checks are separate from the14 projection checks, not additional measurements or independent scientific experiments.",
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 13,
+    "identities_not_yet_projected": 98,
+    "regional_projection_scenarios": 29,
+    "source_anchor_references": 35,
+    "new_model_profile_anchors": 24,
+    "new_projection_eligible_source_nodes": 12,
+    "new_conditional_adjacent_segments": 4,
+    "new_gap_segments": 16,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0,
+    "regional_reference_geometry_volume_scenarios": 2
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v11.json": "02f2fd1eaa515815740f5c20c6798a1419b0daeaddd72012d2640f4419aff60e",
+    "research/current-depth-route-projections-v11.csv": "4a9ba089f0fe606eb3ffa1b030b14a1a8876808f6c17a7c591dab47fa5675f82",
+    "research/current-depth-route-projections-source-review-v11.json": "e6ab159f57b4bbc5505b35cda828ec93aa9c87aeb62f8cc3975b8cabd000377d",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/source-data/eac-route-depth-evidence-join-v1/candidate.json": "10fa136c4035f4e0db40d891b297aacba406b3315ed1b4ccd3b40a01834f361a",
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-route-depth-evidence-join-source-review-v1.json": "2f518fa9f78a88601e86c957626fd46d420a0205ce861f283a8a031cc0870933",
+    "research/eac-route-depth-evidence-join-operator-v1.json": "c97100a4d1ec8b7cf22bc36e0beaa550715a87ce0dcb576640b16d0b56aee176",
+    "research/east-australian-reference-path-candidate.json": "f9e903221cf97d197e7b6f2f62094fd6bd7d99fe82d852af857b1f54e31a20d8",
+    "research/source-data/kuroshio-hycom-depth-v1/candidate.json": "c311d2a9a445a043564e654e1eb8acb433d5b1a4eccd22c8b9a2cafbd50797db",
+    "research/kuroshio-hycom-depth-source-review-v1.json": "57e5c20764c10a7c6483cfcb39328d658ebfc18a515971d647227ccc08c96532",
+    "research/kuroshio-hycom-depth-operator-v1.json": "acc8cf0adca0e4cb17d857d89160d590ae3b7e30cc3f3e2d0b6f3789fc4b869c",
+    "research/current-depth-route-projection-operator-v12.json": "9e978b67fd40833f90d4a2adbac0543aa20f348993a9c5189188c25fe34edc9a",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c",
+    "analysis/test_current_depth_route_projections_v12.py": "e99ad468b4a09da958f638a894b6269099375c73f0187ee8d9049a2b3505c5b2",
+    ".github/workflows/current-depth-route-projections-v12.yml": "ac8029e8ca8929593098698a2b67d4facd5a95c41f96384aa4c5fe5ba9b237a4",
+    "research/current-depth-route-projections-v12.json": "b1b99d5b0c3c8b0c8bdc03f8adefa8781fec4a36fd8425b2873a3aad289e9f72",
+    "research/current-depth-route-projections-v12.csv": "6818be6dad2083c28fe81c9b9845bccd3f944d0ffb0d234fb4a9c488292c30fa"
+  },
+  "new_case_summaries": [
+    {
+      "projection_id": "east-australian-hycom-2022-01-15-regional-depth-v1",
+      "entity_id": "current:east-australian",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "anchors": 7,
+      "eligible_node_ids": [
+        "eac-2022-01-15-vertex-2",
+        "eac-2022-01-15-vertex-4",
+        "eac-2022-01-15-vertex-5"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-4",
+            "eac-2022-01-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1550.9936464015195,
+            1883.4767496661498
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-0",
+            "eac-2022-01-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            394.71479635602867
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "surface_component_not_corroborated_or_missing"
+            ],
+            [
+              "surface_component_not_corroborated_or_missing",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-1",
+            "eac-2022-01-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            394.71479635602867,
+            852.3482695790569
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "surface_component_not_corroborated_or_missing",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-2",
+            "eac-2022-01-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            852.3482695790569,
+            1218.6520056284635
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-3",
+            "eac-2022-01-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1218.6520056284635,
+            1550.9936464015195
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-01-15-vertex-5",
+            "eac-2022-01-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            1883.4767496661498,
+            2110.298221299178
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "lower_boundary_unresolved",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "east-australian-hycom-2022-07-15-regional-depth-v1",
+      "entity_id": "current:east-australian",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.05,
+      "anchors": 7,
+      "eligible_node_ids": [
+        "eac-2022-07-15-vertex-1",
+        "eac-2022-07-15-vertex-4",
+        "eac-2022-07-15-vertex-5"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-4",
+            "eac-2022-07-15-vertex-5"
+          ],
+          "reference_distance_interval_km": [
+            1550.9936464015195,
+            1883.4767496661498
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-0",
+            "eac-2022-07-15-vertex-1"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            394.71479635602867
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "surface_component_not_corroborated_or_missing",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-1",
+            "eac-2022-07-15-vertex-2"
+          ],
+          "reference_distance_interval_km": [
+            394.71479635602867,
+            852.3482695790569
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "surface_component_not_corroborated_or_missing",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-2",
+            "eac-2022-07-15-vertex-3"
+          ],
+          "reference_distance_interval_km": [
+            852.3482695790569,
+            1218.6520056284635
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "surface_component_not_corroborated_or_missing",
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ],
+            [
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-3",
+            "eac-2022-07-15-vertex-4"
+          ],
+          "reference_distance_interval_km": [
+            1218.6520056284635,
+            1550.9936464015195
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "horizontal_axis_unresolved_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "eac-2022-07-15-vertex-5",
+            "eac-2022-07-15-vertex-6"
+          ],
+          "reference_distance_interval_km": [
+            1883.4767496661498,
+            2110.298221299178
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "kuroshio-hycom-2024-01-15-regional-depth-v1",
+      "entity_id": "current:kuroshio",
+      "snapshot_time_utc": "2024-01-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "anchors": 5,
+      "eligible_node_ids": [
+        "kuroshio-2024-01-15-gate-21.5",
+        "kuroshio-2024-01-15-gate-27.5",
+        "kuroshio-2024-01-15-gate-29.5"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-01-15-gate-27.5",
+            "kuroshio-2024-01-15-gate-29.5"
+          ],
+          "reference_distance_interval_km": [
+            1251.507257,
+            1526.508197
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-01-15-gate-18.5",
+            "kuroshio-2024-01-15-gate-21.5"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            370.904455
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "model_maximum_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-01-15-gate-21.5",
+            "kuroshio-2024-01-15-gate-24.5"
+          ],
+          "reference_distance_interval_km": [
+            370.904455,
+            765.134037
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "model_maximum_at_window_edge_or_no_node"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-01-15-gate-24.5",
+            "kuroshio-2024-01-15-gate-27.5"
+          ],
+          "reference_distance_interval_km": [
+            765.134037,
+            1251.507257
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "model_maximum_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    },
+    {
+      "projection_id": "kuroshio-hycom-2024-07-15-regional-depth-v1",
+      "entity_id": "current:kuroshio",
+      "snapshot_time_utc": "2024-07-15T00:00:00Z",
+      "primary_threshold_m_s": 0.1,
+      "anchors": 5,
+      "eligible_node_ids": [
+        "kuroshio-2024-07-15-gate-21.5",
+        "kuroshio-2024-07-15-gate-27.5",
+        "kuroshio-2024-07-15-gate-29.5"
+      ],
+      "conditional_segments": [
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-07-15-gate-27.5",
+            "kuroshio-2024-07-15-gate-29.5"
+          ],
+          "reference_distance_interval_km": [
+            1217.697185,
+            1500.652209
+          ],
+          "projection_status": "conditional_linear_reference_geometry",
+          "model_layer_span_projection_eligible": true,
+          "endpoint_block_reasons": [
+            [],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ],
+      "gap_segments": [
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-07-15-gate-18.5",
+            "kuroshio-2024-07-15-gate-21.5"
+          ],
+          "reference_distance_interval_km": [
+            0.0,
+            344.15345
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "model_maximum_at_window_edge_or_no_node"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-07-15-gate-21.5",
+            "kuroshio-2024-07-15-gate-24.5"
+          ],
+          "reference_distance_interval_km": [
+            344.15345,
+            693.537421
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [],
+            [
+              "primary10cms_lower_boundary_unresolved"
+            ]
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        },
+        {
+          "source_anchor_ids": [
+            "kuroshio-2024-07-15-gate-24.5",
+            "kuroshio-2024-07-15-gate-27.5"
+          ],
+          "reference_distance_interval_km": [
+            693.537421,
+            1217.697185
+          ],
+          "projection_status": "gap_no_projection",
+          "model_layer_span_projection_eligible": false,
+          "endpoint_block_reasons": [
+            [
+              "primary10cms_lower_boundary_unresolved"
+            ],
+            []
+          ],
+          "physical_current_continuity_established": false,
+          "volume_eligible": false
+        }
+      ]
+    }
+  ],
+  "scientific_review": [
+    "The25 frozen previous projection objects remain exactly equal and all prior CSV cells remain unchanged. Four dated model reference scenarios are added: EAC2022-01-15/07-15 at primary5cm/s and Kuroshio2024-01-15/07-15 at primary10cm/s. Current-owned canonical depth IDs refresh from the701-reference v48 register. No new source measurements are created.",
+    "All24 original reference nodes remain in source order. Twelve meet their declared lower-depth projection gates. Only four of20original adjacent intervals support conditional interpolation;16remain gaps. Unsupported exact anchors and both neighboring intervals remain unknown. A remote eligible pair is never joined over a blocked intermediate node, and no extrapolation occurs.",
+    "EAC retains the frozen join gate: interior model maximum, resolved primary5cm/s lower contour and positive retained second-product surface component. Its only conditional interval in each2022snapshot is original27–30S corridor vertices4–5. Frozen editorial reference distances and positions remain separate from actual selected model-node coordinates. Mooring data remain regional context and do not fill or substitute depths.",
+    "Kuroshio retains all five original18.5/21.5/24.5/27.5/29.5N reference gates per2024snapshot. Outer-window maxima at18.5N both dates and24.5N January remain blocked;July24.5N primary10cm/s lower boundary remains censored. Only27.5–29.5N is conditionally joined in eachsnapshot. WGS84 shortest gate connectors are explicit reference geometry, not observed current-axis paths or measured current lengths.",
+    "At eligible source nodes retain exact model upper/lower depths and layer span, native connected-layer statuses/brackets, selected model coordinates, locked component bearings and source profile pointers. Lower depth may be projected without a layer span if its upper boundary is unknown. Paired model upper depth/layer span are interpolated only with supported paired endpoints; span remains the difference between threshold boundaries, not physical whole-current thickness.",
+    "EAC source snapshots, mapped multi-day surface support and mooring operators remain different. Kuroshio daily GLORYS-derived axis geometry and HYCOM00Z instantaneous velocity are not simultaneous or statistically independent observations. Current identities, dates, primary thresholds and source component frames are kept per case; no pooled seasonal range, common boundary definition or annual extrema is asserted.",
+    "Each sample links the exact source anchor(s) it uses. Source model-profile JSON pointers resolve to the selected retained native profiles; reference positions are explicit and distinct. Samples every50km plus each exact source anchor show assumed linear descriptors only where the gate allows. Derived coordinates/values round to six serialization decimals and displayed depth to10m; those digits do not imply physical accuracy or depth confidence intervals.",
+    "Fourteen cloud tests verify exact previous25-object/CSV preservation and ownership counts; per-case dates/thresholds/frames; frozen EAC gates and selected model pointers; Kuroshio original edge/censored gates; three-quantity midpoint interpolation; missing-upper semantics; exact/neighbor gap blocking; no extrapolation; invalid distances/order/duplicates/thickness mismatch; source-key mutations; physical eligibility; CSV quantities and pinned inputs. Six baseline tests passed at the same source commit.",
+    "The v48 forward clarification is carried visibly at register level: the Spray half-core diagnostic uses a qualifying sampled10–200m core maximum, while its descending search can extend deeper. The previous review phrase full-profile core was imprecise. Old25 objects and source values remain frozen rather than silently rewritten.",
+    "All geometry, interpolation and tests ran in cloud on one idle CPU using retained byte-pinned sources; there was no new field retrieval. Local work prepared metadata/code, checked proof hashes and retained exact cloud JSON/CSV bytes. Existing102 eddy-size references and canonical701 scoped depth references remain unchanged.",
+    "The inventory now has29regional scenarios across13identities, with98identities still lacking a regional projection scenario. No whole-route physical depth profile, physical current thickness, matched width join, cross-sectional area, volume, state passage, annual envelope or UI/runtime integration is established. The depth programme remains incomplete."
+  ],
+  "previous25_projection_records_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

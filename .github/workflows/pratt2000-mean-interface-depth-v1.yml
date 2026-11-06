@@ -1,0 +1,47 @@
+name: Hanish Sill reported mean velocity interface depths v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_pratt2000_mean_interfaces_v1.py
+      - analysis/test_pratt2000_mean_interfaces_v1.py
+      - plans/pratt2000-mean-interface-depth-protocol-v1.md
+      - research/pratt2000-mean-interface-operator-v1.json
+      - .github/workflows/pratt2000-mean-interface-depth-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/derive_pratt2000_mean_interfaces_v1.py
+            analysis/test_pratt2000_mean_interfaces_v1.py
+            plans/pratt2000-mean-interface-depth-protocol-v1.md
+            research/pratt2000-bab-mandab-mean-interface-quote-v1.txt
+            research/pratt2000-bab-mandab-mean-interface-custody-v1.json
+            research/pratt2000-bab-mandab-primary-ledger-v1.json
+            .github/workflows/pratt2000-mean-interface-depth-v1.yml
+            research/pratt2000-mean-interface-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential checks and offline reported interface extraction
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_PRATT_INTERFACE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pratt2000_mean_interfaces_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 60s python analysis/derive_pratt2000_mean_interfaces_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pratt2000-mean-interface-v1
+          path: pratt2000-mean-interface-v1/
+          retention-days: 7

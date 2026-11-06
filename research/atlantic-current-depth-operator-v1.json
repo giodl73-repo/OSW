@@ -1,0 +1,121 @@
+{
+  "schema": "osw.atlantic-current-depth-operator.v1",
+  "currents": [
+    {
+      "current_id": "brazil",
+      "entity_id": "current:brazil",
+      "route_file": "research/brazil-reference-path-candidate.json",
+      "expected_route_vertices": 8,
+      "primary_threshold_m_s": 0.1,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Upper-ocean poleward Brazil branch14–38S reference corridor; exclude North Brazil, return flow and deep intermediate undercurrent. Southern confluence gate is editorial.",
+      "threshold_basis": "Exploratory OSW signed-component contour diagnostics for the declared upper200m branch.10cm/s primary for the faster Brazil branch,5cm/s for the slower eastern-boundary branches; preserve all5/10/20cm/s same-node cases. These are not author-adopted physical current boundaries, density interfaces, uncertainty limits or one universal definition for all currents."
+    },
+    {
+      "current_id": "benguela",
+      "entity_id": "current:benguela",
+      "route_file": "research/benguela-reference-path-candidate.json",
+      "expected_route_vertices": 7,
+      "primary_threshold_m_s": 0.05,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Northward regional shelf-edge Benguela reference branch35.5–15S; exclude broad offshore extensions, Agulhas rings, southward undercurrent and whole-system perimeter.",
+      "threshold_basis": "Exploratory OSW signed-component contour diagnostics for the declared upper200m branch.10cm/s primary for the faster Brazil branch,5cm/s for the slower eastern-boundary branches; preserve all5/10/20cm/s same-node cases. These are not author-adopted physical current boundaries, density interfaces, uncertainty limits or one universal definition for all currents."
+    },
+    {
+      "current_id": "canary",
+      "entity_id": "current:canary",
+      "route_file": "research/canary-reference-path-candidate.json",
+      "expected_route_vertices": 9,
+      "primary_threshold_m_s": 0.05,
+      "thresholds_m_s": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "scope": "Offshore southward Canary reference corridor35–21N west of the archipelago; exclude upstream Portugal/Azores and poleward slope-current branches. Western detour is editorial.",
+      "threshold_basis": "Exploratory OSW signed-component contour diagnostics for the declared upper200m branch.10cm/s primary for the faster Brazil branch,5cm/s for the slower eastern-boundary branches; preserve all5/10/20cm/s same-node cases. These are not author-adopted physical current boundaries, density interfaces, uncertainty limits or one universal definition for all currents."
+    }
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_field_kind": "instantaneous_assimilating_model_output_not_observation_or_monthly_mean",
+  "normal_offsets_km": [
+    -40,
+    -20,
+    0,
+    20,
+    40
+  ],
+  "maximum_nearest_cell_distance_km": 8,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "route_role": "Exact retained undated editorial current reference routes, not dated or mean model axes, source-digitized curves, bathymetric contours or physical polygons. Preserve all original vertices and route owner. No source geometry is expanded or changed in response to the sampled velocities.",
+  "longitude_policy": "Select nearest source longitude by circular angular distance, preserving first source index in a tie. Keep native0–360 longitude and global source index alongside normalized[-180,180) sampled longitude. A cyclic window whose naive bounding slab spans too much of the grid must fail the pre-read cell budget, never request a global patch.",
+  "horizontal_selection": "WGS84 neighboring reference vertices define a one-sided endpoint/interior tangent. Sample the five fixed normals at nearest source nodes. Frozen peak-core selector chooses greatest positive downstream component above the per-object primary threshold within0–200m; first offset order breaks ties. Keep outer-offset maxima as axis unresolved; no window expansion or alternate-node contour selection.",
+  "vertical_operator": "Project east/north velocity onto one declared reference tangent bearing held fixed through all40standard depths0–5000m. Retain signed deep counterflow. Frozen connected-layer operator diagnoses both boundaries connected to the qualifying0–200m core and first adjacent crossings. Missing/dry/domain-edge support remains censored;0m is an upper layer boundary only with contiguous native surface support. No seabed or terminal-grid substitution.",
+  "threshold_comparison": "All5/10/20cm/s diagnoses stay at the primary-selected node and retain their own qualifying cores. Differences are operator sensitivity, not confidence bounds or physical errors. The poleward word in the frozen helper no-core status is explicitly relabelled downstream for equatorward branches while retaining the original status separately.",
+  "transport_budget": "Only coordinates read first; at most20000cell-pairs per velocity slab and250000 for the entire three-current run. Precheck each patch at16decodedbytes per east/north pair;7MB decoded total cap. Retain source hyperslab indices and canonical decoded-profile hashes. NetCDF wire bytes and wire-byte SHA are not instrumented.",
+  "time_scope": "Two exact00Z2022snapshots for comparison with the existing EAC pilot; neither monthly averages, an annual cycle, climate trend, observed seasonal extrema nor independent occupations.",
+  "source_access": "HYCOM Consortium/NRL/COAPS-FSU public release, distribution unlimited; exact returned global/variable attributes retained.",
+  "source_context_reviews": [
+    {
+      "url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+      "scope": "Official standard-level velocity, instantaneous archv, assimilation and public-release documentation; no claim of direct observed fields."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/14/971/2018/",
+      "scope": "Primary publisher regional Canary circulation paragraphs: offshore southward35–20N return branch and southwest departure near Cape Blanc. No water-mass depth adopted as a velocity boundary; no source figure digitization."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "scope": "Primary publisher Sections3.1.2/3.1.3 for distinct southward Brazil and northward Benguela regional branches. Source inverse-density/transport domains are not equated to this2022HYCOM component operator. No new source-prose depth measurements or figure digitization."
+    }
+  ],
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "input_sha256": {
+    "research/brazil-reference-path-candidate.json": "0b8bd13661715e0f7e66ed62172e9b6f768325cf57d1081b650798f2c7b27592",
+    "research/benguela-reference-path-candidate.json": "df056c4963ecc719dd1c7e2021f1dea2572ce60f0771d4107924e6c8d65c9577",
+    "research/canary-reference-path-candidate.json": "b5a8dad9c074d00432e07cb45640469551f1686d3b96e31a4356d0861c7c4309",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/current-depth-route-projections-source-review-v12.json": "1a1ab70d07a77c595ba64a6f30abe3a8776933c6b1032794059c9fd7e8f43c49",
+    "research/kuroshio-hycom-depth-source-review-v1.json": "57e5c20764c10a7c6483cfcb39328d658ebfc18a515971d647227ccc08c96532"
+  },
+  "processing_policy": "All48planned date/vertex cases and240velocity profiles are retrieved/processed sequentially in cloud on one idle CPU. Local metadata/code/hash work only; no local field calculations, tests, browser/server/native/WASM runtime. Freeze prior validated operators and outputs.",
+  "full_goal_complete": false
+}

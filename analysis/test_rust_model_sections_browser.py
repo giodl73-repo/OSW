@@ -1,4 +1,5 @@
 """Hourly model source parity, query maps, frame/sample navigation and failures."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -16,7 +17,7 @@ MAPS = 'research/norkyst-ingoy-2024-map-frames.json'
 
 
 def main():
-    bundle = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT / 'almanac/query-data.json'))
     timeline = json.loads((ROOT / TIMELINE).read_bytes())
     maps = json.loads((ROOT / MAPS).read_bytes())
     frames = bundle['collections']['model_frames']

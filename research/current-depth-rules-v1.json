@@ -1,0 +1,18 @@
+{
+  "schema": "osw.current-depth-rules.v1",
+  "scope": "All 111 current source identities in the length register, preserving current, branch, family and system distinctions.",
+  "rules": [
+    "Retain upper boundary depth, lower boundary depth, vertical thickness, maximum-speed core depth and reported vertical extent as distinct metrics. A core depth or deepest reported reach does not establish thickness.",
+    "Use metres below the local sea surface, positive downward, only where the source reports depths in metres. Preserve pressure in dbar separately; no pressure-to-depth conversion without latitude, method and uncertainty.",
+    "Every reference needs an exact current identity, geographic support, source locator, source definition and temporal scope. A regional reference is not a whole-route depth.",
+    "Retain source synthesis, observed section, model-derived estimate and projected scenario as distinct evidence kinds. Source summaries do not become independently repeated observations.",
+    "Numeric bounds are not automatically uncertainty bounds. Preserve approximation, source variability ranges, standard deviations and measurement uncertainty separately. Never invent percentage margins.",
+    "Season labels do not imply fixed calendar months or a sampled annual minimum/maximum. Sparse seasonal descriptions do not support interpolated monthly playback.",
+    "Missing values remain null. Do not infer zero-depth upper boundaries, seabed lower boundaries, full-water-column occupation or uniform along-route thickness.",
+    "Family or system references do not fill their individual members, and individual branch measurements do not establish the full family or system.",
+    "Volume requires compatible horizontal and vertical geometry, identity, time and boundary definitions. Do not multiply unrelated length, width and depth extrema or convert transport in Sv into stored volume.",
+    "The initial register contains scoped depth references only. No reference is admitted to physical volume, state intersections, annual extrema or seasonal animation by this collection step."
+  ],
+  "metric_types": ["reported_vertical_extent", "lower_flow_boundary_depth", "upper_flow_boundary_depth", "core_depth", "vertical_thickness", "observation_layer"],
+  "full_goal_complete": false
+}

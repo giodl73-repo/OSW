@@ -1,0 +1,109 @@
+name: Verify compatible EICC reference and source-table delivery v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/eicc-reference-delivery-request-v1.json
+      - .github/workflows/eicc-reference-delivery-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  compatible-delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read compatible scalar delivery request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/eicc-reference-delivery-request-v1.json').read_bytes())
+          assert request['schema']=='osw.eicc-reference-delivery-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+      - name: Verify compatible source and exact installed parent
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_eicc_reference_delivery_v1.py --cloud-delivery --preflight-only
+      - name: Check scalar admission and delivery preservation fixtures sequentially
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_eicc_reference_query_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_eicc_reference_delivery_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_eicc_reference_delivery_cases_v1.py -v
+      - name: Install one matching compiler and its locked dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Install the cloud browser dependency
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Append EICC references, build matching engine, compare both stores, then check maps and UI
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_eicc_reference_delivery_v1.py --cloud-delivery
+      - name: Retain compact source, preservation, API and browser receipts
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eicc-reference-delivery-evidence-v1
+          path: |
+            .pytest_cache/eicc-reference-delivery-v1/prepared.json
+            .pytest_cache/eicc-reference-delivery-v1/engine.json
+            .pytest_cache/eicc-reference-delivery-v1/native-response-custody.json
+            .pytest_cache/eicc-reference-delivery-v1/main-parity.json
+            .pytest_cache/eicc-reference-delivery-v1/index-parity.json
+            .pytest_cache/eicc-reference-delivery-v1/browser.json
+            .pytest_cache/eicc-reference-delivery-v1/result.json
+            .pytest_cache/eicc-reference-delivery-v1/failure.json
+            .pytest_cache/eicc-reference-delivery-v1/browser-failure.json
+            .pytest_cache/eicc-reference-delivery-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Retain verified derived files and matching engine only in cloud
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eicc-reference-derived-candidate-v1
+          path: .pytest_cache/eicc-reference-delivery-v1/artifact/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90

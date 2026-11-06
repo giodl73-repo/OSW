@@ -1,0 +1,3169 @@
+{
+  "schema": "osw.mixed-interval-depth-sections-manifest.v1",
+  "operator_file": "research/hiri-zeehan-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "2f3738670f012e6246e8f642c7e9f3635619359a5f3c9f0f3171ce07cba3d5bf",
+  "input_sha256": {
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_hiri_zeehan_interval_depth_sections_v1.py": "e7aed1c369cf2d2604ee3cee73f415620179b44b92b88f55056ab817ebfa87f6",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "analysis/test_hiri_zeehan_interval_depth_sections_v1.py": "444ded66569ec0d7d15f47d4e83f7e9970fda903fcf5c4152fea3cf040c625da",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "plans/hiri-zeehan-interval-depth-sections-protocol-v1.md": "9d484cff0714efdac762b7f5e176a335c33d6b1d1b9a4761d22e9522308f4bf9",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v10.json": "ee8fc68369c08eec154a55ae19d931823190a553ce6053b89d86293e20ed0f25",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/hiri-reference-path-input.json": "1ad6c77115fd98aaea403e8176511f055882d9d0a2f1db02ac6ac1e1142192f1",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/source-data/cresswell-zeehan-2000/acquisition.json": "dacf55d06f56e8088cad6880cd5d6513c34da5a4a3c67639dc5229cb4d4ef96a",
+    "research/zeehan-reference-path-input.json": "ceb337756ebc6ec247712f761c08aad4ff9ea84e9e179fc30c544a0650af9162",
+    "research/zeehan-ridgway-2007-seasonal-scope-audit.json": "42c3accb4c576c4fa5b23bc412391106d999745e44d8005bbd601477ed440895",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "sections": [
+    {
+      "file": "2022-03-15-hiri-current-section-15s.json",
+      "sha256": "69c56c351e1535fb8c58e1c4a6ea4d1641e25830fe575f0dcbb367c05bc69e14",
+      "bytes": 154383,
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 3,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 758.8785068090252,
+          "layer_thickness_m": 758.8785068090252,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 712.1495372184378,
+          "layer_thickness_m": 712.1495372184378,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 550.0000260770278,
+          "layer_thickness_m": 550.0000260770278,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-hiri-current-section-14s.json",
+      "sha256": "511eb1896ff5f3560538bdd6eaa2e25c2f80362c17331f74c41ab3f31304cbcf",
+      "bytes": 153621,
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 10,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1406.2500130967246,
+          "layer_thickness_m": 1406.2500130967246,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1150.0000149011591,
+          "layer_thickness_m": 1150.0000149011591,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 141.66664459088054,
+          "lower_depth_m": 845.7143063934502,
+          "layer_thickness_m": 704.0476618025697,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-hiri-current-section-13s.json",
+      "sha256": "c3a1afbc087065fd2791ce76f3c3cde3190b9195053e462f0ec8037649aaae85",
+      "bytes": 154751,
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1015.6250407453559,
+          "layer_thickness_m": 1015.6250407453559,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 692.5926093538469,
+          "layer_thickness_m": 692.5926093538469,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 22.99999503294647,
+          "lower_depth_m": 62.75862224887303,
+          "layer_thickness_m": 39.758627215926566,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-hiri-current-section-12s.json",
+      "sha256": "25a23d85726e0d547e8a259db5b09e625e7c4d82df9459ee15b775b16f772623",
+      "bytes": 143499,
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 29,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 486.8852520286952,
+          "layer_thickness_m": 486.8852520286952,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 196.42859575700032,
+          "layer_thickness_m": 196.42859575700032,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 25.851063546469582,
+          "lower_depth_m": 82.69231346760803,
+          "layer_thickness_m": 56.84124992113845,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-zeehan-section-40p5s.json",
+      "sha256": "bc2aad078e5519b365e50ac312fd8808bdb417c785fa01cbf84bac8b2a2acbb4",
+      "bytes": 141611,
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 3,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 178.8659792072348,
+          "layer_thickness_m": 178.8659792072348,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 67.08333473031696,
+          "layer_thickness_m": 67.08333473031696,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 10.125000605359572,
+          "layer_thickness_m": 10.125000605359572,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-zeehan-section-41p25s.json",
+      "sha256": "452301078323ecd1addf27f656c0c362bf0686918b5551251ef7eef25420738e",
+      "bytes": 135266,
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 18,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 242.85714691188065,
+          "layer_thickness_m": 242.85714691188065,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 182.92683330162293,
+          "layer_thickness_m": 182.92683330162293,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 53.84615807843743,
+          "layer_thickness_m": 53.84615807843743,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-zeehan-section-42s.json",
+      "sha256": "822c35ba2a2e7c27c7d852b0113195543780f47a7f8d12669d53357591f1e315",
+      "bytes": 138892,
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 21,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 106.18811933410106,
+          "layer_thickness_m": 106.18811933410106,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 94.0476202049087,
+          "layer_thickness_m": 94.0476202049087,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 7.142858440373354,
+          "layer_thickness_m": 7.142858440373354,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-zeehan-section-42p75s.json",
+      "sha256": "d92aa9ef050c0d3e62c8bb9f2e8685d7ae69a3c7115f477950332173edec55a0",
+      "bytes": 132980,
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 18,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 109.48275985543948,
+          "layer_thickness_m": 109.48275985543948,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19200000166893005,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.25000013969839,
+          "layer_thickness_m": 86.25000013969839,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19200000166893005,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-hiri-current-section-15s.json",
+      "sha256": "c7c99ec98d1e543b765489cab11e30e1a048b7955dff3615b32e414ea5c448fd",
+      "bytes": 153453,
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 5,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1096.8992258023882,
+          "layer_thickness_m": 1096.8992258023882,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1000.0000028878219,
+          "layer_thickness_m": 1000.0000028878219,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 824.0740985005294,
+          "layer_thickness_m": 824.0740985005294,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-hiri-current-section-14s.json",
+      "sha256": "a8e57e2484e40e29df49ef6c3293722d26fda0235268ea25408c2ec0ee0e5f57",
+      "bytes": 152728,
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1080.9859307832926,
+          "layer_thickness_m": 1080.9859307832926,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 912.9032344897518,
+          "layer_thickness_m": 912.9032344897518,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 556.4102954021135,
+          "layer_thickness_m": 556.4102954021135,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-hiri-current-section-13s.json",
+      "sha256": "19d029f5265b8053860ad501097c493fac7bf5db3a5afbc301be1b9a675efce7",
+      "bytes": 154385,
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 8,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1153.5087757709211,
+          "layer_thickness_m": 1153.5087757709211,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 942.3077134690982,
+          "layer_thickness_m": 942.3077134690982,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 692.3078122223941,
+          "layer_thickness_m": 692.3078122223941,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-hiri-current-section-12s.json",
+      "sha256": "651a75b6d3b591cb0404cce65d1413cb7f70f8c07c19f7df9e9bced1db79fffd",
+      "bytes": 142806,
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 15,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1244.252875088968,
+          "layer_thickness_m": 1244.252875088968,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1100.5747223395713,
+          "layer_thickness_m": 1100.5747223395713,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 887.1795022667916,
+          "layer_thickness_m": 887.1795022667916,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-zeehan-section-40p5s.json",
+      "sha256": "ad5551bc08177b2b09e22d1d378452285e66bb00a71a2b7967111108e3e30f1a",
+      "bytes": 142112,
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 285.18519244157983,
+          "layer_thickness_m": 285.18519244157983,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 195.9459498644397,
+          "layer_thickness_m": 195.9459498644397,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 77.50003539031792,
+          "layer_thickness_m": 77.50003539031792,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-zeehan-section-41p25s.json",
+      "sha256": "cb4748c13b64331d61bfb926684808ca55135aece010124ab3cc1150de8e1b40",
+      "bytes": 135519,
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 19,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 176.66666832235123,
+          "layer_thickness_m": 176.66666832235123,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 140.8163295406338,
+          "layer_thickness_m": 140.8163295406338,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 22.500006519256964,
+          "layer_thickness_m": 22.500006519256964,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-zeehan-section-42s.json",
+      "sha256": "b473248dc969b56765e9c5e9053efdcf7c1c7cc37b8766b4512bbd402ea45045",
+      "bytes": 138632,
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 1,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 348.12500136788,
+          "layer_thickness_m": 348.12500136788,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 316.87500212457957,
+          "layer_thickness_m": 316.87500212457957,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 53.33335982436434,
+          "layer_thickness_m": 53.33335982436434,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-zeehan-section-42p75s.json",
+      "sha256": "f83274b1f2483d37f573519b4725e8cd4ac69c97ace0a24fba9f2c072857b022",
+      "bytes": 133222,
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 18,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.00000066227468,
+          "layer_thickness_m": 8.00000066227468,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-hiri-current-section-15s.json",
+      "sha256": "385002b26f559e782381fa671e91d5b4271ab111cf161e110f9b2658024eb259",
+      "bytes": 154106,
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 4,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 24.999998137355163,
+          "lower_depth_m": 111.93181934055943,
+          "layer_thickness_m": 86.93182120320427,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 43.80952269447082,
+          "lower_depth_m": 96.36363981183896,
+          "layer_thickness_m": 52.55411711736814,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-hiri-current-section-14s.json",
+      "sha256": "467c600135dbd1cab508c3c5ad91539c21897028afac04425fe4905e5f641917",
+      "bytes": 153255,
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 7,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 893.4782654821647,
+          "layer_thickness_m": 893.4782654821647,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 746.1538796594053,
+          "layer_thickness_m": 746.1538796594053,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 58.03921401340287,
+          "lower_depth_m": 144.2307765050025,
+          "layer_thickness_m": 86.19156249159963,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-hiri-current-section-13s.json",
+      "sha256": "6199be914b5c899e37af6d27236b2a25bfba05356279a0c5a0ea7091b14830a7",
+      "bytes": 155725,
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 6,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 891.304350361256,
+          "layer_thickness_m": 891.304350361256,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 700.0000051383316,
+          "layer_thickness_m": 700.0000051383316,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 29.642855318224978,
+          "lower_depth_m": 99.65517787105563,
+          "layer_thickness_m": 70.01232255283065,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-hiri-current-section-12s.json",
+      "sha256": "fcf9944535e3b6c22d825fb1c696de3bd3e33bd155ac890a91f663a1210daebf",
+      "bytes": 143247,
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 938.2352971146366,
+          "layer_thickness_m": 938.2352971146366,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 815.9091069955691,
+          "layer_thickness_m": 815.9091069955691,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 36.08695474712084,
+          "lower_depth_m": 610.3448513288364,
+          "layer_thickness_m": 574.2578965817156,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-zeehan-section-40p5s.json",
+      "sha256": "4c1612ddd6a24d277bf69ee015ccd082e3a38a58cf40c157145e980a58f357ba",
+      "bytes": 140730,
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 17,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 329.77272800777934,
+          "layer_thickness_m": 329.77272800777934,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 318.40909215983396,
+          "layer_thickness_m": 318.40909215983396,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 10.666671964872904,
+          "layer_thickness_m": 10.666671964872904,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-zeehan-section-41p25s.json",
+      "sha256": "65f07b0fa9418f23a0c4e4cfa9d48507d8efb74611282bec396316a188fc1277",
+      "bytes": 135152,
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 20,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 302.7777792437485,
+          "layer_thickness_m": 302.7777792437485,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 195.00001303851394,
+          "layer_thickness_m": 195.00001303851394,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 33.75000434617401,
+          "layer_thickness_m": 33.75000434617401,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-zeehan-section-42s.json",
+      "sha256": "ad57db1f8aae9d6f5283953ea759f2d60f492ef6d7b9eec8a55830396da06223",
+      "bytes": 138557,
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 24,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_last_connected_depth_m": 200.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_last_connected_depth_m": 200.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 18.571431916587546,
+          "layer_thickness_m": 18.571431916587546,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-zeehan-section-42p75s.json",
+      "sha256": "34720dbcf6806e2656bf3b4b04f28feb18f9d7184b5f942df48feec21cb95f0c",
+      "bytes": 132673,
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 2,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1137.9310393553142,
+          "layer_thickness_m": 1137.9310393553142,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 511.5384904149716,
+          "layer_thickness_m": 511.5384904149716,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 310.9375250292901,
+          "layer_thickness_m": 310.9375250292901,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-hiri-current-section-15s.json",
+      "sha256": "9654319cc7df4da01120897800408668483ea4367de01c2df8bbf02575b47d84",
+      "bytes": 153081,
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 21,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 920.0000596046572,
+          "layer_thickness_m": 920.0000596046572,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 466.66669357154495,
+          "layer_thickness_m": 466.66669357154495,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 80.00000212873752,
+          "layer_thickness_m": 80.00000212873752,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-hiri-current-section-14s.json",
+      "sha256": "0724b8e756632aba864f66f616654d49db7067b068295b47e6dd689a63a05b7f",
+      "bytes": 153262,
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 35,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1062.500017462298,
+          "layer_thickness_m": 1062.500017462298,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 670.588267262012,
+          "layer_thickness_m": 670.588267262012,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 239.81482549500134,
+          "layer_thickness_m": 239.81482549500134,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-hiri-current-section-13s.json",
+      "sha256": "46c87d5157b3bf7f9cb4385215b38e81ea02fcc0f951c9e7684675e055b2f157",
+      "bytes": 156066,
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 6,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 124.18032745087109,
+          "lower_depth_m": 862.8571483310382,
+          "layer_thickness_m": 738.676820880167,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 138.63636340545722,
+          "lower_depth_m": 748.1481539737052,
+          "layer_thickness_m": 609.511790568248,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-hiri-current-section-12s.json",
+      "sha256": "79cc93ca90d825b6c0dc2e1c53534a2bade572d4a9f3c78d7a5683770eb74757",
+      "bytes": 142829,
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:hiri-current",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1014.1509571886852,
+          "layer_thickness_m": 1014.1509571886852,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 854.5454671683391,
+          "layer_thickness_m": 854.5454671683391,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 667.6923217999132,
+          "layer_thickness_m": 667.6923217999132,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-zeehan-section-40p5s.json",
+      "sha256": "87fce54f69e83806830d55e6a22b3d175a737e55243f68f4ae489d3f21bb6e52",
+      "bytes": 141356,
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 676.9230825073379,
+          "layer_thickness_m": 676.9230825073379,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 430.0000596046129,
+          "layer_thickness_m": 430.0000596046129,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 4.2999988824126785,
+          "lower_depth_m": 48.75000130385188,
+          "layer_thickness_m": 44.4500024214392,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-zeehan-section-41p25s.json",
+      "sha256": "711b2aac1cb2e20df947cf3c1e0d388d61e189d2a747564843c488b85347d8b0",
+      "bytes": 135604,
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 37,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.290908977611007,
+          "lower_depth_m": 265.57971049312204,
+          "layer_thickness_m": 265.288801515511,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 2.2222219891999737,
+          "lower_depth_m": 244.16666946063393,
+          "layer_thickness_m": 241.94444747143396,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 15.624995576218508,
+          "lower_depth_m": 162.69841844262507,
+          "layer_thickness_m": 147.07342286640656,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-zeehan-section-42s.json",
+      "sha256": "d6cafcf5e2761e53a4609f147441cd6c794ab6f7239dbf608dcdcd6b8652140f",
+      "bytes": 138988,
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 7.384615181818521,
+          "lower_depth_m": 294.1176497013303,
+          "layer_thickness_m": 286.7330345195118,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.13400000333786014,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 49.99999813735515,
+          "lower_depth_m": 257.35294581697036,
+          "layer_thickness_m": 207.35294767961523,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.13400000333786014,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-zeehan-section-42p75s.json",
+      "sha256": "429dbfa2347ad835170c1de78c00e4b4ed7f7380095ff04806c73fdb8ea798df",
+      "bytes": 133377,
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:zeehan",
+      "source_section_geometry": "latitude",
+      "native_columns": 38,
+      "selected_column_index": 16,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.047618927666399635,
+          "lower_depth_m": 576.0000160932526,
+          "layer_thickness_m": 575.9523971655863,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 52.35293932027027,
+          "lower_depth_m": 342.85719151400065,
+          "layer_thickness_m": 290.5042521937304,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    }
+  ],
+  "preflight_velocity_cell_pairs": 48320,
+  "decoded_velocity_cell_pairs": 48320,
+  "decoded_velocity_array_bytes": 386560,
+  "transport_ledger_file": "transport-ledger.json",
+  "transport_ledger_sha256": "76050d7298b4fc235bd2809d375708f7f7534a64a098a6f9cc3626f3dfa2283a",
+  "transport": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 96640,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 96640,
+    "successfully_returned_component_values": 96640,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 773120,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "requests": [
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1625,
+        "longitude_indices_inclusive": [
+          1819,
+          1856
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1650,
+        "longitude_indices_inclusive": [
+          1807,
+          1843
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1675,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1700,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 987,
+        "longitude_indices_inclusive": [
+          1775,
+          1812
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 969,
+        "longitude_indices_inclusive": [
+          1782,
+          1818
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1480,
+        "status": "success",
+        "actual_returned_array_bytes": 5920
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 950,
+        "longitude_indices_inclusive": [
+          1788,
+          1825
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 931,
+        "longitude_indices_inclusive": [
+          1794,
+          1831
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1520,
+        "status": "success",
+        "actual_returned_array_bytes": 6080
+      }
+    ],
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  },
+  "decoded_temperature_scalars": 0,
+  "decoded_temperature_array_bytes": 0,
+  "full_goal_complete": false
+}

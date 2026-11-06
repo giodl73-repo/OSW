@@ -1,0 +1,49 @@
+name: Current depth register source review v32
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-register-source-v32.yml
+      - analysis/build_current_depth_register_v32.py
+      - analysis/test_current_depth_register_v32.py
+      - research/current-depth-rules-v32.json
+      - research/current-depth-source-facts-v32.json
+      - research/current-depth-register-v32.json
+      - research/current-depth-register-v32.csv
+      - research/current-depth-member-index-v2.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_register_v*.py
+            analysis/build_atlantic_cruise_widths.py
+            analysis/test_current_depth_register_v32.py
+            research/current-depth-*.json
+            research/caribbean-current-depth-*.json
+            research/current-depth-register-v*.csv
+            research/current-length-estimate-register-v1.json
+            research/current-length-family-conventions-v1.json
+            research/current-length-reference-extents-v1.json
+            research/current-length-reference-extents-v5.json
+            research/ocean-current-width-inventory.json
+            research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json
+            research/source-data/cainzos-atlantic-2023/table-*.xlsx
+            research/source-data/cainzos-atlantic-2023/article.xml
+            research/source-data/li-neuc-2018/journal-article.xml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify regional Atlantic cSEC depth and updated member ownership
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_register_v32.py' -v

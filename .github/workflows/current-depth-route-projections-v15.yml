@@ -1,0 +1,68 @@
+name: Current depth additive inventory v15
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v15.yml
+      - analysis/build_current_depth_route_projections_v15.py
+      - analysis/load_current_depth_projection_inventory_v1.py
+      - analysis/test_current_depth_route_projections_v15.py
+      - research/current-depth-route-projection-operator-v15.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            analysis/test_current_depth_route_projections_v15.py
+            research/current-depth-route-projection-operator-v15.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projections-source-review-v14.json
+            research/current-depth-register-v48.json
+            research/current-depth-register-source-review-v48.json
+            research/north-brazil-depth-sections-source-facts-v1.json
+            research/north-brazil-depth-sections-source-review-v1.json
+            research/north-brazil-depth-sections-operator-v1.json
+            research/source-data/north-brazil-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify additive North Brazil depth inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v15.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v15.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v15
+          path: current-depth-route-projections-v15/
+          retention-days: 7

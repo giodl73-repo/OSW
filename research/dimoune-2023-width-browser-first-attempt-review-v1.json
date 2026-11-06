@@ -1,0 +1,39 @@
+{
+  "schema": "osw.dimoune-2023-width-browser-attempt-review.v1",
+  "run_id": 40966747329,
+  "source_commit": "9d4cd2b09a30367167c11d990f60ba3dd50aff73",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 12939042022,
+    "bytes": 1293086,
+    "sha256": "402b00cab64c3aa01ce9671f3e672364570a87e35d34da1131c4fee66fb5c0eb"
+  },
+  "desktop_groups_passed": 6,
+  "narrow_groups_passed": 0,
+  "page_errors": [],
+  "missing_assets": [],
+  "original_science_downloads": [],
+  "screenshots_individually_inspected": [
+    "card-atlantic-north-equatorial-countercurrent-1100px.png",
+    "query-nsec6-1100px.png"
+  ],
+  "findings": [
+    {
+      "kind": "data_scope_error",
+      "finding": "Three meridional SEC records inherited oblique wording in range_interpretation. Numeric values and typed coordinates/orientations already matched the source.",
+      "correction_file": "research/dimoune-2023-section-orientation-correction-v1.json",
+      "new_contract_required": "research/dimoune-2023-width-query-contract-v2.json"
+    },
+    {
+      "kind": "browser_test_defect",
+      "finding": "Dashboard check did not switch the default schematic to card view or wait for final asynchronous filters. The revised test does both and captures failure evidence before browser closure."
+    }
+  ],
+  "retained_metadata_sha256": {
+    "research/dimoune-2023-width-browser-first-attempt-v1/browser-failure.json": "44a3302bf3aeb36cbb96c0520cc5f59c521edde67224a5693d4543347f60333c",
+    "research/dimoune-2023-width-browser-first-attempt-v1/engine-manifest-presentation.json": "b459277eb4f15e91c466d128050d732635a4da29e042ab62a52788515976725f",
+    "research/dimoune-2023-width-browser-first-attempt-v1/failure.json": "7103128902a455fa47106cb88e0507f1127703911bbf78725c8b66912317455e"
+  },
+  "installed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "osw.eac-hycom-route-depth-operator.v1",
+  "entity_id": "current:east-australian",
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "source_catalog_url": "https://tds.hycom.org/thredds/catalogs/GLBy0.08/expt_93.0_uv3z.html?dataset=GLBy0.08-expt_93.0-uv3z-2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "subset_service": "https://ncss.hycom.org/thredds/ncss/grid/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_access": "Freely available; approved for public release, distribution unlimited. Credit HYCOM Consortium, NRL and COAPS/FSU.",
+  "source_field_kind": "instantaneous_assimilating_model_output_not_observation_or_monthly_mean",
+  "route_file": "research/east-australian-reference-path-candidate.json",
+  "route_sha256": "f9e903221cf97d197e7b6f2f62094fd6bd7d99fe82d852af857b1f54e31a20d8",
+  "route_role": "Unreviewed editorial corridor for coherent coastal jet15–32S; not a dated axis or whole-current physical polygon.",
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "time_selection": "Exact declared times required. Two dated snapshots are not a seasonal climatology, extrema, monthly means or annual envelope.",
+  "normal_offsets_km": [
+    -40,
+    -20,
+    0,
+    20,
+    40
+  ],
+  "horizontal_selection": "At each of seven editorial vertices, use WGS84 tangent from neighboring vertices (one-sided at endpoints). Sample nearest model nodes at five fixed normal offsets. Select the greatest positive downstream velocity core within0–200m above the primary threshold; preserve offset order as tie break. Never expand window to force a current detection. This is a bounded model search, not validation of current identity or axis tracking.",
+  "maximum_nearest_cell_distance_km": 8,
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "primary_lower_isotach_m_s": 0.05,
+  "alternate_lower_isotachs_m_s": [
+    0.1,
+    0.2
+  ],
+  "isotach_interpretation": "Explicit OSW signed along-reference velocity contours, not a universally adopted current boundary. Primary5cm/s choice is illustrative; it is not the Kerry/Roughan fixed model-mean mask, since this product and time operator differ.",
+  "vertical_operator": "Below selected positive core, first adjacent depth interval crossing downward through the velocity threshold; linearly interpolate only within this bracket. Preserve missing/dry/deepest-level censoring. No assumed seabed depth, thickness, deeper return-flow jump or physical full-flow bottom.",
+  "alternate_contours": "Use the same chosen horizontal node. Their own upper200m qualifying core may differ; preserve each core and threshold. Differences are descriptor sensitivity, not confidence or error bounds.",
+  "maximum_patch_bytes": 500000,
+  "maximum_total_payload_bytes": 7000000,
+  "maximum_total_cell_pairs": 250000,
+  "uncertainty_m": null,
+  "eligibility": {
+    "whole_current_physical_depth_profile": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "All model velocity retrieval and processing in cloud, sequential on one idle CPU. Retain requested subset URL, exact returned time, subset SHA256, decoded selected profiles, model node distances and source lead time when supplied. No local model-field execution.",
+  "full_goal_complete": false
+}

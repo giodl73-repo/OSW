@@ -1,0 +1,56 @@
+name: Eddy altimetry source header audit v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths: [research/eddy-altimetry-source-audit-request-v1.json]
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_EDDY_SOURCE_HEADER_AUDIT_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/eddy-altimetry-source-audit-v1.yml
+            analysis/inspect_eddy_altimetry_source_v1.py
+            analysis/test_eddy_altimetry_source_audit_v1.py
+            research/eddy-altimetry-source-audit-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/eddy-altimetry-source-audit-request-v1.json').read_bytes())
+          assert r['schema']=='osw.eddy-altimetry-source-audit-request.v1' and type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+      - if: steps.request.outputs.execute == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - if: steps.request.outputs.execute == 'true'
+        name: Acquire source and inspect header on one low-priority CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install --only-binary=:all: netCDF4==1.7.2 numpy==2.2.6 cftime==1.6.4.post1 certifi==2025.1.31
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eddy_altimetry_source_audit_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/inspect_eddy_altimetry_source_v1.py
+      - if: always() && steps.request.outputs.execute == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eddy-altimetry-source-header-audit-v1
+          path: .pytest_cache/eddy-altimetry-source-audit-v1/result.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

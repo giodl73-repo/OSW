@@ -1,0 +1,65 @@
+{
+  "schema": "osw.current-depth-pgw-jgofs-source-capture-review.v1",
+  "status": "CLOSED_FAILED_CAPTURE_REDIRECT_REJECTED_NO_DEPTHS_ADMITTED",
+  "case_id": "pgw-jgofs2528-TT043-TT049-v1",
+  "source_commit": "852f4419fac459625cb049fe8969e7923da7bb1e",
+  "producer_run_id": 42098780292,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42098780292",
+  "producer_conclusion": "failure",
+  "synthetic_tests_passed": 6,
+  "artifact": {
+    "id": 13448297572,
+    "bytes": 33943,
+    "sha256": "b279efc608c8d68fd3bffe18e256e5f6ea1b2e9d3228f9e155b96e737fd7d130",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/source-data/pgw-jgofs-bottle-source-capture-v1/case-ledger.json": {
+      "bytes": 1550,
+      "sha256": "229bc0848c5303326aab573eb743aeac29deae0c2b14741effd3f6c1dfe678dc"
+    },
+    "research/source-data/pgw-jgofs-bottle-source-capture-v1/dataset-metadata.html": {
+      "bytes": 166209,
+      "sha256": "60457d48be221994b9fe8c9c6da20193a8c3db456270cbc04208114b5deb4cbb"
+    }
+  },
+  "failure": {
+    "stage": "First declared CSV request after successful primary metadata qualification",
+    "target": "https://datadocs.bco-dmo.org/dataset/2528/file/5A46qP5s0WlBGL/bottle_TT043.csv",
+    "exception": "RuntimeError: No redirects or alternate source targets",
+    "redirect_location_retained": false,
+    "failed_body_bytes": 0,
+    "failed_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "failed_body_interpretation": "Empty capture placeholder written by finally block; not a successful empty source file or proof of no observations.",
+    "second_declared_csv_attempted": false,
+    "provider_dataset_unavailable_proven": false
+  },
+  "cloud_ledger_reported": {
+    "provider_operation_cap_total": 3,
+    "provider_operations_attempted": 2,
+    "provider_operations_remaining_recorded": 1,
+    "raw_bytes_retained": 166209,
+    "raw_lexical_numeric_reservation": 9359,
+    "original_analysis_scalar_reservation": 100000,
+    "combined_numeric_upper_bound": 109359,
+    "cumulative_active_seconds_including_tests": 1.8288181080000072,
+    "native_numeric_values_decoded": 0,
+    "native_profile_analysis_passes": 0
+  },
+  "review": [
+    "Primary BCO-DMO dataset2528 metadata was captured successfully and retained verbatim. Metadata license is CC BY4.0 with Codispoti/Morrison/BCO-DMO attribution. License evidence does not establish CSV unit scales, native vertical support, QC, regional coverage or current identity.",
+    "Six synthetic cloud tests passed, but actual source acquisition failed. Passing synthetic gates does not make the actual capture successful. No source-cohort descriptor was produced, no native hydrography was decoded and no current depth estimate was calculated.",
+    "The client deliberately rejected the first CSV redirect under the frozen no-redirect policy. The response destination and body were not retained; this is a client-policy capture failure, not evidence that BCO-DMO has no accessible data or that its observations are absent.",
+    "This source case is closed without replay. The failed target must not be retried through a new version, redirect destination, mirror, alternate format or later cruise. The unspent operation and analysis reservation are accounting history, not authorization for a new allowance or a substitute cruise after this failure.",
+    "The original operator, workflow and tests remain frozen. TT049 was not attempted. The failed CSV body is empty only because the exception occurred before a body was read; its exact empty placeholder remains in the retained cloud artifact, not installed as observational data.",
+    "Historical bottle salinity maxima or temperature/salinity water-mass fractions would in any case be scoped hydrographic support, not automatically finite current boundaries, whole-route thickness or physical water volume. No such quantities are admitted here.",
+    "Local handling was limited to exact artifact byte/hash custody and manual metadata review. No local native-profile parsing, numerical science, tests, UI, runtime, WASM or default-query changes were performed. Canonical reference and eddy inventories are unchanged; programme remains incomplete."
+  ],
+  "new_current_depth_measurements": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_volume_estimates_admitted": 0,
+  "case_replay_allowed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

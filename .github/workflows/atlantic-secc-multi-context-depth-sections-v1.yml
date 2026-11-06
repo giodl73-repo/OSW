@@ -1,0 +1,126 @@
+name: Atlantic SECC multi-context depth sections v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/atlantic-secc-multi-context-depth-sections-v1.yml
+      - analysis/acquire_atlantic_secc_multi_context_depth_sections_v1.py
+      - analysis/atlantic_secc_depth_contexts_v1.py
+      - analysis/test_atlantic_secc_depth_contexts_v1.py
+      - research/atlantic-secc-multi-context-depth-sections-operator-v1.json
+      - plans/atlantic-secc-multi-context-depth-sections-protocol-v1.md
+      - research/pacific-neuc-depth-method-prerequisites-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_adriatic_surface_interval_depth_sections_v1.py
+            analysis/acquire_atlantic_secc_multi_context_depth_sections_v1.py
+            analysis/acquire_balearic_ligurian_interval_depth_sections_v1.py
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_coastal_upper_layer_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/atlantic_secc_depth_contexts_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_adriatic_surface_interval_depth_sections_v1.py
+            analysis/test_atlantic_secc_depth_contexts_v1.py
+            analysis/test_balearic_ligurian_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_coastal_upper_layer_interval_depth_sections_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/adriatic-surface-interval-depth-sections-protocol-v1.md
+            plans/atlantic-secc-multi-context-depth-sections-protocol-v1.md
+            plans/balearic-ligurian-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/coastal-upper-layer-interval-depth-sections-protocol-v1.md
+            research/adriatic-surface-interval-depth-sections-operator-v1.json
+            research/atlantic-secc-march-1994-section-scope-audit.json
+            research/atlantic-secc-multi-context-depth-sections-operator-v1.json
+            research/balearic-ligurian-interval-depth-sections-operator-v1.json
+            research/balearic-reference-path-input.json
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/coastal-upper-layer-interval-depth-sections-operator-v1.json
+            research/current-depth-source-facts-v10.json
+            research/current-depth-source-facts-v12.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v16.json
+            research/current-depth-source-facts-v18.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v24.json
+            research/current-depth-source-facts-v8.json
+            research/current-depth-source-facts-v9.json
+            research/east-adriatic-naming-extent-scope-audit.json
+            research/east-adriatic-reference-path-input.json
+            research/greenland-depth-sections-operator-v1.json
+            research/hiri-reference-path-input.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/ligurian-northern-segment-scope-audit.json
+            research/ligurian-reach-reference-path-input.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/norwegian-coastal-reference-path-input.json
+            research/pacific-neuc-depth-method-prerequisites-v1.json
+            research/source-data/cresswell-zeehan-2000/acquisition.json
+            research/tsushima-coastal-reference-path-input.json
+            research/tsushima-current-naming-scope-audit.json
+            research/western-adriatic-chavanne-2007-mean-width-scope-audit.json
+            research/western-adriatic-reference-path-input.json
+            research/zeehan-reference-path-input.json
+            research/zeehan-ridgway-2007-seasonal-scope-audit.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify frozen kernels and collect declared Hiri and Zeehan sections
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_interval_depth_diagnostic_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_bounded_hycom_component_reads_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_bounded_hycom_latitude_reads_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_latitude_depth_section_geometry_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_zonal_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_barents_makassar_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_atlantic_secc_depth_contexts_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_atlantic_secc_multi_context_depth_sections_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlantic-secc-multi-context-depth-sections-v1
+          path: atlantic-secc-multi-context-depth-sections-v1/
+          retention-days: 7

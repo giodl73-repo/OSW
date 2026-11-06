@@ -1,0 +1,160 @@
+{
+  "schema": "osw.sec-basin-paired-depth-source-review.v1",
+  "status": "PASS_ALL_THREE_BASIN_CONTEXTS_ONE_CUMULATIVE_QUERY",
+  "source_commit": "4f1b4b87e1aa5f55efceee7461fb9990c772f683",
+  "cloud_run_id": 42139252068,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42139252068",
+  "cloud_conclusion": "success",
+  "tests_passed": 24,
+  "artifact_id": 13465764746,
+  "artifact_zip_bytes": 209507,
+  "artifact_sha256": "33f4f469a439284e50fbbf238733e8994ef68a7cc2794b2e3a95e2051b95b716",
+  "outputs": {
+    "research/sec-basin-paired-depth-v1.json": {
+      "bytes": 1239848,
+      "sha256": "e6673b06d88a9b8043d903dc0c86471591eba8b3732989e99592156116ee6fa3"
+    },
+    "research/sec-basin-paired-depth-v1.csv": {
+      "bytes": 55949,
+      "sha256": "976923be664972ac8bc324fc0e4b2ce4b685fd04ea53dcf527b008434dbd943e"
+    },
+    "research/sec-basin-depth-anchors-v1.csv": {
+      "bytes": 20005,
+      "sha256": "c09152d3a3f0c917f41480491d3c16fe26cd028039e53c85034b226261e43d55"
+    },
+    "research/sec-basin-paired-depth-query-ledger-v1.json": {
+      "bytes": 1966,
+      "sha256": "88279b714a5fc5274bb68066ae857dae43986b81d2896a6b62072ac568f2a2c8"
+    }
+  },
+  "source_descriptors": {
+    "current:atlantic-south-equatorial": {
+      "file": "research/sec-basin-atlantic-south-equatorial-velocity-depth-curtains-v1.json",
+      "sha256": "9b9765f61a9119a80171a45f9f2642f44b680b75cb7527e8090f4b99b0f4d662"
+    },
+    "current:pacific-south-equatorial": {
+      "file": "research/sec-basin-pacific-south-equatorial-velocity-depth-curtains-v1.json",
+      "sha256": "99faeecd92b6ef4c35b0e8c6204c6a8ba4ede349711731106532069ac1060d17"
+    },
+    "current:indian-south-equatorial": {
+      "file": "research/sec-basin-indian-south-equatorial-velocity-depth-curtains-v1.json",
+      "sha256": "a68ff31f52db179748db6206700c3073da0384fa970fa8b014b7c7ed34dfb5f2"
+    }
+  },
+  "counts": {
+    "source_cases": 30,
+    "original_unresolved_cases": 3,
+    "cases_with_integrable_partial_geometry": 27,
+    "retained_column_descriptors": 3382,
+    "retained_vertical_runs": 3658,
+    "finite_paired_column_runs": 3638,
+    "censored_runs_with_minimum_support": 20,
+    "conditional_strip_patches": 3384,
+    "strips_without_integrable_geometry": 655,
+    "rejected_ambiguous_links": 234,
+    "original_axis_proxy_anchors": 27,
+    "finite_paired_axis_anchors": 27,
+    "censored_axis_anchors_with_minimum_support": 0
+  },
+  "counts_by_current": {
+    "current:atlantic-south-equatorial": {
+      "source_cases": 10,
+      "original_unresolved_cases": 0,
+      "cases_with_integrable_partial_geometry": 10,
+      "retained_column_descriptors": 1250,
+      "retained_vertical_runs": 1429,
+      "finite_paired_column_runs": 1428,
+      "censored_runs_with_minimum_support": 1,
+      "conditional_strip_patches": 1321,
+      "strips_without_integrable_geometry": 135,
+      "rejected_ambiguous_links": 101,
+      "original_axis_proxy_anchors": 10,
+      "finite_paired_axis_anchors": 10
+    },
+    "current:pacific-south-equatorial": {
+      "source_cases": 10,
+      "original_unresolved_cases": 0,
+      "cases_with_integrable_partial_geometry": 10,
+      "retained_column_descriptors": 1250,
+      "retained_vertical_runs": 1430,
+      "finite_paired_column_runs": 1430,
+      "censored_runs_with_minimum_support": 0,
+      "conditional_strip_patches": 1350,
+      "strips_without_integrable_geometry": 285,
+      "rejected_ambiguous_links": 71,
+      "original_axis_proxy_anchors": 10,
+      "finite_paired_axis_anchors": 10
+    },
+    "current:indian-south-equatorial": {
+      "source_cases": 10,
+      "original_unresolved_cases": 3,
+      "cases_with_integrable_partial_geometry": 7,
+      "retained_column_descriptors": 882,
+      "retained_vertical_runs": 799,
+      "finite_paired_column_runs": 780,
+      "censored_runs_with_minimum_support": 19,
+      "conditional_strip_patches": 713,
+      "strips_without_integrable_geometry": 235,
+      "rejected_ambiguous_links": 62,
+      "original_axis_proxy_anchors": 7,
+      "finite_paired_axis_anchors": 7
+    }
+  },
+  "query": {
+    "prior_failed_numeric_tokens": 0,
+    "prior_failed_unique_json_bytes": 0,
+    "prior_active_seconds_upper": 0,
+    "reserved_numeric_tokens": 245022,
+    "unique_json_bytes": 3770070,
+    "active_seconds": 1.912042428999996,
+    "whole_output_bytes": 1317772,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "maximum_output_bytes": 2400000,
+    "maximum_shared_seconds": 60
+  },
+  "static_invariant_functions": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "anchor_csv",
+    "csv_bytes",
+    "compact_report",
+    "expand_report"
+  ],
+  "comparison_baseline": {
+    "file": "analysis/derive_surface_regional_paired_depth_v1.py",
+    "sha256": "bb06db03c4c2433907b89fa5f0c1418e7538457e2e3217d01b79eafcc51cb6d5"
+  },
+  "scientific_review": [
+    "All30original cases processed in one cumulative query,10eachAtlantic/Pacific/Indian SouthEquatorialCurrent context. January15andJuly15,2022UTC00Z are individual snapshots,not seasonalmeans,annualextrema or historicalfieldoccupations. Preserve distinct source descriptor files/hashes/pointers,canonical basin owners,exact source plan30/ownercase10matrix,definitions and original selected columns/primary layers/outcomes. No family-wide depth scalar or merged physical body.",
+    "Original NONINTERVAL/classic complete finite upper0-200m positive westward integral/core>0.1m/s/surface>0.05m/s selector retained. Fixed270degree throughdepth,primarystrict0.1m/s,null thermal gate. Globalupper200mclassification is inherited,not owner interval override or measured depth cap. No new interval or relative rule,temperature retrieval,gate/frame/cutoff tuning,weaker core/date/source replacement or branch reselection.",
+    "Original source_geometry dictionary retained exactly with sectiondefinition,hyperslab,measured maximum nearest-longitude offset and raw native longitude. Finite measured offset may be0-5km,not necessarily equal5km operator tolerance. Native0-360longitude is wrapped for geographic checks;only original consecutive latitude indices allowed. Source native_surface_seed_connected boolean is copied as topology,not independent current identity or physical surface continuity. Defaultfalse on unresolved cases is not observed surface disconnection/currentabsence.5cm/s surface selection does not force every10cm/s run to0m.",
+    "Atlanticpartial31-35Wcentral-contextnearFernandoisland/seamountchain excludes coastalNBC/NBUC,otherSECbranches,eastwardSEUC anddetachededdy targetidentities;approx100mregional surfacecontext is not imposed as model bottom or full-current thickness. Broad westward maxima do not establish branch membership,islandclearaxis or onecoherentcore.",
+    "Pacificpartial100-140Wsouthernbranch remains separate from northernSEC,equatorialEUC,deepEIC,subsurfacecountercurrents/Tsuchiyajets,SECC,westernboundaryflow andeddytargets. The separate142Enorthern-component150mreference is not transferred to this southernreach. Same-sign deeper extensions or other currents may connect in the model without establishing independent named-body membership.",
+    "Indianpartial90-70Esouthernzonal-mode10-15Ssearch retains fixed gates. Unsearched northern/northwestwardmeanders are not filled by moving gates. ExcludeSECC/SCTRrecirculation/MadagascarAgulhasbranches/ITFstraits/eddytargets. Salinityfronts,SSHcontours and20Cthermocline are separate diagnostics,not velocity axes or bottoms;no Carr/Chenfield/gridlength/seasonalgeometry replication. Parent/evidence/windowrelationship keys originally absent remain undeclared/null rather than invented false inheritance or family-depth transfer.",
+    "All27original axis proxies have finite paired component contours:10Atlantic,10Pacific,7Indian. Three original Indian gate-edge outcomes retain exact unresolved candidate status/selectedindex/primary references and null derivedaxes/area,without weakerreplacement. All3658verticalruns remain distinct:3638finite and20censored off-axis (1Atlantic,19Indian). Censoredlowerdepth/thicknessnullwithconditionalcontiguousnativeminimumsupport;finitecontours are not physicalbottomproof. Missing/noqualification is not zero,seabed or named-currentabsence.",
+    "ThicknessLOWERminusUPPER,notabsolutelowerdepth/coredepth/searchend/samplelimit/instrumentreach/bed. Originalstratum andhistoricalapprox100/150mcontext do not cap tracing or define physicalbody. Synthetic5-350mlayer stays345mthick despite200mselection. Minimumspanfirstlastcontiguousnative support is conditional originalpiecewise-linearcomponentmodel,not physicalbound;singlelevel0uninformative.",
+    "Only uniqueoverlap/consecutiveoriginalnativelatitudeindices/<=20kmsphere6371008.8m form linearstrips.3384partialpatchesaccepted,655nonintegrablestrips and234ambiguouslinks retained/rejected. No splitmerge/disjoint/missing/censor/lateral gapbridging. Partialfixed-longitudearea/span is not independentlyflow-normal/fullwidth/fullbody/representativephysicaldepth. Nativebracketscenarios are not confidenceintervals,physicaluncertainty orannualenvelopes. Nojoiningcuts,terrainclearance,globalbodyaddition orphysicalvolume.",
+    "Twenty-four synthetic cloudchecks pass:8analytic,8encoding,8basincohort. Cover30/27/3andimmutability,globalclassicstratumnotcaps,surfacegateversusdetachedtops/topology/absence,measuredoffsetversustolerance/wrappedlongitudes,censorminimumsupport/unknownarea,JSON/bothCSVroundtrips/nullparent/gapcells,nonpromotionandstrictfamily/owner/date/frame/gate/window/geometry/boolean/index/primarymutations. ActualentirescientificJSONbytes andbothCSVstreamsreproduceexactlyafterlosslessexpansion. Corearithmetic/geometry/CSVfunctionsandencodingAST-identicalsurface-regionalbaselineexceptcohortschemanames,withoutprecisionloss/rounding/qualifierstripping.",
+    "Offline scientificdecoding/tests/geometry/build/roundtrips ran sequentiallyoneidlecloudCPU/shared60secondsoutertimeout+signals/freshoutput. OrdinaryDescriptorQueryv3explicitprior0/0;allthreebasins/all30cases jointly245022numeric/3770070uniqueJSONbytes,1317772wholeoutputbytes/1.912042428999996seconds withinunchanged250k/32MB/2.5MBpacket/2.4MBwhole/60s. No perowner/source/date split,caphike,alternativeencodingtoavoidaccounting,native/source-data/oldproducer/provider/archive replay or newobservations/canonical scalarreferences.",
+    "Fourartifactmembersretainedoncewithsize/digest/member/exactbytecustodyafterallbranchjobsterminal. HYCOMConsortium,NRL,COAPS-FSUattributionretained.111identities,908heterogeneouscanonicaldepthreferences,102eddysizereferences,main/UI/runtime/query/WASMunchanged. No whole-routephysicalprofiles/physicalvolumes. Fullcurrent-depthandcompatible-volumeprogrammeincomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

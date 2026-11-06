@@ -1,0 +1,60 @@
+name: Current depth source admission v48
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-register-source-v48.yml
+      - analysis/build_current_depth_register_v48.py
+      - analysis/test_current_depth_register_v48.py
+      - research/current-depth-rules-v48.json
+      - research/current-depth-source-facts-v48.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  admit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_register_v48.py
+            analysis/test_current_depth_register_v48.py
+            research/current-depth-source-facts-v48.json
+            research/current-depth-rules-v48.json
+            research/current-depth-register-v47.json
+            research/current-depth-register-v47.csv
+            research/current-depth-register-source-review-v47.json
+            research/current-depth-member-index-v6.json
+            research/current-length-family-conventions-v1.json
+            research/gulf-stream-spray-depth-sections-source-facts-v1.json
+            research/gulf-stream-spray-depth-sections-source-review-v1.json
+            research/gulf-stream-spray-depth-sections-operator-v1.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/manifest.json
+            analysis/acquire_gulf_stream_spray_sections_v1.py
+            analysis/acquire_florida_spray_seasonal_depth_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            research/current-depth-route-projections-source-review-v11.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-30n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-32n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/coastal-34n.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/offshore-73w.json
+            research/source-data/gulf-stream-spray-depth-sections-v1/offshore-70w.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Admit and verify frozen Gulf Stream component descriptors on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_register_v48.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_register_v48.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-register-v48
+          path: current-depth-register-v48/
+          retention-days: 7

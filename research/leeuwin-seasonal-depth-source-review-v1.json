@@ -1,0 +1,63 @@
+{
+  "schema": "osw.leeuwin-seasonal-depth-source-review.v1",
+  "status": "PROVISIONAL_LOCAL_DIAGNOSTICS_NOT_ADMITTED_TO_DEPTH_REGISTER",
+  "cloud_reviews": [
+    {
+      "run_id": 41428516984,
+      "source_commit": "54310d536ea97692524ec5b56edda0e501c4feb8",
+      "conclusion": "success",
+      "url": "https://github.com/giodl73-repo/OSW/actions/runs/41428516984",
+      "artifact_id": 13133411019
+    },
+    {
+      "run_id": 41428837197,
+      "source_commit": "531fe0b19ccd825494f50ac99c0f8630c312a065",
+      "conclusion": "success",
+      "url": "https://github.com/giodl73-repo/OSW/actions/runs/41428837197",
+      "artifact_id": 13133621539
+    }
+  ],
+  "cloud_tests_passed": 7,
+  "input_sha256": {
+    "analysis/audit_leeuwin_depth_source_v1.py": "8e22701b4e79ce529e74b8a9ee88a01b2671c170b3221a4eb0b636b48c183cb4",
+    "analysis/derive_leeuwin_seasonal_depth_v1.py": "e48b58af653e4f987a3ff2cd3a12fad7d10585721467ce4aadc80776d840aea6",
+    "analysis/test_leeuwin_seasonal_depth_v1.py": "43d583426ac2436d3b21b17015b14bb94fe0766f8748ab870c91a90a02ffc4f9",
+    ".github/workflows/leeuwin-depth-source-audit-v1.yml": "699114c4a190d6f595c7efcda07a758dde6ae248cb6bf5273e9f1b7941270124",
+    ".github/workflows/leeuwin-seasonal-depth-v1.yml": "4f6966960efc9d521ff2142f9a4cb17f67040b6ba5448eea601cac14ee3984f4",
+    "research/leeuwin-seasonal-depth-operator-v1.json": "4a523bc949228d584ffccc5e65ceb7593c0d1f60c440b80003329975defc7a12",
+    "research/source-data/leeuwin-seasonal-depth-v1/source-audit.json": "21104d58d75c2ed263b5774df998b2184cf9dd32d9ffd1911d3bc8475929f998",
+    "research/source-data/leeuwin-seasonal-depth-v1/seasonal-candidate.json": "c5dadda923588fb5e0ea417ea5a606504f90e6adb134d39e85c9848b707108cd",
+    "research/current-depth-register-v37.json": "95af2eb619318f6f6fbacecaa8215214579da16b20bade785d6c89de624e9dc4",
+    "research/current-depth-register-v37.csv": "b194b906081e95ae7e0697caa995d30ec12e7affc2ecb64dddf0503ee3f3eb99"
+  },
+  "counts": {
+    "local_monthly_candidate_profiles": 12,
+    "monthly_adjacent_zero_crossings": 9,
+    "monthly_censored_at_sampling_limit": 3,
+    "two_month_candidate_profiles": 6,
+    "annual_context_profiles": 1,
+    "new_admitted_depth_references": 0,
+    "whole_route_depth_profiles": 0,
+    "whole_current_volumes": 0
+  },
+  "scientific_review": [
+    "Exact paper-cited CSIRO collection v3 resolves to collection62713; file75441556 is11898461 bytes with pinned SHA256. Raw ocean-field download, header audit, tests and derivation ran only in cloud on one idle CPU. Raw NetCDF is not copied into the local repository.",
+    "File contains4292 daily records,2011-08-01 through2023-05-01, atWATR50 near31.7683S114.9567E. UCUR/VCUR are true east/north in m/s. DEPTH is metres below sea surface with86 levels at5m spacing. Source processed product flags distinguish observations, near-surface extrapolation, near-bottom extrapolation and SOM filling.",
+    "OSW method pools accepted daily vectors within each month or two-month phase, rotates to348degrees true, and traces the first adjacent negative-to-nonnegative mean-profile crossing below the strongest poleward0–200m core. No vertical gap bridging or deep return-flow jump. This is a zero of a mean profile, not an average instantaneous boundary or full-depth current thickness.",
+    "Twelve monthly candidates include nine adjacent crossings and three censored cases(March,August,November). Censored475m is a sampling-limit minimum reach of the local processed mean profile, not a physical current bottom, thickness or replacement for published seasonal limits.",
+    "Annual computed crossing297.917m is near the published approximate300m. August–September computed274.299m differs from the published approximate260m. February–March has no strict sign crossing through475m, unlike the published approximate350m zero-flow descriptor. In the computed February–March profile the along-current velocity at350m is about−0.001253m/s: near zero but negative. A strict sign-change operator and an approximate near-halt description need not agree. Exact cause of processing/averaging discrepancy is not established.",
+    "Observed-only sensitivity is retained with per-depth counts. It uses different coverage from the full processed product and is not an uncertainty interval or a full independent repeat. Daily pooling weights unequal record lengths; the paper’s daily11-day climatology processing and exact Figure8 construction are not claimed reproduced.",
+    "All candidate profiles remain provisional, outside the canonical current depth register. No complete seasonal boundary series, annual depth extrema, whole-route profile, volume, physical-state join or UI admission is claimed. Source publication’s approximate depths remain unchanged.",
+    "Seven cloud tests check rotation, first crossing versus return flows, missing-depth gaps, censored reach, absent poleward cores, invalid depth axes, paired source flags and unknown empty phases. Green computational tests do not resolve the scientific source comparison."
+  ],
+  "next_actions": [
+    "Compare equal-month and equal-year averaging and the source daily-climatology window without tuning the operator to match published values.",
+    "Evaluate strict sign crossing separately from an explicitly defined near-halt descriptor; preserve any velocity tolerance as an assumption, not a measured depth error.",
+    "Admit only reviewed local descriptors with their source flags, processing, censoring and seasonal scope; retain unknowns for unsupported months and route intervals."
+  ],
+  "source_acknowledgement": "Data were sourced from Australia’s Integrated Marine Observing System (IMOS) – IMOS is enabled by the National Collaborative Research Infrastructure Strategy (NCRIS). It is operated by a consortium of institutions as an unincorporated joint venture, with the University of Tasmania as Lead Agent. Derived product: CSIRO, Bui and Feng, CC BY 4.0.",
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

@@ -1,4 +1,5 @@
 """Exercise every shipped collection through the real WASM query UI."""
+from query_packet import read_bundle_bytes
 import json
 import os
 from playwright.sync_api import sync_playwright, expect
@@ -6,10 +7,9 @@ from test_rust_query_browser import ROOT, BASE, native, browser_query
 
 
 def main():
-    bundle = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
-    for name in bundle['manifest']['canonical_collections']:
-        original = json.loads((ROOT / 'almanac/release/v0.1.0' / (name + '.json')).read_bytes())
-        assert bundle['collections'][name] == original, name
+    bundle = json.loads(read_bundle_bytes(ROOT / 'almanac/query-data.json'))
+    from canonical_working_assertions import assert_canonical_imports
+    assert_canonical_imports(bundle)
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':1000})
@@ -35,13 +35,18 @@ def main():
                 page.locator('#query-rows tr button').first.click()
                 expect(page.locator('#query-detail h3').first).to_be_visible()
         result = browser_query(page, {'collection':'objects','limit':7})
-        assert result['total'] == 240
-        assert result['map_scene']['mapped_objects'] == 240
-        # These map marks include contextual gateways; they are not 240 footprints.
-        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 240
+        object_count=len(bundle['collections']['objects'])
+        assert result['total'] == object_count
+        mapped_ids={row['id'] for row in bundle['collections']['objects'] if row['map_features']}
+        assert result['map_scene']['matching_objects'] == object_count
+        assert result['map_scene']['mapped_objects'] == len(mapped_ids)
+        assert result['map_scene']['unmapped_objects'] == object_count-len(mapped_ids)
+        # All source-located records have marks; unlocated names remain queryable.
+        actual_ids=set(page.locator('#query-map-features').evaluate('(el)=>[...new Set([...el.children].map(n=>n.dataset.entity))]'))
+        assert actual_ids == mapped_ids
         assert not errors, errors
         browser.close()
-    print(f"PASS: all {len(bundle['collections'])} shipped collections in native/WASM UI, first/last pages, record inspection, complete canonical imports and 240 object map marks")
+    print(f"PASS: all {len(bundle['collections'])} shipped collections in native/WASM UI, first/last pages, record inspection, complete canonical imports and {object_count} object map marks")
 
 
 if __name__ == '__main__':

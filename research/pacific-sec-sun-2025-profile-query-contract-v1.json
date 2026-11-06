@@ -1,0 +1,82 @@
+{
+  "schema": "osw.published-core-migration-profile-query-contract.v1",
+  "status": "PREPARED_NOT_IMPLEMENTED_OR_INSTALLED",
+  "collection_proposal": "current_core_migration_profiles",
+  "record_count": 24,
+  "owner_count": 1,
+  "entity_id": "current:pacific-south-equatorial",
+  "prepared_file": "research/pacific-sec-sun-2025-core-migration-profile-prepared-v1.json",
+  "prepared_sha256": "ba2f8203ceb5bc01a140ca80d454c15f6eaba097b6d697987fd835412048f54d",
+  "source_facts_file": "research/pacific-sec-sun-2025-source-facts-v1.json",
+  "source_facts_sha256": "9a82c5d687e3c6265e0d1127d6b2e8d498ed6dd8ce02e0c53561626494c601e1",
+  "source_record_id_proposal": "source:sun-zhang-2025-pacific-sec-core-migration",
+  "record_ids": [
+    "pacific-sec-sun2025-170w-50m-core-migration",
+    "pacific-sec-sun2025-170w-100m-core-migration",
+    "pacific-sec-sun2025-170w-150m-core-migration",
+    "pacific-sec-sun2025-170w-200m-core-migration",
+    "pacific-sec-sun2025-170w-250m-core-migration",
+    "pacific-sec-sun2025-170w-300m-core-migration",
+    "pacific-sec-sun2025-170w-350m-core-migration",
+    "pacific-sec-sun2025-170w-400m-core-migration",
+    "pacific-sec-sun2025-170w-450m-core-migration",
+    "pacific-sec-sun2025-170w-500m-core-migration",
+    "pacific-sec-sun2025-170w-550m-core-migration",
+    "pacific-sec-sun2025-170w-600m-core-migration",
+    "pacific-sec-sun2025-160w-50m-core-migration",
+    "pacific-sec-sun2025-160w-100m-core-migration",
+    "pacific-sec-sun2025-160w-150m-core-migration",
+    "pacific-sec-sun2025-160w-200m-core-migration",
+    "pacific-sec-sun2025-160w-250m-core-migration",
+    "pacific-sec-sun2025-160w-300m-core-migration",
+    "pacific-sec-sun2025-160w-350m-core-migration",
+    "pacific-sec-sun2025-160w-400m-core-migration",
+    "pacific-sec-sun2025-160w-450m-core-migration",
+    "pacific-sec-sun2025-160w-500m-core-migration",
+    "pacific-sec-sun2025-160w-550m-core-migration",
+    "pacific-sec-sun2025-160w-600m-core-migration"
+  ],
+  "filters": [
+    "current_id",
+    "sampling_depth_m",
+    "section_longitude_degrees_east",
+    "source_panel"
+  ],
+  "default_sort": {
+    "field": "sampling_depth_m",
+    "direction": "asc"
+  },
+  "required_inspect_fields": [
+    "component source definition",
+    "longitude",
+    "depth",
+    "approximate value and units",
+    "plot-reading interval and meaning",
+    "source period and temporal-operator limitation",
+    "IAP1degree grid and2000m reference",
+    "source page4/figure2/panel and JSON pointer",
+    "ranking/annual/playback/state-join exclusions"
+  ],
+  "presentation": {
+    "desktop_figure": "figures/pacific-sec-sun-2025-core-migration-profile-v1.svg",
+    "compact_figure": "figures/pacific-sec-sun-2025-core-migration-profile-compact-v1.svg",
+    "compact_minimum_text_units": 17,
+    "map_mark_proposal": "None: longitude-only profile sections do not supply a current axis, footprint, or a uniquely located source measurement point.",
+    "current_card_heading_proposal": "How the southern branch moved with depth",
+    "monthly_animation_enabled": false
+  },
+  "admission_invariants": [
+    "Exact24 unique records and original pointers; no interpolated0m sample.",
+    "Do not inherit dimensions into family or replace an existing current identity.",
+    "Do not relabel source plot-reading allowances as measurement confidence or annual ranges.",
+    "Do not mix profile displacement with length, width, velocity or transport rankings.",
+    "No native compilation or runtime installation solely to save a source review.",
+    "No map mark without source-supported geographic location; do not select a latitude from transport integration limits."
+  ],
+  "new_whole_current_lengths": 0,
+  "new_widths": 0,
+  "new_annual_ranges": 0,
+  "new_independent_observations": 0,
+  "installed": false,
+  "full_goal_complete": false
+}

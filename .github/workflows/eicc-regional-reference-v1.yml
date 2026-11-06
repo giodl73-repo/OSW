@@ -1,0 +1,69 @@
+name: Calculate EICC regional source reference lengths
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/eicc-regional-reference-request-v1.json
+      - .github/workflows/eicc-regional-reference-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  regional-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read regional reference calculation request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/eicc-regional-reference-request-v1.json').read_bytes())
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Verify source and historical page relocation
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_eicc_regional_reference_cloud_v1.py --cloud-calculate --preflight-only
+      - name: Install only declared geographic and plotting dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install --only-binary=:all: pyproj==3.7.2 shapely==2.1.2 matplotlib==3.10.8
+          taskset -c "$cpu" nice -n 15 python -m pip install pyshp==2.3.1
+      - name: Calculate all declared cases and both land checks sequentially
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_eicc_regional_reference_cloud_v1.py --cloud-calculate
+      - name: Retain complete case results and map for actual inspection
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eicc-regional-reference-evidence-v1
+          path: .pytest_cache/eicc-regional-reference-v1/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: ignore

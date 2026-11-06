@@ -1,0 +1,11 @@
+# Indian SEC regional model lengths: installed-parent audit
+
+Before constructing the query contract, inspect the exact installed Pacific NEC-inclusive packet on the cloud. Logical SHA2563e8dad713d264d5ae4bd4538a503a695174444f2e190803da445b72e62229a38,190686988bytes; engine-manifest SHA2560f5a5b1a32f0b1602687ed2ecb6bdda7e110a26ad07947f4fd7a3cf7f7b9572d. Independently check all21 installed file hashes and sizes against the installation receipt, then validate descriptor parts and the complete logical packet before selecting metadata.
+
+Keep the Indian South Equatorial Current and the South Equatorial Current family separate. Retain their exact installed objects, entities, planning decisions, existing measurements, assessments, family memberships, source links and owner-linked records. A family record cannot supply a member's length or width. Preserve the complete collection counts and length-collection field inventory for contract design.
+
+Resolve Chen et al.2022 by DOI, publisher/DOI URL and normalized title, and its public model deposit by the specific provider record URL and title. Missing identifiers must not match unrelated empty DOI fields. Conflicting metadata, duplicate source identities and candidate ID-prefix collisions must remain explicit; do not reconcile them automatically. Expose any existing records linked to those sources, including records under another owner.
+
+This audit reads only installed data on one cloud CPU at low priority in the existing shared queue. No index deserialization, local packet load, native/WASM compilation, browser work, ocean-field processing, installation, bulk synchronization or main merge is permitted. No source or measurement changes occur. Keep the source-review phase and every older request disabled. Return selected metadata of at most500KB, identity resolutions, current collection counts and source/installed custody. The query contract and later delivery must bind to these actual results.
+
+The intended new quantity is the prepared regional model-core grid-polyline length, not a reported whole-current length. All75 cases,67 withheld values and120 method/resolution scenarios must survive into delivery. Whole-current length, annual extrema, physical width and physical uncertainty remain unmeasured. Prepared maps and values have not yet been installed into the query engine or atlas.

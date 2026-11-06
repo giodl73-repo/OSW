@@ -1,0 +1,151 @@
+{
+  "schema": "osw.roles-review.v1",
+  "artifact": "Ryukyu identity/depth candidate",
+  "source_commit": "ccea593337d9467faaf310644d7afc5178a54dfd",
+  "review_type": "internal_manual_functional_role_review_not_external_scientific_peer_review",
+  "roles_used": [
+    "CURRENT",
+    "SOUNDER",
+    "CHART",
+    "KEEL",
+    "LOGBOOK"
+  ],
+  "verdict": "PASS_FOR_CANDIDATE_RETENTION_IDENTITY_ADMISSION_DEFERRED",
+  "canonical_admission_complete": false,
+  "role_findings": {
+    "CURRENT": [
+      {
+        "id": "CURRENT-1",
+        "severity": "P3",
+        "finding": "The primary text identifies a separately named subsurface Ryukyu flow;no Kuroshio alias or scalar inheritance is established.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/identity_context",
+        "recommendation": "Retain the separate proposed ID and explicit branch distinction."
+      },
+      {
+        "id": "CURRENT-2",
+        "severity": "P2",
+        "finding": "The300-400mstatement is a geostrophic core neighborhood associated with a trend extremum,not two physical current boundaries.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/candidate_depth_contexts/0",
+        "recommendation": "Preserve core-neighborhood semantics and unknown reference details;do not derive thickness or physical bottom."
+      },
+      {
+        "id": "CURRENT-3",
+        "severity": "P2",
+        "finding": "The500mmodel context belongs to historical-plus-future simulations and has unresolved exact averaging support.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/candidate_depth_contexts/1",
+        "recommendation": "Keep model and hydrography-derived contexts separate;do not form an observational seasonal range."
+      }
+    ],
+    "SOUNDER": [
+      {
+        "id": "SOUNDER-1",
+        "severity": "P3",
+        "finding": "DOI,source URL,selected text-review scope and both source locators are recorded.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/source_review_scope",
+        "recommendation": "Retain source pointers when preparing an eventual versioned identity extension."
+      },
+      {
+        "id": "SOUNDER-2",
+        "severity": "P2",
+        "finding": "SupplementS1and original-source byte/pixel custody were not reviewed or retained.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/candidate_depth_contexts/0/source_method",
+        "recommendation": "Do not claim exact reference-state regeneration or original-document custody;preserve unknown datum."
+      },
+      {
+        "id": "SOUNDER-3",
+        "severity": "P3",
+        "finding": "Both candidate depth contexts explicitly forbid canonical admission.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/candidate_depth_contexts",
+        "recommendation": "Leave those historical flags exact until a separately validated admission artifact exists."
+      }
+    ],
+    "CHART": [
+      {
+        "id": "CHART-1",
+        "severity": "P3",
+        "finding": "RNsection endpoints are explicitly distinguished from current-route endpoints.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/identity_context/section_endpoints_are_current_route",
+        "recommendation": "Keep this distinction in any map or atlas import."
+      },
+      {
+        "id": "CHART-2",
+        "severity": "P2",
+        "finding": "Whole-route geometry,extent and edges remain unavailable.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/identity_context/whole_route_endpoints",
+        "recommendation": "Keep the identity unlocated wherever geographic support is missing;do not draw a route through section endpoints."
+      },
+      {
+        "id": "CHART-3",
+        "severity": "P3",
+        "finding": "No current edges,width,occupied footprint or state intersection is inferred from the core depths.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/excluded_transfers",
+        "recommendation": "Retain null geographic dimensions and no automatic state/NASA-map join."
+      }
+    ],
+    "KEEL": [
+      {
+        "id": "KEEL-1",
+        "severity": "P2",
+        "finding": "Identity protocol requires effective-catalog export,shared native/WASM store integration and actual UI/query verification.",
+        "evidence": "plans/current-identity-admission-protocol-v1.md#steps5-8",
+        "recommendation": "Do not mark identity admission complete without those exact gates;current depth-only scope excludes their execution."
+      },
+      {
+        "id": "KEEL-2",
+        "severity": "P3",
+        "finding": "Frozen canonical depthinventoryv48has926references and111identities;candidate import is absent.",
+        "evidence": "research/current-depth-reference-inventory-v48.json#/counts",
+        "recommendation": "Preserve those counts and old bytes during candidate review."
+      },
+      {
+        "id": "KEEL-3",
+        "severity": "P2",
+        "finding": "Source-review baseline checks cannot prove native/WASM parity,incoming-link behavior,keyboard/narrow-screen access or coherently rehashed identity rejection.",
+        "evidence": "plans/current-identity-admission-protocol-v1.md#step8",
+        "recommendation": "Run these checks only with an explicitly scoped integration implementation;no passing admission verdict from metadata checks alone."
+      }
+    ],
+    "LOGBOOK": [
+      {
+        "id": "LOGBOOK-1",
+        "severity": "P3",
+        "finding": "Candidate status explicitly says proposed/unadmitted and accepted_entity_idis null.",
+        "evidence": "research/current-depth-ryukyu-identity-candidate-v1.json#/status",
+        "recommendation": "Keep the pending state visible in every status report."
+      },
+      {
+        "id": "LOGBOOK-2",
+        "severity": "P2",
+        "finding": "Calling this identity admitted now would conflict with protocol steps5-8and current integration state.",
+        "evidence": "plans/current-identity-admission-protocol-v1.md#steps5-8",
+        "recommendation": "Use deferred-admission wording;record all outstanding implementation gates without inventing completion."
+      },
+      {
+        "id": "LOGBOOK-3",
+        "severity": "P3",
+        "finding": "Source identification and name-only admission are distinct from quantitative measurement gates.",
+        "evidence": "plans/current-identity-admission-protocol-v1.md#steps1-4",
+        "recommendation": "Retain the narrower source-text evidence class and separate later measurement decisions."
+      }
+    ]
+  },
+  "excluded_roles": {
+    "HARBOR": "No UI implementation or release is being claimed;accessibility remains an explicit future gate.",
+    "BEACON": "No product copy or public atlas page changed;LOGBOOK covers status wording in this review.",
+    "ORBIT": "No planetary comparison."
+  },
+  "input_sha256": {
+    "research/current-depth-ryukyu-identity-candidate-v1.json": "d9802b17fbc11ef870f295fc7b13830d9c6a9672fd7ab5a86ef664eb37f7dda4",
+    "plans/current-identity-admission-protocol-v1.md": "259a30f54e4e975ad9d7f85794e14a3d46e70eb6b9060c18093ae72670f6f25a",
+    "research/ocean-current-identity-admissions.json": "5f1a2623f431334552923870dd0cf8cde10bb098e988db11d869bf7c6ccec89c",
+    ".roles/ROLE.md": "a4e49a04e2b3a1ab5389645b749e8355b864457181c136c2d0fb8051a1a01233",
+    ".roles/current.md": "38badec0f3987d91d0f5683e613bc4684a5a9a522fb4f1a8b1f6f189c6ac08da",
+    ".roles/sounder.md": "55a436cc9ae8ed6e8cb57b63331d4f3d6391691553c0854c52d5584f49d08341",
+    ".roles/chart.md": "c938338960466f9e26c3971878ff7cd1f3a6901915cb820236d9cebddf4d1389",
+    ".roles/keel.md": "3f1ae7429c110eff24c369233240ff4044e1e3a061bba2b79af5069c5d54217c",
+    ".roles/logbook.md": "a44ea835da8b39325b0b2647894f1c89a7d94bc222f469518edde05de5d99ef6"
+  },
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

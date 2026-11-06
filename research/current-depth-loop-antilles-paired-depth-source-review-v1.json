@@ -1,0 +1,103 @@
+{
+  "schema": "osw.current-depth-loop-antilles-paired-depth-source-review.v1",
+  "status": "PASS_TWO_SCOPES_40_CASES_36_FINITE_3_CENSORED_ANCHORS_1_AXIS_GAP",
+  "source_commit": "a51cf91f7f41d897b673ef73887af8f5d59850e7",
+  "producer_run_id": 42119084989,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42119084989",
+  "cloud_semantic_tests_passed": 18,
+  "actual_complete_40_case_both_csv_roundtrips_passed": true,
+  "actual_lossless_shared_note_expansion_equals_full_scientific_report": true,
+  "artifact": {
+    "id": 13456084888,
+    "bytes": 164618,
+    "sha256": "30558947b806178ff3056bd19d58ce1b32dd19c76c6458c6712cea561feb5d6d",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "source_cases": 40,
+    "original_unresolved_cases": 1,
+    "cases_with_integrable_partial_geometry": 39,
+    "retained_column_descriptors": 2564,
+    "retained_vertical_runs": 1037,
+    "finite_paired_column_runs": 970,
+    "censored_runs_with_minimum_support": 67,
+    "conditional_strip_patches": 717,
+    "strips_without_integrable_geometry": 1855,
+    "rejected_ambiguous_links": 220,
+    "original_axis_proxy_anchors": 39,
+    "finite_paired_axis_anchors": 36,
+    "censored_axis_anchors_with_minimum_support": 3,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:loop": {
+      "source_cases": 20,
+      "finite_paired_axis_anchors": 17,
+      "censored_axis_anchors": 3,
+      "axis_gaps": 0,
+      "partial_geometry_cases": 20
+    },
+    "current:antilles": {
+      "source_cases": 20,
+      "finite_paired_axis_anchors": 19,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 1,
+      "partial_geometry_cases": 19
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 58070,
+    "query_unique_json_bytes": 2867628,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.5211965519999993,
+    "whole_output_bytes": 1813776,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All40original cases retained:20partial northward Loop-limb and20local Antilles Bahamas/Abaco cases. Four exact March/June/September/December15,2022snapshots from explicit method snapshot_times_utc and original cases. Source time_scope prose incorrectly says January/July;new output retains the exact stale text as a source_metadata_conflict and explains precedence. No frozen source correction,date padding,seasonal means,annual extrema or new observations.",
+    "Fixed-latitude geometry retains original five sections per owner,source_operator/latitude enum,5km tolerance and consecutive native longitude columns. No rotated axis,skipped column,reselected core or alternative source. Original39supported axis proxies remain39,one Antilles gap retains null anchor and original candidate diagnosis.",
+    "Original northward0degree signed component retained with strict0.1m/sLoop versus0.05m/sAntilles. Explicit original owner core/selection windows0\u2013200mLoop and100\u2013700mAntilles remain owner overrides. Neither has surface or temperature gate. Windows select original cores,not physical layer limits;subsurface selection does not force detached flow. Antilles5cm/s is not replaced with10cm/s.",
+    "Upper and lower contour depths remain distinct from thickness,which is lower minus upper. Synthetic125\u2013350m yields225mthickness,not350m. Original connected layers may extend beyond search windows or to surface;no bed,sampling limit,core depth,pressure record or literature reach substitutes for a boundary.",
+    "Thirty-six finite paired axis anchors:17Loop and19Antilles. Three Loop censored anchors retain native minimum support with null finite thickness/bottom. All39supported cases have partial transverse geometry.2564available compiled columns are not2620source-declared native input columns including the unresolved case. All1037vertical runs preserved:970finite paired and67censored minimum-support runs.",
+    "Conditional native first-to-last contiguous sample spans are inclusive support under original piecewise-linear signed-component definition,not physical named-current thickness bounds,depthfromsurface,finite bottoms,uncertainty or annual limits. A single-level zero minimum is uninformative,not no flow or zero actual thickness. All physical-bound flags remain false.",
+    "Only uniquely overlapping depth runs on consecutive native columns within20km at spherical radius6371008.8m form linear strips.717partial patches accepted;1855strips have no integrable geometry,220ambiguous split/merge links rejected. No disjoint,censored,missing or lateral gap filled. Partial fixed-axis areas are not independently flow-normal full-current geometry. Sampling brackets are conditional native-resolution scenarios,not confidence intervals or guaranteed true-boundary limits.",
+    "Loop scope is partial northward inflow/western-limb context23\u201327N,not independently attached closed loop,eastern southward return,hook,Florida continuation or detached rings. Antilles stays local26\u201327N east of Bahamas/Abaco,not whole historical Antilles,Gulf Stream,DWBC or detached eddies. Same-sign mesoscale/neighbor flow can connect;no current occupancy,water-mass classification or named-current axis independently established. No between-section interpolation,terrain clearance,whole-route physical depth or physical volume.",
+    "Eighteen cloud semantic tests passed:analytic wedge areas/units,censorship,splitmerge/disjoint/gap guards,40cases/39anchors/oneAntillesgap,owner-specificcutoffs/windows,stale-prose date conflict,lower-minus-upper,selection-not-detachment,owner overrides,single-level zero,source immutability,mutation rejection and visible CSV provenance. Actual complete40case fullscientific JSON and bothCSV byte roundtrips pass. Shared-note schema osw.loop-antilles-paired-depth.v2 preserves exact scientific values,qualifiers,censors and CSV key order on expansion.",
+    "Boundary/run geometry/minimum-support/strip/anchor/count/derive_case/CSV/effective_window functions AST-identical to validated boundary/subsurface producer. Only new cohort bindings/build provenance and scientific scope. No oldproducer/validator/native/source-data/provider/archive replay.",
+    "Offline sequential one idle cloud CPU;shared absolute60s including tests and producer,outertimeout plusSIGALRM/SIGTERM,freshoutputs. Independent ordinary DescriptorQueryv3 explicit0prior numeric/bytes prospectively reserves58070tokens/2867628uniqueJSONbytes under250k/32MB/2.5MBpacket;wholeoutput1813776under2.4MB/shared1.5211965519999993seconds. No reset after failures or nativecase renewal.",
+    "One four-member artifact retained once after all branch jobs terminal,installed byte-exact with SHA256 custody. HYCOM Consortium,NRL,COAPS-FSU attribution retained. No new observations/canonical reference rows.111identities,908scalar-reference inventory,102eddy references,main,UI,runtime,WASM unchanged. Programme active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "outputs": {
+    "research/loop-antilles-paired-depth-v1.json": {
+      "bytes": 1729349,
+      "sha256": "bcc513247ea612b49c83590df9c010fe441e86932a83b3c191cca67015ddd745"
+    },
+    "research/loop-antilles-paired-depth-v1.csv": {
+      "bytes": 66976,
+      "sha256": "9fde99f04d328008a1c588acb4efac43d30427945c157d1ee6fdbb51f1f5f875"
+    },
+    "research/loop-antilles-depth-anchors-v1.csv": {
+      "bytes": 16095,
+      "sha256": "34c42fe2e96ac41ed9c1efec032feb93be51817f2eede97b199271ab23bb027c"
+    },
+    "research/loop-antilles-paired-depth-query-ledger-v1.json": {
+      "bytes": 1352,
+      "sha256": "1a20b59c4a9ca86bfbf3aa606670db4c9a337cea82bcdaea8a81a6656919562b"
+    }
+  }
+}

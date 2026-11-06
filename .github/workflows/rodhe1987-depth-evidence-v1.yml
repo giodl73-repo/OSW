@@ -1,0 +1,45 @@
+name: Rodhe1987 independent current depth evidence v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/acquire_rodhe1987_depth_evidence_v1.py
+      - analysis/test_rodhe1987_depth_evidence_v1.py
+      - plans/rodhe1987-depth-evidence-protocol-v1.md
+      - research/rodhe1987-depth-evidence-operator-v1.json
+      - .github/workflows/rodhe1987-depth-evidence-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_rodhe1987_depth_evidence_v1.py
+            analysis/test_rodhe1987_depth_evidence_v1.py
+            plans/rodhe1987-depth-evidence-protocol-v1.md
+            research/rodhe1987-depth-evidence-operator-v1.json
+            research/jutland-current-naming-scope-audit.json
+            research/jutland-nielsen2000-depth-profile-source-facts-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Validate bounded source capture and acquire independent primary evidence
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install PyMuPDF==1.28.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_rodhe1987_depth_evidence_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_rodhe1987_depth_evidence_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rodhe1987-depth-evidence-v1
+          path: rodhe1987-depth-evidence-v1/
+          retention-days: 7

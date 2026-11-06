@@ -1,0 +1,135 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 437,
+  "baseline_evidence_sha256": "2998adfae4dbd32e18d00ac45aa4887b0aae9da99d8fac12895b0bc931e7fe20",
+  "baseline_measurement_csv_sha256": "95552199f08a62f10c7f3f391bc7f90f89293a8ca038ac905f348b0a0bad85a9",
+  "sources": {
+    "whg-feldman-dated-arrow": {
+      "url": "https://www.linkedin.com/posts/fernanda-s-kato-09800735_metocean-oceancurrents-offshoreoperations-activity-7414431017203109888-Exjy",
+      "citation": "Woods Hole Group (2026), EddyWatch Gulf of America, Surface Drifter Trajectories (4 d), chart dated 06 January 2026, explicitly labeling EDDY FELDMAN. Public provider post embedded in a Fernanda S Kato LinkedIn share.",
+      "original": {
+        "url": "https://media.licdn.com/dms/image/v2/D4E22AQFqOCflKJqXoA/feedshare-shrink_800/B4EZuVM6sTLQAg-/0/1767734750681?e=2147483647&v=beta&t=J_cZMwHvtOG_qQeVk5D__huqP8A1AK8gruUD9-Ej5hI",
+        "bytes": 69949,
+        "sha256": "321d559ab377a8115a7a04fb7f518a93c32256c69f7442ba6823b6721768cd55",
+        "width": 800,
+        "height": 648,
+        "channels": 3,
+        "source_post_url": "https://www.linkedin.com/posts/fernanda-s-kato-09800735_metocean-oceancurrents-offshoreoperations-activity-7414431017203109888-Exjy"
+      },
+      "access": "Public provider chart embedded in a public LinkedIn share; delivered 800 × 648 JPEG SHA-verified and actual pixels reviewed. Explicit Feldman name and January 6, 2026 map date; exact arrow observation support unspecified. Four black-ink extrema recomputed on one idle local CPU; two closed-ink tests rejected. Source asset is not republished.",
+      "source_review_file": "research/eddy-feldman-dated-provider-arrow-source-review-v1.json",
+      "source_review_sha256": "c8e9c5880fba78dc5a58eb297c8e58ad8ae0fd5bbad39203b000936ae8e90219",
+      "original_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "id": "feldman-whg-2026-01-06-circulation-arrow-east-west",
+      "entity_id": "eddy:horizon:loop-81-primary",
+      "source_id": "whg-feldman-dated-arrow",
+      "category": "size",
+      "metric": "source_provider_circulation_arrow_east_west_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        225,
+        325
+      ],
+      "range_kind": "source_arrow_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": "2026-01-06",
+      "period_end": "2026-01-06",
+      "period_precision": "dated_provider_map_label_not_simultaneous_observation",
+      "period_label": "Chart labeled January 6, 2026. Exact black-arrow observation support unspecified; four-day legend applies to drifter tracks, not a verified arrow averaging window.",
+      "case_label": "Feldman explicitly named dated provider circulation-arrow graphic; physical identity unverified",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Woods Hole Group / EddyWatch public chart: EDDY FELDMAN label, January 6, 2026 map date, Surface Drifter Trajectories (4 d). Black arrow contour threshold unspecified.",
+      "definition": "Geographic east–west bounding span of the plotted Feldman black circulation arrows, using four isolated delivered-raster ink-extremum windows.",
+      "scope": "Dated provider circulation-arrow illustration, not a measured physical outer boundary, closed contour, diameter or principal width.",
+      "qualification": "Four isolated black-ink windows exclude colored drifter tracks and text. Six pixels per extremum, ±2 pixels on six grid anchors, 64 scenarios and outward 25 km reporting describe reading sensitivity only. Both closed-ink tests reject; no missing segments repaired. Delivered JPEG 800 × 648; original export resolution, projection distortion, field errors and physical uncertainty unquantified. January 6, 2026 is the printed map date, not exact simultaneous observation time. No radius, diameter, area, physical footprint, state join, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_public_feldman_dated_circulation_arrow_spans_v1",
+        "component": "east_west",
+        "source_case_name": "Feldman",
+        "range_km": [
+          225,
+          325
+        ],
+        "nominal_audit_span_km": 281.045218,
+        "audit_reading_extrema_km": [
+          247.389961,
+          316.227456
+        ],
+        "axis_shift_scenarios": 64,
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "observation_date": null,
+        "publication_context_date": null,
+        "source_map_date": "2026-01-06",
+        "source_map_date_is_exact_observation_time": false,
+        "publication_date_is_observation_date": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-feldman-dated-provider-arrow-source-review-v1.json",
+        "report_sha256": "c8e9c5880fba78dc5a58eb297c8e58ad8ae0fd5bbad39203b000936ae8e90219"
+      }
+    },
+    {
+      "id": "feldman-whg-2026-01-06-circulation-arrow-north-south",
+      "entity_id": "eddy:horizon:loop-81-primary",
+      "source_id": "whg-feldman-dated-arrow",
+      "category": "size",
+      "metric": "source_provider_circulation_arrow_north_south_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        250,
+        325
+      ],
+      "range_kind": "source_arrow_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": "2026-01-06",
+      "period_end": "2026-01-06",
+      "period_precision": "dated_provider_map_label_not_simultaneous_observation",
+      "period_label": "Chart labeled January 6, 2026. Exact black-arrow observation support unspecified; four-day legend applies to drifter tracks, not a verified arrow averaging window.",
+      "case_label": "Feldman explicitly named dated provider circulation-arrow graphic; physical identity unverified",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Woods Hole Group / EddyWatch public chart: EDDY FELDMAN label, January 6, 2026 map date, Surface Drifter Trajectories (4 d). Black arrow contour threshold unspecified.",
+      "definition": "Geographic north–south bounding span of the plotted Feldman black circulation arrows, using four isolated delivered-raster ink-extremum windows.",
+      "scope": "Dated provider circulation-arrow illustration, not a measured physical outer boundary, closed contour, diameter or principal width.",
+      "qualification": "Four isolated black-ink windows exclude colored drifter tracks and text. Six pixels per extremum, ±2 pixels on six grid anchors, 64 scenarios and outward 25 km reporting describe reading sensitivity only. Both closed-ink tests reject; no missing segments repaired. Delivered JPEG 800 × 648; original export resolution, projection distortion, field errors and physical uncertainty unquantified. January 6, 2026 is the printed map date, not exact simultaneous observation time. No radius, diameter, area, physical footprint, state join, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_public_feldman_dated_circulation_arrow_spans_v1",
+        "component": "north_south",
+        "source_case_name": "Feldman",
+        "range_km": [
+          250,
+          325
+        ],
+        "nominal_audit_span_km": 287.200611,
+        "audit_reading_extrema_km": [
+          250.965086,
+          324.540217
+        ],
+        "axis_shift_scenarios": 64,
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "observation_date": null,
+        "publication_context_date": null,
+        "source_map_date": "2026-01-06",
+        "source_map_date_is_exact_observation_time": false,
+        "publication_date_is_observation_date": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-feldman-dated-provider-arrow-source-review-v1.json",
+        "report_sha256": "c8e9c5880fba78dc5a58eb297c8e58ad8ae0fd5bbad39203b000936ae8e90219"
+      }
+    }
+  ]
+}

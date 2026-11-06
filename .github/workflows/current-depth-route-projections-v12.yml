@@ -1,0 +1,54 @@
+name: Current depth regional model projections v12
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v12.yml
+      - analysis/build_current_depth_route_projections_v12.py
+      - analysis/test_current_depth_route_projections_v12.py
+      - research/current-depth-route-projection-operator-v12.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/test_current_depth_route_projections_v12.py
+            research/current-depth-route-projection-operator-v12.json
+            research/current-depth-route-projections-v11.json
+            research/current-depth-route-projections-v11.csv
+            research/current-depth-route-projections-source-review-v11.json
+            research/current-depth-register-v48.json
+            research/current-depth-register-source-review-v48.json
+            research/source-data/eac-route-depth-evidence-join-v1/candidate.json
+            research/source-data/eac-hycom-route-depth-v2/candidate.json
+            research/eac-route-depth-evidence-join-source-review-v1.json
+            research/eac-route-depth-evidence-join-operator-v1.json
+            research/east-australian-reference-path-candidate.json
+            research/source-data/kuroshio-hycom-depth-v1/candidate.json
+            research/kuroshio-hycom-depth-source-review-v1.json
+            research/kuroshio-hycom-depth-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Project and test regional dated model depth on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v12.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v12.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v12
+          path: current-depth-route-projections-v12/
+          retention-days: 7

@@ -1,0 +1,43 @@
+{
+  "schema": "osw.eicc-reference-spectral-query-protocol.v1",
+  "owner_id": "current:east-india-coastal",
+  "records": {
+    "reference_routes": 2,
+    "current_sampling_reference_points": 7,
+    "current_spectral_cross_shore_scales": 6
+  },
+  "sources": {
+    "publications": 2,
+    "method": 1
+  },
+  "reference_rules": [
+    "Keep the prose18N and caption18.5N core-coordinate conventions as distinct records; never average or interpret them as physical extrema.",
+    "Rounded590km/630km are regional source-anchor geodesic reference connections. Preserve exact calculated distance and all9 bend cases per convention.",
+    "Reuse saved zero-offset sampled geometry for editorial map features. Do not recompute, digitize a current axis, assign observation-day timestamps or enable seasonal playback.",
+    "Source calls the northward spring phase WBC; preserve its distinction from southward EICC while associating the source-qualified regime with OSW broad EICC identity."
+  ],
+  "sampling_rules": [
+    "A-F are selected maxima of variability on six altimeter tracks; they are not route vertices.",
+    "G/track142 is monsoon-current outlet context, not strictly on EICC path. No source-point geometry or current state membership inferred.",
+    "Nearest-shore distances are not widths. Table1 bathymetry is seabed depth, not current thickness or analysis depth."
+  ],
+  "spectral_rules": [
+    "Six Table3 values23,60,57,27,67,178km are annual spectral-power e-folding scales, not paired widths or annual extrema.",
+    "Theoretical Ro/2 values are source comparisons, not additional observations or numerical error margins.",
+    "No inference of finite fixed-depth slab or positional uncertainty."
+  ],
+  "append_rules": [
+    "Validate exact contract and accepted object/entity before any mutation.",
+    "Append only new reference rows, sampling rows, spectral rows and nonconflicting source definitions. Same-DOI different IDs require explicit reconciliation.",
+    "Update EICC evidence references, source counts, reference-route capability, source-table capabilities and two editorial map features. Preserve observed-geometry, width, published-length, date, sample and state fields.",
+    "Update only the EICC editorial route decision and retain its exact previous record under prior_route_decision. Preserve all other prior records and all old reference routes.",
+    "Keep unknowns null and eligibility booleans false; type-sensitive equality rejects numeric0 in place of false.",
+    "Use existing generic UI labels, values, scopes, reference-route map renderer and mapped-evidence link. No Rust or UI-source changes required."
+  ],
+  "delivery_rules": [
+    "One cloud case at a time; no local native/WASM build or full packet/index load.",
+    "Prepare source/index extension and matching engine against the installed Loop parent only after contract checks.",
+    "Verify actual native/WASM queries, old scientific preservation and saved-source lookups, map selection and phone screenshots before installation on existing branch.",
+    "No new PR or main merge per gap. No scientific release implied."
+  ]
+}

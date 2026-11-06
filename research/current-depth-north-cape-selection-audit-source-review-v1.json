@@ -1,0 +1,54 @@
+{
+  "schema": "osw.current-depth-selection-coverage-audit-source-review.v1",
+  "status": "PASS_CLOUD_FROZEN_SELECTION_AUDIT",
+  "entity_id": "current:north-cape",
+  "source_commit": "334537401892c3defaf74c24b654ed4a0941e51a",
+  "source_run_id": 41564027696,
+  "baseline_run_id": 41564027630,
+  "cloud_tests_passed": 6,
+  "operator_file": "research/current-depth-north-cape-selection-audit-operator-v1.json",
+  "operator_sha256": "785bdd56b13b21cc32a7c01e05f889d9a2774ba5836664222ff924fd39c6a3c9",
+  "artifact": {
+    "file": "research/current-depth-north-cape-selection-audit-v1.json",
+    "sha256": "e6dcdd807021b015793aa28d444ef6a1d148aaa74b0f65e0b49849973e59c8a9",
+    "bytes": 792337
+  },
+  "counts": {
+    "section_date_cases": 16,
+    "native_velocity_profiles": 1200,
+    "category_counts": {
+      "incomplete_original_selection_interval": 800,
+      "positive_integral_but_subthreshold_core": 243,
+      "subthreshold_core_and_nonpositive_integral": 137,
+      "eligible_original_diagnostic": 20
+    },
+    "native_support_counts_by_window": {
+      "0_200": 976,
+      "50_200": 976,
+      "50_350": 400
+    },
+    "original_selected_profiles": 7,
+    "original_lower_projectable_nodes": 1
+  },
+  "findings": [
+    "The original50-350m diagnostic has complete native support in400of1200profiles;800profiles lack complete support.976profiles have complete0-200m and50-200m support. These are descriptive support counts,not alternative selections or evidence of bathymetric cause.",
+    "Among original complete-support candidates,243have positive integrals but subthreshold cores;137have subthreshold cores and nonpositive integrals;20meet original eligibility. Those candidate profiles do not establish independently identified current axes.",
+    "Seven section/date cases select a profile. Three winners lie at section gate edges,two at selection support edges,and two are interior. Only the March26E interior winner has a resolved primary lower contour. The December26E interior lower boundary remains censored. Nine cases have no qualifying original candidate.",
+    "A separately justified operator may be required for shallow or water-mass-defined inflow. Do not shorten the window simply to increase coverage. Existing350m salinity-selected mean core evidence does not establish a required velocity selection bottom.",
+    "No new depth estimates. Authoritative coverage remains67of111currents with169regional scenarios;44remain without regional projection cases. Whole-route physical profiles and physical volumes remain unfinished."
+  ],
+  "next_action": "Prioritize additional uncovered current identities with defensible branch-specific primary evidence. Retain North Cape as a documented method/support limitation pending independent selection rationale.",
+  "preserved_file_sha256": {
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-v48.csv": "c12e0adba84b58919875979db9585c58c982f06554b45fd5ddbc721947335301",
+    "research/current-depth-route-projection-inventory-v26.json": "749fc4f42c947e08568788ea556a33b30713eede43ca8b4954f7621eacdc7af1",
+    "research/current-depth-route-projection-inventory-source-review-v26.json": "2e732c501cc2d8045f071ed51eee0ef921e1e1a9fdb49d25bdb4c0bbfff796e3"
+  },
+  "original_source_and_projection_files_changed": false,
+  "alternative_selection_performed": false,
+  "new_field_retrieval_performed": false,
+  "new_projected_depths": 0,
+  "missing_support_interpreted_as_seabed_or_current_absence": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+class Element{constructor(tag){this.tag=tag;this.children=[];this.attributes={};this.style={};}append(n){this.children.push(n);}setAttribute(k,v){this.attributes[k]=String(v);}}
+const context={window:{},document:{createElement:tag=>new Element(tag),createElementNS:(_ns,tag)=>new Element(tag)},location:{href:''}};
+vm.runInNewContext(fs.readFileSync('almanac/current-dimension-evidence.js','utf8'),context);
+const doc=JSON.parse(fs.readFileSync('research/current-core-dimensions-query-contract-v1.json','utf8'));
+const all=n=>[n,...n.children.flatMap(all)],text=n=>all(n).map(n=>n.textContent||'').join(' ');
+const render=(widths,lengths)=>{const root=new Element('div'),calls=[];context.window.renderCurrentDimensionEvidence(root,{kind:'published_current_dimension_evidence',title:'Scoped evidence',scope:'Regional limits',definition:'Separate operators',width_records:widths,length_records:lengths,event_records:[],source_url:'https://example.invalid',figure:'figure.svg'},(collection,id)=>calls.push([collection,id]));return{root,calls};};
+const reach=render([],doc.reach_records),card=all(reach.root).find(n=>n.attributes['data-dimension-length-id']);
+assert(card);assert(text(card).includes('110–120 km'));assert(text(card).includes('2001-08-21 to 2001-09-12'));
+assert(text(card).includes('Annual length range: Unknown'));assert(text(card).includes('Numerical length uncertainty: Unknown'));
+assert.equal(all(card).filter(n=>n.tag==='line'&&n.attributes['stroke-width']==='8').length,1);
+assert.equal(all(card).filter(n=>n.tag==='circle').length,0);
+for(const b of all(card).filter(n=>n.tag==='button'))b.onclick();assert.deepEqual(reach.calls,[['current_regional_reaches',doc.reach_records[0].id]]);
+const width=render(doc.width_records,[]),widthCard=all(width.root).find(n=>n.attributes['data-dimension-width-id']);
+assert(text(widthCard).includes('Cited estimate: about 650 km'));assert(text(widthCard).includes('Not an independent new observation'));
+assert(text(widthCard).includes('Observation dates, paired edges and original measurement method: Unknown'));
+assert.equal(all(widthCard).filter(n=>n.tag==='line'&&n.attributes['stroke-width']==='10').length,0);
+for(const b of all(widthCard).filter(n=>n.tag==='button'))b.onclick();assert.deepEqual(width.calls,[['widths',doc.width_records[0].id]]);
+assert.equal(render([],[]).root.children.length,0);assert(!text(reach.root).includes('undefined'));assert(!text(width.root).includes('undefined'));
+console.log('PASS scoped reach interval, cited width, separate scales, unknown dates/error, selection and inspect links');
