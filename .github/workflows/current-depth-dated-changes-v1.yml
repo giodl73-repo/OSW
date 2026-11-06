@@ -1,0 +1,57 @@
+name: Current depth dated changes v1 matched section diagnostics
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/derive_current_depth_dated_changes_v1.py
+      - analysis/test_current_depth_dated_changes_v1.py
+      - plans/current-depth-dated-changes-protocol-v1.md
+      - .github/workflows/current-depth-dated-changes-v1.yml
+      - research/current-depth-dated-changes-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/current-depth-dated-changes-v1.yml
+            analysis/build_current_depth_almanac_v2.py
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/compiled_depth_catalog_view_v3.py
+            analysis/derive_current_depth_dated_changes_v1.py
+            analysis/load_current_depth_reference_inventory_v1.py
+            analysis/test_current_depth_dated_changes_v1.py
+            plans/current-depth-dated-changes-protocol-v1.md
+            research/current-depth-almanac-v2.json
+            research/current-depth-dated-changes-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Matched dated depth analysis offline on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_DEPTH_DATED_CHANGES_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_dated_changes_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/derive_current_depth_dated_changes_v1.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-dated-changes-v1
+          path: current-depth-dated-changes-v1/
+          retention-days: 7
+          if-no-files-found: error
