@@ -1,0 +1,142 @@
+{
+  "schema": "osw.spitsbergen-indian-paired-depth-source-review.v1",
+  "status": "PASS_SEPARATE_INTERVAL_AND_RELATIVE_CONTEXTS_ALL_ORIGINAL_CASES",
+  "source_commit": "b8fa802fe44de2bbaa89721dcf4aca39b0bc8f2f",
+  "cloud_run_id": 42137774158,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42137774158",
+  "cloud_conclusion": "success",
+  "tests_passed": 26,
+  "artifact_id": 13466423566,
+  "artifact_zip_bytes": 128777,
+  "artifact_sha256": "11900c4e951849b69427c5409922cd62a66454671ae1b9a19ef08ea5000d843b",
+  "outputs": {
+    "research/spitsbergen-indian-paired-depth-v1.json": {
+      "bytes": 650943,
+      "sha256": "1974c7da822f5b79b3884b358b06f3771efee1c84414c7b5ac651e45b6242065"
+    },
+    "research/spitsbergen-indian-paired-depth-v1.csv": {
+      "bytes": 68877,
+      "sha256": "d38d30c1f74c339b489a380c10dcc5555ccb55ac5e0b89856efbd726ed9f0f01"
+    },
+    "research/spitsbergen-indian-depth-anchors-v1.csv": {
+      "bytes": 37658,
+      "sha256": "ac6f594303a95f8db724bfa9298d47e30529c15eed71941214c38a2c87abb55f"
+    },
+    "research/spitsbergen-indian-paired-depth-query-ledger-v1.json": {
+      "bytes": 1809,
+      "sha256": "1d309020ba32b6959065193758d1b5228ccb856cd73c028f524a9373e8ca41dc"
+    }
+  },
+  "source_descriptors": {
+    "current:spitsbergen-atlantic": {
+      "file": "research/spitsbergen-atlantic-spitsbergen-atlantic-velocity-depth-curtains-v1.json",
+      "sha256": "0567db1034543c156aae083dd57e0a0626321aea8f2b1273c2139857d6194d78"
+    },
+    "current:indian-equatorial-undercurrent": {
+      "file": "research/indian-euc-relative-indian-equatorial-undercurrent-velocity-depth-curtains-v1.json",
+      "sha256": "11216fa8d6751183982bf000ce375b7c080059aabbeafd2e079b411d869acdb5"
+    }
+  },
+  "counts": {
+    "source_cases": 36,
+    "original_unresolved_cases": 14,
+    "cases_with_integrable_partial_geometry": 22,
+    "retained_column_descriptors": 1690,
+    "retained_vertical_runs": 1817,
+    "finite_paired_column_runs": 1808,
+    "censored_runs_with_minimum_support": 9,
+    "conditional_strip_patches": 1669,
+    "strips_without_integrable_geometry": 379,
+    "rejected_ambiguous_links": 121,
+    "original_axis_proxy_anchors": 22,
+    "finite_paired_axis_anchors": 22,
+    "censored_axis_anchors_with_minimum_support": 0
+  },
+  "counts_by_current": {
+    "current:spitsbergen-atlantic": {
+      "source_cases": 16,
+      "original_unresolved_cases": 9,
+      "cases_with_integrable_partial_geometry": 7,
+      "retained_column_descriptors": 175,
+      "retained_vertical_runs": 142,
+      "finite_paired_column_runs": 133,
+      "censored_runs_with_minimum_support": 9,
+      "conditional_strip_patches": 93,
+      "strips_without_integrable_geometry": 80,
+      "rejected_ambiguous_links": 30,
+      "original_axis_proxy_anchors": 7,
+      "finite_paired_axis_anchors": 7
+    },
+    "current:indian-equatorial-undercurrent": {
+      "source_cases": 20,
+      "original_unresolved_cases": 5,
+      "cases_with_integrable_partial_geometry": 15,
+      "retained_column_descriptors": 1515,
+      "retained_vertical_runs": 1675,
+      "finite_paired_column_runs": 1675,
+      "censored_runs_with_minimum_support": 0,
+      "conditional_strip_patches": 1576,
+      "strips_without_integrable_geometry": 299,
+      "rejected_ambiguous_links": 91,
+      "original_axis_proxy_anchors": 15,
+      "finite_paired_axis_anchors": 15
+    }
+  },
+  "query": {
+    "prior_failed_numeric_tokens": 0,
+    "prior_failed_unique_json_bytes": 0,
+    "prior_active_seconds_upper": 0,
+    "reserved_numeric_tokens": 125554,
+    "unique_json_bytes": 2009236,
+    "active_seconds": 1.6394802140000024,
+    "whole_output_bytes": 759291,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "maximum_output_bytes": 2400000,
+    "maximum_shared_seconds": 60
+  },
+  "static_invariant_functions": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "anchor_csv",
+    "csv_bytes",
+    "compact_report",
+    "expand_report"
+  ],
+  "comparison_baseline": {
+    "file": "analysis/derive_surface_regional_paired_depth_v1.py",
+    "sha256": "bb06db03c4c2433907b89fa5f0c1418e7538457e2e3217d01b79eafcc51cb6d5"
+  },
+  "scientific_review": [
+    "All36original cases retained in one cumulative descriptor query:16SpitsbergenAtlantic cases with7model axis proxies/9unresolved,20IndianEUCrelative cases with15proxies/5unresolved. Preserve separate source files/hashes/pointers/methods/cohorts and all original selected columns, primary paired boundaries, original outcome and native coordinates. No physical/geographic relationship between the two currents is inferred.",
+    "Both cohorts use four exact March/June/September/December15,2022UTC00Z snapshots. Indian operator frozen time_scope prose incorrectly says January/July, while its declared snapshot array, retained dates and upstream reviewed tests establish four quarters. New readable report and bothCSVexports explicitly preserve this discrepancy, do not use stale prose to relabel cases and do not edit old validated files. Snapshots are not seasonal means, annual extrema or historical occupations.",
+    "Spitsbergen retains fixed315NWcomponent, explicit owner50-300m selection/core stratum, strict0.1m/s primary, null positive-surface/relative/thermal gates, latitude76.3-76.6N/13-15E S1-neighborhood cuts and5km tolerance. Conditional NOAA/PNRA2016 context is not a fullWSC/FramStrait alias, AtlanticWater classifier, observed axis, tidal/isobath-rotation replication, deep cascading identity or inherited depth. Explicit null parent/booleanfalseinheritance and exact evidence/window/relationship context retained.",
+    "Indian retains fixed90eastcomponent, longitude70-90E/2S-2N regional search, inherited global50-200m selection/core stratum, strict0.1m/s primary and finite native0m reference strictly weaker than original subsurface core. Positive surface-speed and thermal gates remain null. Owner window/context/parent keys originally absent remain undeclared/null rather than invented overrides or false inheritance. Relative flow does not establish water-mass identity, fullWyrtki/monsoon separation, at-least-month persistence or full route.",
+    "Original Indian geometry-adapter label, relative-rule-applied flag, false positive-surface-gate flag, strictzero minimum contrast, false uncertainty/accuracy flag and entire selected relative candidate (including nulls and opaque qualifiers) are copied exactly, not recomputed or reselected. An unresolved edge can retain a selected candidate without acquiring a derived axis. Negative/zero/positive weaker surface references remain possible. Spitsbergen relative-rule fields stay absent/blank, not false. Rule application does not prove successful qualification or current presence.",
+    "Selection strata and source core/sample/mooring/bed limits choose classification support, not tracing caps or physical bottoms. Synthetic25-550mlayer remains525mthick despite50-300/50-200mstrata. Paired thickness is lower minus upper, not absolute lower depth, core depth, selection endpoint, seabed or instrument reach. Native first-to-last contiguous minimum span is conditional original component-model support, not a physical current bound; single-level0uninformative.",
+    "All22original axis proxies have finite paired component contours, not independently established physical bottoms. Preserve all1817separate runs:1808finite plus9censored off-axis Spitsbergen runs. Censored lower depth/thickness remain null with conditional native support.14original no-selection/edge cases retain null derived axes and area; missing is not zero/seabed/named-current absence. No weaker core/date/source/cutoff substitution.",
+    "Only unique overlapping native runs on consecutive transverse indices within20km at sphere6371008.8m form linear strips.1669partial patches accepted,379nonintegrable strips and121ambiguous links retained/rejected. No split/merge/disjoint/missing/censor/lateral bridging; original lateral truncation retained. Partial fixed-axis area/span is not independently flow-normal/fullwidth/wholebody/representative physical depth. Native bracket ranges are not confidence intervals, physical uncertainty or annual envelopes. No joining sections, terrain clearance or physical volume.",
+    "Twenty-six synthetic tests pass:8analytic geometry/censor/units/splitmerge/disjoint/index/cutoff,8encoding and10cohort tests. Cover36/22/14andimmutability; differentstratanotcaps; copiedrelativecandidate withnegative/zero/positive surface; explicit versus inheritedwindow/false versus absentparent; censor minimum support/unknownarea; exactJSON/contextCSVroundtrips; owner/frame/axis/coordinate/index/date/gate/relative/thermal/context/adapter/primary mutations; quarterlydatesversusstaleprose; unresolvededgecandidatewithoutaxis; everybaseCSVfield preservedbycontextwrapper. Actual fullscientificJSONbytes andbothcontextualCSVstreams reproduce exactly after lossless expansion in producer.",
+    "Paired arithmetic, geometry, coreCSV and encoding functions listed above are AST-identical to frozen surface-regional baseline except cohort schema names in encoding. New contextualCSVwrapper only appends original source-relative metadata and date notes; all original baseCSVfield string values remain exact. No source mutation, numerical rounding, precision loss, qualifier stripping or physical-axis/identity promotion.",
+    "All scientific decoding/tests/geometry/build/roundtrips ran offline sequentially on one idle cloudCPU, shared60second outertimeout+signals/freshoutput. Ordinary independent DescriptorQueryv3 explicitly prior0/0,125554numeric/2009236uniqueJSONbytes,759291wholeoutputbytes/1.6394802140000024seconds within unchanged caps. Both entire cohorts remain one query, no perowner/file/datebudgetreset or native/source-data/oldproducer/provider/archive replay.",
+    "Four artifact members retained once with digest/size/member and exact byte custody after all branch jobs terminal. HYCOM Consortium,NRL,COAPS-FSU attribution retained. No new observations or canonical depth references, whole-route physical profiles, physical volumes or UI/runtime/query/WASM/main changes.111identities/908heterogeneous canonical depth references/102eddy size references preserved. Full current-depth and compatible-volume programme incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
