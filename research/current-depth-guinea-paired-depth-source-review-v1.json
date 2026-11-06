@@ -1,0 +1,118 @@
+{
+  "schema": "osw.guinea-paired-depth-source-review.v1",
+  "status": "PASS_ALL_FOURTEEN_REGIONAL_PAIRED_COMPONENT_DEPTHS_WITH_ORIGINAL_SELECTION",
+  "source_commit": "c428bad896f4f25d433f604bdbd0a4aa0ccca453",
+  "cloud_run_id": 42135027117,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42135027117",
+  "cloud_conclusion": "success",
+  "tests_passed": 26,
+  "artifact_id": 13465845000,
+  "artifact_zip_bytes": 44216,
+  "artifact_sha256": "d081430337983679595691bae165d5da0876072ed1ca22ffbfe896554f136ec4",
+  "outputs": {
+    "research/guinea-paired-depth-v3.json": {
+      "bytes": 252212,
+      "sha256": "be553d570d07db401047f1f7d92a48822d9a6eaae77441169e6612ca9ebe8319"
+    },
+    "research/guinea-paired-depth-v3.csv": {
+      "bytes": 27125,
+      "sha256": "01a80f3c4369cb9a6f8758d8b123f392ab6d160b53e964cd1dee6585a3abcd71"
+    },
+    "research/guinea-depth-anchors-v3.csv": {
+      "bytes": 9019,
+      "sha256": "a4bc5b24fa477dfc741ad4b30fa7fcf179e7d957ea1cc041f8e0c1535dc550ef"
+    },
+    "research/guinea-paired-depth-query-ledger-v3.json": {
+      "bytes": 1357,
+      "sha256": "abf1b3e48832a8622a98d208530dd5d54a63a05d9f1fc9ae5982b2f25a3bd368"
+    }
+  },
+  "source_descriptor_file": "research/guinea-velocity-depth-curtains-v1.json",
+  "source_descriptor_sha256": "0e27bd0ef4064036328e929db6b8c7744c9179bdf7e784634a1f077545b96747",
+  "counts": {
+    "source_cases": 14,
+    "original_axis_proxy_anchors": 14,
+    "finite_paired_axis_anchors": 14,
+    "original_unresolved_cases": 0,
+    "cases_with_integrable_partial_geometry": 14,
+    "retained_column_descriptors": 882,
+    "retained_vertical_runs": 591,
+    "finite_paired_column_runs": 591,
+    "censored_runs_with_minimum_support": 0,
+    "conditional_strip_patches": 538,
+    "strips_without_integrable_geometry": 352,
+    "rejected_ambiguous_links": 40
+  },
+  "cumulative_query": {
+    "prior_failed_numeric_tokens": 12033,
+    "prior_failed_unique_json_bytes": 518218,
+    "prior_active_seconds_upper": 10,
+    "reserved_numeric_tokens_including_failures": 61565,
+    "unique_json_bytes_including_failures": 1289057,
+    "active_seconds_including_prior_upper": 10.89068100099999,
+    "whole_output_bytes": 289717,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "maximum_output_bytes": 2400000,
+    "maximum_shared_seconds": 60
+  },
+  "failed_versions_preserved": [
+    {
+      "version": "v1",
+      "run_id": 42134298927,
+      "tests_passed": 24,
+      "outcome": "Measured nearest-longitude offset was incorrectly compared for equality to5km operator tolerance. Actual source decode charged12033numeric/518218JSONbytes; no geometry output admitted.",
+      "artifact_id": 13464304164,
+      "artifact_sha256": "59fdc66a682f721b502818e7c9dc1249a5a966f6f7b15a12871ad25385cd41c6",
+      "ledger_file": "research/guinea-paired-depth-failed-query-ledger-v1.json"
+    },
+    {
+      "version": "v2",
+      "run_id": 42134725313,
+      "tests_passed": 26,
+      "outcome": "Checkout omitted the required v2operator and stopped before additional metadata/source decode. Prior charges unchanged; another conservative5seconds carried.",
+      "artifact_id": 13465165884,
+      "artifact_sha256": "d54672d907bfb630e079a39b6795a541598acd4b58c8e54b57e53c27bc22d78b",
+      "ledger_file": "research/guinea-paired-depth-failed-query-ledger-v2.json"
+    }
+  ],
+  "static_invariant_functions": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "anchor_csv",
+    "csv_bytes"
+  ],
+  "comparison_baseline": {
+    "file": "analysis/derive_surface_regional_paired_depth_v1.py",
+    "sha256": "bb06db03c4c2433907b89fa5f0c1418e7538457e2e3217d01b79eafcc51cb6d5"
+  },
+  "scientific_review": [
+    "All fourteen original Guinea cases retained:seven fixed-longitude cuts at -8,-6,-4,-2.5,-1,0,2E on January15/July15,2022 at00Z. Same selected columns, primary boundaries, exact section definitions, source geometry dictionary and candidate diagnostics; no core or date replacement. These are snapshots, not seasonal means, annual extrema or independent field occupations.",
+    "Original eastward90degree frame and strict0.1m/s connected-curtain threshold retained. Original selected profile has a surface-component gate strictly above0.05m/s and uses complete upper0-200m selection support. Global interval is inherited, not an owner override. Selection stratum does not cap boundary tracing or set body thickness; published summer upper50m context is not imposed on model depths. Surface selection does not require every connected run to touch the surface.",
+    "Preserve Guinea regional proxy and original excluded upstream countercurrent, westward GuineaCounterCurrent, GuineaUndercurrent, equatorialSEC, plume recirculation and eddy targets. Broad eastward geography does not independently identify named-current membership and complete upper200m support can omit shallow shelf columns. No independent water-mass classification, body axis or flow-normal frame. Undeclared parent fields remain unknown/null rather than invented false inheritance.",
+    "Each finite paired thickness is lower minus upper, not absolute lower depth, core depth, search endpoint, seabed or instrument limit. Contiguous native support is conditional on original piecewise-linear component model, not a physical thickness bound. Single-level zero is uninformative. All591separate runs remain; finite contour boundaries do not prove a physical current bottom.",
+    "Only unique overlapping native runs on consecutive latitude columns within20km can form linear strips.538partial patches accepted,352strips without integrable geometry and40ambiguous links retained. No split/merge, disjoint, missing or censored link bridging. Lateral truncation remains explicit. Partial fixed-longitude area/span is not full-current width, an independently flow-normal section, a representative physical depth or water volume. Sampling-bracket ranges are not confidence intervals or annual envelopes.",
+    "V3 fixes measured-offset versus tolerance distinction and wraps raw native longitudes into geographic coordinates while preserving original source geometry. The measured offset must be finite within0-5km; operator tolerance stays5km. All scientific arithmetic functions listed above are AST-identical to the frozen surface-regional baseline. Only cohort binding, inherited selection metadata and dictionary-geometry validation differ.",
+    "Twenty-six synthetic cloud checks cover analytic wedge units; paired boundaries/censoring/surface top; split/merge/disjoint/gap/index/cutoff rejection; all14original cases; surface selection versus detached runs; inherited stratum versus imposed200m/50mbottom; parent absence; exact primary pairing; unknown/null semantics; immutability; false owner/frame/date/gate/classification/geometry mutations; bothCSV and ordered-object-tables encoding. Two regression checks specifically cover measured offsets different from tolerance and wrapped native longitude. Complete actual scientific JSON bytes and both CSV streams reproduce exactly after expansion in producer.",
+    "All tests, numeric decoding, geometry, construction and roundtrips ran offline sequentially on one idle cloud CPU. One cumulative ordinary DescriptorQueryv3 includes both failed versions:61565numeric/1289057uniqueJSONbytes and10.89068100099999seconds including10prior upper. No case/cap reset, splitting, native/source-data/old-producer execution or provider replay. Whole output289717bytes fits original2.4MBcap. V1/v2operators/code/results remain frozen.",
+    "Four exact artifact members retained once with digest and size verification after all branch jobs were terminal. No new observed depths or canonical references, whole-route physical profiles, between-section interpolation, terrain clearance or physical volume.111identities,908canonical heterogeneous depth references,102eddy size references and main/UI/runtime/query/WASM unchanged. Full current-depth and compatible-volume programme incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
