@@ -1,0 +1,143 @@
+{
+  "schema": "osw.davidson-rim-paired-depth-source-review.v1",
+  "status": "PASS_ALL_ORIGINAL_SURFACE_QUALIFIED_CASES_WITH_CENSORS_AND_GAPS",
+  "source_commit": "2ce0137321bcf087be582f77c9fa3ab30f597866",
+  "cloud_run_id": 42136304683,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42136304683",
+  "cloud_conclusion": "success",
+  "tests_passed": 24,
+  "artifact_id": 13465521735,
+  "artifact_zip_bytes": 43051,
+  "artifact_sha256": "af87e756d95d4dc5aa79f00595c9fdb7451e4eadef80b540c9fbb3b1e6bfa32f",
+  "outputs": {
+    "research/davidson-rim-paired-depth-v1.json": {
+      "bytes": 219681,
+      "sha256": "d4134b80267c8e0420a6d435f7e5a1aefb37494a29261ffd2aeb2a393cd45842"
+    },
+    "research/davidson-rim-paired-depth-v1.csv": {
+      "bytes": 57377,
+      "sha256": "9b8c81f995fe28d0f76435ad1bae1ff891d865e7db6900916a25f4f83f935d91"
+    },
+    "research/davidson-rim-depth-anchors-v1.csv": {
+      "bytes": 25807,
+      "sha256": "ef241a51085450e7ff32797f10661978c38bac7e74cbbe19324856755f62cff6"
+    },
+    "research/davidson-rim-paired-depth-query-ledger-v1.json": {
+      "bytes": 1652,
+      "sha256": "78386545e4faf63cb08ea92a7400fc8d99278d9f55f4deead52cd3f8809a1732"
+    }
+  },
+  "source_descriptors": {
+    "current:davidson": {
+      "file": "research/davidson-rim-davidson-velocity-depth-curtains-v1.json",
+      "sha256": "34e47f1476acc783e48c0530c0142eb5f4f9506eadd1da31533c578fd20ace4e"
+    },
+    "current:black-sea-rim": {
+      "file": "research/davidson-rim-black-sea-rim-velocity-depth-curtains-v1.json",
+      "sha256": "7547bec966d42bc3ebd1d4f260bc736b24220d4a8139803a1e6aa4b14d6b4b3a"
+    }
+  },
+  "counts": {
+    "source_cases": 32,
+    "original_unresolved_cases": 9,
+    "cases_with_integrable_partial_geometry": 23,
+    "retained_column_descriptors": 908,
+    "retained_vertical_runs": 347,
+    "finite_paired_column_runs": 305,
+    "censored_runs_with_minimum_support": 42,
+    "conditional_strip_patches": 234,
+    "strips_without_integrable_geometry": 658,
+    "rejected_ambiguous_links": 45,
+    "original_axis_proxy_anchors": 23,
+    "finite_paired_axis_anchors": 21,
+    "censored_axis_anchors_with_minimum_support": 2
+  },
+  "counts_by_current": {
+    "current:davidson": {
+      "source_cases": 16,
+      "original_unresolved_cases": 6,
+      "original_axis_proxy_anchors": 10,
+      "finite_paired_axis_anchors": 10,
+      "censored_axis_anchors_with_minimum_support": 0,
+      "cases_with_integrable_partial_geometry": 10,
+      "retained_column_descriptors": 253,
+      "retained_vertical_runs": 97,
+      "finite_paired_column_runs": 97,
+      "censored_runs_with_minimum_support": 0,
+      "conditional_strip_patches": 79,
+      "strips_without_integrable_geometry": 164,
+      "rejected_ambiguous_links": 8
+    },
+    "current:black-sea-rim": {
+      "source_cases": 16,
+      "original_unresolved_cases": 3,
+      "original_axis_proxy_anchors": 13,
+      "finite_paired_axis_anchors": 11,
+      "censored_axis_anchors_with_minimum_support": 2,
+      "cases_with_integrable_partial_geometry": 13,
+      "retained_column_descriptors": 655,
+      "retained_vertical_runs": 250,
+      "finite_paired_column_runs": 208,
+      "censored_runs_with_minimum_support": 42,
+      "conditional_strip_patches": 155,
+      "strips_without_integrable_geometry": 494,
+      "rejected_ambiguous_links": 37
+    }
+  },
+  "query": {
+    "prior_failed_numeric_tokens": 0,
+    "prior_failed_unique_json_bytes": 0,
+    "prior_active_seconds_upper": 0,
+    "reserved_numeric_tokens": 41908,
+    "unique_json_bytes": 720244,
+    "active_seconds": 0.6612614420000007,
+    "whole_output_bytes": 304521,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "maximum_output_bytes": 2400000,
+    "maximum_shared_seconds": 60
+  },
+  "static_invariant_functions": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs",
+    "derive_case",
+    "anchor_csv",
+    "csv_bytes",
+    "compact_report",
+    "expand_report"
+  ],
+  "comparison_baseline": {
+    "file": "analysis/derive_surface_regional_paired_depth_v1.py",
+    "sha256": "bb06db03c4c2433907b89fa5f0c1418e7538457e2e3217d01b79eafcc51cb6d5"
+  },
+  "scientific_review": [
+    "All32original cases retained in one cumulative query:Davidson and southern BlackSeaRim,16each, four cuts at March/June/September/December15,2022UTC00Z. Two original owner descriptor files and source-specific hash/pointer metadata remain distinct. These snapshots are not seasonal means, annual extrema or historical field occupations.",
+    "Original classic selector uses finite complete0-200m positive signed integral, primary core above0.1m/s and native surface downstream component strictly above0.05m/s. Preserve Davidson north0degree latitude cuts and southernRim east90degree longitude cuts, owner-explicit0-200mwindows, null thermal gates and5km fixed-axis tolerances. No source/current/date/core/frame/cutoff reselection.",
+    "The qualification-applied flag describes which selector ran, not successful qualification or current presence. Positive5cm/s surface selection does not require primary10cm/s contour to reach0m, nor apply a surface gate to every connected run. Nonzero upper contours remain valid. Six Davidson and threeRim no-selection/edge cases keep exact original candidate outcome/primary references with null derived axes; no weaker replacement or absent-current inference.",
+    "Davidson retains partial California36.5-41N surface context, not deeper CaliforniaUndercurrent or conditional Vancouver/JuanDeFuca extension. SouthernAnatolianRim31-34E is not the whole closed basin circuit, northernGelendzhikmooring, basin gyres or coastal eddy loops. Exact original identity/evidence/window context, explicit null parent and boolean false inheritance retained; numeric0 cannot replace false. No parent depth borrowing or additive bodies.",
+    "Owner selection strata are not tracing caps or measured body thickness. Northern-extension200mliterature,27-59maveraged observations, Rim qualitative250-300mnear-halt/50-200mpycnocline/deployment bed or instrument limits do not impose boundaries. Synthetic5-350mlayer remains345mthick despite200mselection and historical near-halt context.",
+    "All23original model axis proxies retained:10Davidson finite,11Rim finite and2Rim censored. Censored thickness and lower depth stay null with original contiguous minimum native support, not an exact bottom or physical thickness bound. All347vertical runs remain distinct:305finite paired contours and42censored runs. Lower minus upper gives paired thickness, not depth from surface/core depth/search end/bed/sample limit. Single-level0is uninformative.",
+    "Only unique overlapping runs on consecutive original transverse indices within20km at sphere6371008.8m form linear strips.234partial patches accepted,658nonintegrable strips and45ambiguous links retained/rejected. Do not bridge split/merge/disjoint/missing/censor gaps. Original lateral truncation retained. Partial fixed-axis area/span is not independently flow-normal/full-current width, representative physical depth or stored volume. Native bracket scenarios are not confidence intervals or annual envelopes.",
+    "Twenty-four cloud tests pass:8analytic geometry/censor/boundary/units/splitmerge/disjoint/index/cutoff checks,8losslessencoding checks and8cohort checks for all32/23/9, immutable sources, bothaxes/frames, exactoriginalsurface flags versus outcome/connection, strata and context not depth caps, censored minimum support, boolean false inheritance, absent versus unknown quantities, strict owner/date/rule/gate/temperature/classification/primary mutations, and bothCSVroundtrips. Producer independently verifies actual complete scientificJSON byte equality and bothCSVbyteparity after lossless ordered-object-tables expansion.",
+    "Paired arithmetic/geometry/CSV functions and encoding functions are AST-identical to frozen surface-regional baseline, except cohort schema names for encoding. Only mixed-cohort bindings, source-specific qualifiers, explicit context and coordinate validation differ. No rounding, precision loss, removed qualifiers or source mutation.",
+    "Offline tests/producer/numeric decoding/geometry/roundtrips ran sequentially on one idle cloudCPU, shared60second clock with outertimeout and signals. Fresh independent DescriptorQueryv3 explicitly prior0/0, all32cases together,41908numeric/720244uniqueJSONbytes;304521wholeoutputbytes/0.6612614420000007seconds, within unchanged caps. No per-owner/source/date budget reset, native/source-data/oldproducer/provider/archive replay, new observations or new canonical scalar references.",
+    "Four artifact members retained once after all branch jobs terminal, exact digest/size/member and byte custody verified. HYCOM Consortium,NRL,COAPS-FSU attribution retained. Existing111identities/908heterogeneous canonical depth references/102eddy size references unchanged. No between-section physical interpolation, terrain clearance, whole-route physical depth profile, physical volume or runtime/UI/query/WASM/main changes. Full programme incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}
