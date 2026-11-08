@@ -5,6 +5,16 @@
   let entries=[], byId=new Map(), selected=null, view=[...world], generation=0, drag=null;
   const node=(tag,text,parent)=>{const e=document.createElement(tag);if(text!==null)e.textContent=text;if(parent)parent.append(e);return e;};
   const human=key=>String(key).replaceAll('_',' ').replace(/\bkm2\b/g,'km²');
+  const typeName=key=>({named_current:'Current',named_eddy:'Named eddy source record',operational_eddy_detection:'Dated eddy detection'})[key]||human(key);
+  const formatNumber=value=>value.toLocaleString(undefined,{maximumSignificantDigits:21});
+  const mapMeaning=role=>{
+    if(/locator|gateway|reported_center/.test(role))return 'A location or regional starting point; it does not show the feature’s boundary or size.';
+    if(/reference_route/.test(role))return 'An approximate drawn reference route; it is not a measured boundary or a live track.';
+    if(/diagnostic|streamline|contour/.test(role))return 'A source-specific model or field trace. It is not automatically the current’s axis or boundary.';
+    if(/front/.test(role))return 'A dated analyzed front; it describes that source and date, rather than the entire current.';
+    if(/polygon/.test(role))return 'A source-specific outline for a dated record; it is not a permanent boundary.';
+    return 'Source geography with a specific evidence role. Open the technical map roles for its exact classification.';
+  };
   const sourceURL=value=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);return ['http:','https:'].includes(u.protocol)?u.href:null;}catch{return null;}};
   async function verified(path, expected) {
     const response=await fetch(path,{cache:expected?'force-cache':'no-cache'});if(!response.ok)throw Error(`Could not load atlas record (HTTP ${response.status})`);
@@ -38,16 +48,20 @@
       group.addEventListener('click',event=>{event.preventDefault();if(drag?.moved)return;choose(row.id,{focus:true,push:true});});
     }
     $('feature-choice').value=rows.some(r=>r.id===selected)?selected:'';$('feature-choice').disabled=false;$('filter-count').textContent=`${rows.length} of ${entries.length} records in this view. Unlocated records remain available by name.`;
+    const status=$('search-status');status.hidden=!$('feature-search').value.trim();status.replaceChildren();
+    if(!status.hidden){node('span',rows.length?`${rows.length} matching ${rows.length===1?'record':'records'} in the selected category. `:'No matching names in the selected category. Try another name or choose “All features”. ',status);const clear=node('button','Clear search',status);clear.type='button';clear.addEventListener('click',()=>{$('feature-search').value='';render();$('feature-search').focus();});}
   }
-  function evidenceRows(label,rows,parent) {
-    if(!rows.length)return;const section=node('section',null,parent);section.className='evidence-group';node('h3',`${label} · ${rows.length} ${rows.length===1?'record':'records'}`,section);
+  function evidenceRows(label,rows,parent,sources,{open=false,note=''}={}) {
+    if(!rows.length)return;const section=node('details',null,parent);section.className='evidence-group';section.open=open;node('summary',`${label} · ${rows.length} ${rows.length===1?'reference':'references'}`,section);if(note)node('p',note,section);
     for(const row of rows){const item=node('div',null,section);item.className='evidence-item';
       node('p',human(row.label||row.quantity||row.metric||row.evidence_role||row.kind||label),item);
       for(const key of ['scope','scope_note','note','interpretation','method_note'])if(typeof row[key]==='string'&&row[key])node('p',row[key],item);
       const fields=Object.entries(row).filter(([k,v])=>/(?:_km|_m|_dbar|_km2|_days)$/.test(k)&&(typeof v==='number'||Array.isArray(v)&&v.every(n=>typeof n==='number')));
       if((typeof row.value==='number'||Array.isArray(row.value)&&row.value.every(n=>typeof n==='number'))&&typeof(row.unit||row.units)==='string')fields.unshift([`${human(row.quantity||row.metric||'value')} (${row.unit||row.units})`,row.value]);
-      if(fields.length){const dl=node('dl',null,item);for(const[k,v]of fields){node('dt',human(k),dl);node('dd',Array.isArray(v)?v.map(n=>n.toLocaleString()).join(' to '):v.toLocaleString(),dl);}}
-      const detail=node('details',null,item);node('summary','Inspect the exact evidence record',detail);node('pre',JSON.stringify(row,null,2),detail);
+      if(fields.length){const dl=node('dl',null,item);for(const[k,v]of fields){node('dt',human(k),dl);node('dd',Array.isArray(v)?v.map(formatNumber).join(' to '):formatNumber(v),dl);}}
+      const ids=[...new Set([row.source_id,row.method_source_id,...(row.supporting_source_ids||[])].filter(Boolean))];
+      for(const id of ids){const source=sources.find(s=>s.id===id);if(!source)continue;const citation=node('p',null,item);citation.className='citation';node('span',id===row.method_source_id?'Method: ':'Source: ',citation);const url=sourceURL(source.url);if(url){const link=node('a',source.title||source.label||id,citation);link.href=url;link.target='_blank';link.rel='noopener noreferrer';}else node('span',source.title||source.label||id,citation);}
+      const detail=node('details',null,item);node('summary','Exact values, qualifiers, and method',detail);detail.addEventListener('toggle',()=>{if(detail.open&&!detail.querySelector('pre'))node('pre',JSON.stringify(row,null,2),detail);});
     }
   }
   async function choose(id,{focus=false,push=false,fit=true}={}) {
@@ -59,19 +73,21 @@
     try{
       let record=cache.get(id);if(!record){record=await verified(`display-data-v1/${row.record.path}?v=${row.record.sha256}`,row.record.sha256);if(record.id!==id||record.object.id!==id)throw Error('Record identity does not match the selected name');cache.set(id,record);}
       if(ticket!==generation)return;
-      const body=$('record-content');$('record-status').textContent=`${human(row.type)} · ${row.basin||'basin unspecified'} · ${human(row.identity_level||'source-scoped identity')}`;
-      const mapped=row.display_features.filter(f=>!f.omitted_reason);node('p',mapped.length?'The map shows this record’s available source geography. Each geometry retains its own evidence role.':'No supported map geometry is stored for this record. Its identity and evidence are still available.',body);
-      const roles=[...new Set(row.display_features.map(f=>human(f.role||f.omitted_reason||f.kind)))];if(roles.length)node('p','Map roles: '+roles.join('; ')+'.',body);
+      const body=$('record-content');$('record-status').textContent=`${typeName(row.type)} · ${row.basin||'basin unspecified'}`;
+      const mapped=row.display_features.filter(f=>!f.omitted_reason),meaning=node('section',null,body);meaning.className='map-meaning';node('h3','What this map shows',meaning);
+      if(mapped.length){for(const text of new Set(mapped.map(f=>mapMeaning(String(f.role||'')))))node('p',text,meaning);}else node('p','No supported map geometry is stored for this record. Its identity and evidence are still available by name.',meaning);
+      const roles=[...new Set(row.display_features.map(f=>human(f.role||f.omitted_reason||f.kind)))];if(roles.length){const technical=node('details',null,meaning);node('summary','Technical map roles',technical);node('p',roles.join('; ')+'.',technical);}
       for(const note of record.object.scope_notes||[])if(typeof note==='string')node('p',note,body);
       const links=node('p',null,body);links.className='record-links';const back=node('a','Back to the world map',links);back.href='#ocean-map';back.addEventListener('click',event=>{event.preventDefault();setView(world);$('ocean-map').focus({preventScroll:true});$('ocean-map').scrollIntoView({block:'start'});});const rich=node('a','Open the full research map card',links);rich.href=`reference-routes.html?atlas-layout=map&atlas-feature=${encodeURIComponent(id)}#route-atlas`;
       const download=node('a','Download this scoped record',links);download.href=`display-data-v1/${row.record.path}`;
-      evidenceRows('Published measurement evidence',record.measurements,body);evidenceRows('Width evidence',record.widths,body);evidenceRows('Editorial reference routes',record.reference_routes,body);
+      evidenceRows('Measurement references',record.measurements,body,record.sources,{open:true,note:'Read each number with its scope and source. References may describe different reaches, dates, or definitions; they are not automatically comparable.'});evidenceRows('Width references',record.widths,body,record.sources,{note:'Width depends on where, when, and how the edge of a current is defined. Open a reference to inspect its exact qualifications.'});evidenceRows('Drawn reference routes',record.reference_routes,body,record.sources,{note:'These distances follow approximate editorial paths. They belong to a different measurement class from published physical current lengths.'});
       if(!record.measurements.length&&!record.widths.length&&!record.reference_routes.length)node('p','This display record has no joined numeric measurement rows. Missing evidence is not zero; the full research view may contain additional source context.',body);
       if(record.sources.length){const details=node('details',null,body);node('summary',`Sources · ${record.sources.length}`,details);const list=node('ul',null,details);for(const source of record.sources){const li=node('li',null,list),url=sourceURL(source.url);if(url){const link=node('a',source.title||source.label||source.id,li);link.href=url;link.target='_blank';link.rel='noopener noreferrer';}else li.textContent=source.title||source.label||source.id;}}
     }catch(error){if(ticket!==generation)return;$('record-status').textContent=`This record could not be loaded: ${error.message}. Choose it again to retry.`;}
   }
   $('feature-search').addEventListener('input',render);$('feature-kind').addEventListener('change',render);$('feature-choice').addEventListener('change',event=>{if(event.target.value)choose(event.target.value,{focus:true,push:true});});
   $('map-world').addEventListener('click',()=>setView(world));$('map-in').addEventListener('click',()=>zoom(.5));$('map-out').addEventListener('click',()=>zoom(2));
+  $('copy-view').addEventListener('click',async()=>{const status=$('share-status');status.hidden=false;try{await navigator.clipboard.writeText($('share-view').href);status.textContent='View link copied. It includes your selected feature and map zoom.';}catch{status.textContent='Copy is unavailable in this browser. Use “View link” to copy the address from its link menu.';}});
   $('ocean-map').addEventListener('keydown',event=>{let next=[...view];const moves={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,-.12],ArrowDown:[0,.12]};if(moves[event.key]){event.preventDefault();next[0]+=view[2]*moves[event.key][0];next[1]+=view[3]*moves[event.key][1];setView(next);}else if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home')setView(world);else zoom(event.key==='-'?2:.5);}});
   $('ocean-map').addEventListener('pointerdown',event=>{if(event.button!==0||event.target.closest('a'))return;drag={x:event.clientX,y:event.clientY,view:[...view],moved:false};$('ocean-map').setPointerCapture(event.pointerId);});
   $('ocean-map').addEventListener('pointermove',event=>{if(!drag)return;const rect=$('ocean-map').getBoundingClientRect(),dx=event.clientX-drag.x,dy=event.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4)drag.moved=true;setView([drag.view[0]-dx/rect.width*drag.view[2],drag.view[1]-dy/rect.height*drag.view[3],drag.view[2],drag.view[3]],false);});

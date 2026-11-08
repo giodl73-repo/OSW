@@ -40,12 +40,12 @@ jobs:
       - name: Check map and record tasks without the full research store
         run: |
           cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
-          timeout --kill-after=1s 13s taskset -c "$cpu" nice -n 15 python analysis/review_public_map_browser_v1.py
+          timeout --kill-after=1s 8s taskset -c "$cpu" nice -n 15 python analysis/review_public_map_browser_v1.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-map-browser-v1
-          path: .pytest_cache/public-map-browser-v1/
+          name: public-map-browser-usability-v1
+          path: .pytest_cache/public-map-browser-usability-v1/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30

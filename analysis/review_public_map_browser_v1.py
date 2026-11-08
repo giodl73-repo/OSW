@@ -10,7 +10,7 @@ from threading import Thread
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / '.pytest_cache/public-map-browser-v1'
+OUT = ROOT / '.pytest_cache/public-map-browser-usability-v1'
 
 
 class Quiet(SimpleHTTPRequestHandler):
@@ -25,16 +25,16 @@ def main():
     OUT.mkdir(parents=True)
     started = time.monotonic()
     result = {'schema': 'osw.public-map-browser.v1', 'status': 'FAIL', 'source_commit': os.environ['GITHUB_SHA'],
-              'prior_ui_diagnostic_seconds': 49.937, 'shared_ui_diagnostic_limit_seconds': 60,
+              'prior_ui_diagnostic_seconds': 52.575666276, 'shared_ui_diagnostic_limit_seconds': 60,
               'page_errors': [], 'http_failures': [], 'full_research_requests': [], 'checks': [],
               'source_use_approved': False, 'public_preview_complete': False}
     server = None
 
     def deadline(*_args):
-        raise TimeoutError('Remaining nine-second UI diagnostic budget exhausted')
+        raise TimeoutError('Remaining UI diagnostic budget exhausted')
 
     signal.signal(signal.SIGALRM, deadline)
-    signal.alarm(9)
+    signal.alarm(6)
     try:
         package = ROOT / 'almanac/display-data-v1'
         build = json.loads((package / 'build.json').read_bytes())
@@ -49,6 +49,7 @@ def main():
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=True)
             page = browser.new_page(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce')
+            page.context.grant_permissions(['clipboard-read', 'clipboard-write'])
             page.set_default_timeout(1800)
             page.on('pageerror', lambda error: result['page_errors'].append(str(error)[:500]))
             page.on('response', lambda response: result['http_failures'].append(response.url.removeprefix(base)) if response.status >= 400 else None)
@@ -61,6 +62,17 @@ def main():
             assert page.locator('#ocean-features path').count() > 50, 'Routes did not render'
             assert page.locator('#ocean-map').evaluate('s => s.viewBox.baseVal.width < 1480'), 'Current selection did not zoom'
             result['checks'].append('All 111 current names, route geometry, and initial Agulhas map card render')
+            page.locator('.quick-guide summary').click()
+            assert page.get_by_text('Read its card.', exact=True).is_visible()
+            page.locator('.quick-guide summary').click()
+            assert page.get_by_role('heading', name='What this map shows', exact=True).is_visible()
+            assert page.locator('.evidence-group').count() > 0
+            assert page.locator('.evidence-group').first.get_attribute('open') is not None
+            assert page.locator('.citation a').count() > 0
+            page.get_by_role('button', name='Copy view link', exact=True).click()
+            page.wait_for_function("document.querySelector('#share-status').textContent.startsWith('View link copied')")
+            assert page.evaluate('navigator.clipboard.readText()') == page.locator('#share-view').get_attribute('href')
+            result['checks'].append('First-visit guide, plain map meaning, expandable evidence, inline source links, and selected-view clipboard link')
             page.get_by_role('link', name='Back to the world map', exact=True).click()
             assert page.locator('#ocean-map').evaluate('s => s.viewBox.baseVal.width === 1480')
             page.get_by_role('button', name='Zoom in', exact=True).click()
@@ -79,7 +91,9 @@ def main():
             result['checks'].append('World return, zoom controls, keyboard Home, selection focus, browser Back, and record reload')
             page.locator('#feature-search').fill('not-a-real-current-name-123')
             assert page.locator('#feature-choice option').count() == 1
-            page.locator('#feature-search').fill('')
+            assert 'No matching names' in page.locator('#search-status').inner_text()
+            page.get_by_role('button', name='Clear search', exact=True).click()
+            assert page.evaluate("document.activeElement.id === 'feature-search'")
             assert page.locator('#feature-choice option').count() == 112
             page.locator('#feature-kind').select_option('named_eddy')
             assert page.locator('#feature-choice option').count() == 137
@@ -109,6 +123,10 @@ def main():
         if server:
             server.shutdown()
         result['active_seconds'] = time.monotonic() - started
+        result['cumulative_ui_diagnostic_seconds'] = result['prior_ui_diagnostic_seconds'] + result['active_seconds']
+        if result['cumulative_ui_diagnostic_seconds'] > result['shared_ui_diagnostic_limit_seconds']:
+            result['status'] = 'FAIL'
+            result['error'] = 'Cumulative UI budget exceeded'
         (OUT / 'result.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf8')
         assert sum(p.stat().st_size for p in OUT.iterdir()) < 1_400_000
         print(json.dumps(result))
