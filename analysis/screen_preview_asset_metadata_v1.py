@@ -27,6 +27,44 @@ HELD_URLS = {'https://www.horizonmarine.com/loop-current-eddies',
 FORBIDDEN_KEYS = {'raw_record', 'raw_text', 'source_text', 'source_text_excerpt', 'source_quote',
                   'geometry', 'coordinates', 'native_values', 'registry_separation_date', 'registry_date',
                   'registry_row_index', 'registry_column', 'raw_profiles', 'raw_profile'}
+REGISTRY_VALUE_KEYS = {'registry_name', 'registry_primary_name', 'registry_initial_separation',
+                       'registry_primary_initial_separation', 'registry_dissipation_label', 'registry_source_number'}
+REGISTRY_VALUE = re.compile(rb'"(?:' + b'|'.join(k.encode() for k in sorted(REGISTRY_VALUE_KEYS)) + rb')"\s*:')
+
+
+def remove_registry_metadata(raw):
+    """Delete only named provider-registry metadata properties, without decoding quantities."""
+    removed = Counter()
+    while match := REGISTRY_VALUE.search(raw):
+        key = match.group().split(b'"', 2)[1].decode('ascii')
+        start, pos = match.start(), match.end()
+        while raw[pos] in b' \t\r\n':
+            pos += 1
+        if raw[pos] == 34:
+            value = STRINGS.match(raw, pos)
+            if not value:
+                raise ValueError('Invalid registry metadata string')
+            end = value.end()
+        elif raw[pos] in b'[{':
+            raise ValueError('Registry metadata value must be primitive; do not remove a scientific context')
+        else:
+            end = pos
+            while end < len(raw) and raw[end] not in b',}] \t\r\n':
+                end += 1
+        after = end
+        while after < len(raw) and raw[after] in b' \t\r\n':
+            after += 1
+        if after < len(raw) and raw[after] == 44:
+            end = after + 1
+        else:
+            before = start - 1
+            while before >= 0 and raw[before] in b' \t\r\n':
+                before -= 1
+            if before >= 0 and raw[before] == 44:
+                start = before
+        raw = raw[:start] + raw[end:]
+        removed[key] += 1
+    return raw, removed
 
 
 def sha(raw):
@@ -71,6 +109,11 @@ def main():
     assert not OUT.exists()
     OUT.mkdir(parents=True)
     started = time.monotonic()
+    # Packaging fixtures check punctuation and preservation, not scientific results.
+    assert remove_registry_metadata(b'{"a":1,"registry_name":"held","registry_source_number":2}')[0] == b'{"a":1}'
+    assert remove_registry_metadata(b'{"registry_name":"held","a":1}')[0] == b'{"a":1}'
+    assert remove_registry_metadata(b'{"registry_name":"held"}')[0] == b'{}'
+    assert remove_registry_metadata(b'{"value_m":[1.25e3,null],"registry_name":"held","association_is_verified":false}')[0] == b'{"value_m":[1.25e3,null],"association_is_verified":false}'
     signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError('Carried metadata screening deadline')))
     signal.alarm(50)
     # These are administrative manifests/decisions; never load the admitted measurement catalogs.
@@ -80,9 +123,20 @@ def main():
     assert review_manifest['candidate_build_sha256'] == sha(build_raw)
     decisions = json.loads((ROOT / 'almanac/preview-review-v1/source-use.json').read_bytes())
     existing = json.loads((ROOT / 'research/public-preview-source-use-decisions-v1.json').read_bytes())
-    allowed_urls = {r['url'] for r in decisions['entries']} | {r['url'] for r in existing['entries'] if r.get('url')}
+    previous = json.loads((ROOT / 'research/preview-asset-metadata-review-v1.json').read_bytes())
+    links = json.loads((ROOT / 'almanac/preview-review-v1/link-use.json').read_bytes())
+    assert previous['input_build_sha256'] == links['candidate_build_sha256'] == sha(build_raw)
+    assert set(previous['unreviewed_source_urls']) == {r['url'] for r in links['entries']}
+    assert not previous['held_source_urls'] and not previous['forbidden_field_names']
+    # The transport envelopes were already charged and decoded by the previous
+    # metadata screen. Replay only that administrative cache, checking exact byte
+    # hashes and the five-field transport schema. Never use this parser on the
+    # uncompressed scientific record or on a new/unreserved envelope.
+    charged_envelopes = {r['sha256'] for r in previous['query_charges']['packets'] if r['status'] == 'decoded_and_cached'}
+    parse_envelope_metadata = json.loads
+    allowed_urls = {r['url'] for r in decisions['entries']} | {r['url'] for r in existing['entries'] if r.get('url')} | {r['url'] for r in links['entries']}
     save = lambda doc: (OUT / 'query-ledger.json').write_bytes(encode(doc))
-    query = DescriptorQuery(save, prior_numeric=247336, prior_bytes=29547419)
+    query = DescriptorQuery(save, prior_numeric=247498, prior_bytes=31033035)
     files = {}
     receipts = []
     denied_keys = Counter()
@@ -92,6 +146,9 @@ def main():
     all_keys = set()
     changed_records = []
     protected = []
+    registry_fields_removed = Counter()
+    registry_edited_paths = []
+    replayed_envelopes = []
 
     def audit_strings(raw):
         for token in STRINGS.finditer(raw):
@@ -102,7 +159,7 @@ def main():
                 continue
             key = json.loads(token.group())  # JSON key metadata only, never numerical values.
             all_keys.add(key)
-            if key in FORBIDDEN_KEYS:
+            if key in FORBIDDEN_KEYS or key in REGISTRY_VALUE_KEYS:
                 denied_keys[key] += 1
             pos += 1
             while pos < len(raw) and raw[pos] in b' \t\r\n':
@@ -126,12 +183,21 @@ def main():
             if path == 'index.json':
                 result = raw
             else:
-                envelope = json.loads(raw)
+                assert sha(raw) in charged_envelopes, 'Only exact previously charged transport metadata may be replayed'
+                envelope = parse_envelope_metadata(raw)
+                assert set(envelope) == {'schema', 'encoding', 'decoded_bytes', 'decoded_sha256', 'payload'}
+                assert type(envelope['decoded_bytes']) is int and isinstance(envelope['payload'], str)
+                replayed_envelopes.append(sha(raw))
                 assert envelope['schema'] == 'osw.preview-json-envelope.v1' and envelope['encoding'] == 'gzip+base64'
                 decoded = gzip.decompress(base64.b64decode(envelope['payload'], validate=True))
                 assert len(decoded) == envelope['decoded_bytes'] < 2_500_000 and sha(decoded) == envelope['decoded_sha256']
                 # Intentionally do not JSON-decode the scientific record. Evidence bytes
                 # outside its identity metadata are copied and checked byte for byte.
+                original_decoded = decoded
+                decoded, removed = remove_registry_metadata(decoded)
+                registry_fields_removed.update(removed)
+                if removed:
+                    registry_edited_paths.append(path)
                 audit_strings(decoded)
                 if path.startswith('records/'):
                     start, end = object_span(decoded)
@@ -162,9 +228,13 @@ def main():
                     else:
                         protected.append({'path': path, 'evidence_bytes_sha256': sha(decoded[:start] + decoded[end:]),
                                           'evidence_bytes_unchanged': True})
-                        result = raw
+                        result = raw if decoded == original_decoded else encode({'schema': envelope['schema'], 'encoding': envelope['encoding'],
+                                      'decoded_bytes': len(decoded), 'decoded_sha256': sha(decoded),
+                                      'payload': base64.b64encode(gzip.compress(decoded, mtime=0)).decode('ascii')})
                 else:
-                    result = raw
+                    result = raw if decoded == original_decoded else encode({'schema': envelope['schema'], 'encoding': envelope['encoding'],
+                                  'decoded_bytes': len(decoded), 'decoded_sha256': sha(decoded),
+                                  'payload': base64.b64encode(gzip.compress(decoded, mtime=0)).decode('ascii')})
             files[path] = result
             receipts.append({'path': path, 'bytes': len(result), 'sha256': sha(result)})
     status = ('PASS_ASSET_METADATA_SCREEN_ONLY' if not denied_keys and not held_urls and not unknown_urls
@@ -173,11 +243,17 @@ def main():
               'input_build_sha256': sha(build_raw), 'input_projection_source': build['source_commit'],
               'counts_from_pinned_build': {k: build[k] for k in ['counts', 'depth_reference_count', 'depth_reference_units', 'eddy_reference_count', 'eddy_size_reference_count']},
               'removed_state_associations_by_kind': dict(removed_states), 'changed_records': changed_records,
+              'registry_value_fields_removed': dict(registry_fields_removed), 'registry_metadata_edited_paths': registry_edited_paths,
+              'scientific_quantities_not_decoded_or_changed': True,
+              'allowed_edits': ['identity_state_association_metadata', 'explicit_provider_registry_name_date_and_identifier_metadata'],
+              'byte_edit_rule': 'All bytes are retained except identity-object serialization and the six explicitly listed registry metadata properties. No scientific value, unit, range, uncertainty, source scope, or eligibility flag is edited.',
+              'previously_charged_transport_envelope_cache_replays': replayed_envelopes,
+              'source_eligibility_and_association_flags_preserved': True,
               'forbidden_field_names': dict(denied_keys), 'held_source_urls': sorted(held_urls),
               'unreviewed_source_urls': sorted(unknown_urls), 'inspected_key_names': sorted(all_keys),
               'evidence_byte_protection': protected, 'files': receipts,
               'scientific_numerical_values_decoded_or_recalculated': False, 'new_provider_requests': 0,
-              'index_projection_bytes_unchanged': True, 'prior_active_seconds': 4.535214145,
+              'index_projection_bytes_unchanged': True, 'prior_active_seconds': 13.608633822,
               'active_seconds': time.monotonic() - started, 'publication_approved': False,
               'interpretation': 'Metadata/asset screen only. Numerical evidence remains opaque and unchanged. Unknown observed-center and provider-polygon state assertions are withheld. Counts are carried from the verified input build, not recalculated scientific claims.'}
     report['cumulative_active_seconds'] = report['prior_active_seconds'] + report['active_seconds']
