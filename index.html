@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore the moving ocean: an evolving atlas of ocean currents, eddies, and the evidence behind their maps and measurements.">
+  <title>Ocean States of the World — an atlas of the moving ocean</title>
+  <style>
+    :root { color-scheme: light; font: 17px/1.6 system-ui,sans-serif; color:#173b46; background:#f5f5ed; }
+    * { box-sizing:border-box; } body { margin:0; } a { color:#075b70; text-underline-offset:.2em; }
+    a:focus-visible,summary:focus-visible { outline:3px solid #a85506; outline-offset:4px; }
+    .skip { position:absolute;left:-10000px; } .skip:focus { left:1rem;top:1rem;background:white;padding:1rem;z-index:3; }
+    header,main,footer { max-width:1160px;margin:auto;padding:1.5rem; }
+    header { display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid #c7d4d1; }
+    .brand { font-weight:800;text-decoration:none;letter-spacing:.08em; } header nav { display:flex;flex-wrap:wrap;gap:1.25rem; }
+    .eyebrow { font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#42655d; }
+    h1 { font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.06;letter-spacing:-.045em;max-width:15ch;margin:.5rem 0 1.5rem; }
+    h2 { font-size:1.6rem;line-height:1.2; } p { max-width:65ch; } .lead { font-size:1.2rem;max-width:50ch; }
+    .hero { padding:2rem 0 1rem; } .actions { display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin:1.8rem 0; }
+    .primary { background:#123e49;color:white;padding:.85rem 1.2rem;border-radius:.35rem;display:inline-block;font-weight:700;text-decoration:none; }
+    .primary:hover { background:#075b70; } figure { margin:2rem 0;background:#092b39;border-radius:.6rem;overflow:hidden; }
+    figure a,figure img { display:block;width:100%; } figure img { height:auto; } figcaption { color:#d6ece9;padding:.8rem 1rem;font-size:.85rem; }
+    .paths { display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem;margin:1.5rem 0 3rem; }
+    .paths article { background:white;padding:1.3rem;border:1px solid #c7d4d1;border-radius:.5rem; }
+    .paths h3 { margin-top:0;font-size:1.1rem; } .paths a { display:inline-block;padding:.6rem 0; }
+    .reading { border-top:1px solid #c7d4d1;padding:1.3rem 0; } details { margin:1rem 0; } summary { cursor:pointer;font-weight:700;padding:.6rem 0; }
+    footer { border-top:1px solid #c7d4d1;font-size:.85rem;color:#42655d; } .preview { font-size:.9rem;color:#42655d; }
+    @media(max-width:40rem) { header,main,footer { padding:1rem; } .hero { padding-top:1rem; } header nav { font-size:.9rem;gap:1rem; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the atlas introduction</a>
+  <header><a class="brand" href="./" aria-label="Ocean States of the World home">OSW</a><nav aria-label="Explore OSW"><a href="#explore">Explore</a><a href="#reading">How to read the atlas</a></nav></header>
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">Ocean States of the World · research preview</p>
+      <h1 id="title">An atlas of the moving ocean.</h1>
+      <p class="lead">Get to know the currents that carry water across ocean basins and the eddies that swirl within them. Follow a route, open its record, and see what we know about its size and changing shape.</p>
+      <div class="actions"><a class="primary" href="almanac/reference-routes.html?atlas-layout=map#route-atlas">Explore the world map</a><a href="almanac/reference-routes.html?atlas-layout=map&amp;atlas-feature=current%3Aagulhas#route-atlas">Start with the Agulhas Current</a></div>
+      <p class="preview">An evolving atlas, with sources and limits beside the evidence. You do not need to know oceanography to explore it.</p>
+      <figure><a href="almanac/reference-routes.html?atlas-layout=map#route-atlas"><img src="figures/ocean-motion-dashboard-ground.svg" alt="Geographic base map for the ocean atlas. Open the interactive map to explore currents and eddies." width="1480" height="740"></a><figcaption>OSW geographic base map. Current routes and records appear in the interactive atlas.</figcaption></figure>
+    </section>
+    <section id="explore" aria-labelledby="explore-title">
+      <h2 id="explore-title">Three ways into the ocean</h2>
+      <div class="paths">
+        <article><h3>Follow a current</h3><p>Start with the world, choose a current, and zoom to its route and map card.</p><a href="almanac/reference-routes.html?atlas-layout=map#route-atlas">Open the current atlas</a></article>
+        <article><h3>See the ocean move</h3><p>Find a regional link to NASA's animations. The films show modeled motion, rather than measurements of the atlas features.</p><a href="almanac/movies.html">Find a NASA ocean view</a></article>
+        <article><h3>Look behind a number</h3><p>Explore how current lengths are estimated and what part of the current each estimate describes.</p><a href="almanac/lengths.html">Explore current length estimates</a></article>
+      </div>
+    </section>
+    <section class="reading" id="reading" aria-labelledby="reading-title">
+      <h2 id="reading-title">A little context goes a long way</h2>
+      <p><strong>A current</strong> is a flow of water. <strong>An eddy</strong> is a rotating patch of water. Both can change with place and time, so one number rarely tells the whole story.</p>
+      <details><summary>What are ocean states?</summary><p>OSW uses editorial ocean regions as addresses for exploring the ocean. They are not political territories or fixed current boundaries.</p></details>
+      <details><summary>What do the maps and measurements mean?</summary><p>A locator marks a place to start reading. A drawn reference route is an approximation with stated conventions. A dated observation or model result describes its own time and place. Missing evidence means unknown or unassessed, not zero.</p></details>
+      <details><summary>How complete is the atlas?</summary><p>This is a research preview. Evidence coverage varies by feature and measurement. Depth profiles, seasonal variation, and compatible volume estimates remain active work. Check the source, date, scope, and method attached to a record before comparing numbers.</p></details>
+      <p>For a closer look: <a href="almanac/dashboard.html">evidence coverage</a> · <a href="almanac/query.html">advanced query workbench</a> · <a href="SOURCE-REGISTER.md">source register</a>.</p>
+    </section>
+  </main>
+  <footer>Ocean States of the World · OSW is an independent atlas project. NASA animations remain hosted by NASA.</footer>
+</body>
+</html>

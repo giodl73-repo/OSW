@@ -8,7 +8,7 @@ OSW has enough material for a useful public research preview. The next milestone
 
 The working atlas connects ocean states, named currents and eddies, route maps, measurement evidence, NASA animation navigation, and a Rust and WebAssembly query interface. Route conventions, source-reported measurements, model results, and dated observations have different meanings and must retain their labels.
 
-Start with the [current and eddy atlas](almanac/reference-routes.html#route-atlas), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
+The [home page](index.html) introduces the project and its three exploration routes without loading the research store. Its browser review is pending. Continue to the [current and eddy atlas](almanac/reference-routes.html#route-atlas), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
 
 ## Research status
 
@@ -38,7 +38,7 @@ Before sharing the preview with a new visitor, check whether they can do the fol
 - Follow a regional NASA movie link and understand that it shows modeled motion.
 - Use the same route on a phone and with a keyboard, without relying on hover.
 
-Cloud browser checks confirm that the screened atlas supports current search, a shareable record address, reload, and focus transfer. Desktop and narrow layouts passed the page-overflow check, but visual inspection exposed cramped mobile directory columns; the directory is being changed to stacked records. The main atlas, dashboard, and query workbench did not render their content within the tested startup windows and need further loading work. See the [retained UI diagnostic](research/public-preview-ui-review-v2.json).
+Cloud browser checks confirm that the screened atlas supports current search, a shareable record address, reload, and focus transfer. The [focused mobile review](research/public-preview-ui-review-v3.json) passed after the directory was changed to stacked records with larger link targets. The checked introduction and directory belong to the older screened snapshot; these results do not certify the main atlas or the new home page. The main atlas, dashboard, and query workbench did not render their content within the tested startup windows and need further loading work. See the [retained UI diagnostic](research/public-preview-ui-review-v2.json).
 
 Record a first visitor's own words and where they hesitate; that observed session remains open. A shareable hosted URL must refer to the selected and validated preview bundle, not a local development address or the unreviewed full research site.
 
