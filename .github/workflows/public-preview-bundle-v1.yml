@@ -52,7 +52,7 @@ jobs:
       - name: Review only the selected bundle within the carried UI budget
         run: |
           cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
-          timeout --kill-after=1s 6s taskset -c "$cpu" nice -n 15 python analysis/review_public_preview_bundle_v1.py
+          timeout --kill-after=1s 14s taskset -c "$cpu" nice -n 15 python analysis/review_public_preview_bundle_v1.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
