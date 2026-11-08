@@ -26,6 +26,20 @@ The [rights-screened package](almanac/release/v0.1.0-rights-screened-preview/REA
 
 Publish an explicitly selected site bundle whose assets, data, and links have been reconciled with source-use decisions. A screened download does not make every page in the surrounding repository ready for public hosting. Keep the source histories and research receipts available for review without treating them as a deployable site bundle.
 
+## First visitor review
+
+The [screened atlas introduction](site-review/ocean-motion-screened/index.html) offers three starting points: find a current or eddy, follow a NASA movie link, or compare reported lengths. It explains ocean states, map points, missing values, and model animations before asking visitors to interpret the directory.
+
+Before sharing the preview with a new visitor, check whether they can do the following without coaching:
+
+- Explain what OSW is and distinguish a current from an eddy after reading the introduction.
+- Find a familiar current, open its record, and return to exploration.
+- Explain what a map point and a length estimate do and do not represent.
+- Follow a regional NASA movie link and understand that it shows modeled motion.
+- Use the same route on a phone and with a keyboard, without relying on hover.
+
+Record the visitor's own words and where they hesitate. Treat these as acceptance tasks, not results: this pass has not included an observed visitor session or browser rendering review. Browser automation was unavailable during the introduction edit. A shareable hosted URL must refer to the selected and validated preview bundle, not a local development address or the unreviewed full research site.
+
 ## Remaining launch work
 
 1. Select the pages and data snapshot for the preview. Record the included assets and source-use decisions, withholding unresolved provider material from the public bundle.

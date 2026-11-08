@@ -64,3 +64,12 @@ footer { background: #113b4a; color: white; padding: 1.2rem; text-align: center;
   .state-evidence-overview tbody td:last-child { grid-column: 1 / -1; padding-top: 0; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* First-visit choices remain ordinary links and wrap to one column on small screens. */
+.start-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .8rem; margin: 1rem 0; }
+.start-options a { display: block; padding: 1rem; border: 1px solid #668a94; border-radius: .4rem; text-decoration: none; }
+.start-options a:hover { background: #e7f0f1; }
+.start-options strong { display: block; text-decoration: underline; text-underline-offset: .2em; }
+.start-options span { display: block; color: #34505a; margin-top: .5rem; }
+.map-explainer { margin-top: 1rem; }
+.map-explainer summary { cursor: pointer; font-weight: 650; padding: .6rem 0; }
