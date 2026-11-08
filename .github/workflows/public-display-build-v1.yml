@@ -1,0 +1,57 @@
+name: Public atlas display package v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/public-display-build-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_PUBLIC_DISPLAY_BUILD_V1: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            almanac/query-data.json
+            almanac/query-parts
+            almanac/query-engine.manifest.json
+            rust/osw-display
+            rust/osw-query/src/map.rs
+            rust/osw-query/src/cartography.rs
+            analysis/build_public_display_cloud_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Fetch locked code dependencies sequentially on one idle CPU
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          taskset -c "$cpu" nice -n 15 cargo fetch --locked --manifest-path rust/osw-display/Cargo.toml
+      - name: Compile, test shared geometry, and export the display view
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          timeout --kill-after=1s 60s taskset -c "$cpu" nice -n 15 python analysis/build_public_display_cloud_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-display-build-v1
+          path: |
+            .pytest_cache/public-display-build-v1/result.json
+            .pytest_cache/public-display-build-v1/build.log
+            .pytest_cache/public-display-build-v1/display-package.zip
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
