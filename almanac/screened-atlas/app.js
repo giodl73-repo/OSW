@@ -78,12 +78,13 @@
       (!query || `${item.label} ${item.basin || ""} ${item.id} ${item.setting || ""}`.toLocaleLowerCase().includes(query)));
     const body = byId("object-rows"); body.replaceChildren();
     for (const item of visible) {
-      const row = node("tr", null, body);
+      const row = node("tr", null, body); row.setAttribute("role", "row");
       attachObjectLink(item.id, entityById, node("td", null, row));
       node("td", labelKind[item.type] || item.type, row);
       node("td", item.basin || "—", row);
       node("td", [item.identity_level, item.setting, item.time_behavior].filter(Boolean).join(" · ") || "Source-scoped record", row);
     }
+    for (const cell of body.querySelectorAll("td")) cell.setAttribute("role", "cell");
     byId("object-count").textContent = `${visible.length} of ${data.entities.length} records`;
     renderMarkers(visible);
   }

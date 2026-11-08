@@ -38,7 +38,9 @@ Before sharing the preview with a new visitor, check whether they can do the fol
 - Follow a regional NASA movie link and understand that it shows modeled motion.
 - Use the same route on a phone and with a keyboard, without relying on hover.
 
-Record the visitor's own words and where they hesitate. Treat these as acceptance tasks, not results: this pass has not included an observed visitor session or browser rendering review. Browser automation was unavailable during the introduction edit. A shareable hosted URL must refer to the selected and validated preview bundle, not a local development address or the unreviewed full research site.
+Cloud browser checks confirm that the screened atlas supports current search, a shareable record address, reload, and focus transfer. Desktop and narrow layouts passed the page-overflow check, but visual inspection exposed cramped mobile directory columns; the directory is being changed to stacked records. The main atlas, dashboard, and query workbench did not render their content within the tested startup windows and need further loading work. See the [retained UI diagnostic](research/public-preview-ui-review-v2.json).
+
+Record a first visitor's own words and where they hesitate; that observed session remains open. A shareable hosted URL must refer to the selected and validated preview bundle, not a local development address or the unreviewed full research site.
 
 ## Remaining launch work
 

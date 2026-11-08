@@ -1,0 +1,90 @@
+{
+  "schema": "osw.public-preview-ui-review.v2",
+  "status": "FAIL",
+  "source_commit": "1ba7c24d3d9cc9f6ec3eac52a521d103c1d8d25e",
+  "scientific_pipeline_run": false,
+  "data_rebuilt": false,
+  "publication_approved": false,
+  "pages": [
+    {
+      "name": "screened",
+      "route": "/site-review/ocean-motion-screened/",
+      "errors": [],
+      "http_failures": [],
+      "request_failures": [],
+      "selected_label": "Gulf Stream System",
+      "record_deep_link_and_focus": "PASS",
+      "record_reload": "PASS",
+      "desktop_and_narrow_no_page_overflow": "PASS",
+      "status": "PASS",
+      "visible_status": [
+        {
+          "id": "coverage",
+          "text": "100 named currents \u00b7 40 named eddies \u00b7 22 NASA-described motion records \u00b7 56 OSW states \u00b7 70 NASA crop links."
+        }
+      ]
+    },
+    {
+      "name": "atlas",
+      "route": "/almanac/reference-routes.html?atlas-layout=map#route-atlas",
+      "errors": [],
+      "http_failures": [],
+      "request_failures": [],
+      "status": "FAIL",
+      "failure": "TimeoutError: Locator.wait_for: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator(\"#route-atlas-features > *\").first\n",
+      "visible_status": [
+        {
+          "id": "route-atlas-status",
+          "text": "Loading current atlas\u2026"
+        }
+      ]
+    },
+    {
+      "name": "dashboard",
+      "route": "/almanac/dashboard.html",
+      "errors": [],
+      "http_failures": [],
+      "request_failures": [],
+      "status": "FAIL",
+      "failure": "TimeoutError: Locator.wait_for: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator(\"#dashboard-beck-features > *\").first\n",
+      "visible_status": [
+        {
+          "id": "dashboard-status",
+          "text": "Loading inventory\u2026"
+        }
+      ]
+    },
+    {
+      "name": "query",
+      "route": "/almanac/query.html",
+      "errors": [],
+      "http_failures": [],
+      "request_failures": [],
+      "status": "FAIL",
+      "failure": "TimeoutError: Locator.wait_for: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator(\"#query-rows tr\").first\n",
+      "visible_status": [
+        {
+          "id": "query-inventory",
+          "text": "Loading the record store\u2026"
+        },
+        {
+          "id": "query-status",
+          "text": "Loading Rust WebAssembly engine\u2026"
+        }
+      ]
+    }
+  ],
+  "failures": [
+    "Candidate UI checks need fixes"
+  ],
+  "prior_active_seconds": 33.309,
+  "shared_question_limit_seconds": 60,
+  "screened_bundle_byte_integrity": "PASS",
+  "active_seconds": 12.278,
+  "remaining_reviews": [
+    "public source-use reconciliation",
+    "full navigation and accessibility",
+    "first-time visitor comprehension",
+    "selected deployment bundle and hosted target"
+  ]
+}

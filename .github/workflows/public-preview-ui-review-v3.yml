@@ -1,0 +1,49 @@
+name: Public preview UI diagnostic v3
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/public-preview-ui-review-v3.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            almanac
+            site-review/ocean-motion-screened
+            figures
+            analysis/review_public_preview_ui_v3.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install one pinned browser on one idle CPU
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Review actual tracked pages without data or engine rebuilds
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          timeout --kill-after=3s 17s taskset -c "$cpu" nice -n 15 python analysis/review_public_preview_ui_v3.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-preview-ui-v3
+          path: .pytest_cache/public-preview-ui-v3/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

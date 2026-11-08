@@ -73,3 +73,15 @@ footer { background: #113b4a; color: white; padding: 1.2rem; text-align: center;
 .start-options span { display: block; color: #34505a; margin-top: .5rem; }
 .map-explainer { margin-top: 1rem; }
 .map-explainer summary { cursor: pointer; font-weight: 650; padding: .6rem 0; }
+
+@media (max-width: 40rem) {
+  .object-directory { display: block; min-width: 0; }
+  .object-directory thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .object-directory tbody { display: grid; gap: .75rem; }
+  .object-directory tbody tr { display: grid; border: 1px solid #a7c5cf; border-radius: .4rem; padding: .6rem; }
+  .object-directory td { display: block; border: 0; padding: .25rem; overflow-wrap: anywhere; }
+  .object-directory td:first-child a { display: block; min-height: 44px; padding: .55rem 0; font-weight: 750; }
+  .object-directory td:nth-child(2)::before { content: 'Type: '; font-weight: 650; }
+  .object-directory td:nth-child(3)::before { content: 'Basin: '; font-weight: 650; }
+  .object-directory td:nth-child(4)::before { content: 'Context: '; font-weight: 650; }
+}
