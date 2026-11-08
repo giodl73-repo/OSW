@@ -15,7 +15,7 @@ backward compatibility.
 
 **[See what OSW is building next ->](ROADMAP.md)**
 
-**[Public preview readiness and launch work](PUBLIC-PREVIEW.md)** — current research scope, publication boundaries, and the path to a public preview.
+**[Open the public current and eddy preview](https://osw-ocean-atlas-preview-202611.sweet-jam-8851.chatgpt.site)** — explore 111 current identities, source-backed evidence, and map cards. [Edition, review, and limitations](PUBLIC-PREVIEW.md).
 
 ## Enter the Ocean States
 
