@@ -1,6 +1,8 @@
 "use strict";
 (() => {
   const $ = id => document.getElementById(id), ns = 'http://www.w3.org/2000/svg';
+  const candidate = new URL(location.href).searchParams.get('atlas-edition') === 'preview-candidate';
+  const dataRoot = candidate ? 'preview-data-candidate-v1' : 'display-data-v1';
   const world = [60,90,1480,740], cache = new Map();
   let entries=[], byId=new Map(), selected=null, view=[...world], generation=0, drag=null;
   const node=(tag,text,parent)=>{const e=document.createElement(tag);if(text!==null)e.textContent=text;if(parent)parent.append(e);return e;};
@@ -20,7 +22,17 @@
     const response=await fetch(path,{cache:expected?'force-cache':'no-cache'});if(!response.ok)throw Error(`Could not load atlas record (HTTP ${response.status})`);
     const bytes=await response.arrayBuffer();if(bytes.byteLength>2400000)throw Error('Atlas record exceeds its expected size');
     if(expected){const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');if(hash!==expected)throw Error('Atlas record does not match this snapshot');}
-    return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
+    let value=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
+    if(value.schema==='osw.preview-json-envelope.v1'){
+      if(value.encoding!=='gzip+base64'||!Number.isInteger(value.decoded_bytes)||value.decoded_bytes<0||value.decoded_bytes>=2500000)throw Error('Invalid preview record envelope');
+      if(typeof DecompressionStream==='undefined')throw Error('This preview needs a browser with gzip decompression support');
+      const compressed=Uint8Array.from(atob(value.payload),c=>c.charCodeAt(0)),reader=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip')).getReader();
+      const chunks=[];let size=0;try{while(true){const next=await reader.read();if(next.done)break;size+=next.value.length;if(size>value.decoded_bytes)throw Error('Preview record exceeds its declared decoded size');chunks.push(next.value);}}finally{await reader.cancel();}
+      if(size!==value.decoded_bytes)throw Error('Incomplete preview record');const decoded=new Uint8Array(size);let offset=0;for(const chunk of chunks){decoded.set(chunk,offset);offset+=chunk.length;}
+      const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',decoded))].map(n=>n.toString(16).padStart(2,'0')).join('');if(hash!==value.decoded_sha256)throw Error('Preview record decoded checksum mismatch');
+      value=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(decoded));
+    }
+    return value;
   }
   function address(push=false) {
     const url=new URL(location.href);if(selected)url.searchParams.set('atlas-feature',selected);else url.searchParams.delete('atlas-feature');
@@ -39,7 +51,7 @@
     for(const row of rows){
       $('feature-choice').append(new Option(row.label,row.id));
       const button=node('button',row.label,$('feature-list'));button.type='button';button.setAttribute('aria-pressed',String(row.id===selected));button.addEventListener('click',()=>choose(row.id,{focus:true,push:true}));
-      const group=mapElement('a',{href:`?atlas-feature=${encodeURIComponent(row.id)}`,'aria-label':row.label,class:`${row.type.includes('eddy')?'eddy ':''}${row.id===selected?'selected':''}`},$('ocean-features'));group.dataset.featureId=row.id;
+      const target=new URL(location.href);target.searchParams.set('atlas-feature',row.id);target.searchParams.delete('atlas-view');const group=mapElement('a',{href:target.href,'aria-label':row.label,class:`${row.type.includes('eddy')?'eddy ':''}${row.id===selected?'selected':''}`},$('ocean-features'));group.dataset.featureId=row.id;
       let plotted=false;
       for(const f of row.display_features){if(f.omitted_reason)continue;const p=f.projected;if(p?.point){mapElement('circle',{cx:p.point[0],cy:p.point[1],r:view[2]/220},group);plotted=true;}else if(p?.d){mapElement('path',{d:p.d,class:f.kind==='Polygon'?'polygon':''},group);plotted=true;}}
       if(!plotted){group.remove();continue;}
@@ -55,7 +67,7 @@
     if(!rows.length)return;const section=node('details',null,parent);section.className='evidence-group';section.open=open;node('summary',`${label} · ${rows.length} ${rows.length===1?'reference':'references'}`,section);if(note)node('p',note,section);
     for(const row of rows){const item=node('div',null,section);item.className='evidence-item';
       node('p',human(row.label||row.quantity||row.metric||row.evidence_role||row.kind||label),item);
-      for(const key of ['scope','scope_note','note','interpretation','method_note'])if(typeof row[key]==='string'&&row[key])node('p',row[key],item);
+      for(const key of ['scope','scope_note','spatial_scope','temporal_scope','definition','qualification','note','interpretation','method_note'])if(typeof row[key]==='string'&&row[key])node('p',row[key],item);
       const fields=Object.entries(row).filter(([k,v])=>/(?:_km|_m|_dbar|_km2|_days)$/.test(k)&&(typeof v==='number'||Array.isArray(v)&&v.every(n=>typeof n==='number')));
       if((typeof row.value==='number'||Array.isArray(row.value)&&row.value.every(n=>typeof n==='number'))&&typeof(row.unit||row.units)==='string')fields.unshift([`${human(row.quantity||row.metric||'value')} (${row.unit||row.units})`,row.value]);
       if(fields.length){const dl=node('dl',null,item);for(const[k,v]of fields){node('dt',human(k),dl);node('dd',Array.isArray(v)?v.map(formatNumber).join(' to '):formatNumber(v),dl);}}
@@ -71,7 +83,7 @@
     if(fit){const candidates=row.display_features.filter(f=>Array.isArray(f.view_box)&&!f.omitted_reason);const target=candidates.find(f=>f.kind==='LineString'&&String(f.role).includes('reference'))||candidates.find(f=>f.kind==='LineString')||candidates[0];if(target)setView(target.view_box,false);}
     render();address(push);if(focus){$('record-name').focus({preventScroll:true});if(matchMedia('(max-width:60rem)').matches)$('current-card').scrollIntoView({block:'start'});}
     try{
-      let record=cache.get(id);if(!record){record=await verified(`display-data-v1/${row.record.path}?v=${row.record.sha256}`,row.record.sha256);if(record.id!==id||record.object.id!==id)throw Error('Record identity does not match the selected name');cache.set(id,record);}
+      let record=cache.get(id);if(!record){record=await verified(`${dataRoot}/${row.record.path}?v=${row.record.sha256}`,row.record.sha256);if(record.id!==id||record.object.id!==id)throw Error('Record identity does not match the selected name');cache.set(id,record);}
       if(ticket!==generation)return;
       const body=$('record-content');$('record-status').textContent=`${typeName(row.type)} · ${row.basin||'basin unspecified'}`;
       const mapped=row.display_features.filter(f=>!f.omitted_reason),meaning=node('section',null,body);meaning.className='map-meaning';node('h3','What this map shows',meaning);
@@ -80,8 +92,9 @@
       for(const note of record.object.scope_notes||[])if(typeof note==='string')node('p',note,body);
       if(typeof record.object.identity_scope_note==='string'&&record.object.identity_scope_note)node('p',record.object.identity_scope_note,body);
       const links=node('p',null,body);links.className='record-links';const back=node('a','Back to the world map',links);back.href='#ocean-map';back.addEventListener('click',event=>{event.preventDefault();setView(world);$('ocean-map').focus({preventScroll:true});$('ocean-map').scrollIntoView({block:'start'});});const rich=node('a','Open the full research map card',links);rich.href=`reference-routes.html?atlas-layout=map&atlas-feature=${encodeURIComponent(id)}#route-atlas`;
-      const download=node('a','Download this scoped record',links);download.href=`display-data-v1/${row.record.path}`;
+      const download=node('a',candidate?'Download this record’s encoded package':'Download this scoped record',links);download.href=`${dataRoot}/${row.record.path}`;
       evidenceRows('Measurement references',record.measurements,body,record.sources,{open:true,note:'Read each number with its scope and source. References may describe different reaches, dates, or definitions; they are not automatically comparable.'});evidenceRows('Width references',record.widths,body,record.sources,{note:'Width depends on where, when, and how the edge of a current is defined. Open a reference to inspect its exact qualifications.'});evidenceRows('Drawn reference routes',record.reference_routes,body,record.sources,{note:'These distances follow approximate editorial paths. They belong to a different measurement class from published physical current lengths.'});
+      evidenceRows('Depth references',record.depth_references||[],body,record.sources,{note:'These are scoped depth or thickness references, not a whole-current depth profile. Metres and pressure in dbar are separate units. Some values describe instruments, water masses, thresholds, or integration limits rather than a physical current bottom. Bibliographic context reconciliation is still in progress in this private candidate.'});
       if(!record.measurements.length&&!record.widths.length&&!record.reference_routes.length)node('p','This display record has no joined numeric measurement rows. Missing evidence is not zero; the full research view may contain additional source context.',body);
       if(record.sources.length){const details=node('details',null,body);node('summary',`Sources · ${record.sources.length}`,details);const list=node('ul',null,details);for(const source of record.sources){const li=node('li',null,list),url=sourceURL(source.url);if(url){const link=node('a',source.title||source.label||source.id,li);link.href=url;link.target='_blank';link.rel='noopener noreferrer';}else li.textContent=source.title||source.label||source.id;}}
     }catch(error){if(ticket!==generation)return;$('record-status').textContent=`This record could not be loaded: ${error.message}. Choose it again to retry.`;}
@@ -96,10 +109,11 @@
   function restoredView(){const values=(new URL(location.href).searchParams.get('atlas-view')||'').split(',').map(Number);return values.length===4&&values.every(Number.isFinite)&&values[2]>0?values:null;}
   addEventListener('popstate',()=>{const url=new URL(location.href),v=restoredView();setView(v||world,false);const id=url.searchParams.get('atlas-feature');if(byId.has(id))choose(id,{fit:!v});else{selected=null;generation++;$('record-name').textContent='Choose a current or eddy';$('record-status').textContent='Select a name or map feature.';$('record-content').replaceChildren();render();}});
   (async()=>{try{
-    const build=await verified('display-data-v1/build.json');if(build.status!=='PASS_DISPLAY_EXPORT_ONLY'||build.current_count!==111)throw Error('Unsupported display snapshot');const pin=build.files.find(f=>f.path==='index.json');if(!pin)throw Error('Missing inventory receipt');
-    const index=await verified(`display-data-v1/index.json?v=${pin.sha256}`,pin.sha256);if(index.schema!=='osw.atlas-display-index.v1'||index.counts.named_current!==111||index.entries.length!==build.object_count)throw Error('Incomplete atlas inventory');
+    const build=await verified(`${dataRoot}/build.json`);if(candidate?(build.schema!=='osw.preview-data-projection.v1'||build.counts?.named_current!==111):(build.status!=='PASS_DISPLAY_EXPORT_ONLY'||build.current_count!==111))throw Error('Unsupported display snapshot');const pin=build.files.find(f=>f.path==='index.json');if(!pin)throw Error('Missing inventory receipt');
+    const index=await verified(`${dataRoot}/index.json?v=${pin.sha256}`,pin.sha256);if(index.schema!==(candidate?'osw.preview-display-index.v1':'osw.atlas-display-index.v1')||index.counts.named_current!==111||(!candidate&&index.entries.length!==build.object_count))throw Error('Incomplete atlas inventory');
     entries=[...index.entries].sort((a,b)=>a.label.localeCompare(b.label));byId=new Map(entries.map(r=>[r.id,r]));if(byId.size!==entries.length)throw Error('Duplicate inventory identity');
     $('inventory-status').textContent=`${index.counts.named_current} current identities · ${index.counts.named_eddy||0} named-eddy source records · ${index.counts.operational_eddy_detection||0} dated detections. A frozen research snapshot, not a live feed; evidence availability varies.`;
+    if(candidate){document.querySelector('.eyebrow').textContent='Private integrated data candidate · source review unfinished';$('inventory-status').textContent=`111 current identities · ${index.counts.named_eddy} retained named-eddy records · ${index.depth_reference_count} scoped depth references. ${index.eddy_source_reference_count} additional eddy evidence references are stored separately from canonical identities. This candidate is not approved for public publication.`;const detection=$('feature-kind').querySelector('[value="operational_eddy_detection"]');if(detection)detection.remove();const example=document.querySelector('.quick-guide a');if(example)example.href='?atlas-edition=preview-candidate&atlas-feature=current%3Aagulhas';}
     const v=restoredView();setView(v||world,false);render();const id=new URL(location.href).searchParams.get('atlas-feature');if(id&&byId.has(id))await choose(id,{fit:!v});else if(id)$('record-status').textContent='That name is not in this snapshot. Choose a name from the inventory.';
   }catch(error){$('inventory-status').textContent=`Atlas inventory unavailable: ${error.message}. Reload to retry.`;}})();
 })();

@@ -28,6 +28,16 @@ Whole-route current depth profiles and physical volume estimates remain unfinish
 
 The public pages, compiled query data, research inventories, and generated release packages use different pinned snapshots. The latest research counts must not be advertised as already available throughout the interface. The [depth readiness protocol](plans/current-depth-readiness-protocol-v3.md) and its older pinned snapshot remain separate from the latest inventory.
 
+### Integrated data candidate
+
+The [separate preview projection](research/preview-data-projection-v1.json) was built successfully in cloud run `42527107981` from frozen descriptors, without new provider requests or measurement calculations. It preserves all 111 current identities and joins all 941 admitted depth references, retaining 937 metre references and four pressure references in dbar. It also retains 331 eddy evidence references, including all 203 size references, in a source-reference collection separate from canonical named-eddy identities. These are evidence counts, not counts of complete profiles or distinct physical eddies.
+
+The candidate has 40 retained named-eddy records; 96 held registry-only identities and four dated provider detections are excluded. This is not a return to only the older 40-record almanac: the separately retained source references preserve the newer size work without asserting unverified registry joins. The projection also carries qualified state-association metadata and the existing 70 NASA navigation tiles and 56 OSW state names. Their presence does not establish verified eddy containment or NASA identification of a named feature.
+
+The installed UTF-8 transport files match the exact cloud artifact receipts. Records use small, individually checked compressed envelopes; the entire encoded data package is 1,478,906 bytes. The new loader and depth-card integration are prepared behind the explicit `atlas-edition=preview-candidate` review parameter. They have a JavaScript syntax check, but no browser verification yet; the default map snapshot is unchanged.
+
+This candidate is **not approved for public publication**. Although its required source IDs resolve to a source row or retained context, 30 depth contexts still lack extracted bibliographic metadata. Additional exact source uses and state-association provenance remain to reconcile. The browser-tested default map and the new integrated candidate must not be confused. A selected public bundle, matching query/download surfaces, and final verification remain required.
+
 Earthdata access is needed for the planned protected three-dimensional data work. The [secure access setup](plans/earthdata-cloud-access-setup-v1.md) enables that research to proceed; it is not a prerequisite for sharing a properly scoped preview.
 
 ## Publication boundary
