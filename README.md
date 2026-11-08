@@ -15,6 +15,8 @@ backward compatibility.
 
 **[See what OSW is building next ->](ROADMAP.md)**
 
+**[Public preview readiness and launch work](PUBLIC-PREVIEW.md)** — current research scope, publication boundaries, and the path to a public preview.
+
 ## Enter the Ocean States
 
 | Explore the ocean | Follow heat | Inspect evidence |

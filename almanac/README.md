@@ -1,5 +1,11 @@
 # Ocean motion almanac
 
+## Current research and public preview
+
+See [public preview readiness](../PUBLIC-PREVIEW.md) for the current research status and remaining launch work. Depth research has advanced beyond the generated release snapshots described below. Those exports and their counts remain version-specific; the browser and compiled query data do not automatically inherit newer research records.
+
+The following description preserves the earlier candidate and route-review snapshot. Consult the linked current status before using these counts in launch copy.
+
 This is a source-backed naming, measurement, and geography ledger, not a global
 census. The browser page reads versioned research files. It also uses
 the source-evidence and property ledgers embedded in the object/state crosswalk:

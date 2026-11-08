@@ -1,5 +1,17 @@
 # Publication checklist
 
+## Current public preview
+
+The [public preview readiness note](PUBLIC-PREVIEW.md) separates launch work from ongoing measurement research. Complete depths and volumes are not required for a clearly scoped preview. The historical completed items below do not certify the current almanac candidate.
+
+- [x] Consolidate current research scope and identify older pinned snapshots.
+- [ ] Select and record the exact public site and data bundle.
+- [ ] Reconcile included source uses, runtime data, downloads, and displayed claims.
+- [ ] Complete cloud validation and browser and accessibility review for that bundle.
+- [ ] Review the concrete release candidate and align its target, version, and citation metadata before deployment.
+
+## Publication history
+
 - [x] Standalone public scope defined
 - [x] Private-framework references removed
 - [x] Original conceptual figures copied with accessibility metadata
