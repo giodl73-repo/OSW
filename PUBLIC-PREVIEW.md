@@ -8,7 +8,15 @@ OSW has enough material for a useful public research preview. The next milestone
 
 The working atlas connects ocean states, named currents and eddies, route maps, measurement evidence, NASA animation navigation, and a Rust and WebAssembly query interface. Route conventions, source-reported measurements, model results, and dated observations have different meanings and must retain their labels.
 
-The [home page](index.html) introduces the project and its three exploration routes without loading the research store. The [home page browser review](research/public-preview-ui-review-v4.json) passed its desktop and narrow-layout checks, primary entrance checks, and loaded-image check. It does not load the research runtime. Continue to the [current and eddy atlas](almanac/reference-routes.html#route-atlas), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
+The [home page](index.html) introduces the project and its three exploration routes without loading the research store. The [home page browser review](research/public-preview-ui-review-v4.json) passed its desktop and narrow-layout checks, primary entrance checks, and loaded-image check. It does not load the research runtime. Continue to the [fast current and eddy map](almanac/public-map.html), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
+
+## Fast map review
+
+The [fast map browser review](research/public-map-browser-review-v1.json) passed current lookup, map-to-card zoom, return to the world, keyboard Home, focus transfer, browser Back, reload, empty-search recovery, and desktop and narrow-layout checks. All 111 current names, 136 named-eddy records, and four dated detections remain in this internal candidate. The first map and Agulhas card rendered in about 0.26 seconds on the cloud runner's loopback server; this is not a public-network performance result.
+
+The first map inventory is 975,737 bytes, with individual evidence records loaded on selection. The [Rust display export](research/public-display-build-v1.json) reuses the existing projection code and preserves the pinned identity inventory. It copies source-scoped rows without recomputing measurements. The [installed package](research/public-display-package-installation-v1.json) has exact export receipts. The large query store and detailed research cards remain separate; this review does not certify their startup performance or every advanced plot.
+
+Source-use review remains open for the candidate's complete source set. This faster map is not authorization to publish its pending provider records. Scientific and temporal scope labels, public source screening, and the selected deployment bundle still govern release.
 
 ## Research status
 

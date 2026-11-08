@@ -40,12 +40,12 @@
     $('feature-choice').value=rows.some(r=>r.id===selected)?selected:'';$('feature-choice').disabled=false;$('filter-count').textContent=`${rows.length} of ${entries.length} records in this view. Unlocated records remain available by name.`;
   }
   function evidenceRows(label,rows,parent) {
-    if(!rows.length)return;const section=node('section',null,parent);section.className='evidence-group';node('h3',`${label} · ${rows.length} records`,section);
+    if(!rows.length)return;const section=node('section',null,parent);section.className='evidence-group';node('h3',`${label} · ${rows.length} ${rows.length===1?'record':'records'}`,section);
     for(const row of rows){const item=node('div',null,section);item.className='evidence-item';
-      node('p',human(row.label||row.metric||row.evidence_role||row.kind||row.id||label),item);
+      node('p',human(row.label||row.quantity||row.metric||row.evidence_role||row.kind||label),item);
       for(const key of ['scope','scope_note','note','interpretation','method_note'])if(typeof row[key]==='string'&&row[key])node('p',row[key],item);
       const fields=Object.entries(row).filter(([k,v])=>/(?:_km|_m|_dbar|_km2|_days)$/.test(k)&&(typeof v==='number'||Array.isArray(v)&&v.every(n=>typeof n==='number')));
-      if((typeof row.value==='number'||Array.isArray(row.value)&&row.value.every(n=>typeof n==='number'))&&typeof(row.unit||row.units)==='string')fields.unshift([`${human(row.metric||'value')} (${row.unit||row.units})`,row.value]);
+      if((typeof row.value==='number'||Array.isArray(row.value)&&row.value.every(n=>typeof n==='number'))&&typeof(row.unit||row.units)==='string')fields.unshift([`${human(row.quantity||row.metric||'value')} (${row.unit||row.units})`,row.value]);
       if(fields.length){const dl=node('dl',null,item);for(const[k,v]of fields){node('dt',human(k),dl);node('dd',Array.isArray(v)?v.map(n=>n.toLocaleString()).join(' to '):v.toLocaleString(),dl);}}
       const detail=node('details',null,item);node('summary','Inspect the exact evidence record',detail);node('pre',JSON.stringify(row,null,2),detail);
     }
