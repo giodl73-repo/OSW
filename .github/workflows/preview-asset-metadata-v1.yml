@@ -1,0 +1,44 @@
+name: Preview asset metadata and custody screen v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/preview-asset-metadata-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+jobs:
+  screen:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            almanac/preview-data-candidate-v1
+            almanac/preview-review-v1
+            research/public-preview-source-use-decisions-v1.json
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/screen_preview_asset_metadata_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Screen metadata while preserving scientific evidence as opaque bytes
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          timeout --kill-after=1s 53s taskset -c "$cpu" nice -n 15 python analysis/screen_preview_asset_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-asset-metadata-v1
+          path: .pytest_cache/preview-asset-metadata-v1/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
