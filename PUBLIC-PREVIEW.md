@@ -18,6 +18,8 @@ The first map inventory is 975,737 bytes, with individual evidence records loade
 
 Source-use review remains open for the candidate's complete source set. This faster map is not authorization to publish its pending provider records. Scientific and temporal scope labels, public source screening, and the selected deployment bundle still govern release.
 
+The [first-visitor usability review](research/public-map-usability-review-v1.json), at source `499f60f070aa811788efa74b139d15f20290a313`, also passed the first-visit guide, plain-language map explanation, expandable evidence, inline source links, copy-view action, and announced search recovery. Desktop and narrow-card screenshots were inspected. No browser errors, failed HTTP requests, or large research-store requests were recorded. Later small text amendments clarify source-record counts, frozen-snapshot status, stored identity scope, and map projection; they do not add measurements. The [seven-role review](signals/roles/check/public-map-first-visitor-roles-check-2026-11-08.md) still requires the selected source-screened public package before publication. Browser task success does not establish a new visitor's comprehension or screen-reader speech output.
+
 ## Research status
 
 The latest depth research inventory is [version 57](research/current-depth-reference-inventory-v57.json), with 941 depth references across a catalog of 111 current identities. References include different metrics and scopes; this is not 941 complete current profiles. The catalog has 101 scoped identities and 10 unassessed family or system entries. Eddy work has size references for 102 entries; that does not establish dated footprints or verified state containment for every eddy.
