@@ -1,0 +1,53 @@
+{
+  "schema": "osw.public-preview-ui-review.v1",
+  "status": "FAIL",
+  "source_commit": "f2d5d7374cc2cf9756f79479af57e95c189f8195",
+  "scientific_pipeline_run": false,
+  "data_rebuilt": false,
+  "publication_approved": false,
+  "pages": [
+    {
+      "name": "screened",
+      "route": "/site-review/ocean-motion-screened/",
+      "errors": [],
+      "http_failures": [],
+      "status": "FAIL",
+      "failure": ""
+    },
+    {
+      "name": "atlas",
+      "route": "/almanac/reference-routes.html?atlas-layout=map#route-atlas",
+      "errors": [],
+      "http_failures": [],
+      "status": "FAIL",
+      "failure": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#route-atlas-features > *\").first\n"
+    },
+    {
+      "name": "dashboard",
+      "route": "/almanac/dashboard.html",
+      "errors": [],
+      "http_failures": [],
+      "status": "FAIL",
+      "failure": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#dashboard-beck-features > *\").first\n"
+    },
+    {
+      "name": "query",
+      "route": "/almanac/query.html",
+      "errors": [],
+      "http_failures": [],
+      "status": "FAIL",
+      "failure": "Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#query-rows tr\").first\n"
+    }
+  ],
+  "failures": [
+    "Candidate UI checks need fixes"
+  ],
+  "screened_bundle_byte_integrity": "PASS",
+  "active_seconds": 33.309,
+  "remaining_reviews": [
+    "public source-use reconciliation",
+    "full navigation and accessibility",
+    "first-time visitor comprehension",
+    "selected deployment bundle and hosted target"
+  ]
+}
