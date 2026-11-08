@@ -17,7 +17,7 @@ from compiled_depth_catalog_view_v20 import load_inventory
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / '.pytest_cache/preview-data-projection-v1'
 INPUT = 'almanac/display-data-v1/'
-PRIOR_SECONDS = 0.536749197
+PRIOR_SECONDS = 2.536749197  # Includes a conservative two seconds for failed run 42526800644.
 HELD_SOURCE_IDS = {'source:179111cb1095bbc9', 'source:80d0bf24c139328c',
                    'source:a45eadc81e6d9330', 'source:fda01be082655d33'}
 HELD_URLS = {'https://www.horizonmarine.com/loop-current-eddies',
@@ -30,7 +30,8 @@ MAP_ROLES = {'editorial_locator', 'editorial_reference_route', 'osw_editorial_re
 EXCLUDED_KEYS = {'geometry', 'coordinates', 'projected', 'raw_record', 'raw_text', 'source_text',
                  'source_text_excerpt', 'source_quote', 'quote', 'excerpt', 'transcript',
                  'registry_context', 'registry_row_index', 'registry_column'}
-OBJECT_KEYS = {'id', 'label', 'type', 'basin', 'identity_level', 'identity_scope_note', 'scope_notes'}
+OBJECT_KEYS = {'id', 'label', 'type', 'basin', 'identity_level', 'identity_scope_note', 'scope_notes',
+               'state_codes', 'state_evidence', 'source_ids'}
 
 
 def encoded(value):
@@ -100,12 +101,17 @@ def bibliographic_context(value):
             'publication_year', 'doi', 'url', 'source_url', 'doi_url', 'source_locator',
             'source_publication', 'licence', 'license', 'source_licence', 'source_license',
             'interpretation', 'scope', 'scope_note', 'qualification', 'method_note'}
-    out = {k: clean(v) for k, v in value.items() if k in keep}
+    out = {k: clean(v) for k, v in value.items() if k in keep
+           or (k.endswith(('url', '_doi', '_citation')) and isinstance(v, str))}
     for key, child in value.items():
         if isinstance(child, dict) and key not in out:
             part = bibliographic_context(child)
             if part:
                 out[key] = part
+        elif isinstance(child, list) and key not in out:
+            parts = [part for item in child if isinstance(item, dict) and (part := bibliographic_context(item))]
+            if parts:
+                out[key] = parts
     return out
 
 
@@ -118,7 +124,7 @@ def main():
     signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError('Carried source-use projection budget')))
     signal.alarm(53)
     save = lambda value: (OUT / 'query-ledger.json').write_bytes(encoded(value))
-    query = DescriptorQuery(save, prior_numeric=115709, prior_bytes=8358933)
+    query = DescriptorQuery(save, prior_numeric=132931, prior_bytes=15497827)
     read = query.reader(lambda path: (ROOT / path).read_bytes())
     files = {}
     receipts = []
@@ -164,7 +170,20 @@ def main():
         for row in depths['evidence']:
             depth_by_owner[row['entity_id']].append(row)
         contexts = {key: bibliographic_context(value) for key, value in depths['source_contexts'].items()}
+        for context in contexts.values():
+            for url in urls(context):
+                new_source_urls[url].add('current_depth_context')
         put('depth-contexts.json', {'schema': 'osw.preview-depth-contexts.v1', 'contexts': contexts}, True)
+        nasa_root = 'almanac/release/v0.1.0-rights-screened-preview/'
+        nasa_tiles = json.loads(read(nasa_root + 'tiles.json'))
+        nasa_state_relations = json.loads(read(nasa_root + 'tile_state_relations.json'))
+        old_entities = json.loads(read(nasa_root + 'entities.json'))
+        states = [{k: r[k] for k in ['id', 'type', 'label', 'state_code'] if k in r}
+                  for r in old_entities if r.get('type') == 'osw_state']
+        assert len(nasa_tiles) == 70 and states
+        put('nasa-navigation.json', {'schema': 'osw.preview-nasa-navigation.v1', 'tiles': nasa_tiles,
+                                    'tile_state_relations': nasa_state_relations, 'states': states,
+                                    'interpretation': 'NASA modeled-motion navigation. Tile/state overlaps are display overlaps, not evidence that NASA identified a named current or eddy.'}, True)
         decisions = {r['id']: r for r in source_decisions['entries']}
         # Dataset rows retain bibliography only until the particular value use is reviewed.
         held_datasets = {key for key, row in decisions.items() if row['disposition'] == 'dataset_reuse_review_required'}
@@ -189,6 +208,7 @@ def main():
                       'object': {k: clean(v) for k, v in obj.items() if k in OBJECT_KEYS},
                       'measurements': [], 'widths': [], 'reference_routes': [],
                       'depth_references': [], 'sources': []}
+            public['object']['source_ids'] = [s for s in obj.get('source_ids', []) if s not in HELD_SOURCE_IDS]
             for field in ['measurements', 'widths', 'reference_routes']:
                 for row in record[field]:
                     if held(row, held_datasets):
@@ -208,7 +228,7 @@ def main():
                 for url in urls(row):
                     new_source_urls[url].add('current_depth_reference')
             # Retain every required source row, including the missing-context supplement.
-            for source_id in set(refs(public)):
+            for source_id in sorted(set(refs(public))):
                 if source_id in sources:
                     public['sources'].append(sources[source_id])
                     source_uses[source_id].add(identifier)
@@ -268,6 +288,8 @@ def main():
                     'withheld': dict(withheld), 'unresolved_required_sources': {k: sorted(v) for k, v in missing.items()},
                     'additional_factual_source_uses_to_review': [{'url': url, 'uses': sorted(uses)} for url, uses in sorted(new_source_urls.items())],
                     'depth_context_ids': sorted(contexts), 'depth_contexts_without_bibliographic_metadata': [k for k, v in contexts.items() if not v],
+                    'state_association_source_review_required': True,
+                    'nasa_navigation_tiles': len(nasa_tiles), 'osw_state_names': len(states),
                     'source_ids_used': sorted(source_uses), 'files': receipts,
                     'numeric_values_recalculated': False, 'native_provider_requests': 0,
                     'scientific_claim_review_granted': False, 'publication_approved': False,
@@ -285,7 +307,9 @@ def main():
     (OUT / 'result.json').write_bytes(report)
     with zipfile.ZipFile(OUT / 'package.zip', 'w', compression=zipfile.ZIP_DEFLATED) as archive:
         for path, raw in sorted(files.items()):
-            archive.writestr(path, raw)
+            info = zipfile.ZipInfo(path, date_time=(2026, 11, 8, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            archive.writestr(info, raw)
     signal.alarm(0)
     print(json.dumps({'status': metadata['status'], 'counts': dict(counts), 'depth_references': joined_depth_count,
                       'eddy_references': len(case_rows), 'package_bytes': total,
