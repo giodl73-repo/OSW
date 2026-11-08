@@ -8,7 +8,7 @@ OSW has enough material for a useful public research preview. The next milestone
 
 The working atlas connects ocean states, named currents and eddies, route maps, measurement evidence, NASA animation navigation, and a Rust and WebAssembly query interface. Route conventions, source-reported measurements, model results, and dated observations have different meanings and must retain their labels.
 
-The [home page](index.html) introduces the project and its three exploration routes without loading the research store. Its browser review is pending. Continue to the [current and eddy atlas](almanac/reference-routes.html#route-atlas), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
+The [home page](index.html) introduces the project and its three exploration routes without loading the research store. The [home page browser review](research/public-preview-ui-review-v4.json) passed its desktop and narrow-layout checks, primary entrance checks, and loaded-image check. It does not load the research runtime. Continue to the [current and eddy atlas](almanac/reference-routes.html#route-atlas), the [coverage dashboard](almanac/dashboard.html), and the [query workbench](almanac/query.html). These are working review surfaces; their presence here does not establish approval for public deployment.
 
 ## Research status
 
