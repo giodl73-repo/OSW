@@ -1,0 +1,69 @@
+name: Verify Pacific NEC product-axis runtime compilation v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-product-axis-runtime-request-v1.json
+      - .github/workflows/pacific-nec-product-axis-runtime-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_PACIFIC_NEC_PRODUCT_RUNTIME_V1: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/pacific-nec-product-axis-runtime-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-product-axis-runtime-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-product-axis-runtime-request.v1' and type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  runtime-core:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install frozen Rust toolchain on one low-priority CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+      - name: Verify native tests and production WASM compilation sequentially
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_nec_product_axis_runtime_v1.py
+      - name: Retain compact logs and compiler proof only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-product-axis-runtime-evidence-v1
+          path: .pytest_cache/pacific-nec-product-axis-runtime-v1/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

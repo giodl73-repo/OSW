@@ -1,0 +1,184 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.02,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native latitude-gate maxima and maxima adjacent to missing upper200m velocity support remain unresolved;never substitute a weaker interior profile. All candidate flags and local peaks remain. Geographic component maxima inside broad gates can be mesoscale or other-front flow and do not independently validate named-current or branch membership.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.southern-reaches-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New eastern South Pacific and South Australian regional cases declared before field acquisition. Reuse frozen transverse v2 collection, selection, connected-layer and bounded read helpers without numerical changes.",
+  "geometry_provenance": "Nine OSW exploratory meridional search windows follow retained regional conventions: South Pacific103–88W near two historical STF crossings, and South Australian135.5–142.5E eastern-Bight to western Bass Strait approaches. All windows are editorial, not digitized axes, full widths, observed seasonal paths or error bounds. Frontal location is not velocity membership. Land/shallow shelf or incomplete upper200m columns may be excluded, limiting coastal coverage.",
+  "column_selector": "Frozen complete native0–200m signed eastward trapezoidal integral selector. Both diffuse/regional cases use declared primary5cm/s and surface>2cm/s, with qualifying upper200m core and positive integral. Greatest integral wins with first southern native index tie. Gate/support-edge maxima remain unresolved; no weaker interior substitution, gate tuning, sign reversal or cutoff replacement after outcomes.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all18targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:south-pacific": {
+      "entity_id": "current:south-pacific",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "Partial eastern South Pacific103–88W reach near historical STF-crossing context. Historical P18/P19 fronts were observed in different years; they do not establish one simultaneous velocity axis. Exclude western basin/Chatham Rise, ACC export branches, Chile-Peru coastal flow, northward recirculation and independent split bands as targets. Geographic eastward maxima do not independently validate named-current/front/branch membership. The14C-at150m frontal criterion and3000m dynamic-height reference are not current depth boundaries; no thermal gate is used."
+    },
+    "current:south-australian": {
+      "entity_id": "current:south-australian",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": 0.02,
+      "temperature_gate": null,
+      "branch_scope": "Partial South Australian shelf-edge reach135.5–142.5E under RidgwayCondie2004 mainly austral-winter naming convention. Exclude Leeuwin flow west of eastern Bight, Zeehan off Tasmania, gulf outflows and summer westward reversal as target identities. January and July eastward component outcomes remain separate; no sign flip or forced winter continuity. Shallow shelf exclusion and offshore eddy/recirculation contamination are explicit limitations. Fixed eastward component is not local along-slope flow or an independently identified warm-saline core."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-103w",
+      "entity_id": "current:south-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -103,
+      "latitude_gate_degrees_north": [
+        -36.3,
+        -31.3
+      ]
+    },
+    {
+      "id": "section-100w",
+      "entity_id": "current:south-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -100,
+      "latitude_gate_degrees_north": [
+        -36.5,
+        -31.5
+      ]
+    },
+    {
+      "id": "section-96w",
+      "entity_id": "current:south-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -96,
+      "latitude_gate_degrees_north": [
+        -36.7,
+        -31.7
+      ]
+    },
+    {
+      "id": "section-92w",
+      "entity_id": "current:south-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -92,
+      "latitude_gate_degrees_north": [
+        -36.9,
+        -31.9
+      ]
+    },
+    {
+      "id": "section-88w",
+      "entity_id": "current:south-pacific",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -88,
+      "latitude_gate_degrees_north": [
+        -37,
+        -32
+      ]
+    },
+    {
+      "id": "section-135p5e",
+      "entity_id": "current:south-australian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 135.5,
+      "latitude_gate_degrees_north": [
+        -37.2,
+        -34.2
+      ]
+    },
+    {
+      "id": "section-138e",
+      "entity_id": "current:south-australian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 138,
+      "latitude_gate_degrees_north": [
+        -38,
+        -35
+      ]
+    },
+    {
+      "id": "section-140e",
+      "entity_id": "current:south-australian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 140,
+      "latitude_gate_degrees_north": [
+        -39.5,
+        -36.5
+      ]
+    },
+    {
+      "id": "section-142p5e",
+      "entity_id": "current:south-australian",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 142.5,
+      "latitude_gate_degrees_north": [
+        -41,
+        -38
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2004GL022070",
+      "locator": "ChaigneauPizarro2005 sections2,3.1[7],3.2[14–17],Table1",
+      "scope": "Publisher HTML freshly reviewed November2,2026. Surface drifter mean1979–2004 and P18/P19 hydrographic occupations1994/1993 are different supports. Near35S secondary surface maximum is about7cm/s in source mean context, motivating a declared5cm/s diagnostic rather than a physical boundary. Reported STF crossings103W33.8S and88W34.5S are frontal proxies, not velocity axes. Source14C-at150m criterion and3000m dynamic-height reference do not establish current bottom or thickness. IRD PDF reopen redirected to maintenance; no new pixels, source arrays or digitization claimed."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC001921",
+      "locator": "RidgwayCondie2004 Abstract,Introduction[4–7],section9[56–58]",
+      "scope": "Publisher HTML freshly reviewed November2,2026. Mainly winter eastern-Bight to western Bass Strait South Australian shelf-edge component is distinct from Leeuwin and Zeehan naming regions. Seasonally reversing winds and historical summer reversal mean no year-round eastward axis is assumed. Source2000dbar/300dbar geostrophic references and shelf bathymetry are not current bottoms. No full-system5500km length, width, warm-saline membership or matched source depth is assigned to these windows."
+    }
+  ],
+  "input_sha256": {
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "research/south-pacific-eastern-front-reach-reference-path-candidate.json": "8f5450e07b3d47867d57289d7bafddb502ab8b8b7f5c27d8fb67b1485f4fcedb",
+    "research/south-pacific-eastern-front-reach-layer-time-scope-audit.json": "391b88da4e6660d7ad6ca8d2055333d26dca34b89fac4713720cff3a8112c189",
+    "research/south-australian-reference-path-candidate.json": "4b76e5d654f2056759137400733b4a68fe5326773eaf758e6bf21150d7d86ec3"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3
+}

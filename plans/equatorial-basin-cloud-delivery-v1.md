@@ -1,0 +1,15 @@
+# Five basin-qualified current identities: cloud candidate
+
+Use the exact AzCC installed parent and the frozen equatorial basin v2 identity contract. This delivery adds five measurement targets and their family/source/query navigation. It adds no physical dimensions, observations, publication sources, geometry or state intersections.
+
+The engine controller is a separate version derived from `check_azcc_onken_delivery_v1.py`. Its historical129 main queries and50 source queries remain. One named-current inventory expectation changes from106 to111;51 additional main queries and16 additional source root/pointer queries exercise the identity extension. No scientific producer or original-source acquisition runs.
+
+The candidate must pass268 Rust library tests,180 complete main-query native/WASM comparisons,66 complete source-query comparisons, and all three complete API comparisons against the independent preservation model. Preserve all historical canonical records and ordering and all636 source strings. Add exactly35 identity/planning rows across seven collections, including five membership rows, and three indexed documents. Existing widths178, width samples463, reference routes83 and publication/source rows217 remain unchanged.
+
+Compiler evidence must pin111 Rust/Cargo inputs and164 compile-time data inputs, replacing only the generated index-catalog digest. Required production dependencies include the v2 identity contract, separate planning source, new Rust module and compiled index guard. Test-only fixture data must not enter production compilation.
+
+Browser checks run sequentially in Chromium at1100px and320px, using one page and a single renderer process. They verify all five membership cards, filtered queries and inspect behavior, an exact source pointer, seven current/family object pages, actual family/member link navigation, all five atlas selections without map positions, accepted admission cards, five empty seasonal plans with playback disabled, and exact dashboard contents/update indicators. Seventy screenshots are expected; each capture rejects clipping. Page errors, missing assets, original downloads and horizontal page overflow fail the run. Screenshots still require individual visual review after the job.
+
+Only one heavy cloud job may run in `osw-current-gap-delivery`, with `cancel-in-progress:false`, one CPU, nice15 and single numerical/compiler/test workers. No native/WASM build, browser run or installed bulk data load occurs locally. Historical source-processing authorization remains disabled. The request authorizes candidate artifacts and verification only; installation, main merge and local bulk preview synchronization remain disabled.
+
+If a job fails, preserve the source and failure receipts. Repair the relevant component in a new version. Reuse a verified saved engine for browser-only repairs when possible; do not rebuild merely because observation timed out. Install only a completely verified saved candidate under a separate installation request, then independently reconcile actual coverage. This identity delivery does not close length, width, seasonal-range or uncertainty gaps.

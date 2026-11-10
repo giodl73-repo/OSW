@@ -1,0 +1,86 @@
+name: Verify Pacific NEC product-axis candidate native and WASM delivery v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-product-axis-delivery-request-v1.json
+      - .github/workflows/pacific-nec-product-axis-delivery-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_PACIFIC_NEC_PRODUCT_DELIVERY_V1: "1"
+  OSW_CHEN_INDIAN_SEC_DELIVERY_V2: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/pacific-nec-product-axis-delivery-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-product-axis-delivery-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-product-axis-delivery-request.v1' and type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  candidate-delivery:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify pure data, preservation and renderer checks sequentially
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pacific_nec_product_axis*_v1.py'
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_check_pacific_nec_product_axis_delivery_v1.py
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_audit_pacific_nec_product_axis_parent_v1.py
+          taskset -c "$cpu" nice -n 15 node --test analysis/test_surface_product_axes_v1.cjs
+      - name: Install frozen Rust toolchain on one low-priority CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+      - name: Verify complete candidate native/WASM APIs sequentially
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_nec_product_axis_delivery_v1.py
+      - name: Retain compact comparisons, logs and compiler proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-product-axis-delivery-evidence-v1
+          path: .pytest_cache/pacific-nec-product-axis-delivery-v1/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Retain matching candidate engine on cloud only for browser verification
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-product-axis-delivery-engine-v1
+          path: .pytest_cache/pacific-nec-product-axis-delivery-work-v1/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

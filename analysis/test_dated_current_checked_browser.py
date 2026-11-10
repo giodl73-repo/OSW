@@ -1,4 +1,5 @@
 """Standalone dates, local section scope, checked loading and image alignment."""
+from query_packet import read_bundle_bytes
 import json,os,subprocess
 from datetime import date
 from urllib.parse import parse_qs,urlparse
@@ -86,7 +87,7 @@ def main():
             other=browser.new_page();other.on('pageerror',lambda e:errors.append(str(e)))
             if kind=='load_failure':other.route('**/query-data.json',lambda r:r.fulfill(status=503,body='Unavailable'))
             else:
-                bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+                bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
                 del bundle['manifest']['atlas_receipts'][WIDTHS];route_atlas_bundle(other,bundle)
             other.goto(BASE)
             expect(other.locator('#dated-status')).to_contain_text('HTTP 503' if kind=='load_failure' else 'Checked dated evidence unavailable',timeout=90000)

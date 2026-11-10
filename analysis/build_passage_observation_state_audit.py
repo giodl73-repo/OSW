@@ -1,4 +1,5 @@
 """Independent point-location audit; never infer passage/current containment."""
+from query_packet import read_bundle_bytes
 import hashlib
 import json
 from pathlib import Path
@@ -9,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'research/indonesian-throughflow-observation-state-audit.json'
 
 def build():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     states=sorted([{'code':r['code'],'geometry':r['display_geometry']} for r in bundle['collections']['states'] if 'display_geometry' in r],key=lambda r:r['code'])
     polygons={r['code']:shape(r['geometry']) for r in states}
     rows=[]

@@ -3,6 +3,8 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
+use std::ops::Deref;
+use std::sync::OnceLock;
 
 const CATALOG: &str = include_str!("../../../almanac/index-catalog.json");
 #[derive(Deserialize)]
@@ -12,8 +14,120 @@ struct Bundle {
     documents: BTreeMap<String, String>,
 }
 pub struct IndexStore {
-    pub(crate) documents: BTreeMap<String, Value>,
+    pub(crate) documents: BTreeMap<String, SourceDocument>,
     catalog: Value,
+}
+/// Authenticate every original byte at admission; decode only requested sources.
+/// Large daily corpora must not force every atlas view to allocate their trees.
+pub(crate) struct SourceDocument {
+    raw: String,
+    value: OnceLock<Value>,
+}
+impl Deref for SourceDocument {
+    type Target = Value;
+    fn deref(&self) -> &Value {
+        self.value
+            .get_or_init(|| serde_json::from_str(&self.raw).expect("admitted JSON source"))
+    }
+}
+impl serde::Serialize for SourceDocument {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        self.deref().serialize(serializer)
+    }
+}
+// Validate every nested number with the same parser as Value, while discarding
+// payloads. IgnoredAny alone would accept an out-of-range number such as1e400.
+struct CheckedJson;
+impl<'de> Deserialize<'de> for CheckedJson {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        struct Check;
+        impl<'de> serde::de::Visitor<'de> for Check {
+            type Value = CheckedJson;
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("valid finite JSON")
+            }
+            fn visit_unit<E: serde::de::Error>(self) -> Result<Self::Value, E> {
+                Ok(CheckedJson)
+            }
+            fn visit_bool<E: serde::de::Error>(self, _: bool) -> Result<Self::Value, E> {
+                Ok(CheckedJson)
+            }
+            fn visit_i64<E: serde::de::Error>(self, _: i64) -> Result<Self::Value, E> {
+                Ok(CheckedJson)
+            }
+            fn visit_u64<E: serde::de::Error>(self, _: u64) -> Result<Self::Value, E> {
+                Ok(CheckedJson)
+            }
+            fn visit_f64<E: serde::de::Error>(self, v: f64) -> Result<Self::Value, E> {
+                if v.is_finite() {
+                    Ok(CheckedJson)
+                } else {
+                    Err(E::custom("nonfinite JSON number"))
+                }
+            }
+            fn visit_str<E: serde::de::Error>(self, _: &str) -> Result<Self::Value, E> {
+                Ok(CheckedJson)
+            }
+            fn visit_seq<A: serde::de::SeqAccess<'de>>(
+                self,
+                mut seq: A,
+            ) -> Result<Self::Value, A::Error> {
+                while seq.next_element::<CheckedJson>()?.is_some() {}
+                Ok(CheckedJson)
+            }
+            fn visit_map<A: serde::de::MapAccess<'de>>(
+                self,
+                mut map: A,
+            ) -> Result<Self::Value, A::Error> {
+                while map.next_key::<serde::de::IgnoredAny>()?.is_some() {
+                    map.next_value::<CheckedJson>()?;
+                }
+                Ok(CheckedJson)
+            }
+        }
+        d.deserialize_any(Check)
+    }
+}
+struct SourceHeader(Value);
+impl<'de> Deserialize<'de> for SourceHeader {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        struct Header;
+        impl<'de> serde::de::Visitor<'de> for Header {
+            type Value = SourceHeader;
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("JSON source object")
+            }
+            fn visit_map<A: serde::de::MapAccess<'de>>(
+                self,
+                mut map: A,
+            ) -> Result<Self::Value, A::Error> {
+                let mut schema = Value::Null;
+                while let Some(key) = map.next_key::<String>()? {
+                    if key == "schema" {
+                        schema = map.next_value::<Value>()?;
+                    } else {
+                        map.next_value::<CheckedJson>()?;
+                    }
+                }
+                Ok(SourceHeader(schema))
+            }
+        }
+        d.deserialize_map(Header)
+    }
+}
+fn source_header(raw: &str) -> Result<(bool, bool, Value), String> {
+    let first = raw.trim_start().as_bytes().first().copied();
+    let object = first == Some(b'{');
+    let array = first == Some(b'[');
+    let schema = if object {
+        serde_json::from_str::<SourceHeader>(raw)
+            .map_err(|_| "Invalid index source JSON")?
+            .0
+    } else {
+        serde_json::from_str::<CheckedJson>(raw).map_err(|_| "Invalid index source JSON")?;
+        Value::Null
+    };
+    Ok((object, array, schema))
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -35,8 +149,8 @@ fn escaped(key: &str) -> String {
 fn filtered(row: &Value, filter: &crate::Filter) -> Result<bool, String> {
     let value = crate::field(row, &filter.field);
     Ok(match filter.op.as_str() {
-        "eq" => value == Some(&filter.value),
-        "ne" => value != Some(&filter.value),
+        "eq" => value.is_some_and(|actual| crate::filter_equal(actual, &filter.value)),
+        "ne" => value.is_none_or(|actual| !crate::filter_equal(actual, &filter.value)),
         "is_null" => value.is_none_or(Value::is_null),
         "not_null" => value.is_some_and(|v| !v.is_null()),
         "contains" => value.is_some_and(|v| {
@@ -968,7 +1082,7 @@ impl IndexStore {
                 .documents
                 .get(path)
                 .ok_or("Missing index source bytes")?;
-            let doc: Value = serde_json::from_str(raw).map_err(|_| "Invalid index source JSON")?;
+            let (object, array, schema) = source_header(raw)?;
             if path == crate::ursa_contour::PATH {
                 crate::ursa_contour::validate_raw(raw)?;
             }
@@ -977,10 +1091,18 @@ impl IndexStore {
             }
             if descriptor["source_sha256"] != format!("{:x}", Sha256::digest(raw.as_bytes()))
                 || descriptor["source_bytes"] != raw.len()
-                || (descriptor["root_kind"] == "array" && !doc.is_array())
-                || (descriptor["root_kind"] == "object" && !doc.is_object())
-                || doc["schema"] != descriptor["source_schema"]
-                || documents.insert(path.to_string(), doc).is_some()
+                || (descriptor["root_kind"] == "array" && !array)
+                || (descriptor["root_kind"] == "object" && !object)
+                || schema != descriptor["source_schema"]
+                || documents
+                    .insert(
+                        path.to_string(),
+                        SourceDocument {
+                            raw: raw.clone(),
+                            value: OnceLock::new(),
+                        },
+                    )
+                    .is_some()
             {
                 return Err("Index source hash, shape, schema or identity mismatch".into());
             }
@@ -994,6 +1116,11 @@ impl IndexStore {
             documents.get("research/norwegian-atlantic-branch-width-scope-audit.json")
         {
             crate::proposed_widths::validate_audit(doc)?;
+        }
+        if let Some(doc) =
+            documents.get("research/norwegian-front-bosse-2019-corrected-width-record.json")
+        {
+            crate::proposed_widths::validate_bosse_record(doc)?;
         }
         Ok(Self { documents, catalog })
     }
@@ -1090,6 +1217,32 @@ impl IndexStore {
 mod tests {
     use super::*;
     #[test]
+    fn source_admission_checks_syntax_root_and_schema_without_allocating_payload() {
+        assert_eq!(
+            source_header(r#"{"schema":"sample.v1","profiles":[{"a":1},null]}"#).unwrap(),
+            (true, false, json!("sample.v1"))
+        );
+        assert_eq!(
+            source_header("[1,null,3]").unwrap(),
+            (false, true, Value::Null)
+        );
+        assert!(source_header(r#"{"schema":"sample.v1","profiles":[1,]}"#).is_err());
+        assert!(source_header(r#"{"schema":"sample.v1"} trailing"#).is_err());
+        assert!(source_header(r#"{"schema":"sample.v1","value":1e400}"#).is_err());
+        let doc = SourceDocument {
+            raw: r#"{"schema":"sample.v1","value":-0.0,"missing":null}"#.into(),
+            value: OnceLock::new(),
+        };
+        assert!(doc.value.get().is_none());
+        assert!(doc["value"].as_f64().unwrap().is_sign_negative());
+        assert!(doc["missing"].is_null());
+        assert!(doc.value.get().is_some());
+        assert_eq!(
+            serde_json::to_value(&doc).unwrap(),
+            serde_json::from_str::<Value>(&doc.raw).unwrap()
+        );
+    }
+    #[test]
     fn source_field_queries_keep_nulls_numeric_values_and_pointer_addresses_distinct() {
         let row = json!({"record":{"name":"São eddy","value":null,"radius":0,"states":["CAMR"]}});
         let run = |op: &str, field: &str, value: Value| {
@@ -1109,5 +1262,57 @@ mod tests {
         assert!(run("contains", "record.name", json!("SÃO")));
         assert!(!run("gt", "record.value", json!(0)));
         assert_eq!(escaped("a/b~c"), "a~1b~0c");
+    }
+    #[test]
+    fn source_field_numeric_equality_preserves_exact_values_and_missingness() {
+        for (actual, requested, equal) in [
+            ("-919.0", "-919", true),
+            ("73", "73.0", true),
+            ("0.0", "0", true),
+            ("3.5", "3", false),
+            ("9007199254740993", "9007199254740992.0", false),
+            ("9223372036854775807", "9223372036854775808.0", false),
+            ("9223372036854775808", "9223372036854775808.0", true),
+            ("18446744073709551615", "18446744073709551616.0", false),
+            ("\"73\"", "73", false),
+            ("true", "1", false),
+            ("null", "0", false),
+            ("null", "null", true),
+        ] {
+            let actual: Value = serde_json::from_str(actual).unwrap();
+            let requested: Value = serde_json::from_str(requested).unwrap();
+            for (a, b) in [(&actual, &requested), (&requested, &actual)] {
+                let row = json!({"record":{"value":a}});
+                for (op, expected) in [("eq", equal), ("ne", !equal)] {
+                    assert_eq!(
+                        filtered(
+                            &row,
+                            &crate::Filter {
+                                op: op.into(),
+                                field: "record.value".into(),
+                                value: b.clone()
+                            }
+                        )
+                        .unwrap(),
+                        expected,
+                        "{a} {op} {b}"
+                    );
+                }
+            }
+        }
+        for (op, expected) in [("eq", false), ("ne", true)] {
+            assert_eq!(
+                filtered(
+                    &json!({"record":{}}),
+                    &crate::Filter {
+                        op: op.into(),
+                        field: "record.missing".into(),
+                        value: Value::Null
+                    }
+                )
+                .unwrap(),
+                expected
+            );
+        }
     }
 }

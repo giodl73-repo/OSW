@@ -1,0 +1,154 @@
+{
+  "schema": "osw.eddy-source-diagnostic-rejection-review.v1",
+  "review_date": "2026-11-01",
+  "status": "REJECTED_AMBIGUOUS_PEAKS_NO_MEASUREMENTS",
+  "primary_position_review_file": "research/eddy-qe2-position-source-review-v1.json",
+  "primary_position_review_sha256": "b82e66d128b5167b2310e01ee18bf6ac809af230499fe148ea6150aa41b40d98",
+  "source_position_file": "research/eddy-source-position-references-v4.json",
+  "source_position_sha256": "351020835d08f09ff5e842d4c25afbb707ccd4a3372ec11c1a7f539db471bafe",
+  "cloud_review": {
+    "run_id": 41321340702,
+    "source_commit": "bbd5593993998722f7e4e888dd1867daf4a71a78",
+    "run_conclusion": "success",
+    "artifact": {
+      "id": 13088723656,
+      "bytes": 46682,
+      "sha256": "b0e5036c0885762c4df0444560e12715c75de8318cb81f0dce64f3044e9729cb"
+    },
+    "result": {
+      "schema": "osw.eddy-speed-contour-pilot-result.v1",
+      "status": "PASS_EXECUTION_SPEED_CONTOUR_REVIEW_NO_ADMISSION",
+      "source_commit": "bbd5593993998722f7e4e888dd1867daf4a71a78",
+      "request_sha256": "3a9cccb660b366d90c52c65bb11f796ee2bad9cb61faf91b58110213e6880597",
+      "source": {
+        "url": "https://data.griidc.org/api/file/download/947138",
+        "bytes": 757416604,
+        "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+      },
+      "cases": [
+        {
+          "case_id": "qe2-2002-08-08-source-point",
+          "source_name": "QE-2",
+          "owner_id": "eddy:horizon:loop-40-secondary",
+          "date": "2002-08-08",
+          "source_point": [
+            -88.2,
+            23.8
+          ],
+          "source_point_role": "source_map_proxy_in_named_eastern_split_feature",
+          "source_position_file": "research/eddy-source-position-references-v4.json",
+          "source_position_id": "qe2-2002-08-08-source-point",
+          "role": "qualified_named_source_case_diagnostic_no_physical_join",
+          "source_time_index": 3506,
+          "input_height_reference": "native_daily_ADT_m_not_demeaned",
+          "sweeps": [
+            {
+              "status": "REJECTED",
+              "reason": "multiple_peaks_in_search_region",
+              "level_step_m": 0.005,
+              "profile": []
+            },
+            {
+              "status": "REJECTED",
+              "reason": "multiple_peaks_in_search_region",
+              "level_step_m": 0.0025,
+              "profile": []
+            }
+          ],
+          "convergence": {
+            "status": "REJECTED",
+            "reason": "one_or_both_step_sweeps_rejected"
+          }
+        }
+      ],
+      "measurements_admitted": 0,
+      "physical_identity_joins_created": 0,
+      "runtime_changed": false,
+      "elapsed_seconds": 3.9,
+      "images": {
+        "qe-2-2002-08-08-speed-contour.png": {
+          "bytes": 53684,
+          "sha256": "c06fbae745370f396c2ca872c833857888fc1a4d24debd70f3be5835d4de9ccf"
+        }
+      }
+    }
+  },
+  "source_tests_passed": {
+    "geometry": 7,
+    "speed_core": 12
+  },
+  "actual_diagnostic_image_pixels_reviewed": true,
+  "source_pdf_pages_actually_reviewed": [
+    104,
+    105
+  ],
+  "native_chart_actually_reviewed": true,
+  "method_files_sha256": {
+    "analysis/eddy_speed_contours_v1.py": "c6c83440ec24d461808eb42e3b9beb52540751e84f0c4e5070ced7c03a2b40f8",
+    "analysis/eddy_altimetry_contours_v1.py": "0d22d60c43bb4882001864b9ba52fdd8482a9db5c7653a4a49573b983aed74e0",
+    "analysis/eddy_source_bold_isoline_spans_v1.py": "e5b7939e247a102c4462cb7d153b1986dc236c088893bf03a4249ebcb93675d9"
+  },
+  "closed_ink_diagnostic": {
+    "original_native_png_sha256": "eaf7e5049b809c00673d04d1387eec566614ec4995ce1bb11872dc62c141168d",
+    "roi_xyxy_inclusive": [
+      470,
+      475,
+      565,
+      559
+    ],
+    "maximum_rgb_channels": [
+      150,
+      175
+    ],
+    "results": [
+      {
+        "gate": 150,
+        "status": "REJECTED",
+        "reason": "Reader assertion failed with no explicit message; no dominant supported closed outline admitted."
+      },
+      {
+        "gate": 175,
+        "status": "REJECTED",
+        "reason": "Reader assertion failed with no explicit message; no dominant supported closed outline admitted."
+      }
+    ],
+    "missing_ink_reconstructed": false,
+    "roi_tuned_after_failure": false
+  },
+  "register_unchanged": {
+    "json_sha256": "5c253e70abd25b8320b52ec1c971595823dde1d7fcf8717185455c1c77c5bf1d",
+    "csv_sha256": "1eac3a1ead3cfec6688cbd65f3b3f1e1b594f11b9c02b49a60805e19193b94d7",
+    "counts": {
+      "identities": 136,
+      "individual_source_records": 112,
+      "recurrent_regions": 20,
+      "families": 4,
+      "evidence_records": 435,
+      "size_records": 190,
+      "size_owners": 97,
+      "duration_owners": 101,
+      "recurrence_owners": 12,
+      "structure_owners": 15,
+      "kinematics_owners": 73,
+      "non_registry_entries": 40,
+      "non_registry_entries_with_references": 40,
+      "registry_entries_with_own_references": 82,
+      "linked_primary_context_entries": 13,
+      "secondary_entries_with_own_references": 2,
+      "entries_without_numeric_or_primary_context": 1,
+      "identities_with_measurements": 122,
+      "identities_without_measurements": 14,
+      "conflicted_size_records": 2,
+      "source_track_spans": 6
+    },
+    "remaining_size_reference_gaps": 39
+  },
+  "interpretation": "Both 0.005 m and 0.0025 m sweeps reject the fixed manually read source proxy because there are multiple strict local maxima within 150 km. No contour, size or speed is selected. The proxy, search radius and gates were not changed. Separate source-chart ink-reader diagnostics also reject; no gaps repaired or manual physical boundary supplied.",
+  "next_action": "Seek a primary source with an explicitly defined individual QE2 dimension or an independently specified contour. Do not rerun another seed or weaken the frozen uniqueness gate to obtain a result.",
+  "measurements_admitted": 0,
+  "physical_identity_joins_created": 0,
+  "raw_ocean_fields_locally_downloaded": false,
+  "raw_ocean_fields_in_artifact": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

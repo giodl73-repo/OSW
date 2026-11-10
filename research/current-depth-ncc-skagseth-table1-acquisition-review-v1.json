@@ -1,0 +1,52 @@
+{
+  "schema": "osw.current-depth-ncc-primary-table-acquisition-review.v1",
+  "status": "CLOUD_GUARDS_PASS_PRIMARY_TABLE_HTTP403_NO_MEASUREMENT_ADMISSION",
+  "source_commit": "a61934f4e8da760458abac428f5a165a55601ee6",
+  "cloud_run_id": 41632720047,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41632720047",
+  "cloud_status": "completed",
+  "cloud_conclusion": "success",
+  "cloud_conclusion_scope": "Six synthetic custody-guard tests passed and the one actual request outcome was recorded. Workflow success does not mean primary table retrieval succeeded.",
+  "cloud_guard_tests_passed": 6,
+  "artifact_id": 13228474115,
+  "artifact_sha256": "2d7a83a0a968ac878a8084fd0a0d140a8a13b2a6d23545480feab9a4015d4083",
+  "source_result_file": "research/ncc-skagseth-table1-acquisition-result-v1.json",
+  "source_review_file": "research/ncc-skagseth-adcp-depth-source-scope-review-v1.json",
+  "actual_source_request_outcome": {
+    "attempts": 1,
+    "http_status": 403,
+    "body_bytes": 5906,
+    "body_sha256": "bc67f9c16f303c6aad1ad9bc6f7020afcf4d994bf74ecfa06bed6b49eb82c311",
+    "redirects_followed": 0,
+    "retries": 0,
+    "source_table_retained": false
+  },
+  "next_action": "Do not replay this request,relax custody or infer current depth from ADCP/bathymetric limits. Resolve primary table custody through independently documented available source,or move to another current/source. Middle depth-band discrepancy remains explicit.",
+  "new_measurements_admitted": 0,
+  "new_ocean_field_requests": 0,
+  "reference_inventory_unchanged": {
+    "file": "research/current-depth-reference-inventory-v4.json",
+    "scoped_references": 731,
+    "owners_with_scoped_references": 101,
+    "catalog_owners": 111
+  },
+  "model_projection_inventory_unchanged": true,
+  "eddy_baseline_preserved": true,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    "analysis/acquire_ncc_skagseth_table1_v1.py": "3427ad9b396fc223163942c710f4274f1c81d431abfcf9ae54cdb21de1f0e221",
+    "analysis/test_ncc_skagseth_table1_acquisition_v1.py": "db3999286967182c6a1faf24f6c719924b1694f6d19ef52bdf2ba4ad5deec6a6",
+    "plans/ncc-skagseth-table1-primary-custody-protocol-v1.md": "aad108725a27a41c8e91131bc8bd0f3b1b1d10b988c15ffd1996d5458bffc8d8",
+    "research/current-depth-reference-inventory-source-review-v4.json": "4e2fbbd78c49237c2c2a6b22ef87d489c737149469e9254fb026506fd0d9ea2c",
+    "research/current-depth-reference-inventory-v4.json": "68d9b435fb7b4c77c710781e96f69b945cff61f9d5a14d08cc8db5239f56f0b7",
+    "research/current-depth-route-projection-inventory-v48.json": "8c10344d2faaef7854ecc47b3039587a0553e6a7a95b98bbdf3a38b019d79c7c",
+    "research/eddy-measurement-register-v1.csv": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "research/eddy-measurement-register-v1.json": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "research/ncc-skagseth-adcp-depth-source-scope-review-v1.json": "66bd98a38fe8fdd45f6a737b26f67e8f15a7ffcc578617b2bf008a78569bd1e3",
+    "research/ncc-skagseth-table1-acquisition-operator-v1.json": "0502338af1eb0a7d6732d5fd4738cf9105acf828b708f0af6f18961248f8203d",
+    "research/ncc-skagseth-table1-acquisition-result-v1.json": "df02f317f054569e0fefe2632bdaafe3520d2ed5c3519ca53815903f61bcf2a2",
+    "research/norwegian-coastal-skagseth-2011-cross-section-lead-v1.json": "38e54a90a181ce620df6917097eae17e54b84ba1d17d22171f919a4eb64bdf39"
+  }
+}

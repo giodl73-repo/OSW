@@ -1,4 +1,5 @@
 """Verify atlas highlights content changes using the dashboard's shared baseline."""
+import os
 import copy
 import json
 from pathlib import Path
@@ -16,7 +17,7 @@ def main():
     eddy['fingerprint']='test-eddy-update';eddy['section_fingerprints']['claims']='test-claim-update'
     baseline={r['id']:{'fingerprint':r['fingerprint'],'sections':r['section_fingerprints']} for r in original['entries']}
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         context=browser.new_context(viewport={'width':1440,'height':1050})
         context.route('**/research/ocean-motion-dashboard.json',lambda route:route.fulfill(json=updated))
         page=context.new_page();errors=[]

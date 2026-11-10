@@ -1,0 +1,116 @@
+{
+  "schema": "osw.gulf-stream-spray-depth-sections-operator.v1",
+  "datasets": {
+    "mean": "https://spraydata.ucsd.edu/erddap/griddap/gsMean",
+    "annual_cycle": "https://spraydata.ucsd.edu/erddap/griddap/gsAnnualCycleDaily"
+  },
+  "expected_product_versions": {
+    "mean": "CB27103E-8DE0-464E-B026-1FB2BE2EF05D",
+    "annual_cycle": "157C8877-1FE0-46DA-AF1E-34D9A9FED0CE"
+  },
+  "source_dataset_doi": "10.21238/S8TC9W",
+  "documented_fit_observation_period": [
+    "2015-07-16",
+    "2023-05-30"
+  ],
+  "source_documentation_url": "https://spraydata.ucsd.edu/products/gulf-stream-climatology/",
+  "source_method_paper_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020GL090281",
+  "source_paper_doi": "10.1038/s41558-023-01835-w",
+  "source_author_correction": {
+    "doi": "10.1038/s41558-024-02009-y",
+    "url": "https://www.nature.com/articles/s41558-024-02009-y",
+    "published": "2024-04-08",
+    "reviewed_scope": "Original analysis inadvertently used an earlier mean/seasonal estimate through June2022 for some calculations; correction uses glider observations through May30 2023 and the published S8TC9W product. Existing OSW Florida collection already uses the May2023 product, so no frozen Florida numbers change.",
+    "temperature_trend_or_variance_reduction_depths_are_current_bottoms": false
+  },
+  "source_access_review": "Primary product description, ERDDAP metadata including downstream_direction definition, Todd2021 primary methods HTML and Todd/Ren2024 author correction read2026-11-02. No original paper figure pixels, geographic digitization or climate-trend depth admission claimed.",
+  "source_license": "CC-BY-4.0",
+  "source_attribution": "Todd, Robert E. and Alice S. Ren(2023), Gulf Stream mean and annual cycle from Spray glider measurements. WHOI/Scripps Instrument Development Group, doi:10.21238/S8TC9W. Underlying data doi:10.21238/S8SPRAY2675 and10.21238/S8SPRAY0880.",
+  "entity_context": "current:gulf-stream",
+  "sections": [
+    {
+      "id": "coastal-30n",
+      "fixed_axis": "latitude",
+      "fixed_coordinate": 30.0,
+      "varying_gate": [
+        -80.5,
+        -77.5
+      ]
+    },
+    {
+      "id": "coastal-32n",
+      "fixed_axis": "latitude",
+      "fixed_coordinate": 32.0,
+      "varying_gate": [
+        -79.0,
+        -76.0
+      ]
+    },
+    {
+      "id": "coastal-34n",
+      "fixed_axis": "latitude",
+      "fixed_coordinate": 34.0,
+      "varying_gate": [
+        -77.0,
+        -74.0
+      ]
+    },
+    {
+      "id": "offshore-73w",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": -73.0,
+      "varying_gate": [
+        35.5,
+        39.0
+      ]
+    },
+    {
+      "id": "offshore-70w",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": -70.0,
+      "varying_gate": [
+        36.5,
+        41.0
+      ]
+    }
+  ],
+  "regional_scope": "Five prescribed regional sections along the US East Coast and western offshore Gulf Stream, separate from the Florida27N section. Broad geographic gates are OSW choices informed by published product coverage and Gulf Stream regional description, not digitized axes or physical current boundaries. No North Atlantic Current or family numeric inheritance and no entire Gulf Stream route coverage.",
+  "frame_operator": "At each source grid column read the provider downstream_direction at native100m. It is the mean flow/mapping direction in degrees clockwise from north. Lock that direction at all depths and project east/north velocity onto it. Never rotate separately at every depth, which could relabel deep return flow as positive downstream current.",
+  "reference_direction_depth_m": 100,
+  "reference_direction_sector_degrees_clockwise_from_north": [
+    0,
+    135
+  ],
+  "direction_sector_role": "Prescribed broad northern/eastern through southeastern regional mean-flow sector, rejecting opposing southward/westward candidates. This is an OSW axis-proxy guard, not independent current identity validation or a measured orientation uncertainty.",
+  "horizontal_axis_operator": "Among columns with a finite permitted100m reference direction, complete finite10–200m locked-direction component and at least one sample>0.05m/s, maximize positive signed trapezoidal integral over10–200m. First source-grid order breaks ties. Keep edge maxima flagged; no window expansion or relocation to force coverage.",
+  "vertical_operator": "Reuse frozen connected-layer first adjacent descending crossing below a qualifying sampled0–200m core, at absolute5/10/20cm/s and separately one-half the sampled core component. Preserve missing/deep-domain censoring, native brackets and sampled shallow-edge support.10m is not the surface and1000m is not a current bottom.",
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "time_operator": "Published time mean and12 fitted day15 annual phases selected by frozen Florida phase-key function, retaining actual provider timestamps and separately derived nominal dates within600seconds of midnight. No observed-date, monthly-average or actual-extrema claim.",
+  "support_operator": "Retain selected source component uncertainties and all seven provider mapping/fit-support profiles, including depth-varying downstream_direction separately from the locked100m diagnostic direction. Mapping scales are not current widths, and no source standard error becomes a depth confidence interval.",
+  "transport_or_area_integration_performed": false,
+  "maximum_field_scalars": 3000000,
+  "maximum_subset_response_bytes": 2000000,
+  "maximum_total_subset_response_bytes": 60000000,
+  "retrieval_policy": "Coordinate-first OPeNDAP metadata, then one batched NetCDF subset request per prescribed section/phase containing four velocity/error fields and seven fit-support fields. Require100 depth levels and a one-dimensional section of at most50 horizontal cells; guard cumulative scalar and subset byte budgets before retrieval. Validate returned time, coordinates, units, direction convention and source product versions. Retain exact subset URLs, response byte counts and SHA256, without claiming full-original-source checksums.",
+  "retained_data_policy": "Per section retain all upper10–200m candidate east/north/projected components, mean100m directions, support flags and integration scores for selection audit. Retain the full selected100-level profile and source support fields; do not store or infer complete unselected deep sections. Per-section files stay below the unchanged2.5MB publication cap.",
+  "input_sha256": {
+    "analysis/acquire_florida_spray_seasonal_depth_v1.py": "78087e222ec752e01767dc05ae65d08514d80bf6b8267caef7ca1c9498cb259d",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "research/florida-spray-seasonal-depth-source-review-v1.json": "a05939ec7422afac3a53b3278d879902a267dca2e3ec833d007f873451d56408",
+    "research/current-depth-register-source-review-v47.json": "7e9b0baf96a83c9ff374d843680f9f5281fdf93c50903b2ebf9aa807aee0df91"
+  },
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_extrema": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "All field retrieval, numerical projection, selection, depth calculations and tests sequential in cloud on one idle CPU. Local work restricted to metadata, code and retention/hash checks. No local tests or ocean-field processing; no runtime/UI changes.",
+  "full_goal_complete": false
+}

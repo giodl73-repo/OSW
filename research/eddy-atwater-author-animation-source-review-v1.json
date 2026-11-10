@@ -1,0 +1,141 @@
+{
+  "schema": "osw.eddy-author-animation-source-review.v1",
+  "status": "QUALIFIED_ATWATER_AUTHOR_IMAGE_PATCH_VERIFIED",
+  "review_date": "2026-11-01",
+  "owner_id": "eddy:horizon:loop-76-primary",
+  "source": {
+    "citation": "Hu et al. (2026), Riverine input and eddy edge effects on microeukaryotic biodiversity in the Northern Gulf. bioRxiv preprint, posted 21 July 2026, DOI 10.64898/2026.07.20.739614.",
+    "doi": "10.64898/2026.07.20.739614",
+    "peer_reviewed": false,
+    "primary_author_project_url": "https://shu251.github.io/Gulf-2023-amplicons/",
+    "author_repository": "https://github.com/shu251/Gulf-2023-amplicons",
+    "repository_commit": "6af0827c0e20c8d4a548a9d9ad750df0d4ca4ee5",
+    "original_gif": {
+      "url": "https://raw.githubusercontent.com/shu251/Gulf-2023-amplicons/6af0827c0e20c8d4a548a9d9ad750df0d4ca4ee5/figures/SSH_CW.gif",
+      "bytes": 1692282,
+      "sha256": "61270d31c692ba44c923c0cc1edd4dde40e8101b243a7e418f4c08ad41689218",
+      "width": 2255,
+      "height": 950,
+      "frames": 4
+    },
+    "reviewed_frame_dates": [
+      "2023-07-30",
+      "2023-07-31",
+      "2023-08-01",
+      "2023-08-02"
+    ],
+    "reviewed_frame_png_sha256": {
+      "0": "1a9b6d8c8de22b398466ca8f9b236e017e3b2b4f7ec1e0b4aef5fc3aa4496165",
+      "1": "52108f83f8621d373f23d8d25eea1444ac4f019e1c59600adae203d2e3e79973",
+      "2": "77b91c5cabf2e45cdcf434a925b811d12e68ed6d1bf752019285bddcadfd4911",
+      "3": "29c803dd0cef47dfb01c747e3c0edfc9f628c0cf002bfdf66d5b1f88705b4491"
+    },
+    "source_code": {
+      "Gulf-setting-visuals.qmd": {
+        "url": "https://raw.githubusercontent.com/shu251/Gulf-2023-amplicons/6af0827c0e20c8d4a548a9d9ad750df0d4ca4ee5/Gulf-setting-visuals.qmd",
+        "bytes": 7314,
+        "sha256": "56083be16dec7f8f3c14e5c557d7e690c81994ec5ad7919d716f785db354f895"
+      },
+      "gulf-map-physical_2023.qmd": {
+        "url": "https://raw.githubusercontent.com/shu251/Gulf-2023-amplicons/6af0827c0e20c8d4a548a9d9ad750df0d4ca4ee5/gulf-map-physical_2023.qmd",
+        "bytes": 31632,
+        "sha256": "a513c2e2f4e57c6707b5dafa6fb063e7d1c79a68f0868e3d60b84f89ed1def92"
+      }
+    },
+    "source_assets_republished": false,
+    "original_preprint_pdf_acquired": false,
+    "primary_text_access": "Indexed author-uploaded preprint text on ResearchGate; original bioRxiv PDF returned HTTP 429 and author-upload PDF returned HTTP 403. Figure pixels are independently acquired from the author repository, not from the inaccessible preprint PDF.",
+    "indexed_text_url": "https://www.researchgate.net/publication/410665058_Riverine_input_and_eddy_edge_effects_on_microeukaryotic_biodiversity_in_the_Northern_Gulf"
+  },
+  "source_case_association": {
+    "source_name": "Atwater",
+    "year": 2023,
+    "registry_source_number": 76,
+    "registry_initial_separation": "2023-05-18",
+    "source_text_locator": "Results, PDF pages 13–14, manuscript lines 285–292; Data Availability, PDF page 13, lines 268–271.",
+    "basis": "Indexed primary text names Atwater southwest of the late-July/early-August 2023 transect and links the author project. The isolated high-SSH image patch southwest of the station strip is the candidate used here. The image itself has no Atwater label.",
+    "association_status": "qualified_author_project_spatiotemporal_candidate",
+    "physical_crosswalk_verified": false
+  },
+  "field_qualification": {
+    "literal_legend": "SSH (m)",
+    "datum": null,
+    "exact_product_verified": false,
+    "observation_or_absolute_adt_admitted": false,
+    "basis": "Preprint methods and related repository code identify a HYCOM workflow, but the exact old CW GIF export is not reproduced by the reviewed code. Its full-Gulf axes and 0–1 m legend differ from the later zoomed code output.",
+    "code_hazards": [
+      "The SSHa iframe repeats SSH_CW_resized.gif; section heading does not establish anomaly type.",
+      "Commented frame numbers 98/117/122 cannot date this four-frame GIF. Use actual visible frame titles.",
+      "Raw MATLAB fields and exact generating environment were not acquired or processed."
+    ]
+  },
+  "operator": {
+    "method": "source_author_animation_ssh_patch_v1",
+    "selected_date": "2023-07-30",
+    "nominal_level_m": 0.75,
+    "level_sensitivity_m": [
+      0.7,
+      0.75,
+      0.8
+    ],
+    "definition": "Largest eight-connected matching source-colour patch above the OSW-chosen legend level inside an explicit ROI, no hole filling or gap repair. The arbitrary level is a diagnostic choice, not an author boundary.",
+    "axis_rule": "Three labelled longitude and latitude anchors; piecewise linear degree and Mercator latitude interpolation are both included because exact source projection is not verified. Independent ±2 pixel shifts of all six anchors plus six-pixel extent allowance; 384 scenarios per component; 6371 km sphere; outward rounding to 25 km.",
+    "margin_kind": "Image selection and reading sensitivity only, not source-field uncertainty, confidence, natural variability or seasonal extrema.",
+    "source_palette_duplicate_rule": "Read all 774 coloured legend pixels; collapse duplicate RGB to the lowest matching level, 134 unique colours. Squared RGB distance <=900; smallest level wins equal-distance ties.",
+    "component_gate": "More than 1000 selected pixels and more than ten times the next component; all extents plus six pixels strictly inside the ROI.",
+    "derived_spans": {
+      "east_west": {
+        "audit_span_km": 359.299565,
+        "audit_reading_interval_km": [
+          304.584506,
+          413.365901
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          300,
+          425
+        ],
+        "plot_level_sensitivity_m": [
+          0.7,
+          0.75,
+          0.8
+        ],
+        "total_scenarios": 384,
+        "latitude_interpolations": [
+          "piecewise_linear_degrees",
+          "piecewise_linear_mercator"
+        ]
+      },
+      "north_south": {
+        "audit_span_km": 151.707807,
+        "audit_reading_interval_km": [
+          107.014666,
+          200.649971
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          100,
+          225
+        ],
+        "plot_level_sensitivity_m": [
+          0.7,
+          0.75,
+          0.8
+        ],
+        "total_scenarios": 384,
+        "latitude_interpolations": [
+          "piecewise_linear_degrees",
+          "piecewise_linear_mercator"
+        ]
+      }
+    }
+  },
+  "measurements_admitted": 2,
+  "whole_eddy_dimensions_admitted": 0,
+  "physical_footprint_admitted": false,
+  "state_joins_admitted": false,
+  "rank_eligible": false,
+  "seasonal_range_inferred": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

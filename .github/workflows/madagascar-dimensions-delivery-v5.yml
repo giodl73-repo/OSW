@@ -1,0 +1,116 @@
+name: Sequential Madagascar dimensions delivery v5
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/madagascar-dimensions-delivery-request-v5.json
+      - .github/workflows/madagascar-dimensions-delivery-v5.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_MADAGASCAR_DIMENSIONS_DELIVERY_V5: "1"
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/madagascar-dimensions-delivery-request-v5.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/madagascar-dimensions-delivery-request-v5.json').read_bytes())
+          assert r['schema']=='osw.madagascar-dimensions-delivery-request.v5'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  candidate-and-views:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Verify frozen inputs and bounded preservation checks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_madagascar_dimensions_delivery_v5.py preflight
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_madagascar_dimensions_delivery_v5.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_madagascar_dimensions_inventory_cases_v5.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_madagascar_dimensions_runtime_v4.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_madagascar_dimensions_query_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_madagascar_dimensions_index_v5.py -v
+          taskset -c "$cpu" nice -n 15 node analysis/test_madagascar_dimensions_ui_v1.mjs
+      - name: Install pinned compiler and locked dependencies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - id: engine
+        name: Assemble indexed candidate, build native and WASM, verify complete responses
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_madagascar_dimensions_delivery_v5.py engine
+      - name: Install browser after successful engine verification
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify actual desktop and narrow Madagascar evidence, source, atlas, seasons and dashboard views
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_madagascar_dimensions_delivery_v5.py browser
+      - name: Retain compact evidence and actual screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: madagascar-dimensions-delivery-evidence-v5
+          include-hidden-files: true
+          path: |
+            .pytest_cache/madagascar-dimensions-delivery-v5/*-failure.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/engine-manifest.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/engine.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/browser.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/result.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/compile-inventory.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/dependency-proof.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/source-index-audit.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/main-parity.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/index-parity.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/snapshots-parity.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/parent-snapshots.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/parent-speeds.json
+            .pytest_cache/madagascar-dimensions-delivery-v5/rust-tests.txt
+            .pytest_cache/madagascar-dimensions-delivery-v5/*.png
+            .pytest_cache/madagascar-dimensions-delivery-v5/*.geometry.json
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Retain verified engine candidate without installation
+        if: always() && steps.engine.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: madagascar-dimensions-delivery-candidate-v5
+          include-hidden-files: true
+          path: |
+            .pytest_cache/madagascar-dimensions-delivery-v5/artifact/**
+            .pytest_cache/madagascar-dimensions-delivery-v5/engine.json
+          retention-days: 90

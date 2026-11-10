@@ -1,0 +1,1972 @@
+{
+  "schema": "osw.caribbean-azores-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/caribbean-azores-depth-sections-v1/manifest.json",
+  "manifest_sha256": "557fbec213f59bfd726edda18f9f49f526907af035d28277772b132da5eee829",
+  "operator_file": "research/caribbean-azores-depth-sections-operator-v1.json",
+  "operator_sha256": "adde931c868806ee9084ee0f9051a4331b06a8b359584c4ee9683f37ad2d0946",
+  "counts": {
+    "section_date_cases": 20,
+    "native_velocity_profiles": 2380,
+    "selected_axis_proxy_profiles": 20,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 19,
+      "section_gate_edge_maximum_axis_unresolved": 1
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 19,
+      "0.1": 20,
+      "0.2": 20
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 19,
+      "0.1": 20,
+      "0.2": 20
+    },
+    "decoded_velocity_cell_pairs": 95200,
+    "decoded_velocity_array_bytes": 761600,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:caribbean": {
+      "section_date_cases": 10,
+      "native_velocity_profiles": 1130,
+      "selected_axis_proxy_profiles": 10,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 9,
+        "section_gate_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 10,
+        "0.1": 10,
+        "0.2": 10
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 10,
+        "0.1": 10,
+        "0.2": 10
+      }
+    },
+    "current:azores": {
+      "section_date_cases": 10,
+      "native_velocity_profiles": 1250,
+      "selected_axis_proxy_profiles": 10,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 10
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 10,
+        "0.2": 10
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 10,
+        "0.2": 10
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-caribbean-section-68w.json",
+      "source_sha256": "eb1532677e89270d0acab854e56a7be0aa8f32c69943c3283d77291776f56009",
+      "source_profile_pointer": "/columns/44",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-68w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-68w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -68,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 292.0,
+      "selected_lon_lat": [
+        -68.0,
+        13.760000228881836
+      ],
+      "selected_column_index": 44,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        44,
+        55,
+        103
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 894.1176486056568,
+          "layer_thickness_m": 894.1176486056568,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5230000019073486,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 730.7692409090739,
+          "layer_thickness_m": 730.7692409090739,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5230000019073486,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 342.04546139567617,
+          "layer_thickness_m": 342.04546139567617,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5230000019073486,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 730.7692409090739,
+      "primary_layer_thickness_m": 730.7692409090739,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-caribbean-section-71w.json",
+      "source_sha256": "10c1d3d2f3f86777dee1651b896d485f13f3de17816a5533ab2e8d8e356e4864",
+      "source_profile_pointer": "/columns/51",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-71w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-71w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -71,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 288.96002197265625,
+      "selected_lon_lat": [
+        -71.03997802734375,
+        14.039999961853027
+      ],
+      "selected_column_index": 51,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        23,
+        43,
+        49,
+        51,
+        66,
+        71
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 929.4117832678814,
+          "layer_thickness_m": 929.4117832678814,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.47500002384185797,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 531.2500162981424,
+          "layer_thickness_m": 531.2500162981424,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.47500002384185797,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 192.93478669313458,
+          "layer_thickness_m": 192.93478669313458,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.47500002384185797,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 531.2500162981424,
+      "primary_layer_thickness_m": 531.2500162981424,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-caribbean-section-74w.json",
+      "source_sha256": "a52a30c82559510100a82fa76bdde8b49234bdb9ccc9b7df988f74ada9900a4f",
+      "source_profile_pointer": "/columns/80",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-74w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-74w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -74,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 286.0,
+      "selected_lon_lat": [
+        -74.0,
+        15.199999809265137
+      ],
+      "selected_column_index": 80,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        11,
+        80,
+        103
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 785.7142938237613,
+          "layer_thickness_m": 785.7142938237613,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.49600002169609075,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 660.0000127724225,
+          "layer_thickness_m": 660.0000127724225,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.49600002169609075,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 341.79105280926916,
+          "layer_thickness_m": 341.79105280926916,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.49600002169609075,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 660.0000127724225,
+      "primary_layer_thickness_m": 660.0000127724225,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-caribbean-section-77w.json",
+      "source_sha256": "f04bda97298a588db4feea65516449c0018dbbacf724435674b3dc03ae450014",
+      "source_profile_pointer": "/columns/112",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-77w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-77w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -77,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 282.96002197265625,
+      "selected_lon_lat": [
+        -77.03997802734375,
+        16.479999542236328
+      ],
+      "selected_column_index": 112,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        0,
+        29,
+        112
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 754.5454671683391,
+          "layer_thickness_m": 754.5454671683391,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.7050000429153442,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 578.3783992770118,
+          "layer_thickness_m": 578.3783992770118,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.7050000429153442,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 281.2500209547544,
+          "layer_thickness_m": 281.2500209547544,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.7050000429153442,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 578.3783992770118,
+      "primary_layer_thickness_m": 578.3783992770118,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-caribbean-section-80w.json",
+      "source_sha256": "64b3b2a1c57c25e1fdbc4ef80eda72fa4bde254d8b8a2863d9e092ac04d7dd80",
+      "source_profile_pointer": "/columns/54",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-80w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-80w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -80,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 280.0,
+      "selected_lon_lat": [
+        -80.0,
+        14.15999984741211
+      ],
+      "selected_column_index": 54,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        16,
+        54,
+        112
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 280.9523865276459,
+          "layer_thickness_m": 280.9523865276459,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.36200001835823065,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 233.77193027746682,
+          "layer_thickness_m": 233.77193027746682,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.36200001835823065,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 161.66668901839645,
+          "layer_thickness_m": 161.66668901839645,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.36200001835823065,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 233.77193027746682,
+      "primary_layer_thickness_m": 233.77193027746682,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-azores-section-35w.json",
+      "source_sha256": "369376333286211bd4f80b7a595b37ca3d47bd8115da8de2eef34b103eea7c45",
+      "source_profile_pointer": "/columns/78",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-35w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-35w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -35,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 324.9599609375,
+      "selected_lon_lat": [
+        -35.0400390625,
+        34.63999938964844
+      ],
+      "selected_column_index": 78,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        78
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1744.6808885022338,
+          "layer_thickness_m": 1744.6808885022338,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.47700002789497375,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1183.5106544874525,
+          "layer_thickness_m": 1183.5106544874525,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.47700002789497375,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 918.4210965920654,
+          "layer_thickness_m": 918.4210965920654,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.47700002789497375,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1183.5106544874525,
+      "primary_layer_thickness_m": 1183.5106544874525,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-azores-section-31w.json",
+      "source_sha256": "34553a99e17a3f2492d3977ae9561ea9365ffa2dc59b16529dc22c87033c324b",
+      "source_profile_pointer": "/columns/77",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-31w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-31w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -31,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 328.9599609375,
+      "selected_lon_lat": [
+        -31.0400390625,
+        34.599998474121094
+      ],
+      "selected_column_index": 77,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        53,
+        77,
+        83,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 579.0322610106351,
+          "layer_thickness_m": 579.0322610106351,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3410000205039978,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 498.461549042245,
+          "layer_thickness_m": 498.461549042245,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3410000205039978,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 2.285712339439973,
+          "lower_depth_m": 331.25002173087,
+          "layer_thickness_m": 328.96430939143005,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3410000205039978,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 498.461549042245,
+      "primary_layer_thickness_m": 498.461549042245,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-azores-section-27w.json",
+      "source_sha256": "1b37623c28a583be8c5d8e0f180573d25e975f7be977c1a149d9ed5e7918658d",
+      "source_profile_pointer": "/columns/98",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -27,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 332.9599609375,
+      "selected_lon_lat": [
+        -27.0400390625,
+        35.439998626708984
+      ],
+      "selected_column_index": 98,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        98
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1077.380959455625,
+          "layer_thickness_m": 1077.380959455625,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 503.0303137033111,
+          "layer_thickness_m": 503.0303137033111,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 393.7500256113666,
+          "layer_thickness_m": 393.7500256113666,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.35100001096725464,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 503.0303137033111,
+      "primary_layer_thickness_m": 503.0303137033111,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-azores-section-24p5w.json",
+      "source_sha256": "eecc29ec926e8e80897cc9488a46c1c36231118ae07b09213339d79acfcaf3c2",
+      "source_profile_pointer": "/columns/103",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-24p5w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-24p5w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -24.5,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 335.52001953125,
+      "selected_lon_lat": [
+        -24.47998046875,
+        35.63999938964844
+      ],
+      "selected_column_index": 103,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        51,
+        70,
+        103,
+        109
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 798.2758664542652,
+          "layer_thickness_m": 798.2758664542652,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2680000066757202,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 712.0689784959566,
+          "layer_thickness_m": 712.0689784959566,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2680000066757202,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 202.9411872984234,
+          "layer_thickness_m": 202.9411872984234,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2680000066757202,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 712.0689784959566,
+      "primary_layer_thickness_m": 712.0689784959566,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-01-15-azores-section-21w.json",
+      "source_sha256": "b961b71a85a479c45b933fef4cc963d80cd8980e11aa206e02a887359cf9be46",
+      "source_profile_pointer": "/columns/73",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-21w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-21w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -21,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 338.9599609375,
+      "selected_lon_lat": [
+        -21.0400390625,
+        34.439998626708984
+      ],
+      "selected_column_index": 73,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        14,
+        73,
+        83
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3930000066757202,
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3444.4446192111573,
+          "layer_thickness_m": 3444.4446192111573,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3930000066757202,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 669.642877669969,
+          "layer_thickness_m": 669.642877669969,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3930000066757202,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 3444.4446192111573,
+      "primary_layer_thickness_m": 3444.4446192111573,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-caribbean-section-68w.json",
+      "source_sha256": "5ea8faf368440080737d431e1d57b19e8fc4c8e13619e043f61ec7c3bec7e5aa",
+      "source_profile_pointer": "/columns/20",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-68w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-68w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -68,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 292.0,
+      "selected_lon_lat": [
+        -68.0,
+        12.800000190734863
+      ],
+      "selected_column_index": 20,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        20,
+        25,
+        37,
+        112
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1535.7143037705391,
+          "layer_thickness_m": 1535.7143037705391,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 886.6666997803569,
+          "layer_thickness_m": 886.6666997803569,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 181.2500026193449,
+          "layer_thickness_m": 181.2500026193449,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8840000629425049,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 886.6666997803569,
+      "primary_layer_thickness_m": 886.6666997803569,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-caribbean-section-71w.json",
+      "source_sha256": "93e48fc5a763df0fd046ce0e0222c2d1888c58830f3fc0da64510d722465b3d8",
+      "source_profile_pointer": "/columns/97",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-71w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-71w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -71,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 288.96002197265625,
+      "selected_lon_lat": [
+        -71.03997802734375,
+        15.880000114440918
+      ],
+      "selected_column_index": 97,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        20,
+        34,
+        44,
+        47,
+        81,
+        97
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 736.3636372872621,
+          "layer_thickness_m": 736.3636372872621,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7510000467300415,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 640.3508804951787,
+          "layer_thickness_m": 640.3508804951787,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7510000467300415,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 320.45455992468135,
+          "layer_thickness_m": 320.45455992468135,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7510000467300415,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 640.3508804951787,
+      "primary_layer_thickness_m": 640.3508804951787,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-caribbean-section-74w.json",
+      "source_sha256": "396046d6283a637a4dedb44ccca7732a961d2f19d163998cf831667d718905ef",
+      "source_profile_pointer": "/columns/11",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-74w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-74w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -74,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 286.0,
+      "selected_lon_lat": [
+        -74.0,
+        12.4399995803833
+      ],
+      "selected_column_index": 11,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        11,
+        17,
+        21,
+        58,
+        86,
+        112
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 458.33333626527457,
+          "layer_thickness_m": 458.33333626527457,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5670000314712524,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 272.2222309605579,
+          "layer_thickness_m": 272.2222309605579,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5670000314712524,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 154.91804484076644,
+          "layer_thickness_m": 154.91804484076644,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5670000314712524,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 272.2222309605579,
+      "primary_layer_thickness_m": 272.2222309605579,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-caribbean-section-77w.json",
+      "source_sha256": "3fd12d232289d6894eb4eaaec0251dd5a3b7ef340d15a06d9f3eee2239ed593b",
+      "source_profile_pointer": "/columns/66",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-77w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-77w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -77,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 282.96002197265625,
+      "selected_lon_lat": [
+        -77.03997802734375,
+        14.640000343322754
+      ],
+      "selected_column_index": 66,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        14,
+        17,
+        66,
+        105
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 565.3846204545371,
+          "layer_thickness_m": 565.3846204545371,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.49200001358985906,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 448.43751105945375,
+          "layer_thickness_m": 448.43751105945375,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.49200001358985906,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 267.5675868334953,
+          "layer_thickness_m": 267.5675868334953,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.49200001358985906,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 448.43751105945375,
+      "primary_layer_thickness_m": 448.43751105945375,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:caribbean",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-caribbean-section-80w.json",
+      "source_sha256": "9a64b8d9af040cbbd0190f3d6f4003297ea62eff3dc82f8fe99c7068dc624aa3",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-80w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-80w",
+        "entity_id": "current:caribbean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -80,
+        "latitude_gate_degrees_north": [
+          12,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 280.0,
+      "selected_lon_lat": [
+        -80.0,
+        12.520000457763672
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 113,
+      "local_integral_maximum_indices": [
+        13,
+        67,
+        72,
+        75
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1608.6956734763755,
+          "layer_thickness_m": 1608.6956734763755,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7520000338554382,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 513.8889010765675,
+          "layer_thickness_m": 513.8889010765675,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7520000338554382,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 403.0612335819242,
+          "layer_thickness_m": 403.0612335819242,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.7520000338554382,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 513.8889010765675,
+      "primary_layer_thickness_m": 513.8889010765675,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-azores-section-35w.json",
+      "source_sha256": "d1eb7bf47686adf03b3f1fe8a3ed4998117fe88d4eebcfc5d2d5f222a491a0a2",
+      "source_profile_pointer": "/columns/61",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-35w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-35w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -35,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 324.9599609375,
+      "selected_lon_lat": [
+        -35.0400390625,
+        33.959999084472656
+      ],
+      "selected_column_index": 61,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        61
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1384.1463581950861,
+          "layer_thickness_m": 1384.1463581950861,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.5940000414848328,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1150.0000159655297,
+          "layer_thickness_m": 1150.0000159655297,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.5940000414848328,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 756.0000524520749,
+          "layer_thickness_m": 756.0000524520749,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.5940000414848328,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1150.0000159655297,
+      "primary_layer_thickness_m": 1150.0000159655297,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-azores-section-31w.json",
+      "source_sha256": "a73bb457334bff15e7d1e47054116021ee2b4bca33a90f00476c39ec49990a28",
+      "source_profile_pointer": "/columns/23",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-31w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-31w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -31,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 328.9599609375,
+      "selected_lon_lat": [
+        -31.0400390625,
+        32.439998626708984
+      ],
+      "selected_column_index": 23,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 962.9629718546028,
+          "layer_thickness_m": 962.9629718546028,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 819.5122014157193,
+          "layer_thickness_m": 819.5122014157193,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 17.749997951089902,
+          "lower_depth_m": 262.5000419095089,
+          "layer_thickness_m": 244.750043958419,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 819.5122014157193,
+      "primary_layer_thickness_m": 819.5122014157193,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-azores-section-27w.json",
+      "source_sha256": "3192b170a09ca7bfc516e93a7e6454729fae2e87df861ba4a6ac37aac92aea9b",
+      "source_profile_pointer": "/columns/55",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -27,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 332.9599609375,
+      "selected_lon_lat": [
+        -27.0400390625,
+        33.720001220703125
+      ],
+      "selected_column_index": 55,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        55,
+        80
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 450.0000186264484,
+          "layer_thickness_m": 450.0000186264484,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2110000103712082,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 323.68421971054886,
+          "layer_thickness_m": 323.68421971054886,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2110000103712082,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 21.071424466006196,
+          "lower_depth_m": 28.43750267755196,
+          "layer_thickness_m": 7.366078211545766,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2110000103712082,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 323.68421971054886,
+      "primary_layer_thickness_m": 323.68421971054886,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-azores-section-24p5w.json",
+      "source_sha256": "24cf11af9a85be7b2774c8a03b4275b85a3ddd36745caf8f313358603640600a",
+      "source_profile_pointer": "/columns/71",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-24p5w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-24p5w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -24.5,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 335.52001953125,
+      "selected_lon_lat": [
+        -24.47998046875,
+        34.36000061035156
+      ],
+      "selected_column_index": 71,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        9,
+        41,
+        71
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1714.2859575700033,
+          "layer_thickness_m": 1714.2859575700033,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2010000050067902,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 353.6585453833437,
+          "layer_thickness_m": 353.6585453833437,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2010000050067902,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 24.499997019764912,
+          "lower_depth_m": 25.178572340887516,
+          "layer_thickness_m": 0.6785753211226044,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.2010000050067902,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 353.6585453833437,
+      "primary_layer_thickness_m": 353.6585453833437,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:azores",
+      "source_file": "research/source-data/caribbean-azores-depth-sections-v1/2022-07-15-azores-section-21w.json",
+      "source_sha256": "103b1098e358d41db4814f54e4e8309178da494b528960f62e612643dea0975d",
+      "source_profile_pointer": "/columns/73",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-21w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-21w",
+        "entity_id": "current:azores",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -21,
+        "latitude_gate_degrees_north": [
+          31.5,
+          36.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 338.9599609375,
+      "selected_lon_lat": [
+        -21.0400390625,
+        34.439998626708984
+      ],
+      "selected_column_index": 73,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        13,
+        73
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 960.0000298023285,
+          "layer_thickness_m": 960.0000298023285,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.28600001335144043,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 406.25002095475446,
+          "layer_thickness_m": 406.25002095475446,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.28600001335144043,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 113.88889532765984,
+          "layer_thickness_m": 113.88889532765984,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.28600001335144043,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 406.25002095475446,
+      "primary_layer_thickness_m": 406.25002095475446,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "transport_ledger_file": "research/source-data/caribbean-azores-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "a6c92ab8bb8998739e1a813f11e0b937a6e9887f1d4538d1d62457162d122e5c",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-component-reads.v1",
+    "planned_successful_component_values": 190400,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 190400,
+    "successfully_returned_component_values": 190400,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 1523200,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty."
+  }
+}

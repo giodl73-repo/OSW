@@ -1,0 +1,76 @@
+name: Eddy measurement register browser review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/eddy-measurement-register-browser-request-v1.json
+      - .github/workflows/eddy-measurement-register-browser-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_EDDY_REGISTER_BROWSER_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+      checkout_paths: ${{ steps.request.outputs.checkout_paths }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            research/eddy-measurement-register-browser-request-v1.json
+            research/eddy-measurement-register-browser-preflight-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/eddy-measurement-register-browser-request-v1.json').read_bytes())
+          assert r['schema']=='osw.eddy-measurement-register-browser-request.v1' and type(r['execute']) is bool
+          p=json.loads(pathlib.Path('research/eddy-measurement-register-browser-preflight-v1.json').read_bytes())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('execute='+str(r['execute']).lower()+'\n')
+              f.write('checkout_paths<<OSW_PATHS\n'+'\n'.join(p['checkout_paths'])+'\nOSW_PATHS\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: ${{ needs.select-request.outputs.checkout_paths }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check complete source register and install one browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eddy_measurement_register_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Review eddy sizes, qualified durations, conflicts and mobile layout
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_eddy_measurement_register_browser_v1.py
+      - name: Retain compact review evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eddy-measurement-register-browser-evidence-v1
+          path: |
+            .pytest_cache/eddy-measurement-register-browser-v1/*.json
+            .pytest_cache/eddy-measurement-register-browser-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

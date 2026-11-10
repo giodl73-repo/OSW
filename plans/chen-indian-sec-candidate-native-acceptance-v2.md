@@ -1,0 +1,9 @@
+# Complete Indian SEC candidate/native acceptance v2
+
+Repeat the complete actual-packet/native acceptance specified in chen-indian-sec-candidate-native-acceptance-v1.md, using the versioned canonical replay rule in chen-indian-sec-canonical-replay-rule-v2.md. Preserve all frozen scientific/report/figure/contract bytes. The entire v1 prepare function is AST-identical in v2; only its module-level build_contract resolves to the explicitly versioned canonical replay validator. No monkeypatching or source pin replacement is used.
+
+Run six parent-preservation/refusal fixtures, eight field-specific numeric/SVG replay fixtures and all eight original query admission fixtures against v2. The first14 run locally in small sequential fixtures; the source replay/admission fixtures run on the cloud after installing PyProj3.7.2. Freeze all111 Rust files and Cargo inputs, all165 preceding compiled data inputs, scientific dependencies, presentation, new adapter, wrapper and workflow. All older requests remain disabled. The scientific replay proof records every allowed difference and keeps canonical values unchanged.
+
+Materialize the complete candidate only on the one-CPU nice15 cloud runner. Independently compare every collection and manifest field to the exact installed parent; build the native CLI with Rust1.95.0 and one Cargo worker. Validate complete records/scenes for75 readings,67 withheld, three nominal qualified traces,120 sensitivity scenarios and the current card. Keep compact logs/results/replay proof only; do not upload the packet or executable. Verify all21 installed files remain unchanged after execution.
+
+No WASM build, index load/rebuild, ocean field processing, browser, installation, main merge or local bulk sync. Full delivery and all catalogue gaps remain incomplete. This gate proves actual complete-packet acceptance, not source-index delivery or browser/atlas readiness.

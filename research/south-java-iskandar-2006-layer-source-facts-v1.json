@@ -1,0 +1,114 @@
+{
+  "schema": "osw.current-model-layer-source-facts.v1",
+  "entity_id": "current:south-java",
+  "status": "PROSE_REVIEWED_MODEL_LAYER_CONTEXT_NOT_WIDTH_ADMISSION",
+  "review_date": "2026-10-24",
+  "identity_basis": "research/indian-coastal-context-installed-execution-review-v1.json",
+  "source": {
+    "title": "Intraseasonal variations of surface and subsurface currents off Java as simulated in a high-resolution ocean general circulation model",
+    "year": 2006,
+    "doi": "10.1029/2006JC003486",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JC003486",
+    "access_mode": "publisher_full_text_HTML_readable_via_web",
+    "source_kind": "primary_model_study_prose",
+    "reviewed_sections": ["2.1 paragraphs6-7", "2.2 paragraph10", "3.1 paragraphs11-14", "3.2 paragraph16"],
+    "original_file_retained": false,
+    "original_file_sha256": null,
+    "source_figures_visually_reviewed": [],
+    "figure_digitization_performed": false,
+    "rights": "No source HTML, PDF, or figure redistributed; structured factual annotations only. No redistribution license inferred."
+  },
+  "model_support": {
+    "model": "OFES",
+    "horizontal_grid_spacing_degrees": 0.1,
+    "vertical_levels_total": 54,
+    "vertical_levels_in_upper_1000m": 34,
+    "analysis_start_year": 1990,
+    "analysis_end_year": 2003,
+    "time_statistic": "climatological_mean_model_zonal_current_for_section_descriptions",
+    "velocity_component": "zonal_positive_eastward",
+    "section_longitudes_degrees_east": [105, 110, 115, 117],
+    "section_latitude_edges_degrees_north": null,
+    "source_locator": "paragraphs6,10-13 and Figure3 caption; caption text reviewed, image not extracted"
+  },
+  "layer_definitions": [
+    {
+      "id": "south-java-iskandar-2006-sjcc-analysis-band",
+      "source_feature": "SJCC",
+      "relation_to_catalogue_entity": "surface_feature_model_definition",
+      "upper_reference": "sea_surface",
+      "lower_depth_m": 150,
+      "boundary_relation": "above_150m",
+      "classification": "author_defined_analysis_layer_not_measured_current_thickness",
+      "source_locator": "paragraph14"
+    },
+    {
+      "id": "south-java-iskandar-2006-sjcu-analysis-band",
+      "source_feature": "SJCU",
+      "relation_to_catalogue_entity": "separate_undercurrent_context_not_assigned_to_surface_current",
+      "upper_depth_m": 150,
+      "lower_depth_m": 1000,
+      "boundary_relation": "below_150m_down_to_1000m",
+      "classification": "author_defined_analysis_layer_not_measured_current_thickness",
+      "catalogue_entity_admitted": false,
+      "source_locator": "paragraph14"
+    }
+  ],
+  "reported_model_depth_context": [
+    {
+      "id": "south-java-iskandar-2006-surface-mean-core",
+      "source_feature": "SJCC",
+      "quantity": "approximate_depth_of_mean_eastward_velocity_maximum",
+      "reported_depth_m": 50,
+      "approximate": true,
+      "measurement_uncertainty_m": null,
+      "source_locator": "paragraph12"
+    },
+    {
+      "id": "south-java-iskandar-2006-surface-mean-threshold-depth-cap",
+      "source_feature": "SJCC",
+      "quantity": "reported_upper_limit_on_depth_of_mean_eastward_flow_exceeding_threshold",
+      "depth_cap_m": 100,
+      "velocity_threshold_cm_s": 5,
+      "velocity_threshold_relation": "greater_than",
+      "scope": "all_four_selected_mean_sections",
+      "exact_edge_depth_m": null,
+      "source_locator": "paragraph12"
+    },
+    {
+      "id": "south-java-iskandar-2006-undercurrent-mean-core",
+      "source_feature": "SJCU",
+      "quantity": "approximate_subsurface_mean_core_depth_and_peak_speed",
+      "reported_depth_m": 400,
+      "reported_peak_speed_cm_s": 3,
+      "approximate": true,
+      "measurement_uncertainty_m": null,
+      "source_locator": "paragraph13"
+    }
+  ],
+  "exclusions": {
+    "width_km": null,
+    "whole_current_depth_interval_m": null,
+    "physical_annual_depth_range_m": null,
+    "physical_uncertainty_m": null,
+    "new_width_inventory_records": 0,
+    "new_length_rank_entries": 0,
+    "new_velocity_processing": false,
+    "new_current_identity_admissions": 0,
+    "physical_state_joins_admitted": false,
+    "width_100_200km_claim_verified_from_this_publication": false
+  },
+  "rules": [
+    "Analysis layers classify a model study; they are not current thickness measurements or annual envelopes.",
+    "Keep the surface feature and undercurrent distinct; do not assign deeper-core values to the surface current.",
+    "A stated depth cap for thresholded mean flow is not an exact edge or a layer average.",
+    "Do not infer horizontal width from layer limits, model spacing, selected meridians, or an unseen figure.",
+    "No 100-200km width statement was found in the reviewed publisher prose. A later citation alone does not verify such a value here."
+  ],
+  "visualization_requirement": {
+    "status": "see_linked_diagram_review",
+    "figure_manifest": "research/south-java-iskandar-2006-layer-figure-v1.json",
+    "design": "Separate analysis-layer bands from approximate model core depths and the threshold depth cap, with date/model/source and no width encoding.",
+    "prohibited": ["physical_current_thickness_bar", "annual_range_animation", "width_polygon", "physical_state_intersection"]
+  }
+}

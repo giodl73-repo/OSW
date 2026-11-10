@@ -22,7 +22,61 @@
     node("dt", label, parent);
     node("dd", value === null || value === undefined ? "Unavailable" : String(value), parent);
   }
+  function isLayerContext(row) {
+    return ["model_analysis_layer_definition", "reported_model_mean_depth_context"].includes(row.record_type);
+  }
+  function contextScope(row) {
+    const support = row.model_support;
+    const study = support ? support.model + " model · " + support.analysis_start_year + "–" + support.analysis_end_year : "Published model study";
+    return study + ". Analysis definitions and mean-flow context; physical width, thickness, annual ranges and uncertainty remain unknown.";
+  }
+  function contextValue(row) {
+    if (row.record_type === "model_analysis_layer_definition") {
+      const upper = row.upper_reference === "sea_surface" ? "Surface" : (row.upper_depth_m ?? "Unknown") + " m";
+      return upper + " to " + (row.lower_depth_m ?? "unknown") + " m · study analysis layer";
+    }
+    if (row.depth_cap_m !== undefined) return "Mean flow > " + row.velocity_threshold_cm_s + " cm/s does not extend below " + row.depth_cap_m + " m";
+    return (row.approximate ? "Approximately " : "Reported ") + (row.reported_depth_m ?? "unknown") + " m · mean-flow core depth";
+  }
+  function renderLayerContext(parent, row, inspect) {
+    const section = node("section", undefined, parent);
+    section.className = "model-section-card model-layer-context-card";
+    node("h3", row.source_feature + " · " + (row.record_type === "model_analysis_layer_definition" ? "Study analysis layer" : "Mean-flow depth context"), section);
+    node("p", contextValue(row), section);
+    node("p", contextScope(row), section);
+    node("p", row.entity_id === null
+      ? "Separate undercurrent context. This record is related to South Java but is not assigned to the surface current or admitted as a new catalogue entity."
+      : "Surface-current model context. This record is not an observed current boundary or a physical current thickness.", section);
+    const values = node("dl", undefined, section);
+    const support = row.model_support;
+    if (support?.section_longitudes_degrees_east) datum(values, "Selected mean sections (degrees east)", support.section_longitudes_degrees_east.join(", "));
+    if (row.reported_peak_speed_cm_s !== undefined) datum(values, "Reported mean-core peak eastward speed (cm/s)", row.reported_peak_speed_cm_s);
+    if (row.depth_cap_m !== undefined) node("p", "The depth cap applies to the stated mean-flow threshold at the selected sections; the exact edge depth is unresolved.", section);
+    datum(values, "Source location", row.source_locator);
+    const links = node("div", undefined, section);
+    links.className = "record-links";
+    for (const [text, collection] of [["Related study analysis layers", "current_model_analysis_layers"], ["Related mean-flow depth context", "current_model_depth_context"]]) {
+      queryLink(text, collection, "related_current_id", row.related_current_id, "id", links);
+    }
+    queryLink("South Java current record", "objects", "id", row.related_current_id, "id", links);
+    const source = node("button", "Publication and source details", links);
+    source.type = "button";
+    source.addEventListener("click", () => inspect("sources", row.source_id));
+    link("Reviewed source facts", "query.html?source-q=" + encodeURIComponent(JSON.stringify({document: row.source_file, pointer: "", limit: 100})), links);
+    const figure = node("figure", undefined, section);
+    figure.style.margin = "1rem 0";
+    const image = node("img", undefined, figure);
+    image.loading = "lazy";
+    image.src = new URL("../" + row.figure_file, location.href).href;
+    image.alt = "South Java model analysis layers, approximate mean-core depths and threshold cap; a depth schematic, not current thickness or a geographic footprint.";
+    image.style.width = "100%";
+    image.style.height = "auto";
+    link("Open full-size depth schematic", "../" + row.figure_file, links);
+    node("figcaption", "Source-qualified depth schematic. Analysis layers, approximate mean cores and the threshold cap are distinct quantities. No physical width or thickness is inferred.", figure);
+    return true;
+  }
   function render(parent, row, inspect) {
+    if (isLayerContext(row)) return renderLayerContext(parent, row, inspect);
     if (!["model_section_frame", "model_section_sample"].includes(row.record_type)) return false;
     const section = node("section", undefined, parent);
     section.className = "model-section-card";
@@ -76,6 +130,7 @@
     return true;
   }
   function value(row) {
+    if (isLayerContext(row)) return contextValue(row);
     if (row.record_type === "model_section_frame") return row.sample_count + " sites · hourly model snapshot";
     if (row.record_type === "model_section_sample") {
       const shown = value => value === null ? "Unavailable" : String(value);
@@ -84,6 +139,7 @@
     return null;
   }
   function recordScope(row) {
+    if (isLayerContext(row)) return contextScope(row);
     return ["model_section_frame", "model_section_sample"].includes(row.record_type) ? scope : null;
   }
   window.oswModelSectionCard = {render, value, scope: recordScope};

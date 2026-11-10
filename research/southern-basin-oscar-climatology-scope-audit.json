@@ -1,0 +1,29 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "status": "editorial_source_scope_not_scientific_approval",
+  "current_ids": ["south-atlantic", "south-pacific", "south-indian"],
+  "source_preflight": "research/basin-surface-section-input.json",
+  "scope": "Extend the three frozen native meridional eastward-component sections to 1995-2016 without selecting new geography from the multi-year results.",
+  "context_sources": [
+    "research/south-atlantic-reach-reference-path-input.json",
+    "research/south-pacific-eastern-front-reach-layer-time-scope-audit.json",
+    "research/south-indian-eastern-reach-naming-layer-scope-audit.json"
+  ],
+  "source_access": "Existing contextual source audits remain unchanged. New numerical evidence is the explicitly acquired original NOAA PIFSC/ESR OSCAR2017.0 gridded vector archive; no new paper figure or observed current edge is extracted.",
+  "layer": "Satellite-derived near-surface current product with nominal 15 m coordinate, not a direct instrument section or vertically resolved current.",
+  "identity_caveats": {
+    "south-atlantic": "Near-surface strongest eastward peak may reflect SAC, ACC, eddies or combined flow; intermediate-depth float-route identity does not transfer.",
+    "south-pacific": "STF geographic context is not a velocity axis; split bands, branches and eddies remain unresolved.",
+    "south-indian": "Near-surface peak cannot inherit historical upper-1000 m transport identity; ACC, northern subtropical front and eddy attribution remain unresolved."
+  },
+  "current_association_verified": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "width_rank_eligible": false,
+  "interannual_span_is_measurement_uncertainty": false,
+  "remaining_gates": [
+    "Resolve named-current, branch and eddy correspondence independently at each section and time.",
+    "Recover and validate flow-normal boundaries and effective resolution.",
+    "Separate model, sampling and boundary uncertainty before admitting physical dimension ranges."
+  ]
+}

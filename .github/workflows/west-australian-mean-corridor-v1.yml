@@ -1,0 +1,84 @@
+name: West Australian qualified mean corridor v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/west-australian-mean-corridor-v1.yml
+      - analysis/west_australian_mean_corridor_v1.py
+      - analysis/test_west_australian_mean_corridor_v1.py
+      - plans/west-australian-qualified-mean-corridor-v1.md
+      - research/west-australian-mean-corridor-method-prerequisites-v1.json
+      - research/west-australian-mean-corridor-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_neuc_mean_coordinates_v1.py
+            analysis/bounded_hycom_http_ranges_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/inspect_hycom_mean_header_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/pacific_neuc_mean_sections_v1.py
+            analysis/test_bounded_hycom_http_ranges_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_hycom_mean_header_inspection_v1.py
+            analysis/test_west_australian_mean_corridor_v1.py
+            analysis/west_australian_mean_corridor_v1.py
+            plans/pacific-neuc-mean-coordinate-access-v1.md
+            plans/pacific-neuc-precomputed-mean-header-inspection-v1.md
+            plans/west-australian-qualified-mean-corridor-v1.md
+            research/current-depth-register-v48.json
+            research/current-depth-route-projection-inventory-v46.json
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/pacific-neuc-depth-method-prerequisites-v1.json
+            research/pacific-neuc-mean-coordinate-access-operator-v1.json
+            research/pacific-neuc-mean-coordinate-source-review-v1.json
+            research/pacific-neuc-mean-header-inspection-operator-v1.json
+            research/pacific-neuc-mean-header-source-review-v1.json
+            research/pacific-neuc-mean-rectangle-partial-source-review-v2.json
+            research/pacific-neuc-nscc-distinction-scope-audit.json
+            research/pacific-neuc-precomputed-mean-source-assessment-v1.json
+            research/pacific-neuc-southern-reach-scope-audit.json
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/.gitattributes
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/access.json
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/native-grid-mean-index.html
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/reanalysis-catalog.xml
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/uniform-grid-mean-index.html
+            research/source-data/pacific-neuc-mean-coordinate-access-v1/coordinates.json
+            research/source-data/pacific-neuc-mean-header-inspection-v1/header-inspection.json
+            research/source-data/pacific-neuc-mean-rectangle-partial-v2/completed-ranges/request-000.json
+            research/source-data/pacific-neuc-mean-rectangle-partial-v2/transport-ledger.json
+            research/west-australian-current-naming-seasonal-scope-audit.json
+            research/west-australian-glenn-2008-breadth-scope-audit.json
+            research/west-australian-mean-corridor-method-prerequisites-v1.json
+            research/west-australian-mean-corridor-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify mean corridor and exact single ranges then acquire once
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_bounded_hycom_http_ranges_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_west_australian_mean_corridor_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/west_australian_mean_corridor_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: west-australian-mean-corridor-v1
+          path: west-australian-mean-corridor-v1/
+          retention-days: 7

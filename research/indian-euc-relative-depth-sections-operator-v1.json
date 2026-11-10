@@ -1,0 +1,154 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    50,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all candidate scores,base interval eligibility,surface values,subsurface peaks and contrasts. Missing surface reference rejects that candidate and can censor a selected neighboring maximum. Gate/support-edge winners stay unresolved;no weaker interior substitution or field-tuned gates/cutoffs. Relative velocity alone does not independently identify EUC,thermocline or persistence.",
+  "vertical_operator": "Search full native0–5000m above/below each qualifying50–200m seed using frozen connected-layer brackets. Neither selection endpoint nor source core-depth band is imposed as a boundary. Same-sign surface/deeper flow can connect;keep upper/lower,statuses,supported bounds and paired span distinct. Missing/bed/domain limits censor;paired velocity span is not physical thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.indian-euc-relative-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New quarterly Indian EUC-context source sections with a declared subsurface-core>finite-surface comparison. Frozen interval signed integrals/connected layers,geometry,component rotation and bounded transport are reused. New relative selection is separately versioned;older validated operators/helpers/sources remain unchanged.",
+  "geometry_provenance": "Five OSW exploratory meridional sections70,75,80,85,90E,with2S–2N searches,ordered eastward. March/June/September/December15,2022 00Z snapshots sample contrasting times,not monthly means or annual extrema. Stops/gates/connectors are not extracted axes,widths or uncertainty bounds;this is a partial central/eastern reach.",
+  "column_selector": "Complete finite native50–200m eastward signed-integral candidates must have positive integral,core>10cm/s and interval maximum strictly greater than finite native0m signed flow. No positive surface-speed prerequisite. Maximum qualifying integral wins;first southern native tie. Selected gate or interval/surface-reference support edges remain unresolved without weaker interior replacement. Keep5/10/20cm/s layers at selected column with own50–200m seed.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all20targetsection/date shapes andexacttimes beforefields. Each3–150row/40level slice staysunder frozen20000pairsperpatch/250000total,with7MBdecodedbound. Newreader retriesonlyexactcomponent/hyperslab on actualNetCDFI/Ofailure,atmost3attempts(2/5secondbackoff). Reservefullfuture first-attempt target componentvalues beforeadding eachretry;alltarget-plus-extra requestedbuffers mustfit originalpair-equivalent andbytecaps at8bytes/componentvalue. Logeveryrequest/outcome durably. Successfulothercomponents/sections are not re-requested. No sourcewirebyte/hash claim or failedread-to-zero conversion.",
+  "currents": {
+    "current:indian-equatorial-undercurrent": {
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "require_core_stronger_than_surface": true,
+      "temperature_gate": null,
+      "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-70e",
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 70,
+      "latitude_gate_degrees_north": [
+        -2,
+        2
+      ]
+    },
+    {
+      "id": "section-75e",
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 75,
+      "latitude_gate_degrees_north": [
+        -2,
+        2
+      ]
+    },
+    {
+      "id": "section-80e",
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 80,
+      "latitude_gate_degrees_north": [
+        -2,
+        2
+      ]
+    },
+    {
+      "id": "section-85e",
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 85,
+      "latitude_gate_degrees_north": [
+        -2,
+        2
+      ]
+    },
+    {
+      "id": "section-90e",
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 90,
+      "latitude_gate_degrees_north": [
+        -2,
+        2
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005188",
+      "locator": "Iskandar et al.(2009),Abstract and EUC definition;fresh primary publisher HTML",
+      "scope": "Describes transient subsurface eastward flow beneath westward or weaker eastward surface flow and substantial seasonal/interannual variation. The OSW strict core>surface comparison implements a velocity diagnostic only;thermocline identity and month-long duration remain untested. Source90–170m band and instrument limits are not imposed boundaries."
+    },
+    {
+      "url": "https://repository.library.noaa.gov/view/noaa/64055/noaa_64055_DS1.pdf",
+      "locator": "Siswanto et al.(2019),Introduction1.1 and March2017 section;fresh NOAA-hosted primary PDF text",
+      "scope": "Historical90E observations describe variable core depths and seasonal axis differences. March2017 saline band and2000–2014 mooring descriptions remain separate from2022 model cases. No salinity/temperature classification,source array extraction or transport-to-volume conversion."
+    },
+    {
+      "url": "https://journals.ametsoc.org/view/journals/phoc/45/6/jpo-d-14-0225.1.xml",
+      "locator": "Chen et al.(2015),fresh primary indexed EUC definition;direct publisher reopen403",
+      "scope": "Defines subsurface eastward flow beneath westward/weaker surface flow with temporal persistence. Four quarterly snapshots cannot establish that persistence,thermocline membership,annual extrema or full seasonal envelopes. Dates are declared probes rather than source monthly means."
+    }
+  ],
+  "input_sha256": {
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/test_interval_depth_diagnostic_v1.py": "1c3daca18862397b5158bbb5a9ebc9f17fc95222702570e0d59d2afa8a884ee1",
+    "analysis/relative_core_interval_diagnostic_v1.py": "a10bab8fe7652fd924dbec5389016ca7fc943ef3c86bea02f83a3e1362b59d4c",
+    "analysis/relative_core_interval_section_audit_v1.py": "edc9dbc253d4134342212bab29279b5c4a569b65df8b6b6c872bb3805cb6f718",
+    "analysis/acquire_indian_euc_relative_depth_sections_v1.py": "506bbd72d3250b8d7d459ce151263209e481c4ef8adc801843a475bb20950ab7",
+    "analysis/test_indian_euc_relative_depth_sections_v1.py": "551dff5ed9369a4d678cd652ef1dc5c1d95fa3cb04813e7a48a550867f3210fe",
+    "plans/indian-euc-relative-depth-sections-protocol-v1.md": "33a2ff79d62bc6ed5019390fa130cbb5f4e37f70ef64e331654f21ecb54cb173"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3,
+  "selection_depth_interval_m": [
+    50,
+    200
+  ],
+  "methodology_file": "plans/indian-euc-relative-depth-sections-protocol-v1.md",
+  "require_core_stronger_than_surface": true
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "osw.norkyst-within-month-preflight.v1",
+  "declared_utc": "2026-10-18T04:03:02.663274+00:00",
+  "status": "declared_before_new_within_month_field_acquisition_or_analysis",
+  "current_context_id": "norwegian-coastal",
+  "target_year": 2024,
+  "target_months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "acquisition_phase_order": [
+    1,
+    7,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "pilot_months": [
+    1,
+    7
+  ],
+  "hours_by_month": {
+    "1": 744,
+    "2": 696,
+    "3": 744,
+    "4": 720,
+    "5": 744,
+    "6": 720,
+    "7": 744,
+    "8": 744,
+    "9": 720,
+    "10": 744,
+    "11": 720,
+    "12": 744
+  },
+  "target_year_hours": 8784,
+  "halo_hours_each_side": 36,
+  "section": {
+    "longitude": 24,
+    "latitude_start": 71.1,
+    "latitude_end": 73,
+    "latitude_step": 0.01,
+    "samples": 191,
+    "depth_m": 10
+  },
+  "source_grid": {
+    "Y": [
+      576,
+      4,
+      764
+    ],
+    "X": [
+      2420,
+      4,
+      2616
+    ],
+    "native_spacing_m": 800,
+    "retained_spacing_m": 3200
+  },
+  "variables": [
+    "salinity",
+    "u_eastward",
+    "v_northward"
+  ],
+  "filter": {
+    "name": "explicit_24_24_25_boxcar_convolution",
+    "kernel_hours": 71,
+    "support_hours_each_side": 35,
+    "missing_policy": "all71_paired_hourly_samples_required_no_bridging_no_padding"
+  },
+  "temporal_summaries": {
+    "complete_calendar_month_required": true,
+    "standard_deviation_ddof": 0,
+    "sample_quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "quantiles_are_confidence_intervals": false
+  },
+  "prior_exposure": "The previous twelve fifteenth-day noon hourly fields were already viewed. Only first-day January/July DDS/DAS metadata was newly probed. No new within-month velocity or salinity responses have been acquired/read.",
+  "fully_blinded": false,
+  "new_width_record_admitted": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "rank_eligible": false,
+  "physical_geometry_admitted": false,
+  "input_sha256": {
+    "plans/norkyst-ingoy-within-month-support-2026-10-17.md": "aac3cd4bc388e2c56b772e3d1878af75b8c60bd3d2504990b7d9104a7d94ef6f",
+    "plans/norkyst-ingoy-section-sampling-protocol-v1.md": "76fad76627ede35fe67a9af843048fa868df29f1fc1ddecd280bc18713511b10",
+    "analysis/build_norkyst_ingoy_timeline.py": "6f27b108e95f7cc182c647f73792b6eb03d52d115fcdc76560f2826a38524c6c",
+    "research/norkyst-ingoy-2024-section-timeline.json": "5b11b1495f0c73d1dcf90a38502c28d72e6740fd7f926ce1ed680c0284e659fe",
+    "research/norkyst-ingoy-2024-monthly-sample-receipts.json": "78ab68f749c62c8555cf877611c93787b0545f47e0052211a664167d26069c96",
+    "research/source-data/norkyst-ingoy-months-2024/20240101.dds": "58b9d1a055084e586b5919c4a1558ca6571f219491f95c065c92f0dfe7eb218d",
+    "research/source-data/norkyst-ingoy-months-2024/20240101.das": "f5289f184a1df8b30e938395213967f5be302e0d73f6cc57007bfeae9721ca6e",
+    "research/source-data/norkyst-ingoy-months-2024/20240701.dds": "a6ec0f311a3158775fb1c0b6aebd143258a8baae07ffe4abc1dadce1160aed1b",
+    "research/source-data/norkyst-ingoy-months-2024/20240701.das": "01e0a9e17d9d72fd0a9d5de4ad15a21229a174a1ede3b7b9494b00f55702ad81"
+  }
+}

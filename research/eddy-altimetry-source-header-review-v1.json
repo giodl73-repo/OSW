@@ -1,0 +1,191 @@
+{
+  "run_id": 41276815297,
+  "source_commit": "f88a56d1890cd07346f24a942c21afa9cc9ba440",
+  "run_conclusion": "success",
+  "artifact": {
+    "id": 13071424038,
+    "bytes": 1645,
+    "sha256": "67eddb8c1e613c3770bba12478ceef9b5f5597e88ca00b0428ce202de7acfd28"
+  },
+  "result": {
+    "schema": "osw.eddy-altimetry-source-audit-result.v1",
+    "source_commit": "f88a56d1890cd07346f24a942c21afa9cc9ba440",
+    "request_sha256": "14b05de6c7507ca752f9caaf8e99abae8fe0ff685a33315fbc3116dec5e9f684",
+    "status": "PASS_HEADER_AUDIT_ONLY",
+    "adt_field_values_read": false,
+    "measurements_admitted": 0,
+    "physical_identity_joins_created": 0,
+    "http": {
+      "final_url": "https://data.griidc.org/api/file/download/947138",
+      "content_type": "application/json",
+      "content_length": null
+    },
+    "source": {
+      "url": "https://data.griidc.org/api/file/download/947138",
+      "bytes": 757416604,
+      "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+    },
+    "header": {
+      "data_model": "NETCDF4",
+      "dimensions": {
+        "time": 9861,
+        "latitude": 120,
+        "longitude": 160
+      },
+      "attributes": {
+        "Conventions": "CF-1.11",
+        "title": "DT merged all satellites Global Ocean Gridded SSALTO/DUACS Sea Surface Height L4 product and derived variables",
+        "institution": "CLS, CNES",
+        "source": "Altimetry measurements",
+        "history": "2024-10-23 12:55:06Z: Creation",
+        "contact": "servicedesk.cmems@mercator-ocean.eu",
+        "references": "http://marine.copernicus.eu",
+        "comment": "Sea Surface Height measured by Altimetry and derived variables",
+        "subset:source": "ARCO data downloaded from the Marine Data Store using the MyOcean Data Portal",
+        "subset:productId": "SEALEVEL_GLO_PHY_L4_MY_008_047",
+        "subset:datasetId": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
+        "subset:date": "2025-07-19T00:56:26.128Z"
+      },
+      "variables": {
+        "time": {
+          "dtype": "float64",
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            9861
+          ],
+          "attributes": {
+            "standard_name": "time",
+            "long_name": "Time",
+            "units": "seconds since 1970-01-01 00:00:00",
+            "calendar": "gregorian",
+            "axis": "T"
+          },
+          "coordinate": {
+            "count": 9861,
+            "first": 725846400.0,
+            "last": 1577750400.0,
+            "strictly_increasing": true,
+            "minimum_spacing": 86400.0,
+            "maximum_spacing": 86400.0,
+            "decoded_endpoints": [
+              "1993-01-01 00:00:00",
+              "2019-12-31 00:00:00"
+            ]
+          }
+        },
+        "latitude": {
+          "dtype": "float32",
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            120
+          ],
+          "attributes": {
+            "standard_name": "latitude",
+            "long_name": "Latitude",
+            "units": "degrees_north",
+            "unit_long": "Degrees North",
+            "axis": "Y"
+          },
+          "coordinate": {
+            "count": 120,
+            "first": 17.0625,
+            "last": 31.9375,
+            "strictly_increasing": true,
+            "minimum_spacing": 0.125,
+            "maximum_spacing": 0.125
+          }
+        },
+        "longitude": {
+          "dtype": "float32",
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            160
+          ],
+          "attributes": {
+            "standard_name": "longitude",
+            "long_name": "Longitude",
+            "units": "degrees_east",
+            "unit_long": "Degrees East",
+            "axis": "X"
+          },
+          "coordinate": {
+            "count": 160,
+            "first": -98.9375,
+            "last": -79.0625,
+            "strictly_increasing": true,
+            "minimum_spacing": 0.125,
+            "maximum_spacing": 0.125
+          }
+        },
+        "adt": {
+          "dtype": "float32",
+          "dimensions": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            9861,
+            120,
+            160
+          ],
+          "attributes": {
+            "units": "m",
+            "_FillValue": "nan",
+            "standard_name": "sea_surface_height_above_geoid",
+            "long_name": "Absolute dynamic topography",
+            "comment": "The absolute dynamic topography is the sea surface height above geoid; the adt is obtained as follows: adt=sla+mdt where mdt is the mean dynamic topography; see the product user manual for details",
+            "coordinates": "longitude latitude",
+            "grid_mapping": "crs"
+          }
+        }
+      },
+      "groups": []
+    },
+    "elapsed_seconds": 16.42
+  },
+  "schema": "osw.eddy-altimetry-source-header-review.v1",
+  "status": "PASS_SOURCE_ACQUISITION_AND_HEADER_ONLY",
+  "tests_passed": 3,
+  "source_publication": {
+    "status": "PASS_EDDY_REGISTER_SOURCE_PUBLISHED",
+    "source_commit": "f88a56d1890cd07346f24a942c21afa9cc9ba440",
+    "local_commit": "e0837aa7dd72f131f087589151d6f47b95a6ea37",
+    "installed_files_preserved": 21,
+    "main_unchanged": true,
+    "full_goal_complete": false
+  },
+  "scope": {
+    "local_ocean_field_downloaded": false,
+    "local_ocean_field_processing": false,
+    "cloud_cpu_count": 1,
+    "cloud_nice": 15,
+    "adt_field_values_read": false,
+    "raw_source_in_retained_artifact": false,
+    "original_deleted_after_header_audit": true,
+    "runtime_changed": false,
+    "measurements_admitted": 0,
+    "physical_joins_created": 0,
+    "size_reference_owners": 80,
+    "remaining_size_reference_gaps": 56
+  },
+  "header_review": {
+    "grid_spacing_degrees": 0.125,
+    "temporal_spacing_seconds": 86400,
+    "source_product_version": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
+    "actual_subset_timestamp": "2025-07-19T00:56:26.128Z",
+    "metadata_discrepancy": "Landing/ISO prose says downloaded 18 July 2025; original header records subset creation 19 July 2025 UTC. Preserve both; no date correction inferred.",
+    "mdt_reference_version": "Not stated in the acquired NetCDF header; consult the pinned product manual before transferring any absolute contour level.",
+    "grid_mapping_note": "ADT declares grid_mapping=crs but the header has no crs variable. Explicit latitude/longitude degree coordinates exist. Do not invent an unprovided CRS object.",
+    "content_type_note": "HTTP response labels bytes application/json; original magic and successful NetCDF4 header inspection establish the file format. Content-Type alone is not the format check.",
+    "checksum_confirmation": "Actual individual NetCDF SHA256 equals the repository dataset-download checksum: 526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527."
+  },
+  "next_gate": "Define and cloud-test a product-specific contour operator with uncertainty/sensitivity. Then review individual named-case joins against primary dated position/trajectory evidence before any size record is admitted.",
+  "full_goal_complete": false
+}

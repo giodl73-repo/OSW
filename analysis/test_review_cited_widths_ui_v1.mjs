@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+class Element {constructor(tag){this.tag=tag;this.children=[];this.attributes={};this.style={};}append(el){this.children.push(el);}setAttribute(k,v){this.attributes[k]=String(v);}}
+const document={createElement:t=>new Element(t),createElementNS:(_ns,t)=>new Element(t)};
+const location={href:''},context={document,window:{},location};vm.runInNewContext(fs.readFileSync('almanac/review-cited-widths.js','utf8'),context);
+const sourceFile='research/wicc-vinayachandran-2021-surface-width-source-facts-v1.json',facts=JSON.parse(fs.readFileSync(sourceFile,'utf8'));
+const row={...facts.records[0],source_file:sourceFile,source_pointer:'/records/0',source_url:facts.source.url,time_convention:facts.records[0].time_description,layer:facts.records[0].layer_description,review_width_context:{observational_independence_note:facts.observational_independence_note}};
+const scene={kind:'published_review_cited_widths',title:'WICC review width',scope:'Summer-monsoon discussion',records:[row],full_context_figure:'figures/wicc-vinayachandran-2021-surface-width-v1.svg'};
+const all=n=>[n,...n.children.flatMap(all)],text=n=>all(n).map(n=>n.textContent||'').join(' '),root=new Element('div'),inspected=[];
+context.window.renderReviewCitedWidths(root,scene,(collection,id)=>inspected.push([collection,id]));
+const cards=all(root).filter(n=>n.attributes['data-review-width-id']);assert.equal(cards.length,1);assert.equal(cards[0].attributes['data-review-width-id'],row.id);
+assert.match(text(root),/about 150 km/);assert.match(text(root),/not a new independent width sample/);assert.match(text(root),/original methods have not been reviewed/);
+assert.equal(all(root).find(n=>n.tag==='circle').attributes.cx,'150');assert.match(all(root).find(n=>n.tag==='svg').attributes['aria-label'],/annual range unreported/);
+all(root).find(n=>n.tag==='button').onclick();assert.deepEqual(inspected,[['widths',row.id]]);
+const query=JSON.parse(decodeURIComponent(all(root).find(n=>n.textContent==='Source record').href.split('?source-q=')[1]));assert.equal(query.document,sourceFile);assert.equal(query.pointer,'/records/0');
+assert.equal(all(root).find(n=>n.textContent==='Original review').href,facts.source.url);
+const empty=new Element('div');context.window.renderReviewCitedWidths(empty,{...scene,records:[]});assert.equal(empty.children.length,0);
+context.window.renderReviewCitedWidths(empty,scene);all(empty).find(n=>n.tag==='button').onclick();assert.equal(JSON.parse(decodeURIComponent(location.href.split('?q=')[1])).filters[0].value,row.id);
+for(const page of ['query.html','reference-routes.html','seasons.html'])assert.match(fs.readFileSync('almanac/'+page,'utf8'),/review-cited-widths\.js\?v=1/);
+console.log('PASS: review provenance, approximate marker, unknown support and exact source/Inspect navigation. Browser layout pending.');

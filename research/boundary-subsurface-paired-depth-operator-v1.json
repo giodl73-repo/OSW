@@ -1,0 +1,70 @@
+{
+  "schema": "osw.boundary-subsurface-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_boundary_subsurface_paired_depth_v1.py": "e2a4e50626324ab7509b19566b76e27cbd46f43c145fdf5182db185296196dca",
+    "analysis/test_boundary_subsurface_paired_depth_v1.py": "fea7d77717c3851749a29fff7d077b5052bf932cf75915c2bf0afa613657ef21",
+    "plans/boundary-subsurface-paired-depth-v1.md": "f83dcfb8480ba8f31b1add7c935d5ec0d34b3aac4a2e8ab5787ba4c9d3a8adec",
+    ".github/workflows/boundary-subsurface-paired-depth-v1.yml": "96605a4c2275775ad8126522c71a71f1136c2575b1e291ea5923c365eabfa0f0",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/boundary-subsurface-velocity-depth-curtains-v1.json": "6683eb7d8530f865da5e61f9d3ef70f15a2b81b0a034b304c18c1d1bcaf0ef5b",
+    "research/current-depth-boundary-subsurface-velocity-curtains-source-review-v1.json": "a7938b3ca8ac0e3dd5c3ae9e02e317ce3243c8afbbccbf0c7d06c681ecd217bd",
+    "research/mauritania-baffin-interval-depth-sections-operator-v1.json": "d97583dd1de2c82f5bee5b91b3f922b8daf7ca26aef70363321d94a63dc75df8",
+    "research/northern-interval-depth-sections-operator-v1.json": "ba7ade403efbd5572a7a4a12dfd8f7044af4fcd84f16b4239aed5b78e0e29d62"
+  },
+  "source_cases": 60,
+  "original_supported_cases": 41,
+  "original_axis_gap_cases": 19,
+  "primary_threshold_m_s_by_owner": {
+    "current:mauritanian": 0.1,
+    "current:baffin": 0.05,
+    "current:pacific-north-subsurface-countercurrent": 0.1,
+    "current:atlantic-north-equatorial-undercurrent": 0.1
+  },
+  "source_effective_windows_m": {
+    "current:mauritanian": [
+      50,
+      300
+    ],
+    "current:baffin": [
+      100,
+      300
+    ],
+    "current:pacific-north-subsurface-countercurrent": [
+      100,
+      400
+    ],
+    "current:atlantic-north-equatorial-undercurrent": [
+      100,
+      400
+    ]
+  },
+  "window_resolution": "explicit_owner_override_else_original_explicit_method_default_no_invented_fallback",
+  "stratum_forces_detached_layer_or_body_limits": false,
+  "thickness_definition": "paired_lower_minus_upper_not_absolute_lower_depth",
+  "mixed_temporal_support_preserved": true,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "attach_anchor",
+    "counts",
+    "all_report_runs"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

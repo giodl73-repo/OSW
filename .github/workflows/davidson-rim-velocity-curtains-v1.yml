@@ -1,0 +1,138 @@
+name: Davidson and southern Black Sea Rim depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/davidson-rim-velocity-curtains-v1.yml
+      - analysis/derive_davidson_rim_velocity_curtains_v1.py
+      - analysis/test_davidson_rim_velocity_curtains_v1.py
+      - plans/davidson-rim-velocity-curtains-protocol-v1.md
+      - research/davidson-rim-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/davidson-rim-surface-qualified-depth-sections-v1.yml
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_davidson_rim_surface_qualified_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_davidson_rim_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_surface_qualified_velocity_curtain_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/surface_qualified_mixed_geometry_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_davidson_rim_surface_qualified_depth_sections_v1.py
+            analysis/test_davidson_rim_velocity_curtains_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/davidson-rim-surface-qualified-depth-sections-protocol-v1.md
+            plans/davidson-rim-velocity-curtains-protocol-v1.md
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/black-sea-rim-circuit-scope-audit.json
+            research/black-sea-rim-reference-path-input.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v16.json
+            research/current-depth-source-facts-v20.json
+            research/davidson-rim-surface-qualified-depth-sections-operator-v1.json
+            research/davidson-rim-surface-qualified-depth-sections-source-facts-v1.json
+            research/davidson-rim-surface-qualified-depth-sections-source-review-v1.json
+            research/davidson-rim-velocity-curtains-operator-v1.json
+            research/davidson-wallace-2008-width-source-facts-v1.json
+            research/davidson-winter-reference-path-input.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-black-sea-rim-section-31e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-black-sea-rim-section-32e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-black-sea-rim-section-33e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-black-sea-rim-section-34e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-davidson-section-36p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-davidson-section-38n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-davidson-section-39p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-03-15-davidson-section-41n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-black-sea-rim-section-31e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-black-sea-rim-section-32e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-black-sea-rim-section-33e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-black-sea-rim-section-34e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-davidson-section-36p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-davidson-section-38n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-davidson-section-39p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-06-15-davidson-section-41n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-black-sea-rim-section-31e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-black-sea-rim-section-32e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-black-sea-rim-section-33e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-black-sea-rim-section-34e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-davidson-section-36p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-davidson-section-38n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-davidson-section-39p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-09-15-davidson-section-41n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-black-sea-rim-section-31e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-black-sea-rim-section-32e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-black-sea-rim-section-33e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-black-sea-rim-section-34e.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-davidson-section-36p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-davidson-section-38n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-davidson-section-39p5n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/2022-12-15-davidson-section-41n.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/manifest.json
+            research/source-data/davidson-rim-surface-qualified-depth-sections-v1/transport-ledger.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_davidson_rim_surface_qualified_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_davidson_rim_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_davidson_rim_velocity_curtains_v1.py --current current:davidson
+          taskset -c "$cpu" nice -n 15 python analysis/derive_davidson_rim_velocity_curtains_v1.py --current current:black-sea-rim
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: davidson-rim-velocity-curtains-davidson-v1
+          path: davidson-rim-velocity-curtains-v1/davidson/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: davidson-rim-velocity-curtains-black-sea-rim-v1
+          path: davidson-rim-velocity-curtains-v1/black-sea-rim/
+          retention-days: 7

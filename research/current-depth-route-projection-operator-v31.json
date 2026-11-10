@@ -1,0 +1,208 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v31",
+  "previous_inventory_file": "research/current-depth-route-projection-inventory-v16.json",
+  "entity_id": "current:atlantic-south-equatorial-undercurrent",
+  "source_entity_id": "current:atlantic-south-equatorial",
+  "source_component_bearing_degrees_true": 270,
+  "source_operator_file": "research/sec-basin-depth-sections-operator-v1.json",
+  "section_files": [
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-31w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-32w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-33w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-34w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-35w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-31w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-32w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-33w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-34w.json",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-35w.json"
+  ],
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "sections": [
+    {
+      "id": "section-35w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -35,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-34w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -34,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-33w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -33,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-32w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -32,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    },
+    {
+      "id": "section-31w",
+      "entity_id": "current:atlantic-south-equatorial",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -31,
+      "latitude_gate_degrees_north": [
+        -6.5,
+        -1.5
+      ]
+    }
+  ],
+  "analysis_latitude_gate_degrees_north": [
+    -5.5,
+    -2.5
+  ],
+  "selection_depth_interval_m": [
+    100,
+    400
+  ],
+  "core_search_depth_interval_m": [
+    100,
+    400
+  ],
+  "surface_component_gate_m_s": null,
+  "primary_threshold_m_s": 0.1,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "component_bearing_degrees_true": 90,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "branch_scope": "Partial western Atlantic SEUC-context35–31W reach near Fernando de Noronha,with fixed5.5–2.5S searches. Exclude westward surface SEC,coastal NBC/NBUC,equatorial EUC,SECC and detached eddies as target identities. Deeper same-sign intermediate flow can connect to selected layers and does not establish SEUC thickness. Source1978–1980 core descriptions,2015/2017 ABRACOS seasons and historical35W means are separate from2022 snapshots. Geographic maxima do not independently identify an undercurrent axis or source-water class;out-of-gate branches remain unsearched.",
+  "interpolation_assumption": "Keep every original fixed-longitude section in declared downstream order. Use selected native model positions;where no column qualifies,use actualnativewrappedlongitude and the declaredlatitude-gate midpoint only as an explicit unresolved reference geometry placeholder with no sampled position or depth. ShortestWGS84legs connect adjacentoriginal references,including across180/-180. Assume linear lowerdepth and paired modelspan only between neighboring original supported nodes;never skip,extrapolate or fill from an alternate cutoff. Distances are reference geometry,not measured current lengths.",
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "physical_state_join": false,
+    "seasonal_envelope": false
+  },
+  "interpretation": "Add two separate100–400m eastward no-surface-gate SEUC regional cases using ten retained Atlantic SEC sections and a declared5.5–2.5S subset. Recompute90degree velocity from raw u/v,retain original270degree source owner/diagnoses and original-index mapping,all anchors and primary gaps. Preserve all106 earlier scenarios,sixteen prior addenda,CSV cells and canonical ownership under frozen adjacent-only interpolation. Same fields are not independent observations. Neither selection endpoints,source core/plot/instrument domains nor thermocline boundaries imply a physical current bottom,annual range or volume.",
+  "source_review": [
+    {
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284953",
+      "locator": "Assuncao et al.(2023),Introduction,Methods2.1 andResults3.1;fresh publisher HTML",
+      "scope": "Distinguishes offshore eastward subsurface SEUC from westward surface cSEC and coastal NBC/NBUC. Two historical campaigns are not2022 validation or annual extrema. Instrument/plot limits and thermocline depth are not current boundaries."
+    },
+    {
+      "url": "https://archimer.ifremer.fr/doc/00121/23229/21063.pdf",
+      "locator": "Molinari et al.(1981),retained primary source facts v2 and fresh primary indexed text",
+      "scope": "Direct PDF reopen403. Historical3–5S core-depth context remains separate from layer thickness. Existing core references and strict deep-core bound stay unchanged;no new source figure extraction."
+    },
+    {
+      "url": "https://doi.org/10.1029/2002GL016849",
+      "locator": "Schott et al.(2003),fresh primary search-indexed section description;direct full reopen403",
+      "scope": "Historical35W section synthesis places SEUC below SEC. Fresh primary indexed Schott2005 text distinguishes deeper eastward intermediate flow. OSW100–400m selection is not a truncation or independent branch identity;connected deeper flow remains a qualification."
+    }
+  ],
+  "methodology_file": "plans/atlantic-seuc-interval-depth-diagnostic-protocol-v1.md",
+  "new_provider_field_reads": 0,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "input_sha256": {
+    "research/current-depth-route-projection-inventory-v16.json": "9e440774c7f39354e33e21b4c4dffd7995d8ab48277e7c14003183ec85170b2b",
+    "research/current-depth-route-projection-inventory-source-review-v16.json": "53f594c43f49dad41f40aa494810d2e7f43df227db9f59ede7d883744b14961e",
+    "research/current-depth-route-projections-v14.json": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+    "research/current-depth-route-projections-v14.csv": "b232e187b6335da5f45cbff75432d3724b4c16317cdfa968b33ab0e5a9df83d8",
+    "research/current-depth-unresolved-reference-cases-v1.csv": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json": "7a2745a5fe34f4b5281146dfca06b60eac8bda6901d9748da3e0831ec0c82b9c",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv": "48389a2259cca30ab164f5444248d6dcbb4fa16044540ed3b91b8141ae350108",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json": "90702129dd0472abb53660dc28e6e5c194ef78044d3e07a384f45dee8398c4dd",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv": "7fe357c2816765b69d8582bdef28f8e11f04f8f9f8eba161ae1bb87c0e12dcaa",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json": "754cd2b67ca61dc87a8ee306f86171195cc0227c57f8d98af1914bdaf56b3718",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv": "e6ec0b8b6ccefa153f9d913b6231b499335f51ed03a2ef13db81b042a9066f0f",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json": "b24cadbad52bb202747550567161c08c1ae3099ba7bb1f83eacca63a77a76231",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv": "9e7da2d7eab4b36027548d114472309e0e89716df4480ef11cb8ca07654dc622",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv": "49df7f1b8e374214d0b472f8b560fce96ab24480fd67184aad068a4fe4b66991",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv": "21577e6d8f6f0644978df5511c6717ac3fa4f7cf681bb4dd3884a6ddab7c9468",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json": "169a6224567506aed44d9d24a633ccbf589777fc59a90757b4001fd709872272",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv": "127f43eb5de49dcb70d005e4fe7d422d886d4ae248adccf15174824ae141c990",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json": "0a43af62d9266b375936698abf7d9aee702d44aa4fd7c70a74058e1e9fe249b9",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv": "d15483c168f3f025a7aa6c43a2466b7bc376e2a0d78e87298069a17cd518664c",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json": "dd6deb9cec56ee881b7406504dfb26d1bdebe795083e8482b84ac12af1c58587",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv": "827995802a562c21e2daf04059ea935fa45a26ac57bb040f262adc1a6575bbf6",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json": "afbf249c2cc53608fc3f8da4a364f7c4247e6d85fef26b575f97ef2c7e887338",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv": "f72f877f6b1ad04c94cfff2668ab08291a4c7844f0c6f7c48b1fc84f81da849b",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json": "deb639a3c73d93097e67b839f9f867783bca4a7a03f35f509c27d9da5600123a",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv": "d0bdd2391c2def5544442fe0640305ad8d89f6ebb25d7f05440793e54baa0fd5",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json": "2b7a8737daeeca41f4b499f2f3282cd33e7b994d7aef2f8b88c7c2cdcb32d002",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv": "6e97e07b1f3aa05594ade5b541d17b1cfae28d557556983e97c0d00a54095944",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv": "bd7dbddbd2d1124ed79d2211a092f0987bd29f4c1f9f0fc97b87a2c6aee9215b",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json": "5bdf91edde5b5e2dc3dacaa3e3e6e60a6d6b8c86861aeb9d07e107ec8d859eea",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv": "f2165e6866265959516992b61b5b5e6a37aefb6d9792209cf5919af858750d0a",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json": "3a0e8a57d668f0d5abde3bc417b7bf1251b58acdc0911ebd357096e79bc6dcc9",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv": "191c9da7cc6d9517f8b6a9ebf5a200ea065fb61d48e120f36b257ce1b41c39ca",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json": "6e99065abc42c29bcb8c4b100c9799a4a540210fe8c8a0ee20156d432dc10e12",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv": "472badfd6933d71b2d9b0ac357ad71c2050a29abf70688e75fb14e37f09d5e81",
+    "research/sec-basin-depth-sections-operator-v1.json": "85e39db05f866a761ff891f256c2425afa87d03bf207ef3885c5a4767cc69127",
+    "research/sec-basin-depth-sections-source-facts-v1.json": "0700dbd5f28aef9e8a000731f63bead877e15dc7ab4a98f28edcbd8d5d7b657c",
+    "research/sec-basin-depth-sections-source-review-v1.json": "b9a0ea0ef92dffd30880afcf1c631d03ee5687e21f2eca2743d293ab6ca1fb49",
+    "research/source-data/sec-basin-depth-sections-v1/manifest.json": "dd3a870d00ba395c181ea8769806ea879e708f77f054949f8ac62589f6800c2c",
+    "research/source-data/sec-basin-depth-sections-v1/transport-ledger.json": "d4645b8f8ac96b6163af44ffd5b094bf1a90e7801032cf26c0ddfb7781347a0c",
+    "research/current-depth-source-facts-v2.json": "4c29800383f5504d893c7741a57995cdeb1d869de0180b61ac3691293c21b80d",
+    "research/atlantic-seuc-molinari-1981-core-width-scope-audit.json": "577cccac98a3970272e7e2ab7a11bceba86138fec881adad570ba18d58c8ca1c",
+    "plans/atlantic-seuc-interval-depth-diagnostic-protocol-v1.md": "f5eb5b5e5404432811ed6ad24403000645cbec29a5c4ea322dc97667bca8d6b0",
+    "analysis/build_current_depth_route_projections_v31.py": "1324e421e8cdf15dca141466c2235a3e4232c81505f5906788e27ef514920b93",
+    "analysis/test_current_depth_route_projections_v31.py": "4bc35c49c0099e9157b8d5f76cbc2fae6a63d92011e2650ab9b0fd87f4161f77",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-31w.json": "e499380d466d5542db7490f64829e54cfebe8022592d5c3465d12c819e6c4b9f",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-32w.json": "0460427a79ecae648524c7dec006dba2ebee3299b0586386798cf2f53cd2a1dc",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-33w.json": "ea26dd8c73fd2d827666c280e9a372171aa3bdbda8b13f0282e3c962351600b7",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-34w.json": "1ccc2dcec398bdd6a911b9b73d09a7eacda4d11c17658d6444d08cf784f20ef6",
+    "research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-35w.json": "44889881507931238063684cd02e4d902703b65382dda0fdf863968d732ab573",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-31w.json": "b9548d536afe49512d98a87d121d947813215090cf09426fcc60ecc3b567f79f",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-32w.json": "42bbfbe75f4228114cfc4ebea14aba6e2d6e730cb910272749644c24c661e05a",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-33w.json": "69ce75c6fda03220f8e56ef78e9ecb1d1672126f8f2b4cb3bb69f95af03a4139",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-34w.json": "dcb4d9ecc6b0ae16f7584be7d9b74954b7bc07635539ac5608e92c6796d960b5",
+    "research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-35w.json": "bd41fec422e97118b5299087e9336d98b510c721d90930df878c481effba7367",
+    "analysis/test_interval_depth_diagnostic_v1.py": "1c3daca18862397b5158bbb5a9ebc9f17fc95222702570e0d59d2afa8a884ee1",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/build_current_depth_route_projections_v12.py": "aa19417dbf0ab7a6b9eba9ce0ad98877379558288ed555a780e21fe51fe0647c",
+    "analysis/build_current_depth_route_projections_v15.py": "d980dab7e36bde310f02df255184a31ec55c380408588697bbf8949f29d104db",
+    "analysis/build_current_depth_route_projections_v18.py": "1af51fafdcc6c62abb46b4b2ea65900b337611733ef357db52ac742fe22d6113",
+    "analysis/load_current_depth_projection_inventory_v1.py": "0c59e211181258d630ddedf10a93501e01a84994c64179796d306fdb55a213ad",
+    "analysis/build_current_depth_route_projections_v16.py": "4ee153bd55b9857673ab11f0c12eb5253f99d7a608433290b1c7c3d560cf53dc",
+    "research/wsc-interval20-500-depth-reanalysis-v1.json": "e5d0336fa17643e18a9cd0e56fbae4f5b35ea7c601a1beb830da8646d07f2115",
+    "research/azcc-interval150-700-depth-reanalysis-v1.json": "9f9385681b5b327fd0e8a0219b90424d7eb4eea38820585e48bc71d1e60f4eed",
+    ".github/workflows/current-depth-route-projections-v31.yml": "a7b818f92b2e84120f33a272930180577d6b1145d4e34cadf337ae13b3071b75"
+  }
+}

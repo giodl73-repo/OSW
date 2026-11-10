@@ -1,0 +1,85 @@
+name: Review saved South Java model cards v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-model-browser-request-v1.json
+      - .github/workflows/south-java-model-browser-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  saved-browser-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read saved-browser review request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/south-java-model-browser-request-v1.json').read_bytes())
+          assert request['schema']=='osw.south-java-model-browser-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Verify browser and preserved source pins
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_model_browser_v1.py --cloud-browser --preflight-only
+      - name: Check archive custody and local-browser refusal fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_model_browser_v1.py -v
+      - name: Install only the browser test dependency
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+      - name: Install one cloud browser
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Restore exact saved candidate and review ordinary UI
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_model_browser_v1.py --cloud-browser
+      - name: Retain compact receipts and rendered evidence only
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-model-browser-evidence-v1
+          path: |
+            .pytest_cache/south-java-model-browser-v1/result.json
+            .pytest_cache/south-java-model-browser-v1/custody.json
+            .pytest_cache/south-java-model-browser-v1/failure.json
+            .pytest_cache/south-java-model-browser-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

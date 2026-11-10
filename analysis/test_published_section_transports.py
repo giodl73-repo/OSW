@@ -1,4 +1,5 @@
 """Preserve unequal statistical, depth, identity and sampling support."""
+from query_packet import read_bundle_bytes
 import copy,json,subprocess
 from pathlib import Path
 from published_section_transports import document,build,SOURCE
@@ -25,10 +26,13 @@ def test_native_scene_and_owner_scope():
     assert s['geographic_view']['role']=='partial_coordinate_context_not_section_geometry'
     owner=native({'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:hiri-current'}]})['rows'][0]
     assert owner['capabilities']['section_transport']==1
-    assert owner['capabilities']['scoped_width']==0 and owner['capabilities']['time_samples']==0
+    widths=[row for row in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if row['current_id']=='hiri-current']
+    assert owner['capabilities']['scoped_width']==len(widths)
+    assert all(row['id']!=s['points'][0]['record']['id'] for row in widths)
+    assert owner['capabilities']['time_samples']==0
 
-def guard_fixtures(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+def guard_fixtures(directory,retain=True):
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for case in ['mean','spread','layer','direction','months','identity','missing','dependency','capability','proof']:
         bad=copy.deepcopy(packet);m=bad['collections']['section_transports'];v=bad['collections']['transport_validations']
         h=next(r for r in m if r['current_id']=='hiri-current')
@@ -49,6 +53,7 @@ def guard_fixtures(directory):
         p=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert p.returncode==2 and 'Published section transport' in p.stderr,(case,p.stderr)
         targets.append(target)
+        if not retain:target.unlink()
     return targets
 
-def test_native_scope_guards(tmp_path):guard_fixtures(tmp_path)
+def test_native_scope_guards(tmp_path):guard_fixtures(tmp_path,retain=False)

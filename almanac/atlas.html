@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Explore ocean currents and eddies, zoom to their mapped geography, and inspect scoped evidence and sources."><title>The moving ocean — OSW atlas</title><link rel="stylesheet" href="public-map.css"><script src="preview-data.js" defer></script><script src="public-map.js" defer></script></head>
+<body data-public-preview="true">
+<a class="skip" href="#main">Skip to ocean atlas</a>
+<header><a class="brand" href="../">OSW <span>Ocean States of the World</span></a><nav aria-label="Project"><a href="../#reading">How to read the atlas</a><a href="explore.html">Evidence explorer</a><a href="explore.html?view=nasa">NASA views</a></nav></header>
+<main id="main" tabindex="-1">
+  <p class="eyebrow">An atlas of the moving ocean · research preview candidate</p>
+  <h1>Start with the world. Follow a current.</h1>
+  <p class="lead">Choose a name or a feature on the map to zoom to its geography and open its record. Currents and eddies change over time; the evidence describes particular places, periods, and methods.</p>
+  <details class="quick-guide"><summary>First visit? Here’s how to explore.</summary><ol><li><strong>Choose a current.</strong> Search for a name, use the list, or select a mark on the map. <a href="?atlas-feature=current%3Aagulhas">Try the Agulhas Current</a>.</li><li><strong>Read its card.</strong> See what the map represents, then open a group of measurements. Each number belongs to a particular source, place, and method.</li><li><strong>Follow the evidence.</strong> Open a source or the exact record for more detail. Use “Copy view link” to share the same selection and zoom.</li></ol><p>A current is a flow of water. An eddy is a rotating patch of water. A dot locates a feature; it does not describe its size.</p></details>
+  <p id="inventory-status" role="status">Loading the atlas inventory…</p>
+  <p id="search-status" role="status" hidden></p>
+  <div class="filters"><label>Find a name<input id="feature-search" type="search" placeholder="Try Agulhas or Gulf Stream" autocomplete="off"></label><label>Show<select id="feature-kind"><option value="named_current">Currents</option><option value="named_eddy">Named eddies</option><option value="all">All features</option></select></label><label>Choose a feature<select id="feature-choice" disabled><option value="">Choose a name</option></select></label></div>
+  <div class="atlas-layout">
+    <section class="map-panel" aria-label="World map and navigation">
+      <div class="map-controls" role="group" aria-label="Map navigation"><button id="map-out" type="button" aria-label="Zoom out">−</button><button id="map-in" type="button" aria-label="Zoom in">+</button><button id="map-world" type="button">Back to world</button><button id="copy-view" type="button">Copy view link</button><a id="share-view" href="#main">View link</a></div>
+      <p id="share-status" class="small" role="status" hidden></p>
+      <p class="map-hint" id="map-instructions">Drag to pan. With the map focused, use arrow keys to pan, + and − to zoom, and Home for the world view. The named selector works without using the map.</p>
+      <svg id="ocean-map" viewBox="60 90 1480 740" tabindex="0" role="group" aria-label="Interactive current and eddy map" aria-describedby="map-instructions"><image href="../figures/ocean-motion-dashboard-ground.svg" x="60" y="90" width="1480" height="740" opacity=".38" aria-hidden="true"/><g id="ocean-features"></g></svg>
+      <p id="map-hover" aria-live="polite">Names appear when you hover or focus a feature.</p>
+      <p class="map-key"><span class="line-key" aria-hidden="true"></span> Route or source geometry <span class="point-key" aria-hidden="true"></span> Locator or reported point</p>
+      <p class="small">Colored regions are OSW’s editorial map ground, not current boundaries. A locator is a place to start reading, not a width or footprint. Drawn reference routes, dated observations, and model geometry have different meanings. Selecting a feature reveals its map roles.</p>
+      <p class="small">Projection: equirectangular (a longitude–latitude grid). Apparent widths and areas become distorted toward the poles; use the evidence records for dimensions.</p>
+    </section>
+    <section id="current-card" class="record-panel" aria-labelledby="record-name"><h2 id="record-name" tabindex="-1">Choose a current or eddy</h2><p id="record-status" role="status">Start with a name above, or select a feature on the map.</p><div id="record-content"></div></section>
+  </div>
+  <details class="inventory"><summary>Browse the complete named inventory</summary><p id="filter-count"></p><div id="feature-list" class="feature-list"></div></details>
+  <section class="reading"><h2>Read the evidence in context</h2><p>A current is a flow of water; an eddy is a rotating patch of water. The atlas keeps their names and source records separate from claims about a measured shape or size. Unknown values are not zero. Reference-route distances are not interchangeable with published current lengths.</p><p>This preview preserves source-scoped references, with unresolved provider and registry material withheld. It is an evolving research atlas, not a complete census of ocean features. <a href="explore.html">Query the preview evidence</a> · <a href="../methods.html">Methods and scope</a></p></section>
+</main><footer>OSW · editorial ocean regions and source-scoped evidence · <a href="../methods.html">Sources and methods</a></footer>
+</body></html>

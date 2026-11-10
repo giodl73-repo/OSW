@@ -1,0 +1,225 @@
+{
+  "schema": "osw.eddy-source-position-references.v3",
+  "status": "SOURCE_REFERENCES_NOT_PHYSICAL_GEOMETRY",
+  "protocol_file": "plans/eddy-source-position-proxies-v1.md",
+  "source_review_file": "research/eddy-nansen-position-source-review-v1.json",
+  "sources": {
+    "berger-2000-desoto": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-383e5f864dcbe67ff3e559cbdc22812b/pdf/GOVPUB-I-383e5f864dcbe67ff3e559cbdc22812b.pdf",
+      "citation": "Berger, Hamilton, Singer, Waddell, Churchill, Leben, Lee and Sturges (2000), DeSoto Canyon Eddy Intrusion Study, Final Report, Volume II: Technical Report, OCS Study MMS 2000-080, November 2000.",
+      "original_pdf": {
+        "bytes": 8981805,
+        "sha256": "1f64306e3ddc6ed18a89bf7a2bb586f7b95198a9d24bc7dc49b1c6a20995d5c5",
+        "pages": 293
+      },
+      "pdf_page": 147,
+      "printed_page": 127,
+      "locator": "Section 5.4 discussion of the March 1997 survey and the 24 March 1997 SST image; first of two warm-eddy centers."
+    },
+    "hamilton-2003": {
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc955365/m2/1/high_res_d/3032.pdf",
+      "citation": "Hamilton, Singer, Waddell and Donohue (2003), Deepwater Observations in the Northern Gulf of Mexico from In-Situ Current Meters and PIES, Volume II: Technical Report, MMS 2003-049, August 2003.",
+      "original_pdf": {
+        "bytes": 14492455,
+        "sha256": "6dc38ce0b88aabeca1ca3a7bc5d9c1eb262b43a04059eed51d801da3a83bcb81",
+        "pages": 103
+      },
+      "reviewed_pdf_pages": [
+        13,
+        23,
+        24,
+        25
+      ]
+    },
+    "rowe-kennicutt-2009": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-525d286afa5ddb6f922c65254a711651/pdf/GOVPUB-I-525d286afa5ddb6f922c65254a711651.pdf",
+      "citation": "Rowe and Kennicutt (2009), Northern Gulf of Mexico Continental Slope Habitats and Benthic Ecology Study, Final Report, MMS 2009-039, July 2009.",
+      "original_pdf": {
+        "bytes": 14471783,
+        "sha256": "87242ed9c88aa27f209c0e3994483af94d48af7ed9253b54ce7020aa29a70286",
+        "pages": 417
+      },
+      "reviewed_pdf_pages": [
+        2,
+        102,
+        105,
+        129,
+        130,
+        131
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "deviant-berger-2000-source-image-center-1997-03-24",
+      "entity_id": "eddy:horizon:loop-26-primary",
+      "source_id": "berger-2000-desoto",
+      "source_name": "Deviant",
+      "source_alias": "LC ring D",
+      "quantity": "source_reported_sst_image_center",
+      "observation_date": "1997-03-24",
+      "observation_date_precision": "day_as_reported",
+      "latitude": {
+        "source_text": "28°N",
+        "value": 28,
+        "unit": "degree_north",
+        "reported_decimal_places": 0
+      },
+      "longitude": {
+        "source_text": "88.7°W",
+        "value": 88.7,
+        "unit": "degree_west",
+        "reported_decimal_places": 1
+      },
+      "navigation_candidate": {
+        "longitude_deg": -88.7,
+        "latitude_deg": 28,
+        "coordinate_order": "longitude_latitude",
+        "conversion": "West longitude sign only; no reprojection or datum transformation.",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "geodetic_datum": null,
+      "position_error_km": null,
+      "center_definition": "Authors identify the center from a dated SST image; fitting operator, resolution and position uncertainty are unspecified.",
+      "registry_context": {
+        "source_file": "research/named-loop-current-eddies.json",
+        "source_sha256": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
+        "source_number": 26,
+        "initial_separation": "1996-12-13",
+        "used_to_infer_position": false
+      },
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Section 5.4 discussion of the March 1997 survey and the 24 March 1997 SST image; first of two warm-eddy centers.",
+      "qualification": "Historical source-reported location only. The explicit Deviant/LC ring D name supplies a source-case alias; a nearby second warm eddy is not assigned that name. Coordinate rounding is preserved and is not an accuracy estimate. Not a tracked trajectory, current location, eddy boundary, diameter, uncertainty ellipse or state-containment result."
+    },
+    {
+      "id": "kinetic-2000-07-02-source-point",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "hamilton-2003",
+      "source_name": "Kinetic",
+      "observation_date": "2000-07-02",
+      "source_point_role": "source_map_mooring_proxy_in_named_composite",
+      "observation_date_precision": "approximately_seven_day_composite_center",
+      "navigation_candidate": {
+        "longitude_deg": -89.8,
+        "latitude_deg": 27.3,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": null,
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "I1 mooring map proxy, not an author-reported eddy center; nominal date centers an approximately seven-day composite."
+    },
+    {
+      "id": "kinetic-2000-09-24-source-point",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "hamilton-2003",
+      "source_name": "Kinetic",
+      "observation_date": "2000-09-24",
+      "source_point_role": "source_map_mooring_proxy_in_named_composite",
+      "observation_date_precision": "approximately_seven_day_composite_center",
+      "navigation_candidate": {
+        "longitude_deg": -89.8,
+        "latitude_deg": 27.3,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": null,
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "I1 mooring map proxy, not an author-reported eddy center; nominal date centers an approximately seven-day composite."
+    },
+    {
+      "id": "indigo-2000-05-13-source-point",
+      "entity_id": "eddy:horizon:loop-32-primary",
+      "source_id": "rowe-kennicutt-2009",
+      "source_name": "Indigo",
+      "observation_date": "2000-05-13",
+      "source_point_role": "source_reported_satellite_center",
+      "observation_date_precision": "dated_source_ssh_map",
+      "navigation_candidate": {
+        "longitude_deg": -94.75,
+        "latitude_deg": 26.25,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": "centered near 26.25 N, 94.75 W",
+      "manual_map_read_decimal_places": null,
+      "reported_decimal_places": 2,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Author says near; decimal precision is not accuracy. Named 2000 source case and registry 1999 dissipation remain unreconciled."
+    },
+    {
+      "id": "nansen-2001-06-10-source-point",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "rowe-kennicutt-2009",
+      "source_name": "Nansen",
+      "observation_date": "2001-06-10",
+      "source_point_role": "source_reported_satellite_center",
+      "observation_date_precision": "dated_source_ssh_map",
+      "navigation_candidate": {
+        "longitude_deg": -88.5,
+        "latitude_deg": 28,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": "Approximate center reported in the June 2001 Nansen paragraph.",
+      "manual_map_read_decimal_places": null,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Author reports an approximate center in the June 2001 case linked to Figure 8-3 dated June 10. Center precision is not accuracy. Registry April 22 separation, other reports May formation, and this June map remain distinct definitions; no physical identity crosswalk inferred."
+    }
+  ],
+  "counts": {
+    "position_references": 1,
+    "source_identities_with_position_references": 1
+  },
+  "measurement_register_is_separate": true,
+  "atlas_ui_or_query_engine_integration_complete": false,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "baseline_file": "research/eddy-source-position-references-v1.json",
+  "baseline_sha256": "daab240f6f9fbb2ffd497d1e6625385fbcffe62645970914e0c7e2bd818d2f9f"
+}

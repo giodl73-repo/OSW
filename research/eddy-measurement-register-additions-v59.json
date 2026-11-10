@@ -1,0 +1,368 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 461,
+  "baseline_evidence_sha256": "17c701fc7bae6c75ad1e506d12b9265ea29f5eb3ddb61509060c597232f9dc32",
+  "baseline_measurement_csv_sha256": "134cc64a6db43ec96aab44765a3dc488c38706117b718b2758285750eb3b6ae9",
+  "sources": {
+    "griidc-adt-speed-core-haskell": {
+      "url": "https://data.griidc.org/data/U2.x856.000:0001",
+      "doi": "10.7266/5j651zn1",
+      "citation": "DUACS (2025), Gridded absolute dynamic topography – Gulf subset – daily time series 1993–2019, GRIIDC.",
+      "access": "Immutable original NetCDF SHA-verified and processed only in the cloud on one low-priority CPU, one daily slice. Two recovered NOAA chart images and the cloud contour diagnostic actually reviewed. Nineteen geometry/speed-core tests passed. Qualified source-case core and numerical range only; no physical outer boundary or seasonal envelope.",
+      "original": {
+        "url": "https://data.griidc.org/api/file/download/947138",
+        "bytes": 757416604,
+        "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+      },
+      "source_review_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+      "source_review_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+    }
+  },
+  "records": [
+    {
+      "id": "haskell-1999-08-01-speed-core-area",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "griidc-adt-speed-core-haskell",
+      "category": "size",
+      "metric": "osw_speed_contour_area",
+      "value": null,
+      "unit": "km2",
+      "range_value": [
+        10000,
+        15000
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "1999-08-01",
+      "period_end": "1999-08-01",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "August 1, 1999 daily gridded snapshot; August 3 mission naming and registry May separation remain separate",
+      "case_label": "Haskell dated source-case speed core; survey waypoint proxy; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT August 1, 1999; NOAA/AOML Mission Summary 990803H by P. Black, linked TOPEX/ERS-2 Analysis Aug 1 1999 chart recovered through Internet Archive capture 20041117165053; plotted survey waypoint 6.",
+      "definition": "Spherical area inside the maximum circum-averaged geostrophic-speed contour.",
+      "scope": "OSW-derived speed-core diagnostic for the northeastern named survey feature. Physical registry crosswalk unverified; no neighboring or parent/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct AXCP observation. Survey waypoint proxy, not an observed center. Archived chart dated August 1, August 3 mission naming and registry May separation remain separate. No physical continuity, full footprint, state containment, ranking, volume, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_area",
+        "unit": "km2",
+        "component": "area",
+        "source_case_name": "Haskell",
+        "date": "1999-08-01",
+        "scenario_values": [
+          10154.794584961448,
+          10435.084416809941
+        ],
+        "nominal_audit_value": 10435.084416809941,
+        "unrounded_extrema": [
+          10154.794584961448,
+          10435.084416809941
+        ],
+        "round_outward_to": 5000,
+        "range_value": [
+          10000,
+          15000
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -87.0,
+          28.3
+        ],
+        "grid_peak_lon_lat": [
+          -87.4375,
+          27.9375
+        ],
+        "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "peak_distance_from_source_point_km": 58.869860061896254,
+        "selected_interior_gridpoints": [
+          61,
+          64
+        ],
+        "report_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+        "report_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+      }
+    },
+    {
+      "id": "haskell-1999-08-01-speed-core-radius",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "griidc-adt-speed-core-haskell",
+      "category": "size",
+      "metric": "osw_speed_contour_equivalent_radius",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        50,
+        60
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "1999-08-01",
+      "period_end": "1999-08-01",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "August 1, 1999 daily gridded snapshot; August 3 mission naming and registry May separation remain separate",
+      "case_label": "Haskell dated source-case speed core; survey waypoint proxy; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT August 1, 1999; NOAA/AOML Mission Summary 990803H by P. Black, linked TOPEX/ERS-2 Analysis Aug 1 1999 chart recovered through Internet Archive capture 20041117165053; plotted survey waypoint 6.",
+      "definition": "Planar circle-equivalent radius sqrt(area/pi) of the selected speed contour; not outer radius.",
+      "scope": "OSW-derived speed-core diagnostic for the northeastern named survey feature. Physical registry crosswalk unverified; no neighboring or parent/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct AXCP observation. Survey waypoint proxy, not an observed center. Archived chart dated August 1, August 3 mission naming and registry May separation remain separate. No physical continuity, full footprint, state containment, ranking, volume, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_equivalent_radius",
+        "unit": "km",
+        "component": "radius",
+        "source_case_name": "Haskell",
+        "date": "1999-08-01",
+        "scenario_values": [
+          56.85394892669156,
+          57.63324156277365
+        ],
+        "nominal_audit_value": 57.63324156277365,
+        "unrounded_extrema": [
+          56.85394892669156,
+          57.63324156277365
+        ],
+        "round_outward_to": 10,
+        "range_value": [
+          50,
+          60
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -87.0,
+          28.3
+        ],
+        "grid_peak_lon_lat": [
+          -87.4375,
+          27.9375
+        ],
+        "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "peak_distance_from_source_point_km": 58.869860061896254,
+        "selected_interior_gridpoints": [
+          61,
+          64
+        ],
+        "report_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+        "report_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+      }
+    },
+    {
+      "id": "haskell-1999-08-01-speed-core-east-west",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "griidc-adt-speed-core-haskell",
+      "category": "size",
+      "metric": "osw_speed_contour_east_west_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        100,
+        125
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "1999-08-01",
+      "period_end": "1999-08-01",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "August 1, 1999 daily gridded snapshot; August 3 mission naming and registry May separation remain separate",
+      "case_label": "Haskell dated source-case speed core; survey waypoint proxy; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT August 1, 1999; NOAA/AOML Mission Summary 990803H by P. Black, linked TOPEX/ERS-2 Analysis Aug 1 1999 chart recovered through Internet Archive capture 20041117165053; plotted survey waypoint 6.",
+      "definition": "Spherical geodesic bounding arc between west/east speed-contour extrema at the bounding-box midlatitude; not a principal width.",
+      "scope": "OSW-derived speed-core diagnostic for the northeastern named survey feature. Physical registry crosswalk unverified; no neighboring or parent/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct AXCP observation. Survey waypoint proxy, not an observed center. Archived chart dated August 1, August 3 mission naming and registry May separation remain separate. No physical continuity, full footprint, state containment, ranking, volume, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_east_west_bounding_arc",
+        "unit": "km",
+        "component": "east_west",
+        "source_case_name": "Haskell",
+        "date": "1999-08-01",
+        "scenario_values": [
+          107.0712363229947,
+          108.79392882371185
+        ],
+        "nominal_audit_value": 108.79392882371185,
+        "unrounded_extrema": [
+          107.0712363229947,
+          108.79392882371185
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          100,
+          125
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -87.0,
+          28.3
+        ],
+        "grid_peak_lon_lat": [
+          -87.4375,
+          27.9375
+        ],
+        "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "peak_distance_from_source_point_km": 58.869860061896254,
+        "selected_interior_gridpoints": [
+          61,
+          64
+        ],
+        "report_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+        "report_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+      }
+    },
+    {
+      "id": "haskell-1999-08-01-speed-core-north-south",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "griidc-adt-speed-core-haskell",
+      "category": "size",
+      "metric": "osw_speed_contour_north_south_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        100,
+        150
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "1999-08-01",
+      "period_end": "1999-08-01",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "August 1, 1999 daily gridded snapshot; August 3 mission naming and registry May separation remain separate",
+      "case_label": "Haskell dated source-case speed core; survey waypoint proxy; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT August 1, 1999; NOAA/AOML Mission Summary 990803H by P. Black, linked TOPEX/ERS-2 Analysis Aug 1 1999 chart recovered through Internet Archive capture 20041117165053; plotted survey waypoint 6.",
+      "definition": "Meridional bounding arc between the selected speed-contour latitude extrema; not a principal width.",
+      "scope": "OSW-derived speed-core diagnostic for the northeastern named survey feature. Physical registry crosswalk unverified; no neighboring or parent/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct AXCP observation. Survey waypoint proxy, not an observed center. Archived chart dated August 1, August 3 mission naming and registry May separation remain separate. No physical continuity, full footprint, state containment, ranking, volume, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_speed_contour_north_south_bounding_arc",
+        "unit": "km",
+        "component": "north_south",
+        "source_case_name": "Haskell",
+        "date": "1999-08-01",
+        "scenario_values": [
+          124.39464215844463,
+          125.88134231664202
+        ],
+        "nominal_audit_value": 125.88134231664202,
+        "unrounded_extrema": [
+          124.39464215844463,
+          125.88134231664202
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          100,
+          150
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -87.0,
+          28.3
+        ],
+        "grid_peak_lon_lat": [
+          -87.4375,
+          27.9375
+        ],
+        "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "peak_distance_from_source_point_km": 58.869860061896254,
+        "selected_interior_gridpoints": [
+          61,
+          64
+        ],
+        "report_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+        "report_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+      }
+    },
+    {
+      "id": "haskell-1999-08-01-speed-core-speed",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "griidc-adt-speed-core-haskell",
+      "category": "kinematics",
+      "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+      "value": null,
+      "unit": "m/s",
+      "range_value": [
+        0.45,
+        0.5
+      ],
+      "range_kind": "level_step_comparison_and_outward_rounding_not_physical_uncertainty",
+      "period_start": "1999-08-01",
+      "period_end": "1999-08-01",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "August 1, 1999 daily gridded snapshot; August 3 mission naming and registry May separation remain separate",
+      "case_label": "Haskell dated source-case speed core; survey waypoint proxy; physical identity unverified",
+      "evidence_role": "qualified_osw_speed_core_source_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original DUACS daily ADT August 1, 1999; NOAA/AOML Mission Summary 990803H by P. Black, linked TOPEX/ERS-2 Analysis Aug 1 1999 chart recovered through Internet Archive capture 20041117165053; plotted survey waypoint 6.",
+      "definition": "Maximum, across supported closed contours, of the perimeter-weighted mean geostrophic-speed magnitude from native ADT gradients; not the largest local current.",
+      "scope": "OSW-derived speed-core diagnostic for the northeastern named survey feature. Physical registry crosswalk unverified; no neighboring or parent/secondary values inherited.",
+      "qualification": "Maximum perimeter-averaged geostrophic speed selects a core contour. Fixed 0.005/0.0025 m level steps pass convergence gates; their range plus outward rounding is numerical only, not physical uncertainty or an annual range. Mapping, MDT and gradient/interpolation errors remain unquantified; sampling/support and search radius are not effective resolution or positional accuracy. Core radius is not outer radius; bounding arcs are not principal width; mean geostrophic speed is not a local current maximum or direct AXCP observation. Survey waypoint proxy, not an observed center. Archived chart dated August 1, August 3 mission naming and registry May separation remain separate. No physical continuity, full footprint, state containment, ranking, volume, playback or exact lifetime inferred.",
+      "calculation": {
+        "method": "osw_speed_contour_named_source_case_v1",
+        "metric": "osw_maximum_circum_averaged_geostrophic_speed",
+        "unit": "m/s",
+        "component": "speed",
+        "source_case_name": "Haskell",
+        "date": "1999-08-01",
+        "scenario_values": [
+          0.47518519393927716,
+          0.4751898267145321
+        ],
+        "nominal_audit_value": 0.4751898267145321,
+        "unrounded_extrema": [
+          0.47518519393927716,
+          0.4751898267145321
+        ],
+        "round_outward_to": 0.05,
+        "range_value": [
+          0.45,
+          0.5
+        ],
+        "level_steps_m": [
+          0.005,
+          0.0025
+        ],
+        "range_is_numerical_only": true,
+        "independent_observations": false,
+        "source_point_lon_lat": [
+          -87.0,
+          28.3
+        ],
+        "grid_peak_lon_lat": [
+          -87.4375,
+          27.9375
+        ],
+        "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "peak_distance_from_source_point_km": 58.869860061896254,
+        "selected_interior_gridpoints": [
+          61,
+          64
+        ],
+        "report_file": "research/eddy-haskell-speed-core-source-review-v1.json",
+        "report_sha256": "17a882bb734455a94719854ddae6626a29def19289115296837c0bc221e2e30f"
+      }
+    }
+  ]
+}

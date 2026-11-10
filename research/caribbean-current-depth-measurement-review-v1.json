@@ -1,0 +1,48 @@
+{
+  "schema": "osw.caribbean-depth-measurement-review.v1",
+  "status": "PASS_EIGHT_TESTS_AND_ACCEPTED_LOCAL_DIRECTIONAL_DIAGNOSTICS",
+  "cloud_run_id": 41392532632,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41392532632",
+  "cloud_source_commit": "e80b5f8e47a34ed4f5788263484b896a6d138852",
+  "tests_passed": 8,
+  "input_sha256": {
+    "research/caribbean-current-depth-operator-v1.json": "181cfd2c310315f1a34ffc857760573efd4412a62b3bc5ad4a3096a091ab64af",
+    "research/caribbean-current-depth-layer-calculation-result-v1.json": "4798ff050a75073705c6371989a72bd0ade05543489a2840d654e85094e5e8ee",
+    "research/caribbean-current-depth-measurements-v1.json": "c3b5bfb1f960f223ca08a140d4244e50128eb1979d3c6c774f11e10e7b58dccb",
+    "analysis/measure_caribbean_depth_layers_v1.py": "f6d64d6f9059a4dd5d3bc8c414304c660196b7d6a142c1462d0515787b067eea",
+    "analysis/test_caribbean_depth_layers_v1.py": "8d01acdc750c6ca276b2189d285d9ac872f7316383e353a9e091119a5b819995",
+    ".github/workflows/caribbean-current-depth-layers-v1.yml": "d39ae2081bcad721ceb8d303ebbcf6bac11487b9bc02d692adc080f9f02ae387"
+  },
+  "scientific_admission": "Accepted as source-specific local strongest westward velocity-layer diagnostics, with approximate crossing estimates and unresolved boundaries explicit. Not admitted as unique physical boundaries of the named current, whole-route profiles, annual extrema or volumes.",
+  "source_acquisition": {
+    "http_range_requests": 6,
+    "downloaded_bytes": 1805425,
+    "member_sha256": "522990bb905bc2d6a1ad573c71e81f0aea72f3b14f49da04a8e67814631c775b",
+    "whole_archive_md5_rechecked": false,
+    "whole_archive_checksum_verified_by_run": 41390932728
+  },
+  "reviewed_counts": {
+    "all_profile_timestamps_checked": 486,
+    "reported_times_matching_profile_end": 486,
+    "selected_interval_contained_profiles": 259,
+    "accepted_central_layers": 106,
+    "both_depth_boundaries_bracketed": 57,
+    "upper_boundary_unresolved": 49
+  },
+  "validation_scope": [
+    "Source member SHA256 matches the original full-archive cloud checksum audit; bounded range retrieval downloaded1805425bytes in6requests.",
+    "Source variables lack CF unit attributes. SI units are tied explicitly to the article and archived author transport code, not numerical magnitude.",
+    "All486 timestamps match end times. Source times are preserved, with separate derived midpoints; profiles crossing selected section windows are excluded.",
+    "Operator uses strongest contiguous westward component, minimum3bins, central0.10m/s and sensitivity0.05/0.15m/s; source inversion RMS of order0.05m/s is not converted into a depth confidence interval.",
+    "Tests cover discretization brackets, both sampling edges, missing neighbors, isolated strongest spikes, opposing flow, multiple components, invalid coordinates and interval containment.",
+    "Boundary brackets lie within source5–995m centers.49central layers have unresolved upper boundaries and null thickness;57have bracketed velocity-defined thickness estimates.",
+    "Threshold scenarios select different profile populations. Conditional median depths cannot be interpreted as paired uncertainty, seasonal change or a single current depth.",
+    "Mesoscale flow is not subtracted. No compatible route-wide width join, unique physical footprint, annual envelope or stored volume established.",
+    "All157 preceding depth references,67reference owners and eddy measurements remain unchanged. Reference-register coverage is not updated by this separate derived series."
+  ],
+  "raw_ocean_fields_processed_locally": false,
+  "cloud_one_cpu_sequential": true,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

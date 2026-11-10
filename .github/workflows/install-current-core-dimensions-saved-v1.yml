@@ -1,0 +1,84 @@
+name: Install reviewed regional reach and cited current width v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-core-dimensions-installation-request-v1.json
+      - .github/workflows/install-current-core-dimensions-saved-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_CURRENT_CORE_DIMENSIONS_INSTALL_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  GIT_CONFIG_COUNT: "1"
+  GIT_CONFIG_KEY_0: pack.threads
+  GIT_CONFIG_VALUE_0: "1"
+
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-core-dimensions-installation-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/current-core-dimensions-installation-request-v1.json').read_bytes())
+          assert r['schema']=='osw.current-core-dimensions-installation-request.v1'
+          assert type(r['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execution_permitted']).lower()+'\n')
+          PY
+  install-saved-artifacts:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify source, exact installed parent and evidence custody
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_current_core_dimensions_saved_v1.py --cloud-install --preflight-only
+      - name: Check refusal, archive boundaries, full evidence and nonforce transport
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_current_core_dimensions_saved_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_verified_artifact_git_transport_v1.py -v
+      - name: Install exact reviewed artifacts through nonforce single-ref transport
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_current_core_dimensions_saved_v1.py --cloud-install
+      - name: Retain compact receipts only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-core-dimensions-installation-receipts-v1
+          path: |
+            .pytest_cache/current-core-dimensions-installation-v1/result.json
+            .pytest_cache/current-core-dimensions-installation-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

@@ -1,0 +1,27 @@
+{
+  "schema": "osw.pacific-sec-jet-widths-delivery-failure-review.v3",
+  "run_id": 41025342132,
+  "run_attempt": 1,
+  "source_commit": "00e213f92d3c9bbf3839aa1f2b86a6b039fd8d6b",
+  "conclusion": "failure",
+  "evidence_artifact": {
+    "id": 12963482032,
+    "bytes": 24839,
+    "sha256": "e6d76a72403b873877aa5d6ee45a495f698344250afed8acbf7877971b62f68f"
+  },
+  "retained_evidence": {
+    "research/pacific-sec-gourdeau-2008-native-diagnostic-run-v1/compile-inventory.json": "0ec15087172e7770ed2763b67a3b1188b57ba6e2c95949d005fc292f9f19eeef",
+    "research/pacific-sec-gourdeau-2008-native-diagnostic-run-v1/failure.json": "9d01e35fcd7ca80adc7b88a183d869583f927d36362f455621c121d9a861b9b2",
+    "research/pacific-sec-gourdeau-2008-native-diagnostic-run-v1/native-build.txt": "25c0c96fe67f8e09dc57d1464b4b4e22abaa25380cba88d7dc4c986fe1483438",
+    "research/pacific-sec-gourdeau-2008-native-diagnostic-run-v1/rust-tests.txt": "5cf1632e458bf4edc3b2376522fcf367680b55bcce7c231835be4119dc5b5525"
+  },
+  "underlying_native_error": "Changed ASAR effective width inventory/order\n",
+  "cause": "Legacy ASAR whole-width inventory omitted the two new exact validated rows; NEUC and Aleutian whole-inventory validators used the same pre-extension expectation.",
+  "correction": "Append only pacific_sec_jet_widths::validated_widths in the same source order in all three complete-inventory expectations. Keep every historical row, length check and error guard.",
+  "added_regression": "Combine complete basin-identity and jet fixtures with each of the three legacy fixtures; accept the exact additions and refuse old-row modification, new-row modification, duplicate row and changed order.",
+  "expected_rust_tests_after_correction": 308,
+  "rust_tests_run_for_correction": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

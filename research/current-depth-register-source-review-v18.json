@@ -1,0 +1,72 @@
+{
+  "schema": "osw.current-depth-register-source-review.v18",
+  "status": "PASS_MONTHLY_PROFILE_CENSORING_AND_REGIONAL_EXTENT",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41396214630,
+      "tests_passed": 8,
+      "source_commit": "22909c0807729a2aca7712b80ab6b88d00e32589",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41396214630"
+    },
+    {
+      "run_id": 41396214489,
+      "tests_passed": 6,
+      "source_commit": "22909c0807729a2aca7712b80ab6b88d00e32589",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41396214489"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 284,
+    "identities_with_scoped_depth_reference": 78,
+    "identities_not_yet_assessed": 33,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 28,
+    "core_lower_boundary_depth": 6,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 13,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 6,
+    "reported_near_zero_flow_depth": 1,
+    "reported_vertical_extent": 47,
+    "reported_vertical_thickness": 5,
+    "transport_selected_depth_extent": 56,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v18.py": "c0ff42946b11c560e4577f5613169bb073e5d73633a19deb0f1e51377056af71",
+    "analysis/test_current_depth_register_v18.py": "55f020b98852b0e3c8171ad4a732ddafe5376b575a1817c2c34ca762c4d03bb3",
+    "research/current-depth-rules-v18.json": "7035369c7a6870fe016faa9586753f3bc6973cbbde41578781b093b960d17e2e",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-register-v18.json": "bf1325b40e2ed3eea24056162e2bc5e2a32fe7fd52d46a3503cee989040de0b4",
+    "research/current-depth-register-v18.csv": "767b654c7877158b072d87e25bd6d1254b2e804d3d3900e46bedb46d662348a7",
+    ".github/workflows/current-depth-register-source-v18.yml": "a544d76bf3b4c964b751adb8c677cc15726440e2b6d7e821cecd57e8b842a7d7"
+  },
+  "previous_279_references_and_v17_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding279 references retained; five references add three owners, giving78 with scoped depth evidence and33 gaps.",
+    "New Guinea Coastal Current local upper100m seasonal envelope is distinct from its undercurrent and the800m deep seasonal signal. Location1.7S,141.4E and November2015–December2018 record span retained.",
+    "February30m southeastward and August80m northwestward profile maxima retain explicit source months. February is at the shallowest retained bin; measurements above30m were removed. No guaranteed true core above that cutoff, annual extrema or unobserved surface thickness inferred.",
+    "Monthly climatology retains upper400m instrument loss reported during July2016/March2017, pressure-depth correction,10m interpolation, monthly averaging and the author warning that short-record monthly climatology can contain interannual signals.",
+    "Hiri deeper-than300m is a strict lower reach bound in the modeled Australian coastal branch, with2000–2014 ozROMS hindcast and no data assimilation retained. No300m bottom, entire PNG-arc depth or2000m flow extent inherited from transport-domain metadata.",
+    "Tasman Front approximately800m extent at Norfolk Gap retains July2003–August2004 array span, unequal instrument windows,500m eastward/1000m deep counterflow context,800m selected processing reference and absence of an observed exact-zero surface. Geostrophic/SSH products sharing the reference are not independent boundary measurements.",
+    "Mutation checks reject surface-cutoff removal, missing gap/interannual caveats, month and direction substitutions, NGCC/NGCUC confusion, altered strict reach semantics, model/period changes, exact-zero claims and uniform instrument dates.",
+    "JSON and CSV reproduce with distinct sample-edge, branch, interval and reference-depth fields and unique columns. No local test execution, raw ocean-field processing, runtime or preview change."
+  ],
+  "source_review_scope": "Primary publisher full HTML: Zhang2020 Sections2/3.1/3.2 and Figure2/4 captions; Wijeratne2018 Sections2.1/3.1.5 and Figure3 caption; Sutton2014 Table1 and Sections2/3/4. Values from prose. No original figure pixels or digitization claimed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

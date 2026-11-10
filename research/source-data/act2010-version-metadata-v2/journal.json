@@ -1,0 +1,91 @@
+{
+  "schema": "osw.act2010-version-metadata-journal.v2",
+  "host": "ftp-oceans.ncei.noaa.gov",
+  "distribution_scheme": "ftp_anonymous_public_listing",
+  "source_distribution_url": "ftp://ftp-oceans.ncei.noaa.gov/nodc/archive/arc0085/0140939/",
+  "operations": [
+    {
+      "target_id": "session-00",
+      "command": "CONNECT_LOGIN_ANONYMOUS",
+      "path": "/nodc/archive/arc0085/0140939/",
+      "attempts": 1,
+      "status": "anonymous_session_opened_no_fields",
+      "bytes_received": 0,
+      "cap_bytes": 0
+    },
+    {
+      "target_id": "listing-01",
+      "command": "LIST",
+      "path": "/nodc/archive/arc0085/0140939/",
+      "attempts": 1,
+      "status": "received_archived_before_interpretation",
+      "bytes_received": 134,
+      "cap_bytes": 128000,
+      "raw_file": "listing-01.raw",
+      "sha256": "8d5707ee0c38ef4597384d78341ff84b4b05a6de61dbfa92e3ed79a9907a7640"
+    },
+    {
+      "target_id": "phase2-session-01",
+      "command": "CONNECT_LOGIN_ANONYMOUS",
+      "path": "/nodc/archive/arc0085/0140939/1.1/",
+      "attempts": 1,
+      "status": "explicit_continuation_session_opened_no_reconnect",
+      "bytes_received": 0,
+      "cap_bytes": 0
+    },
+    {
+      "target_id": "phase2-provider-xml",
+      "command": "RETR",
+      "path": "/nodc/archive/arc0085/0140939/0140939.1.1.xml",
+      "attempts": 1,
+      "status": "received_archived_before_interpretation",
+      "bytes_received": 73443,
+      "cap_bytes": 128000,
+      "raw_file": "phase2-provider-xml.raw",
+      "sha256": "23c34ab375a599271759a8bf11bd38be73690b6eb2c4f6e2e59c6cfd4ba0d2b7"
+    },
+    {
+      "target_id": "phase2-version-list",
+      "command": "LIST",
+      "path": "/nodc/archive/arc0085/0140939/1.1/",
+      "attempts": 1,
+      "status": "received_archived_before_interpretation",
+      "bytes_received": 198,
+      "cap_bytes": 128000,
+      "raw_file": "phase2-version-list.raw",
+      "sha256": "e447d32ee780c7b2f7846c1daa67b5e4633761dc168e39ae17a8d58c4dc8856b"
+    },
+    {
+      "target_id": "phase2-data-list",
+      "command": "LIST",
+      "path": "/nodc/archive/arc0085/0140939/1.1/data/",
+      "attempts": 1,
+      "status": "received_archived_before_interpretation",
+      "bytes_received": 64,
+      "cap_bytes": 128000,
+      "raw_file": "phase2-data-list.raw",
+      "sha256": "269f74aa0522f893068e7e129222613fb5334486908e33fdf316edb13d79dbac"
+    }
+  ],
+  "total_body_bytes": 73839,
+  "maximum_metadata_remote_operations": 6,
+  "maximum_independent_case_remote_operations": 18,
+  "maximum_attempts_per_target": 1,
+  "metadata_decoded_scalar_reserve": 2000,
+  "decoded_ocean_values": 0,
+  "ocean_field_requests": 0,
+  "all_prior_source_budgets_unchanged": true,
+  "producer_finalized_before_artifact_upload": true,
+  "unused_independent_case_remote_operations": 12,
+  "prior_receipt_source_directory": "research/source-data/act2010-instrument-metadata-v1",
+  "prior_operation_count": 2,
+  "prior_response_body_bytes": 134,
+  "prior_stage_maximum_sessions_preserved": 1,
+  "continuation_maximum_sessions": 1,
+  "aggregate_explicitly_planned_sessions": 2,
+  "prior_operation_time_charge_seconds": 50,
+  "remaining_case_seconds_before_this_stage": 160,
+  "unused_metadata_stage_remote_operations": 0,
+  "this_stage_elapsed_seconds": 1.6222830970000004,
+  "case_time_charge_seconds": 51.622283097
+}

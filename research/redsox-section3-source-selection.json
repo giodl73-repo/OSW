@@ -1,0 +1,43 @@
+{
+  "schema": "osw.redsox-section3-source-selection.v1",
+  "protocol_file": "plans/redsox-section3-width-protocol-v1.md",
+  "protocol_sha256": "15730e843975cb95cba47d5cfc8a8d0ea479b373c052499c809a6c349c5efc71",
+  "original_sources": [
+    {
+      "url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/Documentation/RSX1-cruisereport.pdf",
+      "sha256": "b32bfd9d477f5bb81d144ae8c294a1f583c4ded3907c49253432048dce68d751",
+      "bytes": 2628251,
+      "original_retained_outside_public_packet": true
+    },
+    {
+      "url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/RSX1/LADCP/readme.txt",
+      "sha256": "6244c63921cc8d4d30666bb387fb1c96f318396a19cc30d89404e4d1251c4496",
+      "bytes": 301,
+      "original_retained_outside_public_packet": true
+    }
+  ],
+  "figure": "Winter cruise report Figure 7(a), printed/PDF page 21",
+  "source_order_stations": [
+    76,
+    75,
+    74,
+    73,
+    72,
+    71,
+    70,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "source_semantics": {
+    "ur": "eastward velocity relative to Earth, m/s",
+    "vr": "northward velocity relative to Earth, m/s",
+    "hz": "height above bottom, m",
+    "zz": "depth, m"
+  },
+  "processing_caveat": "README does not resolve upf or up=0. Casts with source_reference=m remain excluded, as does cast 63 with unverified rejected-downcast treatment.",
+  "station74_ctd": "Absent from distributed archive; no inferred companion.",
+  "declaration_history": "Exploratory; prior archive and salinity figure exposure. Operators declared before this selected section computation; not fully blinded or externally registered."
+}

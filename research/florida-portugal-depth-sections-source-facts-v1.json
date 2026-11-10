@@ -1,0 +1,2191 @@
+{
+  "schema": "osw.florida-portugal-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/florida-portugal-depth-sections-v1/manifest.json",
+  "manifest_sha256": "7471f48536a1a18bb7a4d04dc0441ec486c7cdbcdaac5fc3d561d94ce6522ac6",
+  "operator_file": "research/florida-portugal-depth-sections-operator-v1.json",
+  "operator_sha256": "061156ee861b8c2346a12ac880f411cc81c8340484bf37f34a80d35c4b50cf24",
+  "counts": {
+    "section_date_cases": 20,
+    "native_velocity_profiles": 1330,
+    "selected_axis_proxy_profiles": 20,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 19,
+      "section_gate_edge_maximum_axis_unresolved": 1
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.02": 8,
+      "0.05": 8,
+      "0.1": 11,
+      "0.2": 18
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.02": 8,
+      "0.05": 8,
+      "0.1": 11,
+      "0.2": 18
+    },
+    "decoded_velocity_cell_pairs": 53200,
+    "decoded_velocity_array_bytes": 425600,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:florida": {
+      "section_date_cases": 10,
+      "native_velocity_profiles": 320,
+      "selected_axis_proxy_profiles": 10,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 10
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.02": 1,
+        "0.05": 1,
+        "0.1": 2,
+        "0.2": 9
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.02": 1,
+        "0.05": 1,
+        "0.1": 2,
+        "0.2": 9
+      }
+    },
+    "current:portugal": {
+      "section_date_cases": 10,
+      "native_velocity_profiles": 1010,
+      "selected_axis_proxy_profiles": 10,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 9,
+        "section_gate_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.02": 7,
+        "0.05": 7,
+        "0.1": 9,
+        "0.2": 9
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.02": 7,
+        "0.05": 7,
+        "0.1": 9,
+        "0.2": 9
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-25p5n.json",
+      "source_sha256": "22c81b25a2cc5389165a818e495ed6e0afd2c4db555d91a8a31141fe23c0ffcd",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-25p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 25.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 25.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        25.479999542236328
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_last_connected_depth_m": 700.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_last_connected_depth_m": 700.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 602.0000070035456,
+          "layer_thickness_m": 602.0000070035456,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 486.4130510837678,
+          "layer_thickness_m": 486.4130510837678,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 602.0000070035456,
+      "primary_layer_thickness_m": 602.0000070035456,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26n.json",
+      "source_sha256": "78e25da220a9fcc2eb3e7840be04d0f05b3e44b1ced159a3fc9480e74cf2bcc2",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-26n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-26n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 26,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 26.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        26.0
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.9040000438690186,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.9040000438690186,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.9040000438690186,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 454.0229899232179,
+          "layer_thickness_m": 454.0229899232179,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.9040000438690186,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26p5n.json",
+      "source_sha256": "50c5f2f482bb6c90de57cad97d9a7f89b9905ce08ba0cf676b86fa0fdb75418e",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-26p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 26.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 26.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        26.479999542236328
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.9590000510215759,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.9590000510215759,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.9590000510215759,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 394.51613387009553,
+          "layer_thickness_m": 394.51613387009553,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.9590000510215759,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 400.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27n.json",
+      "source_sha256": "54b2b6557222846c09a71a58644a55d910f37ae718f75f4110b77653b381991b",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 27,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 27.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        27.0
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.0160000324249268,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.0160000324249268,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.0160000324249268,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 387.72727789957594,
+          "layer_thickness_m": 387.72727789957594,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.0160000324249268,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 400.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27p5n.json",
+      "source_sha256": "badc833a76563fe2ce9dbb72ee68756992fd2eefce57bf3b3af79ddd05eb04f3",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 27.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 27.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.67999267578125,
+        27.479999542236328
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        10,
+        31
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.1050000190734863,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.1050000190734863,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.1050000190734863,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 494.1908734782035,
+          "layer_thickness_m": 494.1908734782035,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 1.1050000190734863,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-44n.json",
+      "source_sha256": "1b210d09fae867cda54806500946d86ea2b6c8a2d38676a49bb7145faa94bab8",
+      "source_profile_pointer": "/columns/74",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-44n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-44n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 44,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 44.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -14.0799560546875,
+        44.0
+      ],
+      "selected_column_index": 74,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        6,
+        25,
+        29,
+        59,
+        74,
+        98
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1476.1904781882793,
+          "layer_thickness_m": 1476.1904781882793,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1404.7619076973658,
+          "layer_thickness_m": 1404.7619076973658,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1285.7142902125104,
+          "layer_thickness_m": 1285.7142902125104,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 784.8485037314991,
+          "layer_thickness_m": 784.8485037314991,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.367000013589859,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 1476.1904781882793,
+      "primary_layer_thickness_m": 1476.1904781882793,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-42n.json",
+      "source_sha256": "3fa0eb5c8ce3f88a9642498133043d7b35be3802081f5eb2918434ccf481d4de",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -20.0,
+        42.0
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        0,
+        28,
+        34,
+        41,
+        63
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 594.3396243178238,
+          "layer_thickness_m": 594.3396243178238,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 537.7358500645144,
+          "layer_thickness_m": 537.7358500645144,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 443.3962302875924,
+          "layer_thickness_m": 443.3962302875924,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 5.09090731754895,
+          "lower_depth_m": 138.63638888211568,
+          "layer_thickness_m": 133.54548156456673,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 594.3396243178238,
+      "primary_layer_thickness_m": 594.3396243178238,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-40n.json",
+      "source_sha256": "f06e46336897c9815c1babe220b4e357f5c7e5d5a8d0200c516992b729d19323",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 40,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 40.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -17.9200439453125,
+        40.0
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        26,
+        51,
+        54,
+        80,
+        84,
+        88,
+        97
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.628000020980835,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.628000020980835,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2992.366431577173,
+          "layer_thickness_m": 2992.366431577173,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.628000020980835,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2610.687077691462,
+          "layer_thickness_m": 2610.687077691462,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.628000020980835,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 4000.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-38n.json",
+      "source_sha256": "3bb566f481dce9d54436837c67926df0c232811534b05821f70731af87181de8",
+      "source_profile_pointer": "/columns/46",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-38n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-38n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 38,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 38.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -16.3199462890625,
+        38.0
+      ],
+      "selected_column_index": 46,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        0,
+        4,
+        11,
+        46,
+        71,
+        92,
+        99
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1966.1017026312386,
+          "layer_thickness_m": 1966.1017026312386,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.6180000305175781,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1711.8644240630383,
+          "layer_thickness_m": 1711.8644240630383,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.6180000305175781,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1438.1188259774717,
+          "layer_thickness_m": 1438.1188259774717,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.6180000305175781,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1136.7925252405976,
+          "layer_thickness_m": 1136.7925252405976,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.6180000305175781,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 1966.1017026312386,
+      "primary_layer_thickness_m": 1966.1017026312386,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-36n.json",
+      "source_sha256": "7d9a7124710b5126eb55590f17cfbac37005c01239106b2f23ba61348fa1925c",
+      "source_profile_pointer": "/columns/96",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-36n",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-36n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 36,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 36.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -12.3199462890625,
+        36.0
+      ],
+      "selected_column_index": 96,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        0,
+        43,
+        64,
+        96
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1837.2093081482358,
+          "layer_thickness_m": 1837.2093081482358,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3240000009536743,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1720.9302473666205,
+          "layer_thickness_m": 1720.9302473666205,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3240000009536743,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1527.1318127305951,
+          "layer_thickness_m": 1527.1318127305951,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3240000009536743,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 971.428590181732,
+          "layer_thickness_m": 971.428590181732,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.3240000009536743,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 1837.2093081482358,
+      "primary_layer_thickness_m": 1837.2093081482358,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-25p5n.json",
+      "source_sha256": "1731c72d79f34324016518ac14b03c898ae1606c133f6fe1e2c53eca3066c4ef",
+      "source_profile_pointer": "/columns/8",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-25p5n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-25p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 25.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 25.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.8399658203125,
+        25.479999542236328
+      ],
+      "selected_column_index": 8,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        8
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 558.7301611414135,
+          "layer_thickness_m": 558.7301611414135,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.3590000867843628,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 511.1111164001032,
+          "layer_thickness_m": 511.1111164001032,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.3590000867843628,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 483.4615397731052,
+          "layer_thickness_m": 483.4615397731052,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.3590000867843628,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 445.0000010029628,
+          "layer_thickness_m": 445.0000010029628,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.3590000867843628,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 483.4615397731052,
+      "primary_layer_thickness_m": 483.4615397731052,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26n.json",
+      "source_sha256": "2fd5805f3310c9b4898b3a8050ecbb0195ec664afb75e7e47bc785572d5ec741",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-26n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-26n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 26,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 26.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        26.0
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9,
+        31
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4600000381469727,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4600000381469727,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4600000381469727,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 470.7865222969351,
+          "layer_thickness_m": 470.7865222969351,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.4600000381469727,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26p5n.json",
+      "source_sha256": "c3b6a78d2c3b122f8b41488c3d50b95f9f3195505a01ed3a7b98ac680ad93bee",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-26p5n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-26p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 26.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 26.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.760009765625,
+        26.479999542236328
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        9,
+        31
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.6160000562667847,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.6160000562667847,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.6160000562667847,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.6160000562667847,
+          "lower_last_connected_depth_m": 400.0
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 400.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27n.json",
+      "source_sha256": "88a10193ce12c57d794029974112135da41dc8ce84cb49826c83d2632659fe97",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 27,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 27.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.67999267578125,
+        27.0
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        10
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7600001096725464,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7600001096725464,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7600001096725464,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 495.26066967227547,
+          "layer_thickness_m": 495.26066967227547,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.7600001096725464,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:florida",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27p5n.json",
+      "source_sha256": "0ac97e537a93a87310ed69b43a948a4930bc1e77d6dfd80d79c342f746689694",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27p5n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27p5n",
+        "entity_id": "current:florida",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 27.5,
+        "longitude_gate_degrees_east": [
+          -80.5,
+          -78
+        ]
+      },
+      "actual_source_latitude_degrees_north": 27.479999542236328,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -79.67999267578125,
+        27.479999542236328
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 32,
+      "local_integral_maximum_indices": [
+        10
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.812000036239624,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.812000036239624,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.812000036239624,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 493.85246043803056,
+          "layer_thickness_m": 493.85246043803056,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 1.812000036239624,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-44n.json",
+      "source_sha256": "82d7af4acca853e25d7ccc27ee0f211dec424234e9e810a6c9845c619d70b634",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-44n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-44n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 44,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 44.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -18.9599609375,
+        44.0
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        13,
+        15,
+        21,
+        62,
+        74
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_last_connected_depth_m": 4000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1482.7586623278594,
+          "layer_thickness_m": 1482.7586623278594,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1049.4505729332377,
+          "layer_thickness_m": 1049.4505729332377,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.3270000219345093,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 4000.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-42n.json",
+      "source_sha256": "9a125df9e7b3e88accfc57ef654b01b0fdbfcea48c5501832b8116f44082c8a6",
+      "source_profile_pointer": "/columns/79",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -13.6800537109375,
+        42.0
+      ],
+      "selected_column_index": 79,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        0,
+        2,
+        49,
+        60,
+        79,
+        100
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.47500002384185785,
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.47500002384185785,
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_at_sample_domain_edge",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.47500002384185785,
+          "lower_last_connected_depth_m": 5000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 945.6522043350712,
+          "layer_thickness_m": 945.6522043350712,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.47500002384185785,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_at_sample_domain_edge",
+      "primary_supported_reach_bound_m": 5000.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-40n.json",
+      "source_sha256": "f3bdb79e3815185c2669b065cf9dea3af43b1b05c7a7b9393315328e0086ff82",
+      "source_profile_pointer": "/columns/20",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 40,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 40.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -18.4000244140625,
+        40.0
+      ],
+      "selected_column_index": 20,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        10,
+        20,
+        47,
+        59,
+        66,
+        93
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1760.8695828051261,
+          "layer_thickness_m": 1760.8695828051261,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.359000027179718,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1479.1666789549504,
+          "layer_thickness_m": 1479.1666789549504,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.359000027179718,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1305.5555693529268,
+          "layer_thickness_m": 1305.5555693529268,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.359000027179718,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 845.0000198682142,
+          "layer_thickness_m": 845.0000198682142,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.359000027179718,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 1760.8695828051261,
+      "primary_layer_thickness_m": 1760.8695828051261,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-38n.json",
+      "source_sha256": "a74f680ec3994c08b1368750a3601959a5fc9a42b87152f210f3b0d2d79ba3bb",
+      "source_profile_pointer": "/columns/86",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-38n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-38n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 38,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 38.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -13.1199951171875,
+        38.0
+      ],
+      "selected_column_index": 86,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        12,
+        36,
+        44,
+        63,
+        82,
+        86
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3395.348840070261,
+          "layer_thickness_m": 3395.348840070261,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3046.5116426147206,
+          "layer_thickness_m": 3046.5116426147206,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1884.6155301000495,
+          "layer_thickness_m": 1884.6155301000495,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1050.0000447034863,
+          "layer_thickness_m": 1050.0000447034863,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3490000069141388,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 3395.348840070261,
+      "primary_layer_thickness_m": 3395.348840070261,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:portugal",
+      "source_file": "research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-36n.json",
+      "source_sha256": "72225340013a3e7893bba94c084e9a61b69114d3d3be567b778a1725f1b712f5",
+      "source_profile_pointer": "/columns/33",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-36n",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-36n",
+        "entity_id": "current:portugal",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 36,
+        "longitude_gate_degrees_east": [
+          -20,
+          -12
+        ]
+      },
+      "actual_source_latitude_degrees_north": 36.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        -17.3599853515625,
+        36.0
+      ],
+      "selected_column_index": 33,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 101,
+      "local_integral_maximum_indices": [
+        7,
+        33,
+        59,
+        67,
+        74,
+        89
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1732.5581570028473,
+          "layer_thickness_m": 1732.5581570028473,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1307.6923661066216,
+          "layer_thickness_m": 1307.6923661066216,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 21.718749476131137,
+          "lower_depth_m": 1047.4138266576351,
+          "layer_thickness_m": 1025.695077181504,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.02,
+      "primary_lower_depth_m": 1732.5581570028473,
+      "primary_layer_thickness_m": 1732.5581570028473,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "transport_ledger_file": "research/source-data/florida-portugal-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "8963ecd5212da4205aac5f867c4b65cb57b0a56d120c66ed94d358b24d15b05c",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-latitude-reads.v1",
+    "planned_successful_component_values": 106400,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 106400,
+    "successfully_returned_component_values": 106400,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 851200,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "fixed_native_latitude_contiguous_native_longitudes"
+  }
+}

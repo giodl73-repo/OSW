@@ -1,0 +1,72 @@
+{
+  "schema": "osw.current-depth-register-source-review.v9",
+  "status": "PASS_TWELVE_EQUATORIAL_DEPTH_REFERENCES",
+  "review_date": "2026-11-01",
+  "cloud_reviews": [
+    {
+      "run_id": 41384979297,
+      "tests_passed": 8,
+      "source_commit": "e621690e8b736b88adf01ecc4809bf41e9c29e42",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41384979297"
+    },
+    {
+      "run_id": 41384979275,
+      "tests_passed": 6,
+      "source_commit": "e621690e8b736b88adf01ecc4809bf41e9c29e42",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41384979275"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 119,
+    "identities_with_scoped_depth_reference": 47,
+    "identities_not_yet_assessed": 64,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 17,
+    "core_lower_boundary_depth": 6,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 3,
+    "reported_flow_depth_band": 5,
+    "reported_vertical_extent": 19,
+    "reported_vertical_thickness": 3,
+    "transport_selected_depth_extent": 54,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v9.py": "ec09fa15e3b62855b83f4ed7f86842db8e4586b1226a15555a2242d27f34cd10",
+    "analysis/test_current_depth_register_v9.py": "75ef1e9c0d73dcb3a864a7777e58f0f58e2ee9a1f74ae9aea8e1c5574c9908d0",
+    "research/current-depth-rules-v9.json": "8036179cf85ca3bb9419354ecdf0b7ee9fe61668d56821b0c4a75beeb4486d5d",
+    "research/current-depth-source-facts-v9.json": "3a23c9b45a474126fb4db9837d04e1ea2f8b57a2bda3edf1315bb3ee2482caa9",
+    "research/current-depth-register-v9.json": "07a44608a262e2445026160626431139caf050235fdf5709502b0a9444a2e626",
+    "research/current-depth-register-v9.csv": "df671657feff8ad4897bf718dc1ee7750aba444f3bded84925d8dda6acd85d79",
+    ".github/workflows/current-depth-register-source-v9.yml": "989cfd0cd4fca1af4f5dd30640070fdcfbd719254306180c09413ebd84bcf2cf",
+    "research/source-data/li-neuc-2018/journal-article.xml": "2321fff1a540d19d5da1409f16218efb748968e01e29c21926f9262fd0c6efc8"
+  },
+  "previous_107_references_and_v8_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and all107 preceding depth references retained.",
+    "Twelve references cover seven new current identities without generic-family inheritance.",
+    "Atlantic SECC at-least400m reach preserves inclusive lower-bound operator and remains distinct from two40m/240m velocity cores.",
+    "Observed March1994 NECC core remains distinct from undated hydrographic-setting flow bands.",
+    "Western Atlantic EUC100m core is regional literature context, not a basin-wide fixed depth.",
+    "Pacific NEUC upper boundaries300m/450m/600m preserve southern/middle/northern jets,2004–2014 Argo support and P-vector/thermal-wind reconstruction. Original XML prose checked.",
+    "Pacific SECC300m statement retains general speed-threshold support, not a full-flow bottom.",
+    "PGW220m thermohaline maximum remains distinct from maximum-speed cores and exact core occupation dates.",
+    "No physical thickness, annual envelope, numerical uncertainty, compatible width joins, volumes, state intersections or playback inferred.",
+    "JSON and CSV reproduce with explicit inclusive-bound operators and core kinds."
+  ],
+  "source_review_scope": "Bourles1999 primary PDF web-extracted text; direct download403 and screenshot cache misses explicitly recorded. Sivkov2021 and Pous2004 primary publisher HTML; Philander2001 NOAA author-hosted original PDF text. Li2018 complete original XML and retained Figure2 actually viewed; Rotschi1972 original PDF page13 actually viewed. Values transcribed from author prose, with no figure digitization or raw-field processing. No restricted originals redistributed.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

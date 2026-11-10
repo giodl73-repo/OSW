@@ -1,0 +1,29 @@
+{
+  "schema": "osw.dimoune-2023-width-delivery-attempt-review.v1",
+  "run_id": 40934288557,
+  "run_attempt": 1,
+  "source_commit": "ca05c9019c356a6fe12e220d6488d856c62cd10f",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 12924777060,
+    "bytes": 28629,
+    "sha256": "33b4055cdaceebe4ec209a0aa05472ce455651b734b5709e03f47e810d0944aa"
+  },
+  "retained_sha256": {
+    "research/dimoune-2023-width-delivery-second-attempt-v1/compile-inventory.json": "02e62a453506e261f2443d9b4966f2eacbeab72a7e4aa64117957c0fbf7c914f",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/dependency-proof.json": "3e11b5367389b3567bbab665bba58ecabf5ea20c0641633c3ca43d80efca350b",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/failure.json": "699a62fb9fceac9426b9bcfc0894a83500b1a5d4845e02456de0494beec75743",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/native-build.txt": "0d17be9eeb44128dd48182a736bd0f724bbf2efe92d94128e4def8b20ae938a2",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/native-preservation.json": "b6aed2d9b2d8b3f59ffe61537f9ec4cbcda78a96464b2cb714a64a0aaff1547b",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/rust-tests.txt": "8ab62744564b421acbbfdb598e0e9a923458215a32a58d0692359792efda4534",
+    "research/dimoune-2023-width-delivery-second-attempt-v1/wasm-build.txt": "5a12381058156b97f5325a68add5c8e92e04ace76a979b60440239b043bc89d5"
+  },
+  "native_complete_response_checks_passed": 396,
+  "rust_tests_passed": 298,
+  "failure": "A comparison fixture containing the shared escaped initialization response plus one complete API response exceeded the 67108864-byte partition budget. Comparison was not run; no scientific mismatch was reported.",
+  "contributor_sizes_not_retained_in_failed_run": true,
+  "fix": "Use small descriptor-only fixtures. Store native initialization and each expected response in a confined cloud-only UTF-8 file; verify original byte count and SHA256, then compare complete original JSON bytes one at a time. Keep all 396 ordered cases and original payload, response, WASM-memory and Node heap limits.",
+  "separate_expected_files_downloaded_locally": false,
+  "installed": false,
+  "full_goal_complete": false
+}

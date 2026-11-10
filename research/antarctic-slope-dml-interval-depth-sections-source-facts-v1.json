@@ -1,0 +1,1632 @@
+{
+  "schema": "osw.antarctic-slope-dml-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "2581a399f6fd8b5363d7eee2f6b7ad1a4e6a95c834ebf65b462d67d88a2dd867",
+  "operator_file": "research/antarctic-slope-dml-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "1fd2fa3bdabec49f8346117a1ed7e5fa5acbe11e35f6fea3d8c89a7dcfd48509",
+  "counts": {
+    "section_date_cases": 16,
+    "native_velocity_profiles": 816,
+    "selected_axis_proxy_profiles": 16,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 11,
+      "selection_interval_support_edge_maximum_axis_unresolved": 5
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.02": 7,
+      "0.05": 15,
+      "0.1": 10
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.02": 7,
+      "0.05": 15,
+      "0.1": 10
+    },
+    "decoded_velocity_cell_pairs": 32640,
+    "decoded_velocity_array_bytes": 261120,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:antarctic-slope": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 816,
+      "selected_axis_proxy_profiles": 16,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 11,
+        "selection_interval_support_edge_maximum_axis_unresolved": 5
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.02": 7,
+        "0.05": 15,
+        "0.1": 10
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.02": 7,
+        "0.05": 15,
+        "0.1": 10
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-03-15-antarctic-slope-section-5p5e.json",
+      "source_sha256": "72d1be102c5690e7a02045c3a8ed9d87bc9d256513dcb66c1189c36fa504f2c4",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.52001953125,
+      "selected_lon_lat": [
+        5.52001953125,
+        -69.87999725341797
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        3,
+        16,
+        29,
+        42,
+        50
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 345.4545511194497,
+          "layer_thickness_m": 345.4545511194497,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3620000183582306,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 232.50000325962907,
+          "layer_thickness_m": 232.50000325962907,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3620000183582306,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 144.44444766382992,
+          "layer_thickness_m": 144.44444766382992,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3620000183582306,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 232.50000325962907,
+      "primary_layer_thickness_m": 232.50000325962907,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-03-15-antarctic-slope-section-6p0e.json",
+      "source_sha256": "9e75717bc92aabe17f5ae034e88606b0274ce36197e20eb59e966c040486604a",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p0e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        -69.87999725341797
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        3,
+        16,
+        29,
+        42,
+        50
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 614.2857345087154,
+          "layer_thickness_m": 614.2857345087154,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 265.38462045453696,
+          "layer_thickness_m": 265.38462045453696,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 109.09091232359903,
+          "layer_thickness_m": 109.09091232359903,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 265.38462045453696,
+      "primary_layer_thickness_m": 265.38462045453696,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-03-15-antarctic-slope-section-6p5e.json",
+      "source_sha256": "765bc12b3f095a261b4eda64eda08ee5bd113405162fd66a95747933359fb058",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.47998046875,
+      "selected_lon_lat": [
+        6.47998046875,
+        -69.87999725341797
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        3,
+        22,
+        41,
+        50
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 350.0000141561008,
+          "layer_thickness_m": 350.0000141561008,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3820000290870667,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 219.23078201578892,
+          "layer_thickness_m": 219.23078201578892,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3820000290870667,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 139.81481721657926,
+          "layer_thickness_m": 139.81481721657926,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3820000290870667,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 219.23078201578892,
+      "primary_layer_thickness_m": 219.23078201578892,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-03-15-antarctic-slope-section-7p0e.json",
+      "source_sha256": "214467f196b765f98526082263ebfa7573e559f7b5089a302a18311e11e36f1f",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-7p0e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-7p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 7.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.9599609375,
+      "selected_lon_lat": [
+        6.9599609375,
+        -69.80000305175781
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        5,
+        20,
+        40,
+        50
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 333.3333377484924,
+          "layer_thickness_m": 333.3333377484924,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33200001716613775,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 200.00000310440902,
+          "layer_thickness_m": 200.00000310440902,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33200001716613775,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 22.058825385611268,
+          "layer_thickness_m": 22.058825385611268,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33200001716613775,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 200.00000310440902,
+      "primary_layer_thickness_m": 200.00000310440902,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-06-15-antarctic-slope-section-5p5e.json",
+      "source_sha256": "c2494cd950f1e2d5adef73505d7063db01b18f041ff19f83d82cde6ba1262b8d",
+      "source_profile_pointer": "/columns/4",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.52001953125,
+      "selected_lon_lat": [
+        5.52001953125,
+        -69.83999633789062
+      ],
+      "selected_column_index": 4,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        4
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.07200000435113907,
+          "lower_last_connected_depth_m": 1000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 856.2500162981423,
+          "layer_thickness_m": 856.2500162981423,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.07200000435113907,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 856.2500162981423,
+      "primary_layer_thickness_m": 856.2500162981423,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-06-15-antarctic-slope-section-6p0e.json",
+      "source_sha256": "85963da766ac8d8ebf12fa468c2e5c11b480d9a463bd2cb1fef9dda3690a44d2",
+      "source_profile_pointer": "/columns/4",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p0e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        -69.83999633789062
+      ],
+      "selected_column_index": 4,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        4
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1416.6666761277206,
+          "layer_thickness_m": 1416.6666761277206,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.07100000232458115,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.5999988079068568,
+          "lower_depth_m": 1059.523845847499,
+          "layer_thickness_m": 1057.9238470395921,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.07100000232458115,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 1059.523845847499,
+      "primary_layer_thickness_m": 1057.9238470395921,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-06-15-antarctic-slope-section-6p5e.json",
+      "source_sha256": "e2602033610b2729993845e09f510c6f0b0c0f3d5af29624341b26b6a9ce0717",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.47998046875,
+      "selected_lon_lat": [
+        6.47998046875,
+        -69.80000305175781
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        5
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.05200000107288361,
+          "lower_last_connected_depth_m": 1000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 34.99999627470335,
+          "lower_depth_m": 70.0000074505933,
+          "layer_thickness_m": 35.00001117588995,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.05200000107288361,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 70.0000074505933,
+      "primary_layer_thickness_m": 35.00001117588995,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-06-15-antarctic-slope-section-7p0e.json",
+      "source_sha256": "1393b03868f2d214d8c17ce65f0e86de2725cfb6d92a8faec930d11db1eeaf50",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-7p0e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-7p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 7.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.9599609375,
+      "selected_lon_lat": [
+        6.9599609375,
+        -69.72000122070312
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        7
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.05100000277161599,
+          "lower_last_connected_depth_m": 1000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 124.99999068677573,
+          "lower_depth_m": 350.0000372529665,
+          "layer_thickness_m": 225.00004656619075,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.05100000277161599,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 350.0000372529665,
+      "primary_layer_thickness_m": 225.00004656619075,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-09-15-antarctic-slope-section-5p5e.json",
+      "source_sha256": "55c9c4e40dec3a483029fa846837c0d2a3e17dbd071ca4f4249116c54b63f276",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.52001953125,
+      "selected_lon_lat": [
+        5.52001953125,
+        -69.87999725341797
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        3
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12600000202655792,
+          "lower_last_connected_depth_m": 700.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 683.3333399560713,
+          "layer_thickness_m": 683.3333399560713,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12600000202655792,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 3.6666657974324073,
+          "lower_depth_m": 360.00002980230636,
+          "layer_thickness_m": 356.33336400487394,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12600000202655792,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 683.3333399560713,
+      "primary_layer_thickness_m": 683.3333399560713,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-09-15-antarctic-slope-section-6p0e.json",
+      "source_sha256": "c9aa571035d5b48d5e08fdc31892eb7616bb0803550cb247951ac75a5c777564",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p0e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        -69.87999725341797
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        3
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 966.6666710818253,
+          "layer_thickness_m": 966.6666710818253,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12800000607967377,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 800.0000041392116,
+          "layer_thickness_m": 800.0000041392116,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12800000607967377,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 92.72727014112077,
+          "lower_depth_m": 383.3334409528799,
+          "layer_thickness_m": 290.60617081175917,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.12800000607967377,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 800.0000041392116,
+      "primary_layer_thickness_m": 800.0000041392116,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-09-15-antarctic-slope-section-6p5e.json",
+      "source_sha256": "2a4614d25550fbb963317077023d4de45fe8ab16d2bb0f863674703b8a06e917",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.47998046875,
+      "selected_lon_lat": [
+        6.47998046875,
+        -69.80000305175781
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        5
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.09100000560283662,
+          "lower_last_connected_depth_m": 1000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 866.6666790842991,
+          "layer_thickness_m": 866.6666790842991,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.09100000560283662,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 866.6666790842991,
+      "primary_layer_thickness_m": 866.6666790842991,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-09-15-antarctic-slope-section-7p0e.json",
+      "source_sha256": "41c7b8aaf9b9e164be35ed439c0c5fdf2b508c133a7094abfe6a807be7b0ffe9",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-7p0e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-7p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 7.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.9599609375,
+      "selected_lon_lat": [
+        6.9599609375,
+        -69.72000122070312
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        7
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.08500000089406969,
+          "lower_last_connected_depth_m": 1000.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 780.0000074505795,
+          "layer_thickness_m": 780.0000074505795,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.08500000089406969,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 780.0000074505795,
+      "primary_layer_thickness_m": 780.0000074505795,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-12-15-antarctic-slope-section-5p5e.json",
+      "source_sha256": "ca142b8ff0f836396d04e77660f8a963deb86fff49db9658e3dddc8c55e480b7",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.52001953125,
+      "selected_lon_lat": [
+        5.52001953125,
+        -69.91999816894531
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        2,
+        28,
+        50
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4390000104904175,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 497.84946286522563,
+          "layer_thickness_m": 497.84946286522563,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4390000104904175,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 444.08602327993935,
+          "layer_thickness_m": 444.08602327993935,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4390000104904175,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 497.84946286522563,
+      "primary_layer_thickness_m": 497.84946286522563,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-12-15-antarctic-slope-section-6p0e.json",
+      "source_sha256": "171916e435b0aecf095138c55d87d6a5fad2cff903d24ef571a41a74270f1c86",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p0e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        -69.91999816894531
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        2,
+        15,
+        29,
+        42
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_last_connected_depth_m": 600.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 589.33333796925,
+          "layer_thickness_m": 589.33333796925,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 522.6666739516785,
+          "layer_thickness_m": 522.6666739516785,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 589.33333796925,
+      "primary_layer_thickness_m": 589.33333796925,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-12-15-antarctic-slope-section-6p5e.json",
+      "source_sha256": "15032404fd1c53a689a0af089f283a4276682fa8a17f1253a26df7077f08c5fb",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6p5e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6.5,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.47998046875,
+      "selected_lon_lat": [
+        6.47998046875,
+        -69.91999816894531
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        2,
+        20,
+        28,
+        41
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4020000100135803,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4020000100135803,
+          "lower_last_connected_depth_m": 500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 404.2553307514695,
+          "layer_thickness_m": 404.2553307514695,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4020000100135803,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary",
+      "identity_evidence_basis": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure",
+      "source_section_geometry": "longitude",
+      "entity_id": "current:antarctic-slope",
+      "source_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/2022-12-15-antarctic-slope-section-7p0e.json",
+      "source_sha256": "ed2ce71f96c658a589ea9c2908221ce16fc41108b6a3447d710a3f79478256bc",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-7p0e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-7p0e",
+        "entity_id": "current:antarctic-slope",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 7.0,
+        "latitude_gate_degrees_north": [
+          -70,
+          -68
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.9599609375,
+      "selected_lon_lat": [
+        6.9599609375,
+        -69.80000305175781
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        5,
+        20,
+        27,
+        40
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.02,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 589.0625015752446,
+          "layer_thickness_m": 589.0625015752446,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.425000011920929,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 542.1875065301713,
+          "layer_thickness_m": 542.1875065301713,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.425000011920929,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 26.750001769512608,
+          "layer_thickness_m": 26.750001769512608,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.425000011920929,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 542.1875065301713,
+      "primary_layer_thickness_m": 542.1875065301713,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "parent_context_by_current": {
+    "current:antarctic-slope": {
+      "parent_current_id": null,
+      "identity_relationship": "partial_DML_slope_component_not_circumpolar_system_scalar",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "selection_window_basis_by_current": {
+    "current:antarctic-slope": "osw_upper_slope0_500m_classification_not_thermocline_or_water_depth_boundary"
+  },
+  "identity_evidence_basis_by_current": {
+    "current:antarctic-slope": "Lauber2024_DML_mooring_CTD_geography_and_westward_velocity_structure"
+  },
+  "selection_windows_by_current": {
+    "current:antarctic-slope": [
+      0,
+      500
+    ]
+  },
+  "primary_thresholds_by_current": {
+    "current:antarctic-slope": 0.05
+  },
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/antarctic-slope-dml-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "8076aaa2603998d9534a0c700ec0eb878c44d8f556c8d15c484361e28f9eaf94",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 65280,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 65280,
+    "successfully_returned_component_values": 65280,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 522240,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  }
+}

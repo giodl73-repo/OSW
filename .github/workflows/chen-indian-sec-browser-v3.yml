@@ -1,0 +1,75 @@
+name: Sequential saved Indian SEC engine browser review v3
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/chen-indian-sec-browser-request-v3.json
+      - .github/workflows/chen-indian-sec-browser-v3.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_CHEN_INDIAN_SEC_BROWSER_V3: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/chen-indian-sec-browser-request-v3.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/chen-indian-sec-browser-request-v3.json').read_bytes())
+          assert r['schema']=='osw.chen-indian-sec-browser-request.v3'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify saved-engine scope without local browser or payload access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_browser_contract_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_browser_readiness_v3.py -v
+      - name: Install one pinned browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -c "import platform; assert platform.freedesktop_os_release()['VERSION_ID']=='24.04'"
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify saved engine and desktop/narrow actual pages without rebuilding
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_chen_indian_sec_browser_v3.py
+      - name: Retain compact browser evidence and presentation manifest only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chen-indian-sec-browser-evidence-v3
+          path: |
+            .pytest_cache/chen-indian-sec-browser-v3/*.json
+            .pytest_cache/chen-indian-sec-browser-v3/*.png
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

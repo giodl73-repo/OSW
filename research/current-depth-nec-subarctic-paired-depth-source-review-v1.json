@@ -1,0 +1,112 @@
+{
+  "schema": "osw.current-depth-nec-subarctic-paired-depth-source-review.v1",
+  "status": "PASS_THREE_SCOPES_34_CASES_29_FINITE_ANCHORS_5_AXIS_GAPS",
+  "source_commit": "dbd96304abbdaa91be7f550c12ca81662471a6c7",
+  "producer_run_id": 42120834473,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42120834473",
+  "cloud_semantic_tests_passed": 26,
+  "actual_complete_34_case_both_csv_roundtrips_passed": true,
+  "actual_expanded_full_scientific_json_bytes_equal_original": true,
+  "no_numeric_rounding_or_record_qualifier_removal": true,
+  "artifact": {
+    "id": 13458630956,
+    "bytes": 167822,
+    "sha256": "59432bb96bf78b1167cf305ee134f5cc64825cad9c10dd69222827e3c3d1482e",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "source_cases": 34,
+    "original_unresolved_cases": 5,
+    "cases_with_integrable_partial_geometry": 29,
+    "retained_column_descriptors": 3645,
+    "retained_vertical_runs": 2548,
+    "finite_paired_column_runs": 2544,
+    "censored_runs_with_minimum_support": 4,
+    "conditional_strip_patches": 2309,
+    "strips_without_integrable_geometry": 1666,
+    "rejected_ambiguous_links": 216,
+    "original_axis_proxy_anchors": 29,
+    "finite_paired_axis_anchors": 29,
+    "censored_axis_anchors_with_minimum_support": 0,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:pacific-north-equatorial": {
+      "source_cases": 14,
+      "finite_paired_axis_anchors": 12,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 2,
+      "partial_geometry_cases": 12
+    },
+    "current:atlantic-north-equatorial": {
+      "source_cases": 8,
+      "finite_paired_axis_anchors": 5,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 3,
+      "partial_geometry_cases": 5
+    },
+    "current:aleutian": {
+      "source_cases": 12,
+      "finite_paired_axis_anchors": 12,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 0,
+      "partial_geometry_cases": 12
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 205255,
+    "query_unique_json_bytes": 3086310,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.898146705000002,
+    "whole_output_bytes": 1116759,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All34original dated cases retained:Pacific North Equatorial14/Atlantic North Equatorial8/Aleutian-Subarctic12. Two exact January/July15,2022snapshots,not seasonal means,annual extrema or independent occupations.29original supported cases remain29finite paired axis-proxy anchors;five original axis gaps remain two Pacific/three Atlantic,without replacement core,date,window or branch.",
+    "Original fixed-longitude definitions,full native latitude column order and every-row5km tolerance preserved. Native0\u2013360receipts are normalized once to sampled -180\u2013180coordinates; circular target differences correctly accept180 versus-180. Source section/hyperslab,distance receipts,actual native longitude and original recovered/completion operator/transport origins remain intact. Neither original nor completion acquisition is replayed.",
+    "Pacific/Atlantic NEC retain original westward270degree true signed component,strict0.1m/s primary and0.05m/s surface selection. Aleutian retains eastward90degree,strict0.05m/s primary and0.02m/s surface gate. Explicit original complete upper200m integral/core selection,no temperature gate. All source-selected primary boundaries and statuses retained exactly;no shared cutoff/gate replacement.",
+    "Weaker surface selection gates and whole-graph native_surface_seed_connected do not force primary layer top to surface or establish physical thickness. Original axis-unresolved cases did not construct graph;false topology is not independently disconnected flow. The0\u2013200mselection interval is not a physical current bottom or cap on connected layers. Thickness is lower minus upper,not absolute lower depth.",
+    "All2548available connected vertical runs retained:2544finite paired contours and4censored Aleutian runs with minimum support. All29axis anchors are finite even though four nonaxis runs are censored.3645available compiled column descriptors are not4272source-declared native inputs including unresolved cases. All29supported cases contain some integrable partial geometry.",
+    "Native first-to-last contiguous qualifying sample spans are inclusive support conditional on the original piecewise-linear signed-component model,not physical current bounds,depthfromsurface,finite bottoms,uncertainty or annual ranges. Single-level zero is uninformative,not absent flow or zero actual thickness. Censored depth/thickness remain null with physical-bound flags false.",
+    "Only unique overlapping native-depth runs on consecutive latitude columns within20km at spherical radius6371008.8m produce linear strips.2309partial patches accepted;1666strips without integrable geometry and216ambiguous links retained/rejected explicitly. No split/merge,disjoint,missing,censored or lateral gap bridge. Partial fixed-axis area/span is not independent flow-normal/full current width or representative physical depth. Native-bracket scenarios are not confidence or annual envelopes.",
+    "Pacific and Atlantic basin NEC identities remain distinct from North Equatorial parent family,eastward counter/undercurrents and downstream Kuroshio/Mindanao/Caribbean/Antilles/Guiana. Aleutian/Subarctic follows the retained regional naming convention,not westward Alaskan Stream,Bering-side north-slope current,North Pacific or downstream branches. Same-sign fronts/eddy flanks may connect;no physical current membership,thermal classification or independent axis is proved. No inherited parent depths or additive bodies.",
+    "New ordered-object-tables.v1 storage in osw.nec-subarctic-paired-depth.v2 preserves every case value and original insertion order through ordered key schemas,explicit list/object/string tags and exact string interning. No numeric rounding,quantization,clipping,field removal or scientific selection. Root context/counts remain readable;both CSVs expose thresholds/surface gates/window/collection custody. Expansion reproduces exact full scientific JSON bytes and both CSV bytes. This changes storage only,not query charges or limits.",
+    "Twenty-six cloud tests pass:8analytic geometry/censor/splitmerge/disjoint/index/cutoff/unit checks,10cohort date/identity/provenance/surface-selection/date-line/minimum-support/CSV/roundtrip checks and8encoding tests. Encoding tests preserve arbitrary dictionary key order,Unicode,null,bool/int/float distinction,negative zero,empty values,lists resembling tags,exact repeated strings and independent per-report tables. Malformed tags,boolean/negative/out-of-range indices,wrong value counts,duplicate keys/schemas/strings,unknown fields/versions and nonobject cases reject. Actual complete34case fullscientific JSON byte equality and bothCSVroundtrips also pass.",
+    "Finite/encode/hash/boundary/run_geometry/separation/strip/run_support/attach_anchor/counts/report-run/derive_case functions are AST-identical to validated Caribbean/Azores implementation. New code binds original three-owner metadata and collection custody,checks circular geography and applies lossless ordered-object encoding. Original source object and SHA256 bytes unchanged. No native/source-data/oldproducer/validator/provider/archive replay.",
+    "Offline sequential one idle cloud CPU;shared absolute60s wraps tests and producer,outertimeout plusSIGALRM/SIGTERM,fresh output. Independent ordinary DescriptorQueryv3 explicit0prior numeric/bytes prospectively reserves205255tokens/3086310uniqueJSONbytes under250k/32MB/2.5MBpacket. Entire output1116759bytes under2.4MB,shared1.898146705000002seconds. Compact storage does not reset or change scientific query accounting.",
+    "Artifact four members retained once after all branch jobs terminal;installed byte-exact with SHA256 custody. HYCOM Consortium,NRL,COAPS-FSU attribution retained. No new observations/canonical scalar references.111identities,908reference inventory,102eddy references,main,UI,runtime,WASM unchanged. Whole-route physical depth/volume programme active and incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "outputs": {
+    "research/nec-subarctic-paired-depth-v1.json": {
+      "bytes": 1034310,
+      "sha256": "7d6d593fc96bb15423836fd4e577fadbc589edb8f484e382f5513380828e470e"
+    },
+    "research/nec-subarctic-paired-depth-v1.csv": {
+      "bytes": 60279,
+      "sha256": "b7f2849c141d8667a94448e2a8400a7ddcdabd1382fc67e3e9a2559edc9d5eb9"
+    },
+    "research/nec-subarctic-depth-anchors-v1.csv": {
+      "bytes": 20811,
+      "sha256": "56adeaed58514044b17a80da00b92c675d91d385c327e63d81da1ea51b37f6d4"
+    },
+    "research/nec-subarctic-paired-depth-query-ledger-v1.json": {
+      "bytes": 1355,
+      "sha256": "be02562dce60e84506a0f08ed3410fadc88bda471f12f4525b0a0b353b0bf4e5"
+    }
+  }
+}

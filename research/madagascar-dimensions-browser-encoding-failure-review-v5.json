@@ -1,0 +1,18 @@
+{
+  "schema": "osw.madagascar-dimensions-browser-encoding-failure-review.v5",
+  "status": "ENGINE_VERIFIED_BROWSER_ONLY_RESUME_REQUIRED",
+  "source_commit": "0bd52f559de7a7133b5fe5a196f479055353a0ce",
+  "run_id": 40739985519,
+  "request_disabled": true,
+  "rust_tests_passed": 256,
+  "main_native_wasm_comparisons": 117,
+  "source_native_wasm_comparisons": 45,
+  "full_api_native_wasm_comparisons": 3,
+  "old_source_strings_preserved": 634,
+  "failing_check": "First desktop width-card assertion expects a repeatedly misdecoded UTF-8 en dash. Actual page text contains correct U+2013.",
+  "required_fix": "Use an ASCII Python source literal with explicit \\u2013 escape for the exact expected width label. Retain all browser gates and both viewports.",
+  "next_action": "Verify saved candidate artifact and reuse it in a cloud-only browser resume; do not rebuild native/WASM or modify scientific data.",
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}

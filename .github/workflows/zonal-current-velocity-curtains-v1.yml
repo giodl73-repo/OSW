@@ -1,0 +1,123 @@
+name: Agulhas Return Kuroshio Extension and North Pacific depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/zonal-current-velocity-curtains-v1.yml
+      - analysis/derive_zonal_current_velocity_curtains_v1.py
+      - analysis/test_zonal_current_velocity_curtains_v1.py
+      - plans/zonal-current-velocity-curtains-protocol-v1.md
+      - research/zonal-current-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/zonal-current-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/assemble_nec_subarctic_depth_completion_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_nec_subarctic_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/derive_zonal_current_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            analysis/test_zonal_current_velocity_curtains_v1.py
+            plans/zonal-current-velocity-curtains-protocol-v1.md
+            research/agulhas-return-reach-reference-path-candidate.json
+            research/current-depth-reference-inventory-v18.json
+            research/kuroshio-extension-reference-path-candidate.json
+            research/north-pacific-reference-path-candidate.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-21e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-25e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-30e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-40e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-50e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-55e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-60e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-145e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-150e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-155e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-145w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-150w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-160w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-170e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-170w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-180e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-21e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-25e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-30e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-40e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-50e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-55e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-60e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-145e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-150e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-155e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-145w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-150w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-160w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-170e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-170w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-180e.json
+            research/source-data/zonal-current-depth-sections-v1/manifest.json
+            research/zonal-current-depth-sections-operator-v1.json
+            research/zonal-current-depth-sections-source-facts-v1.json
+            research/zonal-current-depth-sections-source-review-v1.json
+            research/zonal-current-velocity-curtains-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_zonal_current_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_zonal_current_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_zonal_current_velocity_curtains_v1.py --current current:agulhas-return
+          taskset -c "$cpu" nice -n 15 python analysis/derive_zonal_current_velocity_curtains_v1.py --current current:kuroshio-extension
+          taskset -c "$cpu" nice -n 15 python analysis/derive_zonal_current_velocity_curtains_v1.py --current current:north-pacific
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zonal-current-velocity-curtains-agulhas-return-v1
+          path: zonal-current-velocity-curtains-v1/agulhas-return/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zonal-current-velocity-curtains-kuroshio-extension-v1
+          path: zonal-current-velocity-curtains-v1/kuroshio-extension/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zonal-current-velocity-curtains-north-pacific-v1
+          path: zonal-current-velocity-curtains-v1/north-pacific/
+          retention-days: 7

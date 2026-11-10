@@ -1,0 +1,2732 @@
+{
+  "schema": "osw.mixed-interval-depth-sections-manifest.v1",
+  "operator_file": "research/barents-makassar-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e"
+  },
+  "sections": [
+    {
+      "file": "2022-03-15-north-cape-section-20e.json",
+      "sha256": "7090351af2e1d890259ead1f66e72fd48e8d1c030ae592b6cff948a675d907c8",
+      "bytes": 264643,
+      "section_id": "section-20e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 74,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 334.00000536441837,
+          "layer_thickness_m": 334.00000536441837,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.11900000274181366,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 58.57142446600619,
+          "lower_depth_m": 214.2857234088751,
+          "layer_thickness_m": 155.7142989428689,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.11900000274181366,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-north-cape-section-22e.json",
+      "sha256": "8a452a0604c063321ae3c9a55ee05345c636a5e2d6c804325efa181ace5c4c3d",
+      "bytes": 262473,
+      "section_id": "section-22e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 50,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 210.00002980232858,
+          "layer_thickness_m": 210.00002980232858,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.10900000482797623,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 75.3333280351429,
+          "lower_depth_m": 108.33334230162517,
+          "layer_thickness_m": 33.00001426648227,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.10900000482797623,
+          "upper_bracket_m": [
+            70.0,
+            80.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-north-cape-section-24e.json",
+      "sha256": "7961369c875c9fd35cd496cf3763948a9ac6d79feabc499708b485d1f5f592d4",
+      "bytes": 249834,
+      "section_id": "section-24e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 54,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.164000004529953,
+          "lower_last_connected_depth_m": 350.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.164000004529953,
+          "lower_last_connected_depth_m": 350.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-north-cape-section-26e.json",
+      "sha256": "631aa3e7d3f56a3328b3d24743c545cc087e2320823905b26fbb6821ff4813e8",
+      "bytes": 252167,
+      "section_id": "section-26e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 60,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.17100000381469727,
+          "lower_last_connected_depth_m": 350.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 328.5714414959064,
+          "layer_thickness_m": 328.5714414959064,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.17100000381469727,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-indonesian-throughflow-section-1s.json",
+      "sha256": "21afcf4b3de5d789159a051614f762138604b3698f806e42ab7a343992a58a8e",
+      "bytes": 117677,
+      "section_id": "section-1s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 10,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 5.3571427663864295,
+          "lower_depth_m": 728.0000046193597,
+          "layer_thickness_m": 722.6428618529733,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8050000667572021,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 7.36170201703076,
+          "lower_depth_m": 593.7106944409301,
+          "layer_thickness_m": 586.3489924238993,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8050000667572021,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 13.159090013173984,
+          "lower_depth_m": 347.1774207988248,
+          "layer_thickness_m": 334.01833078565085,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8050000667572021,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-indonesian-throughflow-section-2s.json",
+      "sha256": "b8fe56c9809fbb8a837a9ea5da7f07a6ab887f224638238d36ba997171120127",
+      "bytes": 116424,
+      "section_id": "section-2s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 7,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 795.1807277367686,
+          "layer_thickness_m": 795.1807277367686,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 734.9397669961199,
+          "layer_thickness_m": 734.9397669961199,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 372.03389988894844,
+          "layer_thickness_m": 372.03389988894844,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.8520000576972961,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-indonesian-throughflow-section-3s.json",
+      "sha256": "c29325edfece7ff2e77939de9922f6a322fce48ad481e8ce01b2cd6a379681eb",
+      "bytes": 96871,
+      "section_id": "section-3s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 715.1515247640635,
+          "layer_thickness_m": 715.1515247640635,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.9580000638961792,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 670.0000042219954,
+          "layer_thickness_m": 670.0000042219954,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.9580000638961792,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 603.3333418601084,
+          "layer_thickness_m": 603.3333418601084,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.9580000638961792,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-03-15-indonesian-throughflow-section-4s.json",
+      "sha256": "2a6c3aec5c6cfd71179882305932d1f4bf02cd5a61c55ec72a1ed2fa06efbf14",
+      "bytes": 121828,
+      "section_id": "section-4s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 11,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 941.3793118508902,
+          "layer_thickness_m": 941.3793118508902,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 1.3570001125335693,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 769.5652295037784,
+          "layer_thickness_m": 769.5652295037784,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 1.3570001125335693,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 10.307691863302734,
+          "lower_depth_m": 530.434815847578,
+          "layer_thickness_m": 520.1271239842753,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 1.3570001125335693,
+          "upper_bracket_m": [
+            10.0,
+            12.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-north-cape-section-20e.json",
+      "sha256": "9f0f1a2b8a5603b5ab6bea6a07b34445778050ce94e75044995947c11c980fb7",
+      "bytes": 263174,
+      "section_id": "section-20e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-06-15-north-cape-section-22e.json",
+      "sha256": "658e3caf766fde2c108b31146d1f16336ab525860efafbaa808dae367513e869",
+      "bytes": 261554,
+      "section_id": "section-22e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-06-15-north-cape-section-24e.json",
+      "sha256": "857d0e2f7913588f425c50a625678651d0ddd4b9a975c86226b084985910e15f",
+      "bytes": 250904,
+      "section_id": "section-24e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 74,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.1550000011920929,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.1550000011920929,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-north-cape-section-26e.json",
+      "sha256": "cb26a212be43a2b6721428c7435a3050aeacac362c10c1050f1dddb68124396f",
+      "bytes": 250814,
+      "section_id": "section-26e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-06-15-indonesian-throughflow-section-1s.json",
+      "sha256": "fe788048ce82f9bac963f851f507e82f91ac4ee8978af7be420f7ff90ad478ce",
+      "bytes": 118010,
+      "section_id": "section-1s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 6,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 28.974358731884465,
+          "lower_depth_m": 697.0297050591766,
+          "layer_thickness_m": 668.0553463272922,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.4150000214576721,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 34.0384609680954,
+          "lower_depth_m": 647.5247544618743,
+          "layer_thickness_m": 613.4862934937789,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.4150000214576721,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 91.21951004992252,
+          "lower_depth_m": 430.0000089406972,
+          "layer_thickness_m": 338.7804988907747,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.4150000214576721,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-indonesian-throughflow-section-2s.json",
+      "sha256": "dc0bab7ff8a399818c5bdedd38bfd9e49d501231789da7290f7bf52f82a545f2",
+      "bytes": 116738,
+      "section_id": "section-2s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 6,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 692.3664144322863,
+          "layer_thickness_m": 692.3664144322863,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.44300001859664917,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 22.727272681091442,
+          "lower_depth_m": 654.1984757875327,
+          "layer_thickness_m": 631.4712031064413,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.44300001859664917,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 50.32786664191282,
+          "lower_depth_m": 240.25423903252582,
+          "layer_thickness_m": 189.92637239061298,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.44300001859664917,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-indonesian-throughflow-section-3s.json",
+      "sha256": "fb30dc3364e8f4496068cba77484368dab11af46a92176ec726e2b49333c3095",
+      "bytes": 97430,
+      "section_id": "section-3s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 17.094016946688665,
+          "lower_depth_m": 615.853659334387,
+          "layer_thickness_m": 598.7596423876984,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.6480000019073486,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 19.230768935176897,
+          "lower_depth_m": 579.8913057518521,
+          "layer_thickness_m": 560.6605368166752,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.6480000019073486,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 22.928570968612142,
+          "lower_depth_m": 346.1111139625673,
+          "layer_thickness_m": 323.18254299395517,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.6480000019073486,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-06-15-indonesian-throughflow-section-4s.json",
+      "sha256": "20c3c835dcef8bd89d112ea0f1caa97ca122eb6f109dc02a768e51ea4c2fd337",
+      "bytes": 122399,
+      "section_id": "section-4s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 10,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 570.3125043928591,
+          "layer_thickness_m": 570.3125043928591,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5210000276565552,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 484.8485037314991,
+          "layer_thickness_m": 484.8485037314991,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5210000276565552,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 19.468084686465712,
+          "lower_depth_m": 343.88889495973206,
+          "layer_thickness_m": 324.42081027326634,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.5210000276565552,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-north-cape-section-20e.json",
+      "sha256": "0d5be35bfd3360e2e00f74cedf1fd6b019bcd69378ee32f233b7f27043b17400",
+      "bytes": 263946,
+      "section_id": "section-20e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-09-15-north-cape-section-22e.json",
+      "sha256": "5ecc7318ea97ba225f9bc3a26f4fc0a1639174ab268397d8d718eaca21d299ba",
+      "bytes": 262905,
+      "section_id": "section-22e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-09-15-north-cape-section-24e.json",
+      "sha256": "ea9cfe7b5893ca686b1610490045677df4d6ffda7ac6cac9188aca489969c146",
+      "bytes": 250028,
+      "section_id": "section-24e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-09-15-north-cape-section-26e.json",
+      "sha256": "56174db940d737b9095fb7b313ee718fa4ff20a2761a0cc0ff45acfb3bb3133c",
+      "bytes": 251990,
+      "section_id": "section-26e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-09-15-indonesian-throughflow-section-1s.json",
+      "sha256": "f898524be8a7ebd95c2993d805aebec5e4db59fb1608d0dfe2bbe01c2e790bdd",
+      "bytes": 117112,
+      "section_id": "section-1s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 11,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 418.82352879303136,
+          "layer_thickness_m": 418.82352879303136,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6040000319480895,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 388.8888896463916,
+          "layer_thickness_m": 388.8888896463916,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6040000319480895,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 356.2091536559899,
+          "layer_thickness_m": 356.2091536559899,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.6040000319480895,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-indonesian-throughflow-section-2s.json",
+      "sha256": "7a76b4796cebc3db7e76130c005c2eb1380e112170220f3c7d4e385d70882fdd",
+      "bytes": 116132,
+      "section_id": "section-2s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 9,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 777.5000024447218,
+          "layer_thickness_m": 777.5000024447218,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.8340000510215759,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 715.0000039581208,
+          "layer_thickness_m": 715.0000039581208,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.8340000510215759,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 283.5937566938799,
+          "layer_thickness_m": 283.5937566938799,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.8340000510215759,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-indonesian-throughflow-section-3s.json",
+      "sha256": "9836c57294d79eb9aeb66e0dc30cb0c8167e4b814b2afff39be40a81ce9e8a4e",
+      "bytes": 96795,
+      "section_id": "section-3s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 708.9552261129495,
+          "layer_thickness_m": 708.9552261129495,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.9010000228881836,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 639.7260350309939,
+          "layer_thickness_m": 639.7260350309939,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.9010000228881836,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 445.45455653805385,
+          "layer_thickness_m": 445.45455653805385,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.9010000228881836,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-09-15-indonesian-throughflow-section-4s.json",
+      "sha256": "17b8d9f3230d7cf6a1ec74ad7ac785f488d135993d1702a81b5d9d2850812347",
+      "bytes": 121370,
+      "section_id": "section-4s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 890.2777798905003,
+          "layer_thickness_m": 890.2777798905003,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.8920000195503235,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 820.8333360496908,
+          "layer_thickness_m": 820.8333360496908,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.8920000195503235,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 380.6074802358575,
+          "layer_thickness_m": 380.6074802358575,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.8920000195503235,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-north-cape-section-20e.json",
+      "sha256": "e1c3e1004e2694766bc16cab92f046dd792ee84a0f37fd88361eed68992be459",
+      "bytes": 263674,
+      "section_id": "section-20e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-12-15-north-cape-section-22e.json",
+      "sha256": "299eac52fff4349b568b6cbea3db2d336994a601be14a6cd8812c81d149ae31d",
+      "bytes": 262479,
+      "section_id": "section-22e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": null,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "selected_column_threshold_layers": []
+    },
+    {
+      "file": "2022-12-15-north-cape-section-24e.json",
+      "sha256": "2e6ad1e3b0429e58fb370172d5b4cd0f3ba916bc66919525dd5ae1a4182aa558",
+      "bytes": 250543,
+      "section_id": "section-24e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 74,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 99.99999925494178,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.10500000417232513,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 229.16665269683037,
+          "lower_depth_m": 325.0000260770375,
+          "layer_thickness_m": 95.83337338020712,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.10500000417232513,
+          "upper_bracket_m": [
+            200.0,
+            250.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-north-cape-section-26e.json",
+      "sha256": "d2341af431d3506f576641f0c882cc7c0f8b5654b40e51efef7c98efe319fc58",
+      "bytes": 252182,
+      "section_id": "section-26e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:north-cape",
+      "source_section_geometry": "longitude",
+      "native_columns": 75,
+      "selected_column_index": 61,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 56.24999866122371,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.125,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_last_connected_depth_m": 350.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 93.99999701976937,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.125,
+          "upper_bracket_m": [
+            90.0,
+            100.0
+          ],
+          "lower_last_connected_depth_m": 350.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-indonesian-throughflow-section-1s.json",
+      "sha256": "ba42384dbbc149e1dda9a8afc0b0c3b7bfb85d52d055352f4bad0d02cbf5fabf",
+      "bytes": 118021,
+      "section_id": "section-1s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 13,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 28.93162386032391,
+          "lower_depth_m": 261.1607152716808,
+          "layer_thickness_m": 232.22909141135688,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.531000018119812,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 31.27550998841511,
+          "lower_depth_m": 240.07936642155835,
+          "layer_thickness_m": 208.80385643314324,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.531000018119812,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 36.79999940395358,
+          "lower_depth_m": 133.5227293508851,
+          "layer_thickness_m": 96.72272994693152,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.531000018119812,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-indonesian-throughflow-section-2s.json",
+      "sha256": "4af9fe9e4822b184a0f779fbf0728a358b5b02be57cb8e9ad0a18f5995d6be08",
+      "bytes": 116744,
+      "section_id": "section-2s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 7,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 33.18965503620372,
+          "lower_depth_m": 612.6984154766589,
+          "layer_thickness_m": 579.5087604404551,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.30000001192092896,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 37.95918328868307,
+          "lower_depth_m": 562.8318608052225,
+          "layer_thickness_m": 524.8726775165394,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.30000001192092896,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 56.129028660698204,
+          "lower_depth_m": 453.96826620755326,
+          "layer_thickness_m": 397.83923754685503,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.30000001192092896,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-indonesian-throughflow-section-3s.json",
+      "sha256": "91cc6d9399e54b07f69744c229685241ae0b49ea338ee579a11f9d3d07618980",
+      "bytes": 97478,
+      "section_id": "section-3s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 12,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 30.73770477186446,
+          "lower_depth_m": 757.6923132581995,
+          "layer_thickness_m": 726.954608486335,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.6940000057220459,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 34.8360651312609,
+          "lower_depth_m": 683.050853429221,
+          "layer_thickness_m": 648.2147882979601,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.6940000057220459,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 38.798449378243276,
+          "lower_depth_m": 596.3636619788523,
+          "layer_thickness_m": 557.565212600609,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.6940000057220459,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "2022-12-15-indonesian-throughflow-section-4s.json",
+      "sha256": "114d9d9e22c328e365f6b62e08d142e3ab86724adbd09750f495c85a1d93c08f",
+      "bytes": 121688,
+      "section_id": "section-4s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "entity_id": "current:indonesian-throughflow",
+      "source_section_geometry": "latitude",
+      "native_columns": 32,
+      "selected_column_index": 11,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 573.4042563858062,
+          "layer_thickness_m": 573.4042563858062,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 520.2127683648039,
+          "layer_thickness_m": 520.2127683648039,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 431.3559436114879,
+          "layer_thickness_m": 431.3559436114879,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.7100000381469727,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ]
+    }
+  ],
+  "preflight_velocity_cell_pairs": 68480,
+  "decoded_velocity_cell_pairs": 68480,
+  "decoded_velocity_array_bytes": 547840,
+  "transport_ledger_file": "transport-ledger.json",
+  "transport_ledger_sha256": "10f3d65d0358da5caccc0df590ae955d476570a04e3e1d91171e06263242176b",
+  "transport": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 136960,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 136960,
+    "successfully_returned_component_values": 136960,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 1095680,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "requests": [
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 580,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 580,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 1316,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 1316,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2052,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2052,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 250,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 275,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 300,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_indices_inclusive": [
+          3763,
+          3837
+        ],
+        "longitude_index": 325,
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 3000,
+        "status": "success",
+        "actual_returned_array_bytes": 12000
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1975,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1950,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1925,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_u",
+        "source_time_index": 2780,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      },
+      {
+        "variable": "water_v",
+        "source_time_index": 2780,
+        "latitude_index": 1900,
+        "longitude_indices_inclusive": [
+          1469,
+          1500
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_component_values": 1280,
+        "status": "success",
+        "actual_returned_array_bytes": 5120
+      }
+    ],
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  },
+  "decoded_temperature_scalars": 0,
+  "decoded_temperature_array_bytes": 0,
+  "full_goal_complete": false
+}

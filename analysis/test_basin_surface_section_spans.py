@@ -1,0 +1,128 @@
+"""Independent geometric/operator checks for local spans, holes and monthly support."""
+import copy
+import json
+import unittest
+from pathlib import Path
+from pyproj import Geod
+from acquire_basin_surface_sections import build as inventory, validate_config, CONFIG, CACHE, parse, urls
+from build_basin_surface_section_spans import measure, monthly_profiles, build, ROOT, diagnostic_matches
+
+class BasinComponentTests(unittest.TestCase):
+    def section(self):
+        return {'fixed_axis':'longitude','fixed_coordinate':-30,'varying_axis':'latitude','domain':[-2,2],'peak_search':[-1,1],'component':'eastward'}
+
+    def profile(self, values):
+        return [{'coordinate':x,'component_m_s':v} for x,v in zip([-2,-1,0,1,2],values)]
+
+    def test_triangle_crossings_and_independent_geodesic(self):
+        r=measure(self.profile([0,.1,.2,.1,0]),self.section(),.5)
+        self.assertEqual(r['boundaries']['low_coordinate']['coordinate'],-1)
+        self.assertEqual(r['boundaries']['high_coordinate']['coordinate'],1)
+        self.assertAlmostEqual(r['span_km'],Geod(ellps='WGS84').inv(-30,-1,-30,1)[2]/1000,places=9)
+        self.assertEqual(r['native_cell_spacings'],6)
+
+    def test_no_bridge_over_missing_or_disjoint_peak(self):
+        r=measure(self.profile([.3,None,.2,.1,0]),self.section(),.5)
+        self.assertEqual(r['boundaries']['low_coordinate']['status'],'missing_before_crossing')
+        self.assertIsNone(r['span_km'])
+        r=measure(self.profile([.3,0,.2,0,.3]),self.section(),.5)
+        self.assertEqual(r['boundaries']['low_coordinate']['coordinate'],-.5)
+        self.assertEqual(r['boundaries']['high_coordinate']['coordinate'],.5)
+
+    def test_weak_and_domain_edges_remain_unresolved(self):
+        self.assertEqual(measure(self.profile([0,.001,.01,.001,0]),self.section(),.5)['status'],'weak_or_no_eligible_peak')
+        r=measure(self.profile([.12,.13,.2,.13,.12]),self.section(),.5)
+        self.assertEqual(r['status'],'unresolved_full_span')
+        self.assertIsNone(r['span_km'])
+
+    def test_horizontal_span_preserves_actual_latitude(self):
+        section={**self.section(),'fixed_axis':'latitude','fixed_coordinate':40,'varying_axis':'longitude'}
+        r=measure(self.profile([0,.1,.2,.1,0]),section,.5)
+        self.assertAlmostEqual(r['span_km'],Geod(ellps='WGS84').inv(-1,40,1,40)[2]/1000,places=9)
+        self.assertEqual(r['boundaries']['low_coordinate']['longitude_latitude'],[-1,40])
+
+    def test_pair_mask_and_southward_sign(self):
+        cell={'coordinate':0,'longitude':0,'latitude':40,'eastward_m_s':.1,'northward_m_s':-.2}
+        frames=[{'time':f'2013-{month:02d}-{day:02d}T00:00:00Z','samples':[dict(cell)]} for month in range(1,13) for day in [1,6,11,16,21,26]]
+        frames[0]['samples'][0]['eastward_m_s']=None
+        rows=monthly_profiles({'frames':frames,'component':'southward'})
+        self.assertEqual(rows[0]['profile'][0]['paired_source_samples'],5)
+        self.assertAlmostEqual(rows[0]['profile'][0]['component_m_s'],.2)
+        frames[1]['samples'][0]['northward_m_s']=None
+        self.assertIsNone(monthly_profiles({'frames':frames,'component':'southward'})[0]['profile'][0]['component_m_s'])
+
+    def test_source_inventory_and_all_five_frozen_results(self):
+        source=inventory()
+        self.assertEqual(sum(s['counts']['times']*s['counts']['cells_per_time'] for s in source['sections']),21096)
+        for doc in build():
+            with self.subTest(current=doc['current_id']):
+                self.assertTrue(diagnostic_matches(json.loads((ROOT/'research'/ (doc['section_id']+'-2013-monthly-component-spans.json')).read_bytes()),doc))
+                self.assertEqual(len(doc['months']),12)
+                self.assertFalse(doc['current_association_verified'])
+                self.assertFalse(doc['width_rank_eligible'])
+                self.assertFalse(doc['whole_current_representative'])
+                self.assertIsNone(doc['annual_width_range_km'])
+                for month in doc['months']:
+                    self.assertEqual(len(month['threshold_scenarios']),3)
+                    nominal=month['nominal']
+                    if nominal['span_km'] is not None:
+                        a,b=[nominal['boundaries'][side]['longitude_latitude'] for side in ['low_coordinate','high_coordinate']]
+                        self.assertAlmostEqual(nominal['span_km'],Geod(ellps='WGS84').inv(*a,*b)[2]/1000,places=8)
+                        self.assertLessEqual(nominal['grid_bracket_span_km'][0],nominal['span_km'])
+                        self.assertGreaterEqual(nominal['grid_bracket_span_km'][1],nominal['span_km'])
+
+    def test_owner_geography_and_admission_mutations_rejected(self):
+        original=json.loads(CONFIG.read_bytes())
+        for key,value in [('current_id','gulf-stream-system'),('fixed_coordinate',42),('component','northward')]:
+            changed=copy.deepcopy(original);changed['sections'][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate_config(changed)
+        changed=copy.deepcopy(original);changed['whole_current_representative']=True
+        with self.assertRaises(ValueError):validate_config(changed)
+
+    def test_eastern_longitude_query_and_original_vectors(self):
+        """The 80 E source must not be requested as 440 E or shown as 280 W."""
+        import csv, io
+        from urllib.parse import unquote
+        config=json.loads(CONFIG.read_bytes())
+        section=next(s for s in config['sections'] if s['current_id']=='south-indian')
+        self.assertEqual(section['current_id'],'south-indian')
+        url=unquote(urls(config)['south-indian-80e.csv'])
+        self.assertIn('[(80)]',url)
+        self.assertNotIn('[(440)]',url)
+        raw=(CACHE/'south-indian-80e.csv').read_bytes()
+        _,frames=parse((CACHE/'metadata.json').read_bytes(),raw,section)
+        original=list(csv.reader(io.StringIO(raw.decode())))[2:]
+        derived={(f['time'],s['latitude']):s for f in frames for s in f['samples']}
+        self.assertEqual(len(original),3960)
+        for row in original:
+            s=derived[row[0],float(row[2])]
+            self.assertEqual(s['longitude'],80)
+            self.assertEqual(s['eastward_m_s'],float(row[4]))
+            self.assertEqual(s['northward_m_s'],float(row[5]))
+        doc=next(d for d in build() if d['current_id']=='south-indian')
+        self.assertEqual(doc['summary']['sample_monthly_mean_span_range_km'],[120,180])
+        self.assertEqual(sum(m['nominal']['resolution_review_required'] for m in doc['months']),6)
+        self.assertTrue(doc['months'][5]['nominal']['peak_at_search_edge'])
+
+    def test_aleutian_source_masks_and_monthly_scope(self):
+        source=inventory()
+        section=next(s for s in source['sections'] if s['current_id']=='aleutian')
+        self.assertEqual(section['counts'],{'times':72,'cells_per_time':49,'missing_vector_pairs':144})
+        self.assertEqual(section['fixed_coordinate'],-160)
+        self.assertEqual(section['peak_search'],[46,51])
+        doc=next(d for d in build() if d['current_id']=='aleutian')
+        self.assertEqual(doc['summary']['sample_monthly_mean_span_range_km'],[90,320])
+        self.assertEqual(sum(m['nominal']['resolution_review_required'] for m in doc['months']),3)
+        self.assertFalse(any(m['nominal']['peak_at_search_edge'] for m in doc['months']))
+        self.assertFalse(doc['current_association_verified'])
+        self.assertIsNone(doc['annual_width_range_km'])
+        for month in doc['months']:
+            self.assertEqual(sum(p['component_m_s'] is None for p in month['profile']),2)
+            for scenario in month['threshold_scenarios']:
+                if scenario['status']=='paired_boundaries':
+                    low=scenario['boundaries']['low_coordinate']['coordinate']
+                    high=scenario['boundaries']['high_coordinate']['coordinate']
+                    self.assertTrue(all(p['component_m_s'] is not None for p in month['profile'] if low<=p['coordinate']<=high))
+
+if __name__=='__main__':
+    unittest.main()

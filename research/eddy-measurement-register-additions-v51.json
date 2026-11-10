@@ -1,0 +1,137 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 435,
+  "baseline_evidence_sha256": "b1c3c971800aef24cb5c1799c4537b03590644749c9e0e4c2eae24fd5ceb6abf",
+  "baseline_measurement_csv_sha256": "1eac3a1ead3cfec6688cbd65f3b3f1e1b594f11b9c02b49a60805e19193b94d7",
+  "sources": {
+    "menna-poulain-2014-bosphorus-ke": {
+      "url": "https://os.copernicus.org/articles/10/155/2014/os-10-155-2014.pdf",
+      "doi": "10.5194/os-10-155-2014",
+      "citation": "Menna and Poulain (2014), Geostrophic currents and kinetic energies in the Black Sea estimated from merged drifter and satellite altimetry data, Ocean Science 10, 155-165, doi:10.5194/os-10-155-2014.",
+      "access": "Original open-access publisher PDF acquired and SHA-verified; actual pages 1, 4, 5 and 8 reviewed. Numeric references transcribed from the source prose, not read from saturated figure colors.",
+      "original": {
+        "url": "https://os.copernicus.org/articles/10/155/2014/os-10-155-2014.pdf",
+        "bytes": 3672191,
+        "sha256": "1b0b1242058b224d6843b45b22063716d2d7ed5b9d5b336d7e680552a5cb2cf9",
+        "pages": 11
+      },
+      "source_review_file": "research/eddy-bosphorus-residual-ke-source-review-v1.json",
+      "source_review_sha256": "982364dc2f378ed4ce11d909ad07ea9ac8b4660bedf5006cf379b792bdcfa0b4"
+    }
+  },
+  "records": [
+    {
+      "entity_id": "eddy:geography:bosphorus-eddy-region",
+      "source_id": "menna-poulain-2014-bosphorus-ke",
+      "category": "kinematics",
+      "unit": "cm2/s2",
+      "evidence_role": "qualified_published_regional_residual_energy_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Bosphorus regional surface residual kinetic energy, 1999-2009 study",
+      "source_locator": "Equation 6, printed page 158 / PDF page 4; section 3.2.2, printed page 159 / PDF page 5; Figure 5, printed page 162 / PDF page 8.",
+      "definition": "Source-reported regional kinetic energy per unit mass of daily surface geostrophic velocity residuals after removal of the mean flow; meridionally averaged between 41 and 42.5 N.",
+      "scope": "Named recurrent Bosphorus region. Regional residual-energy diagnostic, not an individual tracked eddy or a total/circum-averaged swirl-speed measurement.",
+      "qualification": "Native energy units and source comparison retained. Generally below is not an absolute upper bound. The interaction value belongs to the joint Bosphorus-Sakarya regional signal and is not independently assigned to either component. No square-root speed conversion, outer size, depth, physical footprint, ranking, state intersection, annual envelope or seasonal playback inferred. Figure color saturation is not an upper bound on the prose value.",
+      "id": "bosphorus-menna-2014-generally-below-residual-ke",
+      "metric": "source_reported_generally_below_regional_residual_ke_reference",
+      "value": 200,
+      "period_start": "1999-01-01",
+      "period_end": "2009-12-31",
+      "period_label": "1999-2009 study coverage; typical comparison, not an observed uninterrupted eddy lifetime",
+      "period_precision": "study_year_bounds_not_eddy_lifetime",
+      "profile_context": {
+        "method": "source_reported_bosphorus_residual_ke",
+        "residual_definition": "KE = 0.5 * (u_residual^2 + v_residual^2)",
+        "mean_flow_removed": true,
+        "meridional_average_latitude_deg": [
+          41,
+          42.5
+        ],
+        "study_years": [
+          1999,
+          2009
+        ],
+        "energy_per_unit_mass": true,
+        "speed_conversion_performed": false,
+        "individual_eddy_value_inferred": false,
+        "physical_crosswalk_verified": false,
+        "source_review_file": "research/eddy-bosphorus-residual-ke-source-review-v1.json",
+        "source_review_sha256": "982364dc2f378ed4ce11d909ad07ea9ac8b4660bedf5006cf379b792bdcfa0b4",
+        "quantity": "typical_reference",
+        "relation": "generally_below_not_absolute_upper_bound",
+        "longitude_context_deg": [
+          28,
+          29
+        ],
+        "joint_interaction": false,
+        "month_windows": []
+      }
+    },
+    {
+      "entity_id": "eddy:geography:bosphorus-eddy-region",
+      "source_id": "menna-poulain-2014-bosphorus-ke",
+      "category": "kinematics",
+      "unit": "cm2/s2",
+      "evidence_role": "qualified_published_regional_residual_energy_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Bosphorus regional surface residual kinetic energy, 1999-2009 study",
+      "source_locator": "Equation 6, printed page 158 / PDF page 4; section 3.2.2, printed page 159 / PDF page 5; Figure 5, printed page 162 / PDF page 8.",
+      "definition": "Source-reported regional kinetic energy per unit mass of daily surface geostrophic velocity residuals after removal of the mean flow; meridionally averaged between 41 and 42.5 N.",
+      "scope": "Named recurrent Bosphorus region. Regional residual-energy diagnostic, not an individual tracked eddy or a total/circum-averaged swirl-speed measurement.",
+      "qualification": "Native energy units and source comparison retained. Generally below is not an absolute upper bound. The interaction value belongs to the joint Bosphorus-Sakarya regional signal and is not independently assigned to either component. No square-root speed conversion, outer size, depth, physical footprint, ranking, state intersection, annual envelope or seasonal playback inferred. Figure color saturation is not an upper bound on the prose value.",
+      "id": "bosphorus-sakarya-menna-2014-interaction-residual-ke",
+      "metric": "source_reported_joint_interaction_regional_residual_ke_lower_bound",
+      "value": null,
+      "lower_bound": 500,
+      "lower_bound_exclusive": true,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Separate source interaction windows: August-October 2003; October 2005; January 2006; December 2008-January 2009. Not one continuous window.",
+      "period_precision": "disjoint_source_month_windows",
+      "profile_context": {
+        "method": "source_reported_bosphorus_residual_ke",
+        "residual_definition": "KE = 0.5 * (u_residual^2 + v_residual^2)",
+        "mean_flow_removed": true,
+        "meridional_average_latitude_deg": [
+          41,
+          42.5
+        ],
+        "study_years": [
+          1999,
+          2009
+        ],
+        "energy_per_unit_mass": true,
+        "speed_conversion_performed": false,
+        "individual_eddy_value_inferred": false,
+        "physical_crosswalk_verified": false,
+        "source_review_file": "research/eddy-bosphorus-residual-ke-source-review-v1.json",
+        "source_review_sha256": "982364dc2f378ed4ce11d909ad07ea9ac8b4660bedf5006cf379b792bdcfa0b4",
+        "quantity": "joint_interaction_exceedance",
+        "relation": "strict_lower_bound_in_reported_interactions",
+        "joint_interaction": true,
+        "participants": [
+          "Bosphorus",
+          "Sakarya"
+        ],
+        "month_windows": [
+          [
+            "2003-08",
+            "2003-10"
+          ],
+          [
+            "2005-10",
+            "2005-10"
+          ],
+          [
+            "2006-01",
+            "2006-01"
+          ],
+          [
+            "2008-12",
+            "2009-01"
+          ]
+        ]
+      }
+    }
+  ]
+}

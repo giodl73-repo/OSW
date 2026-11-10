@@ -1,4 +1,5 @@
 """Observed transverse samples zoom into a current card without a route claim."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from urllib.parse import urlparse,parse_qs
@@ -12,7 +13,7 @@ DATA='**/antilles-ab0505-400m-section-diagnostic.json'
 
 def main():
     document=json.loads((ROOT/'research/antilles-ab0505-400m-section-diagnostic.json').read_text(encoding='utf-8'))
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     expected=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))['observed_section_views']['research/antilles-ab0505-400m-section-diagnostic.json']
     for section in document['sections']:
         stations=expected['sections'][section['id']]['stations'];assert len(stations)==len(section['samples'])

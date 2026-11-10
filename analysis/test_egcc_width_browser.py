@@ -1,4 +1,5 @@
 """Keep the Cape Farewell threshold width separate from annual dimensions."""
+import os
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -10,7 +11,7 @@ def main():
     assert row['approximate_width_km']==30 and row['velocity_threshold_fraction']==.15
     assert row['width_range_km'] is None and row['fixed_layer_bounds_m'] is None
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000})
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))

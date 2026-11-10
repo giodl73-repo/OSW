@@ -1,0 +1,1328 @@
+{
+  "schema": "osw.spitsbergen-atlantic-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "0450f34bb9fada307ee47c1ec9127c3b5eee978a25e8edd4bb3b455de922a70d",
+  "operator_file": "research/spitsbergen-atlantic-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "b6fac56018ac5ca2e3af8fc41f728506afe25599bff516f5138502b083650986",
+  "counts": {
+    "section_date_cases": 16,
+    "native_velocity_profiles": 400,
+    "selected_axis_proxy_profiles": 11,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 7,
+      "no_qualifying_interval_component_column": 5,
+      "section_gate_edge_maximum_axis_unresolved": 2,
+      "selection_interval_support_edge_maximum_axis_unresolved": 2
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 9,
+      "0.1": 11,
+      "0.2": 1
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 9,
+      "0.1": 11,
+      "0.2": 1
+    },
+    "decoded_velocity_cell_pairs": 16000,
+    "decoded_velocity_array_bytes": 128000,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:spitsbergen-atlantic": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 400,
+      "selected_axis_proxy_profiles": 11,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 7,
+        "no_qualifying_interval_component_column": 5,
+        "section_gate_edge_maximum_axis_unresolved": 2,
+        "selection_interval_support_edge_maximum_axis_unresolved": 2
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 11,
+        "0.2": 1
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 11,
+        "0.2": 1
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-03-15-spitsbergen-atlantic-section-76p3n.json",
+      "source_sha256": "b530b0dfa94de66dbfa294ab3c631ef7d8123de21da4c349661a322054ae23c7",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p3n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p3n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.3,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.31999969482422,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.760009765625,
+        76.31999969482422
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        9,
+        22
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 929.604733076302,
+          "layer_thickness_m": 929.604733076302,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.152735068698098,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 151.65273039815395,
+          "lower_depth_m": 671.190614295831,
+          "layer_thickness_m": 519.537883897677,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 23,
+          "core_depth_m": 250.0,
+          "core_velocity_m_s": 0.152735068698098,
+          "upper_bracket_m": [
+            150.0,
+            200.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 671.190614295831,
+      "primary_layer_thickness_m": 519.537883897677,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-03-15-spitsbergen-atlantic-section-76p4n.json",
+      "source_sha256": "b7189393650111524e43bde4a63d6f429a91b7fb6eea04e83c3f2c15f78f6fa6",
+      "source_profile_pointer": "/columns/21",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p4n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p4n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.4,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4000015258789,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.719970703125,
+        76.4000015258789
+      ],
+      "selected_column_index": 21,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        7,
+        21
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.15414929039481287,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 375.9898322815704,
+          "layer_thickness_m": 375.9898322815704,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.15414929039481287,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 375.9898322815704,
+      "primary_layer_thickness_m": 375.9898322815704,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-03-15-spitsbergen-atlantic-section-76p5n.json",
+      "source_sha256": "06cbe4a5e2a9fec5786bd27c3037237b9fe463a941a237f3647872af3ddf1c4b",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p5n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4800033569336,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.4000244140625,
+        76.4800033569336
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        4,
+        17
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.1902117355609772,
+          "lower_last_connected_depth_m": 400.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 373.7298494827417,
+          "layer_thickness_m": 373.7298494827417,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.1902117355609772,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 373.7298494827417,
+      "primary_layer_thickness_m": 373.7298494827417,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-03-15-spitsbergen-atlantic-section-76p6n.json",
+      "source_sha256": "98f4f9d5f49c0cb72705b2828aede1e20a8c41c00f07367b6b9594e5b07a2913",
+      "source_profile_pointer": "/columns/1",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p6n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p6n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.6,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.5999984741211,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.1199951171875,
+        76.5999984741211
+      ],
+      "selected_column_index": 1,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        1
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 850.3909808319275,
+          "layer_thickness_m": 850.3909808319275,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.25173001848568316,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 772.3790505266633,
+          "layer_thickness_m": 772.3790505266633,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.25173001848568316,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 218.30728586878612,
+          "lower_depth_m": 646.1573059472341,
+          "layer_thickness_m": 427.850020078448,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 24,
+          "core_depth_m": 300.0,
+          "core_velocity_m_s": 0.25173001848568316,
+          "upper_bracket_m": [
+            200.0,
+            250.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 772.3790505266633,
+      "primary_layer_thickness_m": 772.3790505266633,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-06-15-spitsbergen-atlantic-section-76p3n.json",
+      "source_sha256": "d9343684d39f5e8f3c0eab9276cda80b1eab85d0f9203c4d5bec7efb8e365167",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p3n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p3n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.3,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.31999969482422,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-06-15-spitsbergen-atlantic-section-76p4n.json",
+      "source_sha256": "389c77f3eba01b357576f80975a6199bf6e65a7966e06a2463e1b19ac156d2f2",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p4n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p4n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.4,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4000015258789,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.47998046875,
+        76.4000015258789
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        22
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 92.89326021147308,
+          "layer_thickness_m": 92.89326021147308,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.1046518075984862,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 52.05582783839385,
+          "layer_thickness_m": 52.05582783839385,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.1046518075984862,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 52.05582783839385,
+      "primary_layer_thickness_m": 52.05582783839385,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-06-15-spitsbergen-atlantic-section-76p5n.json",
+      "source_sha256": "8f66bb77e304ce1cefd57da96147cf4f98574b9251f840764c40a75341d857ee",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p5n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4800033569336,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.3199462890625,
+        76.4800033569336
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 110.82524679665885,
+          "layer_thickness_m": 110.82524679665885,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10040916885012198,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 50.22255847780563,
+          "layer_thickness_m": 50.22255847780563,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10040916885012198,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 50.22255847780563,
+      "primary_layer_thickness_m": 50.22255847780563,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-06-15-spitsbergen-atlantic-section-76p6n.json",
+      "source_sha256": "fb2b20c7d5413a34e9ae036524f5922f6926308a29e46e052ed4c92795f9f30b",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p6n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p6n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.6,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.5999984741211,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-09-15-spitsbergen-atlantic-section-76p3n.json",
+      "source_sha256": "610adc59e7ee18ed7d4d3c6284b0a780b31b3f6c0edc48152f2b365a3ac19bb8",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p3n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p3n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.3,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.31999969482422,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-09-15-spitsbergen-atlantic-section-76p4n.json",
+      "source_sha256": "511cd0a6597f50ec8439905f67eddfdda21da09ed87ed21b2e6f4000561dd9e4",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p4n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p4n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.4,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4000015258789,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.0400390625,
+        76.4000015258789
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        0
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 67.94025506982179,
+          "layer_thickness_m": 67.94025506982179,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.11455130415775155,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 3.0842699326770533,
+          "lower_depth_m": 54.11573027669249,
+          "layer_thickness_m": 51.031460344015436,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.11455130415775155,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 54.11573027669249,
+      "primary_layer_thickness_m": 51.031460344015436,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-09-15-spitsbergen-atlantic-section-76p5n.json",
+      "source_sha256": "38cc5a2864960d5f42109a275cb24c0911bf9f151dc58671431f36b5befa711d",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p5n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4800033569336,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-09-15-spitsbergen-atlantic-section-76p6n.json",
+      "source_sha256": "2804c0ce1a303bc2f9b080c0feaadc840ebc60c724059838729753166e559646",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p6n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p6n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.6,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.5999984741211,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-12-15-spitsbergen-atlantic-section-76p3n.json",
+      "source_sha256": "d78cc5b4ba9ca8d2e1954385831523ad0c049429bc3da0874dad1a961a2be7be",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p3n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p3n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.3,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.31999969482422,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.0400390625,
+        76.31999969482422
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        0
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 145.2893264799023,
+          "layer_thickness_m": 145.2893264799023,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10677312960684637,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 63.22331505286825,
+          "layer_thickness_m": 63.22331505286825,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10677312960684637,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 63.22331505286825,
+      "primary_layer_thickness_m": 63.22331505286825,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-12-15-spitsbergen-atlantic-section-76p4n.json",
+      "source_sha256": "f0b4c4ab287101f6b75c5c2a22a42ba38578439cbaa0d7cb73caae2e483729a9",
+      "source_profile_pointer": "/columns/23",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p4n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p4n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.4,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4000015258789,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.8800048828125,
+        76.4000015258789
+      ],
+      "selected_column_index": 23,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 229.02914104698127,
+          "layer_thickness_m": 229.02914104698127,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10394470201848484,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 55.07150102208207,
+          "layer_thickness_m": 55.07150102208207,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10394470201848484,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 55.07150102208207,
+      "primary_layer_thickness_m": 55.07150102208207,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-12-15-spitsbergen-atlantic-section-76p5n.json",
+      "source_sha256": "706e868935ea2c79f25fa135a1694cebb65adfff1a9c074a32d974ca9cbe822c",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p5n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.4800033569336,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.56005859375,
+        76.4800033569336
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 298.0259052057384,
+          "layer_thickness_m": 298.0259052057384,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10111627179594529,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 51.97330990573786,
+          "layer_thickness_m": 51.97330990573786,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10111627179594529,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 51.97330990573786,
+      "primary_layer_thickness_m": 51.97330990573786,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries",
+      "identity_evidence_basis": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:spitsbergen-atlantic",
+      "source_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/2022-12-15-spitsbergen-atlantic-section-76p6n.json",
+      "source_sha256": "db679a950adb5e02153cce907227ede52009a4c57debf4148455d432ba32c69c",
+      "source_profile_pointer": "/columns/6",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-76p6n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-76p6n",
+        "entity_id": "current:spitsbergen-atlantic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 76.6,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 76.5999984741211,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.52001953125,
+        76.5999984741211
+      ],
+      "selected_column_index": 6,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        6
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 320.34355737061117,
+          "layer_thickness_m": 320.34355737061117,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10748023518684774,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 81.44663010573649,
+          "layer_thickness_m": 81.44663010573649,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.10748023518684774,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 81.44663010573649,
+      "primary_layer_thickness_m": 81.44663010573649,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "parent_context_by_current": {
+    "current:spitsbergen-atlantic": {
+      "parent_current_id": null,
+      "identity_relationship": "conditional_regional_NOAA_mapping_not_full_WSC_alias",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "selection_window_basis_by_current": {
+    "current:spitsbergen-atlantic": "osw_source_sampling_informed50_300m_classification_not_flow_boundaries"
+  },
+  "identity_evidence_basis_by_current": {
+    "current:spitsbergen-atlantic": "NOAAregional_NW_name_and_PNRA2016S1vmADCPsummary_conditional_mapping"
+  },
+  "selection_windows_by_current": {
+    "current:spitsbergen-atlantic": [
+      50,
+      300
+    ]
+  },
+  "primary_thresholds_by_current": {
+    "current:spitsbergen-atlantic": 0.1
+  },
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/spitsbergen-atlantic-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "0e63d7631f81a8f12c96cd645c9ece7e6c446d23ba98cda6b83c3790590c9398",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 32000,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 32000,
+    "successfully_returned_component_values": 32000,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 256000,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  }
+}

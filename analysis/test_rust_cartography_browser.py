@@ -1,4 +1,6 @@
 """Every atlas source geometry uses native/WASM cartography with scoped omissions."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json,os,re,subprocess
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
@@ -11,7 +13,7 @@ def native(request):
 
 def main():
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    catalog=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_bytes())
+    catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())
     requests=[{'op':'fit','coordinates':[]}]
     for row in snapshot['entries']:
         for feature in row['map_features']:
@@ -51,7 +53,7 @@ def main():
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-        page.goto(BASE);expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
+        page.goto(BASE);expect(page.locator('#route-atlas-select option')).to_have_count(CURRENT_SELECT_OPTIONS,timeout=90000)
         actual=page.evaluate('(requests)=>requests.map(r=>window.oswCartography(r))',requests)
         assert actual==expected
         failures=page.evaluate('(requests)=>requests.map(r=>{try{window.oswCartography(r);return null}catch(e){return e.message}})',invalid)

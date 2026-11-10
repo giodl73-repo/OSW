@@ -1,0 +1,236 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    30
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all32predeclared section/date cases,all scores/local maxima,no-selection,gate/support-edge and censored outcomes without post-result retuning. Narrow island margins/coastal masks and finite grid resolution may confound/censor;missing values are not current absence or seabed. Wind reversals and sub-basin recirculations are not silently relabeled as the target surface branches.",
+  "vertical_operator": "Frozen connected layers trace upper/lower on full native0-5000m finite adjacent support without sign/cutoff/missing-gap bridging. Preserve contours,statuses,bounds and paired spans.0-30m selection stratum,A4 nonzero observed mean presence at30m/56m station bed,WACC0.5-15m sampled-water group,mixed layers,thermoclines,dense-water depths and instrument stops are not imposed current bottoms or full-layer thickness. Same-sign deep flow can merge components;no water-mass/velocity branch separation or physical thickness is established.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.adriatic-surface-interval-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New paired Adriatic shallow surface-branch diagnostic declaration;wrapper changes only operator/output of unchanged frozen mixed collector. All kernels,geometry,read budgets/retries and retained audits remain frozen. Selection0-30m is an explicit common analysis stratum,not a source-measured layer,an inferred bottom or a calibrated depth scale.",
+  "geometry_provenance": "Both owners use four editorial latitude cuts43.5,43,42.5,42N. Eastern gates[15.5,17.5],[16,18],[17,19],[17.5,19.5]E;western gates[13,15],[13.5,15.5],[14,16],[14.5,16.5]E. Search domains follow separate regional surface-circulation conventions;no source axis/coast/flow-normal boundary digitization or whole-basin/current geometry inferred.",
+  "column_selector": "Both complete finite0-30m signed integrals with positive score and core>10cm/s;east fixed315degree northwest,west fixed135degree southeast. Common0-30m stratum tests surface-circulation candidates and is not claimed as source velocity layer or physical depth. Typical literature20-30cm/s surface speeds motivate declared10cm/s exploratory cutoff,not a confidence bound. No positive surface,relative surface,temperature/salinity gate. Greatest integral wins,first western native index breaks ties. Gate/support-edge maxima stay unresolved without weaker replacement.5/10/20cm/s sensitivities keep same column with own seed.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous probes,not seasonal means,annual envelopes,1990-2007 drifter occupations,ODW2012campaign orA4February-April2015 mean. Historical surface geography/local ADCP/hydrographic sample contexts remain separate,not contemporary joint profiles.",
+  "transport_budget": "Preflight all32targets jointly before fields under unchanged250000pairs/7MBdecoded,40levels,3-150profiles,20000pairs/patch,5km native-axis tolerance. One shared frozen mixed reader,max3exactNetCDFIOfailure retries2/5seconds,future first-attempt reserve,no success replay,no per-owner or per-quarter budget resets and no cap increase.",
+  "currents": {
+    "current:east-adriatic": {
+      "entity_id": "current:east-adriatic",
+      "component_bearing_degrees_true": 315,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        30
+      ],
+      "selection_depth_interval_m": [
+        0,
+        30
+      ],
+      "branch_scope": "Partial eastern open-Adriatic surface-circulation context43.5-42N;exclude Otranto entrance,Istria/northernA4 station,Kvarner/island-channel exchanges,intermediate-water inflow,sub-basin gyres and unresolved Dalmatian synonymy. Northwest315degree is an editorial fixed component frame,not a locally rotated core axis. LocalA4 observed mean presence at30m is not a regional bottom or transferred layer.",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer"
+    },
+    "current:western-adriatic": {
+      "entity_id": "current:western-adriatic",
+      "component_bearing_degrees_true": 135,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        30
+      ],
+      "selection_depth_interval_m": [
+        0,
+        30
+      ],
+      "branch_scope": "Partial western Italian open-Adriatic surface-return context43.5-42N;exclude Po-source/northern radar sections,Gulf of Manfredonia recirculation,deep dense-water pathways,Otranto exit and Ionian continuation. Southeast135degree is an editorial fixed component frame. River-influenced WACC samples0.5-15m are not continuous velocity boundaries or physical thickness.",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer"
+    }
+  },
+  "sections": [
+    {
+      "id": "section-43p5n",
+      "entity_id": "current:east-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 43.5,
+      "longitude_gate_degrees_east": [
+        15.5,
+        17.5
+      ]
+    },
+    {
+      "id": "section-43n",
+      "entity_id": "current:east-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 43,
+      "longitude_gate_degrees_east": [
+        16,
+        18
+      ]
+    },
+    {
+      "id": "section-42p5n",
+      "entity_id": "current:east-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 42.5,
+      "longitude_gate_degrees_east": [
+        17,
+        19
+      ]
+    },
+    {
+      "id": "section-42n",
+      "entity_id": "current:east-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 42,
+      "longitude_gate_degrees_east": [
+        17.5,
+        19.5
+      ]
+    },
+    {
+      "id": "section-43p5n",
+      "entity_id": "current:western-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 43.5,
+      "longitude_gate_degrees_east": [
+        13,
+        15
+      ]
+    },
+    {
+      "id": "section-43n",
+      "entity_id": "current:western-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 43,
+      "longitude_gate_degrees_east": [
+        13.5,
+        15.5
+      ]
+    },
+    {
+      "id": "section-42p5n",
+      "entity_id": "current:western-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 42.5,
+      "longitude_gate_degrees_east": [
+        14,
+        16
+      ]
+    },
+    {
+      "id": "section-42n",
+      "entity_id": "current:western-adriatic",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 42,
+      "longitude_gate_degrees_east": [
+        14.5,
+        16.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://os.copernicus.org/articles/14/1461/2018/",
+      "locator": "Fresh Sciascia2018 primary publisher Sec2.1 andFigure1 context",
+      "scope": "Eastern northwestward and western southeastward surface branches are distinct from sub-basin gyres and wind-modulated. Typical20-30cm/s average speeds are not a spatial/temporal uncertainty interval.800x200km are basin dimensions,not current geometry. No source30m slab is asserted."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/9/713/2013/",
+      "locator": "Fresh primary publisher entry plus pinned PoulainHariri2013 route review",
+      "scope": "Near-surface drifter/residence-time context establishes western surface convention,not a vertically complete current axis,simultaneous route or physical thickness."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/14/237/2018/index.html",
+      "locator": "Fresh Vilibic2018 primary publisher A4 methods/current-identity discussion;retained v24 observed-figure-presence reference",
+      "scope": "Local northeasternA4 ADCP mean-flow context differs from southern regional probes. Conservative observed presence at30m is a lower reach bound,not a bottom or whole-current depth.56m station bed,model thermocline/mixed layers and channel exchange remain distinct;no new figure velocity digitization."
+    },
+    {
+      "url": "https://www.nature.com/articles/s41598-018-22569-2",
+      "locator": "Fresh BernardiAubry2018 primary publisher DefinitionOfWaterMasses andMethods",
+      "scope": "WACC0.5-15m is a sampled-water group classified withT/S/oxygen in2012campaign,not a continuous velocity layer,14.5m thickness,15m current bottom or a2022boundary. Deep dense-water pathways are separate and not assigned surface WAC identity."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_adriatic_surface_interval_depth_sections_v1.py": "70a92bf643469645f7500d88afd3e9f9993c6c3cf0421c61b5896d83213ef6dd",
+    "analysis/acquire_barents_makassar_interval_depth_sections_v1.py": "ad3bdbc64748e1881f4720b76c7359258cf32573b3b9123d7df5dc2a007c881b",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_mixed_reads_v1.py": "e16c5d3b170db298b63d17061c9f53aa239aa3d749ca0feae619dc6037087ef4",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/latitude_interval_section_audit_v1.py": "fe0de66ee98d0103b9737add9d02e5b04b7460b2a811807b05c7605ac0cdd0b5",
+    "analysis/mixed_interval_section_geometry_v1.py": "2bb327cee01428ec1e5cbab7cb6bd520db56eb1dc413340847b80c595ff26125",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_adriatic_surface_interval_depth_sections_v1.py": "c213ecaa9c81d875fb593487c9322f1115df65918a4a1b06b4c96c8f8e33cb0d",
+    "analysis/test_barents_makassar_interval_depth_sections_v1.py": "75d26c6f8eadbfd7643309e1d9bd17dae47e5b9d6a968d81469324d937238a73",
+    "plans/adriatic-surface-interval-depth-sections-protocol-v1.md": "0f5d4aae8c47e725a7ae61b439266196050e85ff1af62bbf54ed9e5c420c5353",
+    "plans/barents-makassar-interval-depth-sections-protocol-v1.md": "9f7db284c039b681e5801e84aa803a922d9a72edfcd58fd0d48450e506bd5514",
+    "research/barents-makassar-interval-depth-sections-operator-v1.json": "f286f16e934147e397f0af3b3059350469f4f9b0963184068a44223f1d31b835",
+    "research/current-depth-source-facts-v14.json": "233ecaaf0de0226d55bf2bd5c2c19923e3af958ac7caa0558aa7a6a96f0bc5eb",
+    "research/current-depth-source-facts-v20.json": "453d5d265cdf181307bd5407009d67407214203b67526a7da1b19734ac94bbbe",
+    "research/current-depth-source-facts-v24.json": "1ca220c6740097a310fe7ab3ac42fde9df9c7a6b5d7d7e560184137b09d119e3",
+    "research/east-adriatic-naming-extent-scope-audit.json": "435ae6d4d1dae6f6a6c4be949d42118efc1158d349584271538ae32ec550c7d1",
+    "research/east-adriatic-reference-path-input.json": "6c6d37e3511dcbbd21ddb0f0432ad48e3487de6e5fe16c4b947756e500e711f9",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/indonesian-throughflow-network-input.json": "0db5110180b426b77cc080a627a18e1950e4077e4ae6ff31f9102c869257037e",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "research/north-cape-branch-profile-scope-audit.json": "68eb7e1aa063d2cdf736ac1470387d94b78096f2c87981edfb71fac1d051dc02",
+    "research/north-cape-northern-reach-reference-path-input.json": "e1dd416be355a453eec4214b18482378191e44ca370e613edd75f5edb446c96c",
+    "research/western-adriatic-chavanne-2007-mean-width-scope-audit.json": "61d4d2dfdccb2c51c70d0487ab393a7359bb5b75b8ac5d0d89e7c8adf12ee9fa",
+    "research/western-adriatic-reference-path-input.json": "63652dc63bf24dbb7853b4abc7b28f82a835eef1dc7a8d1f78e7feeea3371340",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5,
+  "selection_depth_interval_m": [
+    0,
+    30
+  ],
+  "methodology_file": "plans/adriatic-surface-interval-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Independent partial eastern/western surface connectors preserve separate canonical owners/routes and source contexts. No island-channel,Dalmatian synonym,deep dense-water/intermediate branch,Otranto/Ionian or basin-length inheritance;no full current physical depth,annual profile,volume/state join or global sum.",
+  "maximum_nearest_longitude_distance_km": 5
+}

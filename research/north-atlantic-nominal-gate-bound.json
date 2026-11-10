@@ -1,0 +1,226 @@
+{
+  "id": "current_length_bound_admission:north-atlantic",
+  "schema": "osw.nominal-section-bound-admission.v1",
+  "version": "1",
+  "entity_id": "current:north-atlantic",
+  "current_id": "north-atlantic",
+  "status": "conditional_nominal_section_geographic_floor_admitted_unranked",
+  "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+  "source_file": "research/source-data/cainzos-atlantic-2023/article.xml",
+  "source_locator": "Sections 2 and 3.1.10; nominal NAC sections at 47°N and eastern 58°N; OSW WGS84 latitude separation",
+  "source_citation": "Caínzos et al. (2023), Ocean Science 19, 1009–1045, doi:10.5194/os-19-1009-2023",
+  "source_license": "CC BY 4.0",
+  "calculation": {
+    "nominal_latitudes_degrees_north": [
+      47.0,
+      58.0
+    ],
+    "direct_gate_distance_km": 1224.035663,
+    "rounded_conditional_geographic_floor_km": 1200,
+    "scenario_min_km": 1112.76119,
+    "scenario_max_km": 1335.309667,
+    "scenario_count": 9,
+    "scenarios": [
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          46.5,
+          57.5
+        ],
+        "geographic_separation_km": 1223.93203
+      },
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          46.5,
+          58.0
+        ],
+        "geographic_separation_km": 1279.618645
+      },
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          46.5,
+          58.5
+        ],
+        "geographic_separation_km": 1335.309667
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          47.0,
+          57.5
+        ],
+        "geographic_separation_km": 1168.349048
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          47.0,
+          58.0
+        ],
+        "geographic_separation_km": 1224.035663
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          47.0,
+          58.5
+        ],
+        "geographic_separation_km": 1279.726685
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          47.5,
+          57.5
+        ],
+        "geographic_separation_km": 1112.76119
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          47.5,
+          58.0
+        ],
+        "geographic_separation_km": 1168.447805
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          47.5,
+          58.5
+        ],
+        "geographic_separation_km": 1224.138827
+      }
+    ]
+  },
+  "measurement": {
+    "id": "measurement:north-atlantic:nominal-section-floor",
+    "claim_id": "claim:measurement:north-atlantic:nominal-section-floor",
+    "entity_id": "current:north-atlantic",
+    "quantity": "length_lower_bound",
+    "value": 1200,
+    "unit": "km",
+    "rank_eligible": false,
+    "evidence_status": "derived_lower_bound",
+    "source_id": "source:21f756d2b07063f3",
+    "source_locator": "Sections 2 and 3.1.10; nominal NAC sections at 47°N and eastern 58°N; OSW WGS84 latitude separation",
+    "scope": "Conditional geographic floor between nominal 47°N and eastern 58°N sections identified as North Atlantic Current by Caínzos et al. (2023). Station latitudes deviate from nominal sections; the northern section combines western 53°N and eastern 58°N portions. Cruises, sampled branches and density layers differ. No simultaneous connected axis, common fixed layer or actual geographic endpoints inferred. Not a whole-current length or guaranteed physical minimum.",
+    "method_source_id": "source:north-atlantic-nominal-gate-bound-v1",
+    "method_file": "plans/north-atlantic-nominal-gate-bound-protocol-v1.md",
+    "gate_type": "source_latitude_span",
+    "direct_gate_distance_km": 1224.035663,
+    "conditional_on_nominal_gates": true,
+    "guaranteed_physical_minimum": false,
+    "whole_current_representative": false,
+    "observation_time": null,
+    "uncertainty_km": null,
+    "fixed_layer_bounds_m": null,
+    "endpoint_coordinates_lon_lat": null,
+    "annual_length_range_km": null,
+    "geometry_id": null,
+    "historical_release_admitted": false
+  },
+  "claim": {
+    "id": "claim:measurement:north-atlantic:nominal-section-floor",
+    "subject_id": "current:north-atlantic",
+    "object_id": null,
+    "predicate": "length_lower_bound",
+    "value": 1200,
+    "unit": "km",
+    "target_collection": "measurements",
+    "target_id": "measurement:north-atlantic:nominal-section-floor",
+    "source_id": "source:21f756d2b07063f3",
+    "source_locator": "Sections 2 and 3.1.10; nominal NAC sections at 47°N and eastern 58°N; OSW WGS84 latitude separation",
+    "source_locator_status": "specific",
+    "evidence_class": "derived_lower_bound",
+    "assertion_status": "reported_or_derived_measurement",
+    "scope": "Conditional geographic floor between nominal 47°N and eastern 58°N sections identified as North Atlantic Current by Caínzos et al. (2023). Station latitudes deviate from nominal sections; the northern section combines western 53°N and eastern 58°N portions. Cruises, sampled branches and density layers differ. No simultaneous connected axis, common fixed layer or actual geographic endpoints inferred. Not a whole-current length or guaranteed physical minimum.",
+    "method_source_id": "source:north-atlantic-nominal-gate-bound-v1",
+    "method": "plans/north-atlantic-nominal-gate-bound-protocol-v1.md",
+    "method_status": "described",
+    "source_date": "2023-07-06",
+    "source_snapshot_id": null,
+    "support_claim_id": null,
+    "observation_time": null,
+    "review_status": "not_individually_reviewed",
+    "reviewer": null,
+    "review_date": null,
+    "review_note": "Internal source and arithmetic checks; no external scientific review claimed.",
+    "review_fingerprint": "e9f54bbffee9339c30c5aabf7941e051ba2a85684d050f70a03da92004bab90c"
+  },
+  "length_assessment": {
+    "entity_id": "current:north-atlantic",
+    "evidence_status": "derived_lower_bound",
+    "gate_distance_method_source_id": "source:north-atlantic-nominal-gate-bound-v1",
+    "gate_distance_sensitivity": {
+      "scenario_count": 9,
+      "scenario_min_km": 1112.76119,
+      "scenario_max_km": 1335.309667,
+      "perturbation_degrees": 0.5,
+      "interpretation": "Finite editorial gate scenarios; not a physical error, confidence interval, annual range or source-reported gate-location uncertainty."
+    },
+    "id": "length_assessment:north-atlantic",
+    "illustrated_span_km": 3776,
+    "illustrated_span_rank": 7,
+    "illustration_ledger_source_id": "source:3e0c99ee52e26d36",
+    "illustration_limit": "Drawn map-arrow span, not a physical current length or lower bound",
+    "illustration_source_id": "source:1dea75135bdc7c41",
+    "length_source_id": "source:21f756d2b07063f3",
+    "length_source_locator": "Sections 2 and 3.1.10; nominal NAC sections at 47°N and eastern 58°N; OSW WGS84 latitude separation",
+    "lower_bound_km": 1200,
+    "proposed_system_length_km": null,
+    "published_length_km": null,
+    "published_rank": null,
+    "rank_eligible": false,
+    "scope": "Conditional geographic floor between nominal 47°N and eastern 58°N sections identified as North Atlantic Current by Caínzos et al. (2023). Station latitudes deviate from nominal sections; the northern section combines western 53°N and eastern 58°N portions. Cruises, sampled branches and density layers differ. No simultaneous connected axis, common fixed layer or actual geographic endpoints inferred. Not a whole-current length or guaranteed physical minimum.",
+    "source_id": "source:803229fe82eb2360",
+    "measurement_id": "measurement:north-atlantic:nominal-section-floor",
+    "measurement_admission_file": "research/north-atlantic-nominal-gate-bound.json",
+    "conditional_on_nominal_gates": true,
+    "guaranteed_physical_minimum": false
+  },
+  "method_source": {
+    "id": "source:north-atlantic-nominal-gate-bound-v1",
+    "kind": "internal",
+    "label": "OSW North Atlantic nominal-section geographic floor protocol v1",
+    "url": "../plans/north-atlantic-nominal-gate-bound-protocol-v1.md",
+    "path": "plans/north-atlantic-nominal-gate-bound-protocol-v1.md",
+    "repository_path": "plans/north-atlantic-nominal-gate-bound-protocol-v1.md",
+    "title": "North Atlantic Current nominal-section geographic bound v1",
+    "material_use_class": "internal_calculation_method",
+    "provider_asset_redistributed": false,
+    "used_in_collections": [
+      "measurements",
+      "claims",
+      "length_assessments",
+      "current_length_bound_admissions"
+    ],
+    "metadata_note": "Editorial WGS84 gate calculation; source section geometry is approximate; no whole-current rank."
+  },
+  "figure_file": "figures/north-atlantic-nominal-gate-bound.svg",
+  "whole_current_length_km": null,
+  "annual_length_range_km": null,
+  "rank_eligible": false,
+  "physical_state_join_eligible": false,
+  "input_sha256": {
+    "plans/north-atlantic-nominal-gate-bound-protocol-v1.md": "324f49d3dcce7a2ff5bf32bea25bdd764911c248a7c632a42b57698e78372a0a",
+    "analysis/north_atlantic_gate_bound.py": "46c2c710a6f6f3f93c5503b1e6e1aed92e65f0f0b7bd1ee1fb535951ad0f57b4",
+    "research/source-data/cainzos-atlantic-2023/article.xml": "f7f69c1238c4186b6203f56d4cd4a681ca3bb550dadac15119044ccb91aef0c3",
+    "research/source-data/cainzos-atlantic-2023/article-acquisition.json": "c964ea686e59d093546d34101e245a78a98f5c0c5bc90433a5f1fcb8879c7dc7",
+    "almanac/release/v0.1.0/length_assessments.json": "4d78c4a5d10e4dcf61173bf08c3b69697ae9a18dbc7015d02da93fd54971f542",
+    "almanac/release/v0.1.0/sources.json": "f4ea71b324f4fa9aa1cba56f2eb47ff40c63543ec5260346303908c494bfc841",
+    "analysis/build_ocean_motion_claims.py": "7c20984880d77ed449ba29e74bef624ab2c15e46fa4ac326065ac9b192e3e13c",
+    "figures/north-atlantic-nominal-gate-bound.svg": "47b641f6b40e7ee0fe9b13bb582b08fa4896329341116b326fefc5f57adbaf7c"
+  }
+}

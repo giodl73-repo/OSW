@@ -1,0 +1,45 @@
+name: PGW source-relative regional core depth v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/project_pgw_relative_core_depth_v1.py
+      - analysis/test_pgw_relative_core_depth_v1.py
+      - plans/pgw-relative-core-depth-protocol-v1.md
+      - research/pgw-relative-core-depth-operator-v1.json
+      - .github/workflows/pgw-relative-core-depth-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/project_pgw_relative_core_depth_v1.py
+            analysis/test_pgw_relative_core_depth_v1.py
+            plans/pgw-relative-core-depth-protocol-v1.md
+            research/pgw-relative-core-depth-operator-v1.json
+            research/pgw-pous-2004-core-depth-regimes-source-facts-v1.json
+            research/current-depth-pgw-core-depth-regimes-reference-inventory-source-review-v19.json
+            research/current-depth-reference-inventory-v20.json
+            research/current-depth-route-projection-inventory-v48.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Validate source-relative scenarios and construct profile
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pgw_relative_core_depth_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/project_pgw_relative_core_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pgw-relative-core-depth-v1
+          path: pgw-relative-core-depth-v1/
+          retention-days: 7

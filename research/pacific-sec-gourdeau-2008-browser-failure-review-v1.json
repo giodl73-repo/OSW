@@ -1,0 +1,47 @@
+{
+  "schema": "osw.pacific-sec-jet-widths-browser-failure-review.v1",
+  "run_id": 41032107969,
+  "run_attempt": 1,
+  "source_commit": "9b2d66fd9e66c07b551d62801d3850705c57b69f",
+  "conclusion": "failure",
+  "evidence_artifact": {
+    "id": 12965933354,
+    "bytes": 237320,
+    "sha256": "047e6711fe180ae524f46e2aebab35771fda8642a47a22efc0a6e6e93192be14"
+  },
+  "retained_metadata": {
+    "research/pacific-sec-gourdeau-2008-browser-failure-run-v1/browser-failure-state.json": "cce42073fe31454613dc2036e58c98b746e9f0922e8336297edfdab8745b0b2b",
+    "research/pacific-sec-gourdeau-2008-browser-failure-run-v1/browser-failure.json": "57f581a03ca0c385121267b1659fe3d2cc09e4bed91d87d9d58729692c9aa3d6",
+    "research/pacific-sec-gourdeau-2008-browser-failure-run-v1/failure.json": "2d1eb689793b38a770f553f89f007ad03578213f379ea7fb64df4963fb2f0bc9"
+  },
+  "cause": "inner_text() returned empty content for JSON inside a collapsed details element. The visible record panel and both desktop width cards rendered correctly.",
+  "correction": "Wait for the selected record ID in pre.textContent, parse every JSON pre block and compare the exact complete record.",
+  "partial_actual_images_individually_reviewed": [
+    {
+      "path": "browser-failure.png",
+      "bytes": 138497,
+      "sha256": "b7966ae1554be842f0e5ee27e52e894eb5301528f60c6696ef2d37cd90356f00"
+    },
+    {
+      "path": "query-caledonian-1100px.png",
+      "bytes": 56860,
+      "sha256": "3707aa029e001ebce62364f1db1c408310b03192a9616bea78b7e7f0ed51a6b0"
+    },
+    {
+      "path": "query-vanuatu-1100px.png",
+      "bytes": 56308,
+      "sha256": "fbdda764ea54a33c34724b01e5dff58eef7a0441d6526a81c6422e55c0bfbdde"
+    }
+  ],
+  "partial_visual_findings": [
+    "Two distinct jet labels and 300/100 km values correct.",
+    "Common 0-300 km scale correct.",
+    "Campaign, layer and unresolved season/uncertainty wording legible.",
+    "Inspect panel shows the admitted record; raw JSON disclosure is collapsed."
+  ],
+  "browser_verification_complete": false,
+  "visual_review_complete": false,
+  "installed": false,
+  "native_or_wasm_rebuild_required": false,
+  "full_goal_complete": false
+}

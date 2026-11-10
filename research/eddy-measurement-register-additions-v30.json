@@ -1,0 +1,245 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 357,
+  "baseline_evidence_sha256": "013aa7c76ad15882c304c737a8f4566e9574cb695988cde5d7c9564debb6262b",
+  "baseline_measurement_csv_sha256": "d66483314a5e21a842ffe5246410555c463518448ae305aa849802037492eacb",
+  "sources": {
+    "griidc-adt-2025": {
+      "url": "https://data.griidc.org/data/U2.x856.000:0001",
+      "doi": "10.7266/5j651zn1",
+      "citation": "DUACS (2025), Gridded absolute dynamic topography – Gulf subset – daily time series 1993–2019, GRIIDC.",
+      "access": "Original 757,416,604-byte NetCDF independently SHA-verified and processed in the cloud on one low-priority CPU. Daily slice only; original raw fields are not retained locally. Product 202411 uses CNES-CLS2022 MDT per producer documentation. Source-case comparison uses original Hamilton et al. 2019 Figure 2 / section 3, actual PDF pages 5–6 and cloud comparison image visually reviewed. These quantities are OSW-derived, not author-reported dimensions.",
+      "original": {
+        "url": "https://data.griidc.org/api/file/download/947138",
+        "bytes": 757416604,
+        "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+      }
+    },
+    "hamilton-2019": {
+      "url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2019/09/Hamilton_etal_LoopCurrentObs_2019_JPOx.pdf",
+      "doi": "10.1175/JPO-D-18-0213.1",
+      "citation": "Hamilton, Bower, Furey, Leben and Perez-Brunius (2019), The Loop Current: Observations of Deep Eddies and Topographic Waves, JPO 49, 1463–1483.",
+      "access": "Original author-institution PDF acquired; actual pages 5–6 reviewed. Map used for named-case/date/spatial comparison, not as the gridded numeric input.",
+      "original": {
+        "url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2019/09/Hamilton_etal_LoopCurrentObs_2019_JPOx.pdf",
+        "bytes": 16340167,
+        "sha256": "c7d5cc9229855e6ec802da767ec5b90782588a0e1e3707ac9470b429e30304e3",
+        "pages": 21
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "kraken-2013-03-31-gridded-area",
+      "entity_id": "eddy:horizon:loop-60-primary",
+      "category": "size",
+      "metric": "osw_gridded_adt_contour_area",
+      "value": null,
+      "unit": "km2",
+      "range_value": [
+        60000,
+        70000
+      ],
+      "range_kind": "gridded_contour_method_sensitivity_not_measurement_uncertainty",
+      "source_id": "griidc-adt-2025",
+      "source_locator": "Original NetCDF time index 7394, 2013-03-31 daily ADT field; named-case comparison: Hamilton 2019 Figure 2, printed 1467/PDF page 5, 31 March panel; chronology: section 3, printed 1468/PDF page 6.",
+      "case_label": "Kraken, first-detachment source case, 31 March 2013",
+      "period_start": "2013-03-31",
+      "period_end": "2013-03-31",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "2013-03-31 daily gridded ADT snapshot; not the final-separation date",
+      "definition": "Spherical area enclosed by the selected daily demeaned-ADT contour.",
+      "scope": "OSW-derived daily gridded reference associated with the source-labeled first Kraken detachment. Registry physical crosswalk unverified; registry initial separation remains 2013-04-08. No measurements inherited to or from other Kraken records.",
+      "qualification": "Six method scenarios: 0.15/0.17/0.19 m contours after Gulf daily demeaning using arithmetic and cosine-latitude means. All nine primary-map interior probes uniquely select one candidate per scenario. Outward rounding is a reporting choice. Mapping/MDT errors, effective resolution and physical-front error are unquantified. This is method sensitivity, not measurement uncertainty, an annual range or a physical boundary. First March detachment precedes later reattachments and August departure; no lifetime inferred.",
+      "calculation": {
+        "method": "gridded_adt_named_source_case_v1",
+        "report_file": "research/eddy-kraken-gridded-case-verification-v1.json",
+        "report_sha256": "a8444a5aa93edc45bf9eb3de8fc3c068e75dc5404e49440ab9ad42a4e04f5ba1",
+        "component": "area",
+        "metric": "osw_gridded_adt_contour_area",
+        "unit": "km2",
+        "nominal_audit_value": 64439.94772806729,
+        "scenario_values": [
+          67862.04194411298,
+          64439.94772806729,
+          61105.94685160133,
+          67214.25498098746,
+          63812.20415083302,
+          60488.82751413161
+        ],
+        "unrounded_extrema": [
+          60488.82751413161,
+          67862.04194411298
+        ],
+        "round_outward_to": 5000,
+        "range_value": [
+          60000,
+          70000
+        ],
+        "scenarios": 6,
+        "range_is_method_sensitivity_only": true
+      },
+      "evidence_role": "qualified_osw_gridded_source_case_reference",
+      "rights_screened_release_eligible": false
+    },
+    {
+      "id": "kraken-2013-03-31-gridded-equivalent-diameter",
+      "entity_id": "eddy:horizon:loop-60-primary",
+      "category": "size",
+      "metric": "osw_gridded_adt_area_equivalent_diameter",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        275,
+        300
+      ],
+      "range_kind": "gridded_contour_method_sensitivity_not_measurement_uncertainty",
+      "source_id": "griidc-adt-2025",
+      "source_locator": "Original NetCDF time index 7394, 2013-03-31 daily ADT field; named-case comparison: Hamilton 2019 Figure 2, printed 1467/PDF page 5, 31 March panel; chronology: section 3, printed 1468/PDF page 6.",
+      "case_label": "Kraken, first-detachment source case, 31 March 2013",
+      "period_start": "2013-03-31",
+      "period_end": "2013-03-31",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "2013-03-31 daily gridded ADT snapshot; not the final-separation date",
+      "definition": "Diameter of a planar circle with area equal to the spherical enclosed contour area; not a principal dimension.",
+      "scope": "OSW-derived daily gridded reference associated with the source-labeled first Kraken detachment. Registry physical crosswalk unverified; registry initial separation remains 2013-04-08. No measurements inherited to or from other Kraken records.",
+      "qualification": "Six method scenarios: 0.15/0.17/0.19 m contours after Gulf daily demeaning using arithmetic and cosine-latitude means. All nine primary-map interior probes uniquely select one candidate per scenario. Outward rounding is a reporting choice. Mapping/MDT errors, effective resolution and physical-front error are unquantified. This is method sensitivity, not measurement uncertainty, an annual range or a physical boundary. First March detachment precedes later reattachments and August departure; no lifetime inferred.",
+      "calculation": {
+        "method": "gridded_adt_named_source_case_v1",
+        "report_file": "research/eddy-kraken-gridded-case-verification-v1.json",
+        "report_sha256": "a8444a5aa93edc45bf9eb3de8fc3c068e75dc5404e49440ab9ad42a4e04f5ba1",
+        "component": "equivalent_diameter",
+        "metric": "osw_gridded_adt_area_equivalent_diameter",
+        "unit": "km",
+        "nominal_audit_value": 286.43932989036625,
+        "scenario_values": [
+          293.94665398626483,
+          286.43932989036625,
+          278.9310093014829,
+          292.54033467490535,
+          285.0407370211386,
+          277.5189492731203
+        ],
+        "unrounded_extrema": [
+          277.5189492731203,
+          293.94665398626483
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          275,
+          300
+        ],
+        "scenarios": 6,
+        "range_is_method_sensitivity_only": true
+      },
+      "evidence_role": "qualified_osw_gridded_source_case_reference",
+      "rights_screened_release_eligible": false
+    },
+    {
+      "id": "kraken-2013-03-31-gridded-east-west",
+      "entity_id": "eddy:horizon:loop-60-primary",
+      "category": "size",
+      "metric": "osw_gridded_adt_east_west_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        300,
+        325
+      ],
+      "range_kind": "gridded_contour_method_sensitivity_not_measurement_uncertainty",
+      "source_id": "griidc-adt-2025",
+      "source_locator": "Original NetCDF time index 7394, 2013-03-31 daily ADT field; named-case comparison: Hamilton 2019 Figure 2, printed 1467/PDF page 5, 31 March panel; chronology: section 3, printed 1468/PDF page 6.",
+      "case_label": "Kraken, first-detachment source case, 31 March 2013",
+      "period_start": "2013-03-31",
+      "period_end": "2013-03-31",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "2013-03-31 daily gridded ADT snapshot; not the final-separation date",
+      "definition": "Great-circle bounding arc between west/east contour extrema at the bounding-box midlatitude; not along-flow length or a principal axis.",
+      "scope": "OSW-derived daily gridded reference associated with the source-labeled first Kraken detachment. Registry physical crosswalk unverified; registry initial separation remains 2013-04-08. No measurements inherited to or from other Kraken records.",
+      "qualification": "Six method scenarios: 0.15/0.17/0.19 m contours after Gulf daily demeaning using arithmetic and cosine-latitude means. All nine primary-map interior probes uniquely select one candidate per scenario. Outward rounding is a reporting choice. Mapping/MDT errors, effective resolution and physical-front error are unquantified. This is method sensitivity, not measurement uncertainty, an annual range or a physical boundary. First March detachment precedes later reattachments and August departure; no lifetime inferred.",
+      "calculation": {
+        "method": "gridded_adt_named_source_case_v1",
+        "report_file": "research/eddy-kraken-gridded-case-verification-v1.json",
+        "report_sha256": "a8444a5aa93edc45bf9eb3de8fc3c068e75dc5404e49440ab9ad42a4e04f5ba1",
+        "component": "east_west",
+        "metric": "osw_gridded_adt_east_west_bounding_arc",
+        "unit": "km",
+        "nominal_audit_value": 310.2775227443342,
+        "scenario_values": [
+          318.38636836314805,
+          310.2775227443342,
+          302.7525244564193,
+          316.87162193785554,
+          308.7630438950443,
+          301.3751794336864
+        ],
+        "unrounded_extrema": [
+          301.3751794336864,
+          318.38636836314805
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          300,
+          325
+        ],
+        "scenarios": 6,
+        "range_is_method_sensitivity_only": true
+      },
+      "evidence_role": "qualified_osw_gridded_source_case_reference",
+      "rights_screened_release_eligible": false
+    },
+    {
+      "id": "kraken-2013-03-31-gridded-north-south",
+      "entity_id": "eddy:horizon:loop-60-primary",
+      "category": "size",
+      "metric": "osw_gridded_adt_north_south_bounding_arc",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        325,
+        375
+      ],
+      "range_kind": "gridded_contour_method_sensitivity_not_measurement_uncertainty",
+      "source_id": "griidc-adt-2025",
+      "source_locator": "Original NetCDF time index 7394, 2013-03-31 daily ADT field; named-case comparison: Hamilton 2019 Figure 2, printed 1467/PDF page 5, 31 March panel; chronology: section 3, printed 1468/PDF page 6.",
+      "case_label": "Kraken, first-detachment source case, 31 March 2013",
+      "period_start": "2013-03-31",
+      "period_end": "2013-03-31",
+      "period_precision": "daily_product_coordinate",
+      "period_label": "2013-03-31 daily gridded ADT snapshot; not the final-separation date",
+      "definition": "Meridional bounding arc between the contour latitude extrema; not a minimum width or a principal axis.",
+      "scope": "OSW-derived daily gridded reference associated with the source-labeled first Kraken detachment. Registry physical crosswalk unverified; registry initial separation remains 2013-04-08. No measurements inherited to or from other Kraken records.",
+      "qualification": "Six method scenarios: 0.15/0.17/0.19 m contours after Gulf daily demeaning using arithmetic and cosine-latitude means. All nine primary-map interior probes uniquely select one candidate per scenario. Outward rounding is a reporting choice. Mapping/MDT errors, effective resolution and physical-front error are unquantified. This is method sensitivity, not measurement uncertainty, an annual range or a physical boundary. First March detachment precedes later reattachments and August departure; no lifetime inferred.",
+      "calculation": {
+        "method": "gridded_adt_named_source_case_v1",
+        "report_file": "research/eddy-kraken-gridded-case-verification-v1.json",
+        "report_sha256": "a8444a5aa93edc45bf9eb3de8fc3c068e75dc5404e49440ab9ad42a4e04f5ba1",
+        "component": "north_south",
+        "metric": "osw_gridded_adt_north_south_bounding_arc",
+        "unit": "km",
+        "nominal_audit_value": 343.21284703324795,
+        "scenario_values": [
+          351.7238884156699,
+          343.21284703324795,
+          334.6801889575662,
+          350.1341252938684,
+          341.62308391144774,
+          333.0739047738781
+        ],
+        "unrounded_extrema": [
+          333.0739047738781,
+          351.7238884156699
+        ],
+        "round_outward_to": 25,
+        "range_value": [
+          325,
+          375
+        ],
+        "scenarios": 6,
+        "range_is_method_sensitivity_only": true
+      },
+      "evidence_role": "qualified_osw_gridded_source_case_reference",
+      "rights_screened_release_eligible": false
+    }
+  ]
+}

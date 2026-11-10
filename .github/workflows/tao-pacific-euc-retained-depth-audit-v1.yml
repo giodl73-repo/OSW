@@ -1,0 +1,79 @@
+name: TAO Pacific EUC retained depth reconstruction v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/tao-pacific-euc-retained-depth-audit-v1.yml
+      - analysis/audit_tao_pacific_euc_retained_depth_v1.py
+      - analysis/test_tao_pacific_euc_retained_depth_audit_v1.py
+      - research/tao-pacific-euc-retained-depth-audit-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/tao-pacific-euc-direct-source-v2.yml
+            .github/workflows/tao-pacific-euc-retained-depth-audit-v1.yml
+            analysis/audit_tao_pacific_euc_retained_depth_v1.py
+            analysis/collect_tao_pacific_euc_daily_depth_v1.py
+            analysis/collect_tao_pacific_euc_direct_source_v2.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/test_tao_pacific_euc_daily_depth_v1.py
+            analysis/test_tao_pacific_euc_direct_source_v2.py
+            analysis/test_tao_pacific_euc_retained_depth_audit_v1.py
+            plans/tao-pacific-euc-daily-depth-protocol-v1.md
+            plans/tao-pacific-euc-direct-source-protocol-v2.md
+            research/current-depth-tao-pacific-euc-daily-source-review-v1.json
+            research/current-depth-tao-pacific-euc-direct-source-review-v2.json
+            research/source-data/tao-pacific-euc-daily-depth-v1/journal.json
+            research/source-data/tao-pacific-euc-daily-depth-v1/metadata.raw
+            research/source-data/tao-pacific-euc-daily-depth-v1/profiles.json
+            research/source-data/tao-pacific-euc-direct-source-v2/field-00.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-01.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-02.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-03.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-04.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-05.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-06.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-07.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-08.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-09.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-10.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-11.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-12.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-13.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-14.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-15.raw
+            research/source-data/tao-pacific-euc-direct-source-v2/field-plan.json
+            research/source-data/tao-pacific-euc-direct-source-v2/journal.json
+            research/source-data/tao-pacific-euc-direct-source-v2/profiles.json
+            research/tao-pacific-euc-daily-depth-operator-v1.json
+            research/tao-pacific-euc-direct-source-operator-v2.json
+            research/tao-pacific-euc-retained-depth-audit-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify independent boundary and qualification checks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_tao_pacific_euc_retained_depth_audit_v1.py' -v
+      - name: Reconstruct every retained profile with provider requests forbidden
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/audit_tao_pacific_euc_retained_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tao-pacific-euc-retained-depth-audit-v1
+          path: tao-pacific-euc-retained-depth-audit-v1/
+          retention-days: 7
+          if-no-files-found: error

@@ -1,0 +1,41 @@
+name: Malvinas branch core scenarios v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/malvinas-branch-core-scenarios-v1.yml
+      - analysis/derive_malvinas_branch_core_scenarios_v1.py
+      - analysis/test_malvinas_branch_core_scenarios_v1.py
+      - research/malvinas-branch-core-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/audit_malvinas_adcp_depth_v1.py
+            analysis/derive_malvinas_branch_core_scenarios_v1.py
+            analysis/test_malvinas_branch_core_scenarios_v1.py
+            research/malvinas-branch-core-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify branch rules then derive nine scenarios on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_malvinas_branch_core_scenarios_v1.py -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_malvinas_branch_core_scenarios_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: malvinas-branch-core-scenarios-v1
+          path: malvinas-branch-core-scenarios-v1/
+          retention-days: 7

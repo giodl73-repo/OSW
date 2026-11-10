@@ -1,0 +1,255 @@
+name: Current depth NWASC selected noncore water mass extents v7
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-reference-inventory-v7.yml
+      - analysis/build_current_depth_reference_inventory_v7.py
+      - analysis/derive_nwasc_selected_noncore_depths_v1.py
+      - analysis/load_current_depth_reference_inventory_v7.py
+      - analysis/test_current_depth_reference_inventory_v7.py
+      - plans/nwasc-selected-noncore-depth-reference-admission-v1.md
+      - research/current-depth-reference-inventory-operator-v7.json
+      - research/nwasc-selected-noncore-depth-source-context-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_jutland_aure_primary_paper_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_ncc_skagseth_table1_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/build_current_depth_reference_inventory_v1.py
+            analysis/build_current_depth_reference_inventory_v2.py
+            analysis/build_current_depth_reference_inventory_v3.py
+            analysis/build_current_depth_reference_inventory_v4.py
+            analysis/build_current_depth_reference_inventory_v5.py
+            analysis/build_current_depth_reference_inventory_v6.py
+            analysis/build_current_depth_reference_inventory_v7.py
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_florida_primary_penetration_bounds_v1.py
+            analysis/derive_jutland_area_mean_depth_reference_v1.py
+            analysis/derive_native_primary_penetration_bounds_v2.py
+            analysis/derive_nwasc_selected_noncore_depths_v1.py
+            analysis/derive_tsushima_observed_pair_depth_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            analysis/load_current_depth_reference_inventory_v1.py
+            analysis/load_current_depth_reference_inventory_v2.py
+            analysis/load_current_depth_reference_inventory_v3.py
+            analysis/load_current_depth_reference_inventory_v4.py
+            analysis/load_current_depth_reference_inventory_v5.py
+            analysis/load_current_depth_reference_inventory_v6.py
+            analysis/load_current_depth_reference_inventory_v7.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_current_depth_reference_inventory_v1.py
+            analysis/test_current_depth_reference_inventory_v2.py
+            analysis/test_current_depth_reference_inventory_v3.py
+            analysis/test_current_depth_reference_inventory_v4.py
+            analysis/test_current_depth_reference_inventory_v5.py
+            analysis/test_current_depth_reference_inventory_v6.py
+            analysis/test_current_depth_reference_inventory_v7.py
+            analysis/test_jutland_aure_primary_paper_acquisition_v1.py
+            plans/florida-primary-censored-penetration-reference-admission-v1.md
+            plans/jutland-area-mean-depth-reference-admission-v1.md
+            plans/jutland-aure-primary-depth-reference-protocol-v1.md
+            plans/malvinas-eacc-primary-censored-penetration-reference-admission-v1.md
+            plans/nwasc-selected-noncore-depth-reference-admission-v1.md
+            plans/pgw-pous-regional-core-thickness-reference-admission-v1.md
+            plans/redsox-published-plume-thickness-reference-admission-v1.md
+            plans/tsushima-observed-pair-depth-scenarios-protocol-v1.md
+            research/current-depth-collection-priorities-source-review-v1.json
+            research/current-depth-collection-priorities-v1.json
+            research/current-depth-jutland-aure-primary-acquisition-review-v1.json
+            research/current-depth-reference-addenda/florida-primary-censored-penetration-v1.csv
+            research/current-depth-reference-addenda/florida-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/jutland-aure1989-area-mean-depth-v1.csv
+            research/current-depth-reference-addenda/jutland-aure1989-area-mean-depth-v1.json
+            research/current-depth-reference-addenda/malvinas-eacc-primary-censored-penetration-v1.csv
+            research/current-depth-reference-addenda/malvinas-eacc-primary-censored-penetration-v1.json
+            research/current-depth-reference-addenda/pgw-pous-2004-regional-core-thickness-v1.csv
+            research/current-depth-reference-addenda/pgw-pous-2004-regional-core-thickness-v1.json
+            research/current-depth-reference-addenda/redsox-published-plume-thickness-v1.csv
+            research/current-depth-reference-addenda/redsox-published-plume-thickness-v1.json
+            research/current-depth-reference-addenda/tsushima-observed-pair-direction-change-v1.csv
+            research/current-depth-reference-addenda/tsushima-observed-pair-direction-change-v1.json
+            research/current-depth-reference-inventory-operator-v1.json
+            research/current-depth-reference-inventory-operator-v2.json
+            research/current-depth-reference-inventory-operator-v3.json
+            research/current-depth-reference-inventory-operator-v4.json
+            research/current-depth-reference-inventory-operator-v5.json
+            research/current-depth-reference-inventory-operator-v6.json
+            research/current-depth-reference-inventory-operator-v7.json
+            research/current-depth-reference-inventory-source-review-v1.json
+            research/current-depth-reference-inventory-source-review-v2.json
+            research/current-depth-reference-inventory-source-review-v3.json
+            research/current-depth-reference-inventory-source-review-v4.json
+            research/current-depth-reference-inventory-source-review-v5.json
+            research/current-depth-reference-inventory-source-review-v6.json
+            research/current-depth-reference-inventory-v1.json
+            research/current-depth-reference-inventory-v2.json
+            research/current-depth-reference-inventory-v3.json
+            research/current-depth-reference-inventory-v4.json
+            research/current-depth-reference-inventory-v5.json
+            research/current-depth-reference-inventory-v6.json
+            research/current-depth-register-source-review-v48.json
+            research/current-depth-register-v48.csv
+            research/current-depth-register-v48.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-inventory-source-review-v11.json
+            research/current-depth-route-projection-inventory-source-review-v48.json
+            research/current-depth-route-projection-inventory-v11.json
+            research/current-depth-route-projection-inventory-v48.json
+            research/current-depth-route-projection-operator-v26.json
+            research/current-depth-route-projection-operator-v29.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-route-projections-v14.json
+            research/current-depth-rules-v48.json
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/florida-portugal-depth-sections-operator-v1.json
+            research/florida-portugal-depth-sections-source-facts-v1.json
+            research/florida-portugal-depth-sections-source-review-v1.json
+            research/florida-primary-censored-penetration-source-report-v1.json
+            research/florida-spray-seasonal-depth-operator-v1.json
+            research/florida-spray-seasonal-depth-source-review-v1.json
+            research/greenland-depth-sections-operator-v1.json
+            research/jutland-aure-1990-area-mean-depth-source-facts-v1.json
+            research/jutland-aure-primary-paper-acquisition-operator-v1.json
+            research/jutland-aure1989-area-mean-depth-source-report-v1.json
+            research/malvinas-eacc-depth-sections-operator-v1.json
+            research/malvinas-eacc-depth-sections-source-facts-v1.json
+            research/malvinas-eacc-depth-sections-source-review-v1.json
+            research/malvinas-eacc-primary-censored-penetration-source-report-v1.json
+            research/norwegian-naming-branch-scope-audit.json
+            research/nwasc-selected-noncore-depth-source-context-v1.json
+            research/persian-gulf-gogp99-core-scope-audit.json
+            research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json
+            research/pgw-pous-2004-regional-core-thickness-source-facts-v1.json
+            research/portugal-current-naming-seasonal-scope-audit.json
+            research/portugal-reference-path-candidate.json
+            research/red-sea-redsox-branch-reach-scope-audit.json
+            research/redsox-published-plume-thickness-source-facts-v1.json
+            research/source-data/baumann-nwasc-2026/acquisition.json
+            research/source-data/baumann-nwasc-2026/article.pdf
+            research/source-data/baumann-nwasc-2026/article.xml
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-25p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-36n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-38n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-40n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-42n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-44n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-25p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-36n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-38n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-40n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-42n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-44n.json
+            research/source-data/florida-portugal-depth-sections-v1/manifest.json
+            research/source-data/florida-portugal-depth-sections-v1/transport-ledger.json
+            research/source-data/jutland-aure-1990/acquisition.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-10s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-4s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-5p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-7s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-east-african-coastal-section-8p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-41s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-43s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-45s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-47s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-01-15-falkland-section-49s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-10s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-4s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-5p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-7s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-east-african-coastal-section-8p5s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-41s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-43s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-45s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-47s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/2022-07-15-falkland-section-49s.json
+            research/source-data/malvinas-eacc-depth-sections-v1/manifest.json
+            research/source-data/malvinas-eacc-depth-sections-v1/transport-ledger.json
+            research/source-data/matsuyama-tsushima-1990/acquisition.json
+            research/source-data/peters-redsox-2005/acquisition.json
+            research/source-data/pous-oman-2004/acquisition.json
+            research/tsushima-matsuyama-1990-depth-pair-source-facts-v1.json
+            research/tsushima-matsuyama-1990-modal-width-scope-audit.json
+            research/tsushima-observed-pair-direction-change-source-report-v1.json
+            research/wsc-interval20-500-depth-reanalysis-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Audit frozen sections and preserve bound semantics on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v2.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v3.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v4.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v5.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v6.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_reference_inventory_v7.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_reference_inventory_v7.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-reference-inventory-v7
+          path: current-depth-reference-inventory-v7/
+          retention-days: 7

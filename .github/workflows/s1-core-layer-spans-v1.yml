@@ -1,0 +1,54 @@
+name: S1 observed rotation invariant local flow spans v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/measure_s1_core_layer_spans_v1.py
+      - analysis/test_s1_core_layer_spans_v1.py
+      - .github/workflows/s1-core-layer-spans-v1.yml
+      - research/s1-core-layer-span-operator-v1.json
+      - plans/s1-core-layer-span-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  measure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/measure_s1_core_layer_spans_v1.py
+            analysis/test_s1_core_layer_spans_v1.py
+            .github/workflows/s1-core-layer-spans-v1.yml
+            research/s1-core-layer-span-operator-v1.json
+            plans/s1-core-layer-span-protocol-v1.md
+            analysis/capture_gaspe1991_adcp_info_v1.py
+            research/s1-mooring-adcp-metadata-ledger-v1.json
+            research/s1-mooring-adcp-variable-metadata-v1.json
+            research/source-data/s1-mooring-adcp-metadata-v1/primary-info.json
+            analysis/capture_s1_mooring_adcp_metadata_v1.py
+            research/s1-mooring-observed-depth-case-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one idle CPU semantic checks and original native query
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_S1_SPANS_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_s1_core_layer_spans_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 65s python analysis/measure_s1_core_layer_spans_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s1-core-layer-spans-v1
+          path: s1-core-layer-spans-v1/
+          retention-days: 7
+          if-no-files-found: error

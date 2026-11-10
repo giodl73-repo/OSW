@@ -1,0 +1,58 @@
+name: Kuroshio model axis depth sampling v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/kuroshio-hycom-depth-v1.yml
+      - analysis/sample_kuroshio_hycom_depth_v1.py
+      - analysis/test_kuroshio_hycom_depth_v1.py
+      - research/kuroshio-hycom-depth-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_kuroshio_hycom_depth_v1.py
+            research/kuroshio-hycom-depth-operator-v1.json
+            research/kuroshio-wang-2024-axis-normal-spans.json
+            research/kuroshio-wang-2024-axis-normal-query-contract.json
+            plans/kuroshio-axis-normal-width-protocol-v1.md
+            research/current-depth-register-source-review-v48.json
+            research/eac-hycom-route-depth-source-review-v2.json
+            research/eac-connected-layer-thickness-source-review-v1.json
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/test_eac_hycom_route_depth_v1.py
+            analysis/test_eac_hycom_route_depth_v2.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Test fixed sampling rules and acquire bounded model profiles on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_hycom_route_depth_v*.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_kuroshio_hycom_depth_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/sample_kuroshio_hycom_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kuroshio-hycom-depth-v1
+          path: kuroshio-hycom-depth-v1/
+          retention-days: 7

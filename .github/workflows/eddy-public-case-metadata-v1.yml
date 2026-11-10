@@ -1,0 +1,43 @@
+name: Existing eddy public-case metadata review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/eddy-public-case-metadata-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            research/eddy-measurement-register-v1.json
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/audit_eddy_public_case_metadata_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Read existing eligibility without rerunning measurements or opening providers
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          timeout --kill-after=1s 59s taskset -c "$cpu" nice -n 15 python analysis/audit_eddy_public_case_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eddy-public-case-metadata-v1
+          path: .pytest_cache/eddy-public-case-metadata-v1/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

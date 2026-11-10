@@ -21,6 +21,7 @@ impl IndexStore {
     fn noaa_source(&self, path: &str) -> Result<&Value, String> {
         self.documents
             .get(path)
+            .map(|source| &**source)
             .ok_or_else(|| format!("Missing NOAA context source {path}"))
     }
     fn noaa_snapshot(&self, date: &str, state: &str) -> Result<(String, &Value, bool), String> {

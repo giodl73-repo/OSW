@@ -122,7 +122,12 @@ fn adcp_width_scope(row: &Value) -> Result<(), String> {
     }
     Ok(())
 }
-fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+pub(crate) fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+    // A different publication has its own exact compiled admission. Edited
+    // copies still fall through to the original regional-scope guard.
+    if crate::hansen_asar_widths::recognizes_width(row) {
+        return Ok(());
+    }
     let id = "norwegian-coastal-saetre-1999-halten-regional-width";
     if row["id"] != id && row["current_id"] != "norwegian-coastal" {
         return Ok(());
@@ -180,9 +185,54 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         ("routes", "candidates", "reference_routes"),
         ("frames", "frames", "seasonal_routes"),
     ] {
-        let source = docs[key][field]
+        let mut source = docs[key][field]
             .as_array()
-            .ok_or("Missing seasonal source records")?;
+            .ok_or("Missing seasonal source records")?
+            .clone();
+        if key == "widths" {
+            source.extend(crate::current_measurements::widths(bundle));
+            source.extend(crate::current_gap_admissions::widths(bundle));
+            source.extend(crate::agulhas_reported::widths(bundle));
+            source.extend(crate::satellite_core_widths::widths(bundle));
+            source.extend(crate::wicc_review_width::widths(bundle));
+            source.extend(crate::eacc_cited_width::widths(bundle));
+            source.extend(crate::nwasc_admission::widths(bundle));
+            source.extend(crate::hansen_asar_widths::widths(bundle));
+            source.extend(crate::neuc_glider_widths::widths(bundle));
+            source.extend(crate::aleutian_onishi_width::widths(bundle));
+            source.extend(crate::madagascar_dimensions::seasonal_source_widths(bundle)?);
+            source.extend(crate::azcc_onken_width::validated_widths(bundle)?);
+            source.extend(crate::pacific_nec_nominal_width::validated_widths(bundle)?);
+            source.extend(crate::dimoune_section_widths::validated_widths(bundle)?);
+            source.extend(crate::atlantic_nec_band_spans::validated_widths(bundle)?);
+            source.extend(crate::pacific_sec_jet_widths::validated_widths(bundle)?);
+            source.extend(crate::current_core_dimensions::validated_widths(bundle)?);
+        }
+        if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
+            source = crate::nwasc_reference_route::catalogue(bundle)["candidates"]
+                .as_array()
+                .unwrap()
+                .clone();
+        }
+        if key == "routes" {
+            source.extend(crate::planning::eicc_reference_routes(
+                &bundle.collections,
+                &bundle.manifest,
+            )?);
+            source.extend(crate::pacific_secc_reference::routes(
+                &bundle.collections,
+                &bundle.manifest,
+            )?);
+            source.extend(crate::south_java_reference::routes(
+                &bundle.collections,
+                &bundle.manifest,
+            )?);
+            source.extend(crate::wicc_winter_reference::routes(
+                &bundle.collections,
+                &bundle.manifest,
+            )?);
+            source.extend(crate::atlantic_nsec_reference::validated_reference_routes(bundle)?);
+        }
         let actual = bundle
             .collections
             .get(collection)
@@ -191,13 +241,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if source.len() != actual.len() {
             return Err("Incomplete seasonal source projection".into());
         }
-        for row in source {
+        for row in &source {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
                 crate::somali_width::validate(row)?;
                 crate::guinea_width::validate(row)?;
                 crate::original_regional_widths::validate(row)?;
+                crate::portugal_section_span::validate_row(row)?;
                 crate::modal_decay_widths::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
@@ -231,6 +282,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         );
         if !ids.insert(id.clone()) || !actual.contains(id.as_str()) {
             return Err("Invalid seasonal current index".into());
+        }
+    }
+    for row in crate::current_catalogue::decisions(bundle) {
+        let id = format!("current:{}", row["current_id"].as_str().unwrap());
+        if !actual.contains(id.as_str()) || !ids.insert(id) {
+            return Err("Invalid admitted seasonal current".into());
         }
     }
     if ids.len() != actual.len() {
@@ -369,6 +426,28 @@ fn plans(docs: &Value) -> Result<Value, String> {
             Vec::new()
         };
         let mut note="Annual width range and measurement uncertainty: not available. A single dated section does not establish a seasonal cycle.".to_owned();
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "published_near_surface_survey_summary"
+        }) {
+            note="One April 2001 near-surface survey summary. Physical whole-current width, uncertainty and annual ranges remain unknown; this is not April climatology or a seasonal cycle.".to_owned();
+        }
+        if widths
+            .iter()
+            .any(|r| r["current_id"] == id && r["phase_kind"] == "model_snapshot_width_summary")
+        {
+            note = "Local model snapshot on an elapsed model day. Annual climatological forcing is not an annual mean width; observed dates, annual ranges and seasonal playback are unavailable.".to_owned();
+        }
+        if widths
+            .iter()
+            .any(|r| r["current_id"] == id && r["phase_kind"] == "multi_year_jet_width_range")
+        {
+            note="Two local repeat-section jet ranges from the2009-2014 study, separate from mean isopycnal breadths. No dated width series, annual extrema or width uncertainty; no seasonal playback inferred.".to_owned();
+        }
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "source_reported_current_width_constraint"
+        }) {
+            note="Published regional width>400km, with unspecified width layer and epoch. The source does not give a finite width, annual range or width error; seasonal playback remains unavailable.".to_owned();
+        }
         if let Some(r) = summary {
             let span = r["reported_seasonal_value_span_km"]
                 .as_array()
@@ -380,7 +459,7 @@ fn plans(docs: &Value) -> Result<Value, String> {
                         .ok_or("Invalid reported seasonal value")
                 })
                 .collect::<Result<Vec<_>, _>>()?
-                .join("–");
+                .join("â€“");
             note = format!(
                 "{span} km: {}",
                 r["interpretation"]
@@ -415,9 +494,82 @@ fn plans(docs: &Value) -> Result<Value, String> {
     Ok(plans)
 }
 
+fn phase_plans(bundle: &Bundle, docs: &Value) -> Result<Value, String> {
+    let mut result = plans(docs)?;
+    crate::current_catalogue::add_plans(bundle, &mut result);
+    crate::wicc_review_width::apply_phase_plan(bundle, &mut result);
+    crate::eacc_cited_width::apply_phase_plan(bundle, &mut result)?;
+    crate::pacific_nec_nominal_width::apply_phase_plan(bundle, &mut result)?;
+    Ok(result)
+}
+
 impl Store {
     pub fn seasons_snapshot(&self) -> Result<Value, String> {
-        let plans = plans(&documents(&self.bundle)?)?;
+        let mut docs = documents(&self.bundle)?;
+        if crate::current_measurements::active(&self.bundle) {
+            docs["widths"]["measurements"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_measurements::widths(&self.bundle));
+            docs["widths"]["current_decisions"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_catalogue::decisions(&self.bundle));
+        }
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::agulhas_reported::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::nwasc_admission::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::hansen_asar_widths::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::neuc_glider_widths::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::aleutian_onishi_width::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::satellite_core_widths::widths(&self.bundle));
+        let mut supplemental = crate::current_measurements::widths(&self.bundle);
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::wicc_review_width::widths(&self.bundle));
+        supplemental.extend(crate::satellite_core_widths::widths(&self.bundle));
+        supplemental.extend(crate::wicc_review_width::widths(&self.bundle));
+        supplemental.extend(crate::eacc_cited_width::widths(&self.bundle));
+        // Keep the static constraint outside the legacy phase derivation.
+        // It is returned in supplemental widths and appended exactly once below.
+        let gap_widths = crate::current_gap_admissions::widths(&self.bundle);
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(gap_widths.clone());
+        supplemental.extend(gap_widths);
+        supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
+        supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
+        supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
+        supplemental.extend(crate::neuc_glider_widths::widths(&self.bundle));
+        supplemental.extend(crate::aleutian_onishi_width::widths(&self.bundle));
+        // Retain the study-summary range outside monthly phase derivation.
+        supplemental.extend(crate::madagascar_dimensions::widths(&self.bundle));
+        supplemental.extend(crate::azcc_onken_width::widths(&self.bundle));
+        supplemental.extend(crate::pacific_nec_nominal_width::widths(&self.bundle));
+        supplemental.extend(crate::dimoune_section_widths::validated_widths(&self.bundle)?);
+        supplemental.extend(crate::atlantic_nec_band_spans::validated_widths(&self.bundle)?);
+        supplemental.extend(crate::pacific_sec_jet_widths::validated_widths(&self.bundle)?);
+        supplemental.extend(crate::current_core_dimensions::validated_widths(&self.bundle)?);
+        let plans = phase_plans(&self.bundle, &docs)?;
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
             sources[key] = self.bundle.manifest["seasons_receipts"][key]["source_json"].clone();
@@ -425,8 +577,71 @@ impl Store {
                 return Err("Missing seasonal source bytes".into());
             }
         }
-        Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
-        )
+        let reference_catalogue = if crate::madagascar_coastal_curve::active(&self.bundle) {
+            crate::current_gap_admissions::route_catalogue(
+                crate::nwasc_reference_route::catalogue(&self.bundle),
+                &self.bundle,
+            )?
+        } else {
+            Value::Null
+        };
+        let reference_catalogue = if reference_catalogue.is_null() {
+            reference_catalogue
+        } else {
+            crate::wicc_winter_reference::catalogue_projection(
+                &self.bundle,
+                crate::south_java_reference::catalogue_projection(
+                &self.bundle,
+                crate::pacific_secc_reference::catalogue_projection(
+                    &self.bundle,
+                    crate::planning::eicc_catalogue_projection(&self.bundle, reference_catalogue)?,
+                )?,
+                )?,
+            )?
+        };
+        let reference_catalogue = if reference_catalogue.is_null() { reference_catalogue } else {
+            crate::current_reference_profiles::catalogue_projection(&self.bundle, crate::atlantic_nsec_reference::catalogue_projection(&self.bundle, crate::equatorial_basin_identities::catalogue_projection(&self.bundle, reference_catalogue)?)?)?
+        };
+        let projected = crate::indian_sec_model_grid_lengths::atlas_projection(&self.bundle, crate::equatorial_basin_identities::snapshot_projection(&self.bundle,
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":supplemental,"working_reference_routes":reference_catalogue,"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"agulhas_reported_scene":crate::agulhas_reported::scene(&self.bundle),"kuroshio_daily_scene":crate::kuroshio_daily::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"published_speed_scenes":crate::characteristic_velocities::by_current(&self.bundle),"core_migration_scenes":crate::current_reference_profiles::by_current(&self.bundle),"mean_core_section_scenes":crate::mean_core_sections::by_current(&self.bundle),"current_dimension_evidence_scenes":crate::current_core_dimensions::by_current(&self.bundle),"satellite_core_width_scenes":crate::satellite_core_widths::by_current(&self.bundle),"review_cited_width_scenes":crate::wicc_review_width::by_current(&self.bundle),"cited_width_constraint_scenes":crate::eacc_cited_width::by_current(&self.bundle),"azores_2009_section_scene":crate::azores_section_review::full(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
+        ))?;
+        crate::pacific_nec_product_axes::atlas_projection(&self.bundle, projected)
+    }
+}
+
+#[cfg(test)]
+mod eacc_phase_integration_tests {
+    use super::*;
+    #[test]
+    fn dynamically_admitted_eacc_gets_one_constraint_after_legacy_plan() {
+        let bundle = Bundle {
+            schema: "osw.query-bundle.v1".into(),
+            manifest: json!({"published_eacc_cited_width_constraint_v1": {}}),
+            collections: std::collections::BTreeMap::new(),
+        };
+        // current_measurements dynamically supplies this decision even though
+        // it is absent from the frozen width inventory's current index.
+        let docs = json!({"widths":{"measurements":[],"current_decisions":[{"current_id":"east-african-coastal"}]},"frames":{"frames":[]},"directions":{}});
+        let prior = plans(&docs).unwrap();
+        let actual = phase_plans(&bundle, &docs).unwrap();
+        let expected =
+            crate::eacc_cited_width::extend_phase_plan(&prior["east-african-coastal"]).unwrap();
+        assert_eq!(actual["east-african-coastal"], expected);
+        assert_eq!(
+            actual["east-african-coastal"]["phases"]
+                .as_array()
+                .unwrap()
+                .len(),
+            1
+        );
+        assert_eq!(
+            actual["east-african-coastal"]["eligible_indices"],
+            json!([])
+        );
+        assert_eq!(actual["east-african-coastal"]["can_play"], false);
+        // Preserve the duplicate refusal; never make the append idempotent.
+        let mut duplicate = docs.clone();
+        duplicate["widths"]["measurements"] = json!([crate::eacc_cited_width::expected()]);
+        assert!(phase_plans(&bundle, &duplicate).is_err());
     }
 }

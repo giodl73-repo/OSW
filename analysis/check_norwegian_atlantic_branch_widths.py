@@ -9,6 +9,8 @@ ACQUISITION='research/source-data/mork-norwegian-2010/acquisition.json'
 SOURCE='research/source-data/mork-norwegian-2010/journal-article.pdf'
 SOURCE_HASH='cc0c4a94ba785c8bcd0e7b6bbc8e46f86583615909a265e3e5a3d4566e9f2fc3'
 PROTOCOL='plans/ocean-current-width-measurement-protocol-v1.md'
+BOSSE_RECORD='research/norwegian-front-bosse-2019-corrected-width-record.json'
+BOSSE_PIN='ad24a759afe5fa8a487845528978864badfaa8fccde2fee9acf5bfeb56cfc402'
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
@@ -26,13 +28,19 @@ def validate(proposals, audit=None):
         raise ValueError('Stale Norwegian branch width protocol')
     if audit.get('mean_front_width_km') is not None or audit.get('mean_front_width_range_km') is not None:
         raise ValueError('Invented temporal mean frontal width')
+    if digest(BOSSE_RECORD)!=BOSSE_PIN or (audit.get('corrected_front_record_file'),audit.get('corrected_front_record_sha256'))!=(BOSSE_RECORD,BOSSE_PIN):raise ValueError('Changed corrected Norwegian front record')
+    bosse=json.loads((ROOT/BOSSE_RECORD).read_bytes())
     rows=audit['measurements']
     expected={
         'norwegian-atlantic-slope-orvik-2001-regional-width':('norwegian-atlantic-slope',None,[30,50]),
         'norwegian-atlantic-front-orvik-2001-regional-width':('norwegian-atlantic-front',None,[30,50]),
         'norwegian-atlantic-slope-mork-2010-surface-scale':('norwegian-atlantic-slope',50,None)}
-    if len(rows)!=3 or {r['id'] for r in rows}!=set(expected):raise ValueError('Incomplete or duplicate Norwegian branch widths')
+    expected[bosse['id']]=('norwegian-atlantic-front',38,None)
+    if len(rows)!=4 or {r['id'] for r in rows}!=set(expected):raise ValueError('Incomplete or duplicate Norwegian branch widths')
     for row in rows:
+        if row['id']==bosse['id']:
+            if row!=bosse:raise ValueError('Changed corrected front numeric, error, source or scope')
+            continue
         owner,value,span=expected[row['id']]
         if (row.get('proposed_current_id'),row.get('approximate_width_km'),row.get('width_range_km'))!=(owner,value,span) or 'current_id' in row:
             raise ValueError('Norwegian branch numeric or identity scope mismatch')
@@ -57,7 +65,7 @@ def validate(proposals, audit=None):
         if owner=='norwegian-atlantic':
             if proposal.get('component_proposed_ids')!=['norwegian-atlantic-slope','norwegian-atlantic-front']:raise ValueError('Changed proposed system components')
         elif proposal.get('parent_proposed_id')!='norwegian-atlantic':raise ValueError('Changed proposed branch parent')
-    return {'records':3,'proposed_branch_owners':2}
+    return {'records':4,'proposed_branch_owners':2}
 
 if __name__=='__main__':
     print('OK:',validate(json.loads((ROOT/'research/ocean-current-inventory-expansion-candidates.json').read_bytes())))

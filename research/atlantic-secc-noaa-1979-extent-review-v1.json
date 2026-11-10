@@ -1,0 +1,64 @@
+{
+  "schema": "osw.current-alongflow-source-review.v1",
+  "entity_id": "current:atlantic-south-equatorial-countercurrent",
+  "review_date": "2026-10-26",
+  "status": "PRINTED_ENDPOINT_AMBIGUITY_REQUIRES_CITED_ORIGINAL",
+  "source": {
+    "authors": ["Robert L. Molinari", "Frank Chew"],
+    "year": 1979,
+    "title": "Ocean thermal and current structures in the tropical South Atlantic relative to the placement of a grazing OTEC plant",
+    "series": "NOAA Technical Memorandum ERL AOML-35",
+    "landing_url": "https://repository.library.noaa.gov/view/noaa/13396",
+    "download_url": "https://repository.library.noaa.gov/view/noaa/13396/noaa_13396_DS1.pdf",
+    "local_ignored_file": ".pytest_cache/atlantic-secc-noaa-13396.pdf",
+    "bytes": 2170269,
+    "sha256": "c1ef1ab11e7552ef379e97c6ee843afe16b878308bb73a8da1ca0508fe95d78f",
+    "pdf_page_count": 56,
+    "text_extraction": "Scanned pages; pypdf did not extract text. Relevant pages read visually from local rendered PNGs.",
+    "relevant_pages_visually_reviewed": [
+      {"pdf_index": 0, "printed_page": "title"},
+      {"pdf_index": 25, "printed_page": "20"},
+      {"pdf_index": 26, "printed_page": "21"},
+      {"pdf_index": 29, "printed_page": "24"}
+    ],
+    "full_document_visually_reviewed": false,
+    "original_cited_studies_reviewed": false
+  },
+  "source_summary": "Page 24 attributes a weak surface SECC to Merle (1977), extending eastward from Brazil to a printed 25 degrees N. It describes a 6-10 degrees S band, weakening at 50/75 m and reappearing at 200 m near 5 degrees S. Mazeika (1968) is cited for a core near 150 m at 20 degrees W. These are different depth contexts, not uniform current edges. Figure 11 is a schematic adapted from Defant (1961), without an SECC label.",
+  "ambiguous_endpoint": {
+    "printed_coordinate": "25 degrees N",
+    "locator": "Printed page 24, first paragraph; PDF index 29",
+    "appears_in_actual_page_pixels": true,
+    "ocr_only_error": false,
+    "inferred_replacement": null,
+    "usable_as_eastward_longitude_gate": false,
+    "reason": "The printed latitude does not define the eastward longitudinal endpoint. Do not silently replace N with W."
+  },
+  "quantity_scope": {
+    "reported_latitude_band_deg_north": [-10, -6],
+    "band_is_flow_normal_width": false,
+    "band_is_fixed_layer_width": false,
+    "band_is_annual_range": false,
+    "band_is_alongcurrent_length": false,
+    "new_numeric_dimension_calculated": false
+  },
+  "decision": {
+    "whole_current_length_km": null,
+    "new_reference_route": null,
+    "new_width_record": null,
+    "new_physical_measurements_admitted": 0,
+    "ranking_eligible": false,
+    "seasonal_playback_eligible": false,
+    "runtime_or_generated_packet_changed": false
+  },
+  "next_action": "Identify and review the Merle (1977) original cited on page 24 for an explicit longitudinal endpoint. If unavailable, pursue source-supported alongflow coverage in a different original study rather than correcting the printed coordinate by inference.",
+  "additional_original_study_lead": {
+    "author": "Molinari",
+    "year": 1982,
+    "title": "Observations of eastward currents in the tropical South Atlantic Ocean: 1978-1980",
+    "doi": "10.1029/JC087iC12p09707",
+    "full_original_reviewed": false,
+    "publisher_full_html_attempt": "Web tool could not access the page; no original methods or figures read."
+  },
+  "visualization_rule": "Do not turn the ambiguous coordinate or schematic arrows into route vertices. Keep the existing March 1994 section evidence separate from this historical contextual account."
+}

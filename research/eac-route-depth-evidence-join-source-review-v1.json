@@ -1,0 +1,61 @@
+{
+  "schema": "osw.eac-route-depth-evidence-join-source-review.v1",
+  "status": "PASS_EXACT_EVIDENCE_JOIN_WITH_TWO_CONDITIONAL_REFERENCE_SEGMENTS",
+  "cloud_reviews": [
+    {
+      "run_id": 41459323972,
+      "tests_passed": 12,
+      "source_commit": "b2f30c29f3ad5edae8b7061a4512dd68755405a4",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41459323972"
+    }
+  ],
+  "cloud_tests_passed": 12,
+  "counts": {
+    "dated_route_nodes": 14,
+    "adjacent_reference_segments": 12,
+    "conditional_lower_depth_nodes": 6,
+    "conditional_thickness_nodes": 6,
+    "conditional_linear_reference_segments": 2,
+    "gap_segments": 10,
+    "regional_mooring_context_profiles": 14,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_eac_route_depth_evidence_join_v1.py": "4d7e7a0da92a12058049e0fc122a51699144759587b4fd91975314664d75f00e",
+    "analysis/test_eac_route_depth_evidence_join_v1.py": "151659d7e0c61189e4c97601f9692d4fd9c58452baf9135d8c72972fdcde92d0",
+    "research/eac-route-depth-evidence-join-operator-v1.json": "c97100a4d1ec8b7cf22bc36e0beaa550715a87ce0dcb576640b16d0b56aee176",
+    ".github/workflows/eac-route-depth-evidence-join-v1.yml": "8c64727c7dabcff7b431f6d52522104b939dcd1cbf88c641710809b367a10eac",
+    "research/source-data/eac-route-depth-evidence-join-v1/candidate.json": "10fa136c4035f4e0db40d891b297aacba406b3315ed1b4ccd3b40a01834f361a"
+  },
+  "scientific_review": [
+    "Frozen HYCOM depth samples, connected layer spans and IMOS DM03 surface screens are joined on exact prescribed2022 calendar date and original route vertex0–6. All14 dated nodes remain present; duplicated, dropped, shifted-time, mismatched geometry/bearing or changed selected-node evidence is rejected. No intersection-only join loses inconvenient cases.",
+    "Primary5cm/s lower depths, connected model layer thicknesses and surface geostrophic support remain separate quantities. A missing primary boundary is not replaced by another contour, node, mooring value or bathymetry. Six nodes have resolved primary layers, corroborating poleward surface components and interior sampled model maxima; even these nodes lack independently validated current axes.",
+    "Only original neighboring vertices with both endpoints passing the declared gate can define conditional linear reference-corridor diagnostics. This produces two segments,27–30S on January15 and July15. The other ten adjacent segments remain explicit gaps. The332.48km editorial reference interval is not a measured instantaneous-axis length.",
+    "January conditional segment endpoint lower thresholds are about333m and485m; July endpoints about842m and338m. Original computed values remain unrounded in the artifact. Both model endpoints in these two cases are surface bounded, so their threshold-layer spans happen to equal lower depth. This equality is not imposed on subsurface layers or used as a universal current-thickness assumption.",
+    "Linear change through each unsampled segment interior is an explicitly declared scenario assumption. It does not establish current continuity, a physically tracked route, uncertainty bounds, whole-current depth, seasonal extrema or a water volume. Interpolation returns unknown on gap segments and rejects extrapolation outside the reference interval.",
+    "Four noncorroborated surface cases, all horizontal edge maxima and the two vertically censored32S cases continue to block conditional projection. No profile is moved or search expanded to force route completion. Source statistical dependence, coarse surface grid and different source time filters remain explicit.",
+    "Fourteen fixed-station mooring profiles are linked as regional context near27S, separately by date. Their five-day-filtered daily values are not treated as colocated with instantaneous HYCOM or used to fill model gaps. Offshore mooring layers do not become main-jet thickness.",
+    "Twelve cloud tests verify complete joins/counts, only declared neighboring segments, gap behavior, noncorroboration/edge/censoring flags, paired thickness, unfilled regional mooring context, duplicate/incomplete-key rejection, frozen selection/geometry/time/primary consistency, rejection of identity promotion/corrupted support, conditional interpolation without extrapolation and input hashes. No local numerical join or local tests were executed.",
+    "Canonical453 depth references across101 identities, all earlier evidence and102 eddy size references remain unchanged. This derived join adds a queryable evidence artifact, not runtime/UI integration or a canonical whole-route physical depth profile."
+  ],
+  "canonical_depth_register_counts_unchanged": {
+    "identities": 111,
+    "depth_references": 453,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "next_actions": [
+    "Use the joined node/segment records to expose reference-corridor depth scenarios with explicit gaps, source frames and assumptions in a later query/UI integration.",
+    "Resolve source-backed northern branch/axis and censored southern support rather than forcing a full-route profile through current uncertainty.",
+    "Apply compatible lateral bounds and paired vertical support before computing regional cross-sectional area or along-route water volume; physical whole-current coverage remains incomplete."
+  ],
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

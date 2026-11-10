@@ -1,0 +1,224 @@
+name: Six shallow coastal current depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/shallow-coastal-velocity-curtains-v1.yml
+      - analysis/derive_shallow_coastal_velocity_curtains_v1.py
+      - analysis/test_shallow_coastal_velocity_curtains_v1.py
+      - plans/shallow-coastal-velocity-curtains-protocol-v1.md
+      - research/shallow-coastal-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/coastal-upper-layer-interval-depth-sections-v1.yml
+            .github/workflows/gaspe-jutland-shallow-interval-depth-sections-v1.yml
+            .github/workflows/guiana-egcc-upper-layer-interval-depth-sections-v1.yml
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_coastal_upper_layer_interval_depth_sections_v1.py
+            analysis/acquire_gaspe_jutland_shallow_interval_depth_sections_v1.py
+            analysis/acquire_guiana_egcc_upper_layer_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_shallow_coastal_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_coastal_upper_layer_interval_depth_sections_v1.py
+            analysis/test_gaspe_jutland_shallow_interval_depth_sections_v1.py
+            analysis/test_guiana_egcc_upper_layer_interval_depth_sections_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_shallow_coastal_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/coastal-upper-layer-interval-depth-sections-protocol-v1.md
+            plans/gaspe-jutland-shallow-interval-depth-sections-protocol-v1.md
+            plans/guiana-egcc-upper-layer-interval-depth-sections-protocol-v1.md
+            plans/shallow-coastal-velocity-curtains-protocol-v1.md
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/coastal-upper-layer-interval-depth-sections-operator-v1.json
+            research/coastal-upper-layer-interval-depth-sections-source-facts-v1.json
+            research/coastal-upper-layer-interval-depth-sections-source-review-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v10.json
+            research/current-depth-source-facts-v12.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v18.json
+            research/current-depth-source-facts-v2.json
+            research/current-depth-source-facts-v20.json
+            research/current-depth-source-facts-v25.json
+            research/current-depth-source-facts-v8.json
+            research/east-greenland-coastal-reach-reference-path-input.json
+            research/east-greenland-coastal-reach-scope-audit.json
+            research/gaspe-jutland-shallow-interval-depth-sections-operator-v1.json
+            research/gaspe-jutland-shallow-interval-depth-sections-source-facts-v1.json
+            research/gaspe-jutland-shallow-interval-depth-sections-source-review-v1.json
+            research/gaspe-reference-path-input.json
+            research/greenland-depth-sections-operator-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-operator-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-source-facts-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-source-review-v1.json
+            research/guiana-north-brazil-naming-scope-audit.json
+            research/guiana-reference-path-input.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/jutland-current-naming-scope-audit.json
+            research/jutland-reference-path-input.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/norwegian-coastal-reference-path-input.json
+            research/shallow-coastal-velocity-curtains-operator-v1.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-131e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-132e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-133e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-tsushima-section-134e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-131e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-132e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-133e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-tsushima-section-134e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-131e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-132e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-133e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-tsushima-section-134e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-131e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-132e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-133e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-tsushima-section-134e.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/manifest.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-gaspe-section-65p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-gaspe-section-65w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-gaspe-section-66p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-gaspe-section-66w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-jutland-section-55p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-jutland-section-56n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-jutland-section-56p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-03-15-jutland-section-57n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-gaspe-section-65p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-gaspe-section-65w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-gaspe-section-66p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-gaspe-section-66w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-jutland-section-55p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-jutland-section-56n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-jutland-section-56p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-06-15-jutland-section-57n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-gaspe-section-65p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-gaspe-section-65w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-gaspe-section-66p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-gaspe-section-66w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-jutland-section-55p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-jutland-section-56n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-jutland-section-56p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-09-15-jutland-section-57n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-gaspe-section-65p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-gaspe-section-65w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-gaspe-section-66p5w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-gaspe-section-66w.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-jutland-section-55p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-jutland-section-56n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-jutland-section-56p5n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/2022-12-15-jutland-section-57n.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/manifest.json
+            research/source-data/gaspe-jutland-shallow-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-guiana-section-6n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-guiana-section-6p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-guiana-section-7n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-guiana-section-7p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-guiana-section-6n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-guiana-section-6p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-guiana-section-7n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-guiana-section-7p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-guiana-section-6n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-guiana-section-6p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-guiana-section-7n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-guiana-section-7p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-guiana-section-6n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-guiana-section-6p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-guiana-section-7n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-guiana-section-7p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/manifest.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/transport-ledger.json
+            research/tsushima-coastal-reference-path-input.json
+            research/tsushima-current-naming-scope-audit.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_coastal_upper_layer_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_guiana_egcc_upper_layer_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_gaspe_jutland_shallow_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_shallow_coastal_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_shallow_coastal_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shallow-coastal-velocity-curtains-v1
+          path: shallow-coastal-velocity-curtains-v1/
+          retention-days: 7

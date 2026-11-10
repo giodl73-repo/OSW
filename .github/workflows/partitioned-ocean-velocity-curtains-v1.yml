@@ -1,0 +1,169 @@
+name: Partitioned South Atlantic and Tasman depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/partitioned-ocean-velocity-curtains-v1.yml
+      - analysis/derive_partitioned_ocean_velocity_curtains_v1.py
+      - analysis/test_partitioned_ocean_velocity_curtains_v1.py
+      - plans/partitioned-ocean-velocity-curtains-protocol-v1.md
+      - research/partitioned-ocean-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/partitioned-ocean-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_partitioned_ocean_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/current_depth_search_partitions_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_partitioned_ocean_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_partitioned_ocean_depth_sections_v1.py
+            analysis/test_partitioned_ocean_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/partitioned-ocean-depth-sections-protocol-v1.md
+            plans/partitioned-ocean-velocity-curtains-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v18.json
+            research/current-depth-source-facts-v21.json
+            research/partitioned-ocean-depth-sections-operator-v1.json
+            research/partitioned-ocean-depth-sections-source-facts-v1.json
+            research/partitioned-ocean-depth-sections-source-review-v1.json
+            research/partitioned-ocean-velocity-curtains-operator-v1.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-northern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-northern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-northern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-northern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-southern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-southern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-southern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-south-atlantic-section-sac-southern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-north-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-north-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-north-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-north-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-south-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-south-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-south-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-03-15-tasman-front-section-tasman-south-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-northern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-northern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-northern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-northern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-southern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-southern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-southern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-south-atlantic-section-sac-southern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-north-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-north-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-north-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-north-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-south-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-south-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-south-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-06-15-tasman-front-section-tasman-south-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-northern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-northern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-northern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-northern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-southern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-southern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-southern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-south-atlantic-section-sac-southern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-north-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-north-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-north-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-north-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-south-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-south-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-south-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-09-15-tasman-front-section-tasman-south-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-northern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-northern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-northern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-northern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-southern-search-m13e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-southern-search-m1e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-southern-search-m5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-south-atlantic-section-sac-southern-search-m9e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-north-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-north-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-north-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-north-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-south-bank-search-167e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-south-bank-search-167p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-south-bank-search-168e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/2022-12-15-tasman-front-section-tasman-south-bank-search-168p5e.json
+            research/source-data/partitioned-ocean-depth-sections-v1/manifest.json
+            research/source-data/partitioned-ocean-depth-sections-v1/transport-ledger.json
+            research/south-atlantic-reach-reference-path-input.json
+            research/tasman-front-composite-continuity-scope-audit.json
+            research/tasman-historical-connection-reach-reference-path-input.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_partitioned_ocean_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_partitioned_ocean_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition sac-northern-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition sac-southern-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition tasman-north-bank-search
+          taskset -c "$cpu" nice -n 15 python analysis/derive_partitioned_ocean_velocity_curtains_v1.py --partition tasman-south-bank-search
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-sac-northern-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/sac-northern-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-sac-southern-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/sac-southern-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-tasman-north-bank-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/tasman-north-bank-search/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: partitioned-ocean-velocity-curtains-tasman-south-bank-search-v1
+          path: partitioned-ocean-velocity-curtains-v1/tasman-south-bank-search/
+          retention-days: 7

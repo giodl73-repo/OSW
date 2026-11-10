@@ -1,0 +1,74 @@
+{
+  "schema": "osw.current-depth-register-source-review.v24",
+  "status": "PASS_ADRIATIC_SAMPLED_COMPONENT_AND_OBSERVED_MEAN_REACH",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41403456256,
+      "tests_passed": 8,
+      "source_commit": "1bdc70739db4fc9f87adc85d963e612944a664bb",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41403456256"
+    },
+    {
+      "run_id": 41403456143,
+      "tests_passed": 6,
+      "source_commit": "1bdc70739db4fc9f87adc85d963e612944a664bb",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41403456143"
+    }
+  ],
+  "counts": {
+    "identities": 111,
+    "depth_references": 307,
+    "identities_with_scoped_depth_reference": 92,
+    "identities_not_yet_assessed": 19,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "metric_counts": {
+    "core_depth": 28,
+    "core_lower_boundary_depth": 7,
+    "core_vertical_thickness": 3,
+    "lower_flow_boundary_depth": 13,
+    "net_section_transport_zero_depth": 4,
+    "reported_flow_depth_band": 8,
+    "reported_near_zero_flow_depth": 1,
+    "reported_vertical_extent": 57,
+    "reported_vertical_scale_length": 1,
+    "reported_vertical_thickness": 5,
+    "sampled_water_mass_depth_band": 1,
+    "transport_selected_depth_extent": 64,
+    "transport_selected_upper_depth": 6,
+    "upper_flow_boundary_depth": 3,
+    "velocity_layer_lower_boundary_depth": 106
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v24.py": "3607055c87e2f431691787cae8b1d6f524933c222ba4ee6f70c305701cbcc7c0",
+    "analysis/test_current_depth_register_v24.py": "fc4982e24f1974eee63d5970113b2318781c25fa93ea154a21f95f14e9d3d9b5",
+    "research/current-depth-rules-v24.json": "252e3fbd733e9282be6dd21723566fa87aac0f35197c4a0394a937493dd66c30",
+    "research/current-depth-source-facts-v24.json": "1ca220c6740097a310fe7ab3ac42fde9df9c7a6b5d7d7e560184137b09d119e3",
+    "research/current-depth-register-v24.json": "1f7545d56d7d9d82524397cb0fb4d35c07bf724e7af8f2c3e6f288ffacc6cd15",
+    "research/current-depth-register-v24.csv": "af5059c1a7ff24e1663276ddd1a3d0a36969676fac4c799d355df7218e0446f4",
+    ".github/workflows/current-depth-register-source-v24.yml": "654cb25554e5547b9e51b584c62550fd4ac9c1962f77df28ede9ec2e8b68383e"
+  },
+  "previous_305_references_and_v23_outputs_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities and preceding305 references retained. Two Adriatic references give92 identities with scoped evidence and19 not yet assessed. Coverage is not92 complete physical depths; whole-route profiles and volumes remain absent.",
+    "Western Adriatic sampled_water_mass_depth_band0.5–15m retains CTD/rosette water-group classification from temperature,salinity,dissolved oxygen during23March–2April2012 ODW campaign. Neither endpoint is a physical flow boundary; continuity,14.5m thickness, annual extrema and velocity-layer interpretation remain unestablished.",
+    "Other Shelf15–26m, offshore upper-layer and deeper NAdDW/ADW groups remain separate. The deep cascading event does not make the WACC coastal component a bottom current. Campaign dates are not2018 publication or numerical-model dates.",
+    "Eastern Adriatic stationA4 is explicitly identified by the NAdEx authors as sampling the current rather than channel interchange. Original Figure7 observed mean vector at labeled30m supports a conservative inclusive reach bound;56m station water depth does not supply a terminal boundary.",
+    "Preserve Figure7 observed left ADCP mean vectors, exclusion of standard-deviation ellipses and blue model set, positive-down reading of negative vertical-coordinate labels,1February–1April2015 mean and separate late-November2014–early-July2015 deployment description. No speed digitization or statistical-significance claim.",
+    "The two-month observed mean does not prove continuous instantaneous depth, a seasonal envelope or route-wide thickness. Neighboring channel/Kvarner currents and model speed underestimation are not substituted for observed A4 support.",
+    "Mutation checks reject sample-range promotion to flow/thickness, endpoint boundaries, deep-water or Shelf substitution, date/operator/series changes, station-depth promotion, strict-bound changes, invented significance and whole geometry/volume eligibility.",
+    "JSON/CSV reproduce with unique columns, the new sampled-water metric and retained classification/figure operator metadata. No local tests, raw ocean-field processing, runtime or preview change."
+  ],
+  "source_review_scope": "Bernardi Aubry2018 primary publisher full HTML Results water-mass definition and Methods campaign/sampling; no original PDF pixels claimed. Vilibic2018 primary publisher full HTML Section2.2, Section4 and Figure7 caption, original publisher Figure7 downloaded and viewed at original resolution; acquisition/hash retained. Orlic2006 candidate retained as deferred after original retrieval404 and web screenshot cache miss. No profile ingestion, velocity digitization or external author contact.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

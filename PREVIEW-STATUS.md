@@ -1,5 +1,7 @@
 # Atlas 08–10 and later review-work status
 
+For the current almanac research and proposed public preview, start with [public preview readiness](PUBLIC-PREVIEW.md). The branch names, approvals, and evidence descriptions below retain their historical review scope; they do not certify the current working branch or hosted target.
+
 Atlas 08–10 are now visible on the pushed `atlas-08-private-preview` review
 branch. They have not replaced the released Atlas 07 on `main` or GitHub Pages
 and are not represented as a new version in `CITATION.cff`. The branch name and

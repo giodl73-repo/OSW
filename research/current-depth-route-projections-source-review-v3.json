@@ -1,0 +1,75 @@
+{
+  "schema": "osw.current-depth-route-projections-source-review.v3",
+  "status": "PASS_PACIFIC_EUC_NONCONTEMPORANEOUS_SITE_CORE_CONNECTOR",
+  "review_date": "2026-11-02",
+  "cloud_reviews": [
+    {
+      "run_id": 41418765380,
+      "tests_passed": 24,
+      "source_commit": "445c8c9d71c63543b9ffa9eb6d19aa81603502a0",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41418765380"
+    },
+    {
+      "run_id": 41418764967,
+      "tests_passed": 6,
+      "source_commit": "445c8c9d71c63543b9ffa9eb6d19aa81603502a0",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41418764967"
+    }
+  ],
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 5,
+    "identities_not_yet_projected": 106,
+    "regional_projection_scenarios": 5,
+    "source_anchor_references": 14,
+    "new_depth_measurements": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    ".github/workflows/current-depth-route-projections-v3.yml": "df754c437df4866670ffef2043001fdc142b4b835b2085aee07649f9e1484437",
+    "analysis/build_current_depth_route_projections_v1.py": "7949beb6ab4599b650abd41fde270a57e5d4028aaae74ddcb820b8bc8985e7f9",
+    "analysis/build_current_depth_route_projections_v2.py": "f2c9b72f80c58cee14782a18234ae86d6ec21b8b441bb9381724d8081f314bf9",
+    "analysis/build_current_depth_route_projections_v3.py": "69c566ca550040778fc88a8f700651544b83f36f5c5df43b7a14629bc4caa235",
+    "analysis/test_current_depth_route_projections_v1.py": "e99cded50d1cffb35d23e8af4ba130ab0d07eb1abac410e4c3675ff921497395",
+    "analysis/test_current_depth_route_projections_v2.py": "afd66b560e83f7c18108132415690cb86e9f00342715afca46be4302b0f1177d",
+    "analysis/test_current_depth_route_projections_v3.py": "d7b027636faf0a6ae91651732f21a2d0b9505ac955f0b0ccac6ff3c56c972c8e",
+    "research/agulhas-reference-path-candidate.json": "2b5a04d3b3a21029c61ffb96001080746ae8667be6eff3a1cabf59e56c1b2acc",
+    "research/current-depth-register-v32.json": "d4507aa29a76a3d8c0e60efe5bf721768e86d5e5b0f1bad89ddd29d4238e930a",
+    "research/current-depth-register-v33.json": "7f90fccb477963c48b93445a661fd02c8292f504e73f6988e14b64e20e80de81",
+    "research/current-depth-route-projection-operator-v1.json": "e7792357e7713ebe853d7daf708eec4396fca7759a43f7975b01fab662abae86",
+    "research/current-depth-route-projection-operator-v2.json": "b8171bb412cc284291322a912520d9f126a51ddc2737145b8ba7fd3d800bd7a9",
+    "research/current-depth-route-projection-operator-v3.json": "60e6117330920f7656dadaeca701c8780e6059283697330a70a554c5ec60799a",
+    "research/current-depth-route-projections-v1.csv": "d8d785b342abcdfc7f93cc1827d95dabde7fab444192ea928731e2077462145f",
+    "research/current-depth-route-projections-v1.json": "8a3af2984fa6a8563c901d17f0b76570224a0d33443303eeb99cdcf99e530103",
+    "research/current-depth-route-projections-v2.csv": "17632bb90fc42cef434663f981dacf475124503fbfb665e594c150234313f393",
+    "research/current-depth-route-projections-v2.json": "efea4396ab448b2e0f5bebd8d5d8487127b75ba26bb8bd5fac71d67adc8d6679",
+    "research/current-depth-route-projections-v3.csv": "68d2e93278ba0d516e792ef149076a5789e1e467830c60453dff2a6699745c94",
+    "research/current-depth-route-projections-v3.json": "2b3ca8d2f480a2ffff38b479f2030b0472fdeceac9eb0daf08cf4c53522255ac",
+    "research/current-length-estimate-register-v1.json": "5b63576c47b6c59f4360d51cb2c04354ddab670894f7971a2380d8ca9ffd5d87",
+    "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
+    "research/ocean-current-reference-path-candidates.json": "b06caed27655c39f8127ddda441cba0a856800f599ec52edcd5b30d2ad37b633",
+    "research/somali-winter-reference-path-candidate.json": "37cf752d61cfcfff451e3066e842e00f524b78400573b28ff731cf3ff12f4cda"
+  },
+  "previous_four_projection_records_preserved": true,
+  "depth_register_323_references_preserved": true,
+  "eddy_register_and_csv_preserved": true,
+  "validation_scope": [
+    "All111 identities retain source ownership from depth registerv33. Existing four projection records preserved exactly. Pacific EUC adds a fifth regional scenario with four existing anchors, giving14 unique anchor references; zero new depth measurements, whole-route physical profiles or volumes.",
+    "Nominal equatorial mooring sites165E,170W,140W,110W form an eastward85degree connector, unwrapped165/190/220/250E. WGS84 short geodesic legs sum9462.157km. Tests reject westward, duplicate and off-equatorial site chains and prevent a275degree wraparound.",
+    "Core comparison levels190/155/105/75m retain author-selected near-maximum ADCP/ECCOv4r4 record-mean semantics.5m display rounding preserves every stated anchor, distinct from the10m pilot display rule. Neither spacing nor rounding is depth uncertainty.",
+    "Each anchor retains its distinct gapped record period1996–2007,1995–2005,1997–2010,1996–2005. Each interpolated sample records only its adjacent contributing reference IDs and both corresponding windows. Shared campaign/common-period fields stay null and common-period reanalysis false.",
+    "The connector is a declared display relation between nominal sites, not an observed streamline, selected whole-current route or physical axis. Existing published14000km Pacific EUC length and null selected-route ID remain unchanged. Connector fraction1 means only its own between-site drawing is interpolated, not full Pacific EUC coverage.",
+    "No extrapolation beyond observing sites, physical lower boundary, surface origin, thickness, width pairing, annual seasonal envelope or volume is established. Exact source contract mutations, context changes and whole-route geometry aliases are rejected.",
+    "Eight new tests plus previous16 projection tests and six source baseline tests pass:30 total. JSON/CSV reproduce with per-sample periods, geometry roles, diagnostic metrics and ineligible volume flags. Only small metadata/reference-geometry generation ran locally on one idle CPU; no local tests, raw ocean fields or app/runtime/browser execution."
+  ],
+  "source_review_scope": "Reuses four Halpern2023 references admitted and independently source-reviewed in current-depth-register-source-review-v33.json. Original NOAA publisher PDF pages3/5 actually reviewed for site periods and comparison-selected levels in that source batch. This projection adds no raw observations, digitized depths or source text redistribution.",
+  "browser_or_ui_review_performed": false,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

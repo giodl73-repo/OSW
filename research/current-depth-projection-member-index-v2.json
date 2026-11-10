@@ -1,0 +1,2425 @@
+{
+  "schema": "osw.current-depth-projection-member-index.v1",
+  "status": "MEMBER_OWNED_REGIONAL_CASE_DISCOVERY_NOT_PARENT_DEPTH",
+  "counts": {
+    "parents": 9,
+    "families": 8,
+    "systems": 1,
+    "member_links": 23,
+    "distinct_member_identities": 20,
+    "distinct_members_with_supported_regional_cases": 19,
+    "parents_with_any_member_regional_case": 9,
+    "parents_with_all_declared_members_projected": 8,
+    "distinct_linked_supported_cases": 56,
+    "distinct_linked_unresolved_cases": 2,
+    "deduplicated_source_case_references": 58,
+    "discovery_link_rows": 66,
+    "new_measurements": 0,
+    "new_projection_cases": 0,
+    "parent_scalar_depths": 0,
+    "parent_volumes": 0
+  },
+  "regional_projection_counts_unchanged": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 84,
+    "identities_not_yet_projected": 27,
+    "identities_with_only_blocked_reference_cases": 1,
+    "identities_without_any_regional_reference_case": 26,
+    "regional_projection_scenarios": 235,
+    "unresolved_regional_reference_cases": 18,
+    "source_anchor_references": 35,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0,
+    "regional_reference_geometry_volume_scenarios": 2,
+    "new_model_reference_cases": 212,
+    "new_supported_model_scenarios": 197,
+    "new_blocked_model_reference_cases": 15,
+    "new_model_profile_anchors": 1016,
+    "new_projection_eligible_source_nodes": 727,
+    "new_conditional_adjacent_segments": 483,
+    "new_gap_segments": 321,
+    "new_depth_measurements": 0
+  },
+  "records": [
+    {
+      "entity_id": "current:equatorial-countercurrent",
+      "name": "Equatorial Countercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/0",
+      "membership_scope_note": "Generic eastward equatorial-countercurrent family across admitted Atlantic, Pacific and Indian basin usages. The principal-member number is not the sum of north and south countercurrent families.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-north-equatorial-countercurrent",
+          "name": "Atlantic North Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-necc-bourles-1999-march-core",
+            "atlantic-necc-sivkov-2021-setting-band"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-north-equatorial-countercurrent-full-sections-2022-01-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "PartialwesternAtlanticNECC42–32Wreach withOSW3.5–8.5Nsearches. SourceJASsummercontext doesnot establishJanuarycontinuity oruniquejoiningofnorthern/southerncores. Exclude upstreamNBCretroflexion,equatorialESC,easternbasincontinuation anddetachedrings as targets. A selectedeastwardjet maybelongtoseparatebranches/eddies;no independentbranchassignment,sumofbranches oruniquevelocityaxis inferred.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-north-equatorial-countercurrent-full-sections-2022-07-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "PartialwesternAtlanticNECC42–32Wreach withOSW3.5–8.5Nsearches. SourceJASsummercontext doesnot establishJanuarycontinuity oruniquejoiningofnorthern/southerncores. Exclude upstreamNBCretroflexion,equatorialESC,easternbasincontinuation anddetachedrings as targets. A selectedeastwardjet maybelongtoseparatebranches/eddies;no independentbranchassignment,sumofbranches oruniquevelocityaxis inferred.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-north-equatorial-countercurrent",
+          "name": "Pacific North Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-necc-song-2019-142e-mean"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-north-equatorial-countercurrent-full-sections-2022-01-15-component90-v1",
+              "owner_entity_id": "current:pacific-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-centralPacificNECC140–95Wsource-studyreach,not wholebasin orcontinuousyear-roundaxis. Exclude westerninflow,coastalredistributioneastof95W,equatorialEUC/deeperNSCC-TsuchiyaJet anddetachededdies as targets. Johnson2002reports weak/absent surfaceexpression near110WinDJF;retain qualifying/nonqualifying2022snapshotoutcomes without assuming thatsourceclimatology is a datedobservation or thatallsubsurfaceeastflowvanishes.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-north-equatorial-countercurrent-full-sections-2022-07-15-component90-v1",
+              "owner_entity_id": "current:pacific-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-centralPacificNECC140–95Wsource-studyreach,not wholebasin orcontinuousyear-roundaxis. Exclude westerninflow,coastalredistributioneastof95W,equatorialEUC/deeperNSCC-TsuchiyaJet anddetachededdies as targets. Johnson2002reports weak/absent surfaceexpression near110WinDJF;retain qualifying/nonqualifying2022snapshotoutcomes without assuming thatsourceclimatology is a datedobservation or thatallsubsurfaceeastflowvanishes.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:indian-south-equatorial-countercurrent",
+          "name": "Indian Ocean South Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "indian-secc-hacker-1998-i9n-labeled100m-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-03-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-06-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-09-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-12-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:equatorial-undercurrent",
+      "name": "Equatorial Undercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/1",
+      "membership_scope_note": "Equatorial subsurface EUC basin usages; surface Wyrtki jets and off-equatorial undercurrents excluded.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-equatorial-undercurrent",
+          "name": "Atlantic Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-euc-philander-2001-western-core",
+            "atlantic-euc-hormann-2007-observed-35w-core",
+            "atlantic-euc-hormann-2007-flame-35w-core",
+            "atlantic-euc-hormann-2007-spflame-35w-core",
+            "atlantic-euc-hormann-2007-flame-10w-core"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-euc-hormann2007-flame-1990-2002-core-scenario-v1",
+              "owner_entity_id": "current:atlantic-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/5",
+              "case_scope": {
+                "phase_label": null,
+                "campaign_window": null,
+                "metric": "projected_model_period_mean_core_depth_descriptor",
+                "geometry_role": "nominal_equatorial_section_connector_not_exact_core_axis",
+                "assumptions": [
+                  "The two named FLAME sections share the1990–2002 monthly-output mean and core definition.",
+                  "A nominal equatorial connector provides distance/display context only; the source core lies slightly south of the equator and its exact latitude is not recovered.",
+                  "Intermediate core depth is an assumed linear trend in reference distance, rounded10m for display; no extrapolation west of35W or east of10W.",
+                  "Observed100m and SPFLAME100m at35W remain separate comparisons and are excluded from interpolation.",
+                  "No vertical thickness, width pairing, annual extrema or volume is inferred."
+                ]
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-equatorial-undercurrent",
+          "name": "Pacific Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-euc-azminuddin-2022-flow-band",
+            "pacific-euc-halpern-2023-165e-comparison-core-level",
+            "pacific-euc-halpern-2023-170w-comparison-core-level",
+            "pacific-euc-halpern-2023-140w-comparison-core-level",
+            "pacific-euc-halpern-2023-110w-comparison-core-level"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-euc-halpern2023-noncontemporaneous-core-connector-v1",
+              "owner_entity_id": "current:pacific-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/4",
+              "case_scope": {
+                "phase_label": null,
+                "campaign_window": null,
+                "metric": "projected_comparison_selected_core_level_descriptor",
+                "geometry_role": "nominal_observing_site_connector_not_selected_whole_current_route",
+                "assumptions": [
+                  "Straight geodesic legs connect nominal observing sites for display; this is not an observed streamline, navigable route or selected full-current axis.",
+                  "Selected levels from differing record windows are connected only as an explicitly noncontemporaneous illustrative scenario. No common-period recomputation.",
+                  "Intermediate levels are unmeasured interpolation. No extrapolation west of165E or east of110W.",
+                  "Source5m analysis spacing supports preserving stated anchor values; display rounding is not depth uncertainty.",
+                  "No width pairing, vertical thickness or volume is inferred."
+                ]
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:indian-equatorial-undercurrent",
+          "name": "Indian Ocean Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "indian-euc-siswanto-2019-march-2017-flow-band",
+            "indian-euc-siswanto-2019-winter-core-depth",
+            "indian-euc-siswanto-2019-spring-core-depth"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "indian-equatorial-undercurrent-indian-euc-relative50200-2022-03-15-component90-v1",
+              "owner_entity_id": "current:indian-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json",
+              "source_sha256": "818f903ef6d68f118525a018490d6753e04b385a260e317f6da7276c360bdd26",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not monthly means or annual envelopes.",
+                "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "indian-euc-relative50200-v1",
+                "comparison_group": "model_relative_core_interval50_200",
+                "selection_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-equatorial-undercurrent-indian-euc-relative50200-2022-06-15-component90-v1",
+              "owner_entity_id": "current:indian-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json",
+              "source_sha256": "818f903ef6d68f118525a018490d6753e04b385a260e317f6da7276c360bdd26",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not monthly means or annual envelopes.",
+                "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "indian-euc-relative50200-v1",
+                "comparison_group": "model_relative_core_interval50_200",
+                "selection_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-equatorial-undercurrent-indian-euc-relative50200-2022-09-15-component90-v1",
+              "owner_entity_id": "current:indian-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json",
+              "source_sha256": "818f903ef6d68f118525a018490d6753e04b385a260e317f6da7276c360bdd26",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not monthly means or annual envelopes.",
+                "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "indian-euc-relative50200-v1",
+                "comparison_group": "model_relative_core_interval50_200",
+                "selection_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-equatorial-undercurrent-indian-euc-relative50200-2022-12-15-component90-v1",
+              "owner_entity_id": "current:indian-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json",
+              "source_sha256": "818f903ef6d68f118525a018490d6753e04b385a260e317f6da7276c360bdd26",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not monthly means or annual envelopes.",
+                "branch_scope": "Partial central/eastern Indian EUC-context70–90E reach within2S–2N. Distinguish subsurface-enhanced eastward candidate flow from surface-dominated Wyrtki jets,monsoon currents and neighboring circulation;relative velocity comparison does not independently establish that distinction. Native0m comparison is not a water-mass or thermal criterion. No thermocline classification or at-least-month persistence is verified. Historical90E moorings/2017 section remain distinct from2022 model snapshots. Out-of-gate branches,western formation and full annual behavior remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "indian-euc-relative50200-v1",
+                "comparison_group": "model_relative_core_interval50_200",
+                "selection_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  50,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-equatorial",
+      "name": "North Equatorial Current",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/2",
+      "membership_scope_note": "Admitted Atlantic/Pacific westward NEC members. Seasonal Indian nomenclature remains unresolved and is not assigned a separate member or copied from Monsoon.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-north-equatorial",
+          "name": "Atlantic North Equatorial Current",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-nec-stramma-2005-northern-band-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-north-equatorial-full-sections-2022-01-15-component270-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json",
+              "source_sha256": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Atlanticwestward surfaceNEC27–55Wwith fixed meridional searchwindows16–21N,14.5–19.5N,12.5–17.5N,10.5–15.5N. Exclude northernNECbandabove22Nat27W,nearAfricaeastof27W,NECC/NEUCbands,GuineaDome,downstreamCaribbean/Antilles/Guiana flows and detachededdies as targetidentities. Published2003ADCP/FLAMEbandbounds are contextual,not2022axes or depththresholdtargets. No familyinheritance.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-north-equatorial-full-sections-2022-07-15-component270-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json",
+              "source_sha256": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Atlanticwestward surfaceNEC27–55Wwith fixed meridional searchwindows16–21N,14.5–19.5N,12.5–17.5N,10.5–15.5N. Exclude northernNECbandabove22Nat27W,nearAfricaeastof27W,NECC/NEUCbands,GuineaDome,downstreamCaribbean/Antilles/Guiana flows and detachededdies as targetidentities. Published2003ADCP/FLAMEbandbounds are contextual,not2022axes or depththresholdtargets. No familyinheritance.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-north-equatorial",
+          "name": "Pacific North Equatorial Current",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-nec-schonau-2015-northern-reach1000"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-north-equatorial-full-sections-2022-01-15-component270-v1",
+              "owner_entity_id": "current:pacific-north-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json",
+              "source_sha256": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Pacific surfacewestward NEC170W–130E,restricted11–16Nsearchband,not fullbasin/lateralextent or northernbranchcoverage. Exclude eastwardNECC/NEUCjets,SECorEUC,downstreamKuroshio/Mindanao and detachededdies as targetidentities. Nominal8–17Nsourceband and1000mgliderreach are contextual differentmetrics,not currentwidth/depthtargets. No member depths inherited by the parentfamily.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-north-equatorial-full-sections-2022-07-15-component270-v1",
+              "owner_entity_id": "current:pacific-north-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json",
+              "source_sha256": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Pacific surfacewestward NEC170W–130E,restricted11–16Nsearchband,not fullbasin/lateralextent or northernbranchcoverage. Exclude eastwardNECC/NEUCjets,SECorEUC,downstreamKuroshio/Mindanao and detachededdies as targetidentities. Nominal8–17Nsourceband and1000mgliderreach are contextual differentmetrics,not currentwidth/depthtargets. No member depths inherited by the parentfamily.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-equatorial-countercurrent",
+      "name": "North Equatorial Countercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/3",
+      "membership_scope_note": "Atlantic/Pacific surface NECC members; Indian southern-hemisphere countercurrent is not treated as a north-equatorial member.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-north-equatorial-countercurrent",
+          "name": "Atlantic North Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-necc-bourles-1999-march-core",
+            "atlantic-necc-sivkov-2021-setting-band"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-north-equatorial-countercurrent-full-sections-2022-01-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "PartialwesternAtlanticNECC42–32Wreach withOSW3.5–8.5Nsearches. SourceJASsummercontext doesnot establishJanuarycontinuity oruniquejoiningofnorthern/southerncores. Exclude upstreamNBCretroflexion,equatorialESC,easternbasincontinuation anddetachedrings as targets. A selectedeastwardjet maybelongtoseparatebranches/eddies;no independentbranchassignment,sumofbranches oruniquevelocityaxis inferred.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-north-equatorial-countercurrent-full-sections-2022-07-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "PartialwesternAtlanticNECC42–32Wreach withOSW3.5–8.5Nsearches. SourceJASsummercontext doesnot establishJanuarycontinuity oruniquejoiningofnorthern/southerncores. Exclude upstreamNBCretroflexion,equatorialESC,easternbasincontinuation anddetachedrings as targets. A selectedeastwardjet maybelongtoseparatebranches/eddies;no independentbranchassignment,sumofbranches oruniquevelocityaxis inferred.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-north-equatorial-countercurrent",
+          "name": "Pacific North Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-necc-song-2019-142e-mean"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-north-equatorial-countercurrent-full-sections-2022-01-15-component90-v1",
+              "owner_entity_id": "current:pacific-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-centralPacificNECC140–95Wsource-studyreach,not wholebasin orcontinuousyear-roundaxis. Exclude westerninflow,coastalredistributioneastof95W,equatorialEUC/deeperNSCC-TsuchiyaJet anddetachededdies as targets. Johnson2002reports weak/absent surfaceexpression near110WinDJF;retain qualifying/nonqualifying2022snapshotoutcomes without assuming thatsourceclimatology is a datedobservation or thatallsubsurfaceeastflowvanishes.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-north-equatorial-countercurrent-full-sections-2022-07-15-component90-v1",
+              "owner_entity_id": "current:pacific-north-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json",
+              "source_sha256": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-centralPacificNECC140–95Wsource-studyreach,not wholebasin orcontinuousyear-roundaxis. Exclude westerninflow,coastalredistributioneastof95W,equatorialEUC/deeperNSCC-TsuchiyaJet anddetachededdies as targets. Johnson2002reports weak/absent surfaceexpression near110WinDJF;retain qualifying/nonqualifying2022snapshotoutcomes without assuming thatsourceclimatology is a datedobservation or thatallsubsurfaceeastflowvanishes.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:north-equatorial-undercurrent",
+      "name": "North Equatorial Undercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/4",
+      "membership_scope_note": "Atlantic/Pacific off-equatorial NEUC usages. Pacific member itself uses a declared southern principal jet; its conditional endpoint interpretation propagates to this family display.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-north-equatorial-undercurrent",
+          "name": "Atlantic North Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-neuc-sivkov-2021-setting-band"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-north-equatorial-undercurrent-northern-interval100400-2022-07-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "cf70cc1d31a076a4b6b5383ee949434ded4ce3bd9607425ffcb9c2aaccedca72",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial western Atlantic NEUC40–30W reach,with2–5N searches within published thermocline/35W regional context. Exclude NBC retroflection,shallower NECC,equatorial EUC,northern intermediate countercurrent and detached eddies as target identities. Same-sign neighboring flow can connect and broad maxima do not independently validate undercurrent axes or source-water class. Source100–300m feeding layers,historical transport domains and pressure/density bounds are not imposed current edges or2022 observations.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "northern-interval100400-v1",
+                "comparison_group": "model_interval100_400_no_surface_gate",
+                "selection_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "core_search_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [
+            {
+              "case_id": "atlantic-north-equatorial-undercurrent-northern-interval100400-2022-01-15-component90-v1",
+              "owner_entity_id": "current:atlantic-north-equatorial-undercurrent",
+              "collection": "unresolved_reference_cases",
+              "source_file": "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "cf70cc1d31a076a4b6b5383ee949434ded4ce3bd9607425ffcb9c2aaccedca72",
+              "source_pointer": "/unresolved_reference_cases/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial western Atlantic NEUC40–30W reach,with2–5N searches within published thermocline/35W regional context. Exclude NBC retroflection,shallower NECC,equatorial EUC,northern intermediate countercurrent and detached eddies as target identities. Same-sign neighboring flow can connect and broad maxima do not independently validate undercurrent axes or source-water class. Source100–300m feeding layers,historical transport domains and pressure/density bounds are not imposed current edges or2022 observations.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "northern-interval100400-v1",
+                "comparison_group": "model_interval100_400_no_surface_gate",
+                "selection_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "core_search_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-north-equatorial-undercurrent",
+          "name": "Pacific North Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-neuc-li-2018-neucs-upper-boundary",
+            "pacific-neuc-li-2018-neucm-upper-boundary",
+            "pacific-neuc-li-2018-neucn-upper-boundary"
+          ],
+          "regional_projection_refs": [],
+          "unresolved_reference_case_refs": [],
+          "status": "member_not_yet_projected"
+        }
+      ],
+      "members_without_supported_regional_cases": [
+        "current:pacific-north-equatorial-undercurrent"
+      ],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:south-equatorial",
+      "name": "South Equatorial Current",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/5",
+      "membership_scope_note": "Admitted Atlantic/Pacific/Indian westward SEC basin members; parallel branches and return currents are not summed.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-south-equatorial",
+          "name": "Atlantic South Equatorial Current",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-sec-assuncao-2023-regional100m-extent"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-south-equatorial-full-sections-2022-01-15-component270-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial western Atlantic cSEC-context31–35W reach near the Fernando de Noronha island/seamount chain,with1.5–6.5S searches. Exclude coastal NBC/NBUC,northern/southern SEC branches,eastward SEUC and detached eddies as target identities. Broad westward maxima do not independently establish central-branch membership,an island-clear current axis or one coherent core. Source approximate100m regional surface extent is context,not an imposed cutoff,whole-current thickness or annual range.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-full-sections-2022-07-15-component270-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial western Atlantic cSEC-context31–35W reach near the Fernando de Noronha island/seamount chain,with1.5–6.5S searches. Exclude coastal NBC/NBUC,northern/southern SEC branches,eastward SEUC and detached eddies as target identities. Broad westward maxima do not independently establish central-branch membership,an island-clear current axis or one coherent core. Source approximate100m regional surface extent is context,not an imposed cutoff,whole-current thickness or annual range.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-south-equatorial",
+          "name": "Pacific South Equatorial Current",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-northern-sec-song-2019-142e-mean"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-south-equatorial-full-sections-2022-01-15-component270-v1",
+              "owner_entity_id": "current:pacific-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-central Pacific SEC(S) surface-branch100–140W reach,with0.5–5.5S searches. Exclude SEC(N),equatorial EUC,deep EIC,subsurface countercurrents/Tsuchiya jets,SECC,western boundary flow and detached eddies as target identities. Deeper same-sign SEC extensions or other currents can connect in the model;geographic maxima do not independently identify branches. The separate142E northern-component150m source reference is not transferred to this southern reach.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-south-equatorial-full-sections-2022-07-15-component270-v1",
+              "owner_entity_id": "current:pacific-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial east-central Pacific SEC(S) surface-branch100–140W reach,with0.5–5.5S searches. Exclude SEC(N),equatorial EUC,deep EIC,subsurface countercurrents/Tsuchiya jets,SECC,western boundary flow and detached eddies as target identities. Deeper same-sign SEC extensions or other currents can connect in the model;geographic maxima do not independently identify branches. The separate142E northern-component150m source reference is not transferred to this southern reach.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:indian-south-equatorial",
+          "name": "Indian South Equatorial Current",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "indian-sec-premchand-1976-may-june1965-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "indian-south-equatorial-full-sections-2022-01-15-component270-v1",
+              "owner_entity_id": "current:indian-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/4",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Indian SEC90–70E southern zonal-mode reach,with10–15S searches. Northern northwestward meanders can lie outside these fixed windows and are not filled by moving gates. Exclude SECC,SCTR recirculation,coastal Madagascar/Agulhas branches,upstream ITF straits and detached eddies as target identities. Salinity fronts,SSH contours and20C thermocline depth are separate diagnostics,not velocity axes or current bottoms. No reproduction of Carr/Chen model fields,source grid lengths or source seasonal geometry is claimed.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-full-sections-2022-07-15-component270-v1",
+              "owner_entity_id": "current:indian-south-equatorial",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json",
+              "source_sha256": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+              "source_pointer": "/projections/5",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial Indian SEC90–70E southern zonal-mode reach,with10–15S searches. Northern northwestward meanders can lie outside these fixed windows and are not filled by moving gates. Exclude SECC,SCTR recirculation,coastal Madagascar/Agulhas branches,upstream ITF straits and detached eddies as target identities. Salinity fronts,SSH contours and20C thermocline depth are separate diagnostics,not velocity axes or current bottoms. No reproduction of Carr/Chen model fields,source grid lengths or source seasonal geometry is claimed.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:south-equatorial-countercurrent",
+      "name": "South Equatorial Countercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/6",
+      "membership_scope_note": "Admitted Atlantic/Pacific/Indian SECC usages, with distinct phase/depth contexts retained. No simultaneous global axis implied.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-south-equatorial-countercurrent",
+          "name": "Atlantic South Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-secc-bourles-1999-shallow-core",
+            "atlantic-secc-bourles-1999-deep-core",
+            "atlantic-secc-bourles-1999-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context0_100-2022-03-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_100-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_100_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "shallow",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context0_100-2022-06-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_100-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_100_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "shallow",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context0_100-2022-09-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_100-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_100_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "shallow",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context0_100-2022-12-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_100-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_100_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  100
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "shallow",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context150_350-2022-03-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/4",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_150_350-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_150_350_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "core_search_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "deep",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context150_350-2022-06-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/5",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_150_350-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_150_350_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "core_search_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "deep",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context150_350-2022-09-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/6",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_150_350-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_150_350_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "core_search_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "deep",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-south-equatorial-countercurrent-atlantic-secc-multi-context150_350-2022-12-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json",
+              "source_sha256": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+              "source_pointer": "/projections/7",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Partial western-to-central Atlantic eastward SECC context30-24W/6-9S. Separate shallow/deep search windows motivated by historical40/240m cores and110m westward separation;no imposed reversal or transferred boundaries. Each context may select a different latitude column or the same connected component. Non-additive diagnostics,not independently validated layers,observations or separate currents. Exclude separately named Atlantic SEUC,other basin members and whole basin/season continuity.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_150_350-primary0p1-no-surface-gate-v1",
+                "comparison_group": "model_interval_150_350_primary0p1_no_surface_gate",
+                "selection_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "core_search_depth_interval_m": [
+                  150,
+                  350
+                ],
+                "source_surface_component_gate_m_s": null,
+                "source_section_geometry": "longitude",
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders",
+                "diagnostic_context_id": "deep",
+                "vertical_contexts_are_additive": false,
+                "contexts_are_independent_observations": false
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:pacific-south-equatorial-countercurrent",
+          "name": "Pacific South Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "pacific-secc-rotschi-1972-threshold-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "pacific-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-03-15-component90-v1",
+              "owner_entity_id": "current:pacific-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/4",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Western Pacific SECC local168-172E/12.5-7.5S context around170E/10S. Exclude equatorial EUC/SSCC,westward SEC and southern tropical/subtropical countercurrents south of15S. Historical geostrophic reference methods and approximate upper300m10cm/s scale do not validate2022 absolute velocities,uniform bottom or annual bounds. Gates can censor wider/meandering branches;no weaker interior replacement.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-06-15-component90-v1",
+              "owner_entity_id": "current:pacific-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/5",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Western Pacific SECC local168-172E/12.5-7.5S context around170E/10S. Exclude equatorial EUC/SSCC,westward SEC and southern tropical/subtropical countercurrents south of15S. Historical geostrophic reference methods and approximate upper300m10cm/s scale do not validate2022 absolute velocities,uniform bottom or annual bounds. Gates can censor wider/meandering branches;no weaker interior replacement.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-09-15-component90-v1",
+              "owner_entity_id": "current:pacific-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/6",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Western Pacific SECC local168-172E/12.5-7.5S context around170E/10S. Exclude equatorial EUC/SSCC,westward SEC and southern tropical/subtropical countercurrents south of15S. Historical geostrophic reference methods and approximate upper300m10cm/s scale do not validate2022 absolute velocities,uniform bottom or annual bounds. Gates can censor wider/meandering branches;no weaker interior replacement.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "pacific-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-12-15-component90-v1",
+              "owner_entity_id": "current:pacific-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/7",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Western Pacific SECC local168-172E/12.5-7.5S context around170E/10S. Exclude equatorial EUC/SSCC,westward SEC and southern tropical/subtropical countercurrents south of15S. Historical geostrophic reference methods and approximate upper300m10cm/s scale do not validate2022 absolute velocities,uniform bottom or annual bounds. Gates can censor wider/meandering branches;no weaker interior replacement.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:indian-south-equatorial-countercurrent",
+          "name": "Indian Ocean South Equatorial Countercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "indian-secc-hacker-1998-i9n-labeled100m-reach"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-03-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-03-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-06-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-06-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-09-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-09-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "indian-south-equatorial-countercurrent-southern-countercurrent-interval0_200-2022-12-15-component90-v1",
+              "owner_entity_id": "current:indian-south-equatorial-countercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json",
+              "source_sha256": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+              "source_pointer": "/projections/3",
+              "case_scope": {
+                "snapshot_time_utc": "2022-12-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous March/June/September/December15,2022 00Z;quarterly probes,not seasonal means or annual envelopes.",
+                "branch_scope": "Eastern Indian SECC local93-97E/8-4S context around the historical I9N95E/6S section. Exclude equatorial EUC,westward SEC,northern tentative NECC,Preparis Eddy and ITF identity. Historical1995 northeast-monsoon flow and100m presence do not validate2022 axes,flow bottom or annual bounds. East of selected90E atlas handoff;do not extrapolate there or silently substitute its route.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "interval_0_200-no-surface-gate-v1",
+                "comparison_group": "model_interval_0_200_no_surface_gate",
+                "selection_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "core_search_depth_interval_m": [
+                  0,
+                  200
+                ],
+                "source_surface_component_gate_m_s": null,
+                "reference_geometry_scope": "independent_regional_connector_between_original_sections",
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:south-equatorial-undercurrent",
+      "name": "South Equatorial Undercurrent",
+      "identity_level": "family",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/7",
+      "membership_scope_note": "Admitted Atlantic/Indian SEUC usages. Pacific South Subsurface Countercurrent remains a distinct identity and is not silently substituted.",
+      "members": [
+        {
+          "entity_id": "current:atlantic-south-equatorial-undercurrent",
+          "name": "Atlantic South Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "atlantic-seuc-molinari-1981-core-depth-range",
+            "atlantic-seuc-molinari-1981-deep-core-bound"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "atlantic-seuc-interval100-400-2022-01-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json",
+              "source_sha256": "f20dfe9017b2366814a07be7fb8c4764ace847706a8c6d5e112ace159f6a9be3",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "Retained HYCOM January/July15,2022 00Z snapshots; no new provider fields or independent observations.",
+                "branch_scope": "Partial western Atlantic SEUC-context35–31W reach near Fernando de Noronha,with fixed5.5–2.5S searches. Exclude westward surface SEC,coastal NBC/NBUC,equatorial EUC,SECC and detached eddies as target identities. Deeper same-sign intermediate flow can connect to selected layers and does not establish SEUC thickness. Source1978–1980 core descriptions,2015/2017 ABRACOS seasons and historical35W means are separate from2022 snapshots. Geographic maxima do not independently identify an undercurrent axis or source-water class;out-of-gate branches remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "atlantic-seuc-interval100-400-no-surface-gate-v1",
+                "comparison_group": "model_counterflow_interval100_400_no_surface_gate",
+                "selection_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "core_search_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connectors_between_interval_selected_columns_with_explicit_gaps"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "atlantic-seuc-interval100-400-2022-07-15-component90-v1",
+              "owner_entity_id": "current:atlantic-south-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json",
+              "source_sha256": "f20dfe9017b2366814a07be7fb8c4764ace847706a8c6d5e112ace159f6a9be3",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "Retained HYCOM January/July15,2022 00Z snapshots; no new provider fields or independent observations.",
+                "branch_scope": "Partial western Atlantic SEUC-context35–31W reach near Fernando de Noronha,with fixed5.5–2.5S searches. Exclude westward surface SEC,coastal NBC/NBUC,equatorial EUC,SECC and detached eddies as target identities. Deeper same-sign intermediate flow can connect to selected layers and does not establish SEUC thickness. Source1978–1980 core descriptions,2015/2017 ABRACOS seasons and historical35W means are separate from2022 snapshots. Geographic maxima do not independently identify an undercurrent axis or source-water class;out-of-gate branches remain unsearched.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "method_id": "atlantic-seuc-interval100-400-no-surface-gate-v1",
+                "comparison_group": "model_counterflow_interval100_400_no_surface_gate",
+                "selection_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "core_search_depth_interval_m": [
+                  100,
+                  400
+                ],
+                "source_surface_component_gate_m_s": null,
+                "geometry_role": "regional_reference_connectors_between_interval_selected_columns_with_explicit_gaps"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:indian-south-equatorial-undercurrent",
+          "name": "Indian Ocean South Equatorial Undercurrent",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "indian-seuc-chen-2022-observed-core-depth-band",
+            "indian-seuc-chen-2022-climatological-deep-reach-bound",
+            "indian-seuc-chen-2022-core-thickness-east-minimum",
+            "indian-seuc-chen-2022-core-thickness-central-maximum",
+            "indian-seuc-chen-2022-core-thickness-longitude-median"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "indian-seuc-chen2022-bran-mam-core-span-scenario-v1",
+              "owner_entity_id": "current:indian-south-equatorial-undercurrent",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/6",
+              "case_scope": {
+                "phase_label": "March–May",
+                "campaign_window": null,
+                "metric": "projected_threshold_core_vertical_span",
+                "geometry_role": "osw_editorial_reference_route_with_approximate_source_longitude_gates",
+                "assumptions": [
+                  "Source values are maximum vertical ranges of the zonal u>0.1m/s threshold core, not bottom depths or whole-flow thickness. A vertical span does not establish a filled contiguous column.",
+                  "Approximate source longitude contexts map to exact gates on an OSW editorial route. The drawing latitude is not a recovered core axis.",
+                  "Between74E and95E, intermediate span varies linearly in reference distance as an illustrative scenario. It does not reconstruct Figure3 or assert monotonic actual sections.",
+                  "The longitude median1025m is a nonlocal statistic with no unique coordinate; it is excluded as an anchor.",
+                  "Preserve1719m/57m source anchors; round assumed intermediate values50m and retain source min/max enclosure. Display rounding is not uncertainty.",
+                  "No extrapolation west of74E or east of95E; March–May2001–2018 BRAN climatology does not establish a full seasonal envelope.",
+                  "No cross-sectional shape, width pairing or area/volume estimate from products of separate maximum spans."
+                ]
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:gulf-stream-system",
+      "name": "Gulf Stream System",
+      "identity_level": "system",
+      "status": "member_discovery_only_not_parent_measurement",
+      "membership_source_file": "research/current-depth-member-index-v7.json",
+      "membership_source_pointer": "/records/8",
+      "membership_scope_note": "Strict NOAA/textbook sequence: Florida Current from Florida Straits to Cape Hatteras, Gulf Stream proper from Cape Hatteras toward Grand Banks, North Atlantic Current from Grand Banks toward western British Isles. Shared handoff points have zero length; no common along-route segment is summed twice. Excludes Loop/Caribbean upstream, Norwegian and other branches downstream, and recirculations. Combines rounded reported descriptions and one geographic reference-route estimate; it is not a traced continuous axis.",
+      "members": [
+        {
+          "entity_id": "current:florida",
+          "name": "Florida Current",
+          "identity_level": "segment",
+          "source_depth_reference_ids": [
+            "cainzos-2023-t02-row-47-transport-depth-extent",
+            "cainzos-2023-t02-row-48-transport-depth-extent",
+            "cainzos-2023-t02-row-49-transport-depth-extent",
+            "florida-spray-2023-mean-core",
+            "florida-spray-2023-mean-reach-5cms",
+            "florida-spray-2023-mean-half-core",
+            "florida-spray-2023-phase-01-core",
+            "florida-spray-2023-phase-01-reach-5cms",
+            "florida-spray-2023-phase-01-half-core",
+            "florida-spray-2023-phase-02-core",
+            "florida-spray-2023-phase-02-reach-5cms",
+            "florida-spray-2023-phase-02-half-core",
+            "florida-spray-2023-phase-03-core",
+            "florida-spray-2023-phase-03-reach-5cms",
+            "florida-spray-2023-phase-03-half-core",
+            "florida-spray-2023-phase-04-core",
+            "florida-spray-2023-phase-04-reach-5cms",
+            "florida-spray-2023-phase-04-half-core",
+            "florida-spray-2023-phase-05-core",
+            "florida-spray-2023-phase-05-reach-5cms",
+            "florida-spray-2023-phase-05-half-core",
+            "florida-spray-2023-phase-06-core",
+            "florida-spray-2023-phase-06-reach-5cms",
+            "florida-spray-2023-phase-06-half-core",
+            "florida-spray-2023-phase-07-core",
+            "florida-spray-2023-phase-07-reach-5cms",
+            "florida-spray-2023-phase-07-half-core",
+            "florida-spray-2023-phase-08-core",
+            "florida-spray-2023-phase-08-reach-5cms",
+            "florida-spray-2023-phase-08-half-core",
+            "florida-spray-2023-phase-09-core",
+            "florida-spray-2023-phase-09-reach-5cms",
+            "florida-spray-2023-phase-09-half-core",
+            "florida-spray-2023-phase-10-core",
+            "florida-spray-2023-phase-10-reach-5cms",
+            "florida-spray-2023-phase-10-half-core",
+            "florida-spray-2023-phase-11-core",
+            "florida-spray-2023-phase-11-reach-5cms",
+            "florida-spray-2023-phase-12-core",
+            "florida-spray-2023-phase-12-reach-5cms",
+            "florida-spray-2023-phase-12-half-core"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "florida-full-sections-2022-01-15-component0-v1",
+              "owner_entity_id": "current:florida",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json",
+              "source_sha256": "2b7a8737daeeca41f4b499f2f3282cd33e7b994d7aef2f8b88c7c2cdcb32d002",
+              "source_pointer": "/projections/0",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial northward Florida Straits25.5–27.5N regional reach, including the27N monitoring latitude. Exclude Gulf of Mexico Loop Current,Antilles flow east of Bahamas,downstream Gulf Stream and family-level Gulf Stream System as target identities. Mainland/Bahamas shallow or dry support can limit the window; broad maxima do not independently establish the current axis. Seabed depth and deepest wet sample are not substituted for a velocity-contour bottom. Existing27N Spray fitted means/phases are separate source context,not simultaneous independent validation.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "florida-full-sections-2022-07-15-component0-v1",
+              "owner_entity_id": "current:florida",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json",
+              "source_sha256": "2b7a8737daeeca41f4b499f2f3282cd33e7b994d7aef2f8b88c7c2cdcb32d002",
+              "source_pointer": "/projections/1",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM instantaneous2022January/July15T00Z;not monthly means or seasonal envelopes.",
+                "branch_scope": "Partial northward Florida Straits25.5–27.5N regional reach, including the27N monitoring latitude. Exclude Gulf of Mexico Loop Current,Antilles flow east of Bahamas,downstream Gulf Stream and family-level Gulf Stream System as target identities. Mainland/Bahamas shallow or dry support can limit the window; broad maxima do not independently establish the current axis. Seabed depth and deepest wet sample are not substituted for a velocity-contour bottom. Existing27N Spray fitted means/phases are separate source context,not simultaneous independent validation.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.1,
+                "source_surface_component_gate_m_s": 0.05,
+                "geometry_role": "regional_reference_connector_between_selected_model_columns_with_explicit_unselected_gate_midpoint_placeholders"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:gulf-stream",
+          "name": "Gulf Stream",
+          "identity_level": "current",
+          "source_depth_reference_ids": [
+            "cainzos-2023-t02-row-59-transport-depth-extent",
+            "gulf-stream-johns-1995-68w-deep-presence",
+            "gulf-stream-spray-2023-coastal-30n-mean-core",
+            "gulf-stream-spray-2023-coastal-30n-mean-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-mean-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-01-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-01-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-01-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-02-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-02-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-02-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-03-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-03-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-03-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-04-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-04-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-04-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-05-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-05-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-05-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-06-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-06-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-06-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-07-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-07-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-07-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-08-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-08-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-08-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-08-lower-20cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-09-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-09-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-09-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-10-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-10-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-10-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-11-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-11-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-11-half-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-12-core",
+            "gulf-stream-spray-2023-coastal-30n-phase-12-reach-5cms",
+            "gulf-stream-spray-2023-coastal-30n-phase-12-half-core",
+            "gulf-stream-spray-2023-coastal-32n-mean-core",
+            "gulf-stream-spray-2023-coastal-32n-mean-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-mean-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-01-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-01-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-01-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-01-lower-10cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-01-lower-20cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-02-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-02-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-02-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-03-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-03-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-03-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-04-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-04-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-04-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-05-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-05-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-05-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-06-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-06-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-06-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-07-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-07-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-07-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-08-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-08-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-08-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-09-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-09-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-09-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-10-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-10-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-10-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-11-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-11-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-11-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-11-lower-20cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-12-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-12-reach-5cms",
+            "gulf-stream-spray-2023-coastal-32n-phase-12-half-core",
+            "gulf-stream-spray-2023-coastal-32n-phase-12-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-mean-core",
+            "gulf-stream-spray-2023-coastal-34n-mean-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-mean-half-core",
+            "gulf-stream-spray-2023-coastal-34n-mean-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-01-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-01-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-01-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-01-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-02-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-02-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-02-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-02-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-03-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-03-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-03-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-03-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-04-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-04-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-04-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-04-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-05-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-05-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-05-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-06-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-06-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-06-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-06-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-07-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-07-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-07-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-07-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-08-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-08-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-08-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-08-lower-10cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-08-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-09-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-09-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-09-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-09-lower-20cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-10-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-10-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-10-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-11-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-11-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-11-half-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-12-core",
+            "gulf-stream-spray-2023-coastal-34n-phase-12-reach-5cms",
+            "gulf-stream-spray-2023-coastal-34n-phase-12-half-core",
+            "gulf-stream-spray-2023-offshore-73w-mean-core",
+            "gulf-stream-spray-2023-offshore-73w-mean-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-mean-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-01-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-01-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-01-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-02-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-02-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-02-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-03-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-03-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-03-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-04-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-04-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-04-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-05-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-05-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-05-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-06-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-06-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-06-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-07-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-07-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-07-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-08-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-08-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-08-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-09-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-09-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-09-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-10-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-10-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-10-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-11-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-11-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-11-half-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-12-core",
+            "gulf-stream-spray-2023-offshore-73w-phase-12-reach-5cms",
+            "gulf-stream-spray-2023-offshore-73w-phase-12-half-core",
+            "gulf-stream-spray-2023-offshore-70w-mean-core",
+            "gulf-stream-spray-2023-offshore-70w-mean-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-mean-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-01-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-01-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-01-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-02-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-02-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-02-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-03-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-03-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-03-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-04-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-04-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-04-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-05-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-05-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-05-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-06-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-06-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-06-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-07-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-07-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-07-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-08-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-08-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-08-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-09-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-09-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-09-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-10-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-10-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-10-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-11-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-11-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-11-half-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-12-core",
+            "gulf-stream-spray-2023-offshore-70w-phase-12-reach-5cms",
+            "gulf-stream-spray-2023-offshore-70w-phase-12-half-core"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "gulf-stream-spray2023-half-core-mean-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/12",
+              "case_scope": {
+                "phase_label": "time mean",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-01-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/13",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 01-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-02-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/14",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 02-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-03-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/15",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 03-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-04-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/16",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 04-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-05-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/17",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 05-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-06-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/18",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 06-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-07-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/19",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 07-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-08-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/20",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 08-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-09-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/21",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 09-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-10-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/22",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 10-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-11-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/23",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 11-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            },
+            {
+              "case_id": "gulf-stream-spray2023-half-core-phase-12-connector-v1",
+              "owner_entity_id": "current:gulf-stream",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/24",
+              "case_scope": {
+                "phase_label": "fitted annual-cycle phase 12-15",
+                "source_time_basis": "Published2015-07-16 through2023-05-30 fitted glider mean/two-harmonic annual cycle; phase timestamps are not instantaneous observations or monthly means.",
+                "metric": "projected_relative_core_component_decay_depth_descriptor",
+                "geometry_role": "source_fitted_section_core_connector_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [],
+          "status": "member_regional_cases_available"
+        },
+        {
+          "entity_id": "current:north-atlantic",
+          "name": "North Atlantic Current",
+          "identity_level": "system",
+          "source_depth_reference_ids": [
+            "cainzos-2023-t02-row-63-transport-depth-extent",
+            "cainzos-2023-t02-row-64-transport-depth-extent",
+            "cainzos-2023-t02-row-66-transport-depth-extent",
+            "cainzos-2023-t02-row-67-transport-depth-extent",
+            "cainzos-2023-t02-row-68-transport-depth-extent"
+          ],
+          "regional_projection_refs": [
+            {
+              "case_id": "north-atlantic-hycom-2022-01-15-regional-depth-v1",
+              "owner_entity_id": "current:north-atlantic",
+              "collection": "projections",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/projections/35",
+              "case_scope": {
+                "snapshot_time_utc": "2022-01-15T00:00:00Z",
+                "source_time_basis": "HYCOM2022 instantaneous00Z velocity sampled around an undated editorial corridor, not monthly mean or independently observed current axis.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.05,
+                "geometry_role": "frozen_editorial_reference_corridor_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "unresolved_reference_case_refs": [
+            {
+              "case_id": "north-atlantic-hycom-2022-07-15-regional-depth-v1",
+              "owner_entity_id": "current:north-atlantic",
+              "collection": "unresolved_reference_cases",
+              "source_file": "research/current-depth-route-projections-v14.json",
+              "source_sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+              "source_pointer": "/unresolved_reference_cases/2",
+              "case_scope": {
+                "snapshot_time_utc": "2022-07-15T00:00:00Z",
+                "source_time_basis": "HYCOM2022 instantaneous00Z velocity sampled around an undated editorial corridor, not monthly mean or independently observed current axis.",
+                "metric": "projected_signed_component_lower_isotach_depth_and_model_layer_span",
+                "primary_threshold_m_s": 0.05,
+                "geometry_role": "frozen_editorial_reference_corridor_not_observed_current_axis"
+              },
+              "whole_current_depth_established": false,
+              "parent_depth_values_inherited": false
+            }
+          ],
+          "status": "member_regional_cases_available"
+        }
+      ],
+      "members_without_supported_regional_cases": [],
+      "parent_depth_m": null,
+      "parent_depth_range_m": null,
+      "parent_volume_km3": null,
+      "aggregation_operator": null,
+      "parent_depth_values_inherited": false,
+      "whole_route_depth_profile_established": false,
+      "volume_eligible": false
+    }
+  ],
+  "interpretation": "Existing catalog membership links original member-owned regional cases and unresolved cases. Shared members/cases deduplicated globally. No length aggregation convention is transferred to depth;no parent scalar,range,volume or physical identity validation is inferred.",
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false,
+  "revision": 2,
+  "previous_discovery_index_file": "research/current-depth-projection-member-index-v1.json",
+  "operator_file": "research/current-depth-projection-member-index-operator-v2.json",
+  "operator_sha256": "2634ea5532e713d9ec642e6bbf8c1f3aea6f0c6aa3670a9f7e921d3bd0a796c6",
+  "input_sha256": {
+    "analysis/build_current_depth_projection_member_index_v1.py": "4bb0c5aa9998e31c7a853ee1144401344725c76044d1fee85ac71a0285d8050c",
+    "analysis/build_current_depth_projection_member_index_v2.py": "45e600c1828bd5e7ce5dfae42a81bc5c39197f15f4cec2193a942ef5c71617b8",
+    "analysis/load_current_depth_projection_inventory_v1.py": "0c59e211181258d630ddedf10a93501e01a84994c64179796d306fdb55a213ad",
+    "analysis/test_current_depth_projection_member_index_v2.py": "a974d012d116dd51f75b43eddd010c75eb22997bcabcda3c8bc25bb4360be42a",
+    "plans/current-depth-projection-member-discovery-protocol-v1.md": "44908c443ae8371f6cd490236ff35db7bb1559818777553753f7a917e69310c0",
+    "plans/current-depth-projection-member-discovery-protocol-v2.md": "8ac448e217ede759b839664497a18df46ac2e2f0c0df32a483dbdba556623459",
+    "research/current-depth-member-index-v7.json": "36babcc5ed51c5745bde8d6fc729bc396fb880df299df956fc29723fc12415dc",
+    "research/current-depth-projection-member-index-v1.json": "758246b01a22dc7788839cb3131bda224097e5292c870c526a315f21cdbb4f1a",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-route-projection-addenda/adriatic-surface-interval-full-sections-hycom2022-v1.csv": "91228f08a78294e9ffe66195a345e27c5dc0840b273b95d6811495c30aa053a2",
+    "research/current-depth-route-projection-addenda/adriatic-surface-interval-full-sections-hycom2022-v1.json": "f70bc8f9a06ae811986239a5de5318092bdecdefa62b4e36b8787e1e3c9583bf",
+    "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.csv": "54a18cceb72f0fe5086cc599f838ca30d26e47aeac461c3e3664353216e05103",
+    "research/current-depth-route-projection-addenda/atlantic-secc-multi-context-full-sections-hycom2022-v1.json": "1cd72deb99e62e5024b943e6524a96d8569754c3c0602adf5997eaa7379537ff",
+    "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.csv": "103de06a98abedf81618b90d914ab980e27c3e30d17db442571fd16eaccbed6a",
+    "research/current-depth-route-projection-addenda/atlantic-seuc-interval100-400-hycom2022-v1.json": "f20dfe9017b2366814a07be7fb8c4764ace847706a8c6d5e112ace159f6a9be3",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.csv": "472badfd6933d71b2d9b0ac357ad71c2050a29abf70688e75fb14e37f09d5e81",
+    "research/current-depth-route-projection-addenda/azcc-interval150-700-hycom2022-v1.json": "6e99065abc42c29bcb8c4b100c9799a4a540210fe8c8a0ee20156d432dc10e12",
+    "research/current-depth-route-projection-addenda/balearic-ligurian-interval-full-sections-hycom2022-v1.csv": "e85c6650432885a01410e2f7c4a87dee35ace827d76ba31cf6c5840ea0921d03",
+    "research/current-depth-route-projection-addenda/balearic-ligurian-interval-full-sections-hycom2022-v1.json": "b0a0b883694d12e96939f0b61858e2ca420c3a4f512e119efba5a2332e636f92",
+    "research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.csv": "8f1c1bb058c4566ae9604aa5431d579bd8c437c013b66cbfc2a1f732e047e610",
+    "research/current-depth-route-projection-addenda/barents-makassar-interval-full-sections-hycom2022-v1.json": "419792e3db4247d504445a9bdc0e76d5f1d93378e309af3e98088eb8feac01ea",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.csv": "f2165e6866265959516992b61b5b5e6a37aefb6d9792209cf5919af858750d0a",
+    "research/current-depth-route-projection-addenda/caribbean-azores-full-sections-hycom2022-v1.json": "5bdf91edde5b5e2dc3dacaa3e3e6e60a6d6b8c86861aeb9d07e107ec8d859eea",
+    "research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.csv": "f5adf676d8aa7f09b8334135e9d6ff2d5745d45b189470a7f674684bad17723b",
+    "research/current-depth-route-projection-addenda/coastal-upper-layer-interval-full-sections-hycom2022-v1.json": "a888439a40407c3dc07cf86e582febdca38f482f8b8ce78dabd4f7f5934705a0",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv": "21577e6d8f6f0644978df5511c6717ac3fa4f7cf681bb4dd3884a6ddab7c9468",
+    "research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json": "2147eaf6662d626eb13c95371ff3102fc6ad913a145633b22aa61994271dde13",
+    "research/current-depth-route-projection-addenda/davidson-rim-surface-qualified-full-sections-hycom2022-v1.csv": "d6f1d1e8aa68573ac7fe4d39c5b95b3e01bcf1a72b60e4f0c159752e42de6371",
+    "research/current-depth-route-projection-addenda/davidson-rim-surface-qualified-full-sections-hycom2022-v1.json": "7d30c7a96c82b2e0f7a1d20f857e75b8f556e3f2232d62bbc724084242287d91",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv": "6e97e07b1f3aa05594ade5b541d17b1cfae28d557556983e97c0d00a54095944",
+    "research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json": "2b7a8737daeeca41f4b499f2f3282cd33e7b994d7aef2f8b88c7c2cdcb32d002",
+    "research/current-depth-route-projection-addenda/gaspe-jutland-shallow-interval-full-sections-hycom2022-v1.csv": "0e72802d3337df9a5126a47060315dce0082460037d2a18a069e427eddb6c52d",
+    "research/current-depth-route-projection-addenda/gaspe-jutland-shallow-interval-full-sections-hycom2022-v1.json": "96d8ed0de2aa06f85999411b9dfb1e9081bcd5d58f538bfeeeef639e8d61e366",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv": "827995802a562c21e2daf04059ea935fa45a26ac57bb040f262adc1a6575bbf6",
+    "research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json": "dd6deb9cec56ee881b7406504dfb26d1bdebe795083e8482b84ac12af1c58587",
+    "research/current-depth-route-projection-addenda/guiana-egcc-upper-layer-interval-full-sections-hycom2022-v1.csv": "72a85a2205c41d949534cb8c77e031273f6e23069784f3939e90c5a38a5f151d",
+    "research/current-depth-route-projection-addenda/guiana-egcc-upper-layer-interval-full-sections-hycom2022-v1.json": "0232e2b45ec26fa07b240c4252567e87ee81b2c9380ec047737049c0fdc0fef5",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv": "127f43eb5de49dcb70d005e4fe7d422d886d4ae248adccf15174824ae141c990",
+    "research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json": "169a6224567506aed44d9d24a633ccbf589777fc59a90757b4001fd709872272",
+    "research/current-depth-route-projection-addenda/hiri-zeehan-interval-full-sections-hycom2022-v1.csv": "d32e04b3836149f54ea5dfe815cca43165395627f80294cf19617bbefb3a0e07",
+    "research/current-depth-route-projection-addenda/hiri-zeehan-interval-full-sections-hycom2022-v1.json": "87bd77d87111027d809fc161c3f54f62088ec16169b3c7c03f8b75ab779d0bc5",
+    "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.csv": "2f87a8f63fe9fbe15b05cbf4335d4a7613fb2883518ad312a9fe5e4e89133c0b",
+    "research/current-depth-route-projection-addenda/indian-euc-relative-full-sections-hycom2022-v1.json": "818f903ef6d68f118525a018490d6753e04b385a260e317f6da7276c360bdd26",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv": "f72f877f6b1ad04c94cfff2668ab08291a4c7844f0c6f7c48b1fc84f81da849b",
+    "research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json": "afbf249c2cc53608fc3f8da4a364f7c4247e6d85fef26b575f97ef2c7e887338",
+    "research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.csv": "f49e5da6a1c2673fcdb0240373563269cf2b7301b1d1fb4fb8d6149dd95d794b",
+    "research/current-depth-route-projection-addenda/loop-antilles-interval-full-sections-hycom2022-v1.json": "22297432900eceb2847ed9b1f2fbb979b304e40220480784a803ff8d8590f70e",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.csv": "191c9da7cc6d9517f8b6a9ebf5a200ea065fb61d48e120f36b257ce1b41c39ca",
+    "research/current-depth-route-projection-addenda/malvinas-eacc-full-sections-hycom2022-v1.json": "3a0e8a57d668f0d5abde3bc417b7bf1251b58acdc0911ebd357096e79bc6dcc9",
+    "research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.csv": "f92eeeb69eb73a4a037c8e4c8d91ce579eab8d9f24871e7888aaf9d1474d714d",
+    "research/current-depth-route-projection-addenda/mauritania-baffin-interval-full-sections-hycom2022-v1.json": "fec205f84073f5d20ad095b4596c360e1b19737df3a20683d5af2e1e55eccec7",
+    "research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.csv": "1a293b818d4870f969279dce8bd08fd4661af62f1dd5d6ebd497774cf9142f05",
+    "research/current-depth-route-projection-addenda/mediterranean-boundary-interval-full-sections-hycom2022-v1.json": "d0baff7aa8d25016c84be4554a94e0b8f2785cf8f99255bb4b37918e927036b0",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv": "49df7f1b8e374214d0b472f8b560fce96ab24480fd67184aad068a4fe4b66991",
+    "research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json": "78e239353a7bdd6953f846c112d43ca7d910a4413c5c30ec0813475a131af898",
+    "research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.csv": "851abd92e8fe205e896be2de02b0d6e0c055ccf6646bb6ab42e211bf617f4c24",
+    "research/current-depth-route-projection-addenda/ngcuc-interval-full-sections-hycom2022-v1.json": "44edd9697a269aef3f4eaaf947dd9d45b9be6b380ef6c4ae35fce0e80713bcf5",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv": "48389a2259cca30ab164f5444248d6dcbb4fa16044540ed3b91b8141ae350108",
+    "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json": "7a2745a5fe34f4b5281146dfca06b60eac8bda6901d9748da3e0831ec0c82b9c",
+    "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.csv": "0f0d8b5389d4c2144e0546ef5d6f1230801301e0e078bd68b91919c70c8900b4",
+    "research/current-depth-route-projection-addenda/northern-interval-full-sections-hycom2022-v1.json": "cf70cc1d31a076a4b6b5383ee949434ded4ce3bd9607425ffcb9c2aaccedca72",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv": "e6ec0b8b6ccefa153f9d913b6231b499335f51ed03a2ef13db81b042a9066f0f",
+    "research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json": "754cd2b67ca61dc87a8ee306f86171195cc0227c57f8d98af1914bdaf56b3718",
+    "research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.csv": "6911df869eb170c61cba3be4e71a66041b2025f355a763e035068e802891a8a9",
+    "research/current-depth-route-projection-addenda/pacific-sscc-interval100-400-hycom2022-v1.json": "33e3c07faa5e82d1127c81202bf1343dd219ae38e9db26914ab51dfdb80fbea6",
+    "research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.csv": "8728517987378968ff84e428b45cdb4256ffaa05193fa142a77e5e3152922e75",
+    "research/current-depth-route-projection-addenda/partitioned-ocean-full-sections-hycom2022-v1.json": "cc724a9714960809a588faaa953c663ba4b35719cde0a9bde17307455431c5dc",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.csv": "bd7dbddbd2d1124ed79d2211a092f0987bd29f4c1f9f0fc97b87a2c6aee9215b",
+    "research/current-depth-route-projection-addenda/sec-basin-full-sections-hycom2022-v1.json": "4d256b39bf2085b268988c9a13a693a3562466acc8abf48eab3feaf53d9584b4",
+    "research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.csv": "a4e3241d2d8da0efef01066b12ee9edafa9845ac50a0a0ab2ae1b47d8aa682d2",
+    "research/current-depth-route-projection-addenda/solomon-undercurrents-interval-full-sections-hycom2022-v1.json": "8cdca9daadf90746c788121decd2707610ca46219efe46a347d3f0a3bc74220d",
+    "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.csv": "5ff9a10e83d922867a9d4dbd6b12d1d8f16405184874c6be55f3751ece0c7aab",
+    "research/current-depth-route-projection-addenda/southern-countercurrent-interval-full-sections-hycom2022-v1.json": "06558455498d35cd3108c481def1f82143b24a71c1e1570bd8a801c2c40c55ad",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv": "d15483c168f3f025a7aa6c43a2466b7bc376e2a0d78e87298069a17cd518664c",
+    "research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json": "0a43af62d9266b375936698abf7d9aee702d44aa4fd7c70a74058e1e9fe249b9",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv": "7fe357c2816765b69d8582bdef28f8e11f04f8f9f8eba161ae1bb87c0e12dcaa",
+    "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json": "90702129dd0472abb53660dc28e6e5c194ef78044d3e07a384f45dee8398c4dd",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv": "d0bdd2391c2def5544442fe0640305ad8d89f6ebb25d7f05440793e54baa0fd5",
+    "research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json": "deb639a3c73d93097e67b839f9f867783bca4a7a03f35f509c27d9da5600123a",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv": "9e7da2d7eab4b36027548d114472309e0e89716df4480ef11cb8ca07654dc622",
+    "research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json": "b24cadbad52bb202747550567161c08c1ae3099ba7bb1f83eacca63a77a76231",
+    "research/current-depth-route-projection-inventory-source-review-v36.json": "7aff317602a4a661e4e9e1decd83f354e25113dc76362388911bace7405c3cc1",
+    "research/current-depth-route-projection-inventory-v36.json": "4901aed50949328406ce6ba3c204c9fbe9b28ba507b0a7061d5cdea946bccf6f",
+    "research/current-depth-route-projections-v14.csv": "b232e187b6335da5f45cbff75432d3724b4c16317cdfa968b33ab0e5a9df83d8",
+    "research/current-depth-route-projections-v14.json": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+    "research/current-depth-unresolved-reference-cases-v1.csv": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+    "research/current-length-family-conventions-v1.json": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086"
+  }
+}

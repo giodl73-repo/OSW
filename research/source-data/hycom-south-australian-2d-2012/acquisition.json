@@ -1,0 +1,67 @@
+{
+  "schema": "osw.south-australian-hycom-2d-acquisition.v1",
+  "acquired_utc": "2026-10-20T21:18:42.040634+00:00",
+  "provider": "HYCOM/NAVO/NRL, GOFS3.0 HYCOM+NCODA reanalysis",
+  "rights": "Original NC_GLOBAL distribution_statement: Approved for public release. Distribution unlimited.",
+  "protocol_file": "plans/south-australian-hycom-2d-source-selection-protocol-v1.md",
+  "protocol_sha256": "eac25dba997bb60b36d64f8aa5de119a7fd5ee61b36c49bd8b6d25cc640c492d",
+  "operator_file": "analysis/acquire_south_australian_hycom_2d.py",
+  "operator_sha256": "ee1ea1d945f9676fe62191f6003d5f6a40b938387febc587a18c8911792f25d2",
+  "npz_writer_file": "analysis/acquire_eac_100m_source.py",
+  "npz_writer_sha256": "430f1bcdd36e7f761dbdec34705948c3c3c84463cb3c63ea1d91608be10e786b",
+  "files": {
+    "cube.ascii": {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBu0.08/reanalysis.ascii?water_u%5B6990%3A1%3A7355%5D%5B19%5D%5B525%3A1%3A600%5D%5B3875%3A1%3A3925%5D%2Cwater_v%5B6990%3A1%3A7355%5D%5B19%5D%5B525%3A1%3A600%5D%5B3875%3A1%3A3925%5D",
+      "bytes": 16675808,
+      "sha256": "cb2c31175f06b2f8a8900712c653bef06a22a9ff03bcaf8c851bd8dff6d39ffd",
+      "response_headers": {
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Date": "Tue, 20 Oct 2026 21:11:11 GMT"
+      }
+    },
+    "metadata.das": {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBu0.08/reanalysis.das",
+      "bytes": 3483,
+      "sha256": "8d8c17e636434ec129f37bfa5e3fc21a8f23d7a5117ef6d9dd40b185d0bd1d7a",
+      "response_headers": {
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Date": "Tue, 20 Oct 2026 21:17:06 GMT"
+      }
+    },
+    "metadata.dds": {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBu0.08/reanalysis.dds",
+      "bytes": 1429,
+      "sha256": "8dc679e27235db644af518b4cabc5fb23f96a20f7ec80197e3e7be5ef42f94bb",
+      "response_headers": {
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Date": "Tue, 20 Oct 2026 21:17:10 GMT"
+      }
+    },
+    "coordinates.ascii": {
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBu0.08/reanalysis.ascii?time%5B6990%3A1%3A7355%5D%2Cdepth%5B19%5D%2Clat%5B525%3A1%3A600%5D%2Clon%5B3875%3A1%3A3925%5D",
+      "bytes": 6276,
+      "sha256": "e861e3be19d141367ef5aa89043907873e52f54c062db2b32f2ab4fc7de1459a",
+      "response_headers": {
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Date": "Tue, 20 Oct 2026 21:18:37 GMT"
+      }
+    },
+    "source-vectors.npz": {
+      "bytes": 3023158,
+      "sha256": "4e4f5c3d7df86a8dd7f1a042ee4e38e15dd8127ad098aac8071e8bd4bbad0ebf"
+    },
+    "quality.json": {
+      "bytes": 54096,
+      "sha256": "515728391f69a84a489f7b95df7329d2b3bb7a75445ccadb5fccd1b6467e7903"
+    }
+  },
+  "current_association_verified": false,
+  "width_measurement_admitted": false,
+  "prior_response_intake_operator_sha256": "293138c6c16b97c9b6f3d3abe67621a7c9d47860a5bb217a3ee5ba051945bf46",
+  "prior_intake_failure": {
+    "failed_utc": "2026-10-20T21:17:15.636946+00:00",
+    "error_type": "ValueError",
+    "error": "Changed HYCOM geographic selection: lon endpoints [130.0, 134.0]",
+    "protocol_sha256": "2be5a6d3f6d130119acb18a0ff42ca49f139cca60dc1c79f0f63325a325af408"
+  }
+}

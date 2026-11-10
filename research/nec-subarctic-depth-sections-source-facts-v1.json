@@ -1,0 +1,3432 @@
+{
+  "schema": "osw.nec-subarctic-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/nec-subarctic-depth-sections-v1/manifest.json",
+  "manifest_sha256": "99425768773344cd6b216fc0a60919ea7215d778a5e7528feb39f279c7e15516",
+  "operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+  "operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+  "counts": {
+    "section_date_cases": 34,
+    "native_velocity_profiles": 4272,
+    "selected_axis_proxy_profiles": 34,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 29,
+      "section_gate_edge_maximum_axis_unresolved": 5
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 34,
+      "0.1": 34,
+      "0.2": 30
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 34,
+      "0.1": 34,
+      "0.2": 30
+    },
+    "decoded_velocity_cell_pairs": 170880,
+    "decoded_velocity_array_bytes": null,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:pacific-north-equatorial": {
+      "section_date_cases": 14,
+      "native_velocity_profiles": 1764,
+      "selected_axis_proxy_profiles": 14,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 12,
+        "section_gate_edge_maximum_axis_unresolved": 2
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 14
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 14
+      }
+    },
+    "current:atlantic-north-equatorial": {
+      "section_date_cases": 8,
+      "native_velocity_profiles": 1002,
+      "selected_axis_proxy_profiles": 8,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 5,
+        "section_gate_edge_maximum_axis_unresolved": 3
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 8,
+        "0.1": 8,
+        "0.2": 8
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 8,
+        "0.1": 8,
+        "0.2": 8
+      }
+    },
+    "current:aleutian": {
+      "section_date_cases": 12,
+      "native_velocity_profiles": 1506,
+      "selected_axis_proxy_profiles": 12,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 12
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 12,
+        "0.1": 12,
+        "0.2": 8
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 12,
+        "0.1": 12,
+        "0.2": 8
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170w.json",
+      "source_sha256": "e7ad245248b4223b8bcd1c40e427015a6e4fad836f81eea22dd05a0e1974f03d",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/76",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170w",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -170,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 190.0,
+      "selected_lon_lat": [
+        -170.0,
+        14.039999961853027
+      ],
+      "selected_column_index": 76,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        17,
+        76
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1937.5000209547584,
+          "layer_thickness_m": 1937.5000209547584,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8980000615119934,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1389.7058949209613,
+          "layer_thickness_m": 1389.7058949209613,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8980000615119934,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 800.0000076416231,
+          "layer_thickness_m": 800.0000076416231,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8980000615119934,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1389.7058949209613,
+      "primary_layer_thickness_m": 1389.7058949209613,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-180e.json",
+      "source_sha256": "2d4200b08f9859b1c8f78d6807f050f3f5a4fed29d5fc1c7640e062b3c4cfd3a",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/107",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-180e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-180e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 180,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 180.0,
+      "selected_lon_lat": [
+        -180.0,
+        15.279999732971191
+      ],
+      "selected_column_index": 107,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        19,
+        56,
+        71,
+        73,
+        107
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1625.0000523868985,
+          "layer_thickness_m": 1625.0000523868985,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8240000605583191,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 950.000052154075,
+          "layer_thickness_m": 950.000052154075,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8240000605583191,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 412.32877595940516,
+          "layer_thickness_m": 412.32877595940516,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.8240000605583191,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 950.000052154075,
+      "primary_layer_thickness_m": 950.000052154075,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170e.json",
+      "source_sha256": "aeab05c2cd50c9e9f814726ad223a86eba97797354f11140647181e59cc9eb59",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/40",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": [
+        170.0,
+        12.600000381469727
+      ],
+      "selected_column_index": 40,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        40,
+        116
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 290.5172424091914,
+          "layer_thickness_m": 290.5172424091914,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 247.36842407964434,
+          "layer_thickness_m": 247.36842407964434,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 154.90197373188192,
+          "layer_thickness_m": 154.90197373188192,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5110000371932983,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 247.36842407964434,
+      "primary_layer_thickness_m": 247.36842407964434,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-160e.json",
+      "source_sha256": "3c1f3c62ff134dc3a252cc7ac18367a15f7089a8ec3a0c74de759db2d208ab2e",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-160e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-160e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 160,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 160.0,
+      "selected_lon_lat": [
+        160.0,
+        11.359999656677246
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        9,
+        23,
+        29,
+        73,
+        93,
+        109,
+        120
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 323.3333449231249,
+          "layer_thickness_m": 323.3333449231249,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 230.3571488442156,
+          "layer_thickness_m": 230.3571488442156,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 152.84091631635536,
+          "layer_thickness_m": 152.84091631635536,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3630000054836273,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 230.3571488442156,
+      "primary_layer_thickness_m": 230.3571488442156,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-150e.json",
+      "source_sha256": "3e9be83fa17cf3d1b7d7d0695eb77a87a837f5ff3f598bb78ab630db9f320a3e",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/25",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-150e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-150e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 150,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 150.0,
+      "selected_lon_lat": [
+        150.0,
+        12.0
+      ],
+      "selected_column_index": 25,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        25,
+        91
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 411.1111149053882,
+          "layer_thickness_m": 411.1111149053882,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4610000252723694,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 302.27273527748326,
+          "layer_thickness_m": 302.27273527748326,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4610000252723694,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 206.33803307596295,
+          "layer_thickness_m": 206.33803307596295,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4610000252723694,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 302.27273527748326,
+      "primary_layer_thickness_m": 302.27273527748326,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-140e.json",
+      "source_sha256": "5825a105b7a7a5685a78152b392cb4d93e0c1a3395303a219a2df7dd7c763971",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/62",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-140e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-140e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 140,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 140.0,
+      "selected_lon_lat": [
+        140.0,
+        13.479999542236328
+      ],
+      "selected_column_index": 62,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        19,
+        62,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 566.6666676600773,
+          "layer_thickness_m": 566.6666676600773,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6830000281333923,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 500.0000019868215,
+          "layer_thickness_m": 500.0000019868215,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6830000281333923,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 238.02817746822535,
+          "layer_thickness_m": 238.02817746822535,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6830000281333923,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 500.0000019868215,
+      "primary_layer_thickness_m": 500.0000019868215,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-130e.json",
+      "source_sha256": "278572e76704639f3395bc4125e57afdbf76d8a399a156bd741e66f10adf4f35",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-130e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-130e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 130,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.0,
+      "selected_lon_lat": [
+        130.0,
+        11.0
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        35,
+        46,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 305.55555698799094,
+          "layer_thickness_m": 305.55555698799094,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 173.21429170135843,
+          "layer_thickness_m": 173.21429170135843,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 114.73214501914133,
+          "layer_thickness_m": 114.73214501914133,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 173.21429170135843,
+      "primary_layer_thickness_m": 173.21429170135843,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-27w.json",
+      "source_sha256": "21e177f86b8a1d458bfc4f853ac0ea78c81e404a72ad98581a2ab06e02dbf351",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/14",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -27,
+        "latitude_gate_degrees_north": [
+          16,
+          21
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 332.9599609375,
+      "selected_lon_lat": [
+        -27.0400390625,
+        16.559999465942383
+      ],
+      "selected_column_index": 14,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        77,
+        103
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 346.8750081490712,
+          "layer_thickness_m": 346.8750081490712,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.26200002431869507,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 28.749998736062427,
+          "lower_depth_m": 257.31708052823524,
+          "layer_thickness_m": 228.56708179217281,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.26200002431869507,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 50.55555173828262,
+          "lower_depth_m": 183.8461608999566,
+          "layer_thickness_m": 133.29060916167398,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.26200002431869507,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 257.31708052823524,
+      "primary_layer_thickness_m": 228.56708179217281,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-35w.json",
+      "source_sha256": "82c2a81901291c2f08bceaa3969ac466fff19667fa3b2d274c286c035edcbec1",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-35w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-35w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -35,
+        "latitude_gate_degrees_north": [
+          14.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 324.9599609375,
+      "selected_lon_lat": [
+        -35.0400390625,
+        15.5600004196167
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1194.4444950348086,
+          "layer_thickness_m": 1194.4444950348086,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 671.4285957570003,
+          "layer_thickness_m": 671.4285957570003,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 18.181823846718626,
+          "layer_thickness_m": 18.181823846718626,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25300002098083496,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 671.4285957570003,
+      "primary_layer_thickness_m": 671.4285957570003,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-45w.json",
+      "source_sha256": "268c7a7e3208476d4ad5c2a3067f9a94ddef325bc9a7c916940b954bdf53249f",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/106",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-45w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-45w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -45,
+        "latitude_gate_degrees_north": [
+          12.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 314.9599609375,
+      "selected_lon_lat": [
+        -45.0400390625,
+        16.760000228881836
+      ],
+      "selected_column_index": 106,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        20,
+        106,
+        108
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 435.71428863179614,
+          "layer_thickness_m": 435.71428863179614,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25699999928474426,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 363.23530049833425,
+          "layer_thickness_m": 363.23530049833425,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25699999928474426,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 14.250010617095377,
+          "layer_thickness_m": 14.250010617095377,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.25699999928474426,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 363.23530049833425,
+      "primary_layer_thickness_m": 363.23530049833425,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-55w.json",
+      "source_sha256": "e7045f0f1468e09eb2962212b707e16b7060a7ddda517a28b01830fb9275e6f0",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-55w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-55w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -55,
+        "latitude_gate_degrees_north": [
+          10.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 304.9599609375,
+      "selected_lon_lat": [
+        -55.0400390625,
+        10.520000457763672
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        19,
+        46,
+        119
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 565.2174079237889,
+          "layer_thickness_m": 565.2174079237889,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.562000036239624,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 425.53192312332146,
+          "layer_thickness_m": 425.53192312332146,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.562000036239624,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 172.87234588951517,
+          "layer_thickness_m": 172.87234588951517,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.562000036239624,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 425.53192312332146,
+      "primary_layer_thickness_m": 425.53192312332146,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-175e.json",
+      "source_sha256": "b1bc54372edf4b69167ab6b966fb1eb6133ae3c9193d4bdd6e106545133268b7",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/76",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-175e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-175e",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 175,
+        "latitude_gate_degrees_north": [
+          45,
+          50
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 174.9599609375,
+      "selected_lon_lat": [
+        174.9599609375,
+        48.040000915527344
+      ],
+      "selected_column_index": 76,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        21,
+        76
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 900.000074505933,
+          "layer_thickness_m": 900.000074505933,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 1.257142802403898,
+          "lower_depth_m": 587.3015981142223,
+          "layer_thickness_m": 586.0444553118184,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 80.57692079545836,
+          "lower_depth_m": 448.86364610018893,
+          "layer_thickness_m": 368.28672530473057,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.28700000047683716,
+          "upper_bracket_m": [
+            80.0,
+            90.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 900.000074505933,
+      "primary_layer_thickness_m": 900.000074505933,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-180e.json",
+      "source_sha256": "20656c0f68fdf9fbd539f56bb2651364e49339ae32e0dceb3af04f7681dd9126",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/34",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-180e",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-180e",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 180,
+        "latitude_gate_degrees_north": [
+          45.5,
+          50.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 180.0,
+      "selected_lon_lat": [
+        -180.0,
+        46.880001068115234
+      ],
+      "selected_column_index": 34,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        8,
+        34,
+        67,
+        98
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1565.5737851086365,
+          "layer_thickness_m": 1565.5737851086365,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1243.0556032714671,
+          "layer_thickness_m": 1243.0556032714671,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 94.54545668005665,
+          "layer_thickness_m": 94.54545668005665,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.3540000021457672,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 1565.5737851086365,
+      "primary_layer_thickness_m": 1565.5737851086365,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-170w.json",
+      "source_sha256": "596e0cdda503ea2638b1e63babc37aa62445a3a843f7c2336c4ec2ec46c59706",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/38",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -170,
+        "latitude_gate_degrees_north": [
+          46,
+          51
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 190.0,
+      "selected_lon_lat": [
+        -170.0,
+        47.52000045776367
+      ],
+      "selected_column_index": 38,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        23,
+        38,
+        44,
+        58,
+        65,
+        73,
+        108,
+        122
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 145.9183691622613,
+          "layer_thickness_m": 145.9183691622613,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3660000264644623,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 121.91781009265868,
+          "layer_thickness_m": 121.91781009265868,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3660000264644623,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 89.77273087486749,
+          "layer_thickness_m": 89.77273087486749,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3660000264644623,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 145.9183691622613,
+      "primary_layer_thickness_m": 145.9183691622613,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-160w.json",
+      "source_sha256": "9a01acdb75216b2764ec9c703a90859d4196e1907633daf73868a27c4949a879",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/107",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-160w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-160w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -160,
+        "latitude_gate_degrees_north": [
+          46.5,
+          51.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 200.0,
+      "selected_lon_lat": [
+        -160.0,
+        50.79999923706055
+      ],
+      "selected_column_index": 107,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        6,
+        19,
+        26,
+        38,
+        57,
+        67,
+        74,
+        86,
+        101,
+        107,
+        117,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 462.50000640284213,
+          "layer_thickness_m": 462.50000640284213,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.16900001466274261,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.333334657881599,
+          "layer_thickness_m": 11.333334657881599,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.16900001466274261,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 462.50000640284213,
+      "primary_layer_thickness_m": 462.50000640284213,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-150w.json",
+      "source_sha256": "49f7d265124789e96fa859915b7b17d7f4b205a795e7dae76be0b21c7d27a381",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-150w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-150w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -150,
+        "latitude_gate_degrees_north": [
+          47.5,
+          52.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 210.0,
+      "selected_lon_lat": [
+        -150.0,
+        48.2400016784668
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        18,
+        29,
+        45,
+        73,
+        80,
+        101,
+        106
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 227.27272886341592,
+          "layer_thickness_m": 227.27272886341592,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26500001549720764,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 149.4565255418839,
+          "layer_thickness_m": 149.4565255418839,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26500001549720764,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 5.647060308489013,
+          "layer_thickness_m": 5.647060308489013,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26500001549720764,
+          "lower_bracket_m": [
+            4.0,
+            6.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 227.27272886341592,
+      "primary_layer_thickness_m": 227.27272886341592,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-140w.json",
+      "source_sha256": "f68cfa8c2793d7f6618ce618cea70e3ca40e1606b6ffa33f2f203a4ddddbd8a6",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/53",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-140w",
+      "snapshot_time_utc": "2022-01-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-140w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -140,
+        "latitude_gate_degrees_north": [
+          50,
+          55
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 220.0,
+      "selected_lon_lat": [
+        -140.0,
+        52.119998931884766
+      ],
+      "selected_column_index": 53,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        39,
+        53,
+        55,
+        71,
+        86
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 26.000000745058212,
+          "layer_thickness_m": 26.000000745058212,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3070000112056732,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.272727913107323,
+          "layer_thickness_m": 11.272727913107323,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3070000112056732,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2.1111115066357766,
+          "layer_thickness_m": 2.1111115066357766,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3070000112056732,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 26.000000745058212,
+      "primary_layer_thickness_m": 26.000000745058212,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170w.json",
+      "source_sha256": "6abdce4ee2c9f19ec0f9705a9b94055caa742692e80494303ab6fec9322be0e7",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/49",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170w",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -170,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 190.0,
+      "selected_lon_lat": [
+        -170.0,
+        12.960000038146973
+      ],
+      "selected_column_index": 49,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        49,
+        89,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 316.6666721856155,
+          "layer_thickness_m": 316.6666721856155,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3400000035762787,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 213.5135226022421,
+          "layer_thickness_m": 213.5135226022421,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3400000035762787,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.37500107102078,
+          "layer_thickness_m": 11.37500107102078,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3400000035762787,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 213.5135226022421,
+      "primary_layer_thickness_m": 213.5135226022421,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-180e.json",
+      "source_sha256": "4323839929b7a773557ab958b694195b68d93fc3d683d7e3784000e016824401",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/71",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-180e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-180e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 180,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 180.0,
+      "selected_lon_lat": [
+        -180.0,
+        13.84000015258789
+      ],
+      "selected_column_index": 71,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        25,
+        27,
+        71,
+        109,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 328.5714308522188,
+          "layer_thickness_m": 328.5714308522188,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4240000247955322,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 257.50000651925694,
+          "layer_thickness_m": 257.50000651925694,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4240000247955322,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 32.50001303853814,
+          "layer_thickness_m": 32.50001303853814,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4240000247955322,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 257.50000651925694,
+      "primary_layer_thickness_m": 257.50000651925694,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170e.json",
+      "source_sha256": "7ad1c0ba61b4ad0c7e8e7c2c3aaee974724b940d2f37d17e67087e3781e1fa0a",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/116",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 170,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 170.0,
+      "selected_lon_lat": [
+        170.0,
+        15.640000343322754
+      ],
+      "selected_column_index": 116,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        11,
+        58,
+        116
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 638.4615640315777,
+          "layer_thickness_m": 638.4615640315777,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4350000321865082,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 451.851874745266,
+          "layer_thickness_m": 451.851874745266,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4350000321865082,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 280.35714884421554,
+          "layer_thickness_m": 280.35714884421554,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4350000321865082,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 451.851874745266,
+      "primary_layer_thickness_m": 451.851874745266,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-160e.json",
+      "source_sha256": "749136ec04f506025cf05062238e79eed017662e9488b185ea8b6dba62a33f24",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-160e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-160e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 160,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 160.0,
+      "selected_lon_lat": [
+        160.0,
+        11.680000305175781
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        17,
+        22,
+        58,
+        74,
+        76,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 521.0526375641779,
+          "layer_thickness_m": 521.0526375641779,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5290000438690186,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 336.11111548027895,
+          "layer_thickness_m": 336.11111548027895,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5290000438690186,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 231.1594290221038,
+          "layer_thickness_m": 231.1594290221038,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5290000438690186,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 336.11111548027895,
+      "primary_layer_thickness_m": 336.11111548027895,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-150e.json",
+      "source_sha256": "23de395db214e27aeafb532086dbb57b3f6d960102b2bc028ffc4a5b4e8498b7",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-150e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-150e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 150,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 150.0,
+      "selected_lon_lat": [
+        150.0,
+        11.520000457763672
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        13,
+        38,
+        66
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 305.6603788073619,
+          "layer_thickness_m": 305.6603788073619,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 233.33333842774778,
+          "layer_thickness_m": 233.33333842774778,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 164.0776761251894,
+          "layer_thickness_m": 164.0776761251894,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 233.33333842774778,
+      "primary_layer_thickness_m": 233.33333842774778,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-140e.json",
+      "source_sha256": "e0db0efcc78736343192007ad207474dbc2587d2dee4cf3b746092388a686de2",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/15",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-140e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-140e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 140,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 140.0,
+      "selected_lon_lat": [
+        140.0,
+        11.600000381469727
+      ],
+      "selected_column_index": 15,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        15,
+        47,
+        62,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 334.88372330764844,
+          "layer_thickness_m": 334.88372330764844,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 249.509807301686,
+          "layer_thickness_m": 249.509807301686,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 200.49019854190672,
+          "layer_thickness_m": 200.49019854190672,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.41700002551078796,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 249.509807301686,
+      "primary_layer_thickness_m": 249.509807301686,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-130e.json",
+      "source_sha256": "61e1c7cae2690d54b7aac15debff69bb989feee34ad0839bcda5b70900ac7d92",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/125",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-130e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-130e",
+        "entity_id": "current:pacific-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 130,
+        "latitude_gate_degrees_north": [
+          11,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 130.0,
+      "selected_lon_lat": [
+        130.0,
+        16.0
+      ],
+      "selected_column_index": 125,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        25,
+        48,
+        51,
+        54,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 681.0810871765152,
+          "layer_thickness_m": 681.0810871765152,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.38200002908706665,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 516.6666780494998,
+          "layer_thickness_m": 516.6666780494998,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.38200002908706665,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 340.769239057449,
+          "layer_thickness_m": 340.769239057449,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.38200002908706665,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 516.6666780494998,
+      "primary_layer_thickness_m": 516.6666780494998,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-27w.json",
+      "source_sha256": "abced8e20df5259ae8873974c99eefbc20eba18a79e202feb58e4bb99f28c538",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/51",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-27w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-27w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -27,
+        "latitude_gate_degrees_north": [
+          16,
+          21
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 332.9599609375,
+      "selected_lon_lat": [
+        -27.0400390625,
+        18.040000915527344
+      ],
+      "selected_column_index": 51,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        51
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 35.431034285641616,
+          "lower_depth_m": 715.7894889568678,
+          "layer_thickness_m": 680.3584546712261,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2710000276565552,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 39.741378683557045,
+          "lower_depth_m": 523.3333598242855,
+          "layer_thickness_m": 483.5919811407284,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2710000276565552,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 57.19999737739626,
+          "lower_depth_m": 224.69880086950963,
+          "layer_thickness_m": 167.49880349211338,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 21,
+          "core_depth_m": 150.0,
+          "core_velocity_m_s": 0.2710000276565552,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 523.3333598242855,
+      "primary_layer_thickness_m": 483.5919811407284,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-35w.json",
+      "source_sha256": "edf0a51b2d0daa5190b7b06e1e5e80bf5ed32e7fc0dc997eb211af11ce901628",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/36",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-35w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-35w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -35,
+        "latitude_gate_degrees_north": [
+          14.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 324.9599609375,
+      "selected_lon_lat": [
+        -35.0400390625,
+        15.960000038146973
+      ],
+      "selected_column_index": 36,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        36,
+        93,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 900.0000067732551,
+          "layer_thickness_m": 900.0000067732551,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 576.4705995787355,
+          "layer_thickness_m": 576.4705995787355,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 207.35295844943818,
+          "layer_thickness_m": 207.35295844943818,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 576.4705995787355,
+      "primary_layer_thickness_m": 576.4705995787355,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-45w.json",
+      "source_sha256": "b9e749734626ac273e74bfd67f64cfb998270bed4557d8da666aa2d26f41ded6",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/124",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-45w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-45w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -45,
+        "latitude_gate_degrees_north": [
+          12.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 314.9599609375,
+      "selected_lon_lat": [
+        -45.0400390625,
+        17.479999542236328
+      ],
+      "selected_column_index": 124,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        22,
+        51,
+        68,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 784.6153910078945,
+          "layer_thickness_m": 784.6153910078945,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3160000145435333,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 660.0000298023213,
+          "layer_thickness_m": 660.0000298023213,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3160000145435333,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 66.25001536681995,
+          "layer_thickness_m": 66.25001536681995,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3160000145435333,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 660.0000298023213,
+      "primary_layer_thickness_m": 660.0000298023213,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-55w.json",
+      "source_sha256": "7a8bd5a41561acd1c78c7fa4ec1116359531084b16e573f1bd0dfa7cb8f3c5c4",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-55w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-55w",
+        "entity_id": "current:atlantic-north-equatorial",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -55,
+        "latitude_gate_degrees_north": [
+          10.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 304.9599609375,
+      "selected_lon_lat": [
+        -55.0400390625,
+        10.520000457763672
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        30,
+        38,
+        51,
+        70,
+        124
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2982.75862600517,
+          "layer_thickness_m": 2982.75862600517,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6000000238418578,
+          "lower_bracket_m": [
+            2500.0,
+            3000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 587.1794886163731,
+          "layer_thickness_m": 587.1794886163731,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6000000238418578,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 501.70940763111344,
+          "layer_thickness_m": 501.70940763111344,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6000000238418578,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 587.1794886163731,
+      "primary_layer_thickness_m": 587.1794886163731,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-175e.json",
+      "source_sha256": "0eb0fa561a54ee7923c135330c308bbaaa9a542cef71a58a11476657d10d99e3",
+      "source_operator_file": "research/nec-subarctic-depth-sections-operator-v1.json",
+      "source_operator_sha256": "ac12d57a89f8e1524ecd7ba31b48df8f5d3e0c1a8d826dc2e2682990e88bd819",
+      "transport_origin": "recovered_original_attempt2",
+      "source_profile_pointer": "/columns/85",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-175e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-175e",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 175,
+        "latitude_gate_degrees_north": [
+          45,
+          50
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 174.9599609375,
+      "selected_lon_lat": [
+        174.9599609375,
+        48.400001525878906
+      ],
+      "selected_column_index": 85,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        0,
+        21,
+        54,
+        59,
+        85,
+        110
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 305.0000130385139,
+          "layer_thickness_m": 305.0000130385139,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.000000745057928,
+          "layer_thickness_m": 8.000000745057928,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 305.0000130385139,
+      "primary_layer_thickness_m": 305.0000130385139,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-180e.json",
+      "source_sha256": "604e6a55d5ab1b2934ce24eb283a453aa6bc6ce50ed80c99c40de91bbc392462",
+      "source_operator_file": "research/nec-subarctic-depth-completion-operator-v1.json",
+      "source_operator_sha256": "62639ab1ece15b9f0bf5068a218c8510fff1272a9ac7742e99f63a851ce22181",
+      "transport_origin": "completion_missing_five",
+      "source_profile_pointer": "/columns/97",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-180e",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-180e",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 180,
+        "latitude_gate_degrees_north": [
+          45.5,
+          50.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 180.0,
+      "selected_lon_lat": [
+        -180.0,
+        49.400001525878906
+      ],
+      "selected_column_index": 97,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        0,
+        9,
+        24,
+        43,
+        59,
+        62,
+        79,
+        95,
+        97
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3368.421108356139,
+          "layer_thickness_m": 3368.421108356139,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6390000581741333,
+          "lower_bracket_m": [
+            3000.0,
+            4000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2473.214315649649,
+          "layer_thickness_m": 2473.214315649649,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6390000581741333,
+          "lower_bracket_m": [
+            2000.0,
+            2500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 486.206899032298,
+          "layer_thickness_m": 486.206899032298,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6390000581741333,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 3368.421108356139,
+      "primary_layer_thickness_m": 3368.421108356139,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-170w.json",
+      "source_sha256": "01d8995b97d61879ff1473768d3955e5d92f04c028101657619713faa4124903",
+      "source_operator_file": "research/nec-subarctic-depth-completion-operator-v1.json",
+      "source_operator_sha256": "62639ab1ece15b9f0bf5068a218c8510fff1272a9ac7742e99f63a851ce22181",
+      "transport_origin": "completion_missing_five",
+      "source_profile_pointer": "/columns/8",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-170w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-170w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -170,
+        "latitude_gate_degrees_north": [
+          46,
+          51
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 190.0,
+      "selected_lon_lat": [
+        -170.0,
+        46.31999969482422
+      ],
+      "selected_column_index": 8,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        8,
+        16,
+        20,
+        22,
+        29,
+        38,
+        76,
+        90,
+        125
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 13.000000461226383,
+          "layer_thickness_m": 13.000000461226383,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.000000135465102,
+          "layer_thickness_m": 8.000000135465102,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2.3841866347854255e-07,
+          "layer_thickness_m": 2.3841866347854255e-07,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "lower_bracket_m": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 13.000000461226383,
+      "primary_layer_thickness_m": 13.000000461226383,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-160w.json",
+      "source_sha256": "d376723c91e2593dc9f83cb817c0532ad4ad0fe186680cd92394fe5ee2369b42",
+      "source_operator_file": "research/nec-subarctic-depth-completion-operator-v1.json",
+      "source_operator_sha256": "62639ab1ece15b9f0bf5068a218c8510fff1272a9ac7742e99f63a851ce22181",
+      "transport_origin": "completion_missing_five",
+      "source_profile_pointer": "/columns/33",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-160w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-160w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -160,
+        "latitude_gate_degrees_north": [
+          46.5,
+          51.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 200.0,
+      "selected_lon_lat": [
+        -160.0,
+        47.84000015258789
+      ],
+      "selected_column_index": 33,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        9,
+        33,
+        42,
+        53,
+        58,
+        70,
+        91
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 143.75000552972816,
+          "layer_thickness_m": 143.75000552972816,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 90.000001241764,
+          "layer_thickness_m": 90.000001241764,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 5.916667949822799,
+          "layer_thickness_m": 5.916667949822799,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            4.0,
+            6.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 143.75000552972816,
+      "primary_layer_thickness_m": 143.75000552972816,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-150w.json",
+      "source_sha256": "537dfb3f4fd7122b402cd9f02c9f0d92f365b43e2d5818d55fa262cced0e9749",
+      "source_operator_file": "research/nec-subarctic-depth-completion-operator-v1.json",
+      "source_operator_sha256": "62639ab1ece15b9f0bf5068a218c8510fff1272a9ac7742e99f63a851ce22181",
+      "transport_origin": "completion_missing_five",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-150w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-150w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -150,
+        "latitude_gate_degrees_north": [
+          47.5,
+          52.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 210.0,
+      "selected_lon_lat": [
+        -150.0,
+        47.720001220703125
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 125,
+      "local_integral_maximum_indices": [
+        5,
+        103
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 37.608694891623216,
+          "lower_depth_m": 229.310348548447,
+          "layer_thickness_m": 191.7016536568238,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.10300000756978989,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 56.66665949203617,
+          "lower_depth_m": 63.750008847563,
+          "layer_thickness_m": 7.083349355526835,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.10300000756978989,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 229.310348548447,
+      "primary_layer_thickness_m": 191.7016536568238,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:aleutian",
+      "source_file": "research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-140w.json",
+      "source_sha256": "ca8b173b9b21e6c6d9ea525406c74fb7be59de8c5f2a6a0b4f11ddc2b37882b6",
+      "source_operator_file": "research/nec-subarctic-depth-completion-operator-v1.json",
+      "source_operator_sha256": "62639ab1ece15b9f0bf5068a218c8510fff1272a9ac7742e99f63a851ce22181",
+      "transport_origin": "completion_missing_five",
+      "source_profile_pointer": "/columns/59",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-140w",
+      "snapshot_time_utc": "2022-07-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-140w",
+        "entity_id": "current:aleutian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": -140,
+        "latitude_gate_degrees_north": [
+          50,
+          55
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 220.0,
+      "selected_lon_lat": [
+        -140.0,
+        52.36000061035156
+      ],
+      "selected_column_index": 59,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 126,
+      "local_integral_maximum_indices": [
+        59,
+        72,
+        81,
+        121
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 29.000002235174648,
+          "layer_thickness_m": 29.000002235174648,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.13600000739097595,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3.304348321853497,
+          "layer_thickness_m": 3.304348321853497,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.13600000739097595,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.05,
+      "primary_lower_depth_m": 29.000002235174648,
+      "primary_layer_thickness_m": 29.000002235174648,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

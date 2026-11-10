@@ -1,0 +1,49 @@
+name: WSC F3 original bounded preview custody v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/capture_wsc_f3_bounded_preview_v1.py
+      - analysis/test_wsc_f3_bounded_preview_v1.py
+      - .github/workflows/wsc-f3-bounded-preview-v1.yml
+      - research/wsc-f3-observed-depth-case-operator-v1.json
+      - plans/wsc-f3-observed-depth-original-case-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  measure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/capture_wsc_f3_bounded_preview_v1.py
+            analysis/test_wsc_f3_bounded_preview_v1.py
+            plans/wsc-f3-observed-depth-original-case-v1.md
+            .github/workflows/wsc-f3-bounded-preview-v1.yml
+            research/wsc-f3-observed-depth-case-operator-v1.json
+            analysis/capture_gaspe1991_adcp_info_v1.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one idle CPU semantic checks and original native query
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_F3_CAPTURE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_wsc_f3_bounded_preview_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 65s python analysis/capture_wsc_f3_bounded_preview_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wsc-f3-bounded-preview-v1
+          path: wsc-f3-bounded-preview-v1/
+          retention-days: 7
+          if-no-files-found: error

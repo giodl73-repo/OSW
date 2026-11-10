@@ -1,4 +1,5 @@
 """Loop data/geometry bindings, native/WASM parity and card-to-map navigation."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -11,7 +12,7 @@ from test_rust_query_browser import native, browser_query
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     diagnostics=[r for r in bundle['collections']['diagnostics'] if r.get('current_id')=='loop' and r.get('observation_date')=='2026-09-25']
     assert len(diagnostics)==2
     for r in diagnostics:assert json.loads(r['source_json'])==r['document']

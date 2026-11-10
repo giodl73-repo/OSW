@@ -1,0 +1,37 @@
+{
+  "schema": "osw.azores-2009-section-browser-failure-review.v1",
+  "status": "ENGINE_PASSED_BROWSER_FAILED_INSTALLATION_NOT_PERMITTED",
+  "review_date": "2026-10-27",
+  "run_id": 40591687892,
+  "run_attempt": 1,
+  "source_commit": "14ff443664e3a3e329555c7cf41e00cfa7c522da",
+  "original_request_disabled_commit": "aae88040edd2517ec67c868e3e09a54de7dd2d3d",
+  "engine_evidence_file": "research/azores-2009-section-engine-evidence-v1.json",
+  "engine_phase": {
+    "status": "PASS",
+    "rust_tests": 42,
+    "whole_response_main_query_comparisons": 26,
+    "whole_response_source_query_comparisons": 12,
+    "complete_native_wasm_snapshot_comparisons": 2,
+    "original_indexed_source_strings_preserved": 624,
+    "original_scientific_collections_changed": 0,
+    "new_measurements": 0
+  },
+  "browser_phase": {
+    "status": "FAIL",
+    "failed_location": "First narrow-screen dated-width page; ready() visibility assertion used the Playwright expect default of5000ms.",
+    "observation": "Desktop atlas, width, source-row and individual-query navigation for both currents and the mixed query had progressed to captured desktop results before the first mobile wait failed.",
+    "hypothesis": "The fresh worker had not finished rendering within the five-second assertion window. Desktop page paths explicitly waited for the loaded snapshot; the mobile path did not. Browser-only follow-up must test this hypothesis with an actual rendering wait.",
+    "additional_visual_issue": "The two atlas screenshots include blank space below the clipping ancestor. They cannot prove the lower sidebar's appearance. Follow-up captures the visible figure and selected record separately and refuses clipped targets.",
+    "desktop_images_individually_inspected": ["azores-azores-atlas.png", "azores-azores-width.png"],
+    "all_images_visually_approved": false
+  },
+  "saved_artifacts": {
+    "compact_evidence": {"id": 12774622595, "bytes": 731117, "sha256": "efceb64426c0a81c880b0392f0ebd65ede050a10b6838f4a739b2a16ac9704ca"},
+    "candidate": {"id": 12773519030, "bytes": 96189974, "sha256": "ab4b1f97f4c9b8b26483382125e85981de82deb81d8aafd86500fd0ee0127515", "downloaded_locally": false}
+  },
+  "follow_up": "Use a separate frozen browser-only observer and the exact saved candidate. Preserve every original101 source/control binding. No native/WASM rebuild or product-source change is required for this observer correction.",
+  "working_branch_installed": false,
+  "main_merged": false,
+  "full_goal_complete": false
+}

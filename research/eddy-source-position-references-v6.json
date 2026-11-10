@@ -1,0 +1,405 @@
+{
+  "schema": "osw.eddy-source-position-references.v6",
+  "status": "SOURCE_REFERENCES_NOT_PHYSICAL_GEOMETRY",
+  "protocol_file": "plans/eddy-source-position-proxies-v1.md",
+  "source_review_file": "research/eddy-nautilus-ii-model-position-source-review-v1.json",
+  "sources": {
+    "berger-2000-desoto": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-383e5f864dcbe67ff3e559cbdc22812b/pdf/GOVPUB-I-383e5f864dcbe67ff3e559cbdc22812b.pdf",
+      "citation": "Berger, Hamilton, Singer, Waddell, Churchill, Leben, Lee and Sturges (2000), DeSoto Canyon Eddy Intrusion Study, Final Report, Volume II: Technical Report, OCS Study MMS 2000-080, November 2000.",
+      "original_pdf": {
+        "bytes": 8981805,
+        "sha256": "1f64306e3ddc6ed18a89bf7a2bb586f7b95198a9d24bc7dc49b1c6a20995d5c5",
+        "pages": 293
+      },
+      "pdf_page": 147,
+      "printed_page": 127,
+      "locator": "Section 5.4 discussion of the March 1997 survey and the 24 March 1997 SST image; first of two warm-eddy centers."
+    },
+    "hamilton-2003": {
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc955365/m2/1/high_res_d/3032.pdf",
+      "citation": "Hamilton, Singer, Waddell and Donohue (2003), Deepwater Observations in the Northern Gulf of Mexico from In-Situ Current Meters and PIES, Volume II: Technical Report, MMS 2003-049, August 2003.",
+      "original_pdf": {
+        "bytes": 14492455,
+        "sha256": "6dc38ce0b88aabeca1ca3a7bc5d9c1eb262b43a04059eed51d801da3a83bcb81",
+        "pages": 103
+      },
+      "reviewed_pdf_pages": [
+        13,
+        23,
+        24,
+        25
+      ]
+    },
+    "rowe-kennicutt-2009": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-525d286afa5ddb6f922c65254a711651/pdf/GOVPUB-I-525d286afa5ddb6f922c65254a711651.pdf",
+      "citation": "Rowe and Kennicutt (2009), Northern Gulf of Mexico Continental Slope Habitats and Benthic Ecology Study, Final Report, MMS 2009-039, July 2009.",
+      "original_pdf": {
+        "bytes": 14471783,
+        "sha256": "87242ed9c88aa27f209c0e3994483af94d48af7ed9253b54ce7020aa29a70286",
+        "pages": 417
+      },
+      "reviewed_pdf_pages": [
+        2,
+        102,
+        105,
+        129,
+        130,
+        131
+      ]
+    },
+    "noaa-black-1999": {
+      "url": "https://www.aoml.noaa.gov/hrd/Storm_pages/airsea1999/990803H.html",
+      "citation": "P. Black, NOAA/AOML Mission Summary 990803H, Aircraft 42RF, August 3, 1999.",
+      "source_review_file": "research/eddy-haskell-archived-position-source-review-v1.json",
+      "source_review_sha256": "1a95a4686ce47901b9f45b51f44920acfbd5f019d4fb3714d945f2e2dd31fcfe"
+    },
+    "gao-seavizkit-model-position": {
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500326001630",
+      "doi": "10.1016/j.ocemod.2026.102841",
+      "citation": "Gao et al., 3DSeaVizKit, Ocean Modelling 205, 102841, issue label January 2027; publisher-indexed text accessed November 1, 2026.",
+      "source_review_file": "research/eddy-nautilus-ii-model-position-source-review-v1.json",
+      "source_review_sha256": "c88f6f983428cc4451c7c35950ccbcb84376ff7b1604214ef0deac7e341502ec"
+    }
+  },
+  "records": [
+    {
+      "id": "deviant-berger-2000-source-image-center-1997-03-24",
+      "entity_id": "eddy:horizon:loop-26-primary",
+      "source_id": "berger-2000-desoto",
+      "source_name": "Deviant",
+      "source_alias": "LC ring D",
+      "quantity": "source_reported_sst_image_center",
+      "observation_date": "1997-03-24",
+      "observation_date_precision": "day_as_reported",
+      "latitude": {
+        "source_text": "28°N",
+        "value": 28,
+        "unit": "degree_north",
+        "reported_decimal_places": 0
+      },
+      "longitude": {
+        "source_text": "88.7°W",
+        "value": 88.7,
+        "unit": "degree_west",
+        "reported_decimal_places": 1
+      },
+      "navigation_candidate": {
+        "longitude_deg": -88.7,
+        "latitude_deg": 28,
+        "coordinate_order": "longitude_latitude",
+        "conversion": "West longitude sign only; no reprojection or datum transformation.",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "geodetic_datum": null,
+      "position_error_km": null,
+      "center_definition": "Authors identify the center from a dated SST image; fitting operator, resolution and position uncertainty are unspecified.",
+      "registry_context": {
+        "source_file": "research/named-loop-current-eddies.json",
+        "source_sha256": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
+        "source_number": 26,
+        "initial_separation": "1996-12-13",
+        "used_to_infer_position": false
+      },
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Section 5.4 discussion of the March 1997 survey and the 24 March 1997 SST image; first of two warm-eddy centers.",
+      "qualification": "Historical source-reported location only. The explicit Deviant/LC ring D name supplies a source-case alias; a nearby second warm eddy is not assigned that name. Coordinate rounding is preserved and is not an accuracy estimate. Not a tracked trajectory, current location, eddy boundary, diameter, uncertainty ellipse or state-containment result."
+    },
+    {
+      "id": "kinetic-2000-07-02-source-point",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "hamilton-2003",
+      "source_name": "Kinetic",
+      "observation_date": "2000-07-02",
+      "source_point_role": "source_map_mooring_proxy_in_named_composite",
+      "observation_date_precision": "approximately_seven_day_composite_center",
+      "navigation_candidate": {
+        "longitude_deg": -89.8,
+        "latitude_deg": 27.3,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": null,
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "I1 mooring map proxy, not an author-reported eddy center; nominal date centers an approximately seven-day composite."
+    },
+    {
+      "id": "kinetic-2000-09-24-source-point",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "hamilton-2003",
+      "source_name": "Kinetic",
+      "observation_date": "2000-09-24",
+      "source_point_role": "source_map_mooring_proxy_in_named_composite",
+      "observation_date_precision": "approximately_seven_day_composite_center",
+      "navigation_candidate": {
+        "longitude_deg": -89.8,
+        "latitude_deg": 27.3,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": null,
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "I1 mooring map proxy, not an author-reported eddy center; nominal date centers an approximately seven-day composite."
+    },
+    {
+      "id": "indigo-2000-05-13-source-point",
+      "entity_id": "eddy:horizon:loop-32-primary",
+      "source_id": "rowe-kennicutt-2009",
+      "source_name": "Indigo",
+      "observation_date": "2000-05-13",
+      "source_point_role": "source_reported_satellite_center",
+      "observation_date_precision": "dated_source_ssh_map",
+      "navigation_candidate": {
+        "longitude_deg": -94.75,
+        "latitude_deg": 26.25,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": "centered near 26.25 N, 94.75 W",
+      "manual_map_read_decimal_places": null,
+      "reported_decimal_places": 2,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Author says near; decimal precision is not accuracy. Named 2000 source case and registry 1999 dissipation remain unreconciled."
+    },
+    {
+      "id": "nansen-2001-06-10-source-point",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "rowe-kennicutt-2009",
+      "source_name": "Nansen",
+      "observation_date": "2001-06-10",
+      "source_point_role": "source_reported_satellite_center",
+      "observation_date_precision": "dated_source_ssh_map",
+      "navigation_candidate": {
+        "longitude_deg": -88.5,
+        "latitude_deg": 28,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": "Approximate center reported in the June 2001 Nansen paragraph.",
+      "manual_map_read_decimal_places": null,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Author reports an approximate center in the June 2001 case linked to Figure 8-3 dated June 10. Center precision is not accuracy. Registry April 22 separation, other reports May formation, and this June map remain distinct definitions; no physical identity crosswalk inferred."
+    },
+    {
+      "id": "qe2-2002-08-08-source-point",
+      "entity_id": "eddy:horizon:loop-40-secondary",
+      "source_id": "rowe-kennicutt-2009",
+      "source_name": "QE-2",
+      "observation_date": "2002-08-08",
+      "source_point_role": "source_map_proxy_in_named_eastern_split_feature",
+      "observation_date_precision": "dated_source_ssh_map",
+      "navigation_candidate": {
+        "longitude_deg": -88.2,
+        "latitude_deg": 23.8,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "source_text": "Source describes Quick to the west and QE2 to the east in the August 2002 split near 24 N.",
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Manual proxy for the eastern split feature near 24 N in Figure 8-5, not an author-reported or observed exact center. QE2 source spelling is associated with registry QE-2 only as a qualified source-case reference. No parent values or dates inherited; physical crosswalk unverified.",
+      "manual_map_read": {
+        "pdf_page": 104,
+        "figure": "8-5",
+        "image_xref": 1202,
+        "native_raster_width": 971,
+        "native_raster_height": 950,
+        "landmark": "Center of the orange closed high east of the western Quick feature along approximately 24 N, west of the Loop Current; not the northern warm-slope highs.",
+        "landmark_xy_native_approx": [
+          521,
+          511
+        ],
+        "longitude_axis_anchors_xy_degrees": [
+          [
+            443,
+            -90
+          ],
+          [
+            574,
+            -87
+          ]
+        ],
+        "latitude_axis_anchors_xy_degrees": [
+          [
+            500,
+            24
+          ],
+          [
+            641,
+            21
+          ]
+        ],
+        "coordinate_read_precision_deg": 0.1,
+        "coordinates_are_manual_proxy_not_measured_center": true,
+        "position_error_km": null
+      }
+    },
+    {
+      "id": "haskell-1999-08-01-survey-waypoint-proxy",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_name": "Haskell",
+      "source_id": "noaa-black-1999",
+      "observation_date": "1999-08-01",
+      "source_point_role": "source_map_survey_waypoint_proxy_not_observed_center",
+      "navigation_candidate": {
+        "longitude_deg": -87.0,
+        "latitude_deg": 28.3,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "manual_map_read_decimal_places": 1,
+      "reported_decimal_places": null,
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Survey waypoint proxy, not a measured center. Nominal August 1 altimetry chart and August 3 mission naming remain separate. May registry date remains unreconciled. No physical identity join or boundary admitted.",
+      "manual_map_read": {
+        "case_id": "haskell-1999-08-01-survey-waypoint-proxy",
+        "point": [
+          -87.0,
+          28.3
+        ],
+        "coordinate_order": "longitude_latitude",
+        "role": "source_map_survey_waypoint_proxy_not_observed_center",
+        "landmark": "Plotted survey waypoint 6 at the western end of the nearly horizontal IP-to-6 leg in the northeastern feature vicinity. The mission prose identifies the northeastern survey feature as Haskell.",
+        "native_xy_approx": [
+          745,
+          304
+        ],
+        "longitude_axis_anchors_xy_degrees": [
+          [
+            566,
+            -90
+          ],
+          [
+            744,
+            -87
+          ],
+          [
+            919,
+            -84
+          ]
+        ],
+        "latitude_axis_anchors_xy_degrees": [
+          [
+            193,
+            30
+          ],
+          [
+            386,
+            27
+          ],
+          [
+            578,
+            24
+          ]
+        ],
+        "manual_read_precision_deg": 0.1,
+        "position_error_km": null,
+        "is_exact_measured_center": false,
+        "chosen_before_numerical_field_inspection": true,
+        "date": "1999-08-01",
+        "date_qualification": "Nominal altimetry chart label. The naming/flight report is August 3; the daily numerical field on August 1 is a separate product and is not the chart composite or flight observations."
+      }
+    },
+    {
+      "id": "nautilus-ii-2015-05-26-model-position",
+      "entity_id": "eddy:horizon:loop-63-secondary",
+      "source_name": "Nautilus II",
+      "source_id": "gao-seavizkit-model-position",
+      "observation_date": "2015-05-26",
+      "source_date_type": "nominal_simulation_date_not_observation",
+      "source_point_role": "author_reported_approximate_model_position_not_observed_center",
+      "navigation_candidate": {
+        "longitude_deg": -92.0,
+        "latitude_deg": 24.5,
+        "coordinate_order": "longitude_latitude",
+        "is_current_position": false,
+        "is_exact_measured_center": false
+      },
+      "manual_map_read_decimal_places": null,
+      "reported_decimal_places": {
+        "latitude": 1,
+        "longitude": 0
+      },
+      "position_error_km": null,
+      "geodetic_datum": null,
+      "physical_crosswalk_verified": false,
+      "physical_state_join_eligible": false,
+      "physical_footprint": null,
+      "size_inferred": false,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "qualification": "Approximate author-reported simulated position from indexed primary publisher text. No original figure pixels reviewed. Named splitting branch, not fully detached by this nominal date; the source says full detachment by June 6. Separate DUACS diagnostic cannot verify model/observational or registry identity equivalence."
+    }
+  ],
+  "counts": {
+    "position_references": 8,
+    "source_identities_with_position_references": 7
+  },
+  "measurement_register_is_separate": true,
+  "atlas_ui_or_query_engine_integration_complete": false,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "baseline_file": "research/eddy-source-position-references-v1.json",
+  "baseline_sha256": "daab240f6f9fbb2ffd497d1e6625385fbcffe62645970914e0c7e2bd818d2f9f"
+}

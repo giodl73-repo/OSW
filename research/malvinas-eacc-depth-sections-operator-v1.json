@@ -1,0 +1,200 @@
+{
+  "snapshot_times_utc": [
+    "2022-01-15T00:00:00Z",
+    "2022-07-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": 0.05,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Selected native longitude-gate edges and maxima adjacent to missing upper200m support remain unresolved. Retain all candidate flags and local peaks. Geographic maxima do not independently validate shelf-break, coastal, named-current or water-mass identity.",
+  "vertical_operator": "At one selected native profile,retain frozen5/10/20cm/s connected layers with each threshold own qualifying0–200m core,adjacent finite upper/lower brackets and censoring. Keep signed deepreturnflow,nonzero upper crossings and missing/deep-domain limits. Native0m is a threshold boundary only if contiguous threshold support reaches it. No sampled limit,seabed or missing value is a physical current bottom;modelspan is not physical current thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.malvinas-eacc-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New partial Argentine-margin Malvinas and perennial-reach EACC regional model cases,declared before fields. Reuse frozen latitude v2 acquisition/geometry and selection/connected-layer operators.",
+  "geometry_provenance": "Ten OSW exploratory fixed-latitude windows ordered northward: Malvinas49–41S with longitude gates tracking the Argentine-margin context; EACC10–4S with38.5–43.5E gates. Coordinates and connectors are editorial choices, not digitized axes, published transects, full widths, seasonal limits or uncertainty bounds. Branches outside gates remain unsearched.",
+  "column_selector": "Both currents use fixed0degree true northward component,primary10cm/s,surface>5cm/s. Frozen complete finite native0–200m signed integral selector takes greatest positive integral with qualifying core and first western native index ties. Keep5/10/20cm/s diagnostics at the same selected column. Selected gate/support-edge maxima,no qualifying flow and primary censoring remain unresolved without weaker interior replacement or tuning.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "Two exact00Z snapshots, January15 and July15,2022. Not monthly means, seasonal envelopes, annual extrema or independent occupation observations.",
+  "transport_budget": "Preflight all20 original section/date shapes and exact times before fields. Every40depth/3–150longitude fixed-native-latitude slice fits20000pairs/patch,250000total and7MB decoded bound. Reuse frozen target-budget ledger with new correctly oriented exact-hyperslab reader. Only actualNetCDFI/Ofailures retry the exact component/slice,at most3 attempts with2/5second backoff, reserving all future first attempts before extra requests. Successful other components are not replayed. Ledger labels actual latitude_index and longitude_indices_inclusive. No wire-byte/hash claim or failure-to-zero conversion.",
+  "currents": {
+    "current:falkland": {
+      "entity_id": "current:falkland",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial Malvinas/Falkland Argentine-margin49–41S reach upstream of the Brazil–Malvinas confluence. Inshore/main branches,detached along-slope cores and eddies can compete inside broad gates; the selected integral maximum does not independently assign a coherent main branch. Northward component is a fixed diagnostic rather than a locally rotated along-slope vector. Exclude upstream Drake/Burdwood ACC partition,Brazil Current,confluence recirculation and detached eddies as target identities. Frey2021 local core depths,nominal700m instrument range and Cainzos2023 inverse transport-layer extent remain distinct observations/definitions,not imposed bottoms or validation of these2022 snapshots."
+    },
+    "current:east-african-coastal": {
+      "entity_id": "current:east-african-coastal",
+      "component_bearing_degrees_true": 0,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": 0.05,
+      "temperature_gate": null,
+      "branch_scope": "Partial East African coast10–4S reach within the source-described perennial northward11–3S band,with38.5–43.5E searches. Exclude northern seasonal Somali/EACC confluence and countercurrent,Madagascar boundary current,Mozambique Channel and detached eddies as target identities. Geographic maxima do not independently establish an EACC axis or source-water identity; islands/coastal missing support can censor selection. Swallow1991 upper500dbar transport and Zheng2024 regional upper300m concentration/analysis domain are different source quantities,not current bottoms,uniform thickness or annual extrema."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-49s",
+      "entity_id": "current:falkland",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -49,
+      "longitude_gate_degrees_east": [
+        -62,
+        -55
+      ]
+    },
+    {
+      "id": "section-47s",
+      "entity_id": "current:falkland",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -47,
+      "longitude_gate_degrees_east": [
+        -61,
+        -54
+      ]
+    },
+    {
+      "id": "section-45s",
+      "entity_id": "current:falkland",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -45,
+      "longitude_gate_degrees_east": [
+        -61,
+        -54
+      ]
+    },
+    {
+      "id": "section-43s",
+      "entity_id": "current:falkland",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -43,
+      "longitude_gate_degrees_east": [
+        -60,
+        -53
+      ]
+    },
+    {
+      "id": "section-41s",
+      "entity_id": "current:falkland",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -41,
+      "longitude_gate_degrees_east": [
+        -59,
+        -52
+      ]
+    },
+    {
+      "id": "section-10s",
+      "entity_id": "current:east-african-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -10,
+      "longitude_gate_degrees_east": [
+        38.5,
+        43.5
+      ]
+    },
+    {
+      "id": "section-8p5s",
+      "entity_id": "current:east-african-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -8.5,
+      "longitude_gate_degrees_east": [
+        38.5,
+        43.5
+      ]
+    },
+    {
+      "id": "section-7s",
+      "entity_id": "current:east-african-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -7,
+      "longitude_gate_degrees_east": [
+        38.5,
+        43.5
+      ]
+    },
+    {
+      "id": "section-5p5s",
+      "entity_id": "current:east-african-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -5.5,
+      "longitude_gate_degrees_east": [
+        38.5,
+        43.5
+      ]
+    },
+    {
+      "id": "section-4s",
+      "entity_id": "current:east-african-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": -4,
+      "longitude_gate_degrees_east": [
+        38.5,
+        43.5
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020JC016727",
+      "locator": "Frey et al.(2021),sections2,3.3,4 and conclusions",
+      "scope": "Fresh primary publisher text distinguishes Malvinas branches and detached features. Northern zonal sections support fixed northward diagnostic context; published core depths and instrument ranges do not bound current thickness. Broad model windows are OSW choices,not extracted axes or published branch boundaries."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/91JC01942",
+      "locator": "Swallow et al.(1991),publisher abstract",
+      "scope": "Fresh primary abstract describes perennial northward EACC11–3S and a different seasonal northern confluence. Upper500dbar transports and weaker500–1000dbar contribution are not velocity boundaries; dbar is not silently converted to metres and Sv is not stored volume."
+    },
+    {
+      "url": "https://journals.ametsoc.org/view/journals/clim/37/17/JCLI-D-23-0563.1.xml",
+      "locator": "Zheng et al.(2024),retained source facts v11 plus fresh primary search-indexed caption",
+      "scope": "Direct publisher reopen returned403. Retained primary review and freshly indexed caption distinguish regional OFES1993–2017 mean/upper300m analysis from instantaneous HYCOM2022 boundaries. No source figure or field arrays downloaded or digitized."
+    }
+  ],
+  "input_sha256": {
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/bounded_hycom_latitude_reads_v1.py": "0df40f1528c2ec05646d8c686260e33319efc713a0e8c0a5f09ffda84ae54dec",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/acquire_latitude_depth_sections_v2.py": "53270b168c98c35ae5c7b8f54328e28b17378c9fbb9f4f2826d191800522ae7c",
+    "research/greenland-depth-sections-operator-v1.json": "4bab9c5b7156528dd07e07ae4b00be95d6a0b02acd9d32b0ec4adea20aa7b1f8",
+    "research/malvinas-adcp-depth-audit-operator-v1.json": "a92c829f6e4e11f6c8fb9aa59df47432e1cd9c3452887396fa5619eb2c10d510",
+    "research/current-depth-source-facts-v11.json": "81ba5dcbabf67aad42ec5f9331d4fec1ba38a3230d1a1657f5c5793d1bae967e",
+    "research/current-depth-source-facts-v42.json": "5c8efdfd9131221e1ece0f9cf7b78eefb183fff29c19b029085fa368c1d33852"
+  },
+  "maximum_component_read_attempts": 3,
+  "maximum_nearest_latitude_distance_km": 5
+}

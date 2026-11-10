@@ -1,0 +1,99 @@
+{
+  "schema": "osw.current-pathway-source-constraints.v1",
+  "entity_id": "current:west-australian",
+  "status": "SOURCE_REVIEWED_CONTEXT_NOT_PHYSICAL_GEOMETRY_ADMISSION",
+  "source": {
+    "doi": "10.1029/2017JC013221",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2017JC013221",
+    "citation": "Wijeratne, Pattiaratchi and Proctor (2018), Estimates of Surface and Subsurface Boundary Current Transport Around Australia, JGR Oceans 123, 3444–3466.",
+    "reviewed_locators": ["Sections 3.2.2–3.2.3", "Section 4, WAC discussion and summary item 6"],
+    "access": "Publisher full HTML passages read; retained original PDF pages 11 and 16 (printed 3454 and 3459), Figures 6 and 10, rendered and visually inspected. No figure digitization or original field processing.",
+    "retained_original": "research/source-data/wijeratne-australia-2018/journal-article.pdf",
+    "original_sha256": "1880c05374a7fb1cfed56910059a32c0884599d97ba040f532c07d28daecf0d9",
+    "acquisition_file": "research/source-data/wijeratne-australia-2018/acquisition.json",
+    "related_existing_extraction": "research/australia-wijeratne-2018-section-transport-audit.json",
+    "original_visual_review": {
+      "pdf_pages": [11, 16],
+      "printed_pages": [3454, 3459],
+      "figure_6": "Author labels the circulation drawing as schematic. Arrow trajectories are not diagnosed current centerlines and cannot supply a ranked length.",
+      "figure_10": "Panels a and b show cumulative transport in Sv, not velocity or current-edge contours. Panel d distinguishes upper-300-m black curves from full-depth red curves. Contours must not be traced as current axes or width boundaries.",
+      "source_label_conflict": "Section 3.2.3 prose calls x1 22S; Figure 10d labels x1 22.5S. Neither is repaired or promoted to a physical endpoint."
+    }
+  },
+  "support": {
+    "kind": "published_model_result",
+    "model": "ozROMS",
+    "simulation_years": [2000, 2014],
+    "quantity_time_support": "Long-term model mean; not a dated observation or seasonal current geometry.",
+    "observed_period": null
+  },
+  "pathway": {
+    "source_identification_strength": "Author identifies modeled recirculation as part of WAC; discussion retains tentative wording about its location.",
+    "upstream_context": "Southern South Indian Countercurrent branch (sSICC)",
+    "direction_sequence": ["northward", "offshore westward"],
+    "relation": "Recirculation between southern and central SICC branches; offshore turn south of the central branch.",
+    "relation_is_canonical_branch_membership": false,
+    "historical_andrews_1977_identity_equated": false,
+    "leeuwin_identity_equated": false,
+    "axis_coordinates": null,
+    "physical_start_endpoint": null,
+    "physical_end_endpoint": null
+  },
+  "section_context": [
+    {
+      "id": "wijeratne-2018-wac-28s-upper300-net-northward-span",
+      "source_locator": "Section 3.2.3, x2 discussion accompanying Figure 10d",
+      "latitude_degrees_north": -28,
+      "longitude_span_degrees_east": [109, 111],
+      "layer_bounds_m": [0, 300],
+      "quantity": "Net northward transport interval in cumulative model section",
+      "interpretation": "A section of the modeled recirculation; not a thresholded current-core width or a whole-current footprint.",
+      "width_km": null,
+      "paired_physical_width_edges": false,
+      "seasonal_width_series": false
+    },
+    {
+      "id": "wijeratne-2018-34s-fulldepth-northward-span",
+      "source_locator": "Section 3.2.3, full-depth 34S discussion",
+      "latitude_degrees_north": -34,
+      "longitude_span_degrees_east": [111, 114],
+      "layer_bounds_m": null,
+      "layer": "Full depth",
+      "quantity": "Net northward transport interval in cumulative model section",
+      "interpretation": "Regional circulation context. Source discusses both Flinders/sSICC supply and sSICC offshore recirculation; this interval is not independently assigned as a WAC core.",
+      "width_km": null,
+      "paired_physical_width_edges": false,
+      "seasonal_width_series": false
+    }
+  ],
+  "reported_transport_context": {
+    "source_locator": "Section 3.2.3 and section 4 WAC discussion",
+    "southern_sicc_eastward_transport_at_100e_sv": 6.8,
+    "northward_then_offshore_component_sv": 5.7,
+    "source_reported_component_fraction_approx": 0.8,
+    "fraction_recomputed": false,
+    "statistic": "Approximate model mean transport context; not an independent new current measurement admission.",
+    "numeric_uncertainty_sv": null,
+    "is_length_or_width_evidence": false
+  },
+  "effect_on_remaining_gap": {
+    "previous_regional_gate_latitudes_degrees_north": [-36, -28],
+    "previous_gates_are_physical_current_endpoints": false,
+    "gate_success_is_current_identification": false,
+    "failed_gate_connection_proves_current_absent": false,
+    "next_action": "Figures 6 and 10 support pathway context but do not provide a digitizable velocity axis. Establish a source-consistent northward-to-offshore flow corridor and separate it from Flinders supply, Leeuwin flow and eddy recirculation before proposing any axis or new gates. Seek velocity-based boundary/axis support; do not infer endpoints from SICC inflow maxima.",
+    "original_field_processing_authorized_by_this_record": false,
+    "length_rank_eligible": false,
+    "width_rank_eligible": false,
+    "state_intersection_eligible": false,
+    "seasonal_geometry_playback_eligible": false
+  },
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "new_installed_measurement_records": 0,
+  "coverage_checkpoint_changed": false,
+  "installed_packet_changed": false,
+  "full_goal_complete": false
+}

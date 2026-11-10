@@ -1,4 +1,5 @@
 """Width-family binding, native/WASM maps and recorded-day playback."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -19,7 +20,7 @@ def main():
     for feature in result['map_scene']['features']:
         points=feature['source_sample']['coordinates']
         assert len(points)==2 and all(p[1]==21.875 for p in points) and points[0][0]<points[1][0]
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with tempfile.TemporaryDirectory() as directory:
         for mutation in ['latitude','value','boundary','raw_source','annual','owner']:
             bad=copy.deepcopy(bundle);row=next(r for r in bad['collections']['width_samples'] if r['sample_family']=='loop_dated_half_peak_section')

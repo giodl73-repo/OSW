@@ -1,0 +1,22 @@
+{
+  "schema": "osw.current-reference-profile-delivery-fixture-diagnostic.v1",
+  "run_id": 41146331458,
+  "source_commit": "f282dfbcd47f8116978c41a43526f2af9513012e",
+  "conclusion": "failure",
+  "failed_step": "Verify source contract and independent preservation checks",
+  "passed_before_failure": [
+    "Frozen input and installed21-file preflight",
+    "All9 Python contract/index/preservation tests",
+    "Source-profile chart and dashboard JavaScript checks"
+  ],
+  "failure": "An unscoped negative test inherited OSW_REFERENCE_PROFILE_DELIVERY_V1=1, reached the argument gate, and failed its environment-refusal assertion.",
+  "failed_log_sha256": "c191d8e7860895fa4320e8c66596820ca10403bacbdb25ab751bc7e995a7d001",
+  "failed_log_bytes": 10187,
+  "correction": "Clear the new scope in the negative fixture and explicitly verify that both old and new allowed scopes reach the pre-I/O argument gate.",
+  "corrected_test_passed_with_inherited_new_flag": true,
+  "runtime_packet_parsed": false,
+  "source_index_registered": false,
+  "native_or_wasm_built": false,
+  "installed": false,
+  "main_updated": false
+}

@@ -1,0 +1,7 @@
+# Diagnose scientific replay before candidate admission
+
+Actual candidate run40840170703 failed seven of eight query-contract fixtures at the exact scientific-output comparison. It stopped before running the candidate driver, installed packet access or native compilation. PyProj3.7.2 installed successfully. Do not infer a numerical-platform issue or a source corruption until the exact differences are inspected.
+
+Preserve the frozen producer, report, SVG and query contract. On one cloud CPU with nice15 and the same geodesic runtime, replay only the compact already-derived grid paths. Report expected/replayed hashes, JSON type/key/length/value differences with exact pointers, numeric absolute differences and bounded SVG text differences. Retain the first50 record differences and24 bounded SVG diff lines, with complete difference counts. No tolerance, normalization, source mutation or admission is applied by this diagnostic.
+
+The diagnostic has no installed parent packet, index, ocean fields, native/WASM build, browser, installation, main merge or local bulk-sync permission. Disable the failed candidate request and all older requests. Freeze every source/evidence input used by the replay, workflow and diagnostic. Two small guard/difference-reporting fixtures pass locally and on the cloud. The diagnostic's success means the differences were reported, not that scientific replay or candidate delivery passed. Resume full candidate acceptance only after evidence supports a reviewed correction.

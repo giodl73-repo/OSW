@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Caribbean Current · RU29 observations · OSW</title>
+  <link rel="stylesheet" href="caribbean-source.css">
+  <script src="caribbean-source.js" defer></script>
+</head>
+<body>
+<main>
+  <nav aria-label="Atlas"><a href="reference-routes.html?atlas-feature=current%3Acaribbean#route-atlas">← Caribbean Current atlas card</a> · <a href="dashboard.html">Coverage dashboard</a></nav>
+  <header>
+    <p class="eyebrow">Caribbean Current / dated source coverage</p>
+    <h1>Two crossings, changing flow</h1>
+    <p>RU29 glider velocity sections near 69°W, April–June 2024. Compare east–west and north–south flow on the same colour scale.</p>
+    <div class="facts"><span>2 interpolated occupations</span><span>486 processed mission profiles</span><span>11 retained source files</span></div>
+  </header>
+  <section aria-labelledby="sections-title">
+    <h2 id="sections-title">The observed sections</h2>
+    <p>Blue indicates westward or southward flow; red indicates eastward or northward flow. Grey cells are missing. Each crossing took several weeks.</p>
+    <div class="chart-scroll" tabindex="0" role="region" aria-label="Velocity sections, horizontally scrollable on small screens"><img src="../figures/caribbean-ru29-velocity-sections-v2.svg" width="1100" height="850" alt="Four velocity panels comparing two Caribbean Current occupations. East–west flow is above; north–south flow is below. All panels share a minus 0.5 to plus 0.5 metres per second colour scale."></div>
+    <p><a href="../figures/caribbean-ru29-velocity-sections-v2.svg">Open full-size chart</a></p>
+    <details id="cell-reader"><summary>Read the velocity at a grid cell</summary>
+      <p>Choose a section, latitude and depth to read both velocity components numerically. Values belong to the provider’s interpolated section.</p>
+      <div class="controls"><label>Occupation<select id="cell-occupation"><option value="0">Occupation 1</option><option value="1">Occupation 2</option></select></label><label>Latitude centre<select id="cell-latitude"></select></label><label>Depth centre<select id="cell-depth"></select></label></div>
+      <p id="cell-result" role="status">Open this panel to load the section values.</p>
+    </details>
+    <dl class="windows"><div><dt>Occupation 1</dt><dd>27 April 20:05–18 May 12:00, 2024 UTC</dd></div><div><dt>Occupation 2</dt><dd>18 May 12:00–6 June 00:00, 2024 UTC</dd></div></dl>
+    <p class="scope"><strong>Coverage remains partial.</strong> Navigation prevented sampling the full current width, and the approximately 1,000 m depth limit missed some deeper flow. These sections establish neither whole-current length or width nor seasonal ranges. Their fixed 69°W grid is an interpolation grid, not the glider’s exact path.</p>
+  </section>
+  <section aria-labelledby="inventory-title">
+    <h2 id="inventory-title">Explore the retained source fields</h2>
+    <p>Every variable and group is retained, including eddy contours, tracking flags and terminal virtual states. Tracked, untracked and short-track products remain separate. Track numbers identify features within their source file; they are not official eddy names.</p>
+    <div class="controls"><label>Source file<select id="member"></select></label><label>Find a field<input id="field-filter" type="search" placeholder="velocity, latitude, virtual…"></label></div>
+    <p id="inventory-status" role="status">Loading source inventory…</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Source variables"><table><caption>Original packed values: ranges below are not automatically decoded physical quantities.</caption><thead><tr><th scope="col">Group / field</th><th scope="col">Source cells</th><th scope="col">Masked</th><th scope="col">Packed source range</th></tr></thead><tbody id="fields"></tbody></table></div>
+    <details><summary>Source interpretation notes</summary>
+      <ul><li>Most velocity-product variables lack unit attributes. The paper and archived author notebook supply the m/s velocity and metre depth labels used in the chart.</li><li>Original eddy contour latitude attributes incorrectly say “degrees east.” The original labels are retained.</li><li>The paper describes a different eddy filter and contour interval from the commented archived notebook code. The original outputs are preserved; the tracking pipeline has not been independently reproduced.</li><li>The source’s approximate velocity RMS uncertainty is not a per-cell confidence interval. Virtual eddy positions are not directly observed footprints.</li><li>Selected original members were checked by CRC32 and SHA256. The complete archive’s checksum has not been independently verified.</li></ul>
+    </details>
+  </section>
+  <footer>
+    <h2>Sources and complete records</h2>
+    <p><a href="https://os.copernicus.org/articles/22/735/2026/">Gradone et al., Ocean Science (2026)</a> · <a href="https://doi.org/10.5281/zenodo.18332586">Original dataset</a> · <a href="https://github.com/JGradone/RU29_69W/tree/5029c77bb75905d4cb5dc461035bff8ddac59395">Archived author code</a></p>
+    <p><a href="../research/caribbean-ru29-source-fields-v2.json" download>Complete source field mirror (44 MB)</a> · <a href="../research/caribbean-ru29-source-inventory-v2.json">Inventory and provenance</a> · <a href="../research/source-data/caribbean-ru29-2024-v1/custody.json">Original member checksums</a> · <a href="../plans/caribbean-ru29-source-fields-protocol-v2.md">Readback protocol</a></p>
+    <p>Data: Joseph Gradone / Rutgers University. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. OSW source readback and visualization; original NetCDF members remain unchanged.</p>
+  </footer>
+</main>
+</body>
+</html>

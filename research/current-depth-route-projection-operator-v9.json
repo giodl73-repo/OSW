@@ -1,0 +1,281 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v9",
+  "status": "CONDITIONAL_INTERVAL_CORE_SUPPORT_WITH_INTERVENING_LAYER_CONSTRAINT",
+  "depth_register_file": "research/current-depth-register-v39.json",
+  "previous_projection_file": "research/current-depth-route-projections-v8.json",
+  "case": {
+    "id": "eicc-sen2022-northward-conditional-core-support-envelope-v1",
+    "entity_id": "current:east-india-coastal",
+    "anchors": [
+      {
+        "reference_id": "eicc-sen-2022-north-c-core-band",
+        "section_name": "C",
+        "section_latitude_degrees_north": 12,
+        "support_interval_m": [
+          0,
+          100
+        ],
+        "constraint_kind": "source_reported_core_location_band",
+        "native_source_metric": "core_depth",
+        "source_context": {
+          "id": "eicc-sen-2022-north-c-core-band",
+          "entity_id": "current:east-india-coastal",
+          "metric": "core_depth",
+          "approximate_value_m": null,
+          "range_m": [
+            0,
+            100
+          ],
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": "Depth band containing source-reported maximum velocity, not the thickness of the current or temporal extrema.",
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": "northward_seasonal_mean",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "geographic_scope": "Bay of Bengal EICC zonal sectionC.",
+          "temporal_scope": "Three-month northward seasonal mean in the last three years of an eight-year climatological ROMS run; no real calendar-year interval.",
+          "source_definition": "Reported seasonal velocity-core depth/band.",
+          "evidence_kind": "published_model_seasonal_climatology",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/1755876X.2020.1846266",
+          "source_citation": "Sen, Pandey, Dandapat, Francis and Chakraborty(2022; online2020), doi:10.1080/1755876X.2020.1846266.",
+          "source_locator": "Section3.3 EICC paragraphs and Figure11; Section3.3 first paragraph for section coordinates and seasonal averaging; Section2.1 for model time basis.",
+          "qualification": "Model climatology, not a dated hydrographic occupation. Section-specific cores and shallow reach remain separate from regional extent. OSCAR2003–2015 validation and COADS1945–1989 forcing climatology do not date the simulated depth. Source reports maximum velocity in a band for northward sectionC; no unique core point or paired thickness inferred.",
+          "observed_period": null,
+          "source_case_id": "eicc-sen-2022-northward",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "model_product": "Sen2022_ROMS_NIO",
+          "model_time_basis": {
+            "kind": "repeating_climatological_forcing",
+            "simulation_duration_years": 8,
+            "analysis_window": "last_three_simulation_years",
+            "calendar_years": null
+          },
+          "calendar_source_locator": "Section3.3: northward February–April and southward October–December; seasonal structures averaged over their flow months.",
+          "flow_direction": "northward",
+          "core_definition": {
+            "kind": "maximum_directional_meridional_velocity"
+          },
+          "section_name": "C",
+          "section_latitude_degrees_north": 12,
+          "section_longitude_band_degrees_east": [
+            80,
+            82.1
+          ],
+          "source_file": "research/current-depth-source-facts-v11.json",
+          "source_pointer": "/references/4",
+          "source_sha256": "81ba5dcbabf67aad42ec5f9331d4fec1ba38a3230d1a1657f5c5793d1bae967e"
+        }
+      },
+      {
+        "reference_id": "eicc-sen-2022-north-b-reach",
+        "section_name": "B",
+        "section_latitude_degrees_north": 16,
+        "support_interval_m": [
+          0,
+          20
+        ],
+        "constraint_kind": "conditional_core_within_explicitly_surface_confined_layer",
+        "native_source_metric": "reported_vertical_extent",
+        "source_context": {
+          "id": "eicc-sen-2022-north-b-reach",
+          "entity_id": "current:east-india-coastal",
+          "metric": "reported_vertical_extent",
+          "approximate_value_m": 20,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": "northward_seasonal_mean",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "geographic_scope": "Bay of Bengal EICC zonal sectionB.",
+          "temporal_scope": "Three-month northward seasonal mean in the last three years of an eight-year climatological ROMS run; no real calendar-year interval.",
+          "source_definition": "Reported seasonal flow reach.",
+          "evidence_kind": "published_model_seasonal_climatology",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/1755876X.2020.1846266",
+          "source_citation": "Sen, Pandey, Dandapat, Francis and Chakraborty(2022; online2020), doi:10.1080/1755876X.2020.1846266.",
+          "source_locator": "Section3.3 EICC paragraphs and Figure11; Section3.3 first paragraph for section coordinates and seasonal averaging; Section2.1 for model time basis.",
+          "qualification": "Model climatology, not a dated hydrographic occupation. Section-specific cores and shallow reach remain separate from regional extent. OSCAR2003–2015 validation and COADS1945–1989 forcing climatology do not date the simulated depth. Source reports maximum velocity in a band for northward sectionC; no unique core point or paired thickness inferred.",
+          "observed_period": null,
+          "source_case_id": "eicc-sen-2022-northward",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "model_product": "Sen2022_ROMS_NIO",
+          "model_time_basis": {
+            "kind": "repeating_climatological_forcing",
+            "simulation_duration_years": 8,
+            "analysis_window": "last_three_simulation_years",
+            "calendar_years": null
+          },
+          "calendar_source_locator": "Section3.3: northward February–April and southward October–December; seasonal structures averaged over their flow months.",
+          "flow_direction": "northward",
+          "section_name": "B",
+          "section_latitude_degrees_north": 16,
+          "section_longitude_band_degrees_east": [
+            82.1,
+            84.2
+          ],
+          "source_file": "research/current-depth-source-facts-v11.json",
+          "source_pointer": "/references/3",
+          "source_sha256": "81ba5dcbabf67aad42ec5f9331d4fec1ba38a3230d1a1657f5c5793d1bae967e"
+        }
+      },
+      {
+        "reference_id": "eicc-sen-2022-north-a-core",
+        "section_name": "A",
+        "section_latitude_degrees_north": 19.3,
+        "support_interval_m": [
+          150,
+          150
+        ],
+        "constraint_kind": "source_approximate_core_point_as_nominal_support",
+        "native_source_metric": "core_depth",
+        "source_context": {
+          "id": "eicc-sen-2022-north-a-core",
+          "entity_id": "current:east-india-coastal",
+          "metric": "core_depth",
+          "approximate_value_m": 150,
+          "range_m": null,
+          "lower_bound_m": null,
+          "lower_bound_exclusive": false,
+          "upper_bound_m": null,
+          "upper_bound_exclusive": false,
+          "range_interpretation": null,
+          "unit": "m",
+          "vertical_datum": "local_sea_surface_positive_down",
+          "upper_boundary_m": null,
+          "lower_boundary_m": null,
+          "thickness_m": null,
+          "uncertainty_m": null,
+          "annual_range_m": null,
+          "phase_label": "northward_seasonal_mean",
+          "calendar_months": [
+            2,
+            3,
+            4
+          ],
+          "geographic_scope": "Bay of Bengal EICC zonal sectionA.",
+          "temporal_scope": "Three-month northward seasonal mean in the last three years of an eight-year climatological ROMS run; no real calendar-year interval.",
+          "source_definition": "Reported seasonal velocity-core depth/band.",
+          "evidence_kind": "published_model_seasonal_climatology",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/1755876X.2020.1846266",
+          "source_citation": "Sen, Pandey, Dandapat, Francis and Chakraborty(2022; online2020), doi:10.1080/1755876X.2020.1846266.",
+          "source_locator": "Section3.3 EICC paragraphs and Figure11; Section3.3 first paragraph for section coordinates and seasonal averaging; Section2.1 for model time basis.",
+          "qualification": "Model climatology, not a dated hydrographic occupation. Section-specific cores and shallow reach remain separate from regional extent. OSCAR2003–2015 validation and COADS1945–1989 forcing climatology do not date the simulated depth. Source reports maximum velocity in a band for northward sectionC; no unique core point or paired thickness inferred.",
+          "observed_period": null,
+          "source_case_id": "eicc-sen-2022-northward",
+          "same_source_width_reference_id": null,
+          "independent_observation_count_claimed": false,
+          "whole_current_representative": false,
+          "volume_eligible": false,
+          "physical_state_join_eligible": false,
+          "seasonal_playback_eligible": false,
+          "annual_extrema_eligible": false,
+          "model_product": "Sen2022_ROMS_NIO",
+          "model_time_basis": {
+            "kind": "repeating_climatological_forcing",
+            "simulation_duration_years": 8,
+            "analysis_window": "last_three_simulation_years",
+            "calendar_years": null
+          },
+          "calendar_source_locator": "Section3.3: northward February–April and southward October–December; seasonal structures averaged over their flow months.",
+          "flow_direction": "northward",
+          "core_definition": {
+            "kind": "maximum_directional_meridional_velocity"
+          },
+          "section_name": "A",
+          "section_latitude_degrees_north": 19.3,
+          "section_longitude_band_degrees_east": [
+            85.3,
+            87.4
+          ],
+          "source_file": "research/current-depth-source-facts-v11.json",
+          "source_pointer": "/references/2",
+          "source_sha256": "81ba5dcbabf67aad42ec5f9331d4fec1ba38a3230d1a1657f5c5793d1bae967e"
+        }
+      }
+    ],
+    "sample_latitudes_degrees_north": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      19.3,
+      20
+    ],
+    "model_time_basis": {
+      "kind": "repeating_climatological_forcing",
+      "simulation_duration_years": 8,
+      "analysis_window": "last_three_simulation_years",
+      "calendar_years": null
+    },
+    "source_scope_qualification": "Northward February–April seasonal model mean only. Section latitudes identify zonal sections, not instantaneous current-axis points. The November southward reference drawing is not reused. At B the nominal core-support interval is an explicitly conditional inference from source-described surface-confined approximate20m flow; it is not a newly reported core band."
+  },
+  "eligibility": {
+    "whole_current_representative": false,
+    "whole_route_depth_profile": false,
+    "physical_thickness": false,
+    "volume": false,
+    "physical_state_join": false,
+    "annual_extrema": false,
+    "seasonal_playback": false
+  },
+  "interval_rules": [
+    "Preserve source core point as nominal degenerate support, source core-location band as a band, and explicitly surface-confined layer reach as a separate conditional core-support assumption. No midpoint is supplied.",
+    "At B, use0–20m only under the assumption that the maximum of the described local northward current lies inside its approximate source-described surface-confined layer. This is not a guaranteed physical depth interval, direct core observation, numerical precision or confidence limit. Generic reach bounds alone do not authorize this inference.",
+    "Every intervening compatible constraint breaks the interpolation interval. Do not interpolate directly from C to A across the shallow B source section.",
+    "Interpolate lower and upper nominal support limits separately in latitude. Round interpolated display limits outward to10m; retain unrounded computations and source anchor descriptors separately. Do not report interval width as current thickness.",
+    "Source0–100m core location band is not a flow-depth band or temporal extrema. Source150m approximate point does not imply zero uncertainty when encoded as[150,150].",
+    "Keep the February–April mean distinct from October–December mean and from monthly data. Model analysis uses last three of eight simulation years under repeating climatological forcing; validation/forcing calendar years do not date the core descriptors.",
+    "No interpolation beyond12–19.3N, invented longitude, OSW route distance, November geometry, annual depth envelope, physical thickness, width join, volume or full-year playback."
+  ],
+  "source_review": {
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/1755876X.2020.1846266",
+    "access_scope": "primary_publisher_indexed_full_text",
+    "review_mode": "Primary publisher indexed Section3.3 text rechecked: northward seasonal mean, section coordinates, source A approximate150m core, C surface-to100m maximum-velocity band, and B approximate20m surface confinement. Direct full-page open returned403. No original figure pixels or Figure11 digitization claimed.",
+    "actual_original_pixels_viewed": false
+  },
+  "new_depth_measurements": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

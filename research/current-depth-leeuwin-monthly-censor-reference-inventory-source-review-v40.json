@@ -1,0 +1,93 @@
+{
+  "schema": "osw.current-depth-leeuwin-reviewed-monthly-censor-source-review.v40",
+  "status": "PASS_NINE_EXISTING_BOUNDARIES_THREE_SEPARATE_CENSOR_SUPPORTS_TWELVE_MONTH_SERIES",
+  "source_commit": "87b860092ed70bf7c1282bc58855246aa541d9bf",
+  "producer_run_id": 42082821011,
+  "cloud_semantic_tests_passed": 5,
+  "actual_complete_catalog_and_monthly_series_json_csv_roundtrip_passed": true,
+  "source_baseline_run_id": 42082820424,
+  "source_baseline_tests_passed": 6,
+  "artifact": {
+    "id": 13441651765,
+    "sha256": "fcdf1e042c5d2c846aab9e70bfda20403caec602bac91d3a29054eecded0e71b",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/current-depth-reference-inventory-v40.json": {
+      "bytes": 3984,
+      "sha256": "fec1a4be6cc9a55fb6f10f7a2fd735ad5ceadf14de0c68e35f5e9c4f660afba1"
+    },
+    "research/current-depth-reference-addenda/leeuwin-watr50-reviewed-monthly-censor-support-v1.json": {
+      "bytes": 13348,
+      "sha256": "e0365335a37077940ccffe038bf87803b380fa05e12b60c6863df40eac8f2866"
+    },
+    "research/current-depth-reference-addenda/leeuwin-watr50-reviewed-monthly-censor-support-v1.csv": {
+      "bytes": 8751,
+      "sha256": "0b4eee61c1a4ec94473dd02d4f92a04ee686e8d7b724f638bd3621bf5df14de1"
+    },
+    "research/leeuwin-monthly-depth-support-series-v2.json": {
+      "bytes": 6506,
+      "sha256": "e15ba739a43c04e536ad4cec7a480ec404e905373de69d71c0d3b04f4d7113f3"
+    },
+    "research/leeuwin-monthly-depth-support-series-v2.csv": {
+      "bytes": 1854,
+      "sha256": "3ab3de78a19410ad133a8bff32295e05027fba0767b259f19242808348283e07"
+    },
+    "research/leeuwin-monthly-censor-admission-ledger-v1.json": {
+      "bytes": 856,
+      "sha256": "71f766ac244fa13fcb9047caaf3cf1165beefe3566cf92a5e8f34c2b29130adb"
+    },
+    "research/leeuwin-monthly-censor-catalog-query-ledger-v1.json": {
+      "bytes": 9951,
+      "sha256": "e68c50ff2c01a57a55cc4290d78425ca80d196f8bca01792f7f0ebde3d7f918e"
+    }
+  },
+  "original_review": {
+    "file": "research/leeuwin-depth-sensitivity-source-review-v1.json",
+    "sha256": "d0952a305ccb5df7f9842d9d9f64136e03b8afcfb177b45fb391a0be59d2652d",
+    "support_statement_pointer": "/scientific_review/3",
+    "native_or_source_validators_reexecuted": false
+  },
+  "cloud_reported_counts": {
+    "catalog_identities": 111,
+    "depth_references": 908,
+    "prior_references_preserved": 905,
+    "new_support_references": 3,
+    "identities_with_scoped_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "metre_references": 906,
+    "dbar_references": 2,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0,
+    "calendar_months": 12,
+    "existing_finite_boundary_descriptors": 9,
+    "censored_support_months": 3,
+    "unknown_boundary_months": 3
+  },
+  "cloud_reported_query": {
+    "numeric_tokens": 14335,
+    "unique_json_bytes": 5853976,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "new_depth_values_computed": 0,
+    "new_independent_observations": 0
+  },
+  "scientific_review": [
+    "Three already-reviewed Leeuwin monthly processed-mean sign-support summaries are admitted as derived_censored_mean_flow_reach. This is catalog admission and a data join, not three new observations, depth computations or finite boundaries. The original nine calculated crossings and all905 prior references remain unchanged.",
+    "March,August,November retain inclusive sampled-sign reach475m at WATR50 from the exact retained review statement. Each boundary depth, lower contour, thickness, annual range and physical uncertainty remains unknown.475m is never inserted in the boundary column and never used as an annual maximum.",
+    "The12-month JSON/CSV separates finite boundary IDs, unrounded computational crossings, ten-metre-rounded displays and interpolation brackets from support IDs and censor bounds. Nine finite and three censored rows preserve all twelve original month identities. No interpolation through censored months or annual depth envelope is admitted.",
+    "Daily vectors were processed in the original348degree local frame, positive equatorward and negative poleward, then pooled by calendar month over2011-08-01..2023-05-01. A boundary of the monthly mean is not a mean instantaneous boundary, a dated whole-current section or a seasonal physical bottom. Historical cohort/period/source product identity is preserved, not multiplied into new observing cases.",
+    "Original source flags1observed,2near-surface extrapolated,3near-bottom extrapolated and4SOM-filled describe processing types, not general good/bad quality classes. This admission includes those same flags. Sign support at475m does not demonstrate strong or statistically significant flow there. Source-selected daily counts for the new censored references remain unknown.",
+    "Existing published Feng2025 summaries and calculated strict zero crossings remain distinct. This admission establishes no exact paper reproduction and no comparison as measured temporal changes against incompatible methods, windows or products.",
+    "Source-product DOI10.25919/myac-yx60 collectionv3 and Feng et al.2025 DOI10.1029/2025JC022662 attribution remain attached. IMOS/NCRIS/University of Tasmania and CSIRO Bui and Feng CC-BY4.0 acknowledgement is retained in all new reference records and the monthly series.",
+    "Only already-derived typed catalog/descriptor metadata were decoded under a separate DescriptorQueryv3 with explicit zero prior counters,250000numeric/32MBuniqueJSON/2.5MBpacket limits and durable before-decode reservations/cache. Network and source-data/native paths were blocked. The historical11,898,461-byte native product and86level/4292daily-record calculation were not retrieved, reread, reprocessed, or retroactively certified compliant with later case caps. No closed source budget was renewed.",
+    "All905prior evidence rows, all prior contexts and all owner fields other than additive reference IDs passed cloud preservation checks. The complete908-reference catalog, addendum and12-month series passed exact JSON/CSV/manifest roundtrips. Five synthetic semantic tests and six baseline checks ran sequentially on one idle cloud CPU; no scientific computations or tests ran locally.",
+    "These support bounds are not eligible for physical depth ranking, route projection, width joins, seasonal playback, annual extrema, stored-water volume or independent observation counts. Current/eddy inventory identities,102eddy references, frozen projection inventory, main, runtime and default-query UI remain unchanged. This is a data artifact only; overall current depth and compatible volume coverage remain incomplete."
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "canonical_reference_admission_performed": true,
+  "new_depth_estimates_computed": false,
+  "full_goal_complete": false
+}

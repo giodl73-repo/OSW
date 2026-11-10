@@ -1,5 +1,6 @@
 """Complete route worklist, source receipts, strict joins and browser navigation."""
 import copy
+from query_packet import load_bundle
 import json
 import os
 from pathlib import Path
@@ -12,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def read(path):return json.loads((ROOT/path).read_bytes())
 
 def main():
-    bundle=read('almanac/query-data.json');collections=bundle['collections']
+    bundle=load_bundle(ROOT/'almanac/query-data.json');collections=bundle['collections']
     source=read('research/ocean-current-reference-path-candidates.json')
     rows=collections['route_decisions'];assert len(rows)==89
     originals={r['current_id']:r for r in source['remaining_current_decisions']}

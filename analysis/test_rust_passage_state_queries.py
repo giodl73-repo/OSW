@@ -1,4 +1,5 @@
 """Full-state point oracle, support provenance, and locator-only query controls."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -13,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def query(state):return {'collection':'passage_samples','spatial':{'state_code':state,'predicate':'locator'},'limit':100}
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());audit=build()
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));audit=build()
     for state in bundle['collections']['states']:
         result=native(query(state['code']));assert result['ok']
         expected={(r['record_id'],r['feature_index']) for r in audit['rows'] if any(m['state_code']==state['code'] for m in r['matches'])}

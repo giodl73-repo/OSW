@@ -1,0 +1,53 @@
+{
+  "schema": "osw.pacific-sec-primary-boundary-source-review.v1",
+  "status": "PRIMARY_AUTHOR_TEXT_REVIEWED_NO_DIMENSION_ADMITTED",
+  "entity_id": "current:pacific-south-equatorial",
+  "source_title": "Direct measurements of upper ocean currents and water properties across the tropical Pacific during the 1990s",
+  "source_authors": [
+    "Gregory C. Johnson",
+    "Bernadette M. Sloyan",
+    "William S. Kessler",
+    "Kristene E. McTaggart"
+  ],
+  "source_year": 2002,
+  "primary_author_text_urls": [
+    "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_current.shtml",
+    "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml"
+  ],
+  "reviewed_sections": [
+    "4. Zonal current properties and their variation; current definitions",
+    "3.1. The mean fields"
+  ],
+  "reviewed_at_utc_date": "2026-10-30",
+  "findings": [
+    {
+      "component": "SEC(S)",
+      "source_analysis_latitude_limits_deg_north": [
+        -8,
+        0
+      ],
+      "limit_operator": "Study integration domain, not a pair of measured flow edges",
+      "vertical_operator": "Westward flow with potential density anomaly below 26.0 kg/m^3; not one fixed depth",
+      "southern_limit_reason": "Most synoptic sections terminate near 8 degrees south. The authors explicitly acknowledge missed SEC(S) variability farther south.",
+      "far_west_exception": "Near 143 degrees east, New Guinea replaces the southern latitude cutoff, and upper NGCUC flow is included in the source SEC(S) definition.",
+      "physical_width_admitted": false
+    },
+    {
+      "component": "SEC(N)",
+      "limit_operator": "Westward flow between the equator and NECC, with the same density cap; not a uniformly sampled fixed-depth paired-edge width",
+      "whole_current_length_admitted": false
+    },
+    {
+      "component": "Mean section interpretation",
+      "finding": "The paper distinguishes fits of synoptic current integrals from mean velocity sections. Their stronger synoptic transports must not be treated as interchangeable estimates or independent observations.",
+      "seasonal_operator": "Pure annual harmonic in the synoptic property fits; ENSO regression is a separate perturbation, not uncertainty."
+    }
+  ],
+  "original_pdf_and_figures_reviewed_here": false,
+  "numeric_dimensions_added": 0,
+  "whole_current_endpoints_established": false,
+  "annual_dimension_ranges_established": false,
+  "next_action": "Review the original methods and velocity-section figures for paired flow boundaries at a stated depth and longitude. Do not turn the 8S sampling cutoff into current width or use the section-longitude domain as alongflow endpoints.",
+  "installed": false,
+  "full_goal_complete": false
+}

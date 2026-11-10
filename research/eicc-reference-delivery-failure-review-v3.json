@@ -1,0 +1,59 @@
+{
+  "schema": "osw.eicc-reference-delivery-failure-review.v3",
+  "status": "NATIVE_SMOKE_FAILED_REQUEST_DISABLED_NOT_INSTALLED",
+  "run_id": 40389475234,
+  "run_attempt": 1,
+  "job_id": 121806392570,
+  "source_commit": "5aa91b1e9ba9af2f679a0f95e078524d56d95847",
+  "disabled_remote_commit": "6ac954ef0d814dab250c04814bdd6ed168a44604",
+  "artifact": {
+    "id": 12683665005,
+    "name": "eicc-reference-delivery-evidence-v3",
+    "bytes": 20940,
+    "sha256": "98dfca3069c05ff895365844e176d754758917ab6384140f2cfeecaf63a78c9b"
+  },
+  "observed_failure": {
+    "status": "FAIL",
+    "stage": "engine",
+    "source_commit": "5aa91b1e9ba9af2f679a0f95e078524d56d95847",
+    "error": "ValueError: Native query failed or exceeded declared budget: {\"request\": {\"collection\": \"reference_routes\", \"filters\": [{\"field\": \"id\", \"op\": \"eq\", \"value\": \"east-india-coastal-spring1987-paragraph8-reference-connection\"}], \"sort\": {\"field\": \"id\", \"direction\": \"asc\"}, \"limit\": 1}, \"mode\": \"main\", \"exit_code\": 2, \"stdout_bytes\": 0, \"response_limit_bytes\": 2097152, \"stdout_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"stderr_bytes\": 43, \"stderr_sha256\": \"d4869bb7b68beeca9d56374cf86d2a60a11622c35da7e7eaf12d2e808a111d0b\", \"stderr_preview\": \"Changed working route catalogue projection\\n\"}",
+    "working_branch_installed": false
+  },
+  "rust_planning_tests": {
+    "tests_passed": 6,
+    "exit_code": 0,
+    "stdout_sha256": "1c7e0f5115cb08b492dbb606853a0eefb8262e72d683da76dc0164b62910067b",
+    "stderr_sha256": "798da000ec04393b6e5d0c4896d8a370357915eada4650beb6c244983c8908e1"
+  },
+  "passed_stages": [
+    "source and installed-parent controls",
+    "42 focused source/custody checks",
+    "old installed WASM parent atlas and seasons snapshots",
+    "candidate preservation and source-index extension",
+    "native CLI compilation",
+    "six Rust planning regression tests"
+  ],
+  "wasm_build_started": false,
+  "native_wasm_parities_completed": 0,
+  "browser_dependency_install_started": false,
+  "browser_review_started": false,
+  "source_diagnosis": {
+    "rust/osw-query/src/madagascar_coastal_curve.rs": "Whole-table comparison expected only the previous route inventory; observed native error originates here.",
+    "rust/osw-query/src/nwasc_reference_route.rs": "Independent whole-table comparison also expects only the previous inventory; identified by source review, not reached in this failed smoke."
+  },
+  "required_correction": "Append the strictly validated two EICC rows to both expected inventories, retaining all previous rows and order. Prove positive integration and negative mutation/omission/duplicate/source-receipt tests before any installation.",
+  "working_dataset_updated": false,
+  "main_merged": false,
+  "full_goal_complete": false,
+  "audit_input_sha256": {
+    "rust/osw-query/src/madagascar_coastal_curve.rs": "fd3787bb1a80c53ebbd667255d1b28309cce171560d1bc427e32d27556c50642",
+    "rust/osw-query/src/nwasc_reference_route.rs": "a092525d38426085714476cdfabcb9e6a679ec31dd7d5b314a4ebbce68959fa3"
+  },
+  "compact_artifact_file_sha256": {
+    "prepared.json": "82d091b63793c261578dfd1d75ad5cc071354c8af5a8e5df34ac60b3033925ac",
+    "parent-snapshots.json": "91c65ae8d78df3a0450be252560232e966c6c2dd52e854181ee18a413f673a50",
+    "planning-tests.json": "e68e63cab1dbb2a3822141990201c2ef58e391722348561f6f0e84b4315d7e6c",
+    "native-response-custody.json": "c0dd2fba763551d78600ef8326e268c1062406913c694ad8292406338d75b85d",
+    "failure.json": "d15e7106b8d6168171982013820eb8909289a49b6499d3e92cb58a9d251c95d9"
+  }
+}

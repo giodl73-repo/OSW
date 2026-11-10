@@ -1,0 +1,90 @@
+{
+  "schema": "osw.current-depth-identity-evidence-candidate.v1",
+  "status": "PROPOSED_RYUKYU_IDENTITY_WITH_UNADMITTED_DEPTH_CONTEXT",
+  "proposed_entity_id": "current:ryukyu",
+  "accepted_entity_id": null,
+  "proposed_name": "Ryukyu Current",
+  "canonical_identity_added": false,
+  "canonical_depth_reference_added": false,
+  "source_doi": "10.1029/2023GL106944",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023GL106944",
+  "source_citation": "Yang,H.,Cai,J.,Wu,L.,Guo,H.,Chen,Z.,Jing,Z.,and Gan,B.(2024),The Intensifying East China Sea Kuroshio and Disappearing Ryukyu Current in a Warming Climate,Geophysical Research Letters51,e2023GL106944.",
+  "source_review_scope": "Actual primary publisher HTML introduction,methods2.1/2.2 and results3 reviewed;no original bytes,pixels,supplement or native data retained.",
+  "identity_context": {
+    "source_definition": "Subsurface branch of the regional Kuroshio system,east of the Ryukyu Islands,rejoining the East China Sea Kuroshio near Tokara Strait.",
+    "relationship_to_current_kuroshio": "Related named branch;not established as an alias of OSW Kuroshio owner or a scalar-inheritance child.",
+    "source_section": "RN",
+    "source_section_endpoints_lat_lon": [
+      [
+        26.8,
+        128.3
+      ],
+      [
+        26.2,
+        129.2
+      ]
+    ],
+    "section_endpoints_are_current_route": false,
+    "whole_route_endpoints": null,
+    "canonical_alias_admitted": false
+  },
+  "candidate_depth_contexts": [
+    {
+      "id": "ryukyu-yang2024-rn-geostrophic-core-neighborhood-candidate",
+      "quantity": "author_reported_observational_geostrophic_core_neighborhood",
+      "source_reported_depth_band_m": [
+        300,
+        400
+      ],
+      "band_role": "Core neighborhood associated with extremum of the velocity trend;not measured upper/lower current edges or thickness.",
+      "source_locator": "Section3,paragraph beginning The acceleration;near the core parenthetical.",
+      "source_temporal_context": "1958-2022 JMA hydrography,aggregated into five-year bins before geostrophic calculation.",
+      "source_method": "Geostrophic velocity derived from gridded hydrography,not a direct current-meter depth measurement;reference details in unread supplement remain unqualified.",
+      "short_excerpt": "near the core (300\u2013400 m)",
+      "nominal_whole_current_depth_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "canonical_admission_permitted": false
+    },
+    {
+      "id": "ryukyu-yang2024-rn-model-core-context-candidate",
+      "quantity": "author_reported_model_core_depth_context",
+      "source_reported_core_depth_m": 500,
+      "source_locator": "Section3,model validation paragraph:core locating at500m across RN.",
+      "source_temporal_context": "Four high-resolution models span1950-2050,historical plus future forcing;exact averaging window attached to this narrative value not independently resolved.",
+      "short_excerpt": "core locating at 500 m",
+      "observational_measurement": false,
+      "nominal_whole_current_depth_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "canonical_admission_permitted": false
+    }
+  ],
+  "excluded_transfers": [
+    "No300-400m or500m value assigned to current:kuroshio.",
+    "Below400m Kuroshio velocity-trend sign change is not its lower boundary.",
+    "Ryukyu trend across0-1500m and upper2000m transport domain do not establish physical current extent.",
+    "No subtraction of core-band limits into current thickness or transfer of model500m to observed historical core depth.",
+    "RCM1 ambiguous current-depth wording not converted to another core/bottom reference.",
+    "No Sv-to-stored-volume conversion,parent/member additive scalar,editorial route or state join."
+  ],
+  "next_required_identity_review": [
+    "Confirm identity level and relationship against canonical taxonomy;accept as a separate current only through explicit registry change.",
+    "Define route and section scope without treating RN endpoints as along-current termini.",
+    "Any later typed depth admission must preserve proposed/accepted identity boundary,derived-geostrophic versus model roles,core-neighborhood meaning and unknown datum/averaging.",
+    "Review compatible observational boundaries before any width/depth/volume geometry."
+  ],
+  "canonical_inventory_unchanged": "research/current-depth-reference-inventory-v48.json",
+  "canonical_references_unchanged": 926,
+  "canonical_identities_unchanged": 111,
+  "source_original_bytes_verified": false,
+  "source_pixels_inspected": false,
+  "new_native_values": 0,
+  "new_observations_by_OSW": 0,
+  "scientific_computation_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

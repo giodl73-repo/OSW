@@ -10,7 +10,7 @@ def main():
     read=lambda path:json.loads(Path(path).read_text(encoding='utf-8'))
     ident='south-pacific-eastern-front-reach-reference-path-candidate'
     candidate=read('research/'+ident+'.json')
-    catalog=read('research/ocean-current-reference-path-candidates.json')
+    catalog=read('research/ocean-current-working-reference-routes.json')
     assert candidate['candidate_comparison_group']=='osw_studied_reach_routes'
     assert ident not in catalog['reference_route_length_order']
     anchors=candidate['source_anchor_observations']

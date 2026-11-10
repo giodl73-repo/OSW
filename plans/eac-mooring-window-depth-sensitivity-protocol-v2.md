@@ -1,0 +1,50 @@
+# EAC predeclared wider-window conditional depth sensitivity v2
+
+RetainedsourceONLY:14originalfixedstation/dateprofiles,42nominalcutoffcontexts.
+Keepvalidatedv1localtestunchanged,including16failed2levelbrackets/64corners.
+No provider/archive/artifact/OPeNDAP/TIMEreads,retries orsourcebudgetreset.
+
+Beforeerrorvalues,chooseONEwindow/profilefromoldv1bracketmetadata. Anchor
+original0.1m/sfinitecrossing;elseoriginal0.05;elseoriginal0.2;elseunassessable.
+Foranchorbracketindicesj,j+1takeoriginalcontiguousindicesmax(0,j-16)through
+min(n,j+18)exclusive:2bracketlevelsplus16oneachside,max34levels. Cliponly;
+no success-tunedshifting/padding/windowextension. All3cutoffsusesamewindow.
+Unionwithv1's<=6previouslyselectedbracketlevelsmustremain<=40/profileacross
+methods. Outsidethewindowv1levelscountforbudget/custodyonly,nointerpolation
+acrossthoseunselectedgaps. Nominalbracketsoutsideselectedwindowstayunassessed.
+
+Useunfilledpoleward=-VCUR,reportedVCURstandarderror. Sourcegrid/time
+processingand5dayfilterretained. Constructnominalandcomponentwisemean-SE/
+mean+SEvectors withinwindow,oneSEmultiplier. FromFIXEDwindowentry,findfirst
+strictqualifying(>cutoff)tononqualifying(<=cutoff)downwardadjacentcrossing.
+Missingentry/gap/nonqualifyingentry/windowbottomcensoringstayexplicitNULL;
+no newcore/entryselection,gapfill/relocation/extrapolation. Reentrybelowfirst
+crossingdoesnotreplaceoriginalconnectedcomponent. Nominalwindowcrossing
+mustreproduceoldlowerdepth1e-8m orcompleterangesuppressed.
+
+CompleteconditionalrangeONLYifnominalmatchesoriginalandbothcomponentwise
+extremevectorsretainentryandresolvefirstcrossinginsideintactwindow. First
+lossdepthismonotoneundercomponentwiseorderedpiecewiselinearfieldswithfixed
+qualifyingentry:extremesboundallinteriorerrorrectangleprofiles,without
+assumingindependent/normalerrors. Verifyexhaustivelyall32cornersof5leveltoy
+profile,plusmultiplecrossings/missingentry/gaps/edges/censor/counterexamples.
+No simultaneousconfidencecoverageclaimed. Originalcore/pathOUTSIDEwindow
+isnotreassessed,thereforeresponseisconditionalwindowquantity,notfullprofile
+physicaldepthuncertainty/annualrange/wholecurrentthickness/volume. All42
+outcomesincludingmissing/outside/unassessablepreserved;newreferencecount0.
+
+CARRYoriginalcasebounds:v1conservative60534(40282oldnative+20000retained+
+252selectedreservation),newtyped20000+selectedunion40*14*3=1680 =>82214
+<250000and7MB. Newwindowvaluesmax34*14*3=1428,extraunionboundcoversoldlevels;
+no percutoff/profile reset. Geometrypriorv1max252+3*34*14support+3*42crossings
+<=1806<6000. Originalprovider8768velocityscalarsretrievedof20000unchanged;
+newprovider/nativearray/TIMErequests0. Cumulative40selectedlevels/profile
+includesoldprimitivelevels,not40newlevelspermethod. Priorprovidertime/
+operationhistorynotinventedasnewremainingallowance. Newretainedproducer
+90salarm/SIGTERMunwind,sockettripwire,freshfolder,producerendsbeforeupload.
+Boundretainedtypedpackets800000bytes,newoutput<2.4MB,files<2.5MB.
+
+Allscience/geometry/counts/testscloudonlyoneidleCPU,stdlib. Newscopedv2files;
+freezev1/allpreviouscode/operators/results. Preserve859refs102eddyrefs21UTF8/
+main/runtime. NoUI/modelreacquisition. Conditionalrangesnotdepthconfidence
+intervals;unknownphysicaluncertainty/thickness/annualrange/volume stayNULL.

@@ -1,0 +1,486 @@
+{
+  "schema": "osw.netcdf-source-attributes.v1",
+  "nonfinite_attribute_encoding": "explicit nonfinite_float object; data arrays retain original float64 bits",
+  "global_attributes": {
+    "project": "Integrated Marine Observing System (IMOS), National Environmental Science Program (NESP)",
+    "Conventions": "CF-1.6,IMOS-1.4",
+    "standard_name_vocabulary": "NetCDF Climate and Forecast (CF) Metadata Convention Standard Name Table 45",
+    "title": "East Australian Current gridded (depth, distance and time) mooring product",
+    "date_created": "2023-11-14T10:04:58Z",
+    "date_modified": "2023-11-14T10:04:58Z",
+    "abstract": "This daily-, distance- and depth-gridded product of currents, temperature and salinity is produced from the SOM-filled EAC individual mooring data product in the links section of the CSIRO DAP record for this dataset. The data can be used to produce volume and heat transport time series across the entire EAC.",
+    "source": "subsurface mooring",
+    "history": "Created from IMOS-EAC, IMOS-NSI and IMOS-SEQ site instrument files from deployment periods: 2012/04 to 2013/08; 2012/04 to 2013/08; 2015/05 to 2016/11; 2016/11 to 2018/05; 2018/05 to 2019/09; 2019/09 to 2021/05; 2021/05 to 2022/07; NRSNSI: 2012/04 to 2022/06",
+    "keywords": "EARTH SCIENCE >Oceans >Ocean Temperature, EARTH SCIENCE >Oceans >Ocean Circulation >Ocean Currents, EARTH SCIENCE >Oceans >Bathymetry/Seafloor Topography >Water depth, EARTH SCIENCE >Oceans >Salinity/Density >Salinity",
+    "keywords_vocabulary": "GCMD Science Keywords",
+    "cdm_data_type": "Grid",
+    "naming_authority": "IMOS",
+    "id": "EAC",
+    "geospatial_lat_min": [
+      -27.3425
+    ],
+    "geospatial_lat_max": [
+      -27.1054
+    ],
+    "geospatial_lon_min": [
+      153.5619
+    ],
+    "geospatial_lon_max": [
+      155.2919
+    ],
+    "geospatial_lat_units": "degrees_north",
+    "geospatial_lon_units": "degrees_east",
+    "geospatial_vertical_min": [
+      0.0
+    ],
+    "geospatial_vertical_max": [
+      5000.0
+    ],
+    "geospatial_vertical_positive": "down",
+    "time_coverage_start": "2012-04-01T12:00:00Z",
+    "time_coverage_end": "2022-07-27T12:00:00Z",
+    "data_centre": "CSIRO Data Access Portal (DAP)",
+    "author": "Rebecca Cowley",
+    "author_email": "rebecca.cowley@csiro.au",
+    "principal_investigator": "Bernadette Sloyan",
+    "principal_investigator_email": "bernadette.sloyan@csiro.au",
+    "institution_references": "https://data.csiro.au/",
+    "lineage": "These gridded products are created from IMOS FV01 individual moorings instrument files collected on the East Australian Current (EAC) moorings (6 moorings). Period of data collection is over 6 deployments from 2012-2022 (with the exception of approximately 2-year gap from 2013-2015 where no moorings were in place). The products at EAC0500 (500m mooring) also include data from the ANMN North Stradbroke Island coastal mooring. Individual instrument files are screened to remove data flagged as 'good' (flags 1, 2 & 5). Temperature, salinity and velocity data is put onto a common time grid (daily) and common depth grid (10-20m) using a linear interpolation, for each deployment. Deployments are concatenated together to give one time-continuous dataset for each mooring site. Periods where an instrument fails or data is missing is filled with missing values, and the final variables are TEMP, UCUR, VCUR and PSAL. Additional variables are the '*_FILLED' variables (eg, 'TEMP_FILLED'), and these are created using a SOM (Self Organising Maps) neural network machine learning algorithm to fill the missing periods of data. The method is fully described in the paper in the links section in the CSIRO DAP record for this dataset. This gridded product has taken the individual mooring site SOM-filled product described above, and further interpolated onto a 1-2km distance grid using a nearest-neighbour interpolation method.",
+    "citation": "The citation in a list of references is: \"Sloyan, Bernadette; Cowley, Rebecca; Chapman, Chris (2023): East Australian Current gridded (depth, distance and time) mooring product. v19. CSIRO. Data Collection\". + doi available for this version via https://hdl.handle.net/102.100.100/434305",
+    "persistent_URL": "https://hdl.handle.net/102.100.100/434305",
+    "acknowledgement": "This project is supported with funding from the Australian Government\u2019s National Environmental Science Program. Data was sourced from Australia\u2019s Integrated Marine Observing System (IMOS) \u2013 IMOS is enabled by the National Collaborative Research Infrastructure Strategy (NCRIS).",
+    "disclaimer": "Data, products and services from CSIRO are provided \"as is\" without any warranty as to fitness for a particular purpose.",
+    "license": "http://creativecommons.org/licenses/by/4.0/",
+    "comment": "Data from the IMOS North Stradbroke Island coastal mooring, and South-East Queensland (SEQ) 400m mooring deployed 2012-2013 were also included in this gridded product",
+    "_NCProperties": "version=2,netcdf=4.8.1,hdf5=1.10.8"
+  },
+  "datasets": {
+    "TIME": {
+      "shape": [
+        3770
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        []
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0
+        ],
+        "CLASS": "DIMENSION_SCALE",
+        "NAME": "TIME",
+        "_Netcdf4Dimid": 0,
+        "standard_name": "time",
+        "long_name": "time",
+        "units": "days since 1950-01-01 00:00:00 UTC",
+        "calendar": "gregorian",
+        "axis": "T",
+        "valid_min": [
+          0.0
+        ],
+        "valid_max": [
+          90000.0
+        ]
+      }
+    },
+    "DEPTH": {
+      "shape": [
+        271
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        []
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          1
+        ],
+        "CLASS": "DIMENSION_SCALE",
+        "NAME": "DEPTH",
+        "_Netcdf4Dimid": 1,
+        "standard_name": "depth",
+        "long_name": "depth",
+        "units": "m",
+        "reference_datum": "sea surface",
+        "axis": "Z",
+        "positive": "down",
+        "valid_min": [
+          -5.0
+        ],
+        "valid_max": [
+          12000.0
+        ]
+      }
+    },
+    "LONGITUDE": {
+      "shape": [
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        []
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          2
+        ],
+        "CLASS": "DIMENSION_SCALE",
+        "NAME": "LONGITUDE",
+        "_Netcdf4Dimid": 2,
+        "standard_name": "longitude",
+        "long_name": "longitude",
+        "units": "degrees_east",
+        "axis": "X",
+        "reference_datum": "WGS84 geographic coordinate system",
+        "valid_min": [
+          -180.0
+        ],
+        "valid_max": [
+          180.0
+        ]
+      }
+    },
+    "LATITUDE": {
+      "shape": [
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          2
+        ],
+        "coordinates": "LONGITUDE",
+        "long_name": "latitude",
+        "standard_name": "latitude",
+        "units": "degrees_north",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_datum": "WGS84 geographic coordinate system",
+        "axis": "Y"
+      }
+    },
+    "BOTTOM_DEPTH": {
+      "shape": [
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          2
+        ],
+        "coordinates": "LONGITUDE",
+        "long_name": "Bottom topography",
+        "standard_name": "sea_floor_depth_below_sea_surface",
+        "units": "m",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "axis": "Y",
+        "comment": "Bottom topography from ETOPO1 1 arc-minute global relief model, doi:10.26198/N3XJ-SY16"
+      }
+    },
+    "UCUR": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "eastward_sea_water_velocity",
+        "standard_name": "eastward_sea_water_velocity",
+        "units": "m s-1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_datum": "true east"
+      }
+    },
+    "VCUR": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "northward_sea_water_velocity",
+        "standard_name": "northward_sea_water_velocity",
+        "units": "m s-1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_datum": "true north"
+      }
+    },
+    "TEMP": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "sea_water_temperature",
+        "standard_name": "sea_water_temperature",
+        "units": "degC",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_scale": "ITS-90"
+      }
+    },
+    "PSAL": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "sea_water_practical_salinity",
+        "standard_name": "sea_water_practical_salinity",
+        "units": "1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_scale": "PSS-78"
+      }
+    },
+    "UCUR_uncertainty": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "UCUR_standard_error",
+        "standard_name": "UCUR_standard_error",
+        "units": "m s-1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_datum": "true east"
+      }
+    },
+    "VCUR_uncertainty": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "VCUR_standard_error",
+        "standard_name": "VCUR_standard_error",
+        "units": "m s-1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_datum": "true north"
+      }
+    },
+    "TEMP_uncertainty": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "TEMP_standard_error",
+        "standard_name": "TEMP_standard_error",
+        "units": "degC",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_scale": "ITS-90"
+      }
+    },
+    "PSAL_uncertainty": {
+      "shape": [
+        3770,
+        271,
+        124
+      ],
+      "dtype": "<f8",
+      "dimension_scale_names": [
+        [
+          "TIME"
+        ],
+        [
+          "DEPTH"
+        ],
+        [
+          "LONGITUDE"
+        ]
+      ],
+      "attributes": {
+        "_Netcdf4Coordinates": [
+          0,
+          1,
+          2
+        ],
+        "coordinates": "TIME DEPTH LONGITUDE LATITUDE",
+        "long_name": "PSAL_standard_error",
+        "standard_name": "PSAL_standard_error",
+        "units": "1",
+        "_FillValue": [
+          {
+            "nonfinite_float": "nan"
+          }
+        ],
+        "reference_scale": "PSS-78"
+      }
+    }
+  }
+}

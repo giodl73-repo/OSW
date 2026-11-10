@@ -1,0 +1,45 @@
+name: Canary PIES pressure conversion v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/canary-pies-depth-conversion-v1.yml
+      - analysis/convert_canary_pies_depth_v1.py
+      - analysis/test_canary_pies_depth_conversion_v1.py
+      - research/canary-pies-native-depth-source-facts-v1.json
+      - research/canary-pies-pressure-conversion-operator-v1.json
+      - research/canary-pies-converted-depths-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  convert:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/convert_canary_pies_depth_v1.py
+            analysis/test_canary_pies_depth_conversion_v1.py
+            research/canary-pies-*.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Convert and verify three native pressure descriptors
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install gsw==3.6.23 numpy==2.4.1
+          taskset -c "$cpu" nice -n 15 python analysis/convert_canary_pies_depth_v1.py
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_canary_pies_depth_conversion_v1.py -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canary-pies-converted-depths-v1
+          path: research/canary-pies-converted-depths-v1.json
+          retention-days: 7

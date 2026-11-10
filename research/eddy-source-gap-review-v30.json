@@ -1,0 +1,134 @@
+{
+  "schema": "osw.eddy-source-gap-review.v1",
+  "review_date": "2026-10-31",
+  "status": "SOURCE_ACQUISITION_READY_NO_NEW_MEASUREMENTS",
+  "baseline": {
+    "identities": 136,
+    "evidence_records": 357,
+    "size_reference_owners": 80,
+    "remaining_size_reference_gaps": 56
+  },
+  "trott_2024_publisher_recheck": {
+    "acquisition": {
+      "url": "https://mdpi-res.com/d_attachment/remotesensing/remotesensing-16-02234/article_deploy/remotesensing-16-02234.pdf",
+      "bytes": 3459534,
+      "sha256": "9b4bcb00763d730773f8cf71a1ab1e22e1b932f5aeafd81282f331045375149a",
+      "pages": 20
+    },
+    "figure_image_objects": [
+      {
+        "page": 13,
+        "xref": 89,
+        "width": 1294,
+        "height": 1269,
+        "decoded_sha256": "4667397fbf0b2036303233486de00c1ff44f8eb15cf591ad92d1c11ec1129116"
+      },
+      {
+        "page": 14,
+        "xref": 89,
+        "width": 1294,
+        "height": 1269,
+        "decoded_sha256": "4667397fbf0b2036303233486de00c1ff44f8eb15cf591ad92d1c11ec1129116"
+      }
+    ],
+    "source_pixels_reviewed": [
+      13,
+      14
+    ],
+    "decision": "Both captions reuse the same PDF image XObject (xref 89), with identical decoded samples. The current publisher PDF does not resolve the archived Wilde/Wilde II figure duplication. No new dimensions admitted from either figure.",
+    "measurements_admitted": 0
+  },
+  "rosburg_2016_hadal": {
+    "acquisition": {
+      "url": "https://data.coaps.fsu.edu/pub/eric/papers_html/Rosburg_et_al_16.pdf",
+      "bytes": 12001809,
+      "sha256": "2e86e206fb6e77e1a58aedebf651b2d9bbf062abd4b65005f864129ce0500533",
+      "pages": 23
+    },
+    "source_pixels_reviewed": [
+      20
+    ],
+    "decision": "Figure 21 shows repeated PIES/HYCOM snapshots within the observing array, including LC extension and deep eddy pairs. It does not isolate a complete detached Hadal outer boundary. No whole-eddy dimensions or generic population scales admitted.",
+    "measurements_admitted": 0
+  },
+  "griidc_daily_adt": {
+    "landing_page": {
+      "url": "https://data.griidc.org/data/U2.x856.000:0001",
+      "bytes": 68488,
+      "sha256": "3f0bbd0cbfba9c3ae1d864e3ebb06df2f1796e5fba70af97dab7af5a319f96bc"
+    },
+    "doi": "10.7266/5j651zn1",
+    "udi": "U2.x856.000:0001",
+    "source_product_id": "SEALEVEL_GLO_PHY_L4_MY_008_047",
+    "provider_reported_source_download_date": "2025-07-18",
+    "provider_reported_coverage": [
+      "1993-01-01",
+      "2019-12-31"
+    ],
+    "metadata_url": "https://data.griidc.org/data/U2.x856.000:0001/metadata",
+    "iso_metadata_bytes": 22475,
+    "iso_metadata_sha256": "7ff13399fe1b4b6a5f7617ee589f5cf0f829f14d6005682d2ab7480d06f01599",
+    "file_list_url": "https://data.griidc.org/api/files_dataset_submission/19379?path=",
+    "file_list_sha256": "5aebf3c507398e04e4e8f69d20e6194a4170ae2ff9f5fb69b357e2ff4955bb75",
+    "file_list": [
+      {
+        "fileId": 947138,
+        "name": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_19930101_20191231.nc",
+        "isDirectory": false,
+        "size": 757416604,
+        "dateModified": "07/21/2025"
+      }
+    ],
+    "download_info_url": "https://data.griidc.org/download/5194",
+    "download_info_sha256": "a58031686b170612cc3d1abf8dd5876ed9850633a5a29d4527591761232d7191",
+    "download_info": {
+      "dataset": {
+        "udi": "U2.x856.000:0001",
+        "availability": 10,
+        "filename": "U2.x856.000.0001.zip",
+        "fileSize": "757.42 MB",
+        "fileSizeRaw": 757416604,
+        "checksum": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527",
+        "coldStorage": false
+      },
+      "remotelyHosted": false,
+      "guest": true,
+      "gridOK": false
+    },
+    "checksum_caveat": "The dataset download checksum is not assumed to be the individual NetCDF checksum. Cloud acquisition computes the original file SHA256 independently.",
+    "license_metadata": "Landing-page JSON-LD declares CC0. Underlying Copernicus attribution and product terms must also be retained when deriving or releasing data.",
+    "local_ocean_field_downloaded": false,
+    "next_action": "One cloud-only source header and bounded coordinate audit. No ADT values, contour extraction or name join in this audit."
+  },
+  "gcoos_2021_metadata_only": {
+    "url": "https://gcoos5.geos.tamu.edu/erddap/info/SSH_GoA_2021/index.json",
+    "metadata_sha256": "b73d829779a3aa719babbb6f6f582183f11f0a4d12c9bda2ca2f96efef384415",
+    "subset_dataset_id": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
+    "subset_date": "2025-01-07T14:18:16.899Z",
+    "grid_spacing_degrees": 0.125,
+    "dimensions": {
+      "time": 365,
+      "latitude": 120,
+      "longitude": 160
+    },
+    "coverage": [
+      "2021-01-01T00:00:00Z",
+      "2021-12-31T00:00:00Z"
+    ],
+    "license_url": "https://marine.copernicus.eu/user-corner/service-commitments-and-licence",
+    "scope": "A distinct GCOOS subset/version. It has not been established as byte-equivalent to the GRIIDC original, Trott 2024 input, or any other prior analysis.",
+    "field_values_read": false
+  },
+  "admission_gates": [
+    "Pin original file bytes, SHA256, variables, units, coordinates, temporal support, product version and available mean dynamic topography metadata before processing.",
+    "Define and validate a contour operator and sensitivity analysis for that product. A 0.17 m contour from another analysis is not automatically transferable.",
+    "Keep fixed-level contour, outer closed contour, speed contour, drifter orbit and thermal footprint definitions distinct.",
+    "Validate each named case against primary dated position/trajectory evidence; date proximity alone is insufficient. Splits, mergers, reattachments and label ambiguity remain explicit.",
+    "Reject open, clipped, land-contaminated or ambiguously joined contours; preserve unresolved cases rather than force a dimension.",
+    "Report per-date diagnostic area, equivalent diameter and principal spans with grid/method sensitivity. Sampled date ranges do not establish lifetime or annual envelopes.",
+    "No ranking, state containment, seasonal playback, runtime installation or release admission until the relevant evidence and geometry contracts pass."
+  ],
+  "measurements_admitted": 0,
+  "physical_identity_joins_created": 0,
+  "full_goal_complete": false
+}

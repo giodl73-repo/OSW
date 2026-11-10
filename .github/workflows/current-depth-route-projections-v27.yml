@@ -1,0 +1,111 @@
+name: Current depth additive inventory v27
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v27.yml
+      - analysis/build_current_depth_route_projections_v27.py
+      - analysis/test_current_depth_route_projections_v27.py
+      - research/current-depth-route-projection-operator-v27.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v27.py
+            analysis/test_current_depth_route_projections_v27.py
+            research/current-depth-route-projection-operator-v27.json
+            research/current-depth-route-projection-inventory-v12.json
+            research/current-depth-route-projection-inventory-source-review-v12.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/nec-subarctic-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/countercurrents-sioc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/guinea-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/southern-reaches-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/greenland-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/irminger-wsc-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/wsc-interval20-500-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/florida-portugal-full-sections-hycom2022-v1.csv
+            research/sec-basin-depth-sections-source-facts-v1.json
+            research/sec-basin-depth-sections-source-review-v1.json
+            research/sec-basin-depth-sections-operator-v1.json
+            research/source-data/sec-basin-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-31w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-32w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-33w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-34w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-atlantic-south-equatorial-section-35w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-100w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-110w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-120w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-130w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-pacific-south-equatorial-section-140w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-90e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-85e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-80e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-75e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-01-15-indian-south-equatorial-section-70e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-31w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-32w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-33w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-34w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-atlantic-south-equatorial-section-35w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-100w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-110w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-120w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-130w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-pacific-south-equatorial-section-140w.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-90e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-85e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-80e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-75e.json
+            research/source-data/sec-basin-depth-sections-v1/2022-07-15-indian-south-equatorial-section-70e.json
+            research/source-data/sec-basin-depth-sections-v1/transport-ledger.json
+            research/wsc-interval20-500-depth-reanalysis-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify three basin SEC additive inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v27.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v27.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v27
+          path: current-depth-route-projections-v27/
+          retention-days: 7

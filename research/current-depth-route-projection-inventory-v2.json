@@ -1,0 +1,85 @@
+{
+  "schema": "osw.current-depth-route-projection-inventory.v1",
+  "status": "PINNED_BASE_AND_ADDITIVE_REGIONAL_DEPTH_PROFILES",
+  "base": {
+    "json": {
+      "file": "research/current-depth-route-projections-v14.json",
+      "sha256": "504ee9138dbcff9090ac626561d23517954b3750d2dc64a7f647153a199e2929",
+      "bytes": 2269656
+    },
+    "csv": {
+      "file": "research/current-depth-route-projections-v14.csv",
+      "sha256": "b232e187b6335da5f45cbff75432d3724b4c16317cdfa968b33ab0e5a9df83d8",
+      "bytes": 1862739
+    },
+    "unresolved_csv": {
+      "file": "research/current-depth-unresolved-reference-cases-v1.csv",
+      "sha256": "c26b3e7ca01e283bc004fbf2f81bf273630b10886a7dc22e35d9266d53683555",
+      "bytes": 10965
+    }
+  },
+  "addenda": [
+    {
+      "id": "north-brazil-full-sections-hycom2022-v1",
+      "json": {
+        "file": "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json",
+        "sha256": "7a2745a5fe34f4b5281146dfca06b60eac8bda6901d9748da3e0831ec0c82b9c",
+        "bytes": 159815
+      },
+      "csv": {
+        "file": "research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv",
+        "sha256": "48389a2259cca30ab164f5444248d6dcbb4fa16044540ed3b91b8141ae350108",
+        "bytes": 166892
+      }
+    },
+    {
+      "id": "three-currents-full-sections-hycom2022-v1",
+      "json": {
+        "file": "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json",
+        "sha256": "90702129dd0472abb53660dc28e6e5c194ef78044d3e07a384f45dee8398c4dd",
+        "bytes": 349699
+      },
+      "csv": {
+        "file": "research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv",
+        "sha256": "7fe357c2816765b69d8582bdef28f8e11f04f8f9f8eba161ae1bb87c0e12dcaa",
+        "bytes": 305676
+      }
+    }
+  ],
+  "counts": {
+    "catalog_identities": 111,
+    "identities_with_regional_projection_scenarios": 21,
+    "identities_not_yet_projected": 90,
+    "identities_with_only_blocked_reference_cases": 0,
+    "identities_without_any_regional_reference_case": 90,
+    "regional_projection_scenarios": 46,
+    "unresolved_regional_reference_cases": 3,
+    "source_anchor_references": 35,
+    "whole_route_physical_depth_profiles": 0,
+    "volume_estimates": 0,
+    "regional_reference_geometry_volume_scenarios": 2,
+    "new_model_reference_cases": 8,
+    "new_supported_model_scenarios": 8,
+    "new_blocked_model_reference_cases": 0,
+    "new_model_profile_anchors": 54,
+    "new_projection_eligible_source_nodes": 46,
+    "new_conditional_adjacent_segments": 36,
+    "new_gap_segments": 10,
+    "new_depth_measurements": 0
+  },
+  "view_metadata": {
+    "schema": "osw.current-depth-route-projections.v16",
+    "status": "REGIONAL_DEPTH_BASE_PLUS_PINNED_CURRENT_ADDENDA",
+    "generator_file": "analysis/build_current_depth_route_projections_v16.py",
+    "generator_sha256": "4ee153bd55b9857673ab11f0c12eb5253f99d7a608433290b1c7c3d560cf53dc",
+    "interpretation": "Append six dated Mindanao,Oyashio and partial west-coast Leeuwin regional reference cases as a new pinned addendum,retaining all40original sections and every unresolved selection. Preserve the immutable v14base,the existing NorthBrazil addendum,all40old supported cases,three historical unresolved cases and all111canonical ownership lists. Fixed180degree south components for Mindanao/Leeuwin and225degree southwest plus native100m<=5degC model screen for Oyashio;thresholds and branch scopes stay separately typed. Current-specific primary lower contours and model spans are not physical whole-current thickness,seasonal envelopes or volumes. No new runtime/UIintegration.",
+    "runtime_changed": false,
+    "query_ui_integration_performed": false,
+    "full_goal_complete": false
+  },
+  "integrity_scope": "Loader checks the exact base/addendum JSON and CSV bytes, case ownership, duplicate IDs and reconstructed counts. Source-field/operator verification is retained in the pinned source/addendum reviews; loading does not rerun ocean-field validation.",
+  "publication_policy": "Immutable pieces remain below fixed per-file caps;add new current addenda without rewriting the frozen base. No full expanded JSON copy is published.",
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}

@@ -1,5 +1,17 @@
 # Publication checklist
 
+## Current public preview
+
+Version **2026.11.1-preview** is [public](https://osw-ocean-atlas-preview-202611.sweet-jam-8851.chatgpt.site). The [edition note](PUBLIC-PREVIEW.md) and [publication receipt](research/public-preview-publication-v1.json) record its exact scope and target. This standalone research preview leaves the historical GitHub Pages atlas and main branch unchanged.
+
+- [x] Consolidate current research scope and identify older pinned snapshots.
+- [x] Select and record the exact public site and data bundle: 180 files, 56 checked local links.
+- [x] Reconcile included source uses, runtime data, downloads, and displayed claims against the screened edition.
+- [x] Complete selected-bundle cloud build and Chromium functional checks, including keyboard, focus, reduced-motion context, and narrow layout. Human comprehension and screen-reader speech are not claimed.
+- [x] Review the concrete release candidate; align the edition target, author, version, and citation metadata; verify successful public deployment and access.
+
+## Publication history
+
 - [x] Standalone public scope defined
 - [x] Private-framework references removed
 - [x] Original conceptual figures copied with accessibility metadata
@@ -54,6 +66,8 @@
 - [ ] Decide whether to promote the preview to the released atlas
 
 ## Integrated successor release gate
+
+These historical gates concern promotion of the integrated legacy atlas. This standalone selected preview does not change that release or claim its full browser or scientific-suite coverage.
 
 - [ ] Reconcile `README.md`, `PREVIEW-STATUS.md`, `MOTION.md`,
   `SOURCE-REGISTER.md`, `CITATION.cff`, and the hosted-site claim against the

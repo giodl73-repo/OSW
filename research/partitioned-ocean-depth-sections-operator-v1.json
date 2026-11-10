@@ -1,0 +1,367 @@
+{
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2022",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "source_access": "Public release/distribution unlimited;credit HYCOM Consortium,NRL,COAPS-FSU;actual returned attributes retained.",
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_component_gate_m_s": null,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "horizontal_support_policy": "Retain all64 original section/date cases,all candidate scores/local maxima and every no-selection,gate/support-edge or primary-censored result. Partition interiors do not overlap;one shared latitude boundary is allowed. A shared-boundary winner is an edge case under frozen selection and cannot be admitted as two independent profiles. No post-result tuning,physical front classification or independent persistent-jet assertion. Distinct contexts may sample a moving flow at different times.",
+  "vertical_operator": "Frozen connected-layer tracing searches above/below0-200m seeds on full native0-5000m support using adjacent finite brackets. Keep upper/lower contours,statuses,last supported bounds and paired span distinct. SAC primarily-upper1000m and1500m geostrophic reference,Norfolk approximate800m mean/reference,mooring depths,bed and missing limits are not physical bottoms. Never bridge sign/cutoff/missing gaps or inherit EAC/EAUC depths. Same-sign deep flow may connect;model span is not physical thickness.",
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential full-section acquisition,selection,threshold diagnosis,audit and tests on one idle CPU. Local metadata/code/source-PDF review/hash retention only;no local ocean-field processing/tests or runtime/UI/browser/server/native/WASM work. Separate source chunks honor unchanged2.5MB file limits.",
+  "full_goal_complete": false,
+  "schema": "osw.partitioned-ocean-depth-sections-operator.v1",
+  "temperature_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "maximum_total_temperature_scalars": 0,
+  "maximum_total_decoded_temperature_bytes": 0,
+  "revision_context": "New64-case quarterly South Atlantic/Tasman source plan retains four editorial latitude-search contexts under two canonical current owners. New declarative partition checks run before fields and on each retained section. Native longitude geometry,component rotation,interval selection,connected layers and bounded transport remain frozen. Search partitions do not classify thermohaline fronts,persistent jets or water masses.",
+  "geometry_provenance": "South Atlantic Cape Basin windows at13,9,5,1W,each with northern37-33S and southern41-37S contexts. Tasman Norfolk Gap windows at167,167.5,168,168.5E,each with north-of31.8S context31.8-29.5S and southern34-31.8S context. All16stops/gates and latitude divisions are editorial,not extracted axes,bank contours,widths,errors or complete current routes. Partial Cape Basin upper-flow context is distinct from existing western intermediate-depth SAC route;Norfolk windows are not a continuous Australia-New-Zealand jet.",
+  "column_selector": "Complete finite native0-200m signed eastward integrals,positive integral and qualifying core. Both hold90degree true through depth. South Atlantic primary5cm/s;Tasman10cm/s. No positive surface gate,relative surface comparison or thermal gate. Greatest eligible integral wins;first southern native tie. Selected gate/support-edge maxima remain unresolved without weaker interior replacement.5/10/20cm/s sensitivities use their own qualifying seed at the same selected column.",
+  "temperature_policy": "No temperature field retrieval or gate for these cases. Only velocity dataset and coordinates used.",
+  "time_scope": "March/June/September/December15,2022 00Z instantaneous quarterly probes. Not seasonal means,annual envelopes,independent observations or replication of1978-1993 Cape Basin crossings or2003-2004 Norfolk array. Historical frontal migration,branch anticorrelation and reversals do not validate2022 axes or partition labels.",
+  "transport_budget": "Preflight all64targets from16sections times4exactdates before fields. Keep frozen3-150native rows,40levels,5km nearest-longitude tolerance,20000pairs/patch,250000total pairs and7MBdecoded caps. Exact failed-component/hyperslab retries allow at most3attempts with2/5secondbackoff while reserving all future first attempts. Never replay successful components or truncate the declared plan. Requested/decoded counters are not wire traffic or precision.",
+  "currents": {
+    "current:south-atlantic": {
+      "entity_id": "current:south-atlantic",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.05,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial upper-ocean Cape Basin13-1W/41-33S South Atlantic frontal-zone context. Two geographic search corridors remain separate,not classified NSTF/SSTF jets;historical fronts migrate and between-front flow can reverse. Exclude upstream confluence/Argentine recirculation and eastern Agulhas/ACC continuation as target identities. Primarily upper1000m and1500m reference assumptions do not define a uniform bottom. Existing western intermediate/AAIW route40-16W is a different layer/reach,not replaced or extrapolated by these cases."
+    },
+    "current:tasman-front": {
+      "entity_id": "current:tasman-front",
+      "component_bearing_degrees_true": 90,
+      "primary_threshold_m_s": 0.1,
+      "surface_component_gate_m_s": null,
+      "temperature_gate": null,
+      "core_search_depth_interval_m": [
+        0,
+        200
+      ],
+      "selection_depth_interval_m": [
+        0,
+        200
+      ],
+      "branch_scope": "Partial167-168.5E/34-29.5S Norfolk Gap context around the historical167.6-167.8E array. Geographic contexts north/south of31.8S are editorial,not actual bank contours or independently identified persistent branches. Source flow can shift/reverse and pass south of the array;deep counterflow and topographic masks remain. Approximate800m mean extent/reference is not an exact bottom or2022 validation. Exclude coastal EAC/EAUC/southern extension and whole continuous Australia-New-Zealand connection claims;do not inherit their depths."
+    }
+  },
+  "sections": [
+    {
+      "id": "section-sac-northern-search-m13e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-northern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -13,
+      "latitude_gate_degrees_north": [
+        -37,
+        -33
+      ]
+    },
+    {
+      "id": "section-sac-northern-search-m9e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-northern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -9,
+      "latitude_gate_degrees_north": [
+        -37,
+        -33
+      ]
+    },
+    {
+      "id": "section-sac-northern-search-m5e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-northern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -5,
+      "latitude_gate_degrees_north": [
+        -37,
+        -33
+      ]
+    },
+    {
+      "id": "section-sac-northern-search-m1e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-northern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -1,
+      "latitude_gate_degrees_north": [
+        -37,
+        -33
+      ]
+    },
+    {
+      "id": "section-sac-southern-search-m13e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-southern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -13,
+      "latitude_gate_degrees_north": [
+        -41,
+        -37
+      ]
+    },
+    {
+      "id": "section-sac-southern-search-m9e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-southern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -9,
+      "latitude_gate_degrees_north": [
+        -41,
+        -37
+      ]
+    },
+    {
+      "id": "section-sac-southern-search-m5e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-southern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -5,
+      "latitude_gate_degrees_north": [
+        -41,
+        -37
+      ]
+    },
+    {
+      "id": "section-sac-southern-search-m1e",
+      "entity_id": "current:south-atlantic",
+      "search_partition_id": "sac-southern-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": -1,
+      "latitude_gate_degrees_north": [
+        -41,
+        -37
+      ]
+    },
+    {
+      "id": "section-tasman-north-bank-search-167e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-north-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 167,
+      "latitude_gate_degrees_north": [
+        -31.8,
+        -29.5
+      ]
+    },
+    {
+      "id": "section-tasman-north-bank-search-167p5e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-north-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 167.5,
+      "latitude_gate_degrees_north": [
+        -31.8,
+        -29.5
+      ]
+    },
+    {
+      "id": "section-tasman-north-bank-search-168e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-north-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 168,
+      "latitude_gate_degrees_north": [
+        -31.8,
+        -29.5
+      ]
+    },
+    {
+      "id": "section-tasman-north-bank-search-168p5e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-north-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 168.5,
+      "latitude_gate_degrees_north": [
+        -31.8,
+        -29.5
+      ]
+    },
+    {
+      "id": "section-tasman-south-bank-search-167e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-south-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 167,
+      "latitude_gate_degrees_north": [
+        -34,
+        -31.8
+      ]
+    },
+    {
+      "id": "section-tasman-south-bank-search-167p5e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-south-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 167.5,
+      "latitude_gate_degrees_north": [
+        -34,
+        -31.8
+      ]
+    },
+    {
+      "id": "section-tasman-south-bank-search-168e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-south-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 168,
+      "latitude_gate_degrees_north": [
+        -34,
+        -31.8
+      ]
+    },
+    {
+      "id": "section-tasman-south-bank-search-168p5e",
+      "entity_id": "current:tasman-front",
+      "search_partition_id": "tasman-south-bank-search",
+      "fixed_axis": "longitude",
+      "longitude_degrees_east": 168.5,
+      "latitude_gate_degrees_north": [
+        -34,
+        -31.8
+      ]
+    }
+  ],
+  "source_review": [
+    {
+      "url": "https://www.ldeo.columbia.edu/~agordon/publications/Smythe-Wright_SAtl_DSR1998.pdf",
+      "locator": "Smythe-Wright et al.1998,Abstract,Table1 and Section4.4;fresh primary institutional PDF text",
+      "scope": "Cape Basin crossings distinguish northern/southern frontal jets and between-front reversals. Historical latitude ranges and eddies complicate labels. Primarily upper1000m and1500m reference assumptions are distinct from bottoms. Fixed37S split is OSW editorial geography,not thermohaline front classification or a filled inter-front section."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2013JC009543",
+      "locator": "Sutton/Bowen2014,Abstract,Table1,Sections3/4 and Figure8 context;fresh primary publisher text",
+      "scope": "Array longitudes167degrees36-47minutesE and bank context31.8S inform partial neighborhood only. North/south transport anticorrelation,upper eastward/deep counterflow and reversals do not validate fixed2022 branches.800m mean/reference and EAC/EAUC deep scales remain distinct;fixed31.8S division is editorial,not a digitized bank contour."
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0924796319300259",
+      "locator": "Existing pinned Tasman composite-continuity scope audit;not newly digitized",
+      "scope": "Existing historical route and later disputed continuous-jet interpretation remain explicit. Partial Norfolk directional diagnostics do not establish a persistent connected EAC-EAUC pathway."
+    }
+  ],
+  "input_sha256": {
+    "analysis/acquire_zonal_current_depth_sections_v1.py": "b8562c23fa040146924568c483772727e0d7fb31346eff32d884f3d7d23d7f2d",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/bounded_hycom_component_reads_v1.py": "dbd317a73c183377d7882725af41c20c53abe8dd309a013d6aaca2f3e5726ee5",
+    "analysis/acquire_transverse_depth_sections_v2.py": "5059e6492fa8e15fd7ed5d055682f8ec3e7ffbb4fb2f37282f73410e263c0142",
+    "analysis/interval_transverse_section_audit_v1.py": "7947fdd47b43df2ed087f0dba48bbade7bbdf7ace952ef974dff0644605cfe86",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/test_interval_depth_diagnostic_v1.py": "1c3daca18862397b5158bbb5a9ebc9f17fc95222702570e0d59d2afa8a884ee1",
+    "research/zonal-current-depth-sections-operator-v1.json": "264de0ae3db523a913bfe18d7ce0ba8f2c1bd634532bdc602b5bf697528109ea",
+    "analysis/current_depth_search_partitions_v1.py": "9b3252aac065c1b2453aaa1f04aec639740218dd9180022380d657f5929938f7",
+    "analysis/acquire_partitioned_ocean_depth_sections_v1.py": "77e33419b51b8dad4550137ef9b5c03bd565bbb37497597894bcd7054057a799",
+    "analysis/test_partitioned_ocean_depth_sections_v1.py": "2575e932f91c3678fa8fa50d585b6cde4354bd4cee1b999a02a650befea9ebd6",
+    "plans/partitioned-ocean-depth-sections-protocol-v1.md": "1391d0369d11b0f8c4320936ad3e0cdcfc018bca2a97777295e32ddbf44f97af",
+    "research/current-depth-source-facts-v18.json": "da2b538d6121ad3243e43b5945af9fffbf81d8935a6b8fb5c4dd6f7e4bd25be2",
+    "research/current-depth-source-facts-v21.json": "c48c19286eb71cac2f76dbc763960205dda5fe4af4a6513ae3758ed2d95ea718",
+    "research/south-atlantic-reach-reference-path-input.json": "50bd30f033a064af98557cb790d3c6217c369a2a8c368d744e32da7c252f8671",
+    "research/tasman-historical-connection-reach-reference-path-input.json": "bdc1d4d75a6e82adedd4ba8c62d7f45bec91bee1ff2e314800e9907a93d98330",
+    "research/tasman-front-composite-continuity-scope-audit.json": "87d760963c9b6465312010ac60214d9808f9dfcceef485c30174595e354c5677"
+  },
+  "maximum_nearest_longitude_distance_km": 5,
+  "maximum_component_read_attempts": 3,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "methodology_file": "plans/partitioned-ocean-depth-sections-protocol-v1.md",
+  "canonical_route_policy": "Every section retains current:south-atlantic or current:tasman-front ownership. Later reference cases are keyed by canonical owner,date and editorial search partition,with namespaced IDs. Never interpolate across partitions,connect their endpoints,replace/extrapolate existing routes or count partitions as additional current identities. No physical state/volume/global sum is established.",
+  "provider_support_policy": "Cloud verifies native geography,time,40metre-depth levels,component frame/units,indices and finite wet support. Fixed latitude divisions do not track thermohaline fronts or the actual bank contour. Masks,topography,meanders and eddies can censor/confound directional maxima;no independent current/branch/front/water-mass validation is implied.",
+  "search_partitions": {
+    "sac-northern-search": {
+      "id": "sac-northern-search",
+      "entity_id": "current:south-atlantic",
+      "kind": "editorial_latitude_search_context",
+      "latitude_gate_degrees_north": [
+        -37,
+        -33
+      ],
+      "scope": "Northern Cape Basin latitude-search context,not an identified NSTF.",
+      "front_or_water_mass_classification_performed": false,
+      "persistent_jet_identity_validated": false,
+      "cross_partition_interpolation_permitted": false,
+      "canonical_current_ownership_changed": false
+    },
+    "sac-southern-search": {
+      "id": "sac-southern-search",
+      "entity_id": "current:south-atlantic",
+      "kind": "editorial_latitude_search_context",
+      "latitude_gate_degrees_north": [
+        -41,
+        -37
+      ],
+      "scope": "Southern Cape Basin latitude-search context,not an identified SSTF.",
+      "front_or_water_mass_classification_performed": false,
+      "persistent_jet_identity_validated": false,
+      "cross_partition_interpolation_permitted": false,
+      "canonical_current_ownership_changed": false
+    },
+    "tasman-north-bank-search": {
+      "id": "tasman-north-bank-search",
+      "entity_id": "current:tasman-front",
+      "kind": "editorial_latitude_search_context",
+      "latitude_gate_degrees_north": [
+        -31.8,
+        -29.5
+      ],
+      "scope": "Editorial north-of31.8S search context near Norfolk Gap,not a mapped bank contour or persistent branch.",
+      "front_or_water_mass_classification_performed": false,
+      "persistent_jet_identity_validated": false,
+      "cross_partition_interpolation_permitted": false,
+      "canonical_current_ownership_changed": false
+    },
+    "tasman-south-bank-search": {
+      "id": "tasman-south-bank-search",
+      "entity_id": "current:tasman-front",
+      "kind": "editorial_latitude_search_context",
+      "latitude_gate_degrees_north": [
+        -34,
+        -31.8
+      ],
+      "scope": "Editorial southern Norfolk Gap context,not a mapped bank contour or complete southern bypass.",
+      "front_or_water_mass_classification_performed": false,
+      "persistent_jet_identity_validated": false,
+      "cross_partition_interpolation_permitted": false,
+      "canonical_current_ownership_changed": false
+    }
+  }
+}

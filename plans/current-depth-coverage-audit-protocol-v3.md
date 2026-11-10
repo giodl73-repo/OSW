@@ -1,0 +1,16 @@
+# Coverage snapshot v3 after partitioned South Atlantic/Tasman exports
+
+Use unchangedvalidatedv1join/countingimplementation throughanewscopedoperator
+wrapper;restoreconfiguration on success/failure. Preservev1/v2snapshots andall
+sourcefacts/referencecounts. Addfouroriginal16casepartitionreports,notfournew
+currentidentities. Theycover64sourcecases underSouthAtlantic/TasmanFront exactly
+once;originalsourceplan/owners/thresholds/strata/geometry andunresolvedcasesretained.
+
+Same1038registeredsourcecases. Newlyprocessed64=53resolved11unresolved. Total
+primaryprocessing736=568resolved168unresolved;302unprocessed=242interior60unresolved.
+Existing56duplicatementions/Balearic16alternatecases remainunchanged. No currentbody,
+independent-observation orcrosspartitionjoin claimfromsummedprofile-datecounts.
+Reference111identities/808heterogeneousrows,807m+1dbar,fitted78cases77finiteranges
+unchanged. No rawfieldretrieval/reanalysis/newrefs/physicaldepth/annualrange/volume/
+main/runtime/UIchanges. Cloud-only sequentialoneidleCPU tests/build;localstatic
+editing/AST,metadata/hash/exactretention. Fixedoutput/file/publicationcaps unchanged.

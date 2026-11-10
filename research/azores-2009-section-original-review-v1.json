@@ -1,0 +1,106 @@
+{
+  "schema": "osw.reviewed-section-provenance-enrichment.v1",
+  "review_date": "2026-10-27",
+  "status": "ORIGINAL_FIGURES_REVIEWED_SOURCE_ENRICHMENT_PREPARED_NOT_RUNTIME_INSTALLED",
+  "supersedes_access_scope_of": "research/azores-countercurrent-alongflow-source-review-v1.json",
+  "existing_inventory_file": "research/ocean-current-effective-measurements.json",
+  "source": {
+    "doi": "10.1029/2011JC007129",
+    "citation": "Comas-Rodriguez, Hernandez-Guerra, Fraile-Nuez, Martinez-Marrero, Benitez-Barrios, Perez-Hernandez and Velez-Belchi (2011), The Azores Current System from a meridional section at 24.5 W, Journal of Geophysical Research 116, C09021.",
+    "publisher_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC007129",
+    "copy_landing_url": "https://mdoloresperez.weebly.com/publications.html",
+    "copy_url": "https://mdoloresperez.weebly.com/uploads/6/6/2/3/66236503/comas-rodr-guez_et_al-2011-journal_of_geophysical_research_3a_oceans__281978-2012_29.pdf",
+    "copy_access": "Public coauthor publication-page link; original nine-page journal PDF recovered without authentication.",
+    "local_ignored_copy": ".pytest_cache/azores-comas-2011.pdf",
+    "bytes": 1643833,
+    "sha256": "29f697798cfc8090971798488aa98e5957f6fcabc58be5190b24e6f9ff51bba0",
+    "page_count": 9,
+    "rights": "AGU copyright 2011. Original PDF and page images remain ignored; only attributed facts and an independently drawn section diagram are tracked.",
+    "text_read_pdf_pages": [1, 2, 5, 7, 8],
+    "visually_reviewed_pdf_pages": [2, 5, 6, 8],
+    "figure_review": [
+      {"figure": 1, "pdf_page": 2, "finding": "Station locator and caption inspected. The caption explicitly prints fall 2010; the adjacent methods explicitly give 26 October-1 November 2009."},
+      {"figure": 5, "pdf_page": 5, "finding": "Station-indexed accumulated transports inspected. Adjacent results delimit the two current domains and report about 110 km each. No curve digitization or velocity-threshold edge extraction."},
+      {"figure": 6, "pdf_page": 6, "finding": "Separate velocity-depth and layer-transport profiles inspected. The profile and transport panels have different vertical support; neither defines a fixed layer for the reported section width."},
+      {"figure": 8, "pdf_page": 8, "finding": "Vessel-section transport diagrams and surface-altimetry context inspected. Annual surface altimetry is not an annual AzCC axis or width envelope."}
+    ]
+  },
+  "shared_section_context": {
+    "longitude_deg_east": -24.5,
+    "study_station_range": [39, 55],
+    "study_latitude_range_deg_north": [33, 37],
+    "nominal_station_spacing_nautical_miles": 15,
+    "source_approximate_station_spacing_km": 28,
+    "station_spacing_is_width_uncertainty": false,
+    "observed_period": {"start": "2009-10-26", "end": "2009-11-01"},
+    "individual_station_occupation_dates": null,
+    "cruise_period": {"start": "2009-10-15", "end": "2009-11-11"},
+    "boundary_method": "Author-delimited hydrographic and velocity/transport domains, with geostrophic velocities referenced using LADCP. No common speed threshold or exact flow-normal correction supplied.",
+    "sadcp_diagnostics": ["Upper 50 m mean", "Nearly 700 m sampled-depth mean"],
+    "diagnostics_pooled": false,
+    "fixed_width_layer_bounds_m": null,
+    "width_uncertainty_interval_km": null,
+    "date_discrepancy": {
+      "figure_1_caption_year": 2010,
+      "methods_occupation_year": 2009,
+      "resolved": false,
+      "handling": "Keep explicit methods occupation dates and the conflicting caption. Original-figure review confirms the conflict; it does not resolve or silently correct it."
+    }
+  },
+  "existing_measurement_enrichments": [
+    {
+      "id": "azores-countercurrent-2009-section-width",
+      "current_id": "azores-countercurrent",
+      "name": "Azores Countercurrent",
+      "existing_approximate_width_km": 110,
+      "flow_direction": "westward",
+      "north_boundary": {"station": 42, "latitude_deg_north": 36.25},
+      "south_boundary": {"station": 46, "latitude_deg_north": 35.25},
+      "source_locator": "Methods [6-8], Results [10,12-14], Discussion [15,17]; Figures 1,5,6,8; PDF pages 2,5-8.",
+      "vertical_support": "Subsurface westward counterflow. Source describes little velocity shear at 150-650 m and transport into intermediate layers. These are vertical context, not the layer bounds of a uniform 110 km width.",
+      "distinct_neighbor": "Westward flow north of station 42 belongs to an anticyclonic recirculation; it must not extend the AzCC section boundary.",
+      "surface_proxy_supports_current_geometry": false,
+      "figure_file": "figures/azores-2009-section-context-v1.svg"
+    },
+    {
+      "id": "azores-2009-section-width",
+      "current_id": "azores",
+      "name": "Azores Current",
+      "existing_approximate_width_km": 110,
+      "flow_direction": "eastward",
+      "north_boundary": {"station": 49, "latitude_deg_north": 34.5},
+      "south_boundary": {"station": 53, "latitude_deg_north": 33.5},
+      "source_locator": "Methods [6-8], Results [10,12-14], Discussion [15,17]; Figures 1,5,6,8; PDF pages 2,5-8.",
+      "vertical_support": "Eastward thermocline and intermediate-water flow. Source transport extends to neutral density 27.975 kg/m3, approximately 2000 m. This does not establish a constant 110 km width at every depth.",
+      "distinct_neighbor": "Do not transfer the Azores Current's surface visibility, inverse-model seasonal core widths, or route geometry to the subsurface Azores Countercurrent.",
+      "surface_proxy_supports_current_geometry": null,
+      "figure_file": "figures/azores-2009-section-context-v1.svg"
+    }
+  ],
+  "other_source_quality_issue": "Results [12] pairs station 48 with 34.25 N, inconsistent with the surrounding station sequence and station 49 at 34.5 N. No corrected coordinate is admitted. The retained current boundaries use the separately and repeatedly stated stations 42/46 and 49/53.",
+  "closed_review_gates": [
+    "Original complete PDF acquired with byte/hash custody.",
+    "Current-domain station boundaries checked against original results and figures.",
+    "Distinct vertical diagnostics reviewed without converting them into a fixed width layer.",
+    "Original caption date conflict visually confirmed and retained."
+  ],
+  "remaining_gates": [
+    "Resolve the source date conflict through independent original cruise evidence or an author correction.",
+    "Acquire repeat comparable sections for seasonal variability; one occupation is not a climatology.",
+    "Recover explicit subsurface alongflow endpoints and continuity before AzCC whole-current length or route admission.",
+    "Obtain width uncertainty; station spacing and transport errors do not provide a width error bar.",
+    "Integrate reviewed provenance and section diagram into source index and native/WASM cards through a separately verified delivery.",
+    "Independent scientific and canonical admission."
+  ],
+  "decision": {
+    "new_measurement_records": 0,
+    "existing_measurement_records_with_reviewed_provenance": 2,
+    "numeric_width_changes": 0,
+    "section_geometry_changes": 0,
+    "new_whole_current_lengths": 0,
+    "annual_ranges_admitted": false,
+    "new_physical_footprints_admitted": false,
+    "runtime_or_generated_packet_changed": false,
+    "full_goal_complete": false
+  }
+}

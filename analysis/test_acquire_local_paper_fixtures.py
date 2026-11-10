@@ -9,6 +9,66 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_lozier_case_sensitive_route_preserves_the_exact_original(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/lozier-gulf-stream-1995'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());before=dict(manifest)
+        data=(folder/'journal-article.pdf').read_bytes();url=manifest['source_url']
+        alternative='https://www.whoi.edu/science/PO/people/rcurry/pdf_files/Lozier_etal.PiO1995.pdf'
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(data)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('lozier-gulf-stream-1995',manifest),data)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url,alternative])
+            sleep.assert_not_called()
+        self.assertEqual(manifest,before)
+
+    def test_lozier_route_rejects_changed_pin_and_corrupt_bytes(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/lozier-gulf-stream-1995'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());url=manifest['source_url']
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(DATA)]) as opener:
+            with self.assertRaisesRegex(ValueError,'checksum'):download('lozier-gulf-stream-1995',manifest)
+            self.assertEqual(opener.call_count,2)
+        with patch('urllib.request.urlopen',side_effect=HTTPError(url,404,'missing',{},None)) as opener:
+            with self.assertRaises(HTTPError):download('lozier-gulf-stream-1995',dict(manifest,sha256=MANIFEST['sha256']))
+            self.assertEqual(opener.call_count,1)
+
+    def test_stramma_south_indian_fallback_preserves_the_exact_original(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/stramma-south-indian-1992'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());before=dict(manifest)
+        data=(folder/'journal-article.pdf').read_bytes();url=manifest['source_url']
+        mirror='https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485(1992)022_0421_tsioc_2.0.co;2.pdf'
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,403,'blocked',{},None),io.BytesIO(data)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('stramma-south-indian-1992',manifest),data)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url,mirror])
+            sleep.assert_not_called()
+        self.assertEqual(manifest,before)
+        # The fallback neither accepts another edition nor authorizes another
+        # source/pin tuple, and failed validation cannot create a local paper.
+        with tempfile.TemporaryDirectory() as temporary:
+            directory=Path(temporary);(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+            with patch('urllib.request.urlopen',side_effect=[HTTPError(url,403,'blocked',{},None),io.BytesIO(DATA)]):
+                with self.assertRaisesRegex(ValueError,'checksum'):
+                    acquire('stramma-south-indian-1992',directory)
+            self.assertFalse((directory/'journal-article.pdf').exists())
+            self.assertFalse(list(directory.glob('.paper-*.tmp')))
+        for changed in [dict(manifest,source_url='https://example.invalid/paper.pdf'),dict(manifest,sha256=MANIFEST['sha256'])]:
+            with self.subTest(manifest=changed),patch('urllib.request.urlopen',side_effect=HTTPError(changed['source_url'],403,'blocked',{},None)) as opener:
+                with self.assertRaises(HTTPError):download('stramma-south-indian-1992',changed)
+                self.assertEqual(opener.call_count,1)
+
+    def test_noaa_404_uses_bare_url_with_same_pin(self):
+        manifest=json.loads((Path(__file__).resolve().parents[1]/'research/source-data/florida-archer-2017/acquisition.json').read_text())
+        url=manifest['source_url'];before=dict(manifest)
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url+'?download=1',404,'missing',{},None),io.BytesIO(DATA)]) as opener,patch('acquire_local_paper_fixtures.verify',return_value=DATA) as check:
+            self.assertEqual(download('florida-archer-2017',manifest),DATA)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url+'?download=1',url])
+            check.assert_called_once_with('florida-archer-2017',manifest,DATA)
+        self.assertEqual(manifest,before)
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(DATA)]) as opener:
+            with self.assertRaisesRegex(ValueError,'checksum'):download('florida-archer-2017',manifest)
+            self.assertEqual(opener.call_count,2)
+        with patch('urllib.request.urlopen',side_effect=HTTPError(url,404,'missing',{},None)) as opener:
+            with self.assertRaises(HTTPError):download('florida-archer-2017',dict(manifest,sha256=MANIFEST['sha256']))
+            self.assertEqual(opener.call_count,1)
+
     def qiu_mirror_case(self):
         key=('qiu-chen-nec-2010','https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
              'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987')
@@ -125,6 +185,33 @@ class AcquisitionTests(unittest.TestCase):
         with patch('urllib.request.urlopen',side_effect=HTTPError(MANIFEST['source_url'],403,'forbidden',{},None)) as opener,patch('time.sleep') as sleep:
             with self.assertRaises(HTTPError):download('qiu-chen-nec-2010',MANIFEST)
             self.assertEqual(opener.call_count,1);sleep.assert_not_called()
+
+    def test_rate_limit_without_header_uses_polite_bounded_backoff(self):
+        failures=[HTTPError(MANIFEST['source_url'],429,'rate limited',{},None) for _ in range(2)]
+        with patch('urllib.request.urlopen',side_effect=[*failures,io.BytesIO(DATA)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('qiu-chen-nec-2010',MANIFEST),DATA)
+            self.assertEqual(opener.call_count,3)
+            self.assertEqual([c.args[0] for c in sleep.call_args_list],[15,45])
+
+    def test_provider_retry_after_seconds_and_http_date_are_honored(self):
+        for header,now,expected in [('27',0,27),('Thu, 01 Jan 1970 00:00:42 GMT',10,32)]:
+            error=HTTPError(MANIFEST['source_url'],429,'rate limited',{'Retry-After':header},None)
+            with self.subTest(header=header),patch('urllib.request.urlopen',side_effect=[error,io.BytesIO(DATA)]),patch('time.sleep') as sleep,patch('time.time',return_value=now):
+                self.assertEqual(download('qiu-chen-nec-2010',MANIFEST),DATA)
+                sleep.assert_called_once_with(expected)
+
+    def test_long_cooldown_never_retries_early_or_uses_mirror(self):
+        from acquire_local_paper_fixtures import SourceCooldown
+        error=HTTPError(MANIFEST['source_url'],429,'rate limited',{'Retry-After':'3600'},None)
+        key=('qiu-chen-nec-2010',MANIFEST['source_url'],MANIFEST['sha256'])
+        with patch.dict(PINNED_MIRRORS,{key:('https://mirror.invalid/paper.pdf',)}),patch('urllib.request.urlopen',side_effect=error) as opener,patch('time.sleep') as sleep:
+            with self.assertRaises(SourceCooldown):download('qiu-chen-nec-2010',MANIFEST)
+            self.assertEqual(opener.call_count,1);sleep.assert_not_called()
+        failures=[HTTPError(MANIFEST['source_url'],429,'rate limited',{},None) for _ in range(3)]
+        with patch.dict(PINNED_MIRRORS,{key:('https://mirror.invalid/paper.pdf',)}),patch('urllib.request.urlopen',side_effect=failures) as opener,patch('time.sleep') as sleep:
+            with self.assertRaises(HTTPError):download('qiu-chen-nec-2010',MANIFEST)
+            self.assertEqual(opener.call_count,3)
+            self.assertEqual([c.args[0] for c in sleep.call_args_list],[15,45])
 
     def test_integrity_failure_never_retries_or_persists(self):
         with tempfile.TemporaryDirectory(dir=self.scratch) as folder:

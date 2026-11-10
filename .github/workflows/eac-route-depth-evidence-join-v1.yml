@@ -1,0 +1,48 @@
+name: EAC route depth evidence join v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/eac-route-depth-evidence-join-v1.yml
+      - analysis/build_eac_route_depth_evidence_join_v1.py
+      - analysis/test_eac_route_depth_evidence_join_v1.py
+      - research/eac-route-depth-evidence-join-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  join:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_eac_route_depth_evidence_join_v1.py
+            analysis/test_eac_route_depth_evidence_join_v1.py
+            research/eac-route-depth-evidence-join-operator-v1.json
+            research/source-data/eac-hycom-route-depth-v2/candidate.json
+            research/source-data/eac-connected-layer-thickness-v1/candidate.json
+            research/source-data/eac-surface-route-screen-v1/candidate.json
+            research/source-data/eac-mooring-depth-benchmark-v1/candidate.json
+            research/eac-hycom-route-depth-source-review-v2.json
+            research/eac-connected-layer-thickness-source-review-v1.json
+            research/eac-surface-route-screen-source-review-v1.json
+            research/eac-mooring-depth-benchmark-source-review-v1.json
+            research/current-depth-register-source-review-v46.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify exact evidence joins and gap preserving reference projections
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_route_depth_evidence_join_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_eac_route_depth_evidence_join_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eac-route-depth-evidence-join-v1
+          path: eac-route-depth-evidence-join-v1/
+          retention-days: 7

@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width': 1440, 'height': 1000})
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))

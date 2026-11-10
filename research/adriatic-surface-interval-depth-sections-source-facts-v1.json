@@ -1,0 +1,2720 @@
+{
+  "schema": "osw.adriatic-surface-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "c3c12a6841fc32dbc6cf05916924ef1126ce1117b47d88b7f4e7ed22fad0c087",
+  "operator_file": "research/adriatic-surface-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "69ef0a632c32ebcb9403857a341f08e399e24a07c2026e0c6917fe0b64786393",
+  "counts": {
+    "section_date_cases": 32,
+    "native_velocity_profiles": 808,
+    "selected_axis_proxy_profiles": 25,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 23,
+      "no_qualifying_interval_component_column": 7,
+      "section_gate_edge_maximum_axis_unresolved": 1,
+      "selection_interval_support_edge_maximum_axis_unresolved": 1
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 22,
+      "0.1": 22,
+      "0.2": 14
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 22,
+      "0.1": 22,
+      "0.2": 14
+    },
+    "decoded_velocity_cell_pairs": 32320,
+    "decoded_velocity_array_bytes": 258560,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:east-adriatic": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 404,
+      "selected_axis_proxy_profiles": 13,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 13,
+        "no_qualifying_interval_component_column": 3
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 12,
+        "0.1": 12,
+        "0.2": 6
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 12,
+        "0.1": 12,
+        "0.2": 6
+      }
+    },
+    "current:western-adriatic": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 404,
+      "selected_axis_proxy_profiles": 12,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 10,
+        "no_qualifying_interval_component_column": 4,
+        "section_gate_edge_maximum_axis_unresolved": 1,
+        "selection_interval_support_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 10,
+        "0.1": 10,
+        "0.2": 8
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 10,
+        "0.1": 10,
+        "0.2": 8
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43p5n.json",
+      "source_sha256": "98df2fa8c72cb158e24b70d0f481af37db3cc91ef5db0a1bd2d83603c75a6a64",
+      "source_profile_pointer": "/columns/1",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          15.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.5999755859375,
+        43.47999954223633
+      ],
+      "selected_column_index": 1,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        1
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 92.54369403589148,
+          "layer_thickness_m": 92.54369403589148,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.13293608084792344,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 41.1276075712259,
+          "layer_thickness_m": 41.1276075712259,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.13293608084792344,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 41.1276075712259,
+      "primary_layer_thickness_m": 41.1276075712259,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-43n.json",
+      "source_sha256": "0ae0b5a77c2f92bb79be30e6ee8fc95a1c3d8ea65b3adb7f53a038c65e3bc63b",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          16,
+          18
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42p5n.json",
+      "source_sha256": "134846ff423f58b59d437b70dffceb7eb45c6aeed688f56df5adc7e21dc1bd38",
+      "source_profile_pointer": "/columns/6",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          17,
+          19
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        17.52001953125,
+        42.47999954223633
+      ],
+      "selected_column_index": 6,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        6
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 289.3082818114056,
+          "layer_thickness_m": 289.3082818114056,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.10323759380430546,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 9.421352760809377,
+          "lower_depth_m": 43.946618097976604,
+          "layer_thickness_m": 34.52526533716723,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.10323759380430546,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 43.946618097976604,
+      "primary_layer_thickness_m": 34.52526533716723,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-east-adriatic-section-42n.json",
+      "source_sha256": "ca27c87df5c7d9e62a76fb58a2f779e532637657811f11bb82a55aca8fbe1afc",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          17.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        17.9200439453125,
+        42.0
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        0,
+        5
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 824.2191961651087,
+          "layer_thickness_m": 824.2191961651087,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20152544591442334,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 580.5413608857993,
+          "layer_thickness_m": 580.5413608857993,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20152544591442334,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 8.561800109278323,
+          "lower_depth_m": 16.928833711236674,
+          "layer_thickness_m": 8.36703360195835,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20152544591442334,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 580.5413608857993,
+      "primary_layer_thickness_m": 580.5413608857993,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43p5n.json",
+      "source_sha256": "8f64772996d77420bddfa2d22849904c4e1dc177e939029b4180ea218bd66b11",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-43n.json",
+      "source_sha256": "e238414e4f25d50cc6edf005696a100caa94f3268bce442d6d88c25d5eaec069",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          13.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.0400390625,
+        43.0
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 82.68082876321706,
+          "layer_thickness_m": 82.68082876321706,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.10323759380430546,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 23.959397933565057,
+          "lower_depth_m": 33.81554026417078,
+          "layer_thickness_m": 9.85614233060572,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.10323759380430546,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 33.81554026417078,
+      "primary_layer_thickness_m": 9.85614233060572,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42p5n.json",
+      "source_sha256": "dee812fff94063ed111314bade8ce055cf1685aa8d74156bedad348e8dc9ac3e",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          14,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-03-15-western-adriatic-section-42n.json",
+      "source_sha256": "6ed1d98e14e9abb5a5c0da8a5da40f30370336500cca48d534b9cbff951c6e02",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          14.5,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43p5n.json",
+      "source_sha256": "4d0654a518777588a926047d730b625fcb068065d926571cf96a7b4f1736f09c",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          15.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.6800537109375,
+        43.47999954223633
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        2
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 6.2518424893219136,
+          "lower_depth_m": 35.29302826746034,
+          "layer_thickness_m": 29.04118577813843,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.11172287920356805,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 7.772502230108655,
+          "lower_depth_m": 21.640779644378743,
+          "layer_thickness_m": 13.868277414270088,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 7,
+          "core_depth_m": 15.0,
+          "core_velocity_m_s": 0.11172287920356805,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 21.640779644378743,
+      "primary_layer_thickness_m": 13.868277414270088,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-43n.json",
+      "source_sha256": "9392c442c318baa24e4ae0911020b107c5f9773808eb56985b79ef9828e627ed",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          16,
+          18
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42p5n.json",
+      "source_sha256": "dc6b769bef009804b4e0a9410409dbc825a64b287648db6847062e02e50dd32f",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          17,
+          19
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        17.8399658203125,
+        42.47999954223633
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        10
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 178.88983629699462,
+          "layer_thickness_m": 178.88983629699462,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.21425336215951613,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.702247132144056,
+          "layer_thickness_m": 11.702247132144056,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.21425336215951613,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 6.107865297361707,
+          "layer_thickness_m": 6.107865297361707,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.21425336215951613,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 11.702247132144056,
+      "primary_layer_thickness_m": 11.702247132144056,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-east-adriatic-section-42n.json",
+      "source_sha256": "df7e485f57f6bd04181fe07a78afb74a3504549f431f86774f3df959cd3a62e6",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          17.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        18.47998046875,
+        42.0
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 334.0222029491183,
+          "layer_thickness_m": 334.0222029491183,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.31395543596634884,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 142.87218114333547,
+          "layer_thickness_m": 142.87218114333547,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.31395543596634884,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 12.311186690207416,
+          "layer_thickness_m": 12.311186690207416,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.31395543596634884,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 142.87218114333547,
+      "primary_layer_thickness_m": 142.87218114333547,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43p5n.json",
+      "source_sha256": "0b7380817b10ca71ded1de780ff5cc01bdbd8db1f538932fe63a333f4b3563ff",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.0,
+        43.47999954223633
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        12,
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 37.80122689249131,
+          "layer_thickness_m": 37.80122689249131,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18101933931335717,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 18.405486069499187,
+          "layer_thickness_m": 18.405486069499187,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.18101933931335717,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 18.405486069499187,
+      "primary_layer_thickness_m": 18.405486069499187,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-43n.json",
+      "source_sha256": "8f1d298df9da5b56679aaaae6503c55674eff0069474f1f96c9d5d170f333110",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          13.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.0400390625,
+        43.0
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        8,
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 70.61396398030091,
+          "layer_thickness_m": 70.61396398030091,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3075914620387342,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 51.09015445788548,
+          "layer_thickness_m": 51.09015445788548,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3075914620387342,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 7.828156019614614,
+          "layer_thickness_m": 7.828156019614614,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3075914620387342,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 51.09015445788548,
+      "primary_layer_thickness_m": 51.09015445788548,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42p5n.json",
+      "source_sha256": "055908fb021060af6a371a5271a74a345e2f0b1352ec0a6b88ecf1884ddd2443",
+      "source_profile_pointer": "/columns/8",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          14,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.6400146484375,
+        42.47999954223633
+      ],
+      "selected_column_index": 8,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [
+        8
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 45.35753556002807,
+          "layer_thickness_m": 45.35753556002807,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3938585061179387,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 38.24757379897461,
+          "layer_thickness_m": 38.24757379897461,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3938585061179387,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 19.769663157597112,
+          "layer_thickness_m": 19.769663157597112,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3938585061179387,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 38.24757379897461,
+      "primary_layer_thickness_m": 38.24757379897461,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-06-15-western-adriatic-section-42n.json",
+      "source_sha256": "336a72ea22992647ff6733169046e621a094b18d1b426a3db12fa94ae1c71c0d",
+      "source_profile_pointer": "/columns/23",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          14.5,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        16.4000244140625,
+        42.0
+      ],
+      "selected_column_index": 23,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        12,
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 60.609134512707215,
+          "layer_thickness_m": 60.609134512707215,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5204306130382476,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 51.24398069327232,
+          "layer_thickness_m": 51.24398069327232,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5204306130382476,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 39.112647297149074,
+          "layer_thickness_m": 39.112647297149074,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5204306130382476,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 51.24398069327232,
+      "primary_layer_thickness_m": 51.24398069327232,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43p5n.json",
+      "source_sha256": "38b459aa2acba82806a104010a3a6dad1313abe06d45fb149dcfeed938a3eb48",
+      "source_profile_pointer": "/columns/4",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          15.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.8399658203125,
+        43.47999954223633
+      ],
+      "selected_column_index": 4,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        4
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 47.98372426355077,
+          "layer_thickness_m": 47.98372426355077,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3005204009703645,
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 38.72684474705732,
+          "layer_thickness_m": 38.72684474705732,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3005204009703645,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 7.9063659175038,
+          "layer_thickness_m": 7.9063659175038,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3005204009703645,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 38.72684474705732,
+      "primary_layer_thickness_m": 38.72684474705732,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-43n.json",
+      "source_sha256": "02233b30bd8fa58dfdb220d9af597bb3a21733279b1d8940188c82a0e2688c8c",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          16,
+          18
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        16.56005859375,
+        43.0
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [
+        7
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 33.040077032748826,
+          "layer_thickness_m": 33.040077032748826,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2863782577602008,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 16.1276075712259,
+          "layer_thickness_m": 16.1276075712259,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2863782577602008,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3.951845732254421,
+          "layer_thickness_m": 3.951845732254421,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2863782577602008,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 16.1276075712259,
+      "primary_layer_thickness_m": 16.1276075712259,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42p5n.json",
+      "source_sha256": "67509e032806564787fe1b8c9693f83bd0903023c3f123d91b473efab949ba13",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          17,
+          19
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        17.199951171875,
+        42.47999954223633
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        2,
+        11
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 27.144661415029155,
+          "layer_thickness_m": 27.144661415029155,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2580939818765856,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 14.320346883717585,
+          "layer_thickness_m": 14.320346883717585,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2580939818765856,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 2.439806620320171,
+          "layer_thickness_m": 2.439806620320171,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2580939818765856,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 14.320346883717585,
+      "primary_layer_thickness_m": 14.320346883717585,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-east-adriatic-section-42n.json",
+      "source_sha256": "0d323c767332cedb0a4137eda94a0b77e9cfc9b535a7cf8fddc34eb1592bbb1a",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          17.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        18.47998046875,
+        42.0
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        0,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 281.01059629104515,
+          "layer_thickness_m": 281.01059629104515,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19374726609516207,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 13.979688924106682,
+          "layer_thickness_m": 13.979688924106682,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19374726609516207,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 13.979688924106682,
+      "primary_layer_thickness_m": 13.979688924106682,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43p5n.json",
+      "source_sha256": "293d0633c74ad455c3f7cbb5d6e0d6e131e2f493ae37967df7dfe5b2e4ea9b48",
+      "source_profile_pointer": "/columns/14",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.1600341796875,
+        43.47999954223633
+      ],
+      "selected_column_index": 14,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        14
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 68.49406954424623,
+          "layer_thickness_m": 68.49406954424623,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.282842727226016,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 39.049624607349756,
+          "layer_thickness_m": 39.049624607349756,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.282842727226016,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 17.121510502418914,
+          "layer_thickness_m": 17.121510502418914,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.282842727226016,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 39.049624607349756,
+      "primary_layer_thickness_m": 39.049624607349756,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-43n.json",
+      "source_sha256": "f985795762d4e0a5bf405065d53c763a8c57f3f0a9aa7ccaf0ea1871f1283eae",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          13.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.0400390625,
+        43.0
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        14,
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 4.155515699595352,
+          "lower_depth_m": 80.41332288735329,
+          "layer_thickness_m": 76.25780718775793,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.16758431485408504,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 12.201256209761326,
+          "lower_depth_m": 44.031901892806474,
+          "layer_thickness_m": 31.830645683045148,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.16758431485408504,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 44.031901892806474,
+      "primary_layer_thickness_m": 31.830645683045148,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42p5n.json",
+      "source_sha256": "d0308144ec1b8c98bfe6a6a038e31fce0c1fdc7dff4252eb08cccb70a86fc894",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          14,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.43994140625,
+        42.47999954223633
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 38.32645709279089,
+          "layer_thickness_m": 38.32645709279089,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.17819091699335174,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 22.11572939124534,
+          "layer_thickness_m": 22.11572939124534,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.17819091699335174,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 22.11572939124534,
+      "primary_layer_thickness_m": 22.11572939124534,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-09-15-western-adriatic-section-42n.json",
+      "source_sha256": "8d9547d37c0afc81c70f400808f4de8cb6e1dc25421001d315d29d92cd4c0413",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          14.5,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43p5n.json",
+      "source_sha256": "d6d5172ef49b6de366202c97c2999823301a7a52ac20d25cf2b9ecf5ff8f35bc",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          15.5,
+          17.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.6800537109375,
+        43.47999954223633
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        2
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.9355119870761086,
+          "lower_depth_m": 108.67992584985186,
+          "layer_thickness_m": 106.74441386277574,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.10960155719520792,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 17.138343469309458,
+          "lower_depth_m": 63.57864898358015,
+          "layer_thickness_m": 46.44030551427069,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.10960155719520792,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 63.57864898358015,
+      "primary_layer_thickness_m": 46.44030551427069,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-43n.json",
+      "source_sha256": "a5569604e6172ad54118422e9dc2da0f4215c4597bd80d600f65f0c52fc70b71",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          16,
+          18
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42p5n.json",
+      "source_sha256": "256b78bb9ad3c91e8942c1f9b682af08b81f172c2b21611da4a69d8e9406e46a",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          17,
+          19
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        18.0,
+        42.47999954223633
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 149.30250447269367,
+          "layer_thickness_m": 149.30250447269367,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.17606960288752568,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 136.01102449894944,
+          "layer_thickness_m": 136.01102449894944,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.17606960288752568,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 136.01102449894944,
+      "primary_layer_thickness_m": 136.01102449894944,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:east-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-east-adriatic-section-42n.json",
+      "source_sha256": "029a56b92d85ff43b37a1ee7c1d67222aee6e36b357bdb178feaa22fa825d183",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:east-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          17.5,
+          19.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        18.800048828125,
+        42.0
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 315,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        16
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.34153260363578464,
+          "lower_last_connected_depth_m": 90.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.34153260363578464,
+          "lower_last_connected_depth_m": 90.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.34153260363578464,
+          "lower_last_connected_depth_m": 90.0
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 90.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43p5n.json",
+      "source_sha256": "efd7daa5393017b1e6558f2d9df66679da0933893a3cd595fbc2d1f3688a665c",
+      "source_profile_pointer": "/columns/11",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43.5,
+        "longitude_gate_degrees_east": [
+          13,
+          15
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        13.9200439453125,
+        43.47999954223633
+      ],
+      "selected_column_index": 11,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        11,
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 39.16050663543324,
+          "layer_thickness_m": 39.16050663543324,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41577879753722724,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 37.09294308396191,
+          "layer_thickness_m": 37.09294308396191,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41577879753722724,
+          "lower_bracket_m": [
+            35.0,
+            40.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 31.32406876583469,
+          "layer_thickness_m": 31.32406876583469,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.41577879753722724,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 37.09294308396191,
+      "primary_layer_thickness_m": 37.09294308396191,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-43n.json",
+      "source_sha256": "e7b81506180fa58570a92760f37721c24eb4fbe6c8ddc281530c810f8c14967b",
+      "source_profile_pointer": "/columns/8",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-43n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-43n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 43,
+        "longitude_gate_degrees_east": [
+          13.5,
+          15.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 43.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        14.1600341796875,
+        43.0
+      ],
+      "selected_column_index": 8,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        8,
+        16,
+        20
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3818376770136011,
+          "lower_last_connected_depth_m": 60.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3818376770136011,
+          "lower_last_connected_depth_m": 60.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 44.407771684289415,
+          "layer_thickness_m": 44.407771684289415,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3818376770136011,
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 60.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42p5n.json",
+      "source_sha256": "6b44ec8bbc0fe401cbc8fa6491eba7cbd0a223a6b5e1e98795a70a86537940b5",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p5n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p5n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42.5,
+        "longitude_gate_degrees_east": [
+          14,
+          16
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.47999954223633,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        15.9200439453125,
+        42.47999954223633
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 26,
+      "local_integral_maximum_indices": [
+        6,
+        10,
+        17,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 93.70272200388159,
+          "layer_thickness_m": 93.70272200388159,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.556493058204412,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 80.54864756311039,
+          "layer_thickness_m": 80.54864756311039,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.556493058204412,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 61.78321136027748,
+          "layer_thickness_m": 61.78321136027748,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.556493058204412,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 80.54864756311039,
+      "primary_layer_thickness_m": 80.54864756311039,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "selection_window_basis": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+      "identity_evidence_basis": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:western-adriatic",
+      "source_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/2022-12-15-western-adriatic-section-42n.json",
+      "source_sha256": "b371b6a024c00d31fb6e9ff8ee24689f997727eeca7803e1166a0cdaf545f2b3",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42n",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42n",
+        "entity_id": "current:western-adriatic",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": 42,
+        "longitude_gate_degrees_east": [
+          14.5,
+          16.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": 42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        16.47998046875,
+        42.0
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 135,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 25,
+      "local_integral_maximum_indices": [
+        9,
+        21,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5267945764291501,
+          "lower_last_connected_depth_m": 100.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5267945764291501,
+          "lower_last_connected_depth_m": 100.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 88.54764707968916,
+          "layer_thickness_m": 88.54764707968916,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5267945764291501,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 100.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "selection_window_basis_by_current": {
+    "current:east-adriatic": "osw_common_shallow_surface_diagnostic_not_source_measured_layer",
+    "current:western-adriatic": "osw_common_shallow_surface_diagnostic_not_source_measured_layer"
+  },
+  "identity_evidence_basis_by_current": {
+    "current:east-adriatic": "published_eastern_surface_circulation_with_separate_local_mooring_presence_context",
+    "current:western-adriatic": "published_western_surface_drifter_circulation_with_separate_hydrographic_sample_context"
+  },
+  "selection_windows_by_current": {
+    "current:east-adriatic": [
+      0,
+      30
+    ],
+    "current:western-adriatic": [
+      0,
+      30
+    ]
+  },
+  "primary_thresholds_by_current": {
+    "current:east-adriatic": 0.1,
+    "current:western-adriatic": 0.1
+  },
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/adriatic-surface-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "1bb02e7037d5aa20ea0eecdee9037023a08e2ce8e04caf873f32c869044f11c4",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 64640,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 64640,
+    "successfully_returned_component_values": 64640,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 517120,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  }
+}

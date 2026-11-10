@@ -1,0 +1,76 @@
+{
+  "schema": "osw.tao-pacific-euc-observed-lower-depth-reference-source-facts.v1",
+  "entity_id": "current:pacific-equatorial-undercurrent",
+  "source_dataset": "pmelTaoDyAdcp",
+  "source_url": "https://coastwatch.pfeg.noaa.gov/erddap/info/pmelTaoDyAdcp/index.html",
+  "source_citation": "NOAA/PMEL GTMBA daily ADCP observations,2005; original source rows accessed at NOAA ERD, qualified threshold estimates independently verified in OSW retained-source audit41975675102.",
+  "candidate_piece": {
+    "file": "research/tao-pacific-euc-lower-threshold-reference-candidates-v1.json",
+    "sha256": "c6b17b5c39e5233575d8f4cbd127036a7a4b4092c46b03e260bfcb31880aca7c",
+    "bytes": 25694
+  },
+  "profile_piece": {
+    "file": "research/source-data/tao-pacific-euc-direct-source-v2/profiles.json",
+    "sha256": "61f8c91fdad0edf06c755669e2ad45de1d1b59c0132dfdc9c4e431225d055a44",
+    "bytes": 164453
+  },
+  "audit_piece": {
+    "file": "research/tao-pacific-euc-retained-depth-audit-v1.json",
+    "sha256": "916f8791c0a4220f4b97cc39b78b2173c7a80ae4efd45ef679580fb356d51399",
+    "bytes": 5966
+  },
+  "journal_piece": {
+    "file": "research/source-data/tao-pacific-euc-direct-source-v2/journal.json",
+    "sha256": "ff7fc49a9003318346893974e97a72089700e8da4215ae1e3261292ed3167b53",
+    "bytes": 10230
+  },
+  "source_review_piece": {
+    "file": "research/current-depth-tao-pacific-euc-retained-depth-audit-source-review-v1.json",
+    "sha256": "d3931dbec8b3ec983cfbebb8585080e86a6b154181738e0ef52ab2305acfe2e2",
+    "bytes": 8184
+  },
+  "all_case_csv_piece": {
+    "file": "research/tao-pacific-euc-daily-depth-profiles-v1.csv",
+    "sha256": "b8a7dac7b3a387fb226c08489829a6d98ce802f86fecf1c5b0aca09333db2fc8",
+    "bytes": 21241
+  },
+  "all_case_geojson_piece": {
+    "file": "research/tao-pacific-euc-daily-depth-points-v1.geojson",
+    "sha256": "199093dd0515947aec6e88ad16d0580a18be252c129faf7f3d6b6b0ec8cebf26",
+    "bytes": 53980
+  },
+  "metric": "derived_observed_daily_mean_component_lower_isotach_depth",
+  "component_bearing_degrees_true": 90,
+  "primary_threshold_m_s": 0.1,
+  "core_search_depth_interval_m": [
+    50,
+    250
+  ],
+  "quality_flags_accepted": [
+    1,
+    2
+  ],
+  "source_sampling": "original_rows_near10m_not_full_original5m_structure",
+  "interpolation_assumption": "piecewise_linear_between_retained_rows_no_unobserved_reversals",
+  "source_coordinate_role": "nominal_station_not_actual_deployment_or_current_axis",
+  "source_temporal_operator": "provider_daily_mean_00UTC_to24UTC_label12UTC",
+  "source_daily_underlying_sample_coverage_verified": false,
+  "source_mean_field_depth_is_mean_instantaneous_depth": false,
+  "independent_threshold_contexts_verified": 144,
+  "all_source_profiles_retained": 48,
+  "admitted_finite_primary_lower_estimates": 18,
+  "new_raw_measurements": 0,
+  "new_ocean_field_requests": 0,
+  "physical_current_bottom_established": false,
+  "physical_thickness_or_volume_promoted": false,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "qualifications": [
+    "Velocity-defined lower contour in a provider daily-mean observed field; not independently verified physical current bottom or membership.",
+    "Fifteen source threshold-layer spans stay distinct from physical thickness. Interpolation brackets describe retained sampling resolution, not uncertainty.",
+    "All48successful,weak,censored and missing-boundary profiles remain in the retained source/report/CSV/nominalpointGeoJSON; only18finite lower values enter the reference register.",
+    "Provider daily labels are not instantaneous noon snapshots; underlying within-day observation coverage is unknown. Daily-mean-field contour is not mean instantaneous depth.",
+    "Nominal positions are not measured deployment coordinates or current axes. No interpolation between stations/dates, seasonal mean, annual range, physical depth ranking or compatible width/volume geometry.",
+    "Records are correlated daily observations, not independent campaigns. Previous metadata-only302failure andaggregate18attemptsourcehistory remain frozen and separate."
+  ]
+}

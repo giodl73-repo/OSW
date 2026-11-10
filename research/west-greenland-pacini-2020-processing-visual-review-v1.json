@@ -1,0 +1,40 @@
+{
+  "schema": "osw.current-source-processing-visual-review.v1",
+  "current_id": "west-greenland",
+  "status": "SELECTED_PROCESSING_AND_FIGURES_VERIFIED_NOT_WIDTH_ADMISSION",
+  "paper_doi": "10.1175/JPO-D-20-0086.1",
+  "source_url": "https://nora.nerc.ac.uk/528563/1/jpod200086.pdf",
+  "source_bytes": 3565409,
+  "source_sha256": "0419fd022e470299a3d93e1d8ac96ad9c5278885876394d65525cb83520ba57d",
+  "retrieved_at_utc": "2026-10-24T12:24:13.629872+00:00",
+  "review_scope": {
+    "pdf_pages_1_based": [4, 5, 6],
+    "printed_pages": [2852, 2853, 2854],
+    "figures_visually_inspected": [2, 3],
+    "render_dpi": 100,
+    "full_paper_visual_review": false,
+    "figure_digitization_performed": false,
+    "original_pdf_committed_to_git": false
+  },
+  "verified_facts": [
+    "The visually checked rotation passage reports 318.1 degrees true, not 318.18. PDF text extraction confuses the degree symbol with a digit.",
+    "Positive along-stream flow points northwest; positive cross-stream flow points offshore toward the southwest in Figure 3.",
+    "The study uses harmonic detiding. A separate 36-hour Butterworth comparison checks tidal removal; it does not make filtered and detided products identical.",
+    "ADCP bin depths use corrected MicroCAT depths. Surface-interference editing removes the upper six percent of instrument-to-surface distance.",
+    "The study subsamples instruments hourly. Its analysis processing cannot be assumed identical to the deposited half-hourly point-meter records.",
+    "Figure 2 shows instrument displacement during blowdown. Section gridding retains a changing upper sampling boundary instead of filling unsampled surface layers."
+  ],
+  "source_flow_reference_bearing_degrees_true": 318.1,
+  "adoption_in_osw_measurement_method": "not_yet_frozen",
+  "required_before_dimension_execution": [
+    "Specify timestamp normalization, common physical layer and missing-support rules prospectively.",
+    "Choose and label any OSW tidal filtering rather than claiming replication of unavailable detided sections.",
+    "Separate the coastal, upper-slope and deep identities and define a paired-edge metric.",
+    "Freeze the new operator, synthetic checks and protocol before original dimension calculations."
+  ],
+  "new_dimensions_derived": 0,
+  "new_annual_ranges": 0,
+  "new_current_geometry": 0,
+  "working_dataset_admitted": false,
+  "scientific_release_published": false
+}

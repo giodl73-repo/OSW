@@ -53,15 +53,25 @@ def main():
                 raise ValueError('WASM page has no registered entrypoint/check: '+address)
             if not (ROOT/'analysis'/row['browser_check']).is_file():
                 raise ValueError('Missing browser check: '+address)
+        elif kind == 'source_inventory':
+            if row['entrypoint'] not in scripts or row['browser_check'] not in CHECKS:
+                raise ValueError('Source inventory has no registered entrypoint/check: '+address)
+            if not (ROOT/'analysis'/row['browser_check']).is_file():
+                raise ValueError('Missing source inventory browser check: '+address)
+            for field in ['source_builder', 'source_test']:
+                if not (ROOT/row[field]).is_file():
+                    raise ValueError('Missing source inventory validation: '+address)
         elif kind == 'static_diagnostic':
             if parser.script_count:
                 raise ValueError('Static diagnostic unexpectedly became interactive: '+address)
             for field in ['source_builder','source_test']:
                 if not (ROOT/row[field]).is_file():
                     raise ValueError('Missing static validation source: '+address)
-        elif kind == 'frozen_preview':
+        elif kind in {'frozen_preview', 'dedicated_review'}:
             if not row.get('scope') or not (ROOT/row['checker']).is_file():
-                raise ValueError('Missing frozen preview scope/checker: '+address)
+                raise ValueError('Missing dedicated review scope/checker: '+address)
+            if kind == 'dedicated_review' and row.get('entrypoint') not in scripts and parser.script_count:
+                raise ValueError('Dedicated review has no declared entrypoint: '+address)
         else:
             raise ValueError('Unknown page coverage kind: '+kind)
     print(f'PASS: {len(actual)} almanac pages assigned validation: {counts}. Assignments do not establish passing tests or mainline publication.')

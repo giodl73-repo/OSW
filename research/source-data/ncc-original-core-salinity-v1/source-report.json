@@ -1,0 +1,718 @@
+{
+  "schema": "osw.ncc-original-core-salinity-source-report.v1",
+  "operator_file": "research/ncc-original-core-salinity-operator-v1.json",
+  "operator_sha256": "efa8790a5490ec0ee0b4aaf1486e49855e5a2c778a4065e9a1eac5b68c998c3d",
+  "input_sha256": {
+    "analysis/acquire_ncc_original_core_salinity_v1.py": "5811dd2432703635bfb244805bb95b70ea30fbe6cff89f34675b52d3c0c948a2",
+    "analysis/ncc_core_salinity_diagnostic_v1.py": "1e6b128e25c9066b1fd2bb8da45e3bab21676a5654785faed5c7590d9e40e232",
+    "analysis/test_ncc_original_core_salinity_v1.py": "5ea9d0eec0bed33c137838ef7a1d46ba2d91325b164f9be152d2a6d029eb41fa",
+    "plans/ncc-original-core-salinity-protocol-v1.md": "4faef252da57f21827661072146b516746e35fd76cdb2e3145cba3e417bb75c4",
+    "research/coastal-upper-layer-interval-depth-sections-operator-v1.json": "b96238fec304ebb87a582931f9b51fea4f1058495d1a2968a25c6a3a661e5cb6",
+    "research/current-depth-reference-inventory-v9.json": "4476a14e00dd5c44682ebe48d777095cd9a68e2a21e9eeca7852ff6f0dca6615",
+    "research/eddy-measurement-register-v1.csv": "cb81c513d519363a5398d7a963fcecc61480fe2e38f2dda5743a1e4258f538ab",
+    "research/eddy-measurement-register-v1.json": "8691a321848ed00102a466187f0b9887ae53ac47e1466140d75b4287edd7e324",
+    "research/interval-core-connected-reach-source-report-v1.json": "27a5644044d96766085f53d2a20ee6a59e5db09f1efaea3fa11d05acf718766e",
+    "research/ncc-enge2025-depth-identity-source-scope-review-v1.json": "910a6ac22422bf838e0f7a81d71689316f914a7a10d0d28f01d05f409bd6e29c",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json": "ac4f0016c54a0cfe2581ef15bce890e52119fa362ce916e7ffcbd2dbfabe395d",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json": "e6fe1ffc9eb72fa6620d54bc37248462bf95810ae26a9497efac105be8517f86",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json": "86533edbc46afb52279cb6c56fd896cc7c12152edbe72aa8ba6839ad22aae1cb",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json": "a3a3cb4cfbeb3a4f4464642da9f793cd764776b652f25daa3e06ba7074e57610",
+    "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json": "46d09549ad57436a70a823918c7df5ef4eddc83490e1fb516e20ef50fac55a6a"
+  },
+  "status": "ALL_FIVE_TARGETS_RETRIEVED",
+  "metadata_open_attempts": 1,
+  "records": [
+    {
+      "source_audit_pointer": "/studies/1/records/1",
+      "original_audit_record": {
+        "study_id": "coastal-upper-layer",
+        "entity_id": "current:norwegian-coastal",
+        "snapshot_time_utc": "2022-03-15T00:00:00Z",
+        "section_id": "section-59p25n",
+        "source_section_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json",
+        "source_section_sha256": "ac4f0016c54a0cfe2581ef15bce890e52119fa362ce916e7ffcbd2dbfabe395d",
+        "selected_column_index": 11,
+        "source_profile_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json#/columns/11",
+        "source_primary_layer_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json#/diagnosis/selected_column_threshold_layers/1",
+        "sampled_lon_lat": [
+          3.9200439453125,
+          59.2400016784668
+        ],
+        "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+        "primary_threshold_m_s": 0.1,
+        "component_bearing_degrees_true": 0,
+        "selection_depth_interval_m": [
+          0,
+          100
+        ],
+        "core_search_depth_interval_m": [
+          0,
+          100
+        ],
+        "surface_component_gate_m_s": null,
+        "branch_scope": "Partial west-Norway/Norwegian-Trench coastal context58.5-60.75N. Exclude Skagerrak source/Jutland flow,fjords,northern-Norway/Ingoy,Barents/Murman continuation and offshore Norwegian Atlantic branches. Freshwater/coastal-front identity requires salinity evidence not evaluated here. Northward0degree velocity maxima and connected deep same-sign flow do not independently establish NCC identity or physical thickness.",
+        "primary_layer": {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3800000250339508,
+          "lower_last_connected_depth_m": 250.0
+        },
+        "reach_eligible": true,
+        "reason": "original_primary_core_connected_support_with_unresolved_lower_boundary",
+        "lower_bound_m": 250.0,
+        "lower_bound_operator": ">=",
+        "censoring_kind": "missing_signed_component_level",
+        "core_native_index": 0,
+        "core_depth_m": 0.0,
+        "core_velocity_m_s": 0.3800000250339508,
+        "last_connected_native_index": 23,
+        "last_connected_velocity_m_s": 0.10400000214576721,
+        "next_native_index": 24,
+        "next_native_depth_m": 300.0,
+        "next_signed_component_m_s": null,
+        "source_native_domain_deep_limit_m": 5000.0,
+        "source_native_level_count": 40,
+        "source_surface_connection_established": true,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null
+      },
+      "status": "SALINITY_PROFILE_RETRIEVED_AND_CONDITIONAL_CORE_CLASSIFIED",
+      "classification": {
+        "original_core_index": 0,
+        "original_core_depth_m": 0.0,
+        "velocity_threshold_m_s": 0.1,
+        "practical_salinity_exclusive_upper_threshold": 35,
+        "core_reselected": false,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null,
+        "volume_eligible": false,
+        "independently_validated_current_axis": false,
+        "annual_extrema_established": false,
+        "status": "conditional_fresh_component_core_supported",
+        "upper": {
+          "status": "surface_sample_supported",
+          "last_connected_native_index": 0,
+          "last_connected_depth_m": 0.0,
+          "boundary_depth_m": null,
+          "bracket_m": null,
+          "limiting_criteria": []
+        },
+        "lower": {
+          "status": "adjacent_native_joint_predicate_crossing",
+          "last_connected_native_index": 21,
+          "last_connected_depth_m": 150.0,
+          "next_native_index": 22,
+          "next_native_depth_m": 200.0,
+          "boundary_depth_m": 158.21967915556252,
+          "bracket_m": [
+            150.0,
+            200.0
+          ],
+          "limiting_criteria": [
+            "salinity"
+          ],
+          "candidate_crossings_m": {
+            "salinity": 158.21967915556252
+          }
+        }
+      },
+      "profile": {
+        "file": "target-1.json",
+        "sha256": "c65b5662bcfa4dfc701ed7e691f3af59e19c3f39206a69b571c7e0e8f7fa2348",
+        "bytes": 8668
+      }
+    },
+    {
+      "source_audit_pointer": "/studies/1/records/2",
+      "original_audit_record": {
+        "study_id": "coastal-upper-layer",
+        "entity_id": "current:norwegian-coastal",
+        "snapshot_time_utc": "2022-03-15T00:00:00Z",
+        "section_id": "section-60n",
+        "source_section_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json",
+        "source_section_sha256": "e6fe1ffc9eb72fa6620d54bc37248462bf95810ae26a9497efac105be8517f86",
+        "selected_column_index": 12,
+        "source_profile_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json#/columns/12",
+        "source_primary_layer_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json#/diagnosis/selected_column_threshold_layers/1",
+        "sampled_lon_lat": [
+          4.0,
+          60.0
+        ],
+        "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+        "primary_threshold_m_s": 0.1,
+        "component_bearing_degrees_true": 0,
+        "selection_depth_interval_m": [
+          0,
+          100
+        ],
+        "core_search_depth_interval_m": [
+          0,
+          100
+        ],
+        "surface_component_gate_m_s": null,
+        "branch_scope": "Partial west-Norway/Norwegian-Trench coastal context58.5-60.75N. Exclude Skagerrak source/Jutland flow,fjords,northern-Norway/Ingoy,Barents/Murman continuation and offshore Norwegian Atlantic branches. Freshwater/coastal-front identity requires salinity evidence not evaluated here. Northward0degree velocity maxima and connected deep same-sign flow do not independently establish NCC identity or physical thickness.",
+        "primary_layer": {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3370000123977661,
+          "lower_last_connected_depth_m": 250.0
+        },
+        "reach_eligible": true,
+        "reason": "original_primary_core_connected_support_with_unresolved_lower_boundary",
+        "lower_bound_m": 250.0,
+        "lower_bound_operator": ">=",
+        "censoring_kind": "missing_signed_component_level",
+        "core_native_index": 0,
+        "core_depth_m": 0.0,
+        "core_velocity_m_s": 0.3370000123977661,
+        "last_connected_native_index": 23,
+        "last_connected_velocity_m_s": 0.14100000262260437,
+        "next_native_index": 24,
+        "next_native_depth_m": 300.0,
+        "next_signed_component_m_s": null,
+        "source_native_domain_deep_limit_m": 5000.0,
+        "source_native_level_count": 40,
+        "source_surface_connection_established": true,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null
+      },
+      "status": "SALINITY_PROFILE_RETRIEVED_AND_CONDITIONAL_CORE_CLASSIFIED",
+      "classification": {
+        "original_core_index": 0,
+        "original_core_depth_m": 0.0,
+        "velocity_threshold_m_s": 0.1,
+        "practical_salinity_exclusive_upper_threshold": 35,
+        "core_reselected": false,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null,
+        "volume_eligible": false,
+        "independently_validated_current_axis": false,
+        "annual_extrema_established": false,
+        "status": "conditional_fresh_component_core_supported",
+        "upper": {
+          "status": "surface_sample_supported",
+          "last_connected_native_index": 0,
+          "last_connected_depth_m": 0.0,
+          "boundary_depth_m": null,
+          "bracket_m": null,
+          "limiting_criteria": []
+        },
+        "lower": {
+          "status": "adjacent_native_joint_predicate_crossing",
+          "last_connected_native_index": 20,
+          "last_connected_depth_m": 125.0,
+          "next_native_index": 21,
+          "next_native_depth_m": 150.0,
+          "boundary_depth_m": 128.33347461218955,
+          "bracket_m": [
+            125.0,
+            150.0
+          ],
+          "limiting_criteria": [
+            "salinity"
+          ],
+          "candidate_crossings_m": {
+            "salinity": 128.33347461218955
+          }
+        }
+      },
+      "profile": {
+        "file": "target-2.json",
+        "sha256": "c179e01ad8c10a401168f86430709878b8b95b3950715fb1a6d634df285c51d8",
+        "bytes": 8581
+      }
+    },
+    {
+      "source_audit_pointer": "/studies/1/records/11",
+      "original_audit_record": {
+        "study_id": "coastal-upper-layer",
+        "entity_id": "current:norwegian-coastal",
+        "snapshot_time_utc": "2022-06-15T00:00:00Z",
+        "section_id": "section-60p75n",
+        "source_section_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json",
+        "source_section_sha256": "86533edbc46afb52279cb6c56fd896cc7c12152edbe72aa8ba6839ad22aae1cb",
+        "selected_column_index": 12,
+        "source_profile_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json#/columns/12",
+        "source_primary_layer_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json#/diagnosis/selected_column_threshold_layers/1",
+        "sampled_lon_lat": [
+          4.47998046875,
+          60.7599983215332
+        ],
+        "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+        "primary_threshold_m_s": 0.1,
+        "component_bearing_degrees_true": 0,
+        "selection_depth_interval_m": [
+          0,
+          100
+        ],
+        "core_search_depth_interval_m": [
+          0,
+          100
+        ],
+        "surface_component_gate_m_s": null,
+        "branch_scope": "Partial west-Norway/Norwegian-Trench coastal context58.5-60.75N. Exclude Skagerrak source/Jutland flow,fjords,northern-Norway/Ingoy,Barents/Murman continuation and offshore Norwegian Atlantic branches. Freshwater/coastal-front identity requires salinity evidence not evaluated here. Northward0degree velocity maxima and connected deep same-sign flow do not independently establish NCC identity or physical thickness.",
+        "primary_layer": {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_last_connected_depth_m": 300.0
+        },
+        "reach_eligible": true,
+        "reason": "original_primary_core_connected_support_with_unresolved_lower_boundary",
+        "lower_bound_m": 300.0,
+        "lower_bound_operator": ">=",
+        "censoring_kind": "missing_signed_component_level",
+        "core_native_index": 9,
+        "core_depth_m": 25.0,
+        "core_velocity_m_s": 0.4220000207424164,
+        "last_connected_native_index": 24,
+        "last_connected_velocity_m_s": 0.13300000131130219,
+        "next_native_index": 25,
+        "next_native_depth_m": 350.0,
+        "next_signed_component_m_s": null,
+        "source_native_domain_deep_limit_m": 5000.0,
+        "source_native_level_count": 40,
+        "source_surface_connection_established": true,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null
+      },
+      "status": "SALINITY_PROFILE_RETRIEVED_AND_CONDITIONAL_CORE_CLASSIFIED",
+      "classification": {
+        "original_core_index": 9,
+        "original_core_depth_m": 25.0,
+        "velocity_threshold_m_s": 0.1,
+        "practical_salinity_exclusive_upper_threshold": 35,
+        "core_reselected": false,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null,
+        "volume_eligible": false,
+        "independently_validated_current_axis": false,
+        "annual_extrema_established": false,
+        "status": "conditional_fresh_component_core_supported",
+        "upper": {
+          "status": "surface_sample_supported",
+          "last_connected_native_index": 0,
+          "last_connected_depth_m": 0.0,
+          "boundary_depth_m": null,
+          "bracket_m": null,
+          "limiting_criteria": []
+        },
+        "lower": {
+          "status": "adjacent_native_joint_predicate_crossing",
+          "last_connected_native_index": 21,
+          "last_connected_depth_m": 150.0,
+          "next_native_index": 22,
+          "next_native_depth_m": 200.0,
+          "boundary_depth_m": 166.66666666666666,
+          "bracket_m": [
+            150.0,
+            200.0
+          ],
+          "limiting_criteria": [
+            "salinity"
+          ],
+          "candidate_crossings_m": {
+            "salinity": 166.66666666666666
+          }
+        }
+      },
+      "profile": {
+        "file": "target-3.json",
+        "sha256": "3f5062f1f2bff2ac6aa2034e3913be573e7ea01977648151e8c9fdcf1d96f8aa",
+        "bytes": 8693
+      }
+    },
+    {
+      "source_audit_pointer": "/studies/1/records/19",
+      "original_audit_record": {
+        "study_id": "coastal-upper-layer",
+        "entity_id": "current:norwegian-coastal",
+        "snapshot_time_utc": "2022-09-15T00:00:00Z",
+        "section_id": "section-60p75n",
+        "source_section_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json",
+        "source_section_sha256": "a3a3cb4cfbeb3a4f4464642da9f793cd764776b652f25daa3e06ba7074e57610",
+        "selected_column_index": 10,
+        "source_profile_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json#/columns/10",
+        "source_primary_layer_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json#/diagnosis/selected_column_threshold_layers/1",
+        "sampled_lon_lat": [
+          4.3199462890625,
+          60.7599983215332
+        ],
+        "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+        "primary_threshold_m_s": 0.1,
+        "component_bearing_degrees_true": 0,
+        "selection_depth_interval_m": [
+          0,
+          100
+        ],
+        "core_search_depth_interval_m": [
+          0,
+          100
+        ],
+        "surface_component_gate_m_s": null,
+        "branch_scope": "Partial west-Norway/Norwegian-Trench coastal context58.5-60.75N. Exclude Skagerrak source/Jutland flow,fjords,northern-Norway/Ingoy,Barents/Murman continuation and offshore Norwegian Atlantic branches. Freshwater/coastal-front identity requires salinity evidence not evaluated here. Northward0degree velocity maxima and connected deep same-sign flow do not independently establish NCC identity or physical thickness.",
+        "primary_layer": {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.42000001668930054,
+          "lower_last_connected_depth_m": 300.0
+        },
+        "reach_eligible": true,
+        "reason": "original_primary_core_connected_support_with_unresolved_lower_boundary",
+        "lower_bound_m": 300.0,
+        "lower_bound_operator": ">=",
+        "censoring_kind": "missing_signed_component_level",
+        "core_native_index": 8,
+        "core_depth_m": 20.0,
+        "core_velocity_m_s": 0.42000001668930054,
+        "last_connected_native_index": 24,
+        "last_connected_velocity_m_s": 0.13900001347064972,
+        "next_native_index": 25,
+        "next_native_depth_m": 350.0,
+        "next_signed_component_m_s": null,
+        "source_native_domain_deep_limit_m": 5000.0,
+        "source_native_level_count": 40,
+        "source_surface_connection_established": true,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null
+      },
+      "status": "SALINITY_PROFILE_RETRIEVED_AND_CONDITIONAL_CORE_CLASSIFIED",
+      "classification": {
+        "original_core_index": 8,
+        "original_core_depth_m": 20.0,
+        "velocity_threshold_m_s": 0.1,
+        "practical_salinity_exclusive_upper_threshold": 35,
+        "core_reselected": false,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null,
+        "volume_eligible": false,
+        "independently_validated_current_axis": false,
+        "annual_extrema_established": false,
+        "status": "conditional_fresh_component_core_supported",
+        "upper": {
+          "status": "surface_sample_supported",
+          "last_connected_native_index": 0,
+          "last_connected_depth_m": 0.0,
+          "boundary_depth_m": null,
+          "bracket_m": null,
+          "limiting_criteria": []
+        },
+        "lower": {
+          "status": "adjacent_native_joint_predicate_crossing",
+          "last_connected_native_index": 18,
+          "last_connected_depth_m": 90.0,
+          "next_native_index": 19,
+          "next_native_depth_m": 100.0,
+          "boundary_depth_m": 97.02122478795503,
+          "bracket_m": [
+            90.0,
+            100.0
+          ],
+          "limiting_criteria": [
+            "salinity"
+          ],
+          "candidate_crossings_m": {
+            "salinity": 97.02122478795503
+          }
+        }
+      },
+      "profile": {
+        "file": "target-4.json",
+        "sha256": "09ac511e498652c2ba803be76a6174eb30f5dad0d6faa39a71a7315eba23c076",
+        "bytes": 8695
+      }
+    },
+    {
+      "source_audit_pointer": "/studies/1/records/25",
+      "original_audit_record": {
+        "study_id": "coastal-upper-layer",
+        "entity_id": "current:norwegian-coastal",
+        "snapshot_time_utc": "2022-12-15T00:00:00Z",
+        "section_id": "section-59p25n",
+        "source_section_file": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json",
+        "source_section_sha256": "46d09549ad57436a70a823918c7df5ef4eddc83490e1fb516e20ef50fac55a6a",
+        "selected_column_index": 12,
+        "source_profile_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json#/columns/12",
+        "source_primary_layer_ref": "research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json#/diagnosis/selected_column_threshold_layers/1",
+        "sampled_lon_lat": [
+          4.0,
+          59.2400016784668
+        ],
+        "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+        "primary_threshold_m_s": 0.1,
+        "component_bearing_degrees_true": 0,
+        "selection_depth_interval_m": [
+          0,
+          100
+        ],
+        "core_search_depth_interval_m": [
+          0,
+          100
+        ],
+        "surface_component_gate_m_s": null,
+        "branch_scope": "Partial west-Norway/Norwegian-Trench coastal context58.5-60.75N. Exclude Skagerrak source/Jutland flow,fjords,northern-Norway/Ingoy,Barents/Murman continuation and offshore Norwegian Atlantic branches. Freshwater/coastal-front identity requires salinity evidence not evaluated here. Northward0degree velocity maxima and connected deep same-sign flow do not independently establish NCC identity or physical thickness.",
+        "primary_layer": {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.34700000286102295,
+          "lower_last_connected_depth_m": 250.0
+        },
+        "reach_eligible": true,
+        "reason": "original_primary_core_connected_support_with_unresolved_lower_boundary",
+        "lower_bound_m": 250.0,
+        "lower_bound_operator": ">=",
+        "censoring_kind": "missing_signed_component_level",
+        "core_native_index": 0,
+        "core_depth_m": 0.0,
+        "core_velocity_m_s": 0.34700000286102295,
+        "last_connected_native_index": 23,
+        "last_connected_velocity_m_s": 0.14000000059604645,
+        "next_native_index": 24,
+        "next_native_depth_m": 300.0,
+        "next_signed_component_m_s": null,
+        "source_native_domain_deep_limit_m": 5000.0,
+        "source_native_level_count": 40,
+        "source_surface_connection_established": true,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null
+      },
+      "status": "SALINITY_PROFILE_RETRIEVED_AND_CONDITIONAL_CORE_CLASSIFIED",
+      "classification": {
+        "original_core_index": 0,
+        "original_core_depth_m": 0.0,
+        "velocity_threshold_m_s": 0.1,
+        "practical_salinity_exclusive_upper_threshold": 35,
+        "core_reselected": false,
+        "physical_current_bottom_established": false,
+        "physical_layer_thickness_m": null,
+        "volume_eligible": false,
+        "independently_validated_current_axis": false,
+        "annual_extrema_established": false,
+        "status": "conditional_fresh_component_core_supported",
+        "upper": {
+          "status": "surface_sample_supported",
+          "last_connected_native_index": 0,
+          "last_connected_depth_m": 0.0,
+          "boundary_depth_m": null,
+          "bracket_m": null,
+          "limiting_criteria": []
+        },
+        "lower": {
+          "status": "adjacent_native_joint_predicate_crossing",
+          "last_connected_native_index": 18,
+          "last_connected_depth_m": 90.0,
+          "next_native_index": 19,
+          "next_native_depth_m": 100.0,
+          "boundary_depth_m": 96.84184108818953,
+          "bracket_m": [
+            90.0,
+            100.0
+          ],
+          "limiting_criteria": [
+            "salinity"
+          ],
+          "candidate_crossings_m": {
+            "salinity": 96.84184108818953
+          }
+        }
+      },
+      "profile": {
+        "file": "target-5.json",
+        "sha256": "873ab265a24bd06a02d351ae29a00d56e374a4b33100deaf10e54ae98a4f0574",
+        "bytes": 8599
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "file": "target-1.json",
+      "sha256": "c65b5662bcfa4dfc701ed7e691f3af59e19c3f39206a69b571c7e0e8f7fa2348",
+      "bytes": 8668
+    },
+    {
+      "file": "target-2.json",
+      "sha256": "c179e01ad8c10a401168f86430709878b8b95b3950715fb1a6d634df285c51d8",
+      "bytes": 8581
+    },
+    {
+      "file": "target-3.json",
+      "sha256": "3f5062f1f2bff2ac6aa2034e3913be573e7ea01977648151e8c9fdcf1d96f8aa",
+      "bytes": 8693
+    },
+    {
+      "file": "target-4.json",
+      "sha256": "09ac511e498652c2ba803be76a6174eb30f5dad0d6faa39a71a7315eba23c076",
+      "bytes": 8695
+    },
+    {
+      "file": "target-5.json",
+      "sha256": "873ab265a24bd06a02d351ae29a00d56e374a4b33100deaf10e54ae98a4f0574",
+      "bytes": 8599
+    }
+  ],
+  "new_reference_inventory_rows_admitted": 0,
+  "reference_inventory_updated": false,
+  "physical_current_bottom_established": false,
+  "full_goal_complete": false,
+  "runtime_changed": false,
+  "source_global_attributes": {
+    "classification_level": "UNCLASSIFIED",
+    "distribution_statement": "Approved for public release. Distribution unlimited.",
+    "downgrade_date": "not applicable",
+    "classification_authority": "not applicable",
+    "institution": "Fleet Numerical Meteorology and Oceanography Center",
+    "source": "HYCOM archive file",
+    "history": "archv2ncdf3z",
+    "field_type": "instantaneous",
+    "Conventions": "CF-1.6 NAVO_netcdf_v1.1"
+  },
+  "source_variable_attributes": {
+    "long_name": "Salinity",
+    "standard_name": "sea_water_salinity",
+    "units": "psu",
+    "_FillValue": "-30000",
+    "missing_value": "-30000",
+    "scale_factor": "0.001",
+    "add_offset": "20.0",
+    "NAVO_code": "16"
+  },
+  "all_five_targets_preflighted_before_field_reads": true,
+  "transport": {
+    "schema": "osw.ncc-bounded-salinity-reads.v1",
+    "planned_successful_scalar_values": 600,
+    "additional_retry_scalar_values_reserved": 0,
+    "actual_requested_scalar_values": 600,
+    "successfully_returned_scalar_values": 600,
+    "maximum_requested_scalar_values": 1800,
+    "conservative_all_target_plus_retries_bytes": 4800,
+    "maximum_decoded_bytes": 7000000,
+    "maximum_attempts_per_target": 3,
+    "requests": [
+      {
+        "variable": "salinity",
+        "source_time_index": 580,
+        "latitude_index": 3481,
+        "longitude_indices_inclusive": [
+          48,
+          50
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_scalar_values": 120,
+        "status": "success",
+        "actual_decoded_array_bytes": 480
+      },
+      {
+        "variable": "salinity",
+        "source_time_index": 580,
+        "latitude_index": 3500,
+        "longitude_indices_inclusive": [
+          49,
+          51
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_scalar_values": 120,
+        "status": "success",
+        "actual_decoded_array_bytes": 480
+      },
+      {
+        "variable": "salinity",
+        "source_time_index": 1316,
+        "latitude_index": 3519,
+        "longitude_indices_inclusive": [
+          55,
+          57
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_scalar_values": 120,
+        "status": "success",
+        "actual_decoded_array_bytes": 480
+      },
+      {
+        "variable": "salinity",
+        "source_time_index": 2052,
+        "latitude_index": 3519,
+        "longitude_indices_inclusive": [
+          53,
+          55
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_scalar_values": 120,
+        "status": "success",
+        "actual_decoded_array_bytes": 480
+      },
+      {
+        "variable": "salinity",
+        "source_time_index": 2780,
+        "latitude_index": 3481,
+        "longitude_indices_inclusive": [
+          49,
+          51
+        ],
+        "depth_indices_inclusive": [
+          0,
+          39
+        ],
+        "attempt": 1,
+        "requested_scalar_values": 120,
+        "status": "success",
+        "actual_decoded_array_bytes": 480
+      }
+    ],
+    "wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false
+  },
+  "transport_ledger_sha256": "1407bb67f441ee07e1fffb41d47cf891b62de4679175c8ee8a18d17b7af1cd30",
+  "new_salinity_scalar_requests": 600,
+  "new_velocity_scalar_requests": 0
+}

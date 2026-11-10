@@ -1,0 +1,130 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 424,
+  "baseline_evidence_sha256": "0b569e15c272b7119131e08a3b40b86e0838999f102ede7217142a0efbae7f84",
+  "baseline_measurement_csv_sha256": "661a7fe3dc3775304e742603826cd35ea827fbe9f42b7a45a9ba24d58bd53ff9",
+  "sources": {
+    "hamilton-2015-hot-core-chart": {
+      "url": "https://espis.boem.gov/final%20reports/5471.pdf",
+      "citation": "Hamilton, Donohue, Hall, Leben, Quian, Sheinbaum and Watts (2015), Observations and Dynamics of the Loop Current, BOEM 2015-006, February 2015.",
+      "original": {
+        "url": "https://espis.boem.gov/final%20reports/5471.pdf",
+        "bytes": 54579667,
+        "sha256": "9138b23ed8e702b7180018203ce2f1d57167046b93a1377a49272d7b037963fe",
+        "pages": 420
+      },
+      "access": "Original BOEM report acquired and SHA-verified. PDF277/printed247 Figure5.2-2 and extracted original 1098x906 chart actual pixels reviewed. Explicit Hot Core label and chart week. Manual pre-detachment lobe landmarks; native raster and published tick-label boxes verified on one idle local CPU. Not a closed eddy boundary or full outer extent.",
+      "source_review_file": "research/eddy-hot-core-frontal-source-review-v1.json",
+      "source_review_sha256": "3f91060cc3aa708cc08633a0b7ebc62bfa9cb7a1a0a657943922279b6bb7dfc0",
+      "original_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "id": "hot-core-1986-january-frontal-lobe-east-west",
+      "entity_id": "eddy:horizon:loop-05-primary",
+      "source_id": "hamilton-2015-hot-core-chart",
+      "category": "size",
+      "metric": "source_chart_pre_detachment_frontal_lobe_east_west_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        300,
+        350
+      ],
+      "range_kind": "manual_landmark_reading_sensitivity_not_physical_uncertainty",
+      "period_start": "1986-01-10",
+      "period_end": "1986-01-17",
+      "period_precision": "source_chart_week_not_simultaneous_observation",
+      "period_label": "EddyWatch week of 10-17 January 1986; pre-detachment lobe, not an exact survey time",
+      "case_label": "Hot Core named source-chart frontal lobe; physical identity unverified",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "BOEM2015-006 Figure5.2-2, printed247/PDF277; January10-17,1986 EddyWatch chart explicitly labels Hot Core Eddy. Section5.2, printed245/PDF275 gives January18 separation definition.",
+      "definition": "Geographic east–west bounding span of manually selected extrema of the depicted Hot Core frontal lobe; eastern neck landmark excludes the Loop Current continuation.",
+      "scope": "Pre-detachment source frontal lobe extent only. No detached full-eddy boundary, diameter or principal width inferred. Registry physical crosswalk unverified.",
+      "qualification": "The eastern lobe-neck landmark is a declared manual boundary choice. Outline closure is unverified and no missing segments are reconstructed. Six original raster pixels at each extremum and outward 25km reporting are reading sensitivity only; junction ambiguity, scan distortion, frontal-analysis error and physical uncertainty remain unquantified. Source chart week is not an exact simultaneous observation; the separate January3-4 Ambassador transect and report January18 separation date are not substituted. Registry November8,1985 initial separation remains unreconciled. No EddyC alias, merged B/C loop diameter, Fast Eddy size, radius, area, footprint, state containment, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_hot_core_pre_detachment_frontal_lobe_spans_v1",
+        "component": "east_west",
+        "source_case_name": "Hot Core",
+        "phase": "source_chart_pre_detachment_frontal_lobe",
+        "source_week": [
+          "1986-01-10",
+          "1986-01-17"
+        ],
+        "audit_span_km": 323.155697,
+        "audit_reading_interval_km": [
+          303.250623,
+          343.088615
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          300,
+          350
+        ],
+        "reading_allowance_native_pixels": 6,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_eddy_extent_inferred": false,
+        "report_file": "research/eddy-hot-core-frontal-source-review-v1.json",
+        "report_sha256": "3f91060cc3aa708cc08633a0b7ebc62bfa9cb7a1a0a657943922279b6bb7dfc0"
+      }
+    },
+    {
+      "id": "hot-core-1986-january-frontal-lobe-north-south",
+      "entity_id": "eddy:horizon:loop-05-primary",
+      "source_id": "hamilton-2015-hot-core-chart",
+      "category": "size",
+      "metric": "source_chart_pre_detachment_frontal_lobe_north_south_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        425,
+        475
+      ],
+      "range_kind": "manual_landmark_reading_sensitivity_not_physical_uncertainty",
+      "period_start": "1986-01-10",
+      "period_end": "1986-01-17",
+      "period_precision": "source_chart_week_not_simultaneous_observation",
+      "period_label": "EddyWatch week of 10-17 January 1986; pre-detachment lobe, not an exact survey time",
+      "case_label": "Hot Core named source-chart frontal lobe; physical identity unverified",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "BOEM2015-006 Figure5.2-2, printed247/PDF277; January10-17,1986 EddyWatch chart explicitly labels Hot Core Eddy. Section5.2, printed245/PDF275 gives January18 separation definition.",
+      "definition": "Geographic north–south bounding span of manually selected extrema of the depicted Hot Core frontal lobe; eastern neck landmark excludes the Loop Current continuation.",
+      "scope": "Pre-detachment source frontal lobe extent only. No detached full-eddy boundary, diameter or principal width inferred. Registry physical crosswalk unverified.",
+      "qualification": "The eastern lobe-neck landmark is a declared manual boundary choice. Outline closure is unverified and no missing segments are reconstructed. Six original raster pixels at each extremum and outward 25km reporting are reading sensitivity only; junction ambiguity, scan distortion, frontal-analysis error and physical uncertainty remain unquantified. Source chart week is not an exact simultaneous observation; the separate January3-4 Ambassador transect and report January18 separation date are not substituted. Registry November8,1985 initial separation remains unreconciled. No EddyC alias, merged B/C loop diameter, Fast Eddy size, radius, area, footprint, state containment, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_hot_core_pre_detachment_frontal_lobe_spans_v1",
+        "component": "north_south",
+        "source_case_name": "Hot Core",
+        "phase": "source_chart_pre_detachment_frontal_lobe",
+        "source_week": [
+          "1986-01-10",
+          "1986-01-17"
+        ],
+        "audit_span_km": 447.11616,
+        "audit_reading_interval_km": [
+          427.959355,
+          466.277455
+        ],
+        "audit_decimal_places": 6,
+        "range_km": [
+          425,
+          475
+        ],
+        "reading_allowance_native_pixels": 6,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_eddy_extent_inferred": false,
+        "report_file": "research/eddy-hot-core-frontal-source-review-v1.json",
+        "report_sha256": "3f91060cc3aa708cc08633a0b7ebc62bfa9cb7a1a0a657943922279b6bb7dfc0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+name: Bounded HYCOM native metadata diagnosis v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/hycom-ncc-mid-norway-metadata-probe-v1.yml
+      - analysis/probe_hycom_native_metadata_v1.py
+      - analysis/test_hycom_native_metadata_probe_v1.py
+      - plans/hycom-ncc-mid-norway-metadata-probe-protocol-v1.md
+      - research/current-depth-ncc-mid-norway-source-attempt-result-v1.json
+      - research/hycom-ncc-mid-norway-metadata-probe-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/ncc-mid-norway-joint-sections-v1.yml
+            analysis/acquire_ncc_mid_norway_joint_sections_v1.py
+            analysis/acquire_ncc_north_joint_sections_v1.py
+            analysis/probe_hycom_native_metadata_v1.py
+            analysis/test_hycom_native_metadata_probe_v1.py
+            plans/hycom-ncc-mid-norway-metadata-probe-protocol-v1.md
+            research/current-depth-ncc-mid-norway-source-attempt-result-v1.json
+            research/hycom-ncc-mid-norway-metadata-probe-operator-v1.json
+            research/ncc-mid-norway-joint-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify fixed metadata requests resource bounds and durable receipts
+        timeout-minutes: 1
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_hycom_native_metadata_probe_v1.py' -v
+      - name: Diagnose metadata and first-coordinate responses without ocean fields
+        timeout-minutes: 4
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/probe_hycom_native_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hycom-ncc-mid-norway-metadata-probe-v1
+          path: hycom-ncc-mid-norway-metadata-probe-v1/
+          retention-days: 7

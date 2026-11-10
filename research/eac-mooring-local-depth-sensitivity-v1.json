@@ -1,0 +1,2789 @@
+{
+  "schema": "osw.eac-mooring-local-depth-sensitivity.v1",
+  "status": "CONDITIONAL_LOCAL_ENDPOINT_STANDARD_ERROR_RESPONSE_NOT_DEPTH_CONFIDENCE_INTERVAL",
+  "source_file": "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json",
+  "source_sha256": "16ebb8434cb613b95b71762d326dce84ee2df415b93739ea6f66f5d3cebfa24e",
+  "operator_file": "research/eac-mooring-local-depth-sensitivity-operator-v1.json",
+  "operator_sha256": "0482c42516fefa190c6ae4108c406c13098353dfe923d55885c83d6ccec32c77",
+  "input_sha256": {
+    ".github/workflows/eac-mooring-depth-benchmark-v1.yml": "f30c7f0161382ee185f44e291571a15cd13a4504fcfd99a11d4a8f8fbc3ce5ac",
+    ".github/workflows/eac-mooring-local-depth-sensitivity-v1.yml": "4be3c8b2e6f423fc5b0552d928de5e63ac77805cbff00cd92d8acd53d29e471d",
+    "analysis/acquire_eac_mooring_depth_benchmark_v1.py": "86ec0139f17ef2236786b05678c071c31f6b1bcfbc4aae35f36a59490b0b8bd2",
+    "analysis/audit_eac_mooring_local_depth_sensitivity_v1.py": "b133afdcc2a2fe4aae95d471e397883c37e86908794028d4080d331c834c376f",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/test_eac_connected_layer_thickness_v1.py": "dfe5be1cdd1cca816a0eaf4250febfcd63de5f8853b59271646a66af446da41f",
+    "analysis/test_eac_mooring_depth_benchmark_v1.py": "0a9a78dc4fd9b812b48312a0c6763c7c135ac126e21f919b9750485032596470",
+    "analysis/test_eac_mooring_local_depth_sensitivity_v1.py": "362e6d79edcd96f87af5a5221aed0ad051ad056cf6b1b879f58f9a468abc8ed6",
+    "plans/eac-mooring-local-depth-sensitivity-protocol-v1.md": "7f462179738f6f5b58aca664c6903a88227edcb5b48ddb5f2002a0a65cc83576",
+    "research/current-depth-native-pressure-projections-source-review-v1.json": "aa85bc39531e41d411fb41fc839b7e2c7c539ee0ff1f8d5085d3a4532d8a7d7c",
+    "research/current-depth-reference-inventory-v26.json": "2264541870cf61cff22a771302ea5b52e797ddead978fe87d0382a0bce12d7c2",
+    "research/eac-connected-layer-thickness-source-review-v1.json": "4a4a2e1cf228b416e21b1c67f1358ecf2c3decca4809485bba2bdcba65a1ed70",
+    "research/eac-mooring-depth-benchmark-operator-v1.json": "eb341711de0d6b057c3cb620d4aaa25ea563594f1091222c38168b0e0440c9cb",
+    "research/eac-mooring-depth-benchmark-source-review-v1.json": "1e9ee38d9be25be3208b14c806c8d3b0564147063698f433857c6d7c4db4ad6e",
+    "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json": "16ebb8434cb613b95b71762d326dce84ee2df415b93739ea6f66f5d3cebfa24e"
+  },
+  "source_processing": "Daily unfilled processed observations;vertical/time gridding and5dayfilter;not instantaneous or native independent cells.",
+  "operator_scope": "Four corners of plus/minus one reported northward-component standard error at each original lower bracket endpoint; poleward=-VCUR. Fixed threshold,nominalcomponent and bracket. Whole profile/core connectivity not reassessed; no bracket relocation or extrapolation.",
+  "interpretation": "A complete local response exists only when every corner retains the original downward crossing. Invalid corners remain unresolved and suppress a complete range. All output ranges are deterministic conditional sensitivity,not confidence/physical uncertainty/annual envelopes.",
+  "counts": {
+    "source_profiles": 14,
+    "station_date_threshold_outcomes": 42,
+    "nominal_resolved_lower_boundaries": 16,
+    "complete_endpoint_rectangle_responses": 0,
+    "invalidated_local_brackets": 16,
+    "source_endpoint_standard_error_missing": 0,
+    "nominal_lower_boundary_unresolved": 26,
+    "corner_outcomes": 64,
+    "selected_source_levels_across_profiles": 32,
+    "local_bracket_scalar_touches": 96,
+    "retained_typed_velocity_scalars": 8768,
+    "new_native_measurements": 0,
+    "new_reference_inventory_rows": 0,
+    "provider_requests": 0
+  },
+  "outcomes": [
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 1,
+        "core_depth_m": 10.0,
+        "core_velocity_m_s": 0.71,
+        "upper_last_connected_depth_m": 10.0,
+        "lower_last_connected_depth_m": 50.0
+      },
+      "source_profile_pointer": "/samples/0",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 1,
+        "core_depth_m": 10.0,
+        "core_velocity_m_s": 0.71,
+        "upper_last_connected_depth_m": 10.0,
+        "lower_last_connected_depth_m": 50.0
+      },
+      "source_profile_pointer": "/samples/0",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 1,
+        "core_depth_m": 10.0,
+        "core_velocity_m_s": 0.71,
+        "upper_last_connected_depth_m": 10.0,
+        "lower_last_connected_depth_m": 50.0
+      },
+      "source_profile_pointer": "/samples/0",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/1",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/1",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "NRSNSI",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.5619,
+        -27.3425
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/1",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 1.105,
+        "upper_last_connected_depth_m": 110.0,
+        "lower_last_connected_depth_m": 350.0
+      },
+      "source_profile_pointer": "/samples/2",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 1.105,
+        "upper_last_connected_depth_m": 110.0,
+        "lower_last_connected_depth_m": 350.0
+      },
+      "source_profile_pointer": "/samples/2",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 288.57142857142856,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 1.105,
+        "upper_last_connected_depth_m": 110.0,
+        "lower_bracket_m": [
+          280.0,
+          290.0
+        ]
+      },
+      "source_profile_pointer": "/samples/2",
+      "endpoint_source_indices": [
+        28,
+        29
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 288.57142857142856,
+        "source_endpoint_depths_m": [
+          280.0,
+          290.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.212,
+          0.198
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.02,
+          0.02
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.192,
+              0.17800000000000002
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.192,
+              0.218
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.23199999999999998,
+              0.17800000000000002
+            ],
+            "crossing_depth_m": 285.9259259259259,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.23199999999999998,
+              0.218
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 0.63,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_last_connected_depth_m": 340.0
+      },
+      "source_profile_pointer": "/samples/3",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 0.63,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_last_connected_depth_m": 340.0
+      },
+      "source_profile_pointer": "/samples/3",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "0500",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.8954,
+        -27.3284
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 11,
+        "core_depth_m": 110.0,
+        "core_velocity_m_s": 0.63,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_last_connected_depth_m": 340.0
+      },
+      "source_profile_pointer": "/samples/3",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.954,
+        "upper_last_connected_depth_m": 90.0,
+        "lower_last_connected_depth_m": 320.0
+      },
+      "source_profile_pointer": "/samples/4",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.954,
+        "upper_last_connected_depth_m": 90.0,
+        "lower_last_connected_depth_m": 320.0
+      },
+      "source_profile_pointer": "/samples/4",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 305.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.954,
+        "upper_last_connected_depth_m": 90.0,
+        "lower_bracket_m": [
+          300.0,
+          310.0
+        ]
+      },
+      "source_profile_pointer": "/samples/4",
+      "endpoint_source_indices": [
+        30,
+        31
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 305.0,
+        "source_endpoint_depths_m": [
+          300.0,
+          310.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.207,
+          0.193
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.015,
+          0.009
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.192,
+              0.184
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.192,
+              0.202
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.22199999999999998,
+              0.184
+            ],
+            "crossing_depth_m": 305.7894736842105,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.22199999999999998,
+              0.202
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.619,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_last_connected_depth_m": 250.0
+      },
+      "source_profile_pointer": "/samples/5",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.619,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_last_connected_depth_m": 250.0
+      },
+      "source_profile_pointer": "/samples/5",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "2000",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        153.9994,
+        -27.3136
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "censored_before_missing_or_dry_level",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.619,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_last_connected_depth_m": 250.0
+      },
+      "source_profile_pointer": "/samples/5",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": 940.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 6,
+        "core_depth_m": 60.0,
+        "core_velocity_m_s": 0.744,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_bracket_m": [
+          920.0,
+          940.0
+        ]
+      },
+      "source_profile_pointer": "/samples/6",
+      "endpoint_source_indices": [
+        66,
+        67
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 940.0,
+        "source_endpoint_depths_m": [
+          920.0,
+          940.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.055,
+          0.05
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.006,
+          0.006
+        ],
+        "source_threshold_m_s": 0.05,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.049,
+              0.044000000000000004
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.049,
+              0.056
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.061,
+              0.044000000000000004
+            ],
+            "crossing_depth_m": 932.9411764705883,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.061,
+              0.056
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": 638.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 6,
+        "core_depth_m": 60.0,
+        "core_velocity_m_s": 0.744,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_bracket_m": [
+          620.0,
+          640.0
+        ]
+      },
+      "source_profile_pointer": "/samples/6",
+      "endpoint_source_indices": [
+        51,
+        52
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 638.0,
+        "source_endpoint_depths_m": [
+          620.0,
+          640.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.109,
+          0.099
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.004,
+          0.005
+        ],
+        "source_threshold_m_s": 0.1,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.105,
+              0.094
+            ],
+            "crossing_depth_m": 629.0909090909091,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.105,
+              0.10400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.113,
+              0.094
+            ],
+            "crossing_depth_m": 633.6842105263158,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.113,
+              0.10400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 471.4285714285714,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 6,
+        "core_depth_m": 60.0,
+        "core_velocity_m_s": 0.744,
+        "upper_last_connected_depth_m": 60.0,
+        "lower_bracket_m": [
+          460.0,
+          480.0
+        ]
+      },
+      "source_profile_pointer": "/samples/6",
+      "endpoint_source_indices": [
+        43,
+        44
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 471.4285714285714,
+        "source_endpoint_depths_m": [
+          460.0,
+          480.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.204,
+          0.197
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.005,
+          0.005
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.19899999999999998,
+              0.192
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.19899999999999998,
+              0.202
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.209,
+              0.192
+            ],
+            "crossing_depth_m": 470.5882352941176,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.209,
+              0.202
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": 1066.6666666666667,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.546,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          1060.0,
+          1080.0
+        ]
+      },
+      "source_profile_pointer": "/samples/7",
+      "endpoint_source_indices": [
+        73,
+        74
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 1066.6666666666667,
+        "source_endpoint_depths_m": [
+          1060.0,
+          1080.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.052,
+          0.046
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.007,
+          0.008
+        ],
+        "source_threshold_m_s": 0.05,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.045,
+              0.038
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.045,
+              0.054
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.059,
+              0.038
+            ],
+            "crossing_depth_m": 1068.5714285714287,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.059,
+              0.054
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": 871.4285714285714,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.546,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          860.0,
+          880.0
+        ]
+      },
+      "source_profile_pointer": "/samples/7",
+      "endpoint_source_indices": [
+        63,
+        64
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 871.4285714285714,
+        "source_endpoint_depths_m": [
+          860.0,
+          880.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.104,
+          0.097
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.007,
+          0.007
+        ],
+        "source_threshold_m_s": 0.1,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.09699999999999999,
+              0.09
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.09699999999999999,
+              0.10400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.111,
+              0.09
+            ],
+            "crossing_depth_m": 870.4761904761905,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.111,
+              0.10400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "3200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.135,
+        -27.2835
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 581.5384615384615,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.546,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          580.0,
+          600.0
+        ]
+      },
+      "source_profile_pointer": "/samples/7",
+      "endpoint_source_indices": [
+        49,
+        50
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 581.5384615384615,
+        "source_endpoint_depths_m": [
+          580.0,
+          600.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.201,
+          0.188
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.005,
+          0.005
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.196,
+              0.183
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.196,
+              0.193
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.20600000000000002,
+              0.183
+            ],
+            "crossing_depth_m": 585.2173913043479,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.20600000000000002,
+              0.193
+            ],
+            "crossing_depth_m": 589.2307692307693,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": 1068.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 5,
+        "core_depth_m": 50.0,
+        "core_velocity_m_s": 0.599,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          1060.0,
+          1080.0
+        ]
+      },
+      "source_profile_pointer": "/samples/8",
+      "endpoint_source_indices": [
+        73,
+        74
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 1068.0,
+        "source_endpoint_depths_m": [
+          1060.0,
+          1080.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.052,
+          0.047
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.006,
+          0.006
+        ],
+        "source_threshold_m_s": 0.05,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.046,
+              0.041
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.046,
+              0.053
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.057999999999999996,
+              0.041
+            ],
+            "crossing_depth_m": 1069.4117647058824,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.057999999999999996,
+              0.053
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": 773.3333333333333,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 5,
+        "core_depth_m": 50.0,
+        "core_velocity_m_s": 0.599,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          760.0,
+          780.0
+        ]
+      },
+      "source_profile_pointer": "/samples/8",
+      "endpoint_source_indices": [
+        58,
+        59
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 773.3333333333333,
+        "source_endpoint_depths_m": [
+          760.0,
+          780.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.102,
+          0.099
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.008,
+          0.008
+        ],
+        "source_threshold_m_s": 0.1,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.094,
+              0.091
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.094,
+              0.10700000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.10999999999999999,
+              0.091
+            ],
+            "crossing_depth_m": 770.5263157894736,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.10999999999999999,
+              0.10700000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 484.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 5,
+        "core_depth_m": 50.0,
+        "core_velocity_m_s": 0.599,
+        "upper_last_connected_depth_m": 40.0,
+        "lower_bracket_m": [
+          480.0,
+          500.0
+        ]
+      },
+      "source_profile_pointer": "/samples/8",
+      "endpoint_source_indices": [
+        44,
+        45
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 484.0,
+        "source_endpoint_depths_m": [
+          480.0,
+          500.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.203,
+          0.188
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.005,
+          0.007
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.198,
+              0.181
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.198,
+              0.195
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.20800000000000002,
+              0.181
+            ],
+            "crossing_depth_m": 485.9259259259259,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.20800000000000002,
+              0.195
+            ],
+            "crossing_depth_m": 492.3076923076923,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": 992.5,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 3,
+        "core_depth_m": 30.0,
+        "core_velocity_m_s": 0.596,
+        "upper_last_connected_depth_m": 20.0,
+        "lower_bracket_m": [
+          980.0,
+          1000.0
+        ]
+      },
+      "source_profile_pointer": "/samples/9",
+      "endpoint_source_indices": [
+        69,
+        70
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 992.5,
+        "source_endpoint_depths_m": [
+          980.0,
+          1000.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.055,
+          0.047
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.008,
+          0.007
+        ],
+        "source_threshold_m_s": 0.05,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.047,
+              0.04
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.047,
+              0.054
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.063,
+              0.04
+            ],
+            "crossing_depth_m": 991.304347826087,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.063,
+              0.054
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": 834.2857142857142,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 3,
+        "core_depth_m": 30.0,
+        "core_velocity_m_s": 0.596,
+        "upper_last_connected_depth_m": 20.0,
+        "lower_bracket_m": [
+          820.0,
+          840.0
+        ]
+      },
+      "source_profile_pointer": "/samples/9",
+      "endpoint_source_indices": [
+        61,
+        62
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 834.2857142857142,
+        "source_endpoint_depths_m": [
+          820.0,
+          840.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.105,
+          0.098
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.007,
+          0.007
+        ],
+        "source_threshold_m_s": 0.1,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.09799999999999999,
+              0.091
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.09799999999999999,
+              0.10500000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.112,
+              0.091
+            ],
+            "crossing_depth_m": 831.4285714285714,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.112,
+              0.10500000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4200",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.2924,
+        -27.2442
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": 535.0,
+        "layer_thickness_m": null,
+        "upper_status": "censored_before_missing_or_dry_level",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "unresolved_connected_layer_boundary",
+        "core_index": 3,
+        "core_depth_m": 30.0,
+        "core_velocity_m_s": 0.596,
+        "upper_last_connected_depth_m": 20.0,
+        "lower_bracket_m": [
+          520.0,
+          540.0
+        ]
+      },
+      "source_profile_pointer": "/samples/9",
+      "endpoint_source_indices": [
+        46,
+        47
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 535.0,
+        "source_endpoint_depths_m": [
+          520.0,
+          540.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.215,
+          0.195
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.009,
+          0.009
+        ],
+        "source_threshold_m_s": 0.2,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.206,
+              0.186
+            ],
+            "crossing_depth_m": 526.0,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.206,
+              0.20400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.224,
+              0.186
+            ],
+            "crossing_depth_m": 532.6315789473684,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.224,
+              0.20400000000000001
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/10",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/10",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/10",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/11",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/11",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4700",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        154.6445,
+        -27.2071
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/11",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": 32.631578947368425,
+        "lower_depth_m": 406.66666666666663,
+        "layer_thickness_m": 374.0350877192982,
+        "upper_status": "adjacent_isotach_crossing",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "resolved_connected_processed_observation_threshold_layer",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.141,
+        "upper_bracket_m": [
+          30.0,
+          40.0
+        ],
+        "lower_bracket_m": [
+          400.0,
+          420.0
+        ]
+      },
+      "source_profile_pointer": "/samples/12",
+      "endpoint_source_indices": [
+        40,
+        41
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 406.66666666666663,
+        "source_endpoint_depths_m": [
+          400.0,
+          420.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.051,
+          0.048
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.005,
+          0.005
+        ],
+        "source_threshold_m_s": 0.05,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.046,
+              0.043000000000000003
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.046,
+              0.053
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.055999999999999994,
+              0.043000000000000003
+            ],
+            "crossing_depth_m": 409.2307692307692,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.055999999999999994,
+              0.053
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": 78.66666666666667,
+        "lower_depth_m": 194.44444444444443,
+        "layer_thickness_m": 115.77777777777776,
+        "upper_status": "adjacent_isotach_crossing",
+        "lower_status": "adjacent_isotach_crossing",
+        "status": "resolved_connected_processed_observation_threshold_layer",
+        "core_index": 10,
+        "core_depth_m": 100.0,
+        "core_velocity_m_s": 0.141,
+        "upper_bracket_m": [
+          70.0,
+          80.0
+        ],
+        "lower_bracket_m": [
+          190.0,
+          200.0
+        ]
+      },
+      "source_profile_pointer": "/samples/12",
+      "endpoint_source_indices": [
+        19,
+        20
+      ],
+      "sensitivity": {
+        "nominal_crossing_depth_m": 194.44444444444443,
+        "source_endpoint_depths_m": [
+          190.0,
+          200.0
+        ],
+        "source_endpoint_poleward_velocity_m_s": [
+          0.108,
+          0.09
+        ],
+        "source_endpoint_northward_standard_errors_m_s": [
+          0.016,
+          0.011
+        ],
+        "source_threshold_m_s": 0.1,
+        "source_component_SE_multiplier": 1,
+        "corners": [
+          {
+            "endpoint_error_signs": [
+              -1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.092,
+              0.079
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              -1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.092,
+              0.10099999999999999
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              -1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.124,
+              0.079
+            ],
+            "crossing_depth_m": 195.33333333333334,
+            "bracket_survives": true,
+            "status": "ADJACENT_CROSSING_IN_FIXED_BRACKET"
+          },
+          {
+            "endpoint_error_signs": [
+              1,
+              1
+            ],
+            "perturbed_poleward_endpoint_velocities_m_s": [
+              0.124,
+              0.10099999999999999
+            ],
+            "crossing_depth_m": null,
+            "bracket_survives": false,
+            "status": "ORIGINAL_LOCAL_BRACKET_INVALIDATED_NO_SEARCH_OR_EXTRAPOLATION"
+          }
+        ],
+        "complete_endpoint_rectangle_depth_sensitivity_range_m": null,
+        "confidence_interval_established": false,
+        "endpoint_errors_assumed_independent": false,
+        "component_covariance_used": false,
+        "normal_distribution_assumed": false,
+        "full_profile_or_core_connection_reassessed": false,
+        "fixed_nominal_bracket_retained": true,
+        "sensitivity_extrema_are_annual_range": false,
+        "physical_current_bottom_established": false,
+        "physical_depth_uncertainty_m": null,
+        "physical_thickness_m": null,
+        "annual_depth_range_m": null,
+        "volume_eligible": false,
+        "physical_state_join_eligible": false,
+        "reference_route_projection_eligible": false,
+        "seasonal_playback_eligible": false,
+        "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+      },
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "ENDPOINT_ERROR_RECTANGLE_INVALIDATES_LOCAL_BRACKET"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-01-15",
+      "actual_source_time_utc": "2022-01-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/12",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.05,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.05,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/13",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.1,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.1,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/13",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    },
+    {
+      "station": "4800",
+      "source_date": "2022-07-15",
+      "actual_source_time_utc": "2022-07-15T12:00:00Z",
+      "lon_lat": [
+        155.2974,
+        -27.1046
+      ],
+      "source_threshold_m_s": 0.2,
+      "original_nominal_layer": {
+        "threshold_m_s": 0.2,
+        "upper_depth_m": null,
+        "lower_depth_m": null,
+        "layer_thickness_m": null,
+        "upper_status": "no_qualifying_core",
+        "lower_status": "no_qualifying_core",
+        "status": "no_qualifying_core"
+      },
+      "source_profile_pointer": "/samples/13",
+      "endpoint_source_indices": null,
+      "sensitivity": null,
+      "fixed_station_is_current_axis": false,
+      "physical_current_bottom_established": false,
+      "new_native_measurement": false,
+      "status": "NOMINAL_LOWER_BOUNDARY_UNRESOLVED_NO_LOCAL_SENSITIVITY"
+    }
+  ],
+  "original_source_field_retrieval_count_unchanged": 8768,
+  "original_source_field_retrieval_cap_unchanged": 20000,
+  "conservative_prior_native_scalar_bound": 40282,
+  "additional_retained_typed_scalar_bound": 20000,
+  "selected_scalar_bound": 252,
+  "conservative_combined_scalar_bound": 60534,
+  "original_global_scalar_cap": 250000,
+  "new_original_native_array_reads": 0,
+  "new_reference_inventory_rows": 0,
+  "reference_inventory_rows_unchanged": 859,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

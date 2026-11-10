@@ -1,0 +1,145 @@
+name: Four Atlantic latitude current depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/atlantic-latitude-velocity-curtains-v1.yml
+      - analysis/derive_atlantic_latitude_velocity_curtains_v1.py
+      - analysis/test_atlantic_latitude_velocity_curtains_v1.py
+      - plans/atlantic-latitude-velocity-curtains-protocol-v1.md
+      - research/atlantic-latitude-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/florida-portugal-depth-sections-v1.yml
+            .github/workflows/irminger-wsc-depth-sections-v1.yml
+            analysis/acquire_florida_portugal_depth_sections_v1.py
+            analysis/acquire_irminger_wsc_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/derive_atlantic_latitude_velocity_curtains_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_atlantic_latitude_velocity_curtains_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_florida_portugal_depth_sections_v1.py
+            analysis/test_irminger_wsc_depth_sections_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            plans/atlantic-latitude-velocity-curtains-protocol-v1.md
+            research/atlantic-latitude-velocity-curtains-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/florida-portugal-depth-sections-operator-v1.json
+            research/florida-portugal-depth-sections-source-facts-v1.json
+            research/florida-portugal-depth-sections-source-review-v1.json
+            research/florida-spray-seasonal-depth-operator-v1.json
+            research/florida-spray-seasonal-depth-source-review-v1.json
+            research/greenland-depth-sections-operator-v1.json
+            research/irminger-reference-path-candidate.json
+            research/irminger-wsc-depth-sections-operator-v1.json
+            research/irminger-wsc-depth-sections-source-facts-v1.json
+            research/irminger-wsc-depth-sections-source-review-v1.json
+            research/portugal-current-naming-seasonal-scope-audit.json
+            research/portugal-reference-path-candidate.json
+            research/source-data/dundas-fer-wsc-2026/dataset-acquisition.json
+            research/source-data/dundas-fer-wsc-2026/dataset-datacite.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-25p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-26p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-florida-section-27p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-36n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-38n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-40n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-42n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-01-15-portugal-section-44n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-25p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-26p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-florida-section-27p5n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-36n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-38n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-40n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-42n.json
+            research/source-data/florida-portugal-depth-sections-v1/2022-07-15-portugal-section-44n.json
+            research/source-data/florida-portugal-depth-sections-v1/manifest.json
+            research/source-data/florida-portugal-depth-sections-v1/transport-ledger.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-56n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-58n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-60n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-62n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-64n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-irminger-section-65n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-73n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-74n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-75n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-76n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-77p25n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-78n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-79n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-01-15-west-spitsbergen-section-79p6n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-56n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-58n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-60n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-62n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-64n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-irminger-section-65n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-73n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-74n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-75n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-76n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-77p25n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-78n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-79n.json
+            research/source-data/irminger-wsc-depth-sections-v1/2022-07-15-west-spitsbergen-section-79p6n.json
+            research/source-data/irminger-wsc-depth-sections-v1/manifest.json
+            research/source-data/irminger-wsc-depth-sections-v1/transport-ledger.json
+            research/spitsbergen-atlantic-naming-branch-scope-audit.json
+            research/west-spitsbergen-current-naming-seasonal-scope-audit.json
+            research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json
+            research/west-spitsbergen-reference-path-candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_florida_portugal_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_irminger_wsc_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_atlantic_latitude_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_atlantic_latitude_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlantic-latitude-velocity-curtains-v1
+          path: atlantic-latitude-velocity-curtains-v1/
+          retention-days: 7

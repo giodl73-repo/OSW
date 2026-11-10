@@ -1,0 +1,41 @@
+{
+  "schema": "osw.chen-indian-sec-delivery-execution-review.v3",
+  "status": "FULL_NATIVE_WASM_PARITY_PASS_MANIFEST_CONSTRUCTION_FAILED",
+  "evidence_sha256": {
+    "research/chen-indian-sec-delivery-run-v3/canonical-replay.json": "60c42fa425b510c4bf4fc8e2a563cbbf14c258c72171e111810008fca1c98c23",
+    "research/chen-indian-sec-delivery-run-v3/compare-index.json": "1c40aba1ff96de6d82c0813065e63ebb3ccd7a20d2aaf61793140104fce2a4d9",
+    "research/chen-indian-sec-delivery-run-v3/compare-main.json": "be3d2226a89840fb6e02ceda7b84d6fc05d77016be7ba07606349ea782ea09cc",
+    "research/chen-indian-sec-delivery-run-v3/compile-inventory.json": "ef558590ea27967cc91bfa526ac5463612c273487a0563dbb1e6a17f68348241",
+    "research/chen-indian-sec-delivery-run-v3/dependency-proof.json": "0a4cb3e8911da6fadc8ae30e1e670ab99294e9d05107923e84867113a9e6ddd4",
+    "research/chen-indian-sec-delivery-run-v3/executed-request.json": "40d136355b62dbddcc9003ea906fd9d040fb151ec52846df658a9bf4a89dd1a4",
+    "research/chen-indian-sec-delivery-run-v3/failure.json": "3cbc89a2bbb2600776551559ce07afa165f0448c40133dec0b882f44dfd81bf2",
+    "research/chen-indian-sec-delivery-run-v3/native-batch-summary.json": "57ef2a39a2de373470f605680b34ab35a6c1abb70a4bdac6a0b9a86831d23f77",
+    "research/chen-indian-sec-delivery-run-v3/native-build.txt": "b939789f4cfa304e1e222190f550620d188907060b278ddc8a984243834aa468",
+    "research/chen-indian-sec-delivery-run-v3/run-receipt.json": "8fe609bbfacae611b9319206a8f819ab13d9aa27c680bc531ff132ad7a2b5bd5",
+    "research/chen-indian-sec-delivery-run-v3/rust-tests.txt": "f90437848c0ce2f97b3a72958b85774669ebd5126c90aa0c7096cd4058ad9ddb",
+    "research/chen-indian-sec-delivery-run-v3/wasm-build.txt": "948c32e22159fe41cf5b69f4f362edfa98ad5049743319a1729ba537410e1888"
+  },
+  "rust_tests_passed": 289,
+  "main_exact_response_comparisons": 234,
+  "source_exact_response_comparisons": 86,
+  "historical_main_queries_preserved": 215,
+  "historical_source_queries_preserved": 79,
+  "new_main_queries_validated": 9,
+  "new_source_documents_validated": 7,
+  "complete_snapshots": 3,
+  "complete_objects": 7,
+  "whole_initialization_metadata_equal": true,
+  "mismatched_source_corpus_refused": true,
+  "production_dependency_proof_passed": true,
+  "failure": "Unrelated engine input rebound: research/current-gap-delivery-phase.json",
+  "diagnosis": "Blanket replacement from delivery input pins attempts to overwrite a historical operational-control hash. Six previously implemented presentation source changes also need explicit parent/current bindings.",
+  "next_steps": [
+    "Preserve the historical operational phase hash in the engine ledger and attest current delivery controls separately",
+    "Declare and validate the exact six presentation changes against the saved parent engine",
+    "Repeat the full gate with corrected manifest construction; then verify browser visuals"
+  ],
+  "engine_artifact_saved": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

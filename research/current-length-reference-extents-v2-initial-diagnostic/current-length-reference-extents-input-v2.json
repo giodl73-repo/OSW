@@ -1,0 +1,438 @@
+{
+  "schema": "osw.current-length-reference-extents-input.v2",
+  "source": {
+    "title": "Regional Oceanography: an Introduction, retained online PDF compilation",
+    "authors": [
+      "Matthias Tomczak",
+      "J. Stuart Godfrey"
+    ],
+    "url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+    "original_pdf_local_ignored": ".pytest_cache/tomczak-godfrey-original.pdf",
+    "original_pdf_sha256": "35e36f9b834c9c31c2cee64abc36d0c687d71e3d388c2cf1c40bc026e613738b",
+    "original_pdf_bytes": 36625246,
+    "original_pdf_pages": 401,
+    "edition_note": "Retained compilation has per-chapter versions: chapter8 March2005, chapter11 December2001. Do not silently assign one publication/observation year to every chapter.",
+    "original_pages_visually_reviewed": [
+      121,
+      189,
+      190
+    ],
+    "read_support": "Figure8.6 and caption, printed111/PDF121; chapter11 Integrated flow, printed179/PDF189; Figure11.3 and caption, printed180/PDF190.",
+    "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic."
+  },
+  "method": "WGS84 shortest-geodesic segment sum through an explicitly chosen principal geographic reference route; no velocity-axis or physical-boundary measurement inferred.",
+  "rounding_km": 100,
+  "sensitivity": {
+    "uniform_offsets_degrees": [
+      -0.5,
+      0,
+      0.5
+    ],
+    "interior_offsets_degrees": [
+      -1,
+      0,
+      1
+    ],
+    "cases_per_current": 36,
+    "interpretation": "Endpoint and drawing sensitivity only; not confidence limits, observed seasonal variability or annual extrema. All cases retained."
+  },
+  "dateline_policy": "Shortest geodesic legs; unwrap continuously only for display and test against periodic copies of coarse land. Never draw a line across the wrong side of the world.",
+  "currents": [
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "id": "pacific-north-equatorial-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          -95,
+          12
+        ],
+        [
+          -115,
+          14
+        ],
+        [
+          -140,
+          15
+        ],
+        [
+          -165,
+          15
+        ],
+        [
+          170,
+          15
+        ],
+        [
+          150,
+          14
+        ],
+        [
+          127,
+          13
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          -95,
+          12
+        ],
+        [
+          -100,
+          12
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          127,
+          13
+        ],
+        [
+          128,
+          13
+        ]
+      ],
+      "scope": "Pacific NEC principal basin-crossing reference extent from the eastern tropical Pacific turning sector to the approach to the Philippine bifurcation.",
+      "gate_rationale": "95W12N is an offshore eastern turning-sector gate.127E13N is an offshore approach to the Mindanao/Kuroshio split; coastal branches excluded.",
+      "source_locator": "Figure8.6, printed111/PDF121; chapter8 equatorial current discussion, printed117–119.",
+      "map_group": "pacific-equatorial",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial",
+      "id": "pacific-south-equatorial-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          -85,
+          -10
+        ],
+        [
+          -115,
+          -10
+        ],
+        [
+          -145,
+          -10
+        ],
+        [
+          -175,
+          -10
+        ],
+        [
+          170,
+          -11
+        ],
+        [
+          162,
+          -12
+        ],
+        [
+          155,
+          -15
+        ],
+        [
+          148,
+          -18
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          -85,
+          -10
+        ],
+        [
+          -90,
+          -10
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          148,
+          -18
+        ],
+        [
+          150,
+          -18
+        ]
+      ],
+      "scope": "Pacific SEC principal reference route from the Peru-feed/eastern tropical sector across the southern tropical Pacific, north of Fiji/Vanuatu, into the Coral Sea approach to the Australian bifurcation.",
+      "gate_rationale": "85W10S selects an offshore eastern feeder sector.148E18S is an offshore Australian bifurcation approach. The western route is a declared northern-passage connection within the broad SEC system; it does not sum parallel jets.",
+      "source_locator": "Figure8.6 and its western South Pacific April–November convention, printed111/PDF121; continuation/bifurcation discussion printed119/PDF129.",
+      "map_group": "pacific-equatorial",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "id": "pacific-north-equatorial-countercurrent-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          132,
+          5
+        ],
+        [
+          150,
+          6
+        ],
+        [
+          170,
+          7
+        ],
+        [
+          -170,
+          7
+        ],
+        [
+          -145,
+          7
+        ],
+        [
+          -120,
+          7
+        ],
+        [
+          -100,
+          8
+        ],
+        [
+          -90,
+          8
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          132,
+          5
+        ],
+        [
+          135,
+          5
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -90,
+          8
+        ],
+        [
+          -95,
+          8
+        ]
+      ],
+      "scope": "Pacific NECC principal eastward basin reference extent from the offshore western recirculation/feed sector toward the Costa Rica Dome approach.",
+      "gate_rationale": "132E5N is the western feed-sector gate.90W8N is west of the Costa Rica Dome sector; western eddy circuits and eastern coastal currents are excluded.",
+      "source_locator": "Figure8.6, printed111/PDF121; NECC description and eastern Costa Rica Dome context, printed116–117.",
+      "map_group": "pacific-equatorial",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    },
+    {
+      "entity_id": "current:indian-south-equatorial",
+      "id": "indian-south-equatorial-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          115,
+          -12
+        ],
+        [
+          100,
+          -13
+        ],
+        [
+          85,
+          -15
+        ],
+        [
+          70,
+          -16
+        ],
+        [
+          55,
+          -17
+        ],
+        [
+          51,
+          -17
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          115,
+          -12
+        ],
+        [
+          110,
+          -12
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          51,
+          -17
+        ],
+        [
+          52,
+          -17
+        ]
+      ],
+      "scope": "Indian SEC principal basin reference extent from the eastern Indonesian-throughflow-fed sector to the offshore eastern Madagascar bifurcation approach.",
+      "gate_rationale": "115E12S selects the eastern SEC feed sector, excluding ITF passage lengths.51E17S stops offshore Madagascar before the NEMC/SEMC branches.",
+      "source_locator": "Figure11.3 and Integrated flow discussion, printed179–180/PDF189–190.",
+      "map_group": "indian",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    },
+    {
+      "entity_id": "current:south-indian",
+      "id": "south-indian-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          50,
+          -40
+        ],
+        [
+          65,
+          -40
+        ],
+        [
+          85,
+          -38
+        ],
+        [
+          100,
+          -36
+        ],
+        [
+          110,
+          -34
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          50,
+          -40
+        ],
+        [
+          45,
+          -40
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          110,
+          -34
+        ],
+        [
+          112,
+          -34
+        ]
+      ],
+      "scope": "South Indian Current principal southern subtropical reference extent from the eastern Agulhas-return transition sector to the offshore west-Australian turning sector.",
+      "gate_rationale": "50E40S declares the boundary with the upstream Agulhas Return Current.110E34S declares an offshore turning-sector boundary before western Australian coastal flows; neither is an observed sharp termination.",
+      "source_locator": "Figure11.3 and southern subtropical circulation, printed180/PDF190.",
+      "map_group": "indian",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    },
+    {
+      "entity_id": "current:south-pacific",
+      "id": "south-pacific-basin-reference-extent-v2",
+      "coordinates_lon_lat": [
+        [
+          179,
+          -39
+        ],
+        [
+          -170,
+          -40
+        ],
+        [
+          -145,
+          -39
+        ],
+        [
+          -120,
+          -36
+        ],
+        [
+          -100,
+          -34
+        ],
+        [
+          -85,
+          -33
+        ]
+      ],
+      "start_gate_options_lon_lat": [
+        [
+          179,
+          -39
+        ],
+        [
+          180,
+          -39
+        ]
+      ],
+      "end_gate_options_lon_lat": [
+        [
+          -85,
+          -33
+        ],
+        [
+          -90,
+          -33
+        ]
+      ],
+      "scope": "South Pacific Current principal southern subtropical reference extent from east of New Zealand across the subtropical-front sector to the eastern-basin northward-turning sector.",
+      "gate_rationale": "179E39S is an offshore east-New-Zealand handoff, excluding Tasman/EAC upstream lengths.85W33S is an offshore eastern turn toward the Peru-side circulation, excluding coastal Peru Current length.",
+      "source_locator": "Figure8.6 caption identifies weak STF flow as South Pacific Current, printed111/PDF121.",
+      "map_group": "south-pacific",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "source_time_convention": "Schematic surface circulation context, not an observed dated route or an annual range. Figure8.6 specifies April–November only for its western South Pacific flow; Figure11.3 contrasts late northeast and southwest monsoons, with flow south of20S unchanged in that schematic.",
+      "uniform_offset_axis": "latitude",
+      "not_included": [
+        "Neighbouring named-current lengths beyond the declared handoff gates",
+        "Other parallel branches",
+        "Actual meander-scale velocity-axis length"
+      ],
+      "geometry_interpretation": "OSW connecting path through named-flow geography, not calibrated digitization of the source arrows."
+    }
+  ],
+  "physical_axis_admitted": false,
+  "independent_observations_added": 0
+}

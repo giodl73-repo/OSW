@@ -1,0 +1,85 @@
+{
+  "schema": "osw.eddy-model-analysis-source-review.v1",
+  "status": "ORIGINAL_THOR_PARENT_ANALYSIS_EXTENT_VERIFIED",
+  "review_date": "2026-11-01",
+  "source": {
+    "url": "https://repository.library.noaa.gov/view/noaa/71031/noaa_71031_DS1.pdf",
+    "doi": "10.1016/j.pocean.2025.103529",
+    "citation": "Thoppil, Rowley, Hogan and Stear (2025), Evaluating the performance of an ensemble forecast system in predicting Loop Current Eddy separation in the Gulf of Mexico, Progress in Oceanography 237, 103529.",
+    "access": "Original published article acquired from NOAA repository. Actual PDF pages 2, 5, 15 and 18 visually reviewed for model/analysis semantics, dated parent evolution, explicit approximate 550 km zonal extent and source identification as Thor. Printed source scalar retained; no graph digitization.",
+    "original": {
+      "bytes": 24801078,
+      "sha256": "051dc76cf47b625c040576a2d75f27c1979e188ca1c35904af5a6d24bd018ad5",
+      "pages": 23
+    },
+    "reviewed_page_png_sha256": {
+      "2": "300ed314ba4223e7ab4979b9eb0c92ba8c069038b383242de05510b1a109f3c0",
+      "5": "d9a0b302f300d77afc74d8033b7762cc9c7602a295296cc3a4d2f0575496604f",
+      "15": "2b3a1c7e7c02bd90178667c52ffd272e7458c37ddb476df7adab37782fd14a58",
+      "18": "cc7b4c247b208fc53253454d22dcc8e8ee328d345894dff6e6b14c7d2f51ca1b"
+    }
+  },
+  "source_case_name": "Thor",
+  "owner_id": "eddy:published:thor-2020",
+  "quantity": {
+    "date": "2020-02-24",
+    "zonal_extent_km": 550,
+    "relation": "approximately",
+    "support": "Assimilative model verifying analysis, not direct full-boundary observation or a forecast member",
+    "phase": "elongated parent before near-splitting by 2020-03-23",
+    "extent_operator": "Source-reported zonal extent; exact boundary threshold not specified for the scalar"
+  },
+  "model_context": {
+    "model": "NCOM / NCODA / COAMPS",
+    "horizontal_resolution_km": 3,
+    "ensemble_members": 32,
+    "field": "Weekly ensemble-mean verifying analysis shown in Figure 3",
+    "ssha_reference": "20-year climatological model SSH subtracted, Figure 3 caption"
+  },
+  "excluded_other_features": [
+    {
+      "reported_diameter_km": 120,
+      "feature": "Deep cyclone, not Thor",
+      "locator": "PDF page 11"
+    },
+    {
+      "reported_zonal_extent_km": 150,
+      "feature": "Cyclone between the two nearly separated anticyclones, not Thor width",
+      "locator": "PDF page 15"
+    },
+    {
+      "feature": "Individual March anticyclones and registry Thor entry",
+      "reason": "No child dimensions or registry physical values inherited from parent extent."
+    }
+  ],
+  "other_gap_research": {
+    "kinetic_report": {
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc955365/m2/1/high_res_d/3032.pdf",
+      "title": "Deepwater Observations in the Northern Gulf of Mexico from In-Situ Current Meters and PIES, Volume II: Technical Report",
+      "report": "MMS 2003-049",
+      "bytes": 14492455,
+      "sha256": "6dc38ce0b88aabeca1ca3a7bc5d9c1eb262b43a04059eed51d801da3a83bcb81",
+      "pages": 103,
+      "source_text_pages_reviewed": [
+        23,
+        24,
+        25
+      ],
+      "source_pixels_pages_reviewed": [
+        23
+      ],
+      "finding": "PDF page 24 explicitly associates Kinetic with Eddy K; Figure 2-3d is a seven-day-centered SSH composite on July 2, 2000. No explicit numeric Kinetic radius or width found in the reviewed text.",
+      "rejected_promotions": [
+        "Generally below 20 cm/s is not a hard maximum for all samples.",
+        "An expected 600–650 m center depth is discussed for Eddy J, not a Kinetic thickness.",
+        "A chosen color-patch level or generic major-ring diameter would not establish a full Kinetic boundary."
+      ],
+      "size_measurements_admitted": 0
+    },
+    "sigsbee_2007_report": "Original local retrieval returned HTTP 403; indexed primary text consulted. No separate Eddy K physical name crosswalk or measurements admitted."
+  },
+  "original_source_assets_republished": false,
+  "raw_model_fields_acquired": false,
+  "runtime_installed": false,
+  "full_goal_complete": false
+}

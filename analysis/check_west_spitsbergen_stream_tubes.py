@@ -39,7 +39,7 @@ def validate_row(row, audit=None):
 
 if __name__=='__main__':
     rows=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements']
-    selected=[r for r in rows if r['current_id']=='west-spitsbergen']
+    selected=[r for r in rows if r['current_id']=='west-spitsbergen' and r.get('phase_kind')=='synoptic_stream_tube_section']
     for row in selected:validate_row(row)
     assert len(selected)==6
     print('PASS: six WSC source table cells, thresholds and transport semantics')

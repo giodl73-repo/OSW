@@ -1,0 +1,2045 @@
+{
+  "schema": "osw.p02w-partial-native-headers.v2",
+  "headers": [
+    {
+      "cast_id": "00701",
+      "raw_file": "00701.nc",
+      "raw_sha256": "7c54052e45114a7669d951c11a0894fa5e43fd49ceb38e077903a77756f602c7",
+      "header": {
+        "global_attributes": {
+          "version_ldeo_to_cdf": "2",
+          "description_ldeo_to_cdf": "\nFor LDEO-processed ladcp data: use the standard *.mat and *.ladcp.mat (if available)\nfiles to generate a netcdf file.  Output is similar, but not identical,\nto that produced by the original ladcp2cdf.m in the LDEO software.\n\nDifferences include:\n\n- The tim dimension variable, renamed 'time', is now float64 days since 1970-01-01.\n  In the version made by ladcp2cdf.m it was a float32 Matlab datenum.\n- The name and date variables have been removed.  Name remains as a global\n  attributes.  The YMDHMS form of 'date' has been\n  converted to an ISO string and added as a 'datetime' global attribute.\n- The lon and lat variables are now scalars.\n- The tim_hour array has been removed.\n- Scalar variables (ubar, vbar) from the .mat file are added.\n- Date errors in global attributes supplied by *.ladcp.mat are fixed.\n- Attributes ctd_starttime and ctd_endtime have been converted to ISO strings.\n- The file size has been halved by removing the 'Blocks received'\n  lines from the data download log attribute.\n- Global attributes are sorted by name.\n- Vector non-coordinate array variables are sorted by name.\n- A sequential version number (as a string) is added as the first global\n  attribute.\n- The output is CF-1.8 compliant.\n\n",
+          "BAR_ref_U": 0.2238352150413418,
+          "BAR_ref_V": 0.07135719458873462,
+          "BAR_ref_descr": "[Navigation][Bottom-track][SADCP]",
+          "BAR_ref_error": 0.006751434682903334,
+          "BAR_tide_U": "nan",
+          "BAR_tide_V": "nan",
+          "BAR_tide_model": "[NA]",
+          "Conventions": "CF-1.8",
+          "GEN_Depth_source": "[measured P (CTD)]",
+          "GEN_Editing_parm_descr": [
+            4,
+            3
+          ],
+          "GEN_Inverse_weight_bottom": 1,
+          "GEN_Inverse_weight_navigation": 1,
+          "GEN_Inverse_weight_smooth": 0,
+          "GEN_LADCP_cast": 1,
+          "GEN_LADCP_ensemble_time_mean_sec": 1.4484412260007338,
+          "GEN_LADCP_ensemble_time_std_sec": 0.12167421854964898,
+          "GEN_LADCP_station": 701,
+          "GEN_Magnetic_deviation_deg": -7.119070175228294,
+          "GEN_Matlab_version": "9.8.0.1323502 (R2020a)",
+          "GEN_Ocean_depth_m": 3059,
+          "GEN_Percent_3beam": -0.0,
+          "GEN_Proc_general_comments": "  ",
+          "GEN_Proc_methodology": "[inverse]",
+          "GEN_Processing_date": "11-May-2023",
+          "GEN_Processing_personnel": "A.M. Thurnherr",
+          "GEN_Profile_bottom_decimal_day": 124.41026088036597,
+          "GEN_Profile_end_decimal_day": 124.47355196857825,
+          "GEN_Profile_end_latitude": 31.88412,
+          "GEN_Profile_end_longitude": 133.62148,
+          "GEN_Profile_max_depth_m": 3052,
+          "GEN_Profile_start_decimal_day": 124.3707361118868,
+          "GEN_Profile_start_latitude": 31.88112,
+          "GEN_Profile_start_longitude": 133.58202,
+          "GEN_Software_orig": "LDEO LADCP software: Version IX_15beta",
+          "GEN_Sound_sp_calc": "[T-P]",
+          "GEN_Velocity_Units": "m/s",
+          "GEN_conf_general_comments": "  ",
+          "INPUT_Bottom_track_profile_avail": 1,
+          "INPUT_CTD_time_series_avail": 1,
+          "INPUT_Nav_time_series_avail": 1,
+          "INPUT_Pegasus_profile_avail": 0,
+          "INPUT_SADCP_profile_avail": 1,
+          "LADCP_dn_beam_range": [
+            128.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "LADCP_dn_btrk_u_bias": 0.00957959102133448,
+          "LADCP_dn_btrk_u_std": 0.08416573272092638,
+          "LADCP_dn_btrk_v_bias": -3.2124561752549757e-05,
+          "LADCP_dn_btrk_v_std": 0.11048165474118414,
+          "LADCP_dn_conf_bin_len_m": 8,
+          "LADCP_dn_conf_blank_intvl_m": 0,
+          "LADCP_dn_conf_bottom_trkr": 2,
+          "LADCP_dn_conf_coord_system": "[unknown]",
+          "LADCP_dn_conf_general_comments": "   ",
+          "LADCP_dn_conf_number_bins": 25,
+          "LADCP_dn_conf_number_pings": 1,
+          "LADCP_dn_conf_ping_stagr": "[NA]",
+          "LADCP_dn_conf_ping_trns_intvl_sec": 0,
+          "LADCP_dn_conf_pulse_len_m": 8.11,
+          "LADCP_dn_conf_single_ping_acc": 0.04441999086225863,
+          "LADCP_dn_conf_vel_ambiguity": 2.5,
+          "LADCP_dn_hard_FV": 50.41,
+          "LADCP_dn_hard_SN": "nan",
+          "LADCP_dn_hard_TNO": "[convex4]",
+          "LADCP_dn_hard_beam_ang_deg": 20,
+          "LADCP_dn_hard_comp_type": "[RDI]",
+          "LADCP_dn_hard_freq_kHz": 300,
+          "LADCP_dn_hard_general_comments": "  ",
+          "LADCP_dn_hard_type": "[RDI-300WH]",
+          "LADCP_dn_xmit_cur": 151.86886912325286,
+          "LADCP_dn_xmit_pings": 7869,
+          "LADCP_dn_xmit_vol": 124.78627700127065,
+          "LADCP_up_beam_range": [
+            128.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "LADCP_up_compass": "[down-compass]",
+          "LADCP_up_conf_bin_len_m": 8,
+          "LADCP_up_conf_blank_intvl_m": 0,
+          "LADCP_up_conf_coord_system": "[unknown]",
+          "LADCP_up_conf_general_comments": "   ",
+          "LADCP_up_conf_number_bins": 25,
+          "LADCP_up_conf_number_pings": 1,
+          "LADCP_up_conf_ping_stagr": "[NA]",
+          "LADCP_up_conf_ping_trns_intvl_sec": 0,
+          "LADCP_up_conf_pulse_len_m": 8.11,
+          "LADCP_up_conf_single_ping_acc": 0.047089306504502784,
+          "LADCP_up_conf_vel_ambiguity": 2.5,
+          "LADCP_up_hard_FV": 50.41,
+          "LADCP_up_hard_SN": "nan",
+          "LADCP_up_hard_TNO": "[convex4]",
+          "LADCP_up_hard_beam_ang_deg": 20,
+          "LADCP_up_hard_comp_type": "[RDI]",
+          "LADCP_up_hard_freq_kHz": 300,
+          "LADCP_up_hard_general_comments": "  ",
+          "LADCP_up_hard_type": "[RDI-300WH]",
+          "LADCP_up_xmit_cur": 156.47293519695043,
+          "LADCP_up_xmit_pings": 7871,
+          "LADCP_up_xmit_vol": 125.77687420584498,
+          "LOG_Inverse_log": "LDEO LADCP software: Version IX_15beta\n################ [701] step 1: LOAD LADCP DATA #######################\nLOADING CHECKPOINT ./checkpoints/00701_0\nRE-LOADING PER-CAST PARAMETERS\nLOADRDI:\n loading down-data ../Data/PD0/00701_DL.PD0\n DETECTED BEAM coordinates: rotating to EARTH coordinates\n 6631 3-beam solutions calculated (7% of total)\n read 7869 ensembles with 25 bins each\n loading up-data ../Data/PD0/00701_UL.PD0\n DETECTED BEAM coordinates: rotating to EARTH coordinates\n 7213 3-beam solutions calculated (8% of total)\n read 7871 ensemble and 25 bins \n WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING \n Warning: non-constant ping rate in downlooker data (staggered pinging?)\n  min down ping rate :1.32  max down ping rate :1.58\n find best time match of up-looking ADCP to down looking ADCP\n up instrument is different by 1 ensembles\n WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING \n bestlag removed 257 spikes\n try to shift timeseries by lag: 0 correlation: 0.98403\n shift ADCP timeseries by 0 ensembles\n number of joint ensembles is : 7869\n removed 1 values because of error velocity > 0.5 m/s\n removed 51 values because of horizontal speed > 2.5 m/s\n** found 23 (0.3% of total) velocity measurements > 2.5 m/s\n** WARNING  check ambiguity velocity setting in CMD-file   ** \n using whole profile since no start time was given\n removed 2 profiles due to tilt > 22 degrees\n removed 13 profiles due to tilt derivative > 4 degrees\n Outlier discarded 6629 bins down looking\n Outlier discarded 0 bottom track\n Outlier discarded 5170 bins up looking\n==> STEP 1 TOOK 12.4 seconds\nSAVING CHECKPOINT ./checkpoints/00701_1\n################ [701] step 2: FIX LADCP-DATA PROBLEMS ###############\n==> STEP 2 TOOK 0.0 seconds\n################ [701] step 3: LOAD GPS DATA #########################\nLOADNAV: load NAV time series ../Data/CTD/6Hz/00701.1Hz\n number of NAV scans: 9559  delta t : 0.99999 seconds\n corrected for magnetic declination of -7.1 deg\n==> STEP 3 TOOK 0.2 seconds\n################ [701] step 4: GET BOTTOM-TRACK DATA #################\nGETBTRACK creates own bottom track in addition to RDI\n  in: p.btrk_mode 3 and p.btrk_used 0\n using increased bottom echo amplitudes to create bottom track\n localmax2: found 1907 valid values\n use 0.5 bins below maximum target strength for own bottom track velocity\n created 215 bottom distances\n removed 45 bottom track profiles W_btrk - W_ref difference > 0.05\n boutlier removed 4 bottom track velocities \n created 136 bottom track data from normal velocities\n out: p.btrk_mode 3 and p.btrk_used 2\n==> STEP 4 TOOK 0.5 seconds\n################ [701] step 5: LOAD CTD PROFILE ######################\n==> STEP 5 TOOK 0.0 seconds\n################ [701] step 6: LOAD CTD TIME SERIES ##################\nLOADCTD: load CTD time series ../Data/CTD/6Hz/00701.1Hz\n read 9559 CTD scans; median delta_t = 1.00 seconds\n interpolated to 9558 CTD scans; delta_t = 1.00 seconds\n 90% LADCP depth  2761 at 05-May-2022 09:43:31\n 90% CTD pressure 2786 at 05-May-2022 09:21:01\n Changed Start Time : 05-May-2022 08:24:37  to 05-May-2022 08:53:50\n Changed End   Time : 05-May-2022 11:34:34  to 05-May-2022 11:21:57\n median CTD time difference 0.99999 s\n removed 0 pressure spikes\n use 1 time base for W_ctd\n CTD max depth : 3051\n bestlag removed 28 spikes\n lag: 12  correlation: 0.92646\n bestlag removed 22 spikes\n lag: 12  correlation: 0.83849\n bestlag removed 14 spikes\n lag: 12  correlation: 0.8952\n bestlag removed 15 spikes\n lag: 12  correlation: 0.91136\n bestlag removed 14 spikes\n lag: 12  correlation: 0.90579\n bestlag removed 21 spikes\n lag: 12  correlation: 0.9688\n bestlag removed 28 spikes\n lag: 12  correlation: 0.97366\n bestlag removed 26 spikes\n lag: 12  correlation: 0.98837\n bestlag removed 26 spikes\n lag: 12  correlation: 0.97949\n bestlag removed 25 spikes\n lag: 12  correlation: 0.98416\n bestlag removed 20 spikes\n lag: 12  correlation: 0.96682\n bestlag removed 18 spikes\n lag: 12  correlation: 0.96844\n bestlag removed 23 spikes\n lag: 12  correlation: 0.95594\n bestlag removed 24 spikes\n lag: 12  correlation: 0.9522\n bestlag removed 16 spikes\n lag: 12  correlation: 0.97486\n bestlag removed 15 spikes\n lag: 12  correlation: 0.97334\n bestlag removed 19 spikes\n lag: 12  correlation: 0.89624\n median lag 12\n most popular lag 12\n best correlated lag 12\n BESTTLAG:  lag is: 12  for which 106% of 16 lags agree\n best lag W: 12 CTD scans ~ -12 seconds  corr:0.98837\n adjust ADCP time to CTD time and shift depth record \n download SW routines to get more accurate soundspeed and N^2 \n made CTD profile from time series data. \n update start pos  from:NaN\u00c2\u00b0N     NaN'  NaN\u00c2\u00b0E     NaN'\n\t\t\tto:31\u00c2\u00b0N 52.8672'  133\u00c2\u00b0E 34.9212'\n update end pos    from:NaN\u00c2\u00b0N     NaN'  NaN\u00c2\u00b0E     NaN'\n\t\t\tto:31\u00c2\u00b0N 53.0472'  133\u00c2\u00b0E 37.2888'\n==> STEP 6 TOOK 3.0 seconds\n################ [701] step 7: FIND SURFACE & SEA BED ################\nGETDPTHI: Depth from vertical velocity inverse method\n starting run 1 to get LADCP depth\n make soundspeed based on CTD pressure and temp\n correct velocities for sound speed \n use CTD time series depth, will not do depth inversion \n LADCP minus CTD depth mean: -0.30713  std: 4.4366\n maximum depth from int W is :3052\n should be                   :3052\n  bottom found at 3059 +/- 0 m\n correct bin length for sound speed\n removing 2373 values below bottom\n==> STEP 7 TOOK 1.7 seconds\n################ [701] step 8: APPLY PITCH/ROLL CORRECTIONS ##########\n==> STEP 8 TOOK 0.0 seconds\n################ [701] step 9: EDIT DATA #############################\n bin masking               : masking uplooker bin 1 because of zero blanking distance\n bin masking               : masking downlooker bin 1 because of zero blanking distance\n bin masking               : set 5211 weights to NaN\n side-lobe contamination   : set 1043 weights to NaN\n==> STEP 9 TOOK 0.5 seconds\n################ [701] step 10: FORM SUPER ENSEMBLES #################\nPREPINV: prepare data for inversion, form Super-Ensembles\n average profiles over (p.avdz) 8.1664 meter\n reduce weight for larger tilts 0.5 at 10 degree\n mean heading offset from compasses = 83.765 deg\n mean heading offset from pitch/roll = 92.5048 deg\n rot up2down use mean up/down compass\n will not correct for sound speed twice\n remove reference velocity and average ensembles \n Outlier discarded 604 bins down looking\n Outlier discarded 504 bins up looking\n found 4 bottom track std==0 set to 0.1 m/s\n found 28 finite bottom track ensembles\n discarded 0 bottom tracks velocities because of wstd  > 0.14641\n set 92 weight values to nan  because super ensemble std =0 \n set 244 values to minimum super ensemble std 0.04442\n reduced profile length = 599 super-ensemble bins\n==> STEP 10 TOOK 3.3 seconds\n################ [701] step 11: REMOVE SUPER-ENSEMBLE OUTLIERS #######\n==> STEP 11 TOOK 1.7 seconds\n################ [701] step 12: RE-FORM SUPER ENSEMBLES ##############\n mean heading offset from pitch/roll = 92.5048 deg\n remove first guess ocean velocity from raw data\n adjusted for velocity offset in up and down looking ADCP\n remove first guess ocean velocity from raw data\n rot up2down use mean up/down compass\n rotated earlier, use difference \n will not correct for sound speed twice\n remove reference velocity and average ensembles \n Outlier discarded 600 bins down looking\n Outlier discarded 506 bins up looking\n found 4 bottom track std==0 set to 0.1 m/s\n found 28 finite bottom track ensembles\n discarded 0 bottom tracks velocities because of wstd  > 0.14641\n set 97 weight values to nan  because super ensemble std =0 \n set 310 values to minimum super ensemble std 0.04442\n reduced profile length = 599 super-ensemble bins\n==> STEP 12 TOOK 3.9 seconds\n################ [701] step 13: (RE-)LOAD SADCP DATA #################\nLOADSADCP: load SADCP data file ../Data/SADCP/SADCP.mat\n found 10 SADCP profiles \n==> STEP 13 TOOK 0.3 seconds\n################ [701] step 14: CALCULATE INVERSE SOLUTION ###########\nGETINV:  compute best velocity profile\n Barotropic velocity error 0.0067514 [m/s]\n super ensemble velocity error 0.017112 [m/s]\n set velocity error to:0.061836 [m/s]\n vertical resolution (ps.dz) is 8 [m]\n use super ensemble std based weights normalized by 0.061836 m/s \n preaveraged GPS ships vel 1 times \n remove 1059 constaints below minimum weight \n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n no smoothness constraint applied \n bottom inversion \n 28 bottom track ctd-vel weights of about : 1.8743\n weight for bottom track is (ps.botfac) 1\n mean sadcp weight : 1.1968\n weight for SADCP vel is (ps.sadcpfac) 1\n lainbaro: 12% of profile have no useful data \n normalized barotropic constrain weight: 3.0729\n mean individual ctd velocity weight : 303.3082\n ready for inversion  length of  d:  15012\n           (CTD vel)  length of A1:    599\n         (ocean vel)  length of A2:    381\nMoore-Penrose inverse\n solve only down trace\n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n no smoothness constraint applied \nMoore-Penrose inverse w/o errors\n solve only up trace\n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n found 1 ill constrained elements will smooth \nMoore-Penrose inverse w/o errors\nCHECKINV all values are given in [m/s] \n Velocity profile error:  0.057  should be about noise:  0.040\n Check bottom track rms:  0.067  should be smaller than  0.128 /  1.000\n Check SADCP        rms:  0.016  should be smaller than  0.055 /  1.000\n GPS-LADCP ship spd diff: 0.002  should be smaller than  0.007 /  1.000\n use reference layer W\nCHECKBTRK: check bottom track against U_ctd solution \n profiles within give acceptable range: 435\n  U bias : 0.010 [m/s]  std: 0.084 [m/s]\n  V bias :-0.000 [m/s]  std: 0.110 [m/s]\n  W bias : 0.002 [m/s]  std: 0.026 [m/s]\n  W slope fact :0.0062 [1/m] lower W below bottom \n  W diff :0.1406 [m/s] ping to ping w difference \n  H std :   3.0 [m]  large means bottom is rough/sloped\n  Tilt mean :4.6 +/- 0.7 [^o]  \n==> STEP 14 TOOK 9.9 seconds\n################ [701] step 15: CALCULATE SHEAR SOLUTION #############\n \nCALC_SHEAR3:  calculate a baroclinic velocity profile based on shears only\n    Averaging shear profile over 16 m intervals\n    Maximum allowed std within calculation intervals : 2\n    Data deviating more from the median will be discarded.\n    Correlation-derived weights range from 0.030391 to 0.94281\n    Removed 9 % of data with lowest weights from shear calculation.\n    New weights range from 0.50594 to 0.94281\n    Inversion average error : 0.056905 m/s\n>   Increasing error estimate because of elevated shear - inverse difference\n>   by a factor of 1.2335\n>   std of difference between regular and shear profile : 0.10529 m/s\n    Final average error : 0.07019 m/s\n==> STEP 15 TOOK 1.2 seconds\n################ [701] step 16: PLOT RESULTS & SHOW WARNINGS #########\n do not know calibration of this instrument make a guess: \n Battery Voltage is 41.2 V\nLADCP WARNINGS\n \n LADCP processing warnings:                                                 \n>   Increasing error estimate because of elevated shear - inverse difference\n==> STEP 16 TOOK 1.2 seconds\n################ [701] step 17: SAVE OUTPUT ##########################\n save results \n",
+          "ambiguity": 2.5,
+          "avdz": 8.166430393772089,
+          "avens": "nan",
+          "avpercent": 100,
+          "barofac": 1,
+          "barvelerr": 0.006751434682903334,
+          "battery": 41.17947141041932,
+          "beamangle": 20,
+          "blen_d": 8,
+          "blen_u": 8,
+          "blnk_d": 0,
+          "blnk_u": 0,
+          "botfac": 1,
+          "bottomdist": 0,
+          "btrk_below": 0.5,
+          "btrk_mode": 3,
+          "btrk_range": [
+            300,
+            50
+          ],
+          "btrk_rough": 2.984820610694881,
+          "btrk_tilt_mean": 4.614543339301883,
+          "btrk_tilt_std": 0.7230977797742558,
+          "btrk_ts": 40,
+          "btrk_u_bias": 0.00957959102133448,
+          "btrk_u_std": 0.08416573272092638,
+          "btrk_used": 2,
+          "btrk_v_bias": -3.2124561752549757e-05,
+          "btrk_v_std": 0.11048165474118414,
+          "btrk_w_bias": 0.0016560361996182894,
+          "btrk_w_std": 0.026177616269090802,
+          "btrk_wdiff": 0.1406380076841217,
+          "btrk_weight_nblen": [
+            0,
+            0
+          ],
+          "btrk_wlim": 0.05,
+          "btrk_wstd": 0.1464062688862594,
+          "checkpoints": "./checkpoints/00701",
+          "cm_save": 0,
+          "cruise_id": "P2E",
+          "ctd": "../Data/CTD/6Hz/00701.1Hz",
+          "ctd_endtime": "2022-05-05T11:21:57",
+          "ctd_fields_per_line": 12,
+          "ctd_header_lines": 50,
+          "ctd_pressure_field": 2,
+          "ctd_salinity_field": 6,
+          "ctd_starttime": "2022-05-05T08:53:50",
+          "ctd_temperature_field": 3,
+          "ctd_time_base": 0,
+          "ctd_time_field": 1,
+          "ctddepth": 1,
+          "ctdmaxlag": 150,
+          "ctdmaxlagnp": 600,
+          "ctdmincorr": 0.8895375601590291,
+          "ctdprof": " ",
+          "ctdtime": 1,
+          "ctdtimoff": 0.015620196238160133,
+          "cut": 10,
+          "datetime": "2022-05-05T09:50:00",
+          "debug": 0,
+          "dist_d": 8.17,
+          "dist_u": 8.17,
+          "dn_range": [
+            128.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "down_sn": "nan",
+          "down_up": 1,
+          "dragfac": 0,
+          "drot": -7.119070175228294,
+          "dt_profile": 8886.999996006489,
+          "dz": 8,
+          "dzbelow": [
+            16,
+            -8
+          ],
+          "elim": 0.5,
+          "fig3_colormap": 1,
+          "fig3_err_y_axis": 1,
+          "fix_compass": 0,
+          "getdepth": 2,
+          "guessbottom": "nan",
+          "hbot_0": 0,
+          "ignore_beam": [
+            "nan",
+            "nan"
+          ],
+          "instid": [
+            7859641196.0,
+            204653267.0
+          ],
+          "interp_ctd_times": 1,
+          "interp_missing_GPS": 1,
+          "interp_nav_times": 0,
+          "ladcp_cast": 1,
+          "ladcp_station": 701,
+          "ladcpdepth": 0,
+          "ladcpdo": "../Data/PD0/00701_DL.PD0",
+          "ladcpr_CTD_depth_std": [
+            -0.30712891513329327,
+            4.436581443902005
+          ],
+          "ladcpup": "../Data/PD0/00701_UL.PD0",
+          "lat": 31.88262,
+          "lon": 133.60174999999998,
+          "magdec_source": 2,
+          "maxbinrange": 0,
+          "maxdepth": 3051.5737020339243,
+          "name": "P2E station #701 (V7)",
+          "nav": "../Data/CTD/6Hz/00701.1Hz",
+          "nav_end": [
+            31.0,
+            53.04719999999996,
+            133.0,
+            37.28879999999947
+          ],
+          "nav_error": 30,
+          "nav_fields_per_line": 12,
+          "nav_header_lines": 50,
+          "nav_lat_field": 11,
+          "nav_lon_field": 12,
+          "nav_start": [
+            31.0,
+            52.867199999999954,
+            133.0,
+            34.9212
+          ],
+          "nav_time_base": 0,
+          "nav_time_field": 1,
+          "navdata": 1,
+          "navtime_av": 0.001388888888888889,
+          "nbin_d": 25,
+          "nbin_u": 25,
+          "nbins": 50,
+          "nping_total": [
+            7869,
+            7871
+          ],
+          "nt": 7869,
+          "offsetup2down": 1,
+          "orig": 0,
+          "outlier": 1,
+          "outlier_n": 208,
+          "oversample": 1,
+          "pg_save": 3,
+          "pglim": 0,
+          "pose": [
+            31.0,
+            53.04719999999996,
+            133.0,
+            37.28879999999947
+          ],
+          "poss": [
+            31.0,
+            52.867199999999954,
+            133.0,
+            34.9212
+          ],
+          "res": "V7/00701",
+          "rotup2down": 1,
+          "sadcp": "../Data/SADCP/SADCP.mat",
+          "sadcp_dtok": 0,
+          "sadcpfac": 1,
+          "serial_cpu_d": [
+            50,
+            0,
+            0,
+            2,
+            251,
+            134,
+            150,
+            9
+          ],
+          "serial_cpu_u": [
+            186,
+            0,
+            0,
+            0,
+            14,
+            31,
+            227,
+            9
+          ],
+          "shear": 1,
+          "single_ping_accuracy": "nan",
+          "smallfac": [
+            1,
+            0
+          ],
+          "smoofac": 0,
+          "software": "LDEO LADCP software: Version IX_15beta",
+          "solve": 1,
+          "soundcorr": 1,
+          "std_weight": 1,
+          "superens_std_min": 0.04441999086225863,
+          "surfdist": 1,
+          "tilt_weight": 10,
+          "tiltcor": 0,
+          "tiltmax": [
+            22,
+            4
+          ],
+          "time_end": [
+            2022,
+            5,
+            5,
+            11,
+            21,
+            57
+          ],
+          "time_start": [
+            2022,
+            5,
+            5,
+            8,
+            53,
+            50
+          ],
+          "timoff": 0,
+          "tint": [
+            109.93163913595934,
+            109.48081321473951
+          ],
+          "ts_att_dn": 0.062,
+          "ts_att_up": 0.06,
+          "ts_save": 0,
+          "ts_signal_min": -5,
+          "ucorr": 0.319531335312778,
+          "up_dn_comp_off": 83.76497919746419,
+          "up_dn_looker": 1,
+          "up_dn_pit_off": -1.2762789466475999,
+          "up_dn_pit_rol_comp_off": 92.50475000000014,
+          "up_dn_rol_off": -2.0771721585487537,
+          "up_range": [
+            128.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "up_sn": "nan",
+          "uship": 0.4189568667030292,
+          "vcorr": 0.7085933792903613,
+          "velerr": 0.061835756666326284,
+          "vlim": 2.5,
+          "vship": 0.037510971098212345,
+          "warn": "LADCP WARNINGS",
+          "warnings": " LADCP processing warnings:\n>   Increasing error estimate because of elevated shear - inverse difference\n",
+          "warnp": " LADCP processing warnings: \n>   Increasing error estimate because of elevated shear - inverse difference",
+          "wbslope": [
+            0.006193237298491796,
+            -0.03851343148119576
+          ],
+          "weighbin1": 1,
+          "weightmin": 0.05,
+          "weightpower": 1,
+          "whoami": "A.M. Thurnherr",
+          "wizr": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            25,
+            24,
+            23,
+            22,
+            21
+          ],
+          "wlim": 0.2,
+          "xdisp": 3723.2696727167113,
+          "xmc": [
+            151.86886912325286,
+            156.47293519695043
+          ],
+          "xmv": [
+            124.78627700127065,
+            125.77687420584498
+          ],
+          "xmv_min": 0,
+          "ydisp": 333.36000000001263,
+          "zbottom": 3058.502781152981,
+          "zbottomerror": 0.37578948031023174,
+          "zpar": [
+            9.729546773807735,
+            3051.5737020339243,
+            10.260361578117099
+          ]
+        },
+        "dimensions": {
+          "zbot": 29,
+          "time": 599,
+          "z": 381,
+          "z_sadcp": 71
+        },
+        "variables": {
+          "zbot": {
+            "dtype": "float32",
+            "shape": [
+              29
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile Depth",
+              "units": "m"
+            }
+          },
+          "time": {
+            "dtype": "float64",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Station Time Series",
+              "units": "days since 1970-01-01 0:0:0",
+              "calendar": "standard"
+            }
+          },
+          "z": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Depth",
+              "units": "Meters"
+            }
+          },
+          "z_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              71
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile Depth",
+              "units": "m"
+            }
+          },
+          "lon": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "Longitude",
+              "units": "degrees_east"
+            }
+          },
+          "lat": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "Latitude",
+              "units": "degrees_north"
+            }
+          },
+          "ctd_s": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "CTD profile salinity",
+              "units": "psu"
+            }
+          },
+          "ctd_t": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "CTD profile temperature",
+              "units": "Degree C"
+            }
+          },
+          "ensemble_vel_err": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP ensemble velocity error",
+              "units": "m/s"
+            }
+          },
+          "nvel": {
+            "dtype": "int16",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP number of ensembles per bin",
+              "units": "count"
+            }
+          },
+          "p": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Pressure",
+              "units": "dBar"
+            }
+          },
+          "range": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP total range of data",
+              "units": "m"
+            }
+          },
+          "range_do": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP down looking range of data",
+              "units": "m"
+            }
+          },
+          "range_up": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP up looking range of data",
+              "units": "m"
+            }
+          },
+          "shiplat": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Latitude",
+              "units": "degrees_north"
+            }
+          },
+          "shiplon": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Longitude",
+              "units": "degrees_east"
+            }
+          },
+          "ts": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP echo amplitude profile bin 1",
+              "units": "dB"
+            }
+          },
+          "ts_out": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP echo amplitude profile last down bin",
+              "units": "dB"
+            }
+          },
+          "u": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "U",
+              "units": "m/s"
+            }
+          },
+          "u_do": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP down only profile U",
+              "units": "m/s"
+            }
+          },
+          "u_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              71
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile U",
+              "units": "m/s"
+            }
+          },
+          "u_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile U",
+              "units": "m/s"
+            }
+          },
+          "u_up": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP up only profile U",
+              "units": "m/s"
+            }
+          },
+          "ubar": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "LADCP U Barotropic",
+              "units": "m/s"
+            }
+          },
+          "ubot": {
+            "dtype": "float32",
+            "shape": [
+              29
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile U",
+              "units": "m/s"
+            }
+          },
+          "uctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity U",
+              "units": "m/s"
+            }
+          },
+          "uctderr": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerr": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerr_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              71
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerrbot": {
+            "dtype": "float32",
+            "shape": [
+              29
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uship": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Velocity U",
+              "units": "m/s"
+            }
+          },
+          "v": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "V",
+              "units": "m/s"
+            }
+          },
+          "v_do": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP down only profile V",
+              "units": "m/s"
+            }
+          },
+          "v_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              71
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile V",
+              "units": "m/s"
+            }
+          },
+          "v_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile V",
+              "units": "m/s"
+            }
+          },
+          "v_up": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP up only profile V",
+              "units": "m/s"
+            }
+          },
+          "vbar": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "LADCP V Barotropic",
+              "units": "m/s"
+            }
+          },
+          "vbot": {
+            "dtype": "float32",
+            "shape": [
+              29
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile V",
+              "units": "m/s"
+            }
+          },
+          "vctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity V",
+              "units": "m/s"
+            }
+          },
+          "vship": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Velocity V",
+              "units": "m/s"
+            }
+          },
+          "w_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              381
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile W",
+              "units": "m/s"
+            }
+          },
+          "wctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity W",
+              "units": "m/s"
+            }
+          },
+          "xctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Position Relative to Start E",
+              "units": "m"
+            }
+          },
+          "xship": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Position E",
+              "units": "m"
+            }
+          },
+          "yctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Position Relative to Start N",
+              "units": "m"
+            }
+          },
+          "yship": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Position N",
+              "units": "m"
+            }
+          },
+          "zctd": {
+            "dtype": "float32",
+            "shape": [
+              599
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Depth of CTD",
+              "units": "m"
+            }
+          }
+        },
+        "variable_values_read": 0,
+        "native_velocity_values_read": 0,
+        "native_depth_axis_values_read": 0
+      },
+      "status": "bounded_headers_only_no_native_values"
+    },
+    {
+      "cast_id": "00801",
+      "raw_file": "00801.nc",
+      "raw_sha256": "ec815c1911d8efb8637c497750c0c5aec2ed1f8386481e821980654669fa9d87",
+      "header": {
+        "global_attributes": {
+          "version_ldeo_to_cdf": "2",
+          "description_ldeo_to_cdf": "\nFor LDEO-processed ladcp data: use the standard *.mat and *.ladcp.mat (if available)\nfiles to generate a netcdf file.  Output is similar, but not identical,\nto that produced by the original ladcp2cdf.m in the LDEO software.\n\nDifferences include:\n\n- The tim dimension variable, renamed 'time', is now float64 days since 1970-01-01.\n  In the version made by ladcp2cdf.m it was a float32 Matlab datenum.\n- The name and date variables have been removed.  Name remains as a global\n  attributes.  The YMDHMS form of 'date' has been\n  converted to an ISO string and added as a 'datetime' global attribute.\n- The lon and lat variables are now scalars.\n- The tim_hour array has been removed.\n- Scalar variables (ubar, vbar) from the .mat file are added.\n- Date errors in global attributes supplied by *.ladcp.mat are fixed.\n- Attributes ctd_starttime and ctd_endtime have been converted to ISO strings.\n- The file size has been halved by removing the 'Blocks received'\n  lines from the data download log attribute.\n- Global attributes are sorted by name.\n- Vector non-coordinate array variables are sorted by name.\n- A sequential version number (as a string) is added as the first global\n  attribute.\n- The output is CF-1.8 compliant.\n\n",
+          "BAR_ref_U": 0.14632254127642924,
+          "BAR_ref_V": 0.03614977829134574,
+          "BAR_ref_descr": "[Navigation][Bottom-track][SADCP]",
+          "BAR_ref_error": 0.0054161401069031554,
+          "BAR_tide_U": "nan",
+          "BAR_tide_V": "nan",
+          "BAR_tide_model": "[NA]",
+          "Conventions": "CF-1.8",
+          "GEN_Depth_source": "[measured P (CTD)]",
+          "GEN_Editing_parm_descr": [
+            4,
+            3
+          ],
+          "GEN_Inverse_weight_bottom": 1,
+          "GEN_Inverse_weight_navigation": 1,
+          "GEN_Inverse_weight_smooth": 0,
+          "GEN_LADCP_cast": 1,
+          "GEN_LADCP_ensemble_time_mean_sec": 1.4482895262618307,
+          "GEN_LADCP_ensemble_time_std_sec": 0.12164379419569285,
+          "GEN_LADCP_station": 801,
+          "GEN_Magnetic_deviation_deg": -7.09213277898568,
+          "GEN_Matlab_version": "9.8.0.1323502 (R2020a)",
+          "GEN_Ocean_depth_m": 4230,
+          "GEN_Percent_3beam": -0.0,
+          "GEN_Proc_general_comments": "  ",
+          "GEN_Proc_methodology": "[inverse]",
+          "GEN_Processing_date": "11-May-2023",
+          "GEN_Processing_personnel": "A.M. Thurnherr",
+          "GEN_Profile_bottom_decimal_day": 124.6204982646741,
+          "GEN_Profile_end_decimal_day": 124.69573194533587,
+          "GEN_Profile_end_latitude": 31.8101,
+          "GEN_Profile_end_longitude": 133.6927224498109,
+          "GEN_Profile_max_depth_m": 4221,
+          "GEN_Profile_start_decimal_day": 124.56754826474935,
+          "GEN_Profile_start_latitude": 31.80688,
+          "GEN_Profile_start_longitude": 133.64716,
+          "GEN_Software_orig": "LDEO LADCP software: Version IX_15beta",
+          "GEN_Sound_sp_calc": "[T-P]",
+          "GEN_Velocity_Units": "m/s",
+          "GEN_conf_general_comments": "  ",
+          "INPUT_Bottom_track_profile_avail": 1,
+          "INPUT_CTD_time_series_avail": 1,
+          "INPUT_Nav_time_series_avail": 1,
+          "INPUT_Pegasus_profile_avail": 0,
+          "INPUT_SADCP_profile_avail": 1,
+          "LADCP_dn_beam_range": [
+            120.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "LADCP_dn_btrk_u_bias": 0.0030112382335084256,
+          "LADCP_dn_btrk_u_std": 0.11016037739892336,
+          "LADCP_dn_btrk_v_bias": 0.01382680395928132,
+          "LADCP_dn_btrk_v_std": 0.08327325264170618,
+          "LADCP_dn_conf_bin_len_m": 8,
+          "LADCP_dn_conf_blank_intvl_m": 0,
+          "LADCP_dn_conf_bottom_trkr": 2,
+          "LADCP_dn_conf_coord_system": "[unknown]",
+          "LADCP_dn_conf_general_comments": "   ",
+          "LADCP_dn_conf_number_bins": 25,
+          "LADCP_dn_conf_number_pings": 1,
+          "LADCP_dn_conf_ping_stagr": "[NA]",
+          "LADCP_dn_conf_ping_trns_intvl_sec": 0,
+          "LADCP_dn_conf_pulse_len_m": 8.11,
+          "LADCP_dn_conf_single_ping_acc": 0.04405672481530327,
+          "LADCP_dn_conf_vel_ambiguity": 2.5,
+          "LADCP_dn_hard_FV": 50.41,
+          "LADCP_dn_hard_SN": "nan",
+          "LADCP_dn_hard_TNO": "[convex4]",
+          "LADCP_dn_hard_beam_ang_deg": 20,
+          "LADCP_dn_hard_comp_type": "[RDI]",
+          "LADCP_dn_hard_freq_kHz": 300,
+          "LADCP_dn_hard_general_comments": "  ",
+          "LADCP_dn_hard_type": "[RDI-300WH]",
+          "LADCP_dn_xmit_cur": 143.44847605224965,
+          "LADCP_dn_xmit_pings": 9644,
+          "LADCP_dn_xmit_vol": 121.41322828115281,
+          "LADCP_up_beam_range": [
+            120.17,
+            120.17,
+            128.17,
+            120.17
+          ],
+          "LADCP_up_compass": "[down-compass]",
+          "LADCP_up_conf_bin_len_m": 8,
+          "LADCP_up_conf_blank_intvl_m": 0,
+          "LADCP_up_conf_coord_system": "[unknown]",
+          "LADCP_up_conf_general_comments": "   ",
+          "LADCP_up_conf_number_bins": 25,
+          "LADCP_up_conf_number_pings": 1,
+          "LADCP_up_conf_ping_stagr": "[NA]",
+          "LADCP_up_conf_ping_trns_intvl_sec": 0,
+          "LADCP_up_conf_pulse_len_m": 8.11,
+          "LADCP_up_conf_single_ping_acc": 0.04938210738688342,
+          "LADCP_up_conf_vel_ambiguity": 2.5,
+          "LADCP_up_hard_FV": 50.41,
+          "LADCP_up_hard_SN": "nan",
+          "LADCP_up_hard_TNO": "[convex4]",
+          "LADCP_up_hard_beam_ang_deg": 20,
+          "LADCP_up_hard_comp_type": "[RDI]",
+          "LADCP_up_hard_freq_kHz": 300,
+          "LADCP_up_hard_general_comments": "  ",
+          "LADCP_up_hard_type": "[RDI-300WH]",
+          "LADCP_up_xmit_cur": 149.11611030478954,
+          "LADCP_up_xmit_pings": 9646,
+          "LADCP_up_xmit_vol": 122.27285921625544,
+          "LOG_Inverse_log": "LDEO LADCP software: Version IX_15beta\n################ [801] step 1: LOAD LADCP DATA #######################\nLOADING CHECKPOINT ./checkpoints/00801_0\nRE-LOADING PER-CAST PARAMETERS\nLOADRDI:\n loading down-data ../Data/PD0/00801_DL.PD0\n DETECTED BEAM coordinates: rotating to EARTH coordinates\n 8463 3-beam solutions calculated (8% of total)\n read 9644 ensembles with 25 bins each\n loading up-data ../Data/PD0/00801_UL.PD0\n DETECTED BEAM coordinates: rotating to EARTH coordinates\n 8046 3-beam solutions calculated (8% of total)\n read 9646 ensemble and 25 bins \n WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING \n Warning: non-constant ping rate in downlooker data (staggered pinging?)\n  min down ping rate :1.32  max down ping rate :1.58\n find best time match of up-looking ADCP to down looking ADCP\n up instrument is different by 1 ensembles\n WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING \n bestlag removed 433 spikes\n try to shift timeseries by lag: 0 correlation: 0.9918\n shift ADCP timeseries by 0 ensembles\n number of joint ensembles is : 9644\n removed 8 values because of error velocity > 0.5 m/s\n removed 100 values because of horizontal speed > 2.5 m/s\n** found 100 (1.0% of total) velocity measurements > 2.5 m/s\n** WARNING  check ambiguity velocity setting in CMD-file   ** \n using whole profile since no start time was given\n removed 4 profiles due to tilt derivative > 4 degrees\n Outlier discarded 8282 bins down looking\n Outlier discarded 0 bottom track\n Outlier discarded 6194 bins up looking\n==> STEP 1 TOOK 15.1 seconds\nSAVING CHECKPOINT ./checkpoints/00801_1\n################ [801] step 2: FIX LADCP-DATA PROBLEMS ###############\n==> STEP 2 TOOK 0.0 seconds\n################ [801] step 3: LOAD GPS DATA #########################\nLOADNAV: load NAV time series ../Data/CTD/6Hz/00801.1Hz\n number of NAV scans: 11677  delta t : 0.99999 seconds\n corrected for magnetic declination of -7.1 deg\n==> STEP 3 TOOK 0.2 seconds\n################ [801] step 4: GET BOTTOM-TRACK DATA #################\nGETBTRACK creates own bottom track in addition to RDI\n  in: p.btrk_mode 3 and p.btrk_used 0\n using increased bottom echo amplitudes to create bottom track\n localmax2: found 1684 valid values\n use 0.5 bins below maximum target strength for own bottom track velocity\n created 238 bottom distances\n removed 51 bottom track profiles W_btrk - W_ref difference > 0.05\n boutlier removed 4 bottom track velocities \n created 177 bottom track data from normal velocities\n out: p.btrk_mode 3 and p.btrk_used 2\n==> STEP 4 TOOK 0.6 seconds\n################ [801] step 5: LOAD CTD PROFILE ######################\n==> STEP 5 TOOK 0.0 seconds\n################ [801] step 6: LOAD CTD TIME SERIES ##################\nLOADCTD: load CTD time series ../Data/CTD/6Hz/00801.1Hz\n read 11677 CTD scans; median delta_t = 1.00 seconds\n interpolated to 11676 CTD scans; delta_t = 1.00 seconds\n 90% LADCP depth  3763 at 05-May-2022 14:43:44\n 90% CTD pressure 3864 at 05-May-2022 14:21:02\n Changed Start Time : 05-May-2022 13:09:04  to 05-May-2022 13:37:14\n Changed End   Time : 05-May-2022 17:01:50  to 05-May-2022 16:41:52\n median CTD time difference 0.99999 s\n removed 0 pressure spikes\n use 1 time base for W_ctd\n CTD max depth : 4221\n bestlag removed 20 spikes\n lag: 16  correlation: 0.90472\n bestlag removed 24 spikes\n lag: 16  correlation: 0.91136\n bestlag removed 35 spikes\n lag: 16  correlation: 0.9399\n bestlag removed 28 spikes\n lag: 16  correlation: 0.9498\n bestlag removed 27 spikes\n lag: 16  correlation: 0.93591\n bestlag removed 22 spikes\n lag: 16  correlation: 0.92277\n bestlag removed 24 spikes\n lag: 16  correlation: 0.93934\n bestlag removed 33 spikes\n lag: 16  correlation: 0.99072\n bestlag removed 27 spikes\n lag: 16  correlation: 0.98382\n bestlag removed 23 spikes\n lag: 16  correlation: 0.99447\n bestlag removed 20 spikes\n lag: 16  correlation: 0.99048\n bestlag removed 24 spikes\n lag: 16  correlation: 0.98909\n bestlag removed 29 spikes\n lag: 16  correlation: 0.98989\n bestlag removed 24 spikes\n lag: 16  correlation: 0.98745\n bestlag removed 24 spikes\n lag: 16  correlation: 0.9815\n bestlag removed 26 spikes\n lag: 16  correlation: 0.98616\n bestlag removed 33 spikes\n lag: 16  correlation: 0.98451\n bestlag removed 23 spikes\n lag: 16  correlation: 0.97423\n bestlag removed 21 spikes\n lag: 16  correlation: 0.98226\n bestlag removed 19 spikes\n lag: 16  correlation: 0.9835\n bestlag removed 23 spikes\n lag: 16  correlation: 0.9444\n median lag 16\n most popular lag 16\n best correlated lag 16\n BESTTLAG:  lag is: 16  for which 105% of 20 lags agree\n best lag W: 16 CTD scans ~ -16 seconds  corr:0.99447\n adjust ADCP time to CTD time and shift depth record \n download SW routines to get more accurate soundspeed and N^2 \n made CTD profile from time series data. \n update start pos  from:NaN\u00c2\u00b0N     NaN'  NaN\u00c2\u00b0E     NaN'\n\t\t\tto:31\u00c2\u00b0N 48.4128'  133\u00c2\u00b0E 38.8296'\n update end pos    from:NaN\u00c2\u00b0N     NaN'  NaN\u00c2\u00b0E     NaN'\n\t\t\tto:31\u00c2\u00b0N 48.6060'  133\u00c2\u00b0E 41.5633'\n==> STEP 6 TOOK 3.4 seconds\n################ [801] step 7: FIND SURFACE & SEA BED ################\nGETDPTHI: Depth from vertical velocity inverse method\n starting run 1 to get LADCP depth\n make soundspeed based on CTD pressure and temp\n correct velocities for sound speed \n use CTD time series depth, will not do depth inversion \n LADCP minus CTD depth mean: -8.4827  std: 9.425\n maximum depth from int W is :4221\n should be                   :4221\n  bottom found at 4230 +/- 0 m\n correct bin length for sound speed\n removing 3457 values below bottom\n==> STEP 7 TOOK 1.7 seconds\n################ [801] step 8: APPLY PITCH/ROLL CORRECTIONS ##########\n==> STEP 8 TOOK 0.0 seconds\n################ [801] step 9: EDIT DATA #############################\n bin masking               : masking uplooker bin 1 because of zero blanking distance\n bin masking               : masking downlooker bin 1 because of zero blanking distance\n bin masking               : set 5037 weights to NaN\n side-lobe contamination   : set 1433 weights to NaN\n==> STEP 9 TOOK 0.6 seconds\n################ [801] step 10: FORM SUPER ENSEMBLES #################\nPREPINV: prepare data for inversion, form Super-Ensembles\n average profiles over (p.avdz) 8.1653 meter\n reduce weight for larger tilts 0.5 at 10 degree\n mean heading offset from compasses = 84.0681 deg\n mean heading offset from pitch/roll = 90.51 deg\n rot up2down use mean up/down compass\n will not correct for sound speed twice\n remove reference velocity and average ensembles \n Outlier discarded 811 bins down looking\n Outlier discarded 593 bins up looking\n found 1 bottom track std==0 set to 0.1 m/s\n found 29 finite bottom track ensembles\n discarded 2 bottom tracks velocities because of wstd  > 0.10041\n set 157 weight values to nan  because super ensemble std =0 \n set 352 values to minimum super ensemble std 0.044057\n reduced profile length = 829 super-ensemble bins\n==> STEP 10 TOOK 4.0 seconds\n################ [801] step 11: REMOVE SUPER-ENSEMBLE OUTLIERS #######\n==> STEP 11 TOOK 2.2 seconds\n################ [801] step 12: RE-FORM SUPER ENSEMBLES ##############\n mean heading offset from pitch/roll = 90.51 deg\n remove first guess ocean velocity from raw data\n adjusted for velocity offset in up and down looking ADCP\n remove first guess ocean velocity from raw data\n rot up2down use mean up/down compass\n rotated earlier, use difference \n will not correct for sound speed twice\n remove reference velocity and average ensembles \n Outlier discarded 799 bins down looking\n Outlier discarded 596 bins up looking\n found 1 bottom track std==0 set to 0.1 m/s\n found 29 finite bottom track ensembles\n discarded 2 bottom tracks velocities because of wstd  > 0.10041\n set 155 weight values to nan  because super ensemble std =0 \n set 431 values to minimum super ensemble std 0.044057\n reduced profile length = 829 super-ensemble bins\n==> STEP 12 TOOK 4.6 seconds\n################ [801] step 13: (RE-)LOAD SADCP DATA #################\nLOADSADCP: load SADCP data file ../Data/SADCP/SADCP.mat\n found 12 SADCP profiles \n==> STEP 13 TOOK 0.3 seconds\n################ [801] step 14: CALCULATE INVERSE SOLUTION ###########\nGETINV:  compute best velocity profile\n Barotropic velocity error 0.0054161 [m/s]\n super ensemble velocity error 0.017406 [m/s]\n set velocity error to:0.065946 [m/s]\n vertical resolution (ps.dz) is 8 [m]\n use super ensemble std based weights normalized by 0.065946 m/s \n preaveraged GPS ships vel 1 times \n remove 1087 constaints below minimum weight \n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n no smoothness constraint applied \n bottom inversion \n 27 bottom track ctd-vel weights of about : 2.1268\n weight for bottom track is (ps.botfac) 1\n mean sadcp weight : 1.4249\n weight for SADCP vel is (ps.sadcpfac) 1\n lainbaro: 14% of profile have no useful data \n normalized barotropic constrain weight: 3.2508\n mean individual ctd velocity weight : 379.5547\n ready for inversion  length of  d:  19610\n           (CTD vel)  length of A1:    829\n         (ocean vel)  length of A2:    527\nMoore-Penrose inverse\n solve only down trace\n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n no smoothness constraint applied \nMoore-Penrose inverse w/o errors\n solve only up trace\n smooth Ocean velocity profile\n found 1 ill constrained elements will smooth \n smooth CTD velocity profile\n no smoothness constraint applied \nMoore-Penrose inverse w/o errors\nCHECKINV all values are given in [m/s] \n Velocity profile error:  0.058  should be about noise:  0.044\n Check bottom track rms:  0.042  should be smaller than  0.128 /  1.000\n Check SADCP        rms:  0.027  should be smaller than  0.046 /  1.000\n GPS-LADCP ship spd diff: 0.001  should be smaller than  0.005 /  1.000\n use reference layer W\nCHECKBTRK: check bottom track against U_ctd solution \n profiles within give acceptable range: 403\n  U bias : 0.003 [m/s]  std: 0.110 [m/s]\n  V bias : 0.014 [m/s]  std: 0.083 [m/s]\n  W bias :-0.008 [m/s]  std: 0.029 [m/s]\n  W slope fact :0.0086 [1/m] lower W below bottom \n  W diff :0.0978 [m/s] ping to ping w difference \n  H std :   1.1 [m]  large means bottom is rough/sloped\n  Tilt mean :3.3 +/- 0.5 [^o]  \n==> STEP 14 TOOK 10.6 seconds\n################ [801] step 15: CALCULATE SHEAR SOLUTION #############\n \nCALC_SHEAR3:  calculate a baroclinic velocity profile based on shears only\n    Averaging shear profile over 16 m intervals\n    Maximum allowed std within calculation intervals : 2\n    Data deviating more from the median will be discarded.\n    Correlation-derived weights range from 0.07076 to 0.95563\n    Removed 9 % of data with lowest weights from shear calculation.\n    New weights range from 0.49839 to 0.95563\n    Inversion average error : 0.057182 m/s\n>   Increasing error estimate because of elevated shear - inverse difference\n>   by a factor of 2.175\n>   std of difference between regular and shear profile : 0.18656 m/s\n    Final average error : 0.12437 m/s\n==> STEP 15 TOOK 1.7 seconds\n################ [801] step 16: PLOT RESULTS & SHOW WARNINGS #########\n do not know calibration of this instrument make a guess: \n Battery Voltage is 40.1 V\nLADCP WARNINGS\n \n LADCP processing warnings:                                                 \n>   Increasing error estimate because of elevated shear - inverse difference\n==> STEP 16 TOOK 1.1 seconds\n################ [801] step 17: SAVE OUTPUT ##########################\n save results \n",
+          "ambiguity": 2.5,
+          "avdz": 8.16532903401027,
+          "avens": "nan",
+          "avpercent": 100,
+          "barofac": 1,
+          "barvelerr": 0.0054161401069031554,
+          "battery": 40.06636533278043,
+          "beamangle": 20,
+          "blen_d": 8,
+          "blen_u": 8,
+          "blnk_d": 0,
+          "blnk_u": 0,
+          "botfac": 1,
+          "bottomdist": 0,
+          "btrk_below": 0.5,
+          "btrk_mode": 3,
+          "btrk_range": [
+            300,
+            50
+          ],
+          "btrk_rough": 1.1345193944210687,
+          "btrk_tilt_mean": 3.260399882884619,
+          "btrk_tilt_std": 0.5333952200180445,
+          "btrk_ts": 40,
+          "btrk_u_bias": 0.0030112382335084256,
+          "btrk_u_std": 0.11016037739892336,
+          "btrk_used": 2,
+          "btrk_v_bias": 0.01382680395928132,
+          "btrk_v_std": 0.08327325264170618,
+          "btrk_w_bias": -0.008380892106284262,
+          "btrk_w_std": 0.02928410918273781,
+          "btrk_wdiff": 0.09781152195290099,
+          "btrk_weight_nblen": [
+            0,
+            0
+          ],
+          "btrk_wlim": 0.05,
+          "btrk_wstd": 0.10041031872435513,
+          "checkpoints": "./checkpoints/00801",
+          "cm_save": 0,
+          "cruise_id": "P2E",
+          "ctd": "../Data/CTD/6Hz/00801.1Hz",
+          "ctd_endtime": "2022-05-05T16:41:52",
+          "ctd_fields_per_line": 12,
+          "ctd_header_lines": 50,
+          "ctd_pressure_field": 2,
+          "ctd_salinity_field": 6,
+          "ctd_starttime": "2022-05-05T13:37:14",
+          "ctd_temperature_field": 3,
+          "ctd_time_base": 0,
+          "ctd_time_field": 1,
+          "ctddepth": 1,
+          "ctdmaxlag": 150,
+          "ctdmaxlagnp": 600,
+          "ctdmincorr": 0.8914354230900994,
+          "ctdprof": " ",
+          "ctdtime": 1,
+          "ctdtimoff": 0.01576493075117469,
+          "cut": 10,
+          "datetime": "2022-05-05T14:54:43",
+          "debug": 0,
+          "dist_d": 8.17,
+          "dist_u": 8.17,
+          "dn_range": [
+            120.17,
+            128.17,
+            128.17,
+            128.17
+          ],
+          "down_sn": "nan",
+          "down_up": 1,
+          "dragfac": 0,
+          "drot": -7.09213277898568,
+          "dt_profile": 11077.9999807477,
+          "dz": 8,
+          "dzbelow": [
+            16,
+            -8
+          ],
+          "elim": 0.5,
+          "fig3_colormap": 1,
+          "fig3_err_y_axis": 1,
+          "fix_compass": 0,
+          "getdepth": 2,
+          "guessbottom": "nan",
+          "hbot_0": 0,
+          "ignore_beam": [
+            "nan",
+            "nan"
+          ],
+          "instid": [
+            7859641196.0,
+            204653267.0
+          ],
+          "interp_ctd_times": 1,
+          "interp_missing_GPS": 1,
+          "interp_nav_times": 0,
+          "ladcp_cast": 1,
+          "ladcp_station": 801,
+          "ladcpdepth": 0,
+          "ladcpdo": "../Data/PD0/00801_DL.PD0",
+          "ladcpr_CTD_depth_std": [
+            -8.482734804804732,
+            9.425013891485177
+          ],
+          "ladcpup": "../Data/PD0/00801_UL.PD0",
+          "lat": 31.80849,
+          "lon": 133.66994122490547,
+          "magdec_source": 2,
+          "maxbinrange": 0,
+          "maxdepth": 4220.568327721736,
+          "name": "P2E station #801 (V7)",
+          "nav": "../Data/CTD/6Hz/00801.1Hz",
+          "nav_end": [
+            31.0,
+            48.60599999999991,
+            133.0,
+            41.563346988654075
+          ],
+          "nav_error": 30,
+          "nav_fields_per_line": 12,
+          "nav_header_lines": 50,
+          "nav_lat_field": 11,
+          "nav_lon_field": 12,
+          "nav_start": [
+            31.0,
+            48.412799999999976,
+            133.0,
+            38.82960000000082
+          ],
+          "nav_time_base": 0,
+          "nav_time_field": 1,
+          "navdata": 1,
+          "navtime_av": 0.001388888888888889,
+          "nbin_d": 25,
+          "nbin_u": 25,
+          "nbins": 50,
+          "nping_total": [
+            9644,
+            9646
+          ],
+          "nt": 9644,
+          "offsetup2down": 1,
+          "orig": 0,
+          "outlier": 1,
+          "outlier_n": 208,
+          "oversample": 1,
+          "pg_save": 3,
+          "pglim": 0,
+          "pose": [
+            31.0,
+            48.60599999999991,
+            133.0,
+            41.563346988654075
+          ],
+          "poss": [
+            31.0,
+            48.412799999999976,
+            133.0,
+            38.82960000000082
+          ],
+          "res": "V7/00801",
+          "rotup2down": 1,
+          "sadcp": "../Data/SADCP/SADCP.mat",
+          "sadcp_dtok": 0,
+          "sadcpfac": 1,
+          "serial_cpu_d": [
+            50,
+            0,
+            0,
+            2,
+            251,
+            134,
+            150,
+            9
+          ],
+          "serial_cpu_u": [
+            186,
+            0,
+            0,
+            0,
+            14,
+            31,
+            227,
+            9
+          ],
+          "shear": 1,
+          "single_ping_accuracy": "nan",
+          "smallfac": [
+            1,
+            0
+          ],
+          "smoofac": 0,
+          "software": "LDEO LADCP software: Version IX_15beta",
+          "solve": 1,
+          "soundcorr": 1,
+          "std_weight": 1,
+          "superens_std_min": 0.04405672481530327,
+          "surfdist": 1,
+          "tilt_weight": 10,
+          "tiltcor": 0,
+          "tiltmax": [
+            22,
+            4
+          ],
+          "time_end": [
+            2022,
+            5,
+            5,
+            16,
+            41,
+            53
+          ],
+          "time_start": [
+            2022,
+            5,
+            5,
+            13,
+            37,
+            15
+          ],
+          "timoff": 0,
+          "tint": [
+            113.19635081899233,
+            112.83350611652499
+          ],
+          "ts_att_dn": 0.062,
+          "ts_att_up": 0.06,
+          "ts_save": 0,
+          "ts_signal_min": -5,
+          "ucorr": 0.22422858818592056,
+          "up_dn_comp_off": 84.06813653992708,
+          "up_dn_looker": 1,
+          "up_dn_pit_off": -0.02297048406138561,
+          "up_dn_pit_rol_comp_off": 90.51000000000013,
+          "up_dn_rol_off": -1.4054023385780985,
+          "up_range": [
+            120.17,
+            120.17,
+            128.17,
+            120.17
+          ],
+          "up_sn": "nan",
+          "uship": 0.3883847135116037,
+          "vcorr": 0.4319952477771737,
+          "velerr": 0.0659462160401424,
+          "vlim": 2.5,
+          "vship": 0.03229882655909942,
+          "warn": "LADCP WARNINGS",
+          "warnings": " LADCP processing warnings:\n>   Increasing error estimate because of elevated shear - inverse difference\n",
+          "warnp": " LADCP processing warnings: \n>   Increasing error estimate because of elevated shear - inverse difference",
+          "wbslope": [
+            0.008629754150323937,
+            -0.02999513992411196
+          ],
+          "weighbin1": 1,
+          "weightmin": 0.05,
+          "weightpower": 1,
+          "whoami": "A.M. Thurnherr",
+          "wizr": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            25,
+            24,
+            23,
+            22,
+            21
+          ],
+          "wlim": 0.2,
+          "xdisp": 4302.525848804246,
+          "xmc": [
+            143.44847605224965,
+            149.11611030478954
+          ],
+          "xmv": [
+            121.41322828115281,
+            122.27285921625544
+          ],
+          "xmv_min": 0,
+          "ydisp": 357.8063999998767,
+          "zbottom": 4229.6444894782135,
+          "zbottomerror": 0.2903887304382806,
+          "zpar": [
+            9.829325737462634,
+            4220.568327721736,
+            9.663396154513478
+          ]
+        },
+        "dimensions": {
+          "zbot": 32,
+          "time": 829,
+          "z": 527,
+          "z_sadcp": 55
+        },
+        "variables": {
+          "zbot": {
+            "dtype": "float32",
+            "shape": [
+              32
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile Depth",
+              "units": "m"
+            }
+          },
+          "time": {
+            "dtype": "float64",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Station Time Series",
+              "units": "days since 1970-01-01 0:0:0",
+              "calendar": "standard"
+            }
+          },
+          "z": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Depth",
+              "units": "Meters"
+            }
+          },
+          "z_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              55
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile Depth",
+              "units": "m"
+            }
+          },
+          "lon": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "Longitude",
+              "units": "degrees_east"
+            }
+          },
+          "lat": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "Latitude",
+              "units": "degrees_north"
+            }
+          },
+          "ctd_s": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "CTD profile salinity",
+              "units": "psu"
+            }
+          },
+          "ctd_t": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "CTD profile temperature",
+              "units": "Degree C"
+            }
+          },
+          "ensemble_vel_err": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP ensemble velocity error",
+              "units": "m/s"
+            }
+          },
+          "nvel": {
+            "dtype": "int16",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP number of ensembles per bin",
+              "units": "count"
+            }
+          },
+          "p": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Pressure",
+              "units": "dBar"
+            }
+          },
+          "range": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP total range of data",
+              "units": "m"
+            }
+          },
+          "range_do": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP down looking range of data",
+              "units": "m"
+            }
+          },
+          "range_up": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP up looking range of data",
+              "units": "m"
+            }
+          },
+          "shiplat": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Latitude",
+              "units": "degrees_north"
+            }
+          },
+          "shiplon": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Longitude",
+              "units": "degrees_east"
+            }
+          },
+          "ts": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP echo amplitude profile bin 1",
+              "units": "dB"
+            }
+          },
+          "ts_out": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "ADCP echo amplitude profile last down bin",
+              "units": "dB"
+            }
+          },
+          "u": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "U",
+              "units": "m/s"
+            }
+          },
+          "u_do": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP down only profile U",
+              "units": "m/s"
+            }
+          },
+          "u_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              55
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile U",
+              "units": "m/s"
+            }
+          },
+          "u_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile U",
+              "units": "m/s"
+            }
+          },
+          "u_up": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP up only profile U",
+              "units": "m/s"
+            }
+          },
+          "ubar": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "LADCP U Barotropic",
+              "units": "m/s"
+            }
+          },
+          "ubot": {
+            "dtype": "float32",
+            "shape": [
+              32
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile U",
+              "units": "m/s"
+            }
+          },
+          "uctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity U",
+              "units": "m/s"
+            }
+          },
+          "uctderr": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerr": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerr_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              55
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uerrbot": {
+            "dtype": "float32",
+            "shape": [
+              32
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile Velocity Error",
+              "units": "m/s"
+            }
+          },
+          "uship": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Velocity U",
+              "units": "m/s"
+            }
+          },
+          "v": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "V",
+              "units": "m/s"
+            }
+          },
+          "v_do": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP down only profile V",
+              "units": "m/s"
+            }
+          },
+          "v_sadcp": {
+            "dtype": "float32",
+            "shape": [
+              55
+            ],
+            "dimensions": [
+              "z_sadcp"
+            ],
+            "attributes": {
+              "long_name": "SADCP Profile V",
+              "units": "m/s"
+            }
+          },
+          "v_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile V",
+              "units": "m/s"
+            }
+          },
+          "v_up": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP up only profile V",
+              "units": "m/s"
+            }
+          },
+          "vbar": {
+            "dtype": "float64",
+            "shape": [],
+            "dimensions": [],
+            "attributes": {
+              "long_name": "LADCP V Barotropic",
+              "units": "m/s"
+            }
+          },
+          "vbot": {
+            "dtype": "float32",
+            "shape": [
+              32
+            ],
+            "dimensions": [
+              "zbot"
+            ],
+            "attributes": {
+              "long_name": "Bottom Referenced Profile V",
+              "units": "m/s"
+            }
+          },
+          "vctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity V",
+              "units": "m/s"
+            }
+          },
+          "vship": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Velocity V",
+              "units": "m/s"
+            }
+          },
+          "w_shear_method": {
+            "dtype": "float32",
+            "shape": [
+              527
+            ],
+            "dimensions": [
+              "z"
+            ],
+            "attributes": {
+              "long_name": "LADCP shear method profile W",
+              "units": "m/s"
+            }
+          },
+          "wctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Velocity W",
+              "units": "m/s"
+            }
+          },
+          "xctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Position Relative to Start E",
+              "units": "m"
+            }
+          },
+          "xship": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Position E",
+              "units": "m"
+            }
+          },
+          "yctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "CTD Position Relative to Start N",
+              "units": "m"
+            }
+          },
+          "yship": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Ship Position N",
+              "units": "m"
+            }
+          },
+          "zctd": {
+            "dtype": "float32",
+            "shape": [
+              829
+            ],
+            "dimensions": [
+              "time"
+            ],
+            "attributes": {
+              "long_name": "Depth of CTD",
+              "units": "m"
+            }
+          }
+        },
+        "variable_values_read": 0,
+        "native_velocity_values_read": 0,
+        "native_depth_axis_values_read": 0
+      },
+      "status": "bounded_headers_only_no_native_values"
+    }
+  ],
+  "numeric_attribute_ledger": {
+    "prior_failed_numeric_attribute_values": 0,
+    "reconstruction_numeric_attribute_touches": 0,
+    "new_numeric_attribute_values_touched": 590
+  },
+  "native_variable_values_read": 0
+}

@@ -1,0 +1,97 @@
+name: Current depth additive inventory v19
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v19.yml
+      - analysis/build_current_depth_route_projections_v19.py
+      - analysis/test_current_depth_route_projections_v19.py
+      - research/current-depth-route-projection-operator-v19.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v19.py
+            analysis/test_current_depth_route_projections_v19.py
+            research/current-depth-route-projection-operator-v19.json
+            research/current-depth-route-projection-inventory-v4.json
+            research/current-depth-route-projection-inventory-source-review-v4.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/zonal-current-full-sections-hycom2022-v1.csv
+            research/nec-subarctic-depth-sections-source-facts-v1.json
+            research/nec-subarctic-depth-sections-source-review-v1.json
+            research/nec-subarctic-depth-sections-operator-v1.json
+            research/source-data/nec-subarctic-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-170e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-160e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-150e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-140e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-pacific-north-equatorial-section-130e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-27w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-35w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-45w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-atlantic-north-equatorial-section-55w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-175e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-160w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-150w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-01-15-aleutian-section-140w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-170e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-160e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-150e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-140e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-pacific-north-equatorial-section-130e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-27w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-35w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-45w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-atlantic-north-equatorial-section-55w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-175e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-180e.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-170w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-160w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-150w.json
+            research/source-data/nec-subarctic-depth-sections-v1/2022-07-15-aleutian-section-140w.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify NEC Subarctic additive inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v19.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v19.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v19
+          path: current-depth-route-projections-v19/
+          retention-days: 7

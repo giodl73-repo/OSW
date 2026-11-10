@@ -1,0 +1,106 @@
+name: Coastal full section collocated fresh layer audit v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/coastal-full-section-salinity-v1.yml
+      - analysis/coastal_full_section_salinity_v1.py
+      - analysis/egcc_core_salinity_diagnostic_v1.py
+      - analysis/test_coastal_full_section_salinity_v1.py
+      - plans/coastal-full-section-fresh-layer-protocol-v1.md
+      - research/coastal-full-section-salinity-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_ncc_original_core_salinity_v1.py
+            analysis/coastal_full_section_salinity_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/egcc_core_salinity_diagnostic_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/ncc_core_salinity_diagnostic_v1.py
+            analysis/test_coastal_full_section_salinity_v1.py
+            analysis/test_ncc_original_core_salinity_v1.py
+            plans/coastal-full-section-fresh-layer-protocol-v1.md
+            plans/ncc-original-core-salinity-protocol-v1.md
+            research/coastal-full-section-salinity-operator-v1.json
+            research/coastal-upper-layer-interval-depth-sections-operator-v1.json
+            research/current-depth-egcc-sutherland2008-original-depth-source-review-v1.json
+            research/current-depth-ncc-original-core-salinity-source-review-v1.json
+            research/current-depth-reference-inventory-v11.json
+            research/current-depth-reference-inventory-v9.json
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/egcc-sutherland2008-coastal-front-depth-source-facts-v1.json
+            research/guiana-egcc-upper-layer-interval-depth-sections-operator-v1.json
+            research/interval-core-connected-reach-source-report-v1.json
+            research/ncc-enge2025-depth-identity-source-scope-review-v1.json
+            research/ncc-original-core-salinity-operator-v1.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-03-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-06-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-09-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-58p5n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-59p25n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/2022-12-15-norwegian-coastal-section-60p75n.json
+            research/source-data/coastal-upper-layer-interval-depth-sections-v1/manifest.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-03-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-06-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-09-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-64p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-65n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-65p5n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/2022-12-15-east-greenland-coastal-section-66n.json
+            research/source-data/guiana-egcc-upper-layer-interval-depth-sections-v1/manifest.json
+            research/source-data/ncc-original-core-salinity-v1/target-1.json
+            research/source-data/ncc-original-core-salinity-v1/target-2.json
+            research/source-data/ncc-original-core-salinity-v1/target-3.json
+            research/source-data/ncc-original-core-salinity-v1/target-4.json
+            research/source-data/ncc-original-core-salinity-v1/target-5.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Validate original and cohort rules then collect sequentially on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_ncc_original_core_salinity_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_coastal_full_section_salinity_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/coastal_full_section_salinity_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coastal-full-section-salinity-v1
+          path: coastal-full-section-salinity-v1/
+          retention-days: 7

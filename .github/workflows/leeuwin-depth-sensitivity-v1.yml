@@ -1,0 +1,46 @@
+name: Leeuwin depth sensitivity v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/leeuwin-depth-sensitivity-v1.yml
+      - analysis/check_leeuwin_depth_sensitivity_v1.py
+      - analysis/test_leeuwin_depth_sensitivity_v1.py
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  sensitivity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/audit_leeuwin_depth_source_v1.py
+            analysis/derive_leeuwin_seasonal_depth_v1.py
+            analysis/test_leeuwin_seasonal_depth_v1.py
+            analysis/check_leeuwin_depth_sensitivity_v1.py
+            analysis/test_leeuwin_depth_sensitivity_v1.py
+            research/leeuwin-seasonal-depth-operator-v1.json
+            research/source-data/leeuwin-seasonal-depth-v1/seasonal-candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Compare declared averaging and near-zero descriptors on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install netCDF4==1.7.4 numpy==2.3.4
+          taskset -c "$cpu" nice -n 15 python -c "import sys,unittest; loader=unittest.TestLoader(); suite=unittest.TestSuite([loader.discover('analysis',pattern='test_leeuwin_seasonal_depth_v1.py'),loader.discover('analysis',pattern='test_leeuwin_depth_sensitivity_v1.py')]); result=unittest.TextTestRunner(verbosity=2).run(suite); sys.exit(not result.wasSuccessful())"
+          taskset -c "$cpu" nice -n 15 python analysis/check_leeuwin_depth_sensitivity_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: leeuwin-depth-sensitivity-v1
+          path: leeuwin-depth-sensitivity-v1/
+          retention-days: 7

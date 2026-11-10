@@ -1,0 +1,132 @@
+{
+  "schema": "osw.osnap-source-header-execution-review.v1",
+  "status": "VERIFIED_SOURCE_HEADERS_ONLY_SAMPLE_SUPPORT_PENDING",
+  "source_run_id": 40092026859,
+  "source_job_id": 120866705716,
+  "source_commit": "714d5689311d31cb51e7ee3b0981d6746e0e10ee",
+  "source_run_conclusion": "success",
+  "synthetic_tests": {
+    "passed": 21,
+    "seconds": 0.2
+  },
+  "artifact": {
+    "id": 12558929959,
+    "name": "osnap-wg-2016-2018-source-custody-v1",
+    "bytes": 127712298
+  },
+  "header_report": {
+    "path": "research/osnap-wg-2016-2018-source-headers-v1.json",
+    "bytes": 954381,
+    "sha256": "4c21602907317e827e255a2d167e2e7b0dec2029a7ee3bd80f535ace3b5b8236"
+  },
+  "original_custody": {
+    "path": "research/osnap-wg-2016-2018-original-custody-v1.json",
+    "bytes": 1532,
+    "sha256": "93dbb5cf3c66fdc658a804033ef23004842c5fb23b4175179c96c8a3ff4d9c8c"
+  },
+  "archive_sha256": "5b49ea91547fd17b9b3f2e47c743dd2d377a4cdd7ebace5c56977214ec82dee9",
+  "preflight_sha256": "604d07b14c247a29965dfafcf5afa9c93645cb1117df95e5ea2d889a41d71b13",
+  "instrument_count": 78,
+  "velocity_instruments": 37,
+  "adcp_velocity_instruments": 8,
+  "point_velocity_instruments": 29,
+  "hydrography_instruments": 41,
+  "moorings": {
+    "LS1": {
+      "adcp_velocity": 1,
+      "hydrography": 2
+    },
+    "LS2": {
+      "adcp_velocity": 1,
+      "hydrography": 1
+    },
+    "LS3": {
+      "adcp_velocity": 1,
+      "hydrography": 1
+    },
+    "LS4": {
+      "adcp_velocity": 1,
+      "point_velocity": 3,
+      "hydrography": 4
+    },
+    "LS5": {
+      "adcp_velocity": 1,
+      "point_velocity": 5,
+      "hydrography": 6
+    },
+    "LS6": {
+      "hydrography": 8,
+      "adcp_velocity": 1,
+      "point_velocity": 6
+    },
+    "LS7": {
+      "adcp_velocity": 1,
+      "point_velocity": 7,
+      "hydrography": 9
+    },
+    "LS8": {
+      "adcp_velocity": 1,
+      "point_velocity": 8,
+      "hydrography": 10
+    }
+  },
+  "formats": {
+    "NETCDF3_CLASSIC": 37,
+    "NETCDF4_CLASSIC": 41
+  },
+  "verified_header_findings": [
+    "All 78 reviewed member names and original member byte hashes have retained headers, including both extensionless files.",
+    "All 37 velocity files declare UCUR and VCUR in meter/second; all 78 TIME variables declare days since 1950-01-01T00:00:00Z.",
+    "Eight ADCP files contain time-varying DEPTH(TIME,BINDEPTH), error velocity, pitch/roll, heading and pressure-related variables.",
+    "Point-current-meter DEPTH is explicitly nominal; its comment requires PRES for time-varying instrument depth.",
+    "Header time_coverage_end values extend into September 2018. The earlier August-to-August README summary is not exact instrument coverage.",
+    "Header time bounds, dimensions and QC attributes have not been checked against actual time values, masks or observation arrays.",
+    "All 78 instrument license attributes contain citation and PI-contact-before-commercial-use language, whereas the repository landing page links CC BY 4.0. Both statements are retained; this review does not resolve their relationship."
+  ],
+  "closed_prior_findings": [
+    {
+      "id": 18,
+      "scope": "Actual format compatibility proved for these 78 instrument headers only."
+    },
+    {
+      "id": 21,
+      "scope": "Complete archive custody, hash, directory fingerprint and exact header receipt now retained."
+    }
+  ],
+  "partially_addressed_prior_findings": [
+    {
+      "id": 6,
+      "scope": "Actual variable IDs, units, accuracy, fill and flag attributes retained for all instruments. Interpretation and sample validity remain open."
+    }
+  ],
+  "remaining_prior_findings": [
+    2,
+    6,
+    9,
+    12,
+    14
+  ],
+  "next_required_stage": [
+    "Freeze a separate cloud-only source-support protocol before reading actual coordinate, time, pressure or velocity observations.",
+    "Restore the existing artifact and first acquisition receipt; verify hashes without a fresh provider download.",
+    "Check time ordering, cadence, overlap and missingness; exact surveyed coordinates; nominal versus moving depth; velocity masks, direction and processing.",
+    "Keep coastal, slope and deep-current identities distinct; the eight LS moorings do not establish coverage of the two additional deep moorings in the study.",
+    "Review width edge/layer criteria and cross-section coverage before deriving seasonal widths or annual ranges.",
+    "Deliver source/support/measurement statuses separately with an accessible viewer and a later cloud browser gate."
+  ],
+  "observation_arrays_read": false,
+  "new_physical_measurements": 0,
+  "annual_ranges_derived": 0,
+  "new_geometry_or_state_joins": 0,
+  "working_dataset_changed": false,
+  "scientific_release_published": false,
+  "main_merged": false,
+  "local_resource_use": {
+    "artifact_metadata_download_bytes": 956976,
+    "original_archive_downloaded": false,
+    "local_native_builds": 0,
+    "local_wasm_builds": 0,
+    "local_browser_runs": 0
+  },
+  "review_scope": "One assistant reviewing actual retained source metadata; no independent scientific review or measurement approval."
+}

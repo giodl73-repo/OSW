@@ -1,0 +1,44 @@
+{
+  "schema": "osw.eac-mean-core-dashboard-context-preparation-review.v1",
+  "status": "PASS_SOURCE_MANIFEST_PRESERVATION_AND_OPTIONAL_FIELD_TESTS_BROWSER_PENDING",
+  "revision_sha256": "6074c3456a54dc229101809d3fb08ce1575e1617b564743a37112a6809c44528",
+  "checks": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_eac_mean_core_dashboard_context_v1.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "test_changed_scientific_dependency_or_archived_dashboard_is_refused (test_eac_mean_core_dashboard_context_v1.Context.test_changed_scientific_dependency_or_archived_dashboard_is_refused) ... ok\ntest_exact_saved_engine_preserved_except_three_presentation_assets (test_eac_mean_core_dashboard_context_v1.Context.test_exact_saved_engine_preserved_except_three_presentation_assets) ... ok\ntest_unrelated_binary_record_pin_namespace_or_marker_change_is_refused (test_eac_mean_core_dashboard_context_v1.Context.test_unrelated_binary_record_pin_namespace_or_marker_change_is_refused) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 1.721s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "analysis/test_eac_mean_core_dashboard_schema_v1.mjs"
+      ],
+      "exit_code": 0,
+      "output": "PASS: prior/unrelated/EAC dashboard entries accepted; absent optional fields allowed; malformed present values and missing required fields refused; helper loaded before consumer.\n"
+    },
+    {
+      "command": [
+        "node",
+        "analysis/test_mean_core_sections_ui_v1.mjs"
+      ],
+      "exit_code": 0,
+      "output": "PASS: five/filtered section cards, source/Inspect links, unknowns, compact disclosure, separate scales, consumer ordering and dashboard labels; browser layout pending\n"
+    }
+  ],
+  "javascript_parsers_passed": 2,
+  "python_manifest_tests_passed": 3,
+  "browser_verified": false,
+  "native_or_wasm_rebuild": false,
+  "scientific_data_changed": false,
+  "installed": false
+}

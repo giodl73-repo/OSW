@@ -1,0 +1,90 @@
+{
+  "schema": "osw.eddy-altimetry-contour-pilot-request.v1",
+  "execute": false,
+  "revision": 5,
+  "maximum_cloud_jobs": 1,
+  "maximum_local_heavy_jobs": 0,
+  "measurement_admission_permitted": false,
+  "physical_identity_join_permitted": false,
+  "runtime_installation_permitted": false,
+  "native_build_permitted": false,
+  "wasm_build_permitted": false,
+  "source": {
+    "url": "https://data.griidc.org/api/file/download/947138",
+    "bytes": 757416604,
+    "sha256": "526fb93bbb0880a4c6ab9390527cef8ecc4706c7c08d0a075ccfd02de922b527"
+  },
+  "source_product_version": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
+  "dates": [
+    "1997-03-23",
+    "1997-03-24",
+    "1997-03-25"
+  ],
+  "date_selection_context": {
+    "1997-03-24": "Berger et al. (2000), DeSoto Canyon Eddy Intrusion Study, MMS 2000-080, printed page 127/PDF page 147 explicitly names Deviant / LC ring D at 28 N, 88.7 W in the March 24, 1997 SST image.",
+    "1997-03-23": "Adjacent daily-product diagnostic only; no independently dated named position.",
+    "1997-03-25": "Adjacent daily-product diagnostic only; no independently dated named position."
+  },
+  "scope": "Sparse-day candidate diagnostics at unchanged levels and demeaning methods. March 24 probes are selected from the explicitly named source center. Neighbor days provide temporal context only. No physical identity, measurement, whole lifetime, state containment, source-error estimate or seasonal envelope admitted in this job.",
+  "input_sha256": {
+    "analysis/eddy_altimetry_contours_v1.py": "0d22d60c43bb4882001864b9ba52fdd8482a9db5c7653a4a49573b983aed74e0",
+    "analysis/test_eddy_altimetry_contours_v1.py": "7285225017d983bbb1b7478ae76fe53345c85872fa130a98ed6328aae52054ef",
+    "analysis/run_eddy_altimetry_contour_pilot_v1.py": "356354a184d64b37c08f32b3c896b78682fa0dfaf6bc1c086ae2c5dc4f12f5f7",
+    ".github/workflows/eddy-altimetry-contour-pilot-v1.yml": "d401b88eb5a98ecd6d6a4a1c7c1f13ce80dd5045ab10f5502bcd98b7c6ab16ca"
+  },
+  "review_refinement": "Independent source text supplies a dated center, not a physical contour. Compare against gridded ADT candidates without changing levels, area screen, closure rules or frozen operator.",
+  "review_control_points": {
+    "1997-03-24": {
+      "berger-2000-deviant-march24-source-center-probes": [
+        [
+          -88.825,
+          27.875
+        ],
+        [
+          -88.825,
+          28
+        ],
+        [
+          -88.825,
+          28.125
+        ],
+        [
+          -88.7,
+          27.875
+        ],
+        [
+          -88.7,
+          28
+        ],
+        [
+          -88.7,
+          28.125
+        ],
+        [
+          -88.575,
+          27.875
+        ],
+        [
+          -88.575,
+          28
+        ],
+        [
+          -88.575,
+          28.125
+        ]
+      ]
+    }
+  },
+  "control_point_reading_qualification": "Nine diagnostic probes at the reported 88.7 W,28 N center and +/-0.125 degree offsets (one product grid interval). These are selection probes, not source-reported uncertainty, a confidence region, verified eddy interior, or a measured center at the added decimal precision. The source latitude is reported as an integer degree; matching these probes cannot independently verify physical identity.",
+  "prior_completed_run_id": 41279891623,
+  "prior_completed_source_commit": "6ba77568a374d35875e62cea50f58ef0c155351a",
+  "source_position_reference": {
+    "file": "research/eddy-source-position-references-v1.json",
+    "sha256": "daab240f6f9fbb2ffd497d1e6625385fbcffe62645970914e0c7e2bd818d2f9f",
+    "record_id": "deviant-berger-2000-source-image-center-1997-03-24",
+    "review_file": "research/eddy-deviant-position-and-size-gap-source-review-v1.json",
+    "review_sha256": "e13bd42b30f9323e2027ca25909ddfdff32e6696cd2ea0dd3f524a81e03d84e6"
+  },
+  "completed_run_id": 41305027823,
+  "completed_source_commit": "8fda5c25b370660a908fcc30ec77cabf2e7fc7fc"
+}

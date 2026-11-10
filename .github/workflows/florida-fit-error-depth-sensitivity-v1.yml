@@ -1,0 +1,57 @@
+name: Florida fitted northward depth error sensitivity v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/florida-fit-error-depth-sensitivity-v1.yml
+      - analysis/derive_florida_fit_error_depth_sensitivity_v1.py
+      - analysis/test_florida_fit_error_depth_sensitivity_v1.py
+      - plans/florida-fit-error-depth-sensitivity-protocol-v1.md
+      - research/florida-fit-error-depth-sensitivity-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/florida-spray-seasonal-depth-v1.yml
+            analysis/acquire_florida_spray_seasonal_depth_v1.py
+            analysis/acquire_gulf_stream_spray_sections_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_florida_fit_error_depth_sensitivity_v1.py
+            analysis/derive_gulf_stream_fit_error_depth_sensitivity_v1.py
+            analysis/test_florida_fit_error_depth_sensitivity_v1.py
+            analysis/test_florida_spray_seasonal_depth_v1.py
+            plans/florida-fit-error-depth-sensitivity-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/florida-fit-error-depth-sensitivity-operator-v1.json
+            research/florida-spray-seasonal-depth-operator-v1.json
+            research/florida-spray-seasonal-depth-source-facts-v1.json
+            research/florida-spray-seasonal-depth-source-review-v1.json
+            research/gulf-stream-fit-error-depth-sensitivity-v1.json
+            research/source-data/florida-spray-seasonal-depth-v1/candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce Florida source and evaluate northward fixed-cutoff sensitivity without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_florida_spray_seasonal_depth_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_florida_fit_error_depth_sensitivity_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_florida_fit_error_depth_sensitivity_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: florida-fit-error-depth-sensitivity-v1
+          path: florida-fit-error-depth-sensitivity-v1/
+          retention-days: 7

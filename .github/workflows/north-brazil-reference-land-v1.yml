@@ -1,0 +1,55 @@
+name: North Brazil reference coarse land screen v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/audit_north_brazil_reference_land_v1.py
+      - analysis/test_north_brazil_reference_land_v1.py
+      - plans/north-brazil-reference-land-protocol-v1.md
+      - .github/workflows/north-brazil-reference-land-v1.yml
+      - research/north-brazil-reference-land-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  screen:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/north-brazil-reference-land-v1.yml
+            analysis/audit_north_brazil_reference_land_v1.py
+            analysis/compiled_depth_catalog_query_guard_v3.py
+            analysis/test_north_brazil_reference_land_v1.py
+            figures/osw-province-atlas-interactive.svg
+            plans/north-brazil-reference-land-protocol-v1.md
+            research/north-brazil-reference-land-operator-v1.json
+            research/north-brazil-reference-solids-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Bounded coarse SVG map contact test on one idle CPU
+        timeout-minutes: 3
+        run: |
+          export OSW_DEPTH_CASE_CPU=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_NBC_REFERENCE_LAND_START=$(python -c "import time;print(time.monotonic())")
+          timeout --signal=TERM --kill-after=2s 60s bash -e <<'OSW_DEPTH_CASE'
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python -m unittest discover -s analysis -p 'test_north_brazil_reference_land_v1.py' -v
+          taskset -c "$OSW_DEPTH_CASE_CPU" nice -n 15 python analysis/audit_north_brazil_reference_land_v1.py
+          OSW_DEPTH_CASE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: north-brazil-reference-land-v1
+          path: north-brazil-reference-land-v1/
+          retention-days: 7
+          if-no-files-found: error

@@ -1,0 +1,92 @@
+{
+  "schema": "osw.current-depth-wsc-f3-source-scope-review.v1",
+  "status": "CLOSED_SOURCE_CASE_NO_QUALIFIED_VERTICAL_DEPTH_BRACKETS",
+  "canonical_inventory_unchanged": "research/current-depth-reference-inventory-v38.json",
+  "new_depth_references": 0,
+  "new_current_depth_estimates": 0,
+  "source": {
+    "doi": "10.1594/PANGAEA.800346",
+    "citation": "Beszczynska-Moller,A.;Fahrbach,E.;Rohardt,G.;Schauer,U.(2012). Physical oceanography and current meter data from mooring F3-7. PANGAEA.",
+    "license": "CC-BY-3.0",
+    "landing_file": "research/source-data/wsc-f3-bounded-preview-v1/landing.html",
+    "landing_sha256": "61823b6e9e18a21e659786412475be1bea9b0afcf4368874e61f0c786707f61e",
+    "preview_file": "research/source-data/wsc-f3-bounded-preview-v1/preview.html",
+    "preview_sha256": "54aa3e8bab52d710dcb1ce30474a883d41859bf429e67113fd416fbf34445ea1",
+    "preview_scope": "first2000publishedrows_not_complete_annual_archive"
+  },
+  "capture": {
+    "run_id": 42069914777,
+    "status": "success",
+    "tests_passed": 3,
+    "artifact_id": 13435396928,
+    "artifact_sha256": "d982566cdb7c230097e3ebd2b907d0b580f9e680bbd3b4dbcd2c084f39566bba"
+  },
+  "packaging_failure": {
+    "run_id": 42071337934,
+    "status": "failure_before_native_field_decode",
+    "tests_passed": 5,
+    "missing_file": "analysis/capture_wsc_f3_bounded_preview_v1.py",
+    "native_numeric_values_decoded": 0,
+    "artifact_id": 13436121918,
+    "artifact_sha256": "f3142f9b136b8210c55bbd02be09473a578b472b8b45f0a2ac86d546863ef70e"
+  },
+  "first_native_analysis": {
+    "run_id": 42072151785,
+    "status": "success_with_insufficient_vertical_cohort",
+    "recovery_tests_passed": 2,
+    "source_case_reopened": false,
+    "new_provider_operations": 0,
+    "selected_dates": [
+      "2004-07-21",
+      "2004-07-22",
+      "2004-07-23"
+    ],
+    "selected_native_levels": 3,
+    "levels_per_requested_date": 1,
+    "native_numeric_values_decoded": 12,
+    "cohort_complete": false,
+    "artifact_id": 13437196841,
+    "artifact_sha256": "8c533da7b22c9fc9a5811eac0e0b0234d78433680cef079e012f1f32f635c1f9"
+  },
+  "exploratory_time_window": {
+    "run_id": 42074076565,
+    "status": "prospective_original_scalar_cap_rejection_before_native_table_parse",
+    "tests_passed": 3,
+    "declared_nearest_sample_window_seconds": 7200,
+    "new_provider_operations": 0,
+    "new_native_values_decoded": 0,
+    "result_file_emitted": false,
+    "artifact_id": 13436398886,
+    "artifact_sha256": "8198d6589fb0294e9550d04ed39d4eceeb19f9fa48c0ae4c49a0ea8b8d2f3a83"
+  },
+  "final_original_case": {
+    "file": "research/wsc-f3-original-case-final-ledger-v3.json",
+    "sha256": "c80f9ef1d7862e788aff5d11aedd54f04e3f709de706897a7ed9dbf6a07ba4d1",
+    "bytes": 2468,
+    "provider_operations_attempted": 2,
+    "remaining_provider_operations": 0,
+    "unused_provider_operations_surrendered": 6,
+    "provider_case_closed": true,
+    "cumulative_raw_bytes": 1384221,
+    "retained_numeric_upper_bound": 177160,
+    "cumulative_active_seconds": 8.518375526000057,
+    "cumulative_native_numeric_values_decoded": 12,
+    "decoded_cells": 30,
+    "measurement_nodes": 9
+  },
+  "scientific_review": [
+    "Original metadata and bounded-preview access succeeded withHTTP200; no network-access or source-availability failure is claimed.",
+    "At each predeclared exact timestamp, only one velocity-capable instrument level was selected. This is three dated point samples, not three multi-level observed profiles.",
+    "The preview contains velocity-gear IDs3,4,5,6, but their complete timing/depth alignment was not resolved. Do not assert missing measurements in the full archive or that timing offsets alone explain the incomplete exact-time cohort.",
+    "All9exact-time variant results are null because the declared vertical-cohort requirement failed; they do not demonstrate absent current or zero depth.",
+    "The missing-file failure occurred before native decoding and before selected-analysis reservation. The new offline version used the original unused allowance, carried failure clock, kept acquisition closed, and performed the first actual native selection. No source or artifact target was retried.",
+    "The separately declared exploratory timing method was rejected by its prospective scalar budget check before table parsing or any additional native field decode. It produced no bracket or profile result; do not lower allowances/retry it to fit.",
+    "The final177160 upper bound is retained accounting for work admitted before the prospective rejection, not proof that the proposed additional work fit the250000 cap. No source budget or time reset was used.",
+    "Sampling-domain depths, near-bed instrument placement, temperature layer definitions and transport integration limits are not complete current depths. No pressure conversion, inferred current bottom, thickness, annual range or volume is admitted.",
+    "All originals, failed versions, actual null results, cloud artifacts and ledgers remain intact. Canonicalv38 is unchanged and goal remains incomplete.",
+    "Do not reopen F3-7 via another date, gear, full-year file, mirror, format or fresh budget; no additional provider operations or reconstruction retries under this closed case."
+  ],
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "full_goal_complete": false
+}

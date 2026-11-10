@@ -1,0 +1,32 @@
+{
+  "schema": "osw.chen-indian-sec-ridge-rust-core-execution-review.v2",
+  "status": "PASS_NATIVE_CORE_UNIT_TESTS",
+  "evidence_sha256": {
+    "research/chen-indian-sec-ridge-rust-core-run-v2/executed-request.json": "f413e588f401bae68552d0c40db3e48e2c810d2c096109a021e3ed5a3bea7907",
+    "research/chen-indian-sec-ridge-rust-core-run-v2/native-tests.txt": "8378d02da1a1e66c3b4c4e7b1dbc6b56adde40b8050a927b23be1e121ac3910c",
+    "research/chen-indian-sec-ridge-rust-core-run-v2/result.json": "051f683fba87a52109fe484d2be63000c432b458d8dd0d214659c893dc0be400",
+    "research/chen-indian-sec-ridge-rust-core-run-v2/run-receipt.json": "621bdf64adaeae38aaff468a54313ccee7a8bb7ba35dccc2e5a0003ca2f1825c"
+  },
+  "rust_tests_passed": 288,
+  "new_rust_tests": [
+    "test indian_sec_model_grid_lengths::tests::complete_series_retains_values_failures_and_scope ... ok",
+    "test indian_sec_model_grid_lengths::tests::historical_projection_hides_only_complete_known_extension ... ok",
+    "test indian_sec_model_grid_lengths::tests::incomplete_or_reassigned_data_and_orphan_receipts_fail ... ok",
+    "test indian_sec_model_grid_lengths::tests::owner_and_dashboard_keep_whole_current_and_observation_gaps ... ok",
+    "test indian_sec_model_grid_lengths::tests::query_scene_preserves_selection_and_refuses_mixed_owner_chart ... ok",
+    "test indian_sec_model_grid_lengths::tests::source_aliases_and_candidate_prefixes_cannot_bypass_checks ... ok"
+  ],
+  "installed_parent_files_verified": 21,
+  "scientific_contract_sha256": "8a2f105f06ab009fa2a859035ad3f76516aaaf97c6f4608ad413e18758011fc6",
+  "candidate_data_materialized": false,
+  "wasm_built": false,
+  "query_atlas_delivery_completed": false,
+  "new_measurements_installed": 0,
+  "full_goal_complete": false,
+  "next_steps": [
+    "Materialize full candidate packet with source/index registration",
+    "Render scoped series and withheld cases in query and current card",
+    "Expose model traces in OSW atlas without promoting them to whole-current routes",
+    "Verify matched native/WASM APIs and desktop/narrow views before installation"
+  ]
+}

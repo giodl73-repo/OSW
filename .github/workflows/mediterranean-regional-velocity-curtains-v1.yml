@@ -1,0 +1,220 @@
+name: Four Mediterranean current native depth curtains v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/mediterranean-regional-velocity-curtains-v1.yml
+      - analysis/derive_mediterranean_regional_velocity_curtains_v1.py
+      - analysis/test_mediterranean_regional_velocity_curtains_v1.py
+      - plans/mediterranean-regional-velocity-curtains-protocol-v1.md
+      - research/mediterranean-regional-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/balearic-ligurian-interval-depth-sections-v1.yml
+            .github/workflows/mediterranean-boundary-interval-depth-sections-v1.yml
+            analysis/acquire_balearic_ligurian_interval_depth_sections_v1.py
+            analysis/acquire_barents_makassar_interval_depth_sections_v1.py
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_mediterranean_boundary_interval_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/bounded_hycom_mixed_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_mediterranean_regional_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_balearic_ligurian_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_interval_depth_sections_v1.py
+            analysis/test_barents_makassar_velocity_curtains_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_mediterranean_boundary_interval_depth_sections_v1.py
+            analysis/test_mediterranean_regional_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/balearic-ligurian-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-interval-depth-sections-protocol-v1.md
+            plans/barents-makassar-velocity-curtains-protocol-v1.md
+            plans/mediterranean-boundary-interval-depth-sections-protocol-v1.md
+            plans/mediterranean-regional-velocity-curtains-protocol-v1.md
+            research/algerian-cotroneo-2019-regional-width-scope-audit.json
+            research/algerian-reference-path-input.json
+            research/balearic-ligurian-interval-depth-sections-operator-v1.json
+            research/balearic-ligurian-interval-depth-sections-source-facts-v1.json
+            research/balearic-ligurian-interval-depth-sections-source-review-v1.json
+            research/balearic-reference-path-input.json
+            research/barents-makassar-interval-depth-sections-operator-v1.json
+            research/barents-makassar-interval-depth-sections-source-review-v1.json
+            research/barents-makassar-velocity-curtains-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v1.json
+            research/current-depth-source-facts-v10.json
+            research/current-depth-source-facts-v14.json
+            research/current-depth-source-facts-v16.json
+            research/current-depth-source-facts-v20.json
+            research/greenland-depth-sections-operator-v1.json
+            research/indonesian-throughflow-network-input.json
+            research/indonesian-throughflow-network-scope-audit.json
+            research/ligurian-northern-segment-scope-audit.json
+            research/ligurian-reach-reference-path-input.json
+            research/mediterranean-boundary-interval-depth-sections-operator-v1.json
+            research/mediterranean-boundary-interval-depth-sections-source-facts-v1.json
+            research/mediterranean-boundary-interval-depth-sections-source-review-v1.json
+            research/mediterranean-regional-velocity-curtains-operator-v1.json
+            research/north-cape-branch-profile-scope-audit.json
+            research/north-cape-northern-reach-reference-path-input.json
+            research/northern-mediterranean-reference-path-input.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-balearic-section-1p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-balearic-section-2p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-balearic-section-3p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-balearic-section-4p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-ligurian-section-7p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-ligurian-section-7p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-ligurian-section-8p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-03-15-ligurian-section-8p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-balearic-section-1p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-balearic-section-2p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-balearic-section-3p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-balearic-section-4p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-ligurian-section-7p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-ligurian-section-7p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-ligurian-section-8p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-06-15-ligurian-section-8p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-balearic-section-1p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-balearic-section-2p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-balearic-section-3p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-balearic-section-4p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-ligurian-section-7p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-ligurian-section-7p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-ligurian-section-8p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-09-15-ligurian-section-8p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-balearic-section-1p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-balearic-section-2p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-balearic-section-3p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-balearic-section-4p5e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-ligurian-section-7p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-ligurian-section-7p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-ligurian-section-8p3e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/2022-12-15-ligurian-section-8p8e.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/manifest.json
+            research/source-data/balearic-ligurian-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-03-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-06-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-09-15-north-cape-section-26e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-1s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-2s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-3s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-indonesian-throughflow-section-4s.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-20e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-22e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-24e.json
+            research/source-data/barents-makassar-interval-depth-sections-v1/2022-12-15-north-cape-section-26e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-0e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-2e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-4e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-8e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3p75e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-4p5e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-5p25e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-6e.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/manifest.json
+            research/source-data/mediterranean-boundary-interval-depth-sections-v1/transport-ledger.json
+            research/surface-regional-velocity-depth-curtains-v1.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_barents_makassar_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_mediterranean_regional_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_mediterranean_regional_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mediterranean-regional-velocity-curtains-v1
+          path: mediterranean-regional-velocity-curtains-v1/
+          retention-days: 7

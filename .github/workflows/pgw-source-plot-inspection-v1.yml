@@ -1,0 +1,59 @@
+name: Current depth Persian Gulf plot feasibility v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/pgw-source-plot-inspection-v1.yml
+      - analysis/inspect_pgw_source_plot_v1.py
+      - analysis/test_pgw_source_plot_inspection_v1.py
+      - plans/pgw-source-plot-feasibility-inspection-v1.md
+      - research/pgw-source-plot-inspection-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/inspect_pgw_source_plot_v1.py
+            analysis/test_pgw_source_plot_inspection_v1.py
+            plans/pgw-source-plot-feasibility-inspection-v1.md
+            research/current-depth-reference-inventory-source-review-v2.json
+            research/current-depth-reference-inventory-v2.json
+            research/current-depth-route-projection-inventory-source-review-v48.json
+            research/current-depth-route-projection-inventory-v48.json
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/pacific-neuc-mean-resume-source-review-v4.json
+            research/pgw-pous-2004-regional-core-thickness-source-facts-v1.json
+            research/pgw-source-plot-inspection-operator-v1.json
+            research/source-data/pacific-neuc-mean-resume-v4/section-00.json
+            research/source-data/pacific-neuc-mean-resume-v4/section-01.json
+            research/source-data/pacific-neuc-mean-resume-v4/section-02.json
+            research/source-data/pacific-neuc-mean-resume-v4/section-03.json
+            research/source-data/pous-oman-2004/acquisition.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Inspect only original plot metadata sequentially on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install PyMuPDF==1.28.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pgw_source_plot_inspection_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/inspect_pgw_source_plot_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pgw-source-plot-inspection-v1
+          path: pgw-source-plot-inspection-v1/
+          retention-days: 7

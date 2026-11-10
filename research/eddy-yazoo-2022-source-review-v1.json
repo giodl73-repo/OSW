@@ -1,0 +1,78 @@
+{
+  "schema": "osw.eddy-named-case-source-review.v1",
+  "status": "ORIGINAL_PRIMARY_YAZOO_RADIUS_AND_LOCAL_CURRENT_VERIFIED",
+  "review_date": "2026-11-01",
+  "sources": {
+    "gentil-2024-yazoo": {
+      "url": "https://univ-brest.hal.science/hal-05502105/document",
+      "doi": "10.1029/2024GL110845",
+      "citation": "Gentil et al. (2024), Distribution, Mixing, and Transformation of a Loop Current Ring Waters: The Case of Gulf of Mexico, Geophysical Research Letters 51, e2024GL110845.",
+      "access": "Original published article acquired from the HAL institutional archive, with archive cover page. Actual PDF pages 3, 4 and 7 (article pages 2, 3 and 6) visually reviewed for the explicit Yazoo name, map averaging window and approximately 150 km high-ADT-patch radius. Original figure not republished.",
+      "original": {
+        "bytes": 4747757,
+        "sha256": "918bdde6028a08438942ddcad0dc9f7c180b0e02549442d6ebc3de5860cd54f5",
+        "pages": 15
+      },
+      "publisher_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024GL110845",
+      "reviewed_page_png_sha256": {
+        "3": "c7c6a660be6ebf3c2def590edf36a67296379775b5fad059d591188e37e0892e",
+        "4": "3e16e113598ea8abc5d1271aa11c21a33adbe122191e7a5d6faa23eecab17f6a",
+        "7": "8df4922af964c3858655fa94028aee2fc79d4802fd80ba5734467d6b8d2a671e"
+      }
+    },
+    "furey-2022-yazoo": {
+      "url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2022/10/PE2307_CruiseReport_UGOS_GODEEP_October2022.pdf",
+      "citation": "Furey, West-Mack and Robbins (2022), UGOS GODEEP Cruise Report, R/V Pelican PE23-07, 1–5 October 2022, Woods Hole Oceanographic Institution.",
+      "access": "Original WHOI cruise report acquired. Actual PDF pages 2 and 12 visually reviewed. The abstract explicitly gives 2.5-knot currents while traversing Yazoo eastern flank; section 7 supplies circulation context. No plotted vector speed digitized and no instrument-depth assignment made from nearby figures.",
+      "original": {
+        "bytes": 6870955,
+        "sha256": "210f5d18b477f3a5318b86b86febe58c3dd0c25baf0721a23330f19472051175",
+        "pages": 22
+      },
+      "reviewed_page_png_sha256": {
+        "2": "f379ab46fff641f5173a0f6f55425f29754894675cbb6986f7c2058f7c69906d",
+        "12": "cd8f48498c718a0931eb07742810935f0bd5592c0cf3c6b3cbb0d337ff4944c7"
+      }
+    }
+  },
+  "source_name": "Yazoo",
+  "registry_candidate": {
+    "entity_id": "eddy:horizon:loop-74-primary",
+    "name": "Yazoo",
+    "source_number": 74,
+    "initial_separation": "2022-06-20",
+    "secondary_label": "Yazoo II",
+    "physical_crosswalk_verified": false,
+    "secondary_case_values_inherited": false
+  },
+  "accepted_references": {
+    "radius_km": 150,
+    "radius_relation": "approximately",
+    "radius_definition": "Source-described circular patch of high absolute dynamic topography",
+    "source_map_average_window": [
+      "2022-11-07",
+      "2022-11-17"
+    ],
+    "source_center_as_reported": {
+      "latitude": 26,
+      "longitude": -91,
+      "used_as_geometry": false
+    },
+    "eastern_flank_current_knots": 2.5,
+    "current_support": "Source cruise narrative, 1–5 October 2022; exact sample time, instrument depth and mean/maximum statistic unspecified"
+  },
+  "decisions": [
+    "Direct approximate source radius retained; no inferred diameter, area, principal widths or physical polygon.",
+    "October cruise currents and November map radius are separate observations, not simultaneous measures or seasonal extrema.",
+    "The explicit source name supports a qualified named-case reference. It does not resolve registry separation conventions, splits, reattachments or the Yazoo II identity.",
+    "Source map is an eleven-day average; not a single daily footprint. Methods cite a tracked ADT eddy, not the OSW fixed 0.17 m contour operator."
+  ],
+  "access_limits": {
+    "gentil_publisher_pdf": "HTTP 403; institutional HAL original obtained through its normal public document link.",
+    "black_sea_2003": "Publisher HTML and author full text reviewed; normal original HTML/PDF requests returned HTTP 403. No Bosphorus, Danube or Constantsa dimensions admitted.",
+    "lsu_zodiac": "HTTPS retrieval failed certificate verification; not bypassed. No Zodiac size admitted."
+  },
+  "original_assets_republished": false,
+  "runtime_installed": false,
+  "full_goal_complete": false
+}

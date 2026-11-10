@@ -1,0 +1,7 @@
+# Pacific SECC runtime source check v1
+
+One cloud job in concurrency group `osw-current-gap-delivery`, cancel-in-progress false. Freeze the runner, workflow, runtime source scope, all changed/archived Rust files, source contract and synthetic fixture before enabling the request. Refuse local execution, stale working-branch heads, altered source pins, broad phase authorization, more than one CPU, or elevated worker counts. Keep the global delivery phase at source-review-only with heavy work disabled; only this explicitly scoped cloud source-check request authorizes its native test build.
+
+Run the 13 small Python checks first, then install Rust1.95.0 and fetch locked dependencies. Run the new regional-reference Rust tests, existing planning tests, NwASC route tests and Madagascar route tests sequentially, with cargo workers1 and test threads1 under CPU affinity1/nice15. Retain test stdout, exact compiler identity and source/result hashes. A passing source check proves compilation and these fixtures only.
+
+No installed packet/index load, browser, WASM build, ocean-field processing, scientific data generation, working-branch data installation, local bulk synchronization or main merge. Do not admit the route or change coverage on this result. Native/WASM full-packet parity, actual publication-registry reconciliation, source index/card navigation, actual UI pixels and exact installation custody remain later delivery gates.

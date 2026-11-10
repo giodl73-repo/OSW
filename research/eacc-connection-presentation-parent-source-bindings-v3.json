@@ -1,0 +1,81 @@
+{
+  "schema": "osw.eacc-connection-presentation.parent-source-bindings.v3",
+  "status": "FIFTH_HISTORICAL_CONTROL_BINDING_VERIFIED_AFTER_FULL_PARENT_AUDIT",
+  "parent_commit": "1d98d9768959f1a357f3aa9933b86f203a4290bd",
+  "parent_manifest_sha256": "61a430e3db980104bfe6ec80a08192d04d00d9742d4a68b6276421a93bb04a63",
+  "bindings": [
+    {
+      "manifest_path": ".github/workflows/baffin-bound-candidate.yml",
+      "historical_commit": "0c2f0dc67a9ba25cbf488f634702b05f30401f2f",
+      "historical_sha256": "ad581427c6f9786e19fcfbf25a15d6af6c953a6e9edca61a5b3996f4efa7cb96",
+      "historical_bytes": 15102,
+      "archive_path": "research/eacc-connection-presentation-history-v2/baffin-bound-candidate.yml.source",
+      "installed_path_sha256": "f46fe67c46ae575cee33b7264bc2ad3f2231c62d0e2be3794ba3f1e3c6d06aa6",
+      "installed_path_bytes": 15259,
+      "role": "historical_workflow_dependency",
+      "handling": "Verify exact historical archive and retain historical manifest pin"
+    },
+    {
+      "manifest_path": ".github/workflows/davidson-width-candidate.yml",
+      "historical_commit": "0c2f0dc67a9ba25cbf488f634702b05f30401f2f",
+      "historical_sha256": "dd9a86a077733ac830826b7edf00b6074124cf59cf2a1953ed895a57b81808a9",
+      "historical_bytes": 14496,
+      "archive_path": "research/eacc-connection-presentation-history-v2/davidson-width-candidate.yml.source",
+      "installed_path_sha256": "b39dbb78d0b781ab8838befa59211dbe6ea5c52bd88f3f864a968b636ac44815",
+      "installed_path_bytes": 15055,
+      "role": "historical_workflow_dependency",
+      "handling": "Verify exact historical archive and retain historical manifest pin"
+    },
+    {
+      "manifest_path": "almanac/dashboard.html",
+      "historical_commit": "0c2f0dc67a9ba25cbf488f634702b05f30401f2f",
+      "historical_sha256": "8c83a858774a50658f3631690a2f27f8c128533076c07b75c1c7361031c470e8",
+      "historical_bytes": 8558,
+      "archive_path": "research/eacc-connection-presentation-history-v2/dashboard.html.source",
+      "installed_path_sha256": "0b1b0694a83a704979307cc4a6cf51322d1612507d2eaa848d955503e5b3e452",
+      "installed_path_bytes": 8612,
+      "role": "existing_navigation_presentation_revision",
+      "handling": "Verify historical archive and deployed bytes; update stale presentation pin without changing deployed HTML"
+    },
+    {
+      "manifest_path": "almanac/query.html",
+      "historical_commit": "0c2f0dc67a9ba25cbf488f634702b05f30401f2f",
+      "historical_sha256": "5ac525283c5f0797fe184df80601c7eb71f5f10e96ece804fa865112c7170f26",
+      "historical_bytes": 19580,
+      "archive_path": "research/eacc-connection-presentation-history-v2/query.html.source",
+      "installed_path_sha256": "73293116aba9edc127b85db028beee37529cd0e9c3a786a2b58c9ae2ed66e624",
+      "installed_path_bytes": 19634,
+      "role": "existing_navigation_presentation_revision",
+      "handling": "Verify historical archive and deployed bytes; update stale presentation pin without changing deployed HTML"
+    },
+    {
+      "manifest_path": "research/current-gap-delivery-phase.json",
+      "historical_commit": "0c2f0dc67a9ba25cbf488f634702b05f30401f2f",
+      "historical_sha256": "dd5cc9f4b6cf668a397d3b21611b04871b92609f7943d07580443b4536b92e96",
+      "historical_bytes": 601,
+      "archive_path": "research/eacc-connection-presentation-history-v3/current-gap-delivery-phase.json.source",
+      "installed_path_sha256": "07445a6b7421a8e132736c83aa83240d01cf778423b45419d4d5573ad0f69e1d",
+      "installed_path_bytes": 619,
+      "role": "historical_delivery_phase_control",
+      "handling": "Verify exact historical archive and currently disabled control bytes; retain historical manifest pin. Never use the archived active phase as execution authorization."
+    }
+  ],
+  "production_compile_dependencies_eligible_for_rebinding": false,
+  "data_or_wasm_rebinding_permitted": false,
+  "source_note": "The v2 full cloud scan found only the global delivery-phase control beyond the four reviewed bindings. Its manifest-matching bytes are an earlier active Indian-coastal phase, now retained only as non-executable history. The actual current source-review-only phase remains disabled and unchanged.",
+  "local_small_source_audit": {
+    "checked_files": 473,
+    "bytes": 4500230,
+    "scope": "Code/control files only; 571 manifest paths excluded. UI change is intentional; Loop page local preview intentionally older. This does not establish full parent consistency."
+  },
+  "local_audit_note": "An earlier broader attempt stopped at its 20MB read cap before producing a report; the narrower code/control audit completed. No installed packet/index was loaded.",
+  "next_action": "Create separate v3 verifier/checker and preflight with five exact bindings. Require the live global phase to remain source-review-only with heavy_work_permitted false. Preserve all executed v1/v2 source bytes; run one sequenced cloud presentation case without rebuilding data or WASM.",
+  "prior_full_cloud_audit": {
+    "run_id": 40422694990,
+    "attempt": 2,
+    "job_id": 121921399011,
+    "manifest_entries": 1044,
+    "reported_mismatches": 1,
+    "exact_receipt": "research/eacc-connection-presentation-parent-audit-failure-v2.json"
+  }
+}

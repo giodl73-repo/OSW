@@ -1,0 +1,71 @@
+{
+  "schema": "osw.kuroshio-hycom-depth-operator.v1",
+  "entity_id": "current:kuroshio",
+  "axis_report_file": "research/kuroshio-wang-2024-axis-normal-spans.json",
+  "input_sha256": {
+    "research/kuroshio-wang-2024-axis-normal-spans.json": "9e0c4cbbd62426c68aa29c45149106fbdbf52ed2ca159b852c912f5572a13346",
+    "research/kuroshio-wang-2024-axis-normal-query-contract.json": "bd473de62742d04a811bb43539720b6a222a82832ab96953534da192f2feaf07",
+    "plans/kuroshio-axis-normal-width-protocol-v1.md": "ab27682cb810f08f553af0c3298243294d4922877234027d63d89e9616fd8452",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/eac-hycom-route-depth-source-review-v2.json": "35311d4915e422cc277ac611ac44ddf2e6d5f635710a93cf894bfc50c590c27e",
+    "research/eac-connected-layer-thickness-source-review-v1.json": "4a4a2e1cf228b416e21b1c67f1358ecf2c3decca4809485bba2bdcba65a1ed70",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7"
+  },
+  "snapshot_times_utc": [
+    "2024-01-15T00:00:00Z",
+    "2024-07-15T00:00:00Z"
+  ],
+  "latitude_gates": [
+    18.5,
+    21.5,
+    24.5,
+    27.5,
+    29.5
+  ],
+  "source_axis_role": "Retained Wang2026 GLORYS12V1-derived daily model axis at nominal0.49m, unique latitude gate and primary14km tangent half-window. It is a reference for bounded HYCOM sampling, not an observed axis or velocity-aligned vector at all depths. Boundary span success is separate from axis tangent support.",
+  "source_axis_eligibility": "Require exact date/level1/window14/gate case; missing or duplicate key is an error. An unresolved gate, long source segment, unavailable or reversed tangent remains an unqueried case. Do not skip it or interpolate across it. Retain report case ID and original report pointer.",
+  "source_product": "HYCOM_GOFS3.1_GLBy0.08_expt93.0_uv3z_2024",
+  "source_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/analysis",
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2024",
+  "source_field_kind": "instantaneous_assimilating_model_output_not_observation_or_monthly_mean",
+  "source_access": "HYCOM Consortium/NRL/COAPS_FSU; public release, distribution unlimited. Source global attributes and component metadata retained.",
+  "normal_offsets_km": [
+    -40,
+    -20,
+    0,
+    20,
+    40
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "primary_threshold_m_s": 0.1,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "threshold_definition": "OSW-defined signed component contour diagnostics. Primary10cm/s permits a core-attached layer comparison with5/20cm/s sensitivity at the same chosen model node. These are not a universally adopted or physically validated Kuroshio boundary, the Wang30percent horizontal speed mask, or confidence intervals.",
+  "horizontal_selection": "Frozen EAC pilot peak-core selector: greatest positive signed component core above primary10cm/s in0–200m among the fixed five nearest nodes; first offset order breaks ties. Preserve edge maxima as axis unresolved, no window expansion or independent selection per alternate contour.",
+  "vertical_operator": "Retained connected-layer operator searches upward and downward from the qualifying0–200m sampled core. Lock the source near-surface reference bearing through depth; retain signed counterflow. First adjacent crossing only, preserve missing/domain censoring;0m is a surface boundary only with contiguous supported flow from the native0m sample. Never substitute bathymetry or sampling limit as a flow boundary.",
+  "maximum_nearest_cell_distance_km": 8,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "transport_budget": "Coordinate axes first; bounded OPeNDAP patches at most20000cell-pairs each and250000 cumulative, precheck at16decodedbytes/pair. Retain global source indices and canonical selected profile hashes. NetCDF client wire bytes and source wire-byte hashes are not instrumented.",
+  "time_compatibility": "Same calendar date joins a daily GLORYS-derived axis geometry with HYCOM00Z instantaneous fields. This does not establish simultaneity or independent confirmation; model assimilation inputs may overlap. Two snapshots do not establish a seasonal climatology, envelope or annual extrema.",
+  "scope": "East China Sea and Luzon Strait regional gates18.5–29.5N; no downstream Japan or Kuroshio Extension identity inheritance. Retained Wang side boundaries are not used as lateral bounds and no depth/width volume join is performed.",
+  "uncertainty_m": null,
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "whole_current_volume": false,
+    "seasonal_envelope": false,
+    "physical_state_join": false,
+    "global_total": false
+  },
+  "processing_policy": "Cloud-only sequential source field acquisition, diagnosis and tests on one idle CPU; local source metadata/code/hash retention only. No local numerical field processing or tests, runtime/server/UI changes.",
+  "full_goal_complete": false
+}

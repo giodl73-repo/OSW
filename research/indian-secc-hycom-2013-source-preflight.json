@@ -1,0 +1,41 @@
+{
+  "schema": "osw.indian-secc-hycom-source-preflight.v1",
+  "declared_utc": "2026-10-22T09:39:00.140483+00:00",
+  "status": "declared_before_velocity_acquisition",
+  "current_id": "indian-south-equatorial-countercurrent",
+  "product": "GOFS3.1 HYCOM+NCODA GLBv0.08 expt53.X",
+  "dataset_url": "https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/2013",
+  "catalog_url": "https://tds.hycom.org/thredds/catalogs/GLBv0.08/expt_53.X.html?dataset=GLBv0.08-expt_53.X-2013",
+  "provider_documentation_url": "https://www.hycom.org/dataserver/gofs-3pt1/reanalysis",
+  "known_missing_data_url": "https://www.hycom.org/faqs/471-did-you-know-there-are-missing-days-in-the-gofs-3pt1-global-reanalysis",
+  "year": 2013,
+  "requested_calendar_clock": "00:00:00 UTC daily; retain absent days explicitly",
+  "depth_m": 15,
+  "depth_policy": "Require exact provider15m z-level;no vertical interpolation or0-30m average claim.",
+  "longitude_domain_degrees_east": [
+    75,
+    85
+  ],
+  "latitude_domain_degrees_north": [
+    -12,
+    0
+  ],
+  "coordinate_policy": "Retain original native1D grid nodes within domain inclusive,with1e-5degree coordinate-representation allowance;no generated boundary cells.",
+  "variables": [
+    "water_u",
+    "water_v"
+  ],
+  "monthly_operator": "Equal-weight mean of available daily00Z paired native vectors,using identical timestamps for both components at each cell. Require at leastceil(0.8*calendar days) valid pairs per cell;keep counts and missing/failed cells.",
+  "temporal_inference": "Monthly means of sampled daily00Z model fields,not full3-hourly monthly means or a climatology.",
+  "selection_geometry_role": "Fixed acquisition viewport and depth,not current boundary or bathymetric mask.",
+  "request_limit_bytes_per_response": 20000000,
+  "source_interpretation": "Mapped z-level reanalysis model fields;not independent instrument observations or paper reproduction.",
+  "width_admission": false,
+  "physical_current_axis_admission": false,
+  "seasonal_playback_admission": false,
+  "no_new_endpoint_or_state_join": true,
+  "existing_source_unchanged": [
+    "research/indian-secc-oscar-2d-monthly-source-fields.json",
+    "research/indian-secc-local-axis-normal-spans.json"
+  ]
+}

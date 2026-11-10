@@ -5,7 +5,7 @@ from check_west_spitsbergen_stream_tubes import ROOT,AUDIT,validate_row
 class WscStreamTubes(unittest.TestCase):
     def test_source_table_and_no_alias_transfer(self):
         inventory=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())
-        rows=[r for r in inventory['measurements'] if r['current_id']=='west-spitsbergen']
+        rows=[r for r in inventory['measurements'] if r['current_id']=='west-spitsbergen' and r.get('phase_kind')=='synoptic_stream_tube_section']
         self.assertEqual([r['approximate_width_km'] for r in rows],[24,24,21,61,35,10])
         self.assertEqual(len(rows),6)
         self.assertFalse(any(r['current_id']=='spitsbergen-atlantic' for r in inventory['measurements']))

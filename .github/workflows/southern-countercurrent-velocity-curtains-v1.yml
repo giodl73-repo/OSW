@@ -1,0 +1,127 @@
+name: Indian and Pacific South Equatorial Countercurrent depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/southern-countercurrent-velocity-curtains-v1.yml
+      - analysis/derive_southern_countercurrent_velocity_curtains_v1.py
+      - analysis/test_southern_countercurrent_velocity_curtains_v1.py
+      - plans/southern-countercurrent-velocity-curtains-protocol-v1.md
+      - research/southern-countercurrent-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/southern-countercurrent-interval-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_southern_countercurrent_interval_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_southern_countercurrent_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_southern_countercurrent_interval_depth_sections_v1.py
+            analysis/test_southern_countercurrent_velocity_curtains_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/southern-countercurrent-interval-depth-sections-protocol-v1.md
+            plans/southern-countercurrent-velocity-curtains-protocol-v1.md
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v28.json
+            research/current-depth-source-facts-v9.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-93e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-94e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-95e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-96e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-indian-south-equatorial-countercurrent-section-97e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-168e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-169e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-170e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-171e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-03-15-pacific-south-equatorial-countercurrent-section-172e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-93e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-94e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-95e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-96e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-indian-south-equatorial-countercurrent-section-97e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-168e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-169e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-170e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-171e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-06-15-pacific-south-equatorial-countercurrent-section-172e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-93e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-94e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-95e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-96e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-indian-south-equatorial-countercurrent-section-97e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-168e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-169e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-170e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-171e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-09-15-pacific-south-equatorial-countercurrent-section-172e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-93e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-94e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-95e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-96e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-indian-south-equatorial-countercurrent-section-97e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-168e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-169e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-170e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-171e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/2022-12-15-pacific-south-equatorial-countercurrent-section-172e.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/manifest.json
+            research/source-data/southern-countercurrent-interval-depth-sections-v1/transport-ledger.json
+            research/southern-countercurrent-interval-depth-sections-operator-v1.json
+            research/southern-countercurrent-interval-depth-sections-source-facts-v1.json
+            research/southern-countercurrent-interval-depth-sections-source-review-v1.json
+            research/southern-countercurrent-velocity-curtains-operator-v1.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_southern_countercurrent_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_southern_countercurrent_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_southern_countercurrent_velocity_curtains_v1.py --current current:indian-south-equatorial-countercurrent
+          taskset -c "$cpu" nice -n 15 python analysis/derive_southern_countercurrent_velocity_curtains_v1.py --current current:pacific-south-equatorial-countercurrent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: southern-countercurrent-velocity-curtains-indian-south-equatorial-countercurrent-v1
+          path: southern-countercurrent-velocity-curtains-v1/indian-south-equatorial-countercurrent/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: southern-countercurrent-velocity-curtains-pacific-south-equatorial-countercurrent-v1
+          path: southern-countercurrent-velocity-curtains-v1/pacific-south-equatorial-countercurrent/
+          retention-days: 7

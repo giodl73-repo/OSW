@@ -1,0 +1,110 @@
+name: Check scoped local extent Rust queries v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-local-extent-query-check-request-v1.json
+      - .github/workflows/current-local-extent-query-check-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  scoped-rust-query-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 8
+      - id: request
+        name: Read committed build-only request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/current-local-extent-query-check-request-v1.json').read_bytes())
+          assert request['schema']=='osw.current-local-extent-query-check-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Check build-only controls on tiny fictional metadata
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_current_local_extent_query_cloud_v1.py -v
+      - name: Verify committed source and unchanged scientific inputs before compilation
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_local_extent_query_cloud_v1.py
+      - name: Install pinned compiler and formatter
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+          rustc +1.95.0 --version > .pytest_cache/current-local-extent-query-check-v1/rust-version.txt
+      - name: Check formatting without changing the frozen source
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup run 1.95.0 rustfmt --edition 2024 --config skip_children=true --check rust/osw-query/src/lib.rs rust/osw-query/src/main.rs rust/osw-query/src/local_extents.rs
+      - name: Fetch locked code dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Run scoped native tests
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 test --locked --manifest-path rust/osw-query/Cargo.toml --lib local_extents::tests -- --test-threads=1
+      - name: Build native CLI after tests finish
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Build WASM after native compilation finishes
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --release --target wasm32-unknown-unknown --manifest-path rust/osw-query/Cargo.toml --lib
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+      - name: Compare native and WASM queries without loading the full atlas
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 node analysis/check_current_local_extent_query_parity_v1.mjs rust/osw-query/target/debug/osw-query-cli rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm
+      - name: Retain scoped check evidence and compiled artifact
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-local-extent-query-check-v1
+          path: |
+            .pytest_cache/current-local-extent-query-check-v1/
+            rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm
+          include-hidden-files: true
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90

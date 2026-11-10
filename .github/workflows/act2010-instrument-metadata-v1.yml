@@ -1,0 +1,50 @@
+name: Agulhas ACT instrument metadata feasibility v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/act2010-instrument-metadata-v1.yml
+      - research/act2010-instrument-metadata-operator-v1.json
+      - analysis/discover_act2010_instrument_metadata_v1.py
+      - analysis/test_act2010_instrument_metadata_v1.py
+      - research/act2010-instrument-depth-source-context-v1.json
+      - plans/act2010-instrument-metadata-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/act2010-instrument-metadata-v1.yml
+            research/act2010-instrument-metadata-operator-v1.json
+            analysis/discover_act2010_instrument_metadata_v1.py
+            analysis/test_act2010_instrument_metadata_v1.py
+            research/act2010-instrument-depth-source-context-v1.json
+            plans/act2010-instrument-metadata-protocol-v1.md
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify durable bounded metadata-only operations
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_act2010_instrument_metadata_v1.py' -v
+      - name: Discover original published ACT instrument archive without reading fields
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/discover_act2010_instrument_metadata_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: act2010-instrument-metadata-v1
+          path: act2010-instrument-metadata-v1/
+          retention-days: 7
+          if-no-files-found: error

@@ -1,0 +1,49 @@
+name: Northern Current Toulon dated local depth v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - analysis/verify_northern_toulon_2011_depth_v1.py
+      - analysis/test_northern_toulon_2011_depth_v1.py
+      - research/northern-toulon-2011-depth-facts-v1.json
+      - research/northern-toulon-2011-depth-operator-v1.json
+      - plans/northern-toulon-2011-depth-protocol-v1.md
+      - .github/workflows/northern-toulon-2011-depth-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/verify_northern_toulon_2011_depth_v1.py
+            analysis/test_northern_toulon_2011_depth_v1.py
+            research/northern-toulon-2011-depth-facts-v1.json
+            research/northern-toulon-2011-depth-operator-v1.json
+            plans/northern-toulon-2011-depth-protocol-v1.md
+            .github/workflows/northern-toulon-2011-depth-v1.yml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Sequential one CPU checks then original HTML custody
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          export OSW_NORTHERN_TOULON_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_northern_toulon_2011_depth_v1.py' -v
+          taskset -c "$cpu" nice -n 15 timeout --signal=TERM --kill-after=5s 70s python analysis/verify_northern_toulon_2011_depth_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: northern-toulon-2011-depth-v1
+          path: northern-toulon-2011-depth-v1/
+          retention-days: 7

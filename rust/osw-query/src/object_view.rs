@@ -8,6 +8,13 @@ use std::collections::BTreeSet;
 struct Request {
     id: String,
 }
+fn owns_source_row(row: &Value, id: &str) -> bool {
+    row["entity_id"] == id
+        || id
+            .strip_prefix("current:")
+            .filter(|current| !current.is_empty())
+            .is_some_and(|current| row["current_id"] == current)
+}
 impl Store {
     pub fn object_view(&self, bytes: &[u8]) -> Result<Value, String> {
         let request: Request = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
@@ -76,6 +83,33 @@ impl Store {
                 .cloned()
                 .collect();
             data[name] = json!(selected);
+        }
+        for name in [
+            "widths",
+            "current_identity_admissions",
+            "current_measurement_admissions",
+            "current_length_bound_admissions",
+            "current_length_bound_scenarios",
+            "current_regional_reaches",
+            "current_core_migration_profiles",
+            "route_decisions",
+            "current_direction_calendars",
+            "current_direction_descriptions",
+            "current_reported_width_evidence",
+            "current_cross_shore_context",
+            "current_regime_context",
+        ] {
+            if let Some(rows) = self.bundle.collections.get(name) {
+                data[name] = json!(
+                    rows.iter()
+                        .filter(|row| owns_source_row(row, id))
+                        .collect::<Vec<_>>()
+                );
+            }
+        }
+        if let Some(rows) = self.bundle.collections.get("current_basin_memberships") {
+            let related: Vec<_> = rows.iter().filter(|r| r["entity_id"] == id || r["family_entity_id"] == id).collect();
+            if !related.is_empty() { data["current_basin_memberships"] = json!(related); }
         }
         let footprints = data["named_eddy_footprint_candidates"]
             .as_array()
@@ -193,8 +227,38 @@ impl Store {
             footprint_plots[candidate_id]["source_panel_overlay"] =
                 crate::ursa_contour::overlay(&self.bundle, candidate)?;
         }
-        Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
-        )
+        let projected = crate::indian_sec_model_grid_lengths::object_projection(&self.bundle, id, crate::equatorial_basin_identities::object_projection(&self.bundle, id,
+            crate::pacific_nec_nominal_width::object_projection(&self.bundle, id,
+                json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
+            ),
+        ))?;
+        let projected = crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected)))?;
+        Ok(crate::current_reference_profiles::object_projection(&self.bundle, id, crate::current_core_dimensions::object_projection(&self.bundle, id, crate::pacific_sec_jet_widths::object_projection(&self.bundle, id, crate::characteristic_velocities::object_projection(&self.bundle, id, projected)))))
+    }
+}
+
+#[cfg(test)]
+mod source_ownership_tests {
+    use super::*;
+    #[test]
+    fn joins_legacy_current_keys_and_new_entity_keys_without_neighbor_transfer() {
+        assert!(owns_source_row(
+            &json!({"current_id":"davidson"}),
+            "current:davidson"
+        ));
+        assert!(owns_source_row(
+            &json!({"entity_id":"current:davidson"}),
+            "current:davidson"
+        ));
+        assert!(!owns_source_row(
+            &json!({"current_id":"california"}),
+            "current:davidson"
+        ));
+        assert!(!owns_source_row(
+            &json!({"current_id":"davidson"}),
+            "eddy:davidson"
+        ));
+        assert!(!owns_source_row(&json!({}), "eddy:any"));
+        assert!(!owns_source_row(&json!({"current_id":""}), "current:"));
     }
 }

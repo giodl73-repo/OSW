@@ -1,0 +1,205 @@
+{
+  "schema": "osw.canary-pies-native-depth-source-facts.v1",
+  "status": "THREE_NATIVE_PRESSURE_DESCRIPTORS_RETAINED_SEPARATELY_FROM_METRE_REGISTER",
+  "source_citation": "Hernández-Guerra, Caínzos and Vélez-Belchí(2025), Time Series of the Canary Current Derived From One Year of Pressure Inverted Echo Sounder (PIES) Data, doi:10.1029/2025JC022509.",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025JC022509",
+  "review_date": "2026-11-02",
+  "review_scope": "Primary publisher indexed full HTML Sections2–5, Table1, Figure7 caption, data availability. Numeric values transcribed from author prose; no PDF or figure pixels viewed, no digitization. Zenodo API record independently retrieved.",
+  "published_period_context": {
+    "deployment_month": "2022-11",
+    "telemetry_cruises": [
+      "2023-04",
+      "2023-12"
+    ],
+    "figure2_pies_d_display_period": [
+      "2022-11-23",
+      "2023-12-08"
+    ],
+    "archive_metadata_period": [
+      "2022-11-22",
+      "2023-12-12"
+    ],
+    "exact_common_velocity_averaging_dates_established": false,
+    "qualification": "Figure2 dates describe displayed PIES D measurements, not established identical usable velocity dates for every pair. Archive bounds differ and are not silently substituted."
+  },
+  "nominal_sites": {
+    "A": {
+      "latitude_degrees_minutes_north": "28 40.7",
+      "longitude_degrees_minutes_west": "13 05.2"
+    },
+    "B": {
+      "latitude_degrees_minutes_north": "28 48.1",
+      "longitude_degrees_minutes_west": "13 42.3"
+    },
+    "C": {
+      "latitude_degrees_minutes_north": "28 52.5",
+      "longitude_degrees_minutes_west": "14 06.1"
+    },
+    "D": {
+      "latitude_degrees_minutes_north": "29 09.9",
+      "longitude_degrees_minutes_west": "15 30.1"
+    },
+    "E": {
+      "latitude_degrees_minutes_north": "29 10.0",
+      "longitude_degrees_minutes_west": "18 29.2"
+    }
+  },
+  "references": [
+    {
+      "id": "canary-pies-2025-cc-mean-velocity-reversal-pressure",
+      "entity_id": "current:canary",
+      "branch_scope": "offshore Canary Current",
+      "pies_endpoints": [
+        "C",
+        "E"
+      ],
+      "metric": "reported_mean_geostrophic_velocity_sign_reversal_pressure",
+      "approximate_value": 810,
+      "unit": "dbar",
+      "vertical_coordinate": "source_reported_pressure_positive_down",
+      "velocity_component": "absolute_geostrophic_perpendicular_to_source_pies_section",
+      "averaging_condition": "all_times_time_mean",
+      "source_locator": "Section4 final paragraphs and Figure7 caption; conditional690dbar case in paragraph following caption.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025JC022509",
+      "depth_m": null,
+      "pressure_to_depth_conversion_performed": false,
+      "uncertainty": null,
+      "seasonal_values": null,
+      "physical_thickness_m": null,
+      "whole_current_representative": false,
+      "reference_route_projection_eligible": false,
+      "volume_eligible": false
+    },
+    {
+      "id": "canary-pies-2025-lp-mean-velocity-reversal-pressure",
+      "entity_id": "current:canary",
+      "branch_scope": "Lanzarote passage",
+      "pies_endpoints": [
+        "A",
+        "B"
+      ],
+      "metric": "reported_mean_geostrophic_velocity_sign_reversal_pressure",
+      "approximate_value": 480,
+      "unit": "dbar",
+      "vertical_coordinate": "source_reported_pressure_positive_down",
+      "velocity_component": "absolute_geostrophic_perpendicular_to_source_pies_section",
+      "averaging_condition": "all_times_time_mean",
+      "source_locator": "Section4 final paragraphs and Figure7 caption; conditional690dbar case in paragraph following caption.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025JC022509",
+      "depth_m": null,
+      "pressure_to_depth_conversion_performed": false,
+      "uncertainty": null,
+      "seasonal_values": null,
+      "physical_thickness_m": null,
+      "whole_current_representative": false,
+      "reference_route_projection_eligible": false,
+      "volume_eligible": false
+    },
+    {
+      "id": "canary-pies-2025-lp-southward-only-velocity-reversal-pressure",
+      "entity_id": "current:canary",
+      "branch_scope": "Lanzarote passage",
+      "pies_endpoints": [
+        "A",
+        "B"
+      ],
+      "metric": "reported_mean_geostrophic_velocity_sign_reversal_pressure",
+      "approximate_value": 690,
+      "unit": "dbar",
+      "vertical_coordinate": "source_reported_pressure_positive_down",
+      "velocity_component": "absolute_geostrophic_perpendicular_to_source_pies_section",
+      "averaging_condition": "source_southward_component_selection_excluding_recirculation",
+      "source_locator": "Section4 final paragraphs and Figure7 caption; conditional690dbar case in paragraph following caption.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025JC022509",
+      "depth_m": null,
+      "pressure_to_depth_conversion_performed": false,
+      "uncertainty": null,
+      "seasonal_values": null,
+      "physical_thickness_m": null,
+      "whole_current_representative": false,
+      "reference_route_projection_eligible": false,
+      "volume_eligible": false
+    }
+  ],
+  "interpretation_rules": [
+    "Keep pressure in dbar. Do not silently label810dbar as810m. Any later metre conversion needs an explicit operator and declared latitude for this section-averaged quantity.",
+    "810dbar and480dbar are sign reversals of mean section velocity, not mean instantaneous boundaries or full current thicknesses. A cross-section average can conceal opposing flows; it is not a current-axis point.",
+    "690dbar is conditional on source southward-component selection excluding LP recirculation. It does not replace480dbar as the all-times mean and the two values do not form a seasonal or uncertainty range. Exact selection/reaveraging algorithm not independently reconstructed.",
+    "Source transport integration uses810dbar offshore and690dbar LP. Those fixed limits are not monthly boundary observations. Seasonal transport table cannot supply a seasonal depth curve.",
+    "PIES bottom pressures and assumed no-motion reference levels are distinct from velocity reversal. Intermediate water-mass boundaries and the150m temperature seasonal-correction limit are also distinct quantities.",
+    "Meddy passage around PIES D in April2023 affects both offshore segments. Do not remove it without an explicit alternate-case definition.",
+    "Source GEM uses10dbar pressure spacing, historical CTD/Argo lookup tables, seasonal corrections, calibration, absolute reference velocities and bottom-pressure anomalies. Nominal pressure resolution is not depth uncertainty."
+  ],
+  "archive_assessment": {
+    "record_url": "https://zenodo.org/records/14826982",
+    "api_url": "https://zenodo.org/api/records/14826982",
+    "doi": "10.5281/zenodo.14826982",
+    "title": "PIES data collected north of the Canary Islands",
+    "license_id": "cc-by-4.0",
+    "api_response_sha256": "d14139dca58471edd7f86fbcfff6fcd615fc2cd8f4356403add0644c608d0a23",
+    "published_files": [
+      {
+        "key": "432_revised.txt",
+        "size": 21325,
+        "checksum": "md5:f111f2f7b9d5d35a89bf64308d7f0288",
+        "links": {
+          "self": "https://zenodo.org/api/records/14826982/files/432_revised.txt/content"
+        }
+      },
+      {
+        "key": "423_revised.txt",
+        "size": 21458,
+        "checksum": "md5:98b8200f73d28da3d54857eb49338018",
+        "links": {
+          "self": "https://zenodo.org/api/records/14826982/files/423_revised.txt/content"
+        }
+      },
+      {
+        "key": "431_revised.txt",
+        "size": 21229,
+        "checksum": "md5:fe871885a25eac73c57a479565383232",
+        "links": {
+          "self": "https://zenodo.org/api/records/14826982/files/431_revised.txt/content"
+        }
+      },
+      {
+        "key": "433_revised.txt",
+        "size": 21487,
+        "checksum": "md5:42a46faccd2f36d463ae8c5dd511102f",
+        "links": {
+          "self": "https://zenodo.org/api/records/14826982/files/433_revised.txt/content"
+        }
+      },
+      {
+        "key": "424_revised.txt",
+        "size": 20976,
+        "checksum": "md5:9fcf3b4f79a21c346eab654388f55ff0",
+        "links": {
+          "self": "https://zenodo.org/api/records/14826982/files/424_revised.txt/content"
+        }
+      }
+    ],
+    "file_to_instrument": {
+      "423_revised.txt": "A",
+      "424_revised.txt": "B",
+      "431_revised.txt": "C",
+      "432_revised.txt": "D",
+      "433_revised.txt": "E"
+    },
+    "raw_files_downloaded": false,
+    "raw_files_parsed": false,
+    "ready_made_velocity_profiles_identified": false,
+    "metadata_described_content": "Encoded acoustic travel time and bottom pressure telemetry; MSB/LSB reconstruction required. Archive prose names original .dat files while actual published keys are *_revised.txt.",
+    "next_processing_dependency": "Identify a published derived absolute-velocity product or document and reproduce the GEM/reference-velocity pipeline in cloud before calculating dated or seasonal reversal pressures. Five raw telemetry files alone are not a ready velocity-depth product."
+  },
+  "existing_metre_register": {
+    "file": "research/current-depth-register-v40.json",
+    "sha256": "1f217973dcef8fc339e9ad86a8323c6b4f88dab14c69f48ea4288ab7872be797",
+    "qualified_reference_count_unchanged": 347,
+    "existing_canary_reference_count_unchanged": 3,
+    "new_native_pressure_descriptors_not_added_to_metre_count": 3
+  },
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

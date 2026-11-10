@@ -1,0 +1,1420 @@
+{
+  "schema": "osw.a20-gulf-stream-core-direction-depths.v2",
+  "status": "FIXED_LOCAL100M_DIRECTION_COMPONENT_CROSSINGS_WITH_SHARED_NATIVE_LEVEL_UNION",
+  "operator_file": "research/a20-gulf-stream-core-direction-depth-operator-v2.json",
+  "input_sha256": {
+    "analysis/sample_a20_gulf_stream_core_direction_depths_v2.py": "3d0d5b3fbd776ef18f51eb527831c592a39514bb96cb977da55eb96060bfc0d7",
+    "analysis/test_a20_gulf_stream_core_direction_depths_v2.py": "68f3f708348f2c33a583fd00bb1d6de4e658e71726a0fda9e6fd0afa4c4f7f16",
+    "plans/a20-gulf-stream-core-direction-depth-protocol-v2.md": "37f84a5f6ee8e849d0fbb00ca7efda0617f6a45f9cdc3b011a4acc611522f6c7",
+    ".github/workflows/a20-gulf-stream-core-direction-depths-v2.yml": "4f6928052fa604050cbb52fed98551b58e48d7625087d8080424f3a379f76da4",
+    "analysis/sample_a20_gulf_stream_depth_brackets_v1.py": "831dd652dfea26b4541e71c7bb0e6b23b39d06ac1cdf1e73ea32edfbe5beb75c",
+    "research/a20-gulf-stream-native-depth-brackets-v1.json": "fc7605d1b779f33c1e568d31f724f13c6d6798cb18138ab9451dfafa4de0e1fe",
+    "research/a20-gulf-stream-native-depth-bracket-source-review-v1.json": "7c175eb104b698fca438ea21942cb7c46d6a2fa1cf16fd51aa5c395c66347034",
+    "research/a20-ldeo-ix14-component-method-context-v1.json": "4c8baef3b1c464d5cd49c0660b0244c891f67d6e4283965d9701a17151405d33",
+    "research/source-data/a20-gulf-stream-native-casts-v1/014.nc": "789546139ddda905122153d02e89cda9f1f0de610fe9d823b1e412517c8e26ca",
+    "research/source-data/a20-gulf-stream-native-casts-v1/015.nc": "6ca6e4305661e9e309da7bd885ae2d90079d0c2935ba46643c55335969c0b708",
+    "research/source-data/a20-gulf-stream-native-casts-v1/016.nc": "3c2c06e6045104f9940222ce91ea05bc110583a0ce80633f08c4b6c52458a5c9"
+  },
+  "source_file": "research/a20-gulf-stream-native-depth-brackets-v1.json",
+  "source_sha256": "fc7605d1b779f33c1e568d31f724f13c6d6798cb18138ab9451dfafa4de0e1fe",
+  "profiles": [
+    {
+      "station": "014",
+      "entity_context": "current:gulf-stream",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/014.nc",
+      "source_sha256": "789546139ddda905122153d02e89cda9f1f0de610fe9d823b1e412517c8e26ca",
+      "cast_datetime_utc": "2021-03-23T16:51:25",
+      "source_lon_lat": [
+        -52.05171,
+        41.46347
+      ],
+      "fixed_reference_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_eastward_u_m_s": -0.004050758667290211,
+        "reference_northward_v_m_s": 0.2668982446193695,
+        "reference_speed_m_s": 0.26692898236550006,
+        "qualified": true,
+        "east_north_unit_vector": [
+          -0.015175417189219246,
+          0.9998848467264283
+        ],
+        "reference_direction_is_independently_validated_current_axis": false
+      },
+      "inherited_native_level_count": 15,
+      "component_metric": "signed_horizontal_component_along_fixed_native_nearest100m_velocity_direction",
+      "source_uerr_is_depth_confidence_interval": false,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        594
+      ],
+      "sampled_upper200m_core_index": 18,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        30,
+        33,
+        34,
+        36,
+        48,
+        54,
+        57,
+        59,
+        60,
+        61,
+        93,
+        124,
+        186,
+        217,
+        221,
+        223,
+        224,
+        225,
+        233,
+        249,
+        311,
+        374,
+        499,
+        594
+      ],
+      "selected_native_levels": 29,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": -0.0016895129811018705,
+          "v_m_s": 0.24689650535583496,
+          "uerr_m_s": 0.10696107149124146,
+          "aligned_component_m_s": 0.24689371347934463
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": -0.015171604230999947,
+          "v_m_s": 0.2640232741832733,
+          "uerr_m_s": 0.06023188680410385,
+          "aligned_component_m_s": 0.2642231064625871
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.004050758667290211,
+          "v_m_s": 0.2668982446193695,
+          "uerr_m_s": 0.058291077613830566,
+          "aligned_component_m_s": 0.26692898236550006
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.03747554123401642,
+          "v_m_s": 0.2818392813205719,
+          "uerr_m_s": 0.052722662687301636,
+          "aligned_component_m_s": 0.2812381196320888
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.04738888144493103,
+          "v_m_s": 0.22348737716674805,
+          "uerr_m_s": 0.04939557984471321,
+          "aligned_component_m_s": 0.22274249581760808
+        },
+        {
+          "native_index": 30,
+          "depth_m": 248.0,
+          "u_m_s": 0.03792625665664673,
+          "v_m_s": 0.20548823475837708,
+          "uerr_m_s": 0.051926106214523315,
+          "aligned_component_m_s": 0.20488902534827416
+        },
+        {
+          "native_index": 33,
+          "depth_m": 272.0,
+          "u_m_s": 0.04386480152606964,
+          "v_m_s": 0.20384351909160614,
+          "uerr_m_s": 0.05101938918232918,
+          "aligned_component_m_s": 0.20315437918000595
+        },
+        {
+          "native_index": 34,
+          "depth_m": 280.0,
+          "u_m_s": 0.05375440791249275,
+          "v_m_s": 0.17964975535869598,
+          "uerr_m_s": 0.05016707628965378,
+          "aligned_component_m_s": 0.17881332253543852
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": 0.07999319583177567,
+          "v_m_s": 0.15911231935024261,
+          "uerr_m_s": 0.048970647156238556,
+          "aligned_component_m_s": 0.15788006692675774
+        },
+        {
+          "native_index": 48,
+          "depth_m": 392.0,
+          "u_m_s": 0.0957864373922348,
+          "v_m_s": 0.20515744388103485,
+          "uerr_m_s": 0.04219501465559006,
+          "aligned_component_m_s": 0.20368022018127815
+        },
+        {
+          "native_index": 54,
+          "depth_m": 440.0,
+          "u_m_s": 0.06128041446208954,
+          "v_m_s": 0.1737261265516281,
+          "uerr_m_s": 0.040348511189222336,
+          "aligned_component_m_s": 0.1727761655644603
+        },
+        {
+          "native_index": 57,
+          "depth_m": 464.0,
+          "u_m_s": 0.09896131604909897,
+          "v_m_s": 0.1795530915260315,
+          "uerr_m_s": 0.0422222726047039,
+          "aligned_component_m_s": 0.17803063614312312
+        },
+        {
+          "native_index": 59,
+          "depth_m": 480.0,
+          "u_m_s": 0.10923043638467789,
+          "v_m_s": 0.13862520456314087,
+          "uerr_m_s": 0.04161528870463371,
+          "aligned_component_m_s": 0.1369516239751379
+        },
+        {
+          "native_index": 60,
+          "depth_m": 488.0,
+          "u_m_s": 0.09872610867023468,
+          "v_m_s": 0.11347749829292297,
+          "uerr_m_s": 0.04560359939932823,
+          "aligned_component_m_s": 0.11196622110097881
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": 0.10416251420974731,
+          "v_m_s": 0.08908391743898392,
+          "uerr_m_s": 0.04270368441939354,
+          "aligned_component_m_s": 0.08749294952565732
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": 0.011642158962786198,
+          "v_m_s": 0.07364693284034729,
+          "uerr_m_s": 0.04016333445906639,
+          "aligned_component_m_s": 0.07346177753569871
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.005115473177284002,
+          "v_m_s": 0.07784178853034973,
+          "uerr_m_s": 0.05393347889184952,
+          "aligned_component_m_s": 0.07791045423316532
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.0024953160900622606,
+          "v_m_s": 0.07695110887289047,
+          "uerr_m_s": 0.06394804269075394,
+          "aligned_component_m_s": 0.07698011516348445
+        },
+        {
+          "native_index": 217,
+          "depth_m": 1744.0,
+          "u_m_s": -0.024853965267539024,
+          "v_m_s": 0.05950038135051727,
+          "uerr_m_s": 0.06767944246530533,
+          "aligned_component_m_s": 0.05987069897856726
+        },
+        {
+          "native_index": 221,
+          "depth_m": 1776.0,
+          "u_m_s": -0.03853307664394379,
+          "v_m_s": 0.05123649165034294,
+          "uerr_m_s": 0.0660940632224083,
+          "aligned_component_m_s": 0.05181534711425908
+        },
+        {
+          "native_index": 223,
+          "depth_m": 1792.0,
+          "u_m_s": -0.03483006730675697,
+          "v_m_s": 0.050327468663454056,
+          "uerr_m_s": 0.06688132882118225,
+          "aligned_component_m_s": 0.0508502340927955
+        },
+        {
+          "native_index": 224,
+          "depth_m": 1800.0,
+          "u_m_s": -0.03628741577267647,
+          "v_m_s": 0.04537917673587799,
+          "uerr_m_s": 0.06625042110681534,
+          "aligned_component_m_s": 0.045924627848193886
+        },
+        {
+          "native_index": 225,
+          "depth_m": 1808.0,
+          "u_m_s": -0.029442073777318,
+          "v_m_s": 0.04643271118402481,
+          "uerr_m_s": 0.06952020525932312,
+          "aligned_component_m_s": 0.046874160057817735
+        },
+        {
+          "native_index": 233,
+          "depth_m": 1872.0,
+          "u_m_s": -0.043571099638938904,
+          "v_m_s": 0.02665710635483265,
+          "uerr_m_s": 0.06680536270141602,
+          "aligned_component_m_s": 0.02731524631618588
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": -0.04004376754164696,
+          "v_m_s": 0.03504645451903343,
+          "uerr_m_s": 0.07151136547327042,
+          "aligned_component_m_s": 0.03565009968334109
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.008949799463152885,
+          "v_m_s": 0.037018783390522,
+          "uerr_m_s": 0.08077432960271835,
+          "aligned_component_m_s": 0.03715033749704414
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.040462370961904526,
+          "v_m_s": 0.0004445704980753362,
+          "uerr_m_s": 0.07876737415790558,
+          "aligned_component_m_s": 0.001058552664139001
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": 0.024371376261115074,
+          "v_m_s": -0.004308897070586681,
+          "uerr_m_s": 0.08498387038707733,
+          "aligned_component_m_s": -0.004678246689221376
+        },
+        {
+          "native_index": 594,
+          "depth_m": 4760.0,
+          "u_m_s": -0.027297668159008026,
+          "v_m_s": -0.038028620183467865,
+          "uerr_m_s": 0.13116222620010376,
+          "aligned_component_m_s": -0.03760998756075851
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            186,
+            249
+          ],
+          "refined_bracket_indices": [
+            223,
+            224
+          ],
+          "lower_depth_m": 1793.3809209272094,
+          "lower_depth_native_bracket_m": [
+            1792.0,
+            1800.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1792.0,
+            1800.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            60,
+            61
+          ],
+          "lower_depth_m": 491.9116048916142,
+          "lower_depth_native_bracket_m": [
+            488.0,
+            496.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            488.0,
+            496.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            24,
+            36
+          ],
+          "refined_bracket_indices": [
+            33,
+            34
+          ],
+          "lower_depth_m": 273.03672711536456,
+          "lower_depth_native_bracket_m": [
+            272.0,
+            280.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            272.0,
+            280.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false,
+      "status": "FIXED_NEAREST100M_DIRECTION_LOCAL_NATIVE_CROSSING_DIAGNOSTICS"
+    },
+    {
+      "station": "015",
+      "entity_context": "current:gulf-stream",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/015.nc",
+      "source_sha256": "6ca6e4305661e9e309da7bd885ae2d90079d0c2935ba46643c55335969c0b708",
+      "cast_datetime_utc": "2021-03-23T23:04:42",
+      "source_lon_lat": [
+        -52.1849,
+        41.29177
+      ],
+      "fixed_reference_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_eastward_u_m_s": 0.24231746792793274,
+        "reference_northward_v_m_s": 0.4636422097682953,
+        "reference_speed_m_s": 0.5231461114658434,
+        "qualified": true,
+        "east_north_unit_vector": [
+          0.46319271541360546,
+          0.8862575857998455
+        ],
+        "reference_direction_is_independently_validated_current_axis": false
+      },
+      "inherited_native_level_count": 26,
+      "component_metric": "signed_horizontal_component_along_fixed_native_nearest100m_velocity_direction",
+      "source_uerr_is_depth_confidence_interval": false,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        635
+      ],
+      "sampled_upper200m_core_index": 0,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        39,
+        40,
+        42,
+        48,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        65,
+        67,
+        68,
+        69,
+        77,
+        93,
+        124,
+        186,
+        249,
+        264,
+        268,
+        269,
+        270,
+        272,
+        280,
+        311,
+        374,
+        499,
+        624,
+        635
+      ],
+      "selected_native_levels": 38,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": 0.355142742395401,
+          "v_m_s": 0.5175632834434509,
+          "uerr_m_s": 0.11016044020652771,
+          "aligned_component_m_s": 0.6231939172927944
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": 0.26557251811027527,
+          "v_m_s": 0.5007492303848267,
+          "uerr_m_s": 0.06384619325399399,
+          "aligned_component_m_s": 0.5668040598147144
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": 0.24231746792793274,
+          "v_m_s": 0.4636422097682953,
+          "uerr_m_s": 0.05790729448199272,
+          "aligned_component_m_s": 0.5231461114658433
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.30376526713371277,
+          "v_m_s": 0.509793758392334,
+          "uerr_m_s": 0.057517968118190765,
+          "aligned_component_m_s": 0.5925104445006233
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.3284139037132263,
+          "v_m_s": 0.47712546586990356,
+          "uerr_m_s": 0.05163438245654106,
+          "aligned_component_m_s": 0.5749749913459989
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": 0.23582680523395538,
+          "v_m_s": 0.35731983184814453,
+          "uerr_m_s": 0.04935973882675171,
+          "aligned_component_m_s": 0.4259106698157745
+        },
+        {
+          "native_index": 39,
+          "depth_m": 320.0,
+          "u_m_s": 0.21617062389850616,
+          "v_m_s": 0.34779176115989685,
+          "uerr_m_s": 0.05078333616256714,
+          "aligned_component_m_s": 0.408361744882849
+        },
+        {
+          "native_index": 40,
+          "depth_m": 328.0,
+          "u_m_s": 0.197771817445755,
+          "v_m_s": 0.3455905616283417,
+          "uerr_m_s": 0.06065801903605461,
+          "aligned_component_m_s": 0.39788872197893
+        },
+        {
+          "native_index": 42,
+          "depth_m": 344.0,
+          "u_m_s": 0.14746765792369843,
+          "v_m_s": 0.3520152270793915,
+          "uerr_m_s": 0.05302887409925461,
+          "aligned_component_m_s": 0.3802821102255285
+        },
+        {
+          "native_index": 48,
+          "depth_m": 392.0,
+          "u_m_s": 0.15864817798137665,
+          "v_m_s": 0.2558390498161316,
+          "uerr_m_s": 0.05221693962812424,
+          "aligned_component_m_s": 0.30022397899798603
+        },
+        {
+          "native_index": 54,
+          "depth_m": 440.0,
+          "u_m_s": 0.13475291430950165,
+          "v_m_s": 0.20919287204742432,
+          "uerr_m_s": 0.04914030060172081,
+          "aligned_component_m_s": 0.2478153380362012
+        },
+        {
+          "native_index": 55,
+          "depth_m": 448.0,
+          "u_m_s": 0.10544060170650482,
+          "v_m_s": 0.1946312040090561,
+          "uerr_m_s": 0.05403343215584755,
+          "aligned_component_m_s": 0.22133269960566365
+        },
+        {
+          "native_index": 56,
+          "depth_m": 456.0,
+          "u_m_s": 0.08482019603252411,
+          "v_m_s": 0.21477796137332916,
+          "uerr_m_s": 0.05037146061658859,
+          "aligned_component_m_s": 0.22963669445195833
+        },
+        {
+          "native_index": 57,
+          "depth_m": 464.0,
+          "u_m_s": 0.06779351830482483,
+          "v_m_s": 0.2033396065235138,
+          "uerr_m_s": 0.050853315740823746,
+          "aligned_component_m_s": 0.2116127326060736
+        },
+        {
+          "native_index": 58,
+          "depth_m": 472.0,
+          "u_m_s": 0.06547319889068604,
+          "v_m_s": 0.1804472804069519,
+          "uerr_m_s": 0.05051539093255997,
+          "aligned_component_m_s": 0.19024947987860488
+        },
+        {
+          "native_index": 59,
+          "depth_m": 480.0,
+          "u_m_s": 0.05371756851673126,
+          "v_m_s": 0.1457851231098175,
+          "uerr_m_s": 0.04970944672822952,
+          "aligned_component_m_s": 0.15408475767952126
+        },
+        {
+          "native_index": 60,
+          "depth_m": 488.0,
+          "u_m_s": 0.035413581877946854,
+          "v_m_s": 0.1271207332611084,
+          "uerr_m_s": 0.05295587331056595,
+          "aligned_component_m_s": 0.12906502731766428
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": 0.0414770245552063,
+          "v_m_s": 0.11102770268917084,
+          "uerr_m_s": 0.04959205538034439,
+          "aligned_component_m_s": 0.11761099937321035
+        },
+        {
+          "native_index": 65,
+          "depth_m": 528.0,
+          "u_m_s": 0.03924085944890976,
+          "v_m_s": 0.10417935997247696,
+          "uerr_m_s": 0.0506485216319561,
+          "aligned_component_m_s": 0.11050582830268464
+        },
+        {
+          "native_index": 67,
+          "depth_m": 544.0,
+          "u_m_s": 0.036438196897506714,
+          "v_m_s": 0.0981028750538826,
+          "uerr_m_s": 0.04629714414477348,
+          "aligned_component_m_s": 0.10382232457100962
+        },
+        {
+          "native_index": 68,
+          "depth_m": 552.0,
+          "u_m_s": 0.03093133121728897,
+          "v_m_s": 0.09196159243583679,
+          "uerr_m_s": 0.04781221225857735,
+          "aligned_component_m_s": 0.09582882619638775
+        },
+        {
+          "native_index": 69,
+          "depth_m": 560.0,
+          "u_m_s": 0.013064743019640446,
+          "v_m_s": 0.0615532360970974,
+          "uerr_m_s": 0.05049377679824829,
+          "aligned_component_m_s": 0.06060351621702965
+        },
+        {
+          "native_index": 77,
+          "depth_m": 624.0,
+          "u_m_s": 0.04575841501355171,
+          "v_m_s": 0.07655886560678482,
+          "uerr_m_s": 0.04734902083873749,
+          "aligned_component_m_s": 0.08904583990739365
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": 0.038068097084760666,
+          "v_m_s": 0.08070507645606995,
+          "uerr_m_s": 0.04763740301132202,
+          "aligned_component_m_s": 0.08915835148106754
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.011547424830496311,
+          "v_m_s": 0.08981268852949142,
+          "uerr_m_s": 0.057720787823200226,
+          "aligned_component_m_s": 0.07424849344706846
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": 0.03611963614821434,
+          "v_m_s": 0.05932778865098953,
+          "uerr_m_s": 0.06514459103345871,
+          "aligned_component_m_s": 0.06931005508791227
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": 0.010595220141112804,
+          "v_m_s": 0.09023381024599075,
+          "uerr_m_s": 0.06832751631736755,
+          "aligned_component_m_s": 0.0848780276137001
+        },
+        {
+          "native_index": 264,
+          "depth_m": 2120.0,
+          "u_m_s": -0.03313703462481499,
+          "v_m_s": 0.08376569300889969,
+          "uerr_m_s": 0.06697726994752884,
+          "aligned_component_m_s": 0.058889147810295715
+        },
+        {
+          "native_index": 268,
+          "depth_m": 2152.0,
+          "u_m_s": -0.026055624708533287,
+          "v_m_s": 0.08298972249031067,
+          "uerr_m_s": 0.0703812837600708,
+          "aligned_component_m_s": 0.06148149553991851
+        },
+        {
+          "native_index": 269,
+          "depth_m": 2160.0,
+          "u_m_s": -0.04481671005487442,
+          "v_m_s": 0.07175832241773605,
+          "uerr_m_s": 0.0750490128993988,
+          "aligned_component_m_s": 0.04283758396076817
+        },
+        {
+          "native_index": 270,
+          "depth_m": 2168.0,
+          "u_m_s": -0.045843325555324554,
+          "v_m_s": 0.06336862593889236,
+          "uerr_m_s": 0.0777893140912056,
+          "aligned_component_m_s": 0.0349266309924955
+        },
+        {
+          "native_index": 272,
+          "depth_m": 2184.0,
+          "u_m_s": -0.03703531622886658,
+          "v_m_s": 0.06582136452198029,
+          "uerr_m_s": 0.07252422720193863,
+          "aligned_component_m_s": 0.041180194925051566
+        },
+        {
+          "native_index": 280,
+          "depth_m": 2248.0,
+          "u_m_s": -0.027549002319574356,
+          "v_m_s": 0.05677038058638573,
+          "uerr_m_s": 0.0767335370182991,
+          "aligned_component_m_s": 0.03755268325208927
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.026392536237835884,
+          "v_m_s": 0.03340544179081917,
+          "uerr_m_s": 0.08284474164247513,
+          "aligned_component_m_s": 0.017380995667453478
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.04956391081213951,
+          "v_m_s": -0.01769527979195118,
+          "uerr_m_s": 0.0809650868177414,
+          "aligned_component_m_s": -0.03864021838406011
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": 0.1124793142080307,
+          "v_m_s": -0.12853838503360748,
+          "uerr_m_s": 0.0962384045124054,
+          "aligned_component_m_s": -0.06181851982661808
+        },
+        {
+          "native_index": 624,
+          "depth_m": 5000.0,
+          "u_m_s": 0.11793886125087738,
+          "v_m_s": -0.12504363059997559,
+          "uerr_m_s": 0.06516920030117035,
+          "aligned_component_m_s": -0.056192444779599705
+        },
+        {
+          "native_index": 635,
+          "depth_m": 5088.0,
+          "u_m_s": 0.09638377279043198,
+          "v_m_s": -0.12342415004968643,
+          "uerr_m_s": 0.12107481062412262,
+          "aligned_component_m_s": -0.06474132781182482
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            249,
+            311
+          ],
+          "refined_bracket_indices": [
+            268,
+            269
+          ],
+          "lower_depth_m": 2156.9266466390063,
+          "lower_depth_native_bracket_m": [
+            2152.0,
+            2160.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            2152.0,
+            2160.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            61,
+            93
+          ],
+          "refined_bracket_indices": [
+            67,
+            68
+          ],
+          "lower_depth_m": 547.8254335129609,
+          "lower_depth_native_bracket_m": [
+            544.0,
+            552.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            544.0,
+            552.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 0,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            57,
+            58
+          ],
+          "lower_depth_m": 468.3486758329239,
+          "lower_depth_native_bracket_m": [
+            464.0,
+            472.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            464.0,
+            472.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false,
+      "status": "FIXED_NEAREST100M_DIRECTION_LOCAL_NATIVE_CROSSING_DIAGNOSTICS"
+    },
+    {
+      "station": "016",
+      "entity_context": "current:gulf-stream",
+      "source_file": "research/source-data/a20-gulf-stream-native-casts-v1/016.nc",
+      "source_sha256": "3c2c06e6045104f9940222ce91ea05bc110583a0ce80633f08c4b6c52458a5c9",
+      "cast_datetime_utc": "2021-03-24T05:00:35",
+      "source_lon_lat": [
+        -52.33388,
+        41.098169999999996
+      ],
+      "fixed_reference_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_eastward_u_m_s": -0.00875325221568346,
+        "reference_northward_v_m_s": 0.357126384973526,
+        "reference_speed_m_s": 0.3572336410090887,
+        "qualified": true,
+        "east_north_unit_vector": [
+          -0.02450287769919396,
+          0.9996997594200262
+        ],
+        "reference_direction_is_independently_validated_current_axis": false
+      },
+      "inherited_native_level_count": 18,
+      "component_metric": "signed_horizontal_component_along_fixed_native_nearest100m_velocity_direction",
+      "source_uerr_is_depth_confidence_interval": false,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        499,
+        624,
+        642
+      ],
+      "sampled_upper200m_core_index": 5,
+      "selected_native_indices": [
+        0,
+        1,
+        2,
+        5,
+        11,
+        18,
+        24,
+        36,
+        48,
+        54,
+        55,
+        56,
+        57,
+        61,
+        93,
+        108,
+        116,
+        120,
+        121,
+        122,
+        124,
+        186,
+        249,
+        250,
+        252,
+        256,
+        264,
+        280,
+        311,
+        374,
+        499,
+        624,
+        642
+      ],
+      "selected_native_levels": 33,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": 0.05386889725923538,
+          "v_m_s": 0.3970903754234314,
+          "uerr_m_s": 0.22804668545722961,
+          "aligned_component_m_s": 0.39565120977747875
+        },
+        {
+          "native_index": 1,
+          "depth_m": 16.0,
+          "u_m_s": 0.05386889725923538,
+          "v_m_s": 0.3970903754234314,
+          "uerr_m_s": 0.22693060338497162,
+          "aligned_component_m_s": 0.39565120977747875
+        },
+        {
+          "native_index": 2,
+          "depth_m": 24.0,
+          "u_m_s": 0.024193042889237404,
+          "v_m_s": 0.4495491087436676,
+          "uerr_m_s": 0.16377899050712585,
+          "aligned_component_m_s": 0.44882133668744534
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": 0.031051509082317352,
+          "v_m_s": 0.40049871802330017,
+          "uerr_m_s": 0.1416066437959671,
+          "aligned_component_m_s": 0.39961762072650264
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.00875325221568346,
+          "v_m_s": 0.357126384973526,
+          "uerr_m_s": 0.09909094870090485,
+          "aligned_component_m_s": 0.35723364100908866
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": 0.023090260103344917,
+          "v_m_s": 0.33291393518447876,
+          "uerr_m_s": 0.09983264654874802,
+          "aligned_component_m_s": 0.33224820309214276
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": 0.03796030953526497,
+          "v_m_s": 0.29474225640296936,
+          "uerr_m_s": 0.10508270561695099,
+          "aligned_component_m_s": 0.293723625994998
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": -0.015203741379082203,
+          "v_m_s": 0.27088332176208496,
+          "uerr_m_s": 0.09962185472249985,
+          "aligned_component_m_s": 0.2711745270120357
+        },
+        {
+          "native_index": 48,
+          "depth_m": 392.0,
+          "u_m_s": 0.027983741834759712,
+          "v_m_s": 0.29645201563835144,
+          "uerr_m_s": 0.0924474224448204,
+          "aligned_component_m_s": 0.29567732650949885
+        },
+        {
+          "native_index": 54,
+          "depth_m": 440.0,
+          "u_m_s": -0.0017861210508272052,
+          "v_m_s": 0.23417726159095764,
+          "uerr_m_s": 0.09019316732883453,
+          "aligned_component_m_s": 0.23415071717978525
+        },
+        {
+          "native_index": 55,
+          "depth_m": 448.0,
+          "u_m_s": -0.012643711641430855,
+          "v_m_s": 0.21075141429901123,
+          "uerr_m_s": 0.10004723817110062,
+          "aligned_component_m_s": 0.21099794549216563
+        },
+        {
+          "native_index": 56,
+          "depth_m": 456.0,
+          "u_m_s": -0.019032223150134087,
+          "v_m_s": 0.20471680164337158,
+          "uerr_m_s": 0.093593530356884,
+          "aligned_component_m_s": 0.2051216815883073
+        },
+        {
+          "native_index": 57,
+          "depth_m": 464.0,
+          "u_m_s": -0.016184581443667412,
+          "v_m_s": 0.19409969449043274,
+          "uerr_m_s": 0.09753436595201492,
+          "aligned_component_m_s": 0.194437986705313
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": -0.003536781994625926,
+          "v_m_s": 0.18123823404312134,
+          "uerr_m_s": 0.08933461457490921,
+          "aligned_component_m_s": 0.18127048030728182
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": -0.029397673904895782,
+          "v_m_s": 0.14322058856487274,
+          "uerr_m_s": 0.08810807019472122,
+          "aligned_component_m_s": 0.1438979155406303
+        },
+        {
+          "native_index": 108,
+          "depth_m": 872.0,
+          "u_m_s": -0.07538872212171555,
+          "v_m_s": 0.10679436475038528,
+          "uerr_m_s": 0.11354906857013702,
+          "aligned_component_m_s": 0.10860954138642162
+        },
+        {
+          "native_index": 116,
+          "depth_m": 936.0,
+          "u_m_s": -0.055111274123191833,
+          "v_m_s": 0.09885028749704361,
+          "uerr_m_s": 0.12241768091917038,
+          "aligned_component_m_s": 0.10017099343908224
+        },
+        {
+          "native_index": 120,
+          "depth_m": 968.0,
+          "u_m_s": -0.05873987823724747,
+          "v_m_s": 0.107136569917202,
+          "uerr_m_s": 0.11507206410169601,
+          "aligned_component_m_s": 0.10854369922382648
+        },
+        {
+          "native_index": 121,
+          "depth_m": 976.0,
+          "u_m_s": -0.057578060775995255,
+          "v_m_s": 0.10375701636075974,
+          "uerr_m_s": 0.11340108513832092,
+          "aligned_component_m_s": 0.1051366924753422
+        },
+        {
+          "native_index": 122,
+          "depth_m": 984.0,
+          "u_m_s": -0.04821375384926796,
+          "v_m_s": 0.09410939365625381,
+          "uerr_m_s": 0.11407432705163956,
+          "aligned_component_m_s": 0.09526251391130913
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.05082950368523598,
+          "v_m_s": 0.08110446482896805,
+          "uerr_m_s": 0.10965792089700699,
+          "aligned_component_m_s": 0.08232558308971939
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.09245186299085617,
+          "v_m_s": 0.07703258097171783,
+          "uerr_m_s": 0.1276479959487915,
+          "aligned_component_m_s": 0.0792747893568576
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": -0.09640622138977051,
+          "v_m_s": 0.057630039751529694,
+          "uerr_m_s": 0.14947600662708282,
+          "aligned_component_m_s": 0.059974966727125746
+        },
+        {
+          "native_index": 250,
+          "depth_m": 2008.0,
+          "u_m_s": -0.09159784764051437,
+          "v_m_s": 0.04584766551852226,
+          "uerr_m_s": 0.15025511384010315,
+          "aligned_component_m_s": 0.04807831104708146
+        },
+        {
+          "native_index": 252,
+          "depth_m": 2024.0,
+          "u_m_s": -0.06966850906610489,
+          "v_m_s": 0.015607371926307678,
+          "uerr_m_s": 0.1419406533241272,
+          "aligned_component_m_s": 0.017309764917040612
+        },
+        {
+          "native_index": 256,
+          "depth_m": 2056.0,
+          "u_m_s": -0.06412161886692047,
+          "v_m_s": 0.0037160851061344147,
+          "uerr_m_s": 0.1403394639492035,
+          "aligned_component_m_s": 0.005286133571557397
+        },
+        {
+          "native_index": 264,
+          "depth_m": 2120.0,
+          "u_m_s": -0.05424804240465164,
+          "v_m_s": 0.005430976860225201,
+          "uerr_m_s": 0.15397700667381287,
+          "aligned_component_m_s": 0.006758579409044729
+        },
+        {
+          "native_index": 280,
+          "depth_m": 2248.0,
+          "u_m_s": -0.06175621598958969,
+          "v_m_s": 0.028659923002123833,
+          "uerr_m_s": 0.14922277629375458,
+          "aligned_component_m_s": 0.030164523137777594
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.07736903429031372,
+          "v_m_s": -0.0677843764424324,
+          "uerr_m_s": 0.1470140814781189,
+          "aligned_component_m_s": -0.06586826083701586
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": -0.02699924260377884,
+          "v_m_s": 0.061806581914424896,
+          "uerr_m_s": 0.16357024013996124,
+          "aligned_component_m_s": 0.06244958420991597
+        },
+        {
+          "native_index": 499,
+          "depth_m": 4000.0,
+          "u_m_s": -0.05070934444665909,
+          "v_m_s": -0.028380604460835457,
+          "uerr_m_s": 0.17195871472358704,
+          "aligned_component_m_s": -0.02712955858650934
+        },
+        {
+          "native_index": 624,
+          "depth_m": 5000.0,
+          "u_m_s": -0.1226511299610138,
+          "v_m_s": 0.020438415929675102,
+          "uerr_m_s": 0.15194889903068542,
+          "aligned_component_m_s": 0.023437585124925296
+        },
+        {
+          "native_index": 642,
+          "depth_m": 5144.0,
+          "u_m_s": -0.09234162420034409,
+          "v_m_s": -0.00039776755147613585,
+          "uerr_m_s": 0.1915827840566635,
+          "aligned_component_m_s": 0.0018649873988101746
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            249,
+            311
+          ],
+          "refined_bracket_indices": [
+            249,
+            250
+          ],
+          "lower_depth_m": 2006.7077450977138,
+          "lower_depth_native_bracket_m": [
+            2000.0,
+            2008.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            2000.0,
+            2008.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            93,
+            124
+          ],
+          "refined_bracket_indices": [
+            121,
+            122
+          ],
+          "lower_depth_m": 980.1617173050142,
+          "lower_depth_native_bracket_m": [
+            976.0,
+            984.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            976.0,
+            984.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            56,
+            57
+          ],
+          "lower_depth_m": 459.8351387937592,
+          "lower_depth_native_bracket_m": [
+            456.0,
+            464.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            456.0,
+            464.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false,
+      "status": "FIXED_NEAREST100M_DIRECTION_LOCAL_NATIVE_CROSSING_DIAGNOSTICS"
+    }
+  ],
+  "counts": {
+    "source_cast_profiles": 3,
+    "new_independent_cast_profiles": 0,
+    "threshold_contexts": 9,
+    "qualified_fixed_reference_frames": 3,
+    "cumulative_selected_native_levels": 100,
+    "adjacent_local_crossings": 9,
+    "new_native_axis_values_one_pass": 1874,
+    "new_selected_native_field_values_one_pass": 123,
+    "typed_source_packet_numbers_per_pass": 496,
+    "case_metadata_touch_bound": 5015,
+    "case_scalar_bound_including_prior_phases_one_actual_test_and_producer": 13123,
+    "provider_requests": 0,
+    "new_canonical_depth_references": 0
+  },
+  "prior_case_time_charge_seconds": 3.961546226999996,
+  "original_case_operations_used": 3,
+  "original_case_operations_remaining": 0,
+  "original_case_response_bytes": 425028,
+  "source_full_velocity_arrays_read": false,
+  "first_native_crossing_verified": false,
+  "continuous_core_connection_verified": false,
+  "frame_is_source_fitted100m_mean_downstream_direction": false,
+  "seasonal_extrema_established": false,
+  "whole_route_physical_depth_profile_established": false,
+  "physical_thickness_m": null,
+  "volume_m3": null,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "new_direction_phase_seconds": 0.6901209870000002,
+  "cumulative_case_time_charge_seconds": 4.651667213999996
+}

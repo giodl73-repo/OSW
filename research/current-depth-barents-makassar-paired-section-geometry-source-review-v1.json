@@ -1,0 +1,72 @@
+{
+  "schema": "osw.current-depth-barents-makassar-paired-section-geometry-source-review.v1",
+  "status": "PASS_EIGHTEEN_PARTIAL_COMPONENT_SECTIONS_WITH_PAIRED_DEPTHS_AND_SAMPLING_SCENARIOS",
+  "source_commit": "844ad1251f9822fbcb77f798464a429700ec069a",
+  "producer_run_id": 42085618873,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42085618873",
+  "cloud_semantic_tests_passed": 8,
+  "actual_complete_32_case_json_csv_roundtrip_passed": true,
+  "artifact": {
+    "id": 13441924102,
+    "sha256": "4a4e8c74c83bed10560c60eda62f2306085221bfd411788a3c819e80d5d8b4c1",
+    "retained_once": true
+  },
+  "outputs": {
+    "research/barents-makassar-paired-section-geometry-v1.json": {
+      "bytes": 457915,
+      "sha256": "0567e901b74ba28e2bf7033938bbcbc96d8fbf52c3d39feed0ee46645e481a89"
+    },
+    "research/barents-makassar-paired-section-geometry-v1.csv": {
+      "bytes": 6079,
+      "sha256": "173cd3560eb60a490fd7987c234fc3c20b209ec500f658c93f2e1c9d5c2a5883"
+    },
+    "research/barents-makassar-section-geometry-query-ledger-v1.json": {
+      "bytes": 1346,
+      "sha256": "555b921d50108350837268a8613042ca30da06e73a82f3fcc5bab2fd7c322d76"
+    }
+  },
+  "source_descriptor": {
+    "file": "research/barents-makassar-velocity-depth-curtains-v1.json",
+    "sha256": "160391ba242b0fe6aa2d2f16dbd2b9b7fd04be642ae36ed132ad16dfc4262077",
+    "original_validation_run_id": 41681321560,
+    "native_fields_or_original_validators_reexecuted": false
+  },
+  "cloud_reported_counts": {
+    "source_cases": 32,
+    "original_unresolved_cases": 14,
+    "cases_with_integrable_partial_geometry": 18,
+    "retained_column_descriptors": 662,
+    "finite_paired_column_runs": 345,
+    "conditional_strip_patches": 232,
+    "strips_without_integrable_geometry": 447,
+    "rejected_ambiguous_links": 95,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_query": {
+    "numeric_tokens": 17390,
+    "unique_json_bytes": 854281
+  },
+  "scientific_review": [
+    "This is a new conditional geometry calculation from already-reviewed derived depth descriptors, not new ocean observations or reanalysis of raw fields. All32source cases retain exact owner,branch,date,source file/hash/pointer,original selection and0.1m/s cutoff; fourteen unresolved selections are preserved with null geometry. The original source report remains byte-exact.",
+    "North Cape eastward90degree regional BSO/southwestern Barents context and Makassar southward180degree branch context remain separate. Neither is a physically identified current axis or water-mass mask. No transfer to the whole Norwegian current,all ITF passages or the northern North Cape branch. Four2022quarterly midnight probes are not seasonal means or annual extrema.",
+    "All separate connected depth runs are retained at every original column of the eighteen qualified curtains. Only finite paired upper and lower contours supply thickness. The source surface-bounded top is allowed at0m; censored top/bottom remains unknown. Source sampling limits,missing/dry cells and the bed are not inserted as finite boundaries.",
+    "Original consecutive native geographic indices and the same fixed transverse axis are checked before integration. Run pairs require overlapping inclusive native depth indices and unique one-to-one correspondence. Ninety-five split/merge link occurrences are explicitly rejected; unmatched runs and447strips without integrable geometry remain gaps. No diagonal,empty-column or skipped-index bridge.",
+    "Accepted contours vary linearly only over a single neighboring interval. Exact trapezoidal integration of paired thickness uses geographic separation on a6371008.8m sphere,with a20km connector gate. The spherical metric and linear interpolation are declared scenario assumptions. Partial areas are reported in km2; no unmeasured zero-area closure at lateral edges is invented.",
+    "Sampling-bracket thickness and area scenarios propagate the same original upper/lower crossing brackets through the same linear-contour operator. These are not statistical confidence intervals,physical uncertainty,guaranteed true-area enclosures or seasonal margins. They do not capture model,identity,vertical datum,threshold or interpolation-structure uncertainty.",
+    "Equivalent paired-component thickness is partial area divided by the sum of accepted strip lengths,counting each horizontal strip once even when multiple disjoint vertical layers contribute. It is supported summed-layer thickness averaged over those strips,not depth of the current bottom or a whole-current average. The integrated span is not a measured full-current width.",
+    "All eighteen resulting sections have PARTIAL conditional component geometry. Source lateral-gate censoring remains attached,whole_section_area_established is false,and physical cross-section area,physical current thickness,physical uncertainty and volume remain null. Areas from different cuts,dates,branches or owners cannot be summed into stored water volume or converted from Sverdrups.",
+    "Eight synthetic cloud checks cover analytic wedge integration and units,sampling ranges,surface qualification,censor and missing-support handling,disconnected layers,split/merge rejection,source mutation,unchanged branch/frame/native indices and immutable input objects. The actual32-case report and CSV pass complete roundtrip checks. No tests or scientific calculations ran locally.",
+    "A separate DescriptorQueryv3 with explicit zero prior counters used17390numeric tokens and854281uniqueJSONbytes,below250000numeric/32MBJSON/2.5MBpacket limits. Before-decode reservations/cache and a shared60second test/producer deadline were used. Networking and source-data/native paths were blocked. No provider/archive access or closed native-budget renewal occurred.",
+    "Canonical reference inventoryv40remains908references and111identities. Existing regional projection inventoryv48,102eddy reference baseline,main,runtime,defaultquery UI and WASM remain unchanged. This advances paired regional depth-shape data; along-current extent,full-route depth profiles,compatible volume coverage and seasonal coverage remain incomplete."
+  ],
+  "new_conditional_geometry_computed": true,
+  "new_observations_collected": false,
+  "canonical_reference_count_unchanged": 908,
+  "runtime_changed": false,
+  "query_ui_integration_performed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

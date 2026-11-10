@@ -1,0 +1,36 @@
+{
+  "schema": "osw.partitioned-paired-depth-query-failure-review.v1",
+  "status": "NO_OUTPUTS_ADMITTED_PROSPECTIVE_DESCRIPTOR_CAP",
+  "source_commit": "41fdad8eab7904138cde800576ada4e18a23d45c",
+  "cloud_run_id": 42144319953,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42144319953",
+  "conclusion": "failure",
+  "synthetic_tests_passed": 26,
+  "failure_stage": "Final compact report JSON decode for actual storage roundtrip; no geometry/CSV outputs written or admitted.",
+  "error": "Prospective descriptor query cap before JSON numeric decoding",
+  "guard_error_does_not_identify_which_threshold": true,
+  "attempted_final_packet_not_retained": true,
+  "source_native_retrieval_performed": false,
+  "retained_artifact": {
+    "id": 13468823162,
+    "bytes": 992,
+    "sha256": "cd2dec1878c55a257ab410ed3472b1541e7a7edc4cfcc856ae252c366d0602b3",
+    "members": [
+      "catalog-query-ledger.json"
+    ],
+    "retained_once": true
+  },
+  "continuation_charges": {
+    "numeric_tokens_already_reserved": 61681,
+    "unique_json_bytes_already_reserved": 2719718,
+    "prior_active_seconds_upper_for_any_continuation": 5,
+    "ledger_file": "research/partitioned-paired-depth-failed-query-ledger-v1.json"
+  },
+  "disposition": "Keep failed code/operator/plan/workflow/result frozen. Do not replay individual partitions with renewed caps, raise caps or change encoding to avoid accounting. Full paired partition geometry remains pending; no new measurements or admitted depth pairs from this failed batch.",
+  "new_admitted_paired_depth_cases": 0,
+  "new_canonical_depth_references": 0,
+  "new_physical_volumes": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

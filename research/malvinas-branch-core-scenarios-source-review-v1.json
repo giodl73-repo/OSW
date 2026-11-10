@@ -1,0 +1,48 @@
+{
+  "schema": "osw.malvinas-branch-core-scenarios-source-review.v1",
+  "status": "PASS_NINE_REPRODUCIBLE_CONDITIONAL_SCENARIOS_CANONICAL_ADMISSION_PENDING",
+  "cloud_reviews": [
+    {
+      "run_id": 41444988682,
+      "tests_passed": 9,
+      "source_commit": "ede2239ebc7b4855be94b73d2f00d2eaed594ba7",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41444988682"
+    }
+  ],
+  "cloud_tests_passed": 9,
+  "input_sha256": {
+    "analysis/derive_malvinas_branch_core_scenarios_v1.py": "70f3ba81b8672a8e2b3c09cb4d1dfa70bc668e28030d30d06354e2d7a992f84d",
+    "analysis/test_malvinas_branch_core_scenarios_v1.py": "267710874807c2b32da308c031a5328771631b389a05a97f18bc999899ea4752",
+    "analysis/audit_malvinas_adcp_depth_v1.py": "430b93ddbddd19aa2d52cebc8ec6ce3b4c2f944380397ad939762f9fc5a41c43",
+    ".github/workflows/malvinas-branch-core-scenarios-v1.yml": "738e24784bf8a33ebce64c7dfa0643bc44f18727b97711dc2e947f29a8f4b0f6",
+    "research/malvinas-branch-core-operator-v1.json": "4f7404e9c67291ec6ad333370ff629f267d720bdee5e24b0de13db774ff5927b",
+    "research/source-data/malvinas-branch-core-scenarios-v1/candidate.json": "2adf3f8310b8e3b28366fc3114f6fb73dce91208f982d4c732e3b12539b7bf3f",
+    "research/malvinas-depth-source-comparison-v1.json": "2ce2cda31a91ee48f6a720d887f7b9380d3b151ef9ff854028367196bbcef170"
+  },
+  "scenario_count": 9,
+  "source_raw_sha256": "6d5bf9f8b594bab3117002c9bd09c93bd9779772255b2feb28dd89bb309bc82a",
+  "spatial_resampling": {
+    "native_ensembles": 407,
+    "occupied_1km_cells": 183,
+    "empty_1km_cells": 0,
+    "eastward_steps": 57,
+    "selection": "nearest_native_ensemble_to_each_1km_cell_center_ties_earliest"
+  },
+  "scientific_review": [
+    "407 source ensembles reduce to183 occupied1km cells with no empty cells;57 eastward steps reflect station-stop/drift behavior. One native profile nearest each spatial cell center is used, ties earliest, avoiding time-dwell weighting. This is an explicit sample-selection scenario, not recovered author interpolation.",
+    "Nine PG/window combinations retain signed native V and native depth coordinates. Centered uniform means require at least5 contributors,80percent ensemble support and60percent spatial span. Horizontally incomplete edge windows and empty centers cannot produce a synthetic maximum; no vertical filling or surface extrapolation.",
+    "Two shallow positive peaks separated by at least40km define a provisional pair; the intervening minimum defines a source-informed split. Independent source S2 polygon membership has not been recovered, so western/inshore and eastern/main remain candidate classes.",
+    "Offshore maximum depth is40.44m at15/25km windows and128.44m at35km for all three PG selections. Inshore maxima vary with window and PG, including288.44m at25km PG50/70 versus168.44m PG90. These are native sampled scenario values, not physical accuracy, statistical bounds or seasonal depth changes.",
+    "Source Table3 and individual crossing prose retain different scopes and unresolved processing/aggregation. No exact source reproduction or explanation of their difference is claimed.",
+    "Near-bottom/sidelobe masking and archive tide correction remain unverified. Original Figure12 pixels show a steep shelf edge, so PG alone cannot authorize canonical inshore core admission. Physical bottoms, thickness, whole-route profiles and volumes remain unknown.",
+    "Nine cloud tests cover peak/minimum splitting, unresolved peaks, signed smoothing and edge exclusion, missing/low-PG samples, native vertical gaps, edge maxima/unknown bottoms, ties, station revisits and empty spatial centers. Raw archive hash and8MiB retrieval bound are retained. No local ocean-field processing or local tests."
+  ],
+  "canonical_depth_references_added": 0,
+  "canonical_register_file": "research/current-depth-register-v42.json",
+  "canonical_register_sha256": "915dc18d0b979936e2dc660b3cf2b2bf6c95f2eaa8f651bfa900ea4484bd2cf9",
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

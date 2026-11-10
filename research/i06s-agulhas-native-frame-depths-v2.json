@@ -1,0 +1,1187 @@
+{
+  "schema": "osw.i06s-native-frame-depths.v2",
+  "status": "CONDITIONAL_PROVIDER_NATIVE_UV_LOCAL_DEPTH_DIAGNOSTICS",
+  "operator_file": "research/i06s-native-frame-depth-operator-v2.json",
+  "input_sha256": {
+    "research/source-data/i06s-agulhas-native-casts-v1/046.nc": "2514e6a38b6d9b0982c19d1506c73835ae39a6f18657bfcc1420990340fa4d71",
+    "research/source-data/i06s-agulhas-native-casts-v1/047.nc": "86f919b08cdd0592d12c26eb994b312b54e30ef9d8585959757a83faa162669a",
+    "research/source-data/i06s-agulhas-native-casts-v1/048.nc": "6bf28ce36c8c8115fc34bea821fc6d70109672191f16fb9097220afbf1ba0e63",
+    "research/source-data/i06s-agulhas-native-casts-v1/headers.json": "4a70c7f9b7a79d21eba3c5bcd4af1e893f46461a90519206771175c8825155bc",
+    "research/source-data/i06s-agulhas-native-casts-v1/journal.json": "976e1ada13950116868ba8ee12d491ba6e347b7285b022444cbf1e397631e895",
+    "research/source-data/i06s-agulhas-native-casts-v1/custody.json": "cc7b539cc07d8362c1c1b66857787d041c1d2ed491906b262cf5bd18c054dda7",
+    "analysis/sample_i06s_native_frame_depths_v2.py": "f8e4abead0ced262ca04fb3ec792b1b544770994fb353a7ee46f4746f00a4695",
+    "analysis/test_i06s_native_frame_depths_v2.py": "070c54950365fdabc7b9c86e6367d241fc8c4b8cd8bb680cd7a2d45aec7c10e6",
+    "analysis/acquire_a20_gulf_stream_cast_headers_v1.py": "97b8354c856d54380629adb8b7acc4293bedabc04ce16001a8366366df4836c2",
+    "analysis/sample_a20_gulf_stream_depth_brackets_v1.py": "831dd652dfea26b4541e71c7bb0e6b23b39d06ac1cdf1e73ea32edfbe5beb75c",
+    "analysis/sample_a20_gulf_stream_core_direction_depths_v2.py": "3d0d5b3fbd776ef18f51eb527831c592a39514bb96cb977da55eb96060bfc0d7",
+    "plans/i06s-native-frame-depth-protocol-v2.md": "4c741ab355509991b43a3770b799c51651e70066cac03cbc373e08d78885affc",
+    "research/i06s-agulhas-native-source-review-v1.json": "7e56b1a69eb0fa67da69437fb656b39f5c9cce40369f9099c264a0fa9a4336d9"
+  },
+  "profiles": [
+    {
+      "station": "046",
+      "entity_context": "current:agulhas",
+      "source_file": "research/source-data/i06s-agulhas-native-casts-v1/046.nc",
+      "source_sha256": "2514e6a38b6d9b0982c19d1506c73835ae39a6f18657bfcc1420990340fa4d71",
+      "cast_datetime_utc": "2019-05-09T02:24:11Z",
+      "source_lon_lat": [
+        28.095151901245117,
+        -33.234317779541016
+      ],
+      "source_timestamp_role": "provider_nominal_profile_date_not_per_depth_instant",
+      "native_axis_domain_m": [
+        8.0,
+        504.0
+      ],
+      "native_axis_count": 63,
+      "native_component_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_native_u_m_s": -0.7412616610527039,
+        "reference_native_v_m_s": -0.60692298412323,
+        "reference_speed_m_s": 0.9580315019891883,
+        "qualified": true,
+        "native_uv_unit_vector": [
+          -0.7737341199257028,
+          -0.633510466892851
+        ],
+        "independent_geographic_direction_or_current_axis_verified": false
+      },
+      "component_metric": "signed_component_along_fixed_nearest100m_vector_in_provider_declared_native_uv_basis",
+      "current_membership_basis": "regional_Agulhas_candidate_not_independently_validated_current_axis",
+      "source_processing_software": "LDEO LADCP software: Version IX_14beta2",
+      "source_processing_warnings": " LADCP processing warnings:\n",
+      "source_QC_status": "provider_processed_profile_primary_cruise_initial_QC_described_final_QC_not_verified",
+      "exact_solver_equivalence_verified": false,
+      "independent_geographic_component_orientation_verified": false,
+      "source_uerr_is_SE_or_depth_CI": false,
+      "physical_state_join_eligible": false,
+      "volume_eligible": false,
+      "physical_thickness_m": null,
+      "seasonal_range_m": null,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        62
+      ],
+      "sampled_upper200m_core_index": 5,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        48,
+        54,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62
+      ],
+      "selected_native_levels": 14,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": -1.0496642589569092,
+          "v_m_s": -0.3477630317211151,
+          "uerr_m_s": 0.5110747218132019,
+          "aligned_component_m_s": 1.0324725722152062
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": -0.8685287833213806,
+          "v_m_s": -0.6830228567123413,
+          "uerr_m_s": 0.15470613539218903,
+          "aligned_component_m_s": 1.104712482647634
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.7412616610527039,
+          "v_m_s": -0.60692298412323,
+          "uerr_m_s": 0.1270066499710083,
+          "aligned_component_m_s": 0.9580315019891883
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": -0.6774418950080872,
+          "v_m_s": -0.4339568316936493,
+          "uerr_m_s": 0.12401274591684341,
+          "aligned_component_m_s": 0.7990761034924687
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": -0.626201331615448,
+          "v_m_s": -0.5055942535400391,
+          "uerr_m_s": 0.12256797403097153,
+          "aligned_component_m_s": 0.8048125878322745
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": -0.6730139851570129,
+          "v_m_s": -0.5443113446235657,
+          "uerr_m_s": 0.09229262918233871,
+          "aligned_component_m_s": 0.865560817570702
+        },
+        {
+          "native_index": 48,
+          "depth_m": 392.0,
+          "u_m_s": -0.5875899791717529,
+          "v_m_s": -0.4413098096847534,
+          "uerr_m_s": 0.11401845514774323,
+          "aligned_component_m_s": 0.7342127989894016
+        },
+        {
+          "native_index": 54,
+          "depth_m": 440.0,
+          "u_m_s": -0.3734056055545807,
+          "v_m_s": -0.29910808801651,
+          "uerr_m_s": 0.1291476935148239,
+          "aligned_component_m_s": 0.4784047620798648
+        },
+        {
+          "native_index": 57,
+          "depth_m": 464.0,
+          "u_m_s": -0.2348278909921646,
+          "v_m_s": -0.18377965688705444,
+          "uerr_m_s": 0.18197408318519592,
+          "aligned_component_m_s": 0.2981206878107572
+        },
+        {
+          "native_index": 58,
+          "depth_m": 472.0,
+          "u_m_s": -0.20381124317646027,
+          "v_m_s": -0.1363769918680191,
+          "uerr_m_s": 0.17978793382644653,
+          "aligned_component_m_s": 0.24409196466185323
+        },
+        {
+          "native_index": 59,
+          "depth_m": 480.0,
+          "u_m_s": -0.17522558569908142,
+          "v_m_s": -0.08944500237703323,
+          "uerr_m_s": 0.17806066572666168,
+          "aligned_component_m_s": 0.19224235955645108
+        },
+        {
+          "native_index": 60,
+          "depth_m": 488.0,
+          "u_m_s": -0.12610659003257751,
+          "v_m_s": -0.04012638330459595,
+          "uerr_m_s": 0.17598211765289307,
+          "aligned_component_m_s": 0.12299345527770385
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": -0.06372768431901932,
+          "v_m_s": -0.023339727893471718,
+          "uerr_m_s": 0.17994080483913422,
+          "aligned_component_m_s": 0.0640942456564248
+        },
+        {
+          "native_index": 62,
+          "depth_m": 504.0,
+          "u_m_s": 0.01141324918717146,
+          "v_m_s": 0.03603097051382065,
+          "uerr_m_s": 0.332207053899765,
+          "aligned_component_m_s": -0.031656817268141915
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            61,
+            62
+          ],
+          "refined_bracket_indices": [
+            61,
+            62
+          ],
+          "lower_depth_m": 497.177574032157,
+          "lower_depth_native_bracket_m": [
+            496.0,
+            504.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            496.0,
+            504.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            60,
+            61
+          ],
+          "lower_depth_m": 491.12309186157864,
+          "lower_depth_native_bracket_m": [
+            488.0,
+            496.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            488.0,
+            496.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 5,
+          "coarse_bracket_indices": [
+            36,
+            61
+          ],
+          "refined_bracket_indices": [
+            58,
+            59
+          ],
+          "lower_depth_m": 478.80305503923836,
+          "lower_depth_native_bracket_m": [
+            472.0,
+            480.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            472.0,
+            480.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    },
+    {
+      "station": "047",
+      "entity_context": "current:agulhas",
+      "source_file": "research/source-data/i06s-agulhas-native-casts-v1/047.nc",
+      "source_sha256": "86f919b08cdd0592d12c26eb994b312b54e30ef9d8585959757a83faa162669a",
+      "cast_datetime_utc": "2019-05-09T05:18:25Z",
+      "source_lon_lat": [
+        28.204439163208008,
+        -33.38541030883789
+      ],
+      "source_timestamp_role": "provider_nominal_profile_date_not_per_depth_instant",
+      "native_axis_domain_m": [
+        8.0,
+        2576.0
+      ],
+      "native_axis_count": 322,
+      "native_component_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_native_u_m_s": -1.0095832347869873,
+        "reference_native_v_m_s": -0.9078889489173889,
+        "reference_speed_m_s": 1.3577631058212174,
+        "qualified": true,
+        "native_uv_unit_vector": [
+          -0.7435636087462841,
+          -0.6686652075203277
+        ],
+        "independent_geographic_direction_or_current_axis_verified": false
+      },
+      "component_metric": "signed_component_along_fixed_nearest100m_vector_in_provider_declared_native_uv_basis",
+      "current_membership_basis": "regional_Agulhas_candidate_not_independently_validated_current_axis",
+      "source_processing_software": "LDEO LADCP software: Version IX_14beta2",
+      "source_processing_warnings": " LADCP processing warnings:\n 15%  tilt > 22\n",
+      "source_QC_status": "provider_processed_profile_primary_cruise_initial_QC_described_final_QC_not_verified",
+      "exact_solver_equivalence_verified": false,
+      "independent_geographic_component_orientation_verified": false,
+      "source_uerr_is_SE_or_depth_CI": false,
+      "physical_state_join_eligible": false,
+      "volume_eligible": false,
+      "physical_thickness_m": null,
+      "seasonal_range_m": null,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        321
+      ],
+      "sampled_upper200m_core_index": 11,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        139,
+        143,
+        144,
+        145,
+        147,
+        151,
+        153,
+        154,
+        155,
+        170,
+        171,
+        172,
+        174,
+        178,
+        186,
+        249,
+        311,
+        321
+      ],
+      "selected_native_levels": 27,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": -1.0832717418670654,
+          "v_m_s": -0.747440755367279,
+          "uerr_m_s": 0.12434852123260498,
+          "aligned_component_m_s": 1.3052690734323604
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": -1.0662086009979248,
+          "v_m_s": -0.7935314178466797,
+          "uerr_m_s": 0.10646616667509079,
+          "aligned_component_m_s": 1.3234007652226938
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -1.0095832347869873,
+          "v_m_s": -0.9078889489173889,
+          "uerr_m_s": 0.07009974867105484,
+          "aligned_component_m_s": 1.3577631058212174
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": -0.9797504544258118,
+          "v_m_s": -0.7301417589187622,
+          "uerr_m_s": 0.07369574159383774,
+          "aligned_component_m_s": 1.2167271743103396
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": -0.9607092142105103,
+          "v_m_s": -0.714481770992279,
+          "uerr_m_s": 0.06978563964366913,
+          "aligned_component_m_s": 1.1920975119442174
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": -0.7802321910858154,
+          "v_m_s": -0.602993905544281,
+          "uerr_m_s": 0.04989929497241974,
+          "aligned_component_m_s": 0.9833533086480488
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": -0.6850050687789917,
+          "v_m_s": -0.5107673406600952,
+          "uerr_m_s": 0.04046111926436424,
+          "aligned_component_m_s": 0.8508771907878921
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": -0.46138960123062134,
+          "v_m_s": -0.3470686078071594,
+          "uerr_m_s": 0.043333567678928375,
+          "aligned_component_m_s": 0.5751452195922152
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.30612772703170776,
+          "v_m_s": -0.16408950090408325,
+          "uerr_m_s": 0.0523657463490963,
+          "aligned_component_m_s": 0.33734637762292985
+        },
+        {
+          "native_index": 139,
+          "depth_m": 1120.0,
+          "u_m_s": -0.258636474609375,
+          "v_m_s": -0.14574414491653442,
+          "uerr_m_s": 0.05524969846010208,
+          "aligned_component_m_s": 0.28976670931945075
+        },
+        {
+          "native_index": 143,
+          "depth_m": 1152.0,
+          "u_m_s": -0.23174355924129486,
+          "v_m_s": -0.14239346981048584,
+          "uerr_m_s": 0.05982038006186485,
+          "aligned_component_m_s": 0.26752963625353354
+        },
+        {
+          "native_index": 144,
+          "depth_m": 1160.0,
+          "u_m_s": -0.2047562301158905,
+          "v_m_s": -0.14837683737277985,
+          "uerr_m_s": 0.06022794917225838,
+          "aligned_component_m_s": 0.2514637101313359
+        },
+        {
+          "native_index": 145,
+          "depth_m": 1168.0,
+          "u_m_s": -0.1519773304462433,
+          "v_m_s": -0.12892411649227142,
+          "uerr_m_s": 0.05930624157190323,
+          "aligned_component_m_s": 0.19921188338291473
+        },
+        {
+          "native_index": 147,
+          "depth_m": 1184.0,
+          "u_m_s": -0.0969323217868805,
+          "v_m_s": -0.07464515417814255,
+          "uerr_m_s": 0.0661969855427742,
+          "aligned_component_m_s": 0.12198796450092346
+        },
+        {
+          "native_index": 151,
+          "depth_m": 1216.0,
+          "u_m_s": -0.18808142840862274,
+          "v_m_s": -0.08683580160140991,
+          "uerr_m_s": 0.05776315554976463,
+          "aligned_component_m_s": 0.19791458494367217
+        },
+        {
+          "native_index": 153,
+          "depth_m": 1232.0,
+          "u_m_s": -0.1475427746772766,
+          "v_m_s": -0.08026692271232605,
+          "uerr_m_s": 0.062174078077077866,
+          "aligned_component_m_s": 0.16337913651593128
+        },
+        {
+          "native_index": 154,
+          "depth_m": 1240.0,
+          "u_m_s": -0.11453159898519516,
+          "v_m_s": -0.07659958302974701,
+          "uerr_m_s": 0.0597810298204422,
+          "aligned_component_m_s": 0.13638100513947032
+        },
+        {
+          "native_index": 155,
+          "depth_m": 1248.0,
+          "u_m_s": -0.07717928290367126,
+          "v_m_s": -0.060617007315158844,
+          "uerr_m_s": 0.05970880016684532,
+          "aligned_component_m_s": 0.09792018989195611
+        },
+        {
+          "native_index": 170,
+          "depth_m": 1368.0,
+          "u_m_s": -0.11033418029546738,
+          "v_m_s": 0.0030887392349541187,
+          "uerr_m_s": 0.06049611419439316,
+          "aligned_component_m_s": 0.07997514880704411
+        },
+        {
+          "native_index": 171,
+          "depth_m": 1376.0,
+          "u_m_s": -0.08852390199899673,
+          "v_m_s": 0.004790764767676592,
+          "uerr_m_s": 0.06321887671947479,
+          "aligned_component_m_s": 0.06261973431311686
+        },
+        {
+          "native_index": 172,
+          "depth_m": 1384.0,
+          "u_m_s": -0.07759441435337067,
+          "v_m_s": 0.014493919909000397,
+          "uerr_m_s": 0.0612887479364872,
+          "aligned_component_m_s": 0.048004802791412005
+        },
+        {
+          "native_index": 174,
+          "depth_m": 1400.0,
+          "u_m_s": -0.04345841333270073,
+          "v_m_s": -0.015257174149155617,
+          "uerr_m_s": 0.06267758458852768,
+          "aligned_component_m_s": 0.0425160361666695
+        },
+        {
+          "native_index": 178,
+          "depth_m": 1432.0,
+          "u_m_s": 0.016589617356657982,
+          "v_m_s": 0.021003903821110725,
+          "uerr_m_s": 0.05860794335603714,
+          "aligned_component_m_s": -0.02638001545671661
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.0009844148298725486,
+          "v_m_s": 0.02738061547279358,
+          "uerr_m_s": 0.06059329956769943,
+          "aligned_component_m_s": -0.01757648988374642
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": 0.052327077835798264,
+          "v_m_s": -0.004517397843301296,
+          "uerr_m_s": 0.05838947743177414,
+          "aligned_component_m_s": -0.03588788406439092
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": 0.013430964201688766,
+          "v_m_s": 0.03874654695391655,
+          "uerr_m_s": 0.05512979254126549,
+          "aligned_component_m_s": -0.03589524407038658
+        },
+        {
+          "native_index": 321,
+          "depth_m": 2576.0,
+          "u_m_s": 0.06760197877883911,
+          "v_m_s": 0.004428128246217966,
+          "uerr_m_s": 0.09184655547142029,
+          "aligned_component_m_s": -0.053227306591867286
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 11,
+          "coarse_bracket_indices": [
+            124,
+            186
+          ],
+          "refined_bracket_indices": [
+            171,
+            172
+          ],
+          "lower_depth_m": 1382.9078581965985,
+          "lower_depth_native_bracket_m": [
+            1376.0,
+            1384.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1376.0,
+            1384.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 11,
+          "coarse_bracket_indices": [
+            124,
+            186
+          ],
+          "refined_bracket_indices": [
+            154,
+            155
+          ],
+          "lower_depth_m": 1247.5673913629423,
+          "lower_depth_native_bracket_m": [
+            1240.0,
+            1248.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1240.0,
+            1248.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 11,
+          "coarse_bracket_indices": [
+            124,
+            186
+          ],
+          "refined_bracket_indices": [
+            144,
+            145
+          ],
+          "lower_depth_m": 1167.8793356456792,
+          "lower_depth_native_bracket_m": [
+            1160.0,
+            1168.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1160.0,
+            1168.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    },
+    {
+      "station": "048",
+      "entity_context": "current:agulhas",
+      "source_file": "research/source-data/i06s-agulhas-native-casts-v1/048.nc",
+      "source_sha256": "6bf28ce36c8c8115fc34bea821fc6d70109672191f16fb9097220afbf1ba0e63",
+      "cast_datetime_utc": "2019-05-09T13:59:11Z",
+      "source_lon_lat": [
+        28.551279067993164,
+        -33.69401931762695
+      ],
+      "source_timestamp_role": "provider_nominal_profile_date_not_per_depth_instant",
+      "native_axis_domain_m": [
+        8.0,
+        3752.0
+      ],
+      "native_axis_count": 469,
+      "native_component_frame": {
+        "reference_native_index": 11,
+        "reference_depth_m": 96.0,
+        "reference_native_u_m_s": -0.33768314123153687,
+        "reference_native_v_m_s": -0.13405296206474304,
+        "reference_speed_m_s": 0.36331818081446116,
+        "qualified": true,
+        "native_uv_unit_vector": [
+          -0.9294419026169913,
+          -0.3689684941288447
+        ],
+        "independent_geographic_direction_or_current_axis_verified": false
+      },
+      "component_metric": "signed_component_along_fixed_nearest100m_vector_in_provider_declared_native_uv_basis",
+      "current_membership_basis": "regional_Agulhas_candidate_not_independently_validated_current_axis",
+      "source_processing_software": "LDEO LADCP software: Version IX_14beta2",
+      "source_processing_warnings": " LADCP processing warnings:\n",
+      "source_QC_status": "provider_processed_profile_primary_cruise_initial_QC_described_final_QC_not_verified",
+      "exact_solver_equivalence_verified": false,
+      "independent_geographic_component_orientation_verified": false,
+      "source_uerr_is_SE_or_depth_CI": false,
+      "physical_state_join_eligible": false,
+      "volume_eligible": false,
+      "physical_thickness_m": null,
+      "seasonal_range_m": null,
+      "coarse_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        93,
+        124,
+        186,
+        249,
+        311,
+        374,
+        468
+      ],
+      "sampled_upper200m_core_index": 18,
+      "selected_native_indices": [
+        0,
+        5,
+        11,
+        18,
+        24,
+        36,
+        61,
+        69,
+        73,
+        74,
+        75,
+        77,
+        93,
+        124,
+        139,
+        147,
+        148,
+        149,
+        151,
+        155,
+        186,
+        201,
+        209,
+        210,
+        211,
+        213,
+        217,
+        249,
+        311,
+        374,
+        468
+      ],
+      "selected_native_levels": 31,
+      "selected_native_samples": [
+        {
+          "native_index": 0,
+          "depth_m": 8.0,
+          "u_m_s": -0.4425383508205414,
+          "v_m_s": -0.09112486243247986,
+          "uerr_m_s": 0.12915289402008057,
+          "aligned_component_m_s": 0.4449358900370398
+        },
+        {
+          "native_index": 5,
+          "depth_m": 48.0,
+          "u_m_s": -0.3524606227874756,
+          "v_m_s": -0.13486234843730927,
+          "uerr_m_s": 0.04949621483683586,
+          "aligned_component_m_s": 0.37735162945875456
+        },
+        {
+          "native_index": 11,
+          "depth_m": 96.0,
+          "u_m_s": -0.33768314123153687,
+          "v_m_s": -0.13405296206474304,
+          "uerr_m_s": 0.03654700890183449,
+          "aligned_component_m_s": 0.3633181808144612
+        },
+        {
+          "native_index": 18,
+          "depth_m": 152.0,
+          "u_m_s": -0.45491617918014526,
+          "v_m_s": -0.1259753704071045,
+          "uerr_m_s": 0.03547811880707741,
+          "aligned_component_m_s": 0.4692991018248791
+        },
+        {
+          "native_index": 24,
+          "depth_m": 200.0,
+          "u_m_s": -0.4245988130569458,
+          "v_m_s": -0.10277771204710007,
+          "uerr_m_s": 0.03403150662779808,
+          "aligned_component_m_s": 0.43256166630059045
+        },
+        {
+          "native_index": 36,
+          "depth_m": 296.0,
+          "u_m_s": -0.2925744950771332,
+          "v_m_s": -0.07673471421003342,
+          "uerr_m_s": 0.029784662649035454,
+          "aligned_component_m_s": 0.3002436873111795
+        },
+        {
+          "native_index": 61,
+          "depth_m": 496.0,
+          "u_m_s": -0.23061302304267883,
+          "v_m_s": -0.03458588570356369,
+          "uerr_m_s": 0.02373388409614563,
+          "aligned_component_m_s": 0.2271025090711997
+        },
+        {
+          "native_index": 69,
+          "depth_m": 560.0,
+          "u_m_s": -0.2160455584526062,
+          "v_m_s": -0.041067659854888916,
+          "uerr_m_s": 0.02716822549700737,
+          "aligned_component_m_s": 0.2159544675141947
+        },
+        {
+          "native_index": 73,
+          "depth_m": 592.0,
+          "u_m_s": -0.19927112758159637,
+          "v_m_s": -0.042319703847169876,
+          "uerr_m_s": 0.024267878383398056,
+          "aligned_component_m_s": 0.2008255733565411
+        },
+        {
+          "native_index": 74,
+          "depth_m": 600.0,
+          "u_m_s": -0.19316366314888,
+          "v_m_s": -0.04047112166881561,
+          "uerr_m_s": 0.028886476531624794,
+          "aligned_component_m_s": 0.1944669714114108
+        },
+        {
+          "native_index": 75,
+          "depth_m": 608.0,
+          "u_m_s": -0.1917402595281601,
+          "v_m_s": -0.041793666779994965,
+          "uerr_m_s": 0.025676412507891655,
+          "aligned_component_m_s": 0.19363197792006628
+        },
+        {
+          "native_index": 77,
+          "depth_m": 624.0,
+          "u_m_s": -0.1787654608488083,
+          "v_m_s": -0.05054665729403496,
+          "uerr_m_s": 0.023793021216988564,
+          "aligned_component_m_s": 0.1848022340785465
+        },
+        {
+          "native_index": 93,
+          "depth_m": 752.0,
+          "u_m_s": -0.16635462641716003,
+          "v_m_s": -0.033978987485170364,
+          "uerr_m_s": 0.026156917214393616,
+          "aligned_component_m_s": 0.1671541363307302
+        },
+        {
+          "native_index": 124,
+          "depth_m": 1000.0,
+          "u_m_s": -0.17283505201339722,
+          "v_m_s": -0.002069277223199606,
+          "uerr_m_s": 0.033141396939754486,
+          "aligned_component_m_s": 0.16140363768321767
+        },
+        {
+          "native_index": 139,
+          "depth_m": 1120.0,
+          "u_m_s": -0.15215544402599335,
+          "v_m_s": -0.03250391408801079,
+          "uerr_m_s": 0.03621804714202881,
+          "aligned_component_m_s": 0.15341256562339906
+        },
+        {
+          "native_index": 147,
+          "depth_m": 1184.0,
+          "u_m_s": -0.10847122222185135,
+          "v_m_s": -0.0108876284211874,
+          "uerr_m_s": 0.040867630392313004,
+          "aligned_component_m_s": 0.10483489102426792
+        },
+        {
+          "native_index": 148,
+          "depth_m": 1192.0,
+          "u_m_s": -0.09923065453767776,
+          "v_m_s": -0.010736179538071156,
+          "uerr_m_s": 0.0386175662279129,
+          "aligned_component_m_s": 0.09619044034828764
+        },
+        {
+          "native_index": 149,
+          "depth_m": 1200.0,
+          "u_m_s": -0.08389889448881149,
+          "v_m_s": -0.01037504430860281,
+          "uerr_m_s": 0.0443793386220932,
+          "aligned_component_m_s": 0.08180721259620838
+        },
+        {
+          "native_index": 151,
+          "depth_m": 1216.0,
+          "u_m_s": -0.061836473643779755,
+          "v_m_s": 0.005364662501960993,
+          "uerr_m_s": 0.038584087044000626,
+          "aligned_component_m_s": 0.05549401826974206
+        },
+        {
+          "native_index": 155,
+          "depth_m": 1248.0,
+          "u_m_s": -0.07906507700681686,
+          "v_m_s": -0.011275524273514748,
+          "uerr_m_s": 0.041151948273181915,
+          "aligned_component_m_s": 0.07764670881548677
+        },
+        {
+          "native_index": 186,
+          "depth_m": 1496.0,
+          "u_m_s": -0.10652902722358704,
+          "v_m_s": 0.023527415469288826,
+          "uerr_m_s": 0.05155215412378311,
+          "aligned_component_m_s": 0.09033166669018082
+        },
+        {
+          "native_index": 201,
+          "depth_m": 1616.0,
+          "u_m_s": -0.07849546521902084,
+          "v_m_s": 0.0034357579424977303,
+          "uerr_m_s": 0.054714784026145935,
+          "aligned_component_m_s": 0.07168928810573799
+        },
+        {
+          "native_index": 209,
+          "depth_m": 1680.0,
+          "u_m_s": -0.06704702228307724,
+          "v_m_s": -0.0350346565246582,
+          "uerr_m_s": 0.05586685612797737,
+          "aligned_component_m_s": 0.07524299641581156
+        },
+        {
+          "native_index": 210,
+          "depth_m": 1688.0,
+          "u_m_s": -0.048966266214847565,
+          "v_m_s": -0.04864894598722458,
+          "uerr_m_s": 0.050159528851509094,
+          "aligned_component_m_s": 0.06346122797663978
+        },
+        {
+          "native_index": 211,
+          "depth_m": 1696.0,
+          "u_m_s": -0.027834950014948845,
+          "v_m_s": -0.03647400438785553,
+          "uerr_m_s": 0.052802711725234985,
+          "aligned_component_m_s": 0.039328727374978834
+        },
+        {
+          "native_index": 213,
+          "depth_m": 1712.0,
+          "u_m_s": -0.03044140711426735,
+          "v_m_s": -0.027937710285186768,
+          "uerr_m_s": 0.054264914244413376,
+          "aligned_component_m_s": 0.03860165423995636
+        },
+        {
+          "native_index": 217,
+          "depth_m": 1744.0,
+          "u_m_s": 0.0009913684334605932,
+          "v_m_s": -0.0032118840608745813,
+          "uerr_m_s": 0.055777836591005325,
+          "aligned_component_m_s": 0.0002636646622672928
+        },
+        {
+          "native_index": 249,
+          "depth_m": 2000.0,
+          "u_m_s": -0.02840125747025013,
+          "v_m_s": 0.01693497784435749,
+          "uerr_m_s": 0.05619150400161743,
+          "aligned_component_m_s": 0.02014884550652639
+        },
+        {
+          "native_index": 311,
+          "depth_m": 2496.0,
+          "u_m_s": -0.007031009998172522,
+          "v_m_s": -0.009217300452291965,
+          "uerr_m_s": 0.05518675222992897,
+          "aligned_component_m_s": 0.009935808777835843
+        },
+        {
+          "native_index": 374,
+          "depth_m": 3000.0,
+          "u_m_s": 0.02812381274998188,
+          "v_m_s": 0.024787699803709984,
+          "uerr_m_s": 0.059361428022384644,
+          "aligned_component_m_s": -0.03528533030067989
+        },
+        {
+          "native_index": 468,
+          "depth_m": 3752.0,
+          "u_m_s": 0.014237389899790287,
+          "v_m_s": 0.06441834568977356,
+          "uerr_m_s": 0.08900690078735352,
+          "aligned_component_m_s": -0.03700116676018812
+        }
+      ],
+      "threshold_cases": [
+        {
+          "threshold_m_s": 0.05,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            186,
+            249
+          ],
+          "refined_bracket_indices": [
+            210,
+            211
+          ],
+          "lower_depth_m": 1692.462439495628,
+          "lower_depth_native_bracket_m": [
+            1688.0,
+            1696.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1688.0,
+            1696.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.1,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            124,
+            186
+          ],
+          "refined_bracket_indices": [
+            147,
+            148
+          ],
+          "lower_depth_m": 1188.4744460514557,
+          "lower_depth_native_bracket_m": [
+            1184.0,
+            1192.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            1184.0,
+            1192.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        },
+        {
+          "threshold_m_s": 0.2,
+          "sampled_upper200m_core_index": 18,
+          "coarse_bracket_indices": [
+            61,
+            93
+          ],
+          "refined_bracket_indices": [
+            73,
+            74
+          ],
+          "lower_depth_m": 593.0386853760184,
+          "lower_depth_native_bracket_m": [
+            592.0,
+            600.0
+          ],
+          "status": "ADJACENT_NATIVE_CROSSING_WITHIN_FIRST_COARSE_DESCENDING_BRACKET",
+          "first_native_downcrossing_below_core_verified": false,
+          "continuous_connection_from_core_verified": false,
+          "skipped_native_levels_may_hide_earlier_reversal": true,
+          "physical_current_bottom_established": false,
+          "physical_thickness_m": null,
+          "annual_range_m": null,
+          "depth_confidence_interval_m": null,
+          "volume_eligible": false,
+          "remaining_endpoint_depth_bracket_m": [
+            592.0,
+            600.0
+          ],
+          "local_crossing_is_first_crossing_of_entire_native_profile": false,
+          "linear_interpolation_used_only_between_adjacent_finite_native_endpoints": true
+        }
+      ],
+      "source_upper200m_core_fully_sampled": false,
+      "entire_native_velocity_profile_read": false,
+      "independent_current_axis_verified": false,
+      "physical_current_bottom_established": false,
+      "seasonal_playback_eligible": false,
+      "reference_route_projection_eligible": false
+    }
+  ],
+  "counts": {
+    "source_cast_profiles": 3,
+    "cutoff_contexts": 9,
+    "qualified_native_reference_frames": 3,
+    "adjacent_local_crossings": 9,
+    "selected_native_levels": 72,
+    "case_metadata_numeric_values": 1973,
+    "native_array_values_decoded": 1094,
+    "case_scalar_bound": 3067,
+    "new_canonical_depth_references": 0
+  },
+  "exact_solver_equivalence_verified": false,
+  "source_final_QC_verified": false,
+  "current_axis_verified": false,
+  "global_first_crossing_verified": false,
+  "physical_current_bottom_established": false,
+  "whole_route_physical_depth_profile_established": false,
+  "volume_m3": null,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

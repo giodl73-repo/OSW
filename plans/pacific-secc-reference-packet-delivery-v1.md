@@ -1,0 +1,11 @@
+# Pacific SECC packet/dashboard/index candidate v1
+
+Use only the exact installed logical parent93c7c184e547ad0c2801ff2183cc5f88f2e11f6150b69b7583fc2f0db05ab696 and the explicit publication/navigation admission. The cloud caller must first verify packet descriptors, every part and assembled bytes against the saved installed engine. No historical science producer is rerun.
+
+Append exactly two source records (one publication, one method) and one regional reference route. Preserve the canonical serialization of all existing source and route prefixes, all other collections, all unrelated objects and all other route decisions. Retain the target's entire prior planning decision. Permit only the declared target route/capability/provenance/link/map/fingerprint fields and route_url to change. Physical geometry, dimensions, dated measurements and state links remain exact.
+
+Verify the dashboard's retained source JSON, schema, counts and every prior owner projection. Refresh the target entry, its direct atlas link and snapshot fingerprint; preserve every other entry and prior delivery metadata. Store the replacement source JSON and hash in the candidate manifest.
+
+Verify compressed and decompressed parent source-index hashes before parsing in the cloud. Add exactly the eight JSON documents declared by the producer. Only the explicitly refreshed dashboard may replace an old source string. Preserve every other old string exactly, regenerate descriptors and deterministic gzip, and pin generated/index/source bytes in the candidate packet manifest. These documents are provenance and editorial geometry, not additional observations.
+
+Local checks use only the24KB selected parent metadata and synthetic unrelated rows/index documents, one CPU and BelowNormal priority. No actual packet/index load, build, browser or generated-data synchronization locally. The pure source projections are insufficient for installation: the supplemented native adapter, WASM, full query packet, full source index, atlas/card/navigation output, actual pixels and complete EACC presentation metadata preservation must pass one sequenced cloud delivery. Counts remain80reference routes/73owners until verified installation.

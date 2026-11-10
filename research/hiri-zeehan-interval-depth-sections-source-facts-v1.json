@@ -1,0 +1,3307 @@
+{
+  "schema": "osw.hiri-zeehan-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "5bcade4143a7cbba1acd54b07381657fd9ad23d176806df3732690bcc663c2ca",
+  "operator_file": "research/hiri-zeehan-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "2f3738670f012e6246e8f642c7e9f3635619359a5f3c9f0f3171ce07cba3d5bf",
+  "counts": {
+    "section_date_cases": 32,
+    "native_velocity_profiles": 1208,
+    "selected_axis_proxy_profiles": 32,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 27,
+      "selection_interval_support_edge_maximum_axis_unresolved": 5
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 30,
+      "0.1": 30,
+      "0.2": 27
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 30,
+      "0.1": 30,
+      "0.2": 27
+    },
+    "decoded_velocity_cell_pairs": 48320,
+    "decoded_velocity_array_bytes": 386560,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:hiri-current": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 604,
+      "selected_axis_proxy_profiles": 16,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 15,
+        "selection_interval_support_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 16,
+        "0.1": 16,
+        "0.2": 14
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 16,
+        "0.1": 16,
+        "0.2": 14
+      }
+    },
+    "current:zeehan": {
+      "section_date_cases": 16,
+      "native_velocity_profiles": 604,
+      "selected_axis_proxy_profiles": 16,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 12,
+        "selection_interval_support_edge_maximum_axis_unresolved": 4
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 13
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 14,
+        "0.1": 14,
+        "0.2": 13
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-15s.json",
+      "source_sha256": "69c56c351e1535fb8c58e1c4a6ea4d1641e25830fe575f0dcbb367c05bc69e14",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-15s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -15,
+        "longitude_gate_degrees_east": [
+          145.5,
+          148.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -15.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.760009765625,
+        -15.0
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        3,
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 758.8785068090252,
+          "layer_thickness_m": 758.8785068090252,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 712.1495372184378,
+          "layer_thickness_m": 712.1495372184378,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 550.0000260770278,
+          "layer_thickness_m": 550.0000260770278,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 12,
+          "core_depth_m": 40.0,
+          "core_velocity_m_s": 0.6880000233650208,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 712.1495372184378,
+      "primary_layer_thickness_m": 712.1495372184378,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-14s.json",
+      "source_sha256": "511eb1896ff5f3560538bdd6eaa2e25c2f80362c17331f74c41ab3f31304cbcf",
+      "source_profile_pointer": "/columns/10",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-14s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -14,
+        "longitude_gate_degrees_east": [
+          144.5,
+          147.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -14.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.3599853515625,
+        -14.0
+      ],
+      "selected_column_index": 10,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        3,
+        10
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1406.2500130967246,
+          "layer_thickness_m": 1406.2500130967246,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1150.0000149011591,
+          "layer_thickness_m": 1150.0000149011591,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 141.66664459088054,
+          "lower_depth_m": 845.7143063934502,
+          "layer_thickness_m": 704.0476618025697,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.26100000739097595,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1150.0000149011591,
+      "primary_layer_thickness_m": 1150.0000149011591,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-13s.json",
+      "source_sha256": "c3a1afbc087065fd2791ce76f3c3cde3190b9195053e462f0ec8037649aaae85",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-13s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -13,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -13.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.43994140625,
+        -13.0
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1015.6250407453559,
+          "layer_thickness_m": 1015.6250407453559,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 692.5926093538469,
+          "layer_thickness_m": 692.5926093538469,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 22.99999503294647,
+          "lower_depth_m": 62.75862224887303,
+          "layer_thickness_m": 39.758627215926566,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 692.5926093538469,
+      "primary_layer_thickness_m": 692.5926093538469,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-hiri-current-section-12s.json",
+      "source_sha256": "25a23d85726e0d547e8a259db5b09e625e7c4d82df9459ee15b775b16f772623",
+      "source_profile_pointer": "/columns/29",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-12s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -12,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -12.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.3599853515625,
+        -12.0
+      ],
+      "selected_column_index": 29,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        29
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 486.8852520286952,
+          "layer_thickness_m": 486.8852520286952,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 196.42859575700032,
+          "layer_thickness_m": 196.42859575700032,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 25.851063546469582,
+          "lower_depth_m": 82.69231346760803,
+          "layer_thickness_m": 56.84124992113845,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.23900000751018524,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 196.42859575700032,
+      "primary_layer_thickness_m": 196.42859575700032,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-40p5s.json",
+      "source_sha256": "bc2aad078e5519b365e50ac312fd8808bdb417c785fa01cbf84bac8b2a2acbb4",
+      "source_profile_pointer": "/columns/3",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40p5s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -40.5,
+        "longitude_gate_degrees_east": [
+          142,
+          145
+        ]
+      },
+      "actual_source_latitude_degrees_north": -40.52000045776367,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        142.239990234375,
+        -40.52000045776367
+      ],
+      "selected_column_index": 3,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        3,
+        7,
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 178.8659792072348,
+          "layer_thickness_m": 178.8659792072348,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 67.08333473031696,
+          "layer_thickness_m": 67.08333473031696,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 10.125000605359572,
+          "layer_thickness_m": 10.125000605359572,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.31300002336502075,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 67.08333473031696,
+      "primary_layer_thickness_m": 67.08333473031696,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-41p25s.json",
+      "source_sha256": "452301078323ecd1addf27f656c0c362bf0686918b5551251ef7eef25420738e",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-41p25s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -41.25,
+        "longitude_gate_degrees_east": [
+          142.5,
+          145.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -41.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0,
+        -41.2400016784668
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        0,
+        4,
+        11,
+        18,
+        21
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 242.85714691188065,
+          "layer_thickness_m": 242.85714691188065,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 182.92683330162293,
+          "layer_thickness_m": 182.92683330162293,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 53.84615807843743,
+          "layer_thickness_m": 53.84615807843743,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4310000240802765,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 182.92683330162293,
+      "primary_layer_thickness_m": 182.92683330162293,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-42s.json",
+      "source_sha256": "822c35ba2a2e7c27c7d852b0113195543780f47a7f8d12669d53357591f1e315",
+      "source_profile_pointer": "/columns/21",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.719970703125,
+        -42.0
+      ],
+      "selected_column_index": 21,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        1,
+        21,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 106.18811933410106,
+          "layer_thickness_m": 106.18811933410106,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 94.0476202049087,
+          "layer_thickness_m": 94.0476202049087,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 7.142858440373354,
+          "layer_thickness_m": 7.142858440373354,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.23900000751018527,
+          "lower_bracket_m": [
+            6.0,
+            8.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 94.0476202049087,
+      "primary_layer_thickness_m": 94.0476202049087,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-03-15-zeehan-section-42p75s.json",
+      "source_sha256": "d92aa9ef050c0d3e62c8bb9f2e8685d7ae69a3c7115f477950332173edec55a0",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p75s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42.75,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.9599609375,
+        -42.7599983215332
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 109.48275985543948,
+          "layer_thickness_m": 109.48275985543948,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19200000166893005,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 86.25000013969839,
+          "layer_thickness_m": 86.25000013969839,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.19200000166893005,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 86.25000013969839,
+      "primary_layer_thickness_m": 86.25000013969839,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-15s.json",
+      "source_sha256": "c7c99ec98d1e543b765489cab11e30e1a048b7955dff3615b32e414ea5c448fd",
+      "source_profile_pointer": "/columns/5",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-15s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -15,
+        "longitude_gate_degrees_east": [
+          145.5,
+          148.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -15.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.9200439453125,
+        -15.0
+      ],
+      "selected_column_index": 5,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        5,
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1096.8992258023882,
+          "layer_thickness_m": 1096.8992258023882,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1000.0000028878219,
+          "layer_thickness_m": 1000.0000028878219,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 824.0740985005294,
+          "layer_thickness_m": 824.0740985005294,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.5300000309944153,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1000.0000028878219,
+      "primary_layer_thickness_m": 1000.0000028878219,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-14s.json",
+      "source_sha256": "a8e57e2484e40e29df49ef6c3293722d26fda0235268ea25408c2ec0ee0e5f57",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-14s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -14,
+        "longitude_gate_degrees_east": [
+          144.5,
+          147.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -14.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.280029296875,
+        -14.0
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        2,
+        9,
+        29
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1080.9859307832926,
+          "layer_thickness_m": 1080.9859307832926,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 912.9032344897518,
+          "layer_thickness_m": 912.9032344897518,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 556.4102954021135,
+          "layer_thickness_m": 556.4102954021135,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 912.9032344897518,
+      "primary_layer_thickness_m": 912.9032344897518,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-13s.json",
+      "source_sha256": "19d029f5265b8053860ad501097c493fac7bf5db3a5afbc301be1b9a675efce7",
+      "source_profile_pointer": "/columns/8",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-13s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -13,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -13.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.1600341796875,
+        -13.0
+      ],
+      "selected_column_index": 8,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        8,
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1153.5087757709211,
+          "layer_thickness_m": 1153.5087757709211,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 942.3077134690982,
+          "layer_thickness_m": 942.3077134690982,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 692.3078122223941,
+          "layer_thickness_m": 692.3078122223941,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.7940000295639038,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 942.3077134690982,
+      "primary_layer_thickness_m": 942.3077134690982,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-hiri-current-section-12s.json",
+      "source_sha256": "651a75b6d3b591cb0404cce65d1413cb7f70f8c07c19f7df9e9bced1db79fffd",
+      "source_profile_pointer": "/columns/15",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-12s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -12,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -12.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.239990234375,
+        -12.0
+      ],
+      "selected_column_index": 15,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        15,
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1244.252875088968,
+          "layer_thickness_m": 1244.252875088968,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1100.5747223395713,
+          "layer_thickness_m": 1100.5747223395713,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 887.1795022667916,
+          "layer_thickness_m": 887.1795022667916,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.5850000381469727,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1100.5747223395713,
+      "primary_layer_thickness_m": 1100.5747223395713,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-40p5s.json",
+      "source_sha256": "ad5551bc08177b2b09e22d1d378452285e66bb00a71a2b7967111108e3e30f1a",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40p5s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -40.5,
+        "longitude_gate_degrees_east": [
+          142,
+          145
+        ]
+      },
+      "actual_source_latitude_degrees_north": -40.52000045776367,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.280029296875,
+        -40.52000045776367
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        6,
+        16
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 285.18519244157983,
+          "layer_thickness_m": 285.18519244157983,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 195.9459498644397,
+          "layer_thickness_m": 195.9459498644397,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 77.50003539031792,
+          "layer_thickness_m": 77.50003539031792,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3960000276565552,
+          "lower_bracket_m": [
+            70.0,
+            80.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 195.9459498644397,
+      "primary_layer_thickness_m": 195.9459498644397,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-41p25s.json",
+      "source_sha256": "cb4748c13b64331d61bfb926684808ca55135aece010124ab3cc1150de8e1b40",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-41p25s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -41.25,
+        "longitude_gate_degrees_east": [
+          142.5,
+          145.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -41.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0799560546875,
+        -41.2400016784668
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        3,
+        9,
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 176.66666832235123,
+          "layer_thickness_m": 176.66666832235123,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 140.8163295406338,
+          "layer_thickness_m": 140.8163295406338,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 22.500006519256964,
+          "layer_thickness_m": 22.500006519256964,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3570000231266022,
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 140.8163295406338,
+      "primary_layer_thickness_m": 140.8163295406338,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-42s.json",
+      "source_sha256": "b473248dc969b56765e9c5e9053efdcf7c1c7cc37b8766b4512bbd402ea45045",
+      "source_profile_pointer": "/columns/1",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.1199951171875,
+        -42.0
+      ],
+      "selected_column_index": 1,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        1,
+        20,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 348.12500136788,
+          "layer_thickness_m": 348.12500136788,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 316.87500212457957,
+          "layer_thickness_m": 316.87500212457957,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 53.33335982436434,
+          "layer_thickness_m": 53.33335982436434,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3760000169277191,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 316.87500212457957,
+      "primary_layer_thickness_m": 316.87500212457957,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-06-15-zeehan-section-42p75s.json",
+      "source_sha256": "f83274b1f2483d37f573519b4725e8cd4ac69c97ace0a24fba9f2c072857b022",
+      "source_profile_pointer": "/columns/18",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p75s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42.75,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.9599609375,
+        -42.7599983215332
+      ],
+      "selected_column_index": 18,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_last_connected_depth_m": 300.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.00000066227468,
+          "layer_thickness_m": 8.00000066227468,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.33500000834465027,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 300.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-15s.json",
+      "source_sha256": "385002b26f559e782381fa671e91d5b4271ab111cf161e110f9b2658024eb259",
+      "source_profile_pointer": "/columns/4",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-15s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -15,
+        "longitude_gate_degrees_east": [
+          145.5,
+          148.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -15.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.8399658203125,
+        -15.0
+      ],
+      "selected_column_index": 4,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        4
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 24.999998137355163,
+          "lower_depth_m": 111.93181934055943,
+          "layer_thickness_m": 86.93182120320427,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 43.80952269447082,
+          "lower_depth_m": 96.36363981183896,
+          "layer_thickness_m": 52.55411711736814,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.17000000178813934,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 96.36363981183896,
+      "primary_layer_thickness_m": 52.55411711736814,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-14s.json",
+      "source_sha256": "467c600135dbd1cab508c3c5ad91539c21897028afac04425fe4905e5f641917",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-14s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -14,
+        "longitude_gate_degrees_east": [
+          144.5,
+          147.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -14.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        145.1199951171875,
+        -14.0
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        3,
+        7
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 893.4782654821647,
+          "layer_thickness_m": 893.4782654821647,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 746.1538796594053,
+          "layer_thickness_m": 746.1538796594053,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 58.03921401340287,
+          "lower_depth_m": 144.2307765050025,
+          "layer_thickness_m": 86.19156249159963,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.2590000033378601,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 746.1538796594053,
+      "primary_layer_thickness_m": 746.1538796594053,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-13s.json",
+      "source_sha256": "6199be914b5c899e37af6d27236b2a25bfba05356279a0c5a0ea7091b14830a7",
+      "source_profile_pointer": "/columns/6",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-13s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -13,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -13.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0,
+        -13.0
+      ],
+      "selected_column_index": 6,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        6
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 891.304350361256,
+          "layer_thickness_m": 891.304350361256,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 700.0000051383316,
+          "layer_thickness_m": 700.0000051383316,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 29.642855318224978,
+          "lower_depth_m": 99.65517787105563,
+          "layer_thickness_m": 70.01232255283065,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.3360000252723694,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 700.0000051383316,
+      "primary_layer_thickness_m": 700.0000051383316,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-hiri-current-section-12s.json",
+      "source_sha256": "fcf9944535e3b6c22d825fb1c696de3bd3e33bd155ac890a91f663a1210daebf",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-12s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -12,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -12.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0799560546875,
+        -12.0
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        13,
+        18,
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 938.2352971146366,
+          "layer_thickness_m": 938.2352971146366,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 815.9091069955691,
+          "layer_thickness_m": 815.9091069955691,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 36.08695474712084,
+          "lower_depth_m": 610.3448513288364,
+          "layer_thickness_m": 574.2578965817156,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 18,
+          "core_depth_m": 90.0,
+          "core_velocity_m_s": 0.48600003123283386,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 815.9091069955691,
+      "primary_layer_thickness_m": 815.9091069955691,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-40p5s.json",
+      "source_sha256": "4c1612ddd6a24d277bf69ee015ccd082e3a38a58cf40c157145e980a58f357ba",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40p5s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -40.5,
+        "longitude_gate_degrees_east": [
+          142,
+          145
+        ]
+      },
+      "actual_source_latitude_degrees_north": -40.52000045776367,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.3599853515625,
+        -40.52000045776367
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        3,
+        17
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 329.77272800777934,
+          "layer_thickness_m": 329.77272800777934,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 318.40909215983396,
+          "layer_thickness_m": 318.40909215983396,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 10.666671964872904,
+          "layer_thickness_m": 10.666671964872904,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2550000250339508,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 318.40909215983396,
+      "primary_layer_thickness_m": 318.40909215983396,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-41p25s.json",
+      "source_sha256": "65f07b0fa9418f23a0c4e4cfa9d48507d8efb74611282bec396316a188fc1277",
+      "source_profile_pointer": "/columns/20",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-41p25s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -41.25,
+        "longitude_gate_degrees_east": [
+          142.5,
+          145.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -41.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.1600341796875,
+        -41.2400016784668
+      ],
+      "selected_column_index": 20,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        0,
+        5,
+        15,
+        20
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 302.7777792437485,
+          "layer_thickness_m": 302.7777792437485,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 195.00001303851394,
+          "layer_thickness_m": 195.00001303851394,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 33.75000434617401,
+          "layer_thickness_m": 33.75000434617401,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4220000207424164,
+          "lower_bracket_m": [
+            30.0,
+            35.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 195.00001303851394,
+      "primary_layer_thickness_m": 195.00001303851394,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-42s.json",
+      "source_sha256": "ad57db1f8aae9d6f5283953ea759f2d60f492ef6d7b9eec8a55830396da06223",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.9599609375,
+        -42.0
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        11,
+        21,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_last_connected_depth_m": 200.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_last_connected_depth_m": 200.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 18.571431916587546,
+          "layer_thickness_m": 18.571431916587546,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3530000150203705,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 200.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-09-15-zeehan-section-42p75s.json",
+      "source_sha256": "34720dbcf6806e2656bf3b4b04f28feb18f9d7184b5f942df48feec21cb95f0c",
+      "source_profile_pointer": "/columns/2",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p75s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42.75,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.679931640625,
+        -42.7599983215332
+      ],
+      "selected_column_index": 2,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        2,
+        18
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1137.9310393553142,
+          "layer_thickness_m": 1137.9310393553142,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 511.5384904149716,
+          "layer_thickness_m": 511.5384904149716,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 310.9375250292901,
+          "layer_thickness_m": 310.9375250292901,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6800000071525574,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 511.5384904149716,
+      "primary_layer_thickness_m": 511.5384904149716,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-15s.json",
+      "source_sha256": "9654319cc7df4da01120897800408668483ea4367de01c2df8bbf02575b47d84",
+      "source_profile_pointer": "/columns/21",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-15s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-15s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -15,
+        "longitude_gate_degrees_east": [
+          145.5,
+          148.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -15.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        147.199951171875,
+        -15.0
+      ],
+      "selected_column_index": 21,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        21,
+        33
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 920.0000596046572,
+          "layer_thickness_m": 920.0000596046572,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 466.66669357154495,
+          "layer_thickness_m": 466.66669357154495,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 80.00000212873752,
+          "layer_thickness_m": 80.00000212873752,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 2,
+          "core_depth_m": 4.0,
+          "core_velocity_m_s": 0.2670000195503235,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 466.66669357154495,
+      "primary_layer_thickness_m": 466.66669357154495,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-14s.json",
+      "source_sha256": "0724b8e756632aba864f66f616654d49db7067b068295b47e6dd689a63a05b7f",
+      "source_profile_pointer": "/columns/35",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-14s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-14s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -14,
+        "longitude_gate_degrees_east": [
+          144.5,
+          147.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -14.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        147.3599853515625,
+        -14.0
+      ],
+      "selected_column_index": 35,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        35
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1062.500017462298,
+          "layer_thickness_m": 1062.500017462298,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 670.588267262012,
+          "layer_thickness_m": 670.588267262012,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 239.81482549500134,
+          "layer_thickness_m": 239.81482549500134,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.37800002098083496,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 670.588267262012,
+      "primary_layer_thickness_m": 670.588267262012,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-13s.json",
+      "source_sha256": "46c87d5157b3bf7f9cb4385215b38e81ea02fcc0f951c9e7684675e055b2f157",
+      "source_profile_pointer": "/columns/6",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-13s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-13s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -13,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -13.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0,
+        -13.0
+      ],
+      "selected_column_index": 6,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        6
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 124.18032745087109,
+          "lower_depth_m": 862.8571483310382,
+          "layer_thickness_m": 738.676820880167,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "upper_bracket_m": [
+            100.0,
+            125.0
+          ],
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 138.63636340545722,
+          "lower_depth_m": 748.1481539737052,
+          "layer_thickness_m": 609.511790568248,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.18700000643730164,
+          "upper_bracket_m": [
+            125.0,
+            150.0
+          ],
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 748.1481539737052,
+      "primary_layer_thickness_m": 609.511790568248,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:hiri-current",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-hiri-current-section-12s.json",
+      "source_sha256": "79cc93ca90d825b6c0dc2e1c53534a2bade572d4a9f3c78d7a5683770eb74757",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-12s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-12s",
+        "entity_id": "current:hiri-current",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -12,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -12.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0799560546875,
+        -12.0
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 0,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        13,
+        17
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1014.1509571886852,
+          "layer_thickness_m": 1014.1509571886852,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 854.5454671683391,
+          "layer_thickness_m": 854.5454671683391,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 667.6923217999132,
+          "layer_thickness_m": 667.6923217999132,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 22,
+          "core_depth_m": 200.0,
+          "core_velocity_m_s": 0.44700002670288086,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 854.5454671683391,
+      "primary_layer_thickness_m": 854.5454671683391,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-40p5s.json",
+      "source_sha256": "87fce54f69e83806830d55e6a22b3d175a737e55243f68f4ae489d3f21bb6e52",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-40p5s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-40p5s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -40.5,
+        "longitude_gate_degrees_east": [
+          142,
+          145
+        ]
+      },
+      "actual_source_latitude_degrees_north": -40.52000045776367,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.280029296875,
+        -40.52000045776367
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        0,
+        3,
+        9,
+        16
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 676.9230825073379,
+          "layer_thickness_m": 676.9230825073379,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 430.0000596046129,
+          "layer_thickness_m": 430.0000596046129,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 4.2999988824126785,
+          "lower_depth_m": 48.75000130385188,
+          "layer_thickness_m": 44.4500024214392,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.2800000011920929,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            45.0,
+            50.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 430.0000596046129,
+      "primary_layer_thickness_m": 430.0000596046129,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-41p25s.json",
+      "source_sha256": "711b2aac1cb2e20df947cf3c1e0d388d61e189d2a747564843c488b85347d8b0",
+      "source_profile_pointer": "/columns/9",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-41p25s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-41p25s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -41.25,
+        "longitude_gate_degrees_east": [
+          142.5,
+          145.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -41.2400016784668,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        143.280029296875,
+        -41.2400016784668
+      ],
+      "selected_column_index": 9,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 37,
+      "local_integral_maximum_indices": [
+        3,
+        9,
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.290908977611007,
+          "lower_depth_m": 265.57971049312204,
+          "layer_thickness_m": 265.288801515511,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 2.2222219891999737,
+          "lower_depth_m": 244.16666946063393,
+          "layer_thickness_m": 241.94444747143396,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 15.624995576218508,
+          "lower_depth_m": 162.69841844262507,
+          "layer_thickness_m": 147.07342286640656,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.289000004529953,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 244.16666946063393,
+      "primary_layer_thickness_m": 241.94444747143396,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-42s.json",
+      "source_sha256": "d6cafcf5e2761e53a4609f147441cd6c794ab6f7239dbf608dcdcd6b8652140f",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42,
+        "longitude_gate_degrees_east": [
+          143,
+          146
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.0,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.0,
+        -42.0
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        0,
+        2,
+        7,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 7.384615181818521,
+          "lower_depth_m": 294.1176497013303,
+          "layer_thickness_m": 286.7330345195118,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.13400000333786014,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 49.99999813735515,
+          "lower_depth_m": 257.35294581697036,
+          "layer_thickness_m": 207.35294767961523,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.13400000333786014,
+          "upper_bracket_m": [
+            45.0,
+            50.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 257.35294581697036,
+      "primary_layer_thickness_m": 207.35294767961523,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false,
+      "selection_window_basis": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+      "identity_evidence_basis": "published_strict_observed_reach_and_seasonal_west_tasmania_context",
+      "source_section_geometry": "latitude",
+      "entity_id": "current:zeehan",
+      "source_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/2022-12-15-zeehan-section-42p75s.json",
+      "source_sha256": "429dbfa2347ad835170c1de78c00e4b4ed7f7380095ff04806c73fdb8ea798df",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-42p75s",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-42p75s",
+        "entity_id": "current:zeehan",
+        "fixed_axis": "latitude",
+        "latitude_degrees_north": -42.75,
+        "longitude_gate_degrees_east": [
+          143.5,
+          146.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": -42.7599983215332,
+      "actual_source_longitude_degrees_east": null,
+      "selected_lon_lat": [
+        144.800048828125,
+        -42.7599983215332
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 180,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 38,
+      "local_integral_maximum_indices": [
+        16
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.047618927666399635,
+          "lower_depth_m": 576.0000160932526,
+          "layer_thickness_m": 575.9523971655863,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 52.35293932027027,
+          "lower_depth_m": 342.85719151400065,
+          "layer_thickness_m": 290.5042521937304,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 20,
+          "core_depth_m": 125.0,
+          "core_velocity_m_s": 0.1770000010728836,
+          "upper_bracket_m": [
+            50.0,
+            60.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 342.85719151400065,
+      "primary_layer_thickness_m": 290.5042521937304,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "parent_context_by_current": {
+    "current:hiri-current": {
+      "parent_current_id": null,
+      "identity_relationship": "broad_hiri_australian_branch_not_whole_png_arc",
+      "parent_depth_values_inherited": false
+    },
+    "current:zeehan": {
+      "parent_current_id": "current:australian-west-south-boundary-flow",
+      "identity_relationship": "regional_component_not_additive_boundary_system",
+      "parent_depth_values_inherited": false
+    }
+  },
+  "selection_window_basis_by_current": {
+    "current:hiri-current": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries",
+    "current:zeehan": "osw_upper_ocean_velocity_diagnostic_not_source_measured_boundaries"
+  },
+  "identity_evidence_basis_by_current": {
+    "current:hiri-current": "published_ozroms_mean_australian_hiri_branch_context_not_observed_profile",
+    "current:zeehan": "published_strict_observed_reach_and_seasonal_west_tasmania_context"
+  },
+  "selection_windows_by_current": {
+    "current:hiri-current": [
+      0,
+      200
+    ],
+    "current:zeehan": [
+      0,
+      200
+    ]
+  },
+  "primary_thresholds_by_current": {
+    "current:hiri-current": 0.1,
+    "current:zeehan": 0.1
+  },
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/hiri-zeehan-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "76050d7298b4fc235bd2809d375708f7f7534a64a098a6f9cc3626f3dfa2283a",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-mixed-reads.v1",
+    "planned_successful_component_values": 96640,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 96640,
+    "successfully_returned_component_values": 96640,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 773120,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty.",
+    "geometry": "declared_fixed_axis_per_request_native_index_keys"
+  }
+}

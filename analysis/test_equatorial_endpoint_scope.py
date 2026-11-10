@@ -14,8 +14,26 @@ def validate(document):
     if document['schema'] != 'osw.equatorial-bifurcation-endpoint-scope-audit.v1' or document['status'] != 'source_reported_regional_bifurcation_context_not_current_dimensions':
         raise ValueError('Invalid endpoint-context scope')
     expected = ['research/equatorial-basin-family-inventory-audit.json', 'research/ocean-current-inventory-expansion-candidates.json', 'plans/ocean-current-measurement-protocol-v1.md']
-    if document['inputs_sha256'] != {path: hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in expected}:
+    binding = json.loads((ROOT/'research/equatorial-endpoint-context-binding-review-v2.json').read_bytes())
+    current = {path: hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in expected}
+    if (binding['schema'] != 'osw.equatorial-endpoint-context-binding-review.v2'
+            or binding['all_original_proposals_unchanged'] is not True
+            or binding['new_physical_measurements_admitted'] is not False
+            or binding['audit_sha256'] != hashlib.sha256(AUDIT.read_bytes()).hexdigest()
+            or document['inputs_sha256'] != binding['historical_input_sha256']
+            or current != binding['current_input_sha256']):
         raise ValueError('Stale endpoint-context inputs')
+    candidate_path = expected[1]
+    prior_raw = binding['previous_candidate_document_source_json'].encode('utf8')
+    prior = json.loads(prior_raw)
+    candidates = json.loads((ROOT/candidate_path).read_bytes())
+    if (hashlib.sha256(prior_raw).hexdigest() != document['inputs_sha256'][candidate_path]
+            or candidates['entries'][:-1] != prior['entries']
+            or len(prior['entries']) != binding['preserved_proposal_count']
+            or [candidates['entries'][-1]['proposed_id']] != binding['added_proposed_ids']
+            or binding['added_proposed_ids'] != ['southern-east-madagascar']
+            or any(document['inputs_sha256'][p] != current[p] for p in expected if p != candidate_path)):
+        raise ValueError('Unreviewed endpoint-context dependency change')
     proposals = {row['proposed_id']: row for row in json.loads((ROOT/expected[1]).read_bytes())['entries']}
     sources = {row['id']: row for row in document['sources']}
     for row in document['entries']:
@@ -53,6 +71,23 @@ class EndpointScopeTests(unittest.TestCase):
         with self.assertRaises(ValueError):validate(invalid)
         invalid=copy.deepcopy(document);invalid['inputs_sha256'][next(iter(invalid['inputs_sha256']))]='0'*64
         with self.assertRaises(ValueError):validate(invalid)
+
+
+    def test_dependency_review_cannot_hide_changed_proposals_or_pins(self):
+        from unittest.mock import patch
+        review_path=ROOT/'research/equatorial-endpoint-context-binding-review-v2.json'
+        review=json.loads(review_path.read_bytes())
+        original=Path.read_bytes
+        for key,value in [('audit_sha256','0'*64),('preserved_proposal_count',27),
+                          ('previous_candidate_document_source_json','{}'),
+                          ('added_proposed_ids',['other-current']),
+                          ('all_original_proposals_unchanged',False),
+                          ('new_physical_measurements_admitted',True)]:
+            bad=copy.deepcopy(review);bad[key]=value
+            def altered(path):
+                return json.dumps(bad).encode() if path==review_path else original(path)
+            with self.subTest(key=key),patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):
+                validate(json.loads(AUDIT.read_bytes()))
 
 
 if __name__ == '__main__':

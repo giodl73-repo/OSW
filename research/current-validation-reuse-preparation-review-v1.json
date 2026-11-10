@@ -1,0 +1,35 @@
+{
+  "schema": "osw.current-validation-reuse-preparation-review.v1",
+  "status": "SCOPED_IMMUTABLE_VALIDATION_REUSE_PREPARED_FULL_NATIVE_WASM_REVERIFICATION_PENDING",
+  "profile_result_file": "research/current-store-load-profile-run-v1/result.json",
+  "profile_result_sha256": "9d3a45dbcf0b3cf1627c123fae60184693c64a0928b7369b59626b5e90009fd5",
+  "native_load_seconds": 84.958686698,
+  "native_metadata_seconds": 0.008892307,
+  "observed_helper_calls": {
+    "checked:atlantic_nsec_reference": 185,
+    "checked:current_core_dimensions": 147,
+    "checked:indian_sec_model_grid_lengths": 74
+  },
+  "timing_interpretation": "Nested inclusive timings overlap and must not be summed. Native profiling identifies redundant work; it does not prove browser acceptance.",
+  "implementation_contract": [
+    "Only complete results of three pure validators are reusable. No validator body or refusal is removed.",
+    "A guard immutably borrows the exact collections and manifest for one Store::load operation. Results are keyed by validator and exact input identity.",
+    "No RefCell borrow is held while another validator runs.",
+    "Guard identities prevent nested or out-of-order drops from restoring a cache after input borrows end.",
+    "All results expire at scope exit, including errors; no cross-load, cross-bundle or workspace cache is introduced."
+  ],
+  "new_rust_regression_tests": 6,
+  "expected_total_rust_tests": 320,
+  "expected_complete_native_wasm_comparisons": 514,
+  "expected_rust_cargo_inputs": 121,
+  "expected_compile_time_data_inputs": 174,
+  "expected_production_dependencies": 287,
+  "logical_data_must_remain_sha256": "09b882c97c922a0643880885a6165388bf41b19903e72a6d9ca44437da1ed41e",
+  "existing_scientific_rows_changed": 0,
+  "additional_measurements_added_by_optimization": 0,
+  "actual_performance_improvement_verified": false,
+  "browser_review_complete": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

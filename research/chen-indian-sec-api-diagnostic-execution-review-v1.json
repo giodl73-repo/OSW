@@ -1,0 +1,41 @@
+{
+  "schema": "osw.chen-indian-sec-api-diagnostic-execution-review.v1",
+  "status": "DIAGNOSTIC_RETAINED_LOSSLESS_CAPTURE_HELPER_TESTED_FULL_PRESERVATION_UNPROVEN",
+  "evidence_sha256": {
+    "research/chen-indian-sec-api-diagnostic-run-v1/executed-request.json": "b9e40430b7c8464f6248adc8ee69c94faf1a23a8fde3877400a8e21cf9c84fa0",
+    "research/chen-indian-sec-api-diagnostic-run-v1/native-probe-build.txt": "0c226a055b8bbadb18d203adc243e92118adb7c9d019ba8694d94fe90574c8cc",
+    "research/chen-indian-sec-api-diagnostic-run-v1/result.json": "6551561f3892c960a50be9b34a235226ca1758b96bd8a56f210c8feb94bb22dc",
+    "research/chen-indian-sec-api-diagnostic-run-v1/run-receipt.json": "f8ee3b9801e94bd9ef0b9e67f9b880fc25ad49968984661cdef32800ac4319ba"
+  },
+  "helper_sha256": {
+    "analysis/test_chen_indian_sec_json_capture_v1.py": "90fb55be06ea510a01907f95602c196a3a7f2dfee44408557df3741706921b55",
+    "analysis/current_gap_json_capture_v2.mjs": "e5c6751fb7562fac92882859bacb987090bceeab84ee1156ffb2eecb70d353e6",
+    "analysis/test_current_gap_json_capture_v2.mjs": "7c88b7d250189e8b523c714c250861e47ba8a5ba6576646039737ad76b160b0a"
+  },
+  "api_cases": 10,
+  "native_probe_elapsed_seconds": 22.727893738,
+  "ordinary_cli_equivalence_checks": 2,
+  "diagnostic_limitations": [
+    "Strict type-first reporting is dominated by int/float representation differences. Only the first50 differences per case were retained; real value differences may be hidden.",
+    "The original delivery failed ordinary Python equality. Type-only differences do not establish its cause.",
+    "JavaScript parse/stringify can alter large integer and integral-float tokens. A small reproducer confirms the transport risk, but the exact original atlas failure remains unproven."
+  ],
+  "capture_helper_validation": [
+    "Exact original JSON retained as an envelope string",
+    "Large integer and float tokens survive serialization",
+    "Changed numeric tokens, null and bool values are rejected by exact comparison",
+    "ABI limits, deallocation on error and malformed UTF-8 checked"
+  ],
+  "new_helper_integrated_in_cloud_driver": false,
+  "scientific_inputs_changed": false,
+  "acceptance_rules_relaxed": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false,
+  "next_steps": [
+    "Use lossless response and request strings in versioned full-gate fixtures",
+    "Use the validated native batch probe for all historical and new cases",
+    "Resolve complete API preservation before building and installing the candidate engine",
+    "Complete cloud browser review of query, card and global atlas"
+  ]
+}

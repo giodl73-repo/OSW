@@ -1,0 +1,41 @@
+{
+  "schema": "osw.kuroshio-chandler-seasonal-depth-source-facts.v1",
+  "status": "192_MONTHLY_AXES12_COMPLETE_CALENDAR_MEAN_PROFILES",
+  "source_paper_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL097834",
+  "source_code_url": "https://github.com/mlchandler/wbc_sustained_obs/blob/a97de9420285f5d4e63e00b91b8fa518ace06529/XAA_px40.m",
+  "source_code_review_sha256": "947638788f960ac566a41d5f2e0424f57283f840711ef700eb805f5d39333f68",
+  "source_access": "Primary publisher indexed full text Sections2.1–2.3/3.3 and pinned author PX40 code reviewed. No original paper figure pixels or digitization claimed.",
+  "source_transect": "PX40_Yokohama_Honolulu",
+  "source_data_doi": "10.5281/zenodo.5851312",
+  "source_license": "CC-BY-4.0",
+  "raw_source": {
+    "source_file": "px40_velocity.nc",
+    "source_raw_bytes": 149581182,
+    "source_raw_sha256": "e1d51763084fa70a5261936f0f5b0d0928300238a9ef5507f227fdc136130001",
+    "source_raw_md5": "397ce0a92ca7b5be20dc32d80920d1da"
+  },
+  "candidate_file": "research/source-data/kuroshio-chandler-seasonal-depth-v1/candidate.json",
+  "candidate_sha256": "31da226ba68f19e5845837adab71e3ad9087a6185012851b6bd38f8da197739f",
+  "source_monthly_profiles": 192,
+  "calendar_month_mean_profiles": 12,
+  "reconstructed_product_years": [
+    2004,
+    2019
+  ],
+  "HRXBT_occupation_years": [
+    2012,
+    2019
+  ],
+  "statistical_deep_extension_below_m": 600,
+  "source_selector": "After five-point triangle filtering of midpoint depth-integrated northward velocity, find minimum west of150E, then maximum strictly west of that minimum. Positive poleward component is northward. This distinguishes source-selected Kuroshio from farther offshore KE meanders.",
+  "identity_scope": "Source Kuroshio segment downstream of Izu Ridge, as distinguished in source Section3.3 from offshore KE meanders. Not a full-route estimate, inheritance into KE or a claim that all PX40 flow belongs to Kuroshio.",
+  "support_findings": [
+    "All192 axes fall in the declared138–145E gate, actual140.65–144.85E. Each calendar mean retains16 year-specific axis profiles at every retained depth.",
+    "Every mean has its sampled maximum at shallowest2.5m native level. The surface/unsampled shallower maximum is unresolved.",
+    "All12 means resolve5cm/s and10cm/s crossings between finite adjacent native levels. All12 zero crossing diagnoses are right-censored at1975m. A current bottom or vertical thickness is not established.",
+    "Velocities are cross-transect components, not full horizontal speed magnitudes. Argo reference-velocity error and hydrographic reconstruction uncertainty are not propagated into fabricated depth confidence limits."
+  ],
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

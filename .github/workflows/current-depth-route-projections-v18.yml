@@ -1,0 +1,96 @@
+name: Current depth additive inventory v18
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v18.yml
+      - analysis/build_current_depth_route_projections_v18.py
+      - analysis/test_current_depth_route_projections_v18.py
+      - research/current-depth-route-projection-operator-v18.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  project:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v18.py
+            analysis/test_current_depth_route_projections_v18.py
+            research/current-depth-route-projection-operator-v18.json
+            research/current-depth-route-projection-inventory-v3.json
+            research/current-depth-route-projection-inventory-source-review-v3.json
+            research/current-depth-route-projections-v14.json
+            research/current-depth-route-projections-v14.csv
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/north-brazil-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/three-currents-full-sections-hycom2022-v1.csv
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.json
+            research/current-depth-route-projection-addenda/pacific-madagascar-full-sections-hycom2022-v1.csv
+            research/zonal-current-depth-sections-source-facts-v1.json
+            research/zonal-current-depth-sections-source-review-v1.json
+            research/zonal-current-depth-sections-operator-v1.json
+            research/source-data/zonal-current-depth-sections-v1/manifest.json
+            analysis/build_current_depth_route_projections_v12.py
+            analysis/build_current_depth_route_projections_v15.py
+            analysis/build_current_depth_route_projections_v16.py
+            analysis/load_current_depth_projection_inventory_v1.py
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-145e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-150e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-155e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-kuroshio-extension-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-21e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-25e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-30e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-40e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-50e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-55e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-agulhas-return-section-60e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-170e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-180e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-170w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-160w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-150w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-01-15-north-pacific-section-145w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-145e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-150e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-155e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-kuroshio-extension-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-21e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-25e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-30e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-40e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-50e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-55e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-agulhas-return-section-60e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-160e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-170e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-180e.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-170w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-160w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-150w.json
+            research/source-data/zonal-current-depth-sections-v1/2022-07-15-north-pacific-section-145w.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Build and verify zonal current additive inventory on one idle CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v18.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/build_current_depth_route_projections_v18.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-depth-route-projections-v18
+          path: current-depth-route-projections-v18/
+          retention-days: 7

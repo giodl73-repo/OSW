@@ -1,4 +1,5 @@
 """Reject conflation of climatological contour breadths and other supports."""
+from query_packet import read_bundle_bytes
 import copy, hashlib, json, subprocess
 import pytest
 from check_acc_udintsev_breadths import ROOT,validate_row
@@ -52,7 +53,7 @@ def test_inventory_identity_guard_survives_context_erasure_and_transfer(owner):
         validate(document,json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes()))
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes()); targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json')); targets=[]
     changes_list=[{'width_range_km':[170,500]}, {'fixed_layer_bounds_m':[100,250]},
                   {'calendar_months':[2,12]}, {'uncertainty_km':14},
                   {'original_regional_context':{},'current_id':'antarctic-slope'},

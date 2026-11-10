@@ -1,0 +1,85 @@
+{
+  "schema": "osw.pacific-nec-connected-core-execution-review.v1",
+  "status": "PASS_NUMERICAL_CORE_GATES_PHYSICAL_WINDOW_REVIEW_AND_LEGEND_FIX_REQUIRED",
+  "source_commit": "d4c7fe8d7d390a06367a7af2a04294112b3c6710",
+  "run_id": 40890546061,
+  "run_attempt": 2,
+  "tests_passed": 11,
+  "exact_previous_diagnostic_replay": true,
+  "cases": 324,
+  "qualified_sensitivity_cases": 312,
+  "withheld_sensitivity_cases": 12,
+  "qualified_nominal_months": 12,
+  "nominal_monthly_lengths_rounded_km": {
+    "1": 13400,
+    "2": 13300,
+    "3": 13000,
+    "4": 13100,
+    "5": 13300,
+    "6": 13200,
+    "7": 13100,
+    "8": 13500,
+    "9": 13300,
+    "10": 13000,
+    "11": 13200,
+    "12": 13400
+  },
+  "nominal_boundary_contact_native_cells_by_month": {
+    "1": 0,
+    "2": 0,
+    "3": 59,
+    "4": 41,
+    "5": 79,
+    "6": 36,
+    "7": 3,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0
+  },
+  "qualified_anchored_section_span_candidates": 35,
+  "broad_component_transitions_passing": 11,
+  "tracked_full_year_section_ranges": 0,
+  "actual_diagnostic_image_individually_viewed": true,
+  "image_sha256": "2a8763e0a4c054403f7bd7af820924527248fb90b75bada02859119634948b96",
+  "scientific_findings": [
+    {
+      "id": "PNEC-C01",
+      "finding": "All12 nominal paths qualify as window-constrained regional product-core candidates. Five months contact the8N source-selection boundary; window and resolution sensitivity must be assessed before a physical-core interpretation. None establishes whole-current endpoints, length or ranking."
+    },
+    {
+      "id": "PNEC-C02",
+      "finding": "All11 selected broad-component transitions pass the declared overlap rule. No section passes every local continuation gate. This failure does not prove different physical currents; strong width contraction/expansion can fail mutual overlap. Keep the predeclared result and study topology/temporal sampling before any seasonal width envelope."
+    },
+    {
+      "id": "PNEC-C03",
+      "finding": "Anchoring changes the137E April candidate from the disconnected fastest-peak span to about770km, and December to about980km. They remain source-product zonal-component spans, not independent observations or flow-normal physical widths."
+    }
+  ],
+  "visual_findings": [
+    {
+      "id": "PNEC-CV01",
+      "severity": "blocking_for_presentation",
+      "finding": "Legend overlaps the parameter caption below the map. Put the legend in a dedicated row; preserve numerical report bytes."
+    }
+  ],
+  "next_actions": [
+    "Render the exact saved report with a separate legend row and an explicitly labelled withheld QA fixture.",
+    "Predeclare latitude-window and source-grid resolution sensitivity for the regional path operator, retaining boundary contacts.",
+    "Assess local branch topology and time sampling rather than declaring a failed overlap gate to prove different currents."
+  ],
+  "retained_evidence_sha256": {
+    "research/pacific-nec-connected-core-run-v1/connected-core.svg": "02d505548d0ae8a2ef41903546cb526e57c8b68afdf4ac8a46de770347c5b149",
+    "research/pacific-nec-connected-core-run-v1/diagnostic.json": "b87c053bd510418e42bea3e026e64d78ef37eb95c9a93f0f075ede4b0109ef67",
+    "research/pacific-nec-connected-core-run-v1/executed-request.json": "86fd257f5e57becae7fd0b3a00df440f1c982464feccfa3053e2ca96ba85a541",
+    "research/pacific-nec-connected-core-run-v1/result.json": "c64125c7354fa7b257316bf705ffa293897b8813c5207ca9b150fe7f1c3b838a",
+    "research/pacific-nec-connected-core-run-v1/run-receipt.json": "8b2f5f91861956baf73ab3f462cf32931b25dc4b87b8d0f7ad8464b8ad9b6bc5"
+  },
+  "new_installed_length_records": 0,
+  "new_installed_width_records": 0,
+  "request_disabled": true,
+  "main_updated": false,
+  "local_bulk_sync": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "osw.wicc-winter-regional-reference-preparation-review.v1",
+  "review_date": "2026-10-28",
+  "status": "PREPARED_REGIONAL_EDITORIAL_CANDIDATE_NOT_CANONICALLY_ADMITTED",
+  "accepted_prepared_report": "research/wicc-winter-regional-reference-route-v4-candidate.json",
+  "accepted_prepared_figure": "figures/wicc-winter-regional-reference-route-v4-candidate.svg",
+  "scope": "OSW-declared 10 N to 22 N winter regional reference path; no established whole-current endpoints or observed continuous axis.",
+  "source_review": [
+    {
+      "doi": "10.1016/0198-0149(91)90087-V",
+      "url": "https://www.sciencedirect.com/science/article/pii/019801499190087V",
+      "access": "Publisher-indexed abstract reviewed; direct full-page open returned HTTP403. No full-paper methods, original figures or axis reviewed. Prior winter access reviews preserved.",
+      "support": "December1987-January1988 poleward current descriptions near10N and22N support latitude context only. Longitudes and intermediate path are OSW editorial choices.",
+      "new_width_admission": false
+    },
+    {
+      "doi": "10.1029/2008JC004874",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC004874",
+      "access": "Selected full publisher HTML passages, section2/Table1 and section5.2/paragraph26; no full-paper visual review or retained original.",
+      "support": "Near-shelf observations off Goa in March-April2003 and remote wind-forcing context; do not transfer its700km separation to current length or equate shelf and slope reversals."
+    },
+    {
+      "url": "https://ocg.aori.u-tokyo.ac.jp/member/eoka/documents/Tomczak_Godfrey.pdf",
+      "sha256": "35e36f9b834c9c31c2cee64abc36d0c687d71e3d388c2cf1c40bc026e613738b",
+      "access": "Existing ignored original: selected PDF192-193 and196-197 text inspected; PDF196/printed186 visually reviewed. Not a full-book review.",
+      "support": "Qualitative winter shelf-to-slope narrative; not independent observations or new numerical dimensions."
+    }
+  ],
+  "additional_access_outcomes": [
+    {
+      "url": "https://repository.ias.ac.in/54073/1/54073.pdf",
+      "outcome": "Web parser reported17pages but screenshot fetch returned403; no original acquired or page visually reviewed."
+    },
+    {
+      "url": "https://repository.ias.ac.in/61510/1/19-pub_merged.pdf",
+      "outcome": "Web parser reported9pages, screenshot timed out, one ordinary bounded direct acquisition returned404; no original acquired."
+    }
+  ],
+  "numerical_review": {
+    "status": "PASS",
+    "independent_method": "Independent pure-Python Vincenty inverse using WGS84 constants; generator uses PROJ Geod.",
+    "maximum_stored_length_difference_km": 0.0001404812312557624,
+    "independent_control_distances_checked": 2,
+    "arithmetic_agreement_is_geographic_accuracy": false
+  },
+  "visual_review": {
+    "renderer": "PyMuPDF SVG rasterization; no browser automation",
+    "versions_individually_viewed": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "v1": "Rejected: lower gate too close to map edge; current name and dates not visible.",
+    "v2": "Crop corrected; visible title still lacks current name and study dates.",
+    "v3": "Title corrected; reject outward-rounded enclosure as sensitivity range.",
+    "v4": "Accepted for candidate review: full route and both gates visible, current and study months in title, source scope and equal-length placements explicit. Regional endpoint/axis uncertainty remains unquantified.",
+    "preview_sha256": {
+      ".pytest_cache/wicc-route-review-v1/candidate-v1.png": "b34029c589f8e07969828c963d44ed30775976506bb19335aa8c119773349cdf",
+      ".pytest_cache/wicc-route-review-v1/candidate-v2.png": "a483937256d9984201bd363eb9dc624e87fc630506615c881acb3b8b3e31663b",
+      ".pytest_cache/wicc-route-review-v1/candidate-v3.png": "5f34496811430ac8c36c2933b245d564dfa38346bb439df694ef62c87926a3f6",
+      ".pytest_cache/wicc-route-review-v1/candidate-v4.png": "8d5e673ba6eeb765df455370e7f5bce4c621835993ae230f874789e3e7f80c6f"
+    },
+    "source_page196_preview_sha256": "f8dfea50eb568a1156b697a1e548ac9afc70d61a6c8653f5b1a47f4677e1edc3"
+  },
+  "measurement": {
+    "computed_editorial_path_km": 1549.568,
+    "displayed_approximate_path_km": 1500,
+    "declared_placements": 3,
+    "placement_lengths_equal": true,
+    "sensitivity_range_km": null,
+    "annual_length_range_km": null,
+    "whole_current_length_km": null,
+    "physical_width_km": null,
+    "rank_eligible": false
+  },
+  "correction": "Uniform longitude translation preserves distances on WGS84. The old1500-1600km display enclosure was rounding only, not estimated uncertainty. Preserve drafts; v4 nulls the sensitivity field and labels the limitation.",
+  "installed_measurements_added": 0,
+  "indexed_documents_added": 0,
+  "coverage_counts_changed": false,
+  "runtime_changed": false,
+  "main_merged": false,
+  "local_bulk_preview_synchronized": false,
+  "resource_control": {
+    "cpu_count": 1,
+    "priority": "BelowNormal",
+    "original_field_processing": false,
+    "native_or_wasm_builds": 0,
+    "browser_automation": false
+  },
+  "input_sha256": {
+    "research/wicc-winter-regional-reference-route-v4-candidate.json": "5cd614995f3d7861c09dee7bcc2be20649ec84903ed2c95197751b4bccf77372",
+    "figures/wicc-winter-regional-reference-route-v4-candidate.svg": "c7be9039602daef3d82e7ca3a25107e5654fa2ba774acf5dd07a992374539258",
+    "analysis/prepare_wicc_winter_reference_route_v4.py": "c7c89924d2c05d4f7736eba6e64da417f8180be34d71bebc4a6afa23ca86b95e",
+    "research/wicc-winter-regional-reference-route-arithmetic-review-v1.json": "f8672bd495e84d7d1414699e0ca37161a277bf26ec91f8a5ecc77cd69caf1ea4"
+  },
+  "next_action": "Review whether to admit this explicit regional reference route under abstract-only source support, retaining the whole-current endpoint gap. Do not count it as a completed whole-current length or attach seasonal uncertainty. Continue seeking original winter methods and geographically supported path alternatives.",
+  "full_goal_complete": false
+}

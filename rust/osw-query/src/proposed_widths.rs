@@ -2,10 +2,28 @@
 use serde_json::{Value, json};
 use std::collections::BTreeSet;
 
+pub(crate) fn validate_bosse_record(r: &Value) -> Result<(), String> {
+    let expected: Value = serde_json::from_str(include_str!(
+        "../../../research/norwegian-front-bosse-2019-corrected-width-record.json"
+    ))
+    .map_err(|_| "Invalid compiled corrected front record")?;
+    if r != &expected {
+        return Err("Corrected Norwegian front width source or scope mismatch".into());
+    }
+    Ok(())
+}
+
 fn rows_scope(rows: &[Value]) -> Result<(), String> {
     let mut ids = BTreeSet::new();
     for r in rows {
         let id = r["id"].as_str().ok_or("Missing proposed width id")?;
+        if id == "norwegian-atlantic-front-bosse-2019-corrected-width" {
+            if !ids.insert(id) {
+                return Err("Duplicated corrected front width".into());
+            }
+            validate_bosse_record(r)?;
+            continue;
+        }
         let (owner, value, range) = match id {
             "norwegian-atlantic-slope-orvik-2001-regional-width" => {
                 ("norwegian-atlantic-slope", Value::Null, json!([30, 50]))
@@ -79,7 +97,7 @@ fn rows_scope(rows: &[Value]) -> Result<(), String> {
             return Err("Norwegian proposed branch averaging or source mismatch".into());
         }
     }
-    if ids.len() != 3 {
+    if ids.len() != 4 {
         return Err("Incomplete Norwegian proposed branch widths".into());
     }
     Ok(())
@@ -116,7 +134,7 @@ pub(crate) fn validate_proposals(doc: &Value) -> Result<(), String> {
         let count = match owner {
             "norwegian-atlantic" => 0,
             "norwegian-atlantic-slope" => 2,
-            _ => 1,
+            _ => 2,
         };
         if widths.len() != count
             || widths.iter().any(|r| r["proposed_current_id"] != owner)
@@ -144,6 +162,13 @@ pub(crate) fn validate_audit(doc: &Value) -> Result<(), String> {
         || doc.get("mean_front_width_range_km") != Some(&Value::Null)
     {
         return Err("Norwegian original receipt or unquantified front mean mismatch".into());
+    }
+    if doc["corrected_front_record_file"]
+        != "research/norwegian-front-bosse-2019-corrected-width-record.json"
+        || doc["corrected_front_record_sha256"]
+            != "ad24a759afe5fa8a487845528978864badfaa8fccde2fee9acf5bfeb56cfc402"
+    {
+        return Err("Changed corrected front record receipt".into());
     }
     rows_scope(
         doc["measurements"]

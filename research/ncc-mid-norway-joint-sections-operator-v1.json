@@ -1,0 +1,106 @@
+{
+  "schema": "osw.ncc-mid-norway-joint-sections-operator.v1",
+  "sections": [
+    {
+      "id": "section-63n",
+      "entity_id": "current:norwegian-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 63,
+      "longitude_gate_degrees_east": [
+        4.5,
+        9.5
+      ]
+    },
+    {
+      "id": "section-63p75n",
+      "entity_id": "current:norwegian-coastal",
+      "fixed_axis": "latitude",
+      "latitude_degrees_north": 63.75,
+      "longitude_gate_degrees_east": [
+        6,
+        11.5
+      ]
+    }
+  ],
+  "snapshot_times_utc": [
+    "2022-03-15T00:00:00Z",
+    "2022-06-15T00:00:00Z",
+    "2022-09-15T00:00:00Z",
+    "2022-12-15T00:00:00Z"
+  ],
+  "opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z/2022",
+  "salinity_opendap_dataset": "https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/ts3z/2022",
+  "component_bearing_degrees_true": 0,
+  "primary_threshold_m_s": 0.1,
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "practical_salinity_exclusive_upper_threshold": 35,
+  "selection_depth_interval_m": [
+    0,
+    100
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    100
+  ],
+  "surface_component_gate_m_s": null,
+  "maximum_total_cell_pairs": 250000,
+  "maximum_total_decoded_velocity_bytes": 7000000,
+  "maximum_nearest_latitude_distance_km": 5,
+  "currents": {
+    "current:norwegian-coastal": {}
+  },
+  "methodology_file": "plans/ncc-mid-norway-joint-depth-extension-protocol-v1.md",
+  "geometry_provenance": "New editorial63N[4.5,9.5]E and63.75N[6,11.5]E gates north of existing62.25N. Exact cuts are our sampling convention,not observed current edges or published axes. No prior gate changed or field replayed.",
+  "branch_scope": "Partial63-63.75N mid-Norway northward coastal candidate. Exclude offshore Norwegian Atlantic branches,fjords,northern-Norway/Barents/Murman and whole NCCcoverage. Original S35conditionalfresh test is not independent axis/identity validation.",
+  "source_context": [
+    {
+      "url": "https://academic.oup.com/icesjms/article/69/5/758/646533",
+      "doi": "10.1093/icesjms/fsr187",
+      "role": "Broader northward low-salinity coastal wedge versus adjacent Atlantic flow;not exact new gates or depth measurements."
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2025.1600994/full",
+      "doi": "10.3389/fmars.2025.1600994",
+      "role": "Existing Norwegian-Trench conditional freshS35 interpretation;not northern measured depth or validation of HYCOMaxes."
+    }
+  ],
+  "eligibility": {
+    "physical_current_bottom": false,
+    "physical_current_thickness": false,
+    "whole_route_profile": false,
+    "annual_envelope": false,
+    "volume": false,
+    "state_join": false,
+    "reference_inventory_admission": false,
+    "runtime_integration": false,
+    "independently_validated_axis": false
+  },
+  "input_sha256": {
+    "analysis/acquire_ncc_mid_norway_joint_sections_v1.py": "a6f5a0edf363859e5212e06cb112b1a165b5f86a81d6cac2de7eed329dccacea",
+    "analysis/acquire_ncc_north_joint_sections_v1.py": "83f2753c86e215685fb77f5def564da4888b49f429f8e83f471e748a95e1d148",
+    "analysis/acquire_north_brazil_depth_sections_v1.py": "ed3d6a80d2fc05daa9a69cd2c7191fb4c1b84d6298c5717b3f6dfd6ad6224529",
+    "analysis/acquire_three_current_depth_sections_v1.py": "53fe3587e8b33a50f13e40a74a745fd4a03153f09daab3536db3030ea2f46b6c",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "analysis/interval_depth_diagnostic_v1.py": "70299f33d57921eed882a66809f11c17f22d913505cf2d87ff29f6dda124ed5a",
+    "analysis/latitude_depth_section_geometry_v1.py": "02b1eb5a5579499f3b54a001b20486d71b81c9cec55fd241ea176e58f87c0456",
+    "analysis/ncc_core_salinity_diagnostic_v1.py": "1e6b128e25c9066b1fd2bb8da45e3bab21676a5654785faed5c7590d9e40e232",
+    "analysis/sample_atlantic_current_depth_v1.py": "924471871da5204a8a1fdfa82e4d45151d3654374e6b8a683e353e902d56bbcf",
+    "analysis/sample_eac_hycom_route_depth_v1.py": "945eaa2de43a046c69b78cd0263c0b5195f5393a5c9813783cceb78818521859",
+    "analysis/sample_eac_hycom_route_depth_v2.py": "0ebcdc4ed05f911a20bd059ca48fbabc520ea11e8f9c9d7df8fa384db1d023d6",
+    "analysis/sample_kuroshio_hycom_depth_v1.py": "9dc5ca6d56d25ed0038220780f4ebfe8d58553d920ae7f42d0995c010d1abdd6",
+    "analysis/test_ncc_mid_norway_joint_sections_v1.py": "07ee5b38f6845ea9aaf7992a9bb4a18f4380d9dd18105be3158b83f997bff6a7",
+    "analysis/test_ncc_north_joint_sections_v1.py": "69fcc942be0d9a71e5a555306791c613a95fa5ab88e8535e90545301dd9d3c15",
+    "plans/ncc-mid-norway-joint-depth-extension-protocol-v1.md": "f82222e1a68fae174fb561a3b3550a5307a5c6b371064d08e675eef49de1ff6c",
+    "plans/ncc-north-joint-depth-extension-protocol-v1.md": "2ef5a1bcce51188cdaeb44c776de0f113da3d199422d64e4f66d30619df47746",
+    "research/ncc-enge2025-depth-identity-source-scope-review-v1.json": "910a6ac22422bf838e0f7a81d71689316f914a7a10d0d28f01d05f409bd6e29c",
+    "research/ncc-north-joint-sections-operator-v1.json": "d1e6dc38b85ca556a051110eee94f885105a21a6b66b3b5ce7ae596e6f0807cb",
+    "research/norwegian-coastal-reference-path-input.json": "3b38a934c8e90472e86b80d6208025e00f34044dbdc9083f35576b2d55b0c608"
+  },
+  "validated_numerical_collector_file": "analysis/acquire_ncc_north_joint_sections_v1.py",
+  "successful_field_patch_journaling": true,
+  "new_ocean_field_reads_for_journaling": 0
+}

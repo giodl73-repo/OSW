@@ -16,6 +16,13 @@ serde_json = { version = "=1.0.149", features = ["float_roundtrip"] }
 geo = { version = "=0.28.0", default-features = false }
 sha2 = "=0.10.9"
 
+# Complete corpus validation runs for every native parity query. Keep the
+# development checks enabled while optimizing these repeated reads.
+[profile.dev]
+opt-level = 1
+debug-assertions = true
+overflow-checks = true
+
 [profile.release]
 opt-level = "s"
 lto = true

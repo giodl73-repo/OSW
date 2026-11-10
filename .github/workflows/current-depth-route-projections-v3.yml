@@ -1,0 +1,48 @@
+name: Current depth route projection review v3
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/current-depth-route-projections-v3.yml
+      - analysis/build_current_depth_route_projections_v3.py
+      - analysis/test_current_depth_route_projections_v3.py
+      - research/current-depth-route-projection-operator-v3.json
+      - research/current-depth-route-projections-v3.json
+      - research/current-depth-route-projections-v3.csv
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  projection-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/build_current_depth_route_projections_v*.py
+            analysis/test_current_depth_route_projections_v*.py
+            research/current-depth-route-projection-operator-v*.json
+            research/current-depth-route-projections-v*.json
+            research/current-depth-route-projections-v*.csv
+            research/current-depth-register-v32.json
+            research/current-depth-register-v33.json
+            research/current-length-reference-extents-v4.json
+            research/current-length-estimate-register-v1.json
+            research/ocean-current-reference-path-candidates.json
+            research/somali-winter-reference-path-candidate.json
+            research/agulhas-reference-path-candidate.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned reference-route metric
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+      - name: Verify observing-site dateline geometry periods and prior depth scenarios
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_depth_route_projections_v*.py' -v

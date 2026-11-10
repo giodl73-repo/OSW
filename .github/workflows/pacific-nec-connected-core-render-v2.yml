@@ -1,0 +1,68 @@
+name: Render saved Pacific NEC core diagnostics v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-connected-core-render-request-v2.json
+      - .github/workflows/pacific-nec-connected-core-render-v2.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  OSW_PACIFIC_NEC_CORE_RENDER_V2: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/pacific-nec-connected-core-render-request-v2.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-connected-core-render-request-v2.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-core-render-request.v2'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  render:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned plotting dependencies on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install --only-binary=:all: numpy==2.2.6 matplotlib==3.10.3
+      - name: Verify saved report custody and local refusal
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_render_pacific_nec_connected_core_v2.py -v
+      - name: Render exact saved candidates and withheld fixture without field processing
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/render_pacific_nec_connected_core_v2.py
+      - name: Retain render evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-core-render-evidence-v2
+          path: .pytest_cache/pacific-nec-connected-core-render-v2/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

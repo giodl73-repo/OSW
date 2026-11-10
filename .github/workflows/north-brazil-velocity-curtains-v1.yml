@@ -1,0 +1,91 @@
+name: North Brazil legacy-section depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/north-brazil-velocity-curtains-v1.yml
+      - analysis/derive_north_brazil_velocity_curtains_v1.py
+      - analysis/test_north_brazil_velocity_curtains_v1.py
+      - plans/north-brazil-velocity-curtains-protocol-v1.md
+      - research/north-brazil-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/north-brazil-depth-sections-v1.yml
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_north_brazil_velocity_curtains_v1.py
+            analysis/native_north_brazil_velocity_curtain_v1.py
+            analysis/derive_pacific_madagascar_velocity_curtains_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/derive_three_current_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_north_brazil_depth_sections_v1.py
+            analysis/test_north_brazil_velocity_curtains_v1.py
+            plans/north-brazil-velocity-curtains-protocol-v1.md
+            research/atlantic-current-depth-source-review-v2.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-route-projections-source-review-v14.json
+            research/current-depth-unresolved-reference-cases-v1.csv
+            research/dimoune-2023-section-orientation-correction-v1.json
+            research/dimoune-2023-section-width-records-prepared-v1.json
+            research/north-brazil-depth-sections-operator-v1.json
+            research/north-brazil-depth-sections-source-facts-v1.json
+            research/north-brazil-depth-sections-source-review-v1.json
+            research/north-brazil-velocity-curtains-operator-v1.json
+            research/source-data/atlantic-current-depth-v2/north-brazil.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-00p5n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-01s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-02n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-03s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-04n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-05s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-01-15-section-07n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-00p5n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-01s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-02n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-03s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-04n.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-05s.json
+            research/source-data/north-brazil-depth-sections-v1/2022-07-15-section-07n.json
+            research/source-data/north-brazil-depth-sections-v1/manifest.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_north_brazil_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_north_brazil_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_north_brazil_velocity_curtains_v1.py --current current:north-brazil
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: north-brazil-velocity-curtains-north-brazil-v1
+          path: north-brazil-velocity-curtains-v1/north-brazil/
+          retention-days: 7

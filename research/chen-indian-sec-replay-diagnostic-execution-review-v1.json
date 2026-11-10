@@ -1,0 +1,20 @@
+{
+  "schema": "osw.chen-indian-sec-replay-diagnostic-execution-review.v1",
+  "status": "DIAGNOSTIC_COMPLETE_EXACT_REPLAY_STILL_FAILS",
+  "evidence_sha256": {
+    "research/chen-indian-sec-replay-diagnostic-run-v1/executed-request.json": "8f638edb92ce7b8a6aa096d7608b0144686920e2e186dd0a8c3ad2c320bad926",
+    "research/chen-indian-sec-replay-diagnostic-run-v1/result.json": "ed0dc00470a06532864139e1ed394491dc641b3938cb00e0dca6b1a455e5c73f",
+    "research/chen-indian-sec-replay-diagnostic-run-v1/run-receipt.json": "9ffcd866567337c2feffa148064ea2fad72de82db1c42b02cf4ae88fb198a682"
+  },
+  "report_differences": 98,
+  "all_report_differences_numeric": true,
+  "maximum_difference_km": 4.547473508864641e-12,
+  "inference": "Magnitude and length-field differences are consistent with cross-platform floating-point rounding at identical PyProj/PROJ versions. This diagnostic does not identify the precise library/compiler operation responsible.",
+  "svg_replay_byte_identical": false,
+  "measurement_or_source_data_changed": false,
+  "admission_rules_changed": false,
+  "candidate_materialized": false,
+  "native_wasm_built": false,
+  "full_goal_complete": false,
+  "next_action": "Add a versioned replay/admission adapter that preserves canonical frozen bytes, allows only narrowly specified length-arithmetic roundoff and checks geometry/decisions/source identities exactly. Document and test the rule before another actual-packet admission run; inspect SVG attribute differences separately."
+}

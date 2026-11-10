@@ -1,0 +1,121 @@
+{
+  "schema": "osw.carr-indian-sec-source-facts.v1",
+  "entity_id": "current:indian-south-equatorial",
+  "paper_doi": "10.3389/fmars.2026.1835248",
+  "status": "ORIGINAL_AND_SELECTED_PROVIDER_CODE_REVIEWED_NO_DIMENSION_ADMITTED",
+  "article_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1835248/full",
+  "source_bindings": {
+    "research/source-data/carr-indian-sec-2026/acquisition-v1.json": "308a921806218801d66e1c525d087e82307d5929691a4a8bca198b2279969493",
+    "research/source-data/carr-indian-sec-2026/scripts-provider-metadata-v1.json": "028aae68ffe6bc82c2d8522512d99dd3788af3baeccea1e9a86c0c4f9540ecb0",
+    "research/source-data/carr-indian-sec-2026/control-provider-metadata-v1.json": "1a7cef2e1e2225f91ede7d7ee698cb158b035f3d4689daf5a56b05871fc55090",
+    "research/source-data/carr-indian-sec-2026/selected-render-review-v1.json": "c1aa6e489d12c8b0763b1ae36a7107f41d944665f953e8f90f49b8ee407ebb8b"
+  },
+  "source_scope": {
+    "model": "CROCO1.3",
+    "horizontal_resolution": "1/12 degree",
+    "vertical_layers": 40,
+    "domain_degrees": {
+      "west": 45,
+      "east": 120,
+      "south": -33,
+      "north": 15
+    },
+    "simulation_period": "2005–2020",
+    "main_text_analysis_period": "2010–2020 after initial five-year exclusion",
+    "season_groups": [
+      "JFM",
+      "AMJ",
+      "JAS",
+      "OND"
+    ],
+    "selected_event_season": "SON",
+    "selected_CTRL_event_years": [
+      2010,
+      2015,
+      2016,
+      2019
+    ]
+  },
+  "geometry_disposition": {
+    "schematic_SEC_arrows": "Not digitized; illustration extents do not establish physical endpoints.",
+    "model_SSH_0_4m_and_altimetry_ADT_0_8m": "Thermocline-ridge indicators with different reference levels; not SEC axes or width edges.",
+    "salinity_34_6_PSU_front": "Water-mass front; not independently a current boundary.",
+    "whole_current_length_km": null,
+    "whole_current_width_km": null,
+    "annual_dimension_range": null,
+    "numerical_uncertainty": null,
+    "state_intersections": null
+  },
+  "provider_code_review": {
+    "executed": false,
+    "selected_files": [
+      "Figure_1.py",
+      "Figure_4.py",
+      "Figure_5.py",
+      "croco_tools.py"
+    ],
+    "external_dependencies_observed": [
+      "croco_grd.nc",
+      "croco_rst_Y2005M1.nc"
+    ],
+    "grid_inputs_observed": [
+      "lon_rho",
+      "lat_rho",
+      "pm",
+      "pn",
+      "f"
+    ],
+    "geostrophic_operator": "Figure_5.py uses local staggered Coriolis arrays; croco_tools.py helper uses spatial means. No reproduction or numerical equivalence asserted.",
+    "manual_SEC_arrow_coordinates_in_Figure_1_code": "Not found in reviewed source; illustration provenance beyond the script remains unresolved.",
+    "code_time_selection": "Figure_1.py and Figure_5.py include2009–2020; differs from main-text analysis interval."
+  },
+  "unresolved_source_discrepancies": [
+    "Main text2010–2020 versus Figure5 caption and selected scripts2009–2020.",
+    "Velocity caption m/s versus vector keys m/s squared.",
+    "Methods mooring8S80.5E versus Figure8 caption star80.5E5S.",
+    "Oceanclim paragraph describes the opposite year-pattern ordering to CTRL while calling it similar; supplement not reviewed."
+  ],
+  "control_deposit": {
+    "record": 17494716,
+    "doi": "10.5281/zenodo.17494716",
+    "products": [
+      {
+        "filename": "monthly_average_temp_compressed.nc",
+        "bytes": 4826737209,
+        "provider_checksum": "md5:3ddc155dd7dcea62f8360e11264942fe",
+        "downloaded": false
+      },
+      {
+        "filename": "monthly_average_salt_compressed.nc",
+        "bytes": 3596246974,
+        "provider_checksum": "md5:7c42abe26d4cf4c13f9d984e96705f43",
+        "downloaded": false
+      },
+      {
+        "filename": "monthly_average_uv_compressed.nc",
+        "bytes": 12315107312,
+        "provider_checksum": "md5:98633359954971c3c09d3964f1bb43e5",
+        "downloaded": false
+      },
+      {
+        "filename": "monthly_average_zeta.nc",
+        "bytes": 227561152,
+        "provider_checksum": "md5:6815a6bcd962e80996c374c3e8f6228c",
+        "downloaded": false
+      }
+    ],
+    "separate_grid_file_listed": false,
+    "coordinates_inside_deposited_fields": "UNKNOWN_HEADERS_NOT_INSPECTED",
+    "actual_time_coordinates": "UNKNOWN_HEADERS_NOT_INSPECTED",
+    "field_checksum_verification": "NOT_PERFORMED_NO_FIELD_DOWNLOAD"
+  },
+  "measurement_admission": {
+    "new_length_records": 0,
+    "new_width_records": 0,
+    "new_route_records": 0,
+    "new_time_samples": 0,
+    "new_independent_observations": 0,
+    "ranking_eligible": false,
+    "seasonal_dimension_playback_eligible": false
+  }
+}

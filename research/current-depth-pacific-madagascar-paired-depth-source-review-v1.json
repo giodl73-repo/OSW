@@ -1,0 +1,111 @@
+{
+  "schema": "osw.current-depth-pacific-madagascar-paired-depth-source-review.v1",
+  "status": "PASS_THREE_SCOPES_40_CASES_37_FINITE_ANCHORS_3_AXIS_GAPS",
+  "source_commit": "a0321a1d99986f9b9dbd7b31c9c2e5533abc1675",
+  "producer_run_id": 42122177941,
+  "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/42122177941",
+  "cloud_semantic_tests_passed": 26,
+  "actual_complete_40_case_both_csv_roundtrips_passed": true,
+  "actual_expanded_full_scientific_json_bytes_equal_original": true,
+  "no_numeric_rounding_or_record_qualifier_removal": true,
+  "artifact": {
+    "id": 13458512422,
+    "bytes": 136733,
+    "sha256": "d2f1cdccd64c6643a87f5691eea043836cce7a194ee1faec2e5e03daec74c0a0",
+    "retained_once": true
+  },
+  "cloud_reported_counts": {
+    "source_cases": 40,
+    "original_unresolved_cases": 3,
+    "cases_with_integrable_partial_geometry": 37,
+    "retained_column_descriptors": 3667,
+    "retained_vertical_runs": 1511,
+    "finite_paired_column_runs": 1501,
+    "censored_runs_with_minimum_support": 10,
+    "conditional_strip_patches": 1183,
+    "strips_without_integrable_geometry": 2593,
+    "rejected_ambiguous_links": 293,
+    "original_axis_proxy_anchors": 37,
+    "finite_paired_axis_anchors": 37,
+    "censored_axis_anchors_with_minimum_support": 0,
+    "new_provider_requests": 0,
+    "new_native_values_decoded": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "physical_volume_estimates": 0
+  },
+  "cloud_reported_anchor_counts_by_current": {
+    "current:california": {
+      "source_cases": 16,
+      "finite_paired_axis_anchors": 16,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 0,
+      "partial_geometry_cases": 16
+    },
+    "current:alaska": {
+      "source_cases": 12,
+      "finite_paired_axis_anchors": 10,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 2,
+      "partial_geometry_cases": 10
+    },
+    "current:southern-east-madagascar": {
+      "source_cases": 12,
+      "finite_paired_axis_anchors": 11,
+      "censored_axis_anchors": 0,
+      "axis_gaps": 1,
+      "partial_geometry_cases": 11
+    }
+  },
+  "cloud_reported_budget": {
+    "query_numeric_tokens": 162759,
+    "query_unique_json_bytes": 2391169,
+    "prior_numeric_tokens": 0,
+    "prior_json_bytes": 0,
+    "cumulative_active_seconds_including_tests": 1.2073252829999888,
+    "whole_output_bytes": 892079,
+    "numeric_token_cap": 250000,
+    "unique_json_byte_cap": 32000000,
+    "maximum_packet_bytes": 2500000,
+    "whole_output_cap": 2400000,
+    "shared_absolute_second_cap": 60
+  },
+  "review": [
+    "All40original source cases retained:California16,Alaska12,Southern East Madagascar12. Exact January/July15,2022snapshots,not seasonal means,annual extrema or independent occupations.37original supported cases remain37finite paired axis-proxy anchors,including16California/10Alaska/11Madagascar. Three original axis gaps remain twoAlaska/oneMadagascar with original candidate diagnoses and null anchors. No core/date/window/branch replacement.",
+    "Original pre-tag fixed-latitude section definitions contain no fixed_axis field and remain exact in source_geometry with original hyperslab. Derived source_fixed_axis latitude is explicit new context,not source retagging. Native latitude is finite,inrange,identical on every column and within original3km target tolerance;original nearest_latitude_distance_km and maximum_nearest_latitude_distance_km receipts remain checked. No borrowed5km allowance,transposed geometry,skipped native index or new section.",
+    "California retains southward180degree component,strict0.05m/sprimary and0.02m/ssurfacegate;Alaska northward0degree at the same cutoffs;Southern East Madagascar southward180degree,strict0.1m/sprimary and0.05surfacegate. Original complete upper200m integral/core window and no temperature gate retained. Weaker surface gates and wholegraph native_surface_seed_connected do not force the primary layer top0. Unresolved cases did not construct graph topology;false is not physical disconnection/absence.",
+    "Offshore California excludes poleward California Undercurrent,Davidson/nearshore flow,Gulf of California and downstream continuation. Offshore northward Alaska eastern-Gulf/BC scope excludes narrow Alaska Coastal Current,fjords,westward Alaskan Stream and whole gyre. Southern East Madagascar retains restricted southward eastern branch20\u201325.5S,excluding northern branch,intermediate undercurrent,countercurrent,retroflection,Mozambique/Agulhas and detached eddies. Geographic component maxima can be neighboring jets/fronts/eddy flanks,not independently identified named-current axes or bodies.",
+    "All1511available vertical runs retained:1501finite paired contours,10censored nonaxis Southern East Madagascar runs with native minimum support. All37selected axis proxies are finite despite those nonaxis censors.3667available compiled columns are not3980source-declared native input columns including unresolved cases. Each supported case has some integrable partial geometry.1183accepted patches,2593strips without integrable geometry and293ambiguous links retained/rejected explicitly.",
+    "Thickness is lower minus upper depth,not lower depth,core depth,selection window,sample limit or bed. Native first-to-last contiguous qualifying sample span is inclusive support conditional on the original piecewise-linear signed-component model,not a physical named-current thickness bound,finite bottom,uncertainty or annual range. Single-level zero is uninformative,not absent flow/zero actual thickness. Censored bottom/thickness stay null and physical-bound flags false.",
+    "Only unique overlapping runs on consecutive native longitude columns within20km at spherical radius6371008.8m form linear strips. No split/merge,disjoint,censored,missing or lateral gap bridge. Partial fixed-axis areas and area/span thickness are not independently flow-normal/fullcurrent width/physical depth. Native-bracket scenarios are not confidence intervals,guaranteed true-boundary limits or annual envelopes. No terrain clearance,between-section physical interpolation,whole-route depth or physical water volume.",
+    "Lossless ordered-object-tables.v1 storage and expansion are AST-identical to validated NEC/Subarctic encoding except cohort schema names. JSON schema osw.pacific-madagascar-paired-depth.v2 preserves every ordered key,original list,exact string,null,bool/number and numeric precision;no quantization,clipping or removed qualifiers. Root counts/context readable;both CSVs expose rule/window/gate/native latitude/distance/derived fixed-axis context. Actual entire40case full scientific JSON bytes and bothCSV streams reproduce exactly on expansion.",
+    "Twenty-six cloud semantic tests pass:8analytic geometry/censor/splitmerge/disjoint/index/cutoff/unit tests,10cohort tests for40cases37anchors3gaps/currentidentity/distinctgates/3kmversus5kmtolerance/exactnative latitude/pretagdefinitions/minimumsupport/sourceimmutability/CSV/roundtrips,and8encoding tests for keyorder,Unicode,null,bool/int/float/negativezero,tag-lookingoriginal lists,exactstrings,malformed/boolean/negative/outofrangeindices,duplicatekeys/schemas/strings,unknownfields/versions and per-report state. Actual complete scientific JSON byte equality and bothCSVroundtrips pass first attempt.",
+    "Finite/encode/hash/boundary/run_geometry/separation/strip/run_support/count/report-run functions AST-identical to validated NEC/Subarctic producer;only fixed-axis index binding/orientation,original cohort rules/context and schema names differ. Source object and SHA256 bytes unchanged. No oldproducer/validator/native/source-data/provider/archive replay.",
+    "Offline sequential one idle cloud CPU. Shared absolute60s wraps tests/producer with outertimeout plusSIGALRM/SIGTERM,fresh output. Independent ordinary DescriptorQueryv3 explicit0prior numeric/bytes prospectively reserves162759tokens/2391169uniqueJSONbytes under250k/32MB/2.5MBpacket. Whole output892079bytes under2.4MB,shared1.2073252829999888seconds. Compact storage does not change/reset scientific query accounting or limits.",
+    "Four-member artifact retained once after all branch jobs terminal,installed exact bytes with SHA256 custody. HYCOM Consortium,NRL,COAPS-FSU attribution retained. No new observations/canonical scalar references.111identities,908reference inventory,102eddy references,main,UI,runtime,WASM unchanged. Full current-depth/route/time/physical-volume programme remains active/incomplete."
+  ],
+  "new_current_depth_observations": 0,
+  "new_current_depth_references_admitted": 0,
+  "physical_current_bottoms_established": 0,
+  "physical_volume_estimates_admitted": 0,
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false,
+  "outputs": {
+    "research/pacific-madagascar-paired-depth-v1.json": {
+      "bytes": 797270,
+      "sha256": "08a29762b8fc3fe5abb151a1ce97a258be89894461e58e7bf2242a759b96c4cb"
+    },
+    "research/pacific-madagascar-paired-depth-v1.csv": {
+      "bytes": 71266,
+      "sha256": "8bfc081ecba9b311f09c13aa6b06060a643fb789f2fbe67ac4a5333b17015768"
+    },
+    "research/pacific-madagascar-depth-anchors-v1.csv": {
+      "bytes": 22185,
+      "sha256": "42bceb93226308146bef89576e5e5b7c08d0038cc1844ce5293c01b7752a1cf6"
+    },
+    "research/pacific-madagascar-paired-depth-query-ledger-v1.json": {
+      "bytes": 1354,
+      "sha256": "62221677120ebb6ce1bebece1960a8b5073425fa20a28ea95e38a63a2aab6328"
+    }
+  }
+}

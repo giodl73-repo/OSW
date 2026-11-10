@@ -1,0 +1,52 @@
+{
+  "schema": "osw.current-depth-route-projection-operator.v12",
+  "previous_projection_file": "research/current-depth-route-projections-v11.json",
+  "previous_projection_csv": "research/current-depth-route-projections-v11.csv",
+  "depth_register_file": "research/current-depth-register-v48.json",
+  "eac_join_file": "research/source-data/eac-route-depth-evidence-join-v1/candidate.json",
+  "eac_model_file": "research/source-data/eac-hycom-route-depth-v2/candidate.json",
+  "eac_reference_route_file": "research/east-australian-reference-path-candidate.json",
+  "kuroshio_source_file": "research/source-data/kuroshio-hycom-depth-v1/candidate.json",
+  "eac_dates": [
+    "2022-01-15",
+    "2022-07-15"
+  ],
+  "kuroshio_times_utc": [
+    "2024-01-15T00:00:00Z",
+    "2024-07-15T00:00:00Z"
+  ],
+  "kuroshio_latitude_gates": [
+    18.5,
+    21.5,
+    24.5,
+    27.5,
+    29.5
+  ],
+  "interpolation_assumption": "Piecewise linear model lower-contour depth between adjacent eligible original reference anchors only. Interpolate paired model upper depth/layer span only when both endpoints retain both threshold boundaries. All original anchors remain; blocked exact locations and neighboring intervals remain unknown. No extrapolation or skipping gaps. Inter-section continuity and linear variation are editorial assumptions, not observations. Reference geometry is not measured current length or validated instantaneous axis.",
+  "interpretation": "Four dated regional model cases append to the frozen25 prior scenarios. EAC2022 uses the frozen5cm/s reference-corridor join and retained surface screen; Kuroshio2024 uses10cm/s selected model layers referenced to daily near-surface model-axis gates. Gates, thresholds, time operators and component directions remain per-case; no pooled annual envelope or common-source validation. Model layer thickness is a distance between threshold boundaries, not admitted physical current thickness. All old25 objects and CSV cells remain unchanged; register reference IDs refresh to701 canonical scoped references. The forward upper200m core-definition clarification remains visible without changing frozen Gulf Stream values.",
+  "eligibility": {
+    "whole_route_physical_depth_profile": false,
+    "physical_current_thickness": false,
+    "volume_estimation": false,
+    "global_volume_total": false,
+    "physical_state_join": false,
+    "seasonal_envelope": false
+  },
+  "input_sha256": {
+    "research/current-depth-route-projections-v11.json": "02f2fd1eaa515815740f5c20c6798a1419b0daeaddd72012d2640f4419aff60e",
+    "research/current-depth-route-projections-v11.csv": "4a9ba089f0fe606eb3ffa1b030b14a1a8876808f6c17a7c591dab47fa5675f82",
+    "research/current-depth-route-projections-source-review-v11.json": "e6ab159f57b4bbc5505b35cda828ec93aa9c87aeb62f8cc3975b8cabd000377d",
+    "research/current-depth-register-v48.json": "d155d64cce966205f77103027efa9258151c35dba4408ab08c49c8255b0045e8",
+    "research/current-depth-register-source-review-v48.json": "c6df032371166bc73b6bd6a88abed70cd397b5b06b9087798ca705114e675f10",
+    "research/source-data/eac-route-depth-evidence-join-v1/candidate.json": "10fa136c4035f4e0db40d891b297aacba406b3315ed1b4ccd3b40a01834f361a",
+    "research/source-data/eac-hycom-route-depth-v2/candidate.json": "e6fe969bb2bd195807810005e689e1f6b40de67d0f049cf6863fb23a03467ad3",
+    "research/eac-route-depth-evidence-join-source-review-v1.json": "2f518fa9f78a88601e86c957626fd46d420a0205ce861f283a8a031cc0870933",
+    "research/eac-route-depth-evidence-join-operator-v1.json": "c97100a4d1ec8b7cf22bc36e0beaa550715a87ce0dcb576640b16d0b56aee176",
+    "research/east-australian-reference-path-candidate.json": "f9e903221cf97d197e7b6f2f62094fd6bd7d99fe82d852af857b1f54e31a20d8",
+    "research/source-data/kuroshio-hycom-depth-v1/candidate.json": "c311d2a9a445a043564e654e1eb8acb433d5b1a4eccd22c8b9a2cafbd50797db",
+    "research/kuroshio-hycom-depth-source-review-v1.json": "57e5c20764c10a7c6483cfcb39328d658ebfc18a515971d647227ccc08c96532",
+    "research/kuroshio-hycom-depth-operator-v1.json": "acc8cf0adca0e4cb17d857d89160d590ae3b7e30cc3f3e2d0b6f3789fc4b869c"
+  },
+  "processing_policy": "All projection geometry, interpolation calculations and tests cloud-only on one idle CPU. Retain source artifacts byte-exact; no local ocean-field processing, tests, runtime/UI/browser/server work. No new field-source acquisition.",
+  "full_goal_complete": false
+}

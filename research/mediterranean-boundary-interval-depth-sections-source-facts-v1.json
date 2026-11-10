@@ -1,0 +1,3697 @@
+{
+  "schema": "osw.mediterranean-boundary-interval-depth-sections-source-facts.v1",
+  "status": "EXPLORATORY_REGIONAL_MODEL_INTERVAL_DEPTH_CASES_WITH_EXPLICIT_AXIS_AND_VERTICAL_GAPS",
+  "manifest_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/manifest.json",
+  "manifest_sha256": "44e0324c26f7a089dc6f4ac496866d897e87bb986e994d73ff948e767ad4c9c2",
+  "operator_file": "research/mediterranean-boundary-interval-depth-sections-operator-v1.json",
+  "operator_sha256": "fcfb215051c8f49c220950c2678c4fc6a2788e28ba220a1a9a7853bb24f3ebff",
+  "counts": {
+    "section_date_cases": 40,
+    "native_velocity_profiles": 2032,
+    "selected_axis_proxy_profiles": 39,
+    "horizontal_selection_status_counts": {
+      "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 35,
+      "no_qualifying_interval_component_column": 1,
+      "section_gate_edge_maximum_axis_unresolved": 3,
+      "selection_interval_support_edge_maximum_axis_unresolved": 1
+    },
+    "selected_lower_contour_resolved_by_threshold": {
+      "0.05": 22,
+      "0.1": 35,
+      "0.2": 27
+    },
+    "selected_paired_layers_resolved_by_threshold": {
+      "0.05": 22,
+      "0.1": 35,
+      "0.2": 27
+    },
+    "decoded_velocity_cell_pairs": 81280,
+    "decoded_velocity_array_bytes": 650240,
+    "decoded_temperature_scalars": 0,
+    "decoded_temperature_array_bytes": 0,
+    "whole_route_physical_depth_profiles": 0,
+    "water_volume_estimates": 0
+  },
+  "counts_by_current": {
+    "current:northern-mediterranean": {
+      "section_date_cases": 20,
+      "native_velocity_profiles": 1016,
+      "selected_axis_proxy_profiles": 20,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 16,
+        "section_gate_edge_maximum_axis_unresolved": 3,
+        "selection_interval_support_edge_maximum_axis_unresolved": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 13,
+        "0.1": 17,
+        "0.2": 15
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 13,
+        "0.1": 17,
+        "0.2": 15
+      }
+    },
+    "current:algerian": {
+      "section_date_cases": 20,
+      "native_velocity_profiles": 1016,
+      "selected_axis_proxy_profiles": 19,
+      "horizontal_selection_status_counts": {
+        "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis": 19,
+        "no_qualifying_interval_component_column": 1
+      },
+      "selected_lower_contour_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 18,
+        "0.2": 12
+      },
+      "selected_paired_layers_resolved_by_threshold": {
+        "0.05": 9,
+        "0.1": 18,
+        "0.2": 12
+      }
+    }
+  },
+  "descriptors": [
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-6e.json",
+      "source_sha256": "6e0e6edc1c3f1d275fd2cb3722fd86acabd4cb7b803a1312c5498d57f20badd0",
+      "source_profile_pointer": "/columns/21",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        42.84000015258789
+      ],
+      "selected_column_index": 21,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        21
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6030000448226929,
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 588.8889606352533,
+          "layer_thickness_m": 588.8889606352533,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6030000448226929,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 250.00000827842663,
+          "layer_thickness_m": 250.00000827842663,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.6030000448226929,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 588.8889606352533,
+      "primary_layer_thickness_m": 588.8889606352533,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-5p25e.json",
+      "source_sha256": "87fc47e28ddd866652a455d90078a3dcb769ca0ca17a559b42fb507f669617e7",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p25e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p25e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.25,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.280029296875,
+      "selected_lon_lat": [
+        5.280029296875,
+        42.7599983215332
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        7,
+        19,
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 284.37500814907116,
+          "layer_thickness_m": 284.37500814907116,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4330000281333923,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 59.0000067055239,
+          "layer_thickness_m": 59.0000067055239,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4330000281333923,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 11.500001738469594,
+          "layer_thickness_m": 11.500001738469594,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4330000281333923,
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 59.0000067055239,
+      "primary_layer_thickness_m": 59.0000067055239,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-4p5e.json",
+      "source_sha256": "282b7b8d83737a05cdfc223077fceb89b973b73f1deba69fd4b85c226113ff58",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4p5e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4p5e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4.5,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.47998046875,
+      "selected_lon_lat": [
+        4.47998046875,
+        42.68000030517578
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        17,
+        24
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 300.00000338662755,
+          "layer_thickness_m": 300.00000338662755,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4430000185966491,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 180.88236125540524,
+          "layer_thickness_m": 180.88236125540524,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4430000185966491,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 26.818185635832105,
+          "layer_thickness_m": 26.818185635832105,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.4430000185966491,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 180.88236125540524,
+      "primary_layer_thickness_m": 180.88236125540524,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3p75e.json",
+      "source_sha256": "336dea758b74a71e6936903da3cc5595f928295e5c5ca8b763ce60b4add05d3b",
+      "source_profile_pointer": "/columns/29",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3p75e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3p75e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3.75,
+        "latitude_gate_degrees_north": [
+          41.5,
+          43.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 3.760009765625,
+      "selected_lon_lat": [
+        3.760009765625,
+        42.68000030517578
+      ],
+      "selected_column_index": 29,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        1,
+        14,
+        29
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 234.21052765730676,
+          "layer_thickness_m": 234.21052765730676,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2720000147819519,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 28.000005960461273,
+          "layer_thickness_m": 28.000005960461273,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2720000147819519,
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1.945946320379794,
+          "layer_thickness_m": 1.945946320379794,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.2720000147819519,
+          "lower_bracket_m": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 28.000005960461273,
+      "primary_layer_thickness_m": 28.000005960461273,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-northern-mediterranean-section-3e.json",
+      "source_sha256": "b21d1644f96b12cdbf4ef29137576f6c02576d119c4375f525207339b955169d",
+      "source_profile_pointer": "/columns/13",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3,
+        "latitude_gate_degrees_north": [
+          41,
+          43
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.9599609375,
+      "selected_lon_lat": [
+        2.9599609375,
+        41.52000045776367
+      ],
+      "selected_column_index": 13,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        6,
+        13
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 328.2051296624245,
+          "layer_thickness_m": 328.2051296624245,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5060000419616699,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 286.3636459077686,
+          "layer_thickness_m": 286.3636459077686,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5060000419616699,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 213.47826332022873,
+          "layer_thickness_m": 213.47826332022873,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5060000419616699,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 286.3636459077686,
+      "primary_layer_thickness_m": 286.3636459077686,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-0e.json",
+      "source_sha256": "841cdee04c5327b59269dc3de94286cb9d8bab8f1f7ced1725058c091ab1fa9c",
+      "source_profile_pointer": "/columns/34",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          35.5,
+          37.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        36.880001068115234
+      ],
+      "selected_column_index": 34,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 2.1428568083412447,
+          "lower_depth_m": 115.62500480213235,
+          "layer_thickness_m": 113.4821479937911,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.10400000214576721,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 40.999994039529845,
+          "lower_depth_m": 60.00000106436876,
+          "layer_thickness_m": 19.000007024838915,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.10400000214576721,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 60.00000106436876,
+      "primary_layer_thickness_m": 19.000007024838915,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-2e.json",
+      "source_sha256": "0b8a22f6c9d9b606db25d1a9dd216853c7af9af79f7551d9c6d7df25a6ac7fc3",
+      "source_profile_pointer": "/columns/29",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        37.15999984741211
+      ],
+      "selected_column_index": 29,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        29
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.9090908023608397,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.12600000202655792,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 38.78787835685346,
+          "lower_depth_m": 295.4545768578192,
+          "layer_thickness_m": 256.6666985009657,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.12600000202655792,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 295.4545768578192,
+      "primary_layer_thickness_m": 256.6666985009657,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-4e.json",
+      "source_sha256": "a41e4c4b1c40e53453b0e1ed7b39e80321d9d764fd9e10debe6bd27fc6330e5d",
+      "source_profile_pointer": "/columns/27",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.0,
+      "selected_lon_lat": [
+        4.0,
+        37.08000183105469
+      ],
+      "selected_column_index": 27,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 58.214286645608134,
+          "layer_thickness_m": 58.214286645608134,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.11400000751018524,
+          "lower_bracket_m": [
+            50.0,
+            60.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 24.999998509882467,
+          "lower_depth_m": 40.000000620882,
+          "layer_thickness_m": 15.000002110999532,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.11400000751018524,
+          "upper_bracket_m": [
+            20.0,
+            25.0
+          ],
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 40.000000620882,
+      "primary_layer_thickness_m": 15.000002110999532,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-6e.json",
+      "source_sha256": "c20adca903c7cacdc10439d8b68afa76c9ff290213875e7897fbcf64bfe70dcb",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        37.040000915527344
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.906976695428867,
+          "lower_depth_m": 488.0000095367423,
+          "layer_thickness_m": 486.09303284131346,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.1810000091791153,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 25.58823395352853,
+          "lower_depth_m": 320.00001490116426,
+          "layer_thickness_m": 294.41178094763575,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 16,
+          "core_depth_m": 70.0,
+          "core_velocity_m_s": 0.1810000091791153,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 320.00001490116426,
+      "primary_layer_thickness_m": 294.41178094763575,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-03-15-algerian-section-8e.json",
+      "source_sha256": "ad3fc9941926d35dae1d3cf4c9ad8e06f13f32744a80773df5a729ddb9cecaf9",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8e",
+      "snapshot_time_utc": "2022-03-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 8,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 8.0,
+      "selected_lon_lat": [
+        8.0,
+        37.119998931884766
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        28,
+        46
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 233.33333954214947,
+          "layer_thickness_m": 233.33333954214947,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.27400001883506775,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 111.25000419095089,
+          "layer_thickness_m": 111.25000419095089,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.27400001883506775,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.6808505457630605,
+          "lower_depth_m": 23.586956947788433,
+          "layer_thickness_m": 22.906106402025372,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.27400001883506775,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 111.25000419095089,
+      "primary_layer_thickness_m": 111.25000419095089,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-6e.json",
+      "source_sha256": "f8de364f7722bcdfa313d42c6a6b3225bf1c064d9bbbdbe0f4beb122ce4eb0f1",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        42.68000030517578
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        8,
+        17
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 427.2727555972487,
+          "layer_thickness_m": 427.2727555972487,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27200001478195185,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 127.08334031825152,
+          "layer_thickness_m": 127.08334031825152,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27200001478195185,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 8.272728097832893,
+          "layer_thickness_m": 8.272728097832893,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.27200001478195185,
+          "lower_bracket_m": [
+            8.0,
+            10.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 127.08334031825152,
+      "primary_layer_thickness_m": 127.08334031825152,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-5p25e.json",
+      "source_sha256": "6a03776ad76521a0002bf9e4636689096526bbf0eb0cb20c2a7c5641a743433d",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p25e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p25e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.25,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.280029296875,
+      "selected_lon_lat": [
+        5.280029296875,
+        42.68000030517578
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        7,
+        17
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30400002002716064,
+          "lower_last_connected_depth_m": 1500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30400002002716064,
+          "lower_last_connected_depth_m": 1500.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 13.50000055879345,
+          "layer_thickness_m": 13.50000055879345,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.30400002002716064,
+          "lower_bracket_m": [
+            12.0,
+            15.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 1500.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-4p5e.json",
+      "source_sha256": "b6cbf8dfcdde95427a3e9575cf6183ea1a6fb52060b290349164e75658b4a2c7",
+      "source_profile_pointer": "/columns/14",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4p5e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4p5e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4.5,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.47998046875,
+      "selected_lon_lat": [
+        4.47998046875,
+        42.560001373291016
+      ],
+      "selected_column_index": 14,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        7,
+        14,
+        20
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20500001311302188,
+          "lower_last_connected_depth_m": 1250.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20500001311302188,
+          "lower_last_connected_depth_m": 1250.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 0.833334864840368,
+          "layer_thickness_m": 0.833334864840368,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.20500001311302188,
+          "lower_bracket_m": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 1250.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3p75e.json",
+      "source_sha256": "a821b9109404c7c6e6e7b725cbb5d553a06e51d0986098608ce75d105cd47948",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3p75e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3p75e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3.75,
+        "latitude_gate_degrees_north": [
+          41.5,
+          43.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 3.760009765625,
+      "selected_lon_lat": [
+        3.760009765625,
+        42.0
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        12,
+        20,
+        28
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 300.0000053218439,
+          "layer_thickness_m": 300.0000053218439,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 6.986301200410905,
+          "lower_depth_m": 150.0000057312174,
+          "layer_thickness_m": 143.0137045308065,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 44.999998758236,
+          "lower_depth_m": 60.000001490116425,
+          "layer_thickness_m": 15.000002731880421,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 13,
+          "core_depth_m": 45.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "upper_bracket_m": [
+            40.0,
+            45.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 150.0000057312174,
+      "primary_layer_thickness_m": 143.0137045308065,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-northern-mediterranean-section-3e.json",
+      "source_sha256": "904f88816f574940c155af4a682245528edac13b02c4bfc19a2e1c0cc0354d70",
+      "source_profile_pointer": "/columns/6",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3,
+        "latitude_gate_degrees_north": [
+          41,
+          43
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.9599609375,
+      "selected_lon_lat": [
+        2.9599609375,
+        41.2400016784668
+      ],
+      "selected_column_index": 6,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        2,
+        6
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 948.5714331330086,
+          "layer_thickness_m": 948.5714331330086,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.22000001370906835,
+          "lower_bracket_m": [
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 17.200000685453357,
+          "layer_thickness_m": 17.200000685453357,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.22000001370906835,
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 6.181816925687228,
+          "lower_depth_m": 10.86956574132623,
+          "layer_thickness_m": 4.687748815639003,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.22000001370906835,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_bracket_m": [
+            10.0,
+            12.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 17.200000685453357,
+      "primary_layer_thickness_m": 17.200000685453357,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-0e.json",
+      "source_sha256": "5d8b0d4fe7a22620988316d589c90fbed5572c891d6b508dc09e16113ff896d6",
+      "source_profile_pointer": "/columns/41",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          35.5,
+          37.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        37.15999984741211
+      ],
+      "selected_column_index": 41,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        15,
+        21,
+        41,
+        49
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.18900001049041745,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1777.777812731123,
+          "layer_thickness_m": 1777.777812731123,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 1,
+          "core_depth_m": 2.0,
+          "core_velocity_m_s": 0.18900001049041745,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1777.777812731123,
+      "primary_layer_thickness_m": 1777.777812731123,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-2e.json",
+      "source_sha256": "0ec61aef7ca9f3e3ecc38ade10f79ae3d9d7302f99af40721dd62972108b797d",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        36.7599983215332
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_last_connected_depth_m": 1500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 323.07693982970267,
+          "layer_thickness_m": 323.07693982970267,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_bracket_m": [
+            300.0,
+            350.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 161.66667991214274,
+          "layer_thickness_m": 161.66667991214274,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 9,
+          "core_depth_m": 25.0,
+          "core_velocity_m_s": 0.33000001311302185,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 323.07693982970267,
+      "primary_layer_thickness_m": 323.07693982970267,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-4e.json",
+      "source_sha256": "82c27ae775138def81a187f21f22053c2fa0b7e4e5630643e72c35f6537c19a3",
+      "source_profile_pointer": "/columns/34",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.0,
+      "selected_lon_lat": [
+        4.0,
+        37.36000061035156
+      ],
+      "selected_column_index": 34,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        34
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.16600000858306885,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 1.037036722252592,
+          "lower_depth_m": 144.44446008145962,
+          "layer_thickness_m": 143.40742335920703,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 5,
+          "core_depth_m": 10.0,
+          "core_velocity_m_s": 0.16600000858306885,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 144.44446008145962,
+      "primary_layer_thickness_m": 143.40742335920703,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-6e.json",
+      "source_sha256": "56b29753de6269a203248de10e967b2f9c4147dea418f0c817cfa4133a5e56c6",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        37.119998931884766
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        28
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 544.4444619211157,
+          "layer_thickness_m": 544.4444619211157,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "lower_bracket_m": [
+            500.0,
+            600.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 2.3636361665962804,
+          "lower_depth_m": 106.66666997803569,
+          "layer_thickness_m": 104.3030338114394,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 11.999999729069796,
+          "lower_depth_m": 15.00000034653865,
+          "layer_thickness_m": 3.0000006174688547,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.20000000298023224,
+          "upper_bracket_m": [
+            10.0,
+            12.0
+          ],
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 106.66666997803569,
+      "primary_layer_thickness_m": 104.3030338114394,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-06-15-algerian-section-8e.json",
+      "source_sha256": "32a4121bd57b90c8933218656f5df7f772d1fcb631b600854b78b26b10d67793",
+      "source_profile_pointer": "/columns/42",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8e",
+      "snapshot_time_utc": "2022-06-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 8,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 8.0,
+      "selected_lon_lat": [
+        8.0,
+        37.68000030517578
+      ],
+      "selected_column_index": 42,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        42
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.6200000047683716,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1409.9264781109207,
+          "layer_thickness_m": 1409.9264781109207,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.6200000047683716,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 750.0002607707636,
+          "layer_thickness_m": 750.0002607707636,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.6200000047683716,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1409.9264781109207,
+      "primary_layer_thickness_m": 1409.9264781109207,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-6e.json",
+      "source_sha256": "8c11a9a46ca3c28cc67ecfbf1b8064975f1b9564d2c07768a6a2f893b9a19c92",
+      "source_profile_pointer": "/columns/20",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        42.79999923706055
+      ],
+      "selected_column_index": 20,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        20
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1638.461559071871,
+          "layer_thickness_m": 1638.461559071871,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.21900001168251038,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 5.499998820324931,
+          "lower_depth_m": 43.57143191658754,
+          "layer_thickness_m": 38.07143309626261,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.21900001168251038,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            40.0,
+            45.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 13.935482977828517,
+          "lower_depth_m": 24.130436979755153,
+          "layer_thickness_m": 10.194954001926636,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.21900001168251038,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 43.57143191658754,
+      "primary_layer_thickness_m": 38.07143309626261,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-5p25e.json",
+      "source_sha256": "36eeafcf1e08cd009ad3ee81497b3ec749149299bc5996c0f1dd62eb9b623edb",
+      "source_profile_pointer": "/columns/16",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p25e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p25e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.25,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.280029296875,
+      "selected_lon_lat": [
+        5.280029296875,
+        42.63999938964844
+      ],
+      "selected_column_index": 16,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        16
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.7999997019767655,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.29500001668930054,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 7.454544075264405,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.29500001668930054,
+          "upper_bracket_m": [
+            6.0,
+            8.0
+          ],
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 12.85074583645998,
+          "lower_depth_m": 69.00000670552394,
+          "layer_thickness_m": 56.149260869063966,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.29500001668930054,
+          "upper_bracket_m": [
+            12.0,
+            15.0
+          ],
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 2000.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-4p5e.json",
+      "source_sha256": "ee80ee04c9d654a62db5403c30be8a94435289aea39046077d383510e17e2cba",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4p5e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4p5e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4.5,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.47998046875,
+      "selected_lon_lat": [
+        4.47998046875,
+        42.0
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        0,
+        3,
+        14
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 31.56249948340703,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.1290000081062317,
+          "upper_bracket_m": [
+            30.0,
+            35.0
+          ],
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 39.374999621650176,
+          "lower_depth_m": 85.00001303851387,
+          "layer_thickness_m": 45.625013416863695,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 14,
+          "core_depth_m": 50.0,
+          "core_velocity_m_s": 0.1290000081062317,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 85.00001303851387,
+      "primary_layer_thickness_m": 45.625013416863695,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3p75e.json",
+      "source_sha256": "807b7367df52e9eddf45fb22cc1b2b490fbe9b02a9a1ab41d113b6ec022a3cac",
+      "source_profile_pointer": "/columns/7",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3p75e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3p75e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3.75,
+        "latitude_gate_degrees_north": [
+          41.5,
+          43.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 3.760009765625,
+      "selected_lon_lat": [
+        3.760009765625,
+        41.79999923706055
+      ],
+      "selected_column_index": 7,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        7,
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 1.1999998509883945,
+          "lower_depth_m": 290.0000223517465,
+          "layer_thickness_m": 288.80002250075813,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.14800000190734863,
+          "upper_bracket_m": [
+            0.0,
+            2.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 8.66666641831402,
+          "lower_depth_m": 27.500013038538196,
+          "layer_thickness_m": 18.833346620224177,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 8,
+          "core_depth_m": 20.0,
+          "core_velocity_m_s": 0.14800000190734863,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            25.0,
+            30.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 27.500013038538196,
+      "primary_layer_thickness_m": 18.833346620224177,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-northern-mediterranean-section-3e.json",
+      "source_sha256": "2755b222defe4c9da8354e4a98f4fab4a7e6f2de8a92d3052e818feb27a1c07e",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3,
+        "latitude_gate_degrees_north": [
+          41,
+          43
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.9599609375,
+      "selected_lon_lat": [
+        2.9599609375,
+        41.0
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        0
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 2.266666600439284,
+          "lower_depth_m": 21.54545465321087,
+          "layer_thickness_m": 19.27878805277159,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.12600000202655795,
+          "upper_bracket_m": [
+            2.0,
+            4.0
+          ],
+          "lower_bracket_m": [
+            20.0,
+            25.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 9.64705802948851,
+          "lower_depth_m": 17.20338998889485,
+          "layer_thickness_m": 7.556331959406338,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 6,
+          "core_depth_m": 12.0,
+          "core_velocity_m_s": 0.12600000202655795,
+          "upper_bracket_m": [
+            8.0,
+            10.0
+          ],
+          "lower_bracket_m": [
+            15.0,
+            20.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 17.20338998889485,
+      "primary_layer_thickness_m": 7.556331959406338,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-0e.json",
+      "source_sha256": "fbfe073b6b6472cf50f19cf373786264640f81b09c2450663fd19833227ef3e4",
+      "source_profile_pointer": "/columns/17",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          35.5,
+          37.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        36.20000076293945
+      ],
+      "selected_column_index": 17,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        17,
+        41,
+        49
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 189.47368709994797,
+          "layer_thickness_m": 189.47368709994797,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.33400002121925354,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 147.6415121924544,
+          "layer_thickness_m": 147.6415121924544,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.33400002121925354,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 95.75000242143919,
+          "layer_thickness_m": 95.75000242143919,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.33400002121925354,
+          "lower_bracket_m": [
+            90.0,
+            100.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 147.6415121924544,
+      "primary_layer_thickness_m": 147.6415121924544,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-2e.json",
+      "source_sha256": "c07765658e290a5fea5930b1aa6f43934cf7fa20980789c082ac30f2f26c25dc",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        37.47999954223633
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 15.769230372454409,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.14400000870227814,
+          "upper_bracket_m": [
+            15.0,
+            20.0
+          ],
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 27.49999899703725,
+          "lower_depth_m": 112.50001303851874,
+          "layer_thickness_m": 85.00001404148149,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 15,
+          "core_depth_m": 60.0,
+          "core_velocity_m_s": 0.14400000870227814,
+          "upper_bracket_m": [
+            25.0,
+            30.0
+          ],
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 112.50001303851874,
+      "primary_layer_thickness_m": 85.00001404148149,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-4e.json",
+      "source_sha256": "db6bff6686367dbe16ebe82480ba875cccff0b81be12b4197d3678ae4775dbfc",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.0,
+      "selected_lon_lat": [
+        4.0,
+        37.040000915527344
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        26
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.4320000112056732,
+          "lower_last_connected_depth_m": 1500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 791.9354938335028,
+          "layer_thickness_m": 791.9354938335028,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.4320000112056732,
+          "lower_bracket_m": [
+            700.0,
+            800.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 217.85719151400068,
+          "layer_thickness_m": 217.85719151400068,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 4,
+          "core_depth_m": 8.0,
+          "core_velocity_m_s": 0.4320000112056732,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 791.9354938335028,
+      "primary_layer_thickness_m": 791.9354938335028,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-6e.json",
+      "source_sha256": "04a9219d9b808858d8a9e607e373a11c02fbc9d4462a459fa60329adec23506e",
+      "source_profile_pointer": "/columns/28",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        37.119998931884766
+      ],
+      "selected_column_index": 28,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        28,
+        30
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 358.3333788646799,
+          "layer_thickness_m": 358.3333788646799,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 3,
+          "core_depth_m": 6.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_bracket_m": [
+            350.0,
+            400.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": "censored_before_missing_or_dry_level",
+      "primary_supported_reach_bound_m": 2000.0,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-09-15-algerian-section-8e.json",
+      "source_sha256": "f5b70d061d5530ab628a4ead06ba553f6b576813d356464903b62a12e77e1743",
+      "source_profile_pointer": null,
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8e",
+      "snapshot_time_utc": "2022-09-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 8,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 8.0,
+      "selected_lon_lat": null,
+      "selected_column_index": null,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "no_qualifying_interval_component_column",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [],
+      "selected_column_threshold_layers": [],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": null,
+      "primary_layer_thickness_m": null,
+      "primary_lower_status": null,
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-6e.json",
+      "source_sha256": "6f9fd14ebb1f5a5dc255fb0b94a7a634d99e70f1d3ae061ae7738560c7681307",
+      "source_profile_pointer": "/columns/12",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        42.47999954223633
+      ],
+      "selected_column_index": 12,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        0,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1842.7419506990268,
+          "layer_thickness_m": 1842.7419506990268,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_bracket_m": [
+            1500.0,
+            2000.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 194.7368767783364,
+          "layer_thickness_m": 194.7368767783364,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.3440000116825104,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1842.7419506990268,
+      "primary_layer_thickness_m": 1842.7419506990268,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-5p25e.json",
+      "source_sha256": "51186def9688b1c9d459df24c5280af9c18dd13361944f0326690c93092052b6",
+      "source_profile_pointer": "/columns/23",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-5p25e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-5p25e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 5.25,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 5.280029296875,
+      "selected_lon_lat": [
+        5.280029296875,
+        42.91999816894531
+      ],
+      "selected_column_index": 23,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        1,
+        11,
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 183.96226492013818,
+          "layer_thickness_m": 183.96226492013818,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.35500001907348633,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 145.00000106436863,
+          "layer_thickness_m": 145.00000106436863,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.35500001907348633,
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 67.14287660560022,
+          "layer_thickness_m": 67.14287660560022,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.35500001907348633,
+          "lower_bracket_m": [
+            60.0,
+            70.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 145.00000106436863,
+      "primary_layer_thickness_m": 145.00000106436863,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-4p5e.json",
+      "source_sha256": "904d7eb43b46899a3ed113ca9923e82ad1a8fece59560953605e60921bf3f32c",
+      "source_profile_pointer": "/columns/1",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4p5e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4p5e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4.5,
+        "latitude_gate_degrees_north": [
+          42,
+          44
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.47998046875,
+      "selected_lon_lat": [
+        4.47998046875,
+        42.040000915527344
+      ],
+      "selected_column_index": 1,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        1,
+        23
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.39700001478195196,
+          "lower_last_connected_depth_m": 2000.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1441.1765169932432,
+          "layer_thickness_m": 1441.1765169932432,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.39700001478195196,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 418.18186867335646,
+          "layer_thickness_m": 418.18186867335646,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.39700001478195196,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1441.1765169932432,
+      "primary_layer_thickness_m": 1441.1765169932432,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3p75e.json",
+      "source_sha256": "606bb85bab6bfce9f124812d27d9ca714a6d51180e6f269ce50b4b9f46776e15",
+      "source_profile_pointer": "/columns/30",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3p75e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3p75e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3.75,
+        "latitude_gate_degrees_north": [
+          41.5,
+          43.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 3.760009765625,
+      "selected_lon_lat": [
+        3.760009765625,
+        42.720001220703125
+      ],
+      "selected_column_index": 30,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "selection_interval_support_edge_maximum_axis_unresolved",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        2,
+        5,
+        30
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 190.81632814423227,
+          "layer_thickness_m": 190.81632814423227,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.12400000542402269,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 3.0909102238899497,
+          "layer_thickness_m": 3.0909102238899497,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.12400000542402269,
+          "lower_bracket_m": [
+            2.0,
+            4.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 3.0909102238899497,
+      "primary_layer_thickness_m": 3.0909102238899497,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-northern-mediterranean-section-3e.json",
+      "source_sha256": "b66f132f48b463727ed5a6cf643605bfaf82e5658a2db04f2607ac197aeb7952",
+      "source_profile_pointer": "/columns/0",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-3e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-3e",
+        "entity_id": "current:northern-mediterranean",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 3,
+        "latitude_gate_degrees_north": [
+          41,
+          43
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.9599609375,
+      "selected_lon_lat": [
+        2.9599609375,
+        41.0
+      ],
+      "selected_column_index": 0,
+      "component_bearing_degrees_true": 270,
+      "horizontal_selection_status": "section_gate_edge_maximum_axis_unresolved",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        0,
+        12
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 654.5454705549668,
+          "layer_thickness_m": 654.5454705549668,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.17100000381469727,
+          "lower_bracket_m": [
+            600.0,
+            700.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 5.7142846803274825,
+          "lower_depth_m": 262.50002949187666,
+          "layer_thickness_m": 256.7857448115492,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 19,
+          "core_depth_m": 100.0,
+          "core_velocity_m_s": 0.17100000381469727,
+          "upper_bracket_m": [
+            4.0,
+            6.0
+          ],
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": null,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "no_qualifying_core",
+          "lower_status": "no_qualifying_core",
+          "status": "no_qualifying_core"
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 262.50002949187666,
+      "primary_layer_thickness_m": 256.7857448115492,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-0e.json",
+      "source_sha256": "c6970656686d69487ac271374958e6005ca1d1460af165b068132e53666311a4",
+      "source_profile_pointer": "/columns/19",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-0e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-0e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 0,
+        "latitude_gate_degrees_north": [
+          35.5,
+          37.5
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 0.0,
+      "selected_lon_lat": [
+        0.0,
+        36.279998779296875
+      ],
+      "selected_column_index": 19,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 50,
+      "local_integral_maximum_indices": [
+        19
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 172.22222314204697,
+          "layer_thickness_m": 172.22222314204697,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.45500001311302185,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 121.26865814379576,
+          "layer_thickness_m": 121.26865814379576,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.45500001311302185,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 83.79310713369989,
+          "layer_thickness_m": 83.79310713369989,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.45500001311302185,
+          "lower_bracket_m": [
+            80.0,
+            90.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 121.26865814379576,
+      "primary_layer_thickness_m": 121.26865814379576,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-2e.json",
+      "source_sha256": "8cbf3687ab3a58cefa72bf544b08ba5d645a57a1cc8d508509664660de8a14b3",
+      "source_profile_pointer": "/columns/24",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-2e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-2e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 2,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 2.0,
+      "selected_lon_lat": [
+        2.0,
+        36.959999084472656
+      ],
+      "selected_column_index": 24,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        24,
+        38
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1318.1819905919485,
+          "layer_thickness_m": 1318.1819905919485,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_bracket_m": [
+            1250.0,
+            1500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 123.3333598242855,
+          "layer_thickness_m": 123.3333598242855,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5130000114440918,
+          "lower_bracket_m": [
+            100.0,
+            125.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1318.1819905919485,
+      "primary_layer_thickness_m": 1318.1819905919485,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-4e.json",
+      "source_sha256": "e51ee1319964095ae20fdbbb4038aac0c9973203a683b50f4b4d1922cfdadf1d",
+      "source_profile_pointer": "/columns/26",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-4e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-4e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 4,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 4.0,
+      "selected_lon_lat": [
+        4.0,
+        37.040000915527344
+      ],
+      "selected_column_index": 26,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        26,
+        40
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 294.44444812374365,
+          "layer_thickness_m": 294.44444812374365,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.9790000319480896,
+          "lower_bracket_m": [
+            250.0,
+            300.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 203.5714378846528,
+          "layer_thickness_m": 203.5714378846528,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.9790000319480896,
+          "lower_bracket_m": [
+            200.0,
+            250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 181.98529562218414,
+          "layer_thickness_m": 181.98529562218414,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 10,
+          "core_depth_m": 30.0,
+          "core_velocity_m_s": 0.9790000319480896,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 203.5714378846528,
+      "primary_layer_thickness_m": 203.5714378846528,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-6e.json",
+      "source_sha256": "8bb29cc5d435bbc77c148fcad751297215d4386a31d40e1f558c745e83fd8e85",
+      "source_profile_pointer": "/columns/42",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-6e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-6e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 6,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 6.0,
+      "selected_lon_lat": [
+        6.0,
+        37.68000030517578
+      ],
+      "selected_column_index": 42,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        42
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 840.6593438004876,
+          "layer_thickness_m": 840.6593438004876,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5720000267028809,
+          "lower_bracket_m": [
+            800.0,
+            900.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 465.62501047737726,
+          "layer_thickness_m": 465.62501047737726,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5720000267028809,
+          "lower_bracket_m": [
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 172.0779280343648,
+          "layer_thickness_m": 172.0779280343648,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 0,
+          "core_depth_m": 0.0,
+          "core_velocity_m_s": 0.5720000267028809,
+          "lower_bracket_m": [
+            150.0,
+            200.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 465.62501047737726,
+      "primary_layer_thickness_m": 465.62501047737726,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    },
+    {
+      "entity_id": "current:algerian",
+      "source_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/2022-12-15-algerian-section-8e.json",
+      "source_sha256": "aeb4213eea596acc7e1e04a3e3cb99f09495939b385e4bb683c6150939b0018a",
+      "source_profile_pointer": "/columns/37",
+      "source_diagnosis_pointer": "/diagnosis",
+      "section_id": "section-8e",
+      "snapshot_time_utc": "2022-12-15T00:00:00Z",
+      "section_definition": {
+        "id": "section-8e",
+        "entity_id": "current:algerian",
+        "fixed_axis": "longitude",
+        "longitude_degrees_east": 8,
+        "latitude_gate_degrees_north": [
+          36,
+          38
+        ]
+      },
+      "actual_source_latitude_degrees_north": null,
+      "actual_source_longitude_degrees_east": 8.0,
+      "selected_lon_lat": [
+        8.0,
+        37.47999954223633
+      ],
+      "selected_column_index": 37,
+      "component_bearing_degrees_true": 90,
+      "horizontal_selection_status": "interior_section_integral_maximum_with_finite_neighbors_not_independently_validated_axis",
+      "candidate_count": 51,
+      "local_integral_maximum_indices": [
+        37
+      ],
+      "selected_column_threshold_layers": [
+        {
+          "threshold_m_s": 0.05,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": null,
+          "layer_thickness_m": null,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "censored_before_missing_or_dry_level",
+          "status": "unresolved_connected_layer_boundary",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3680000305175781,
+          "lower_last_connected_depth_m": 2500.0
+        },
+        {
+          "threshold_m_s": 0.1,
+          "upper_depth_m": 0.0,
+          "lower_depth_m": 1161.7647619550585,
+          "layer_thickness_m": 1161.7647619550585,
+          "upper_status": "surface_bounded_layer",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3680000305175781,
+          "lower_bracket_m": [
+            1000.0,
+            1250.0
+          ]
+        },
+        {
+          "threshold_m_s": 0.2,
+          "upper_depth_m": 38.33332974601808,
+          "lower_depth_m": 127.90698351377594,
+          "layer_thickness_m": 89.57365376775786,
+          "upper_status": "adjacent_isotach_crossing",
+          "lower_status": "adjacent_isotach_crossing",
+          "status": "resolved_connected_model_threshold_layer",
+          "core_index": 17,
+          "core_depth_m": 80.0,
+          "core_velocity_m_s": 0.3680000305175781,
+          "upper_bracket_m": [
+            35.0,
+            40.0
+          ],
+          "lower_bracket_m": [
+            125.0,
+            150.0
+          ]
+        }
+      ],
+      "primary_threshold_m_s": 0.1,
+      "primary_lower_depth_m": 1161.7647619550585,
+      "primary_layer_thickness_m": 1161.7647619550585,
+      "primary_lower_status": "adjacent_isotach_crossing",
+      "primary_supported_reach_bound_m": null,
+      "selected_native100m_temperature_degrees_celsius": null,
+      "current_axis_independently_validated": false,
+      "physical_current_thickness_m": null,
+      "volume_eligible": false
+    }
+  ],
+  "geographic_gate_independently_validates_current_identity": false,
+  "new_independent_observations": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "selection_depth_interval_m": [
+    0,
+    200
+  ],
+  "core_search_depth_interval_m": [
+    0,
+    200
+  ],
+  "surface_velocity_qualification_applied": false,
+  "quarterly_snapshot_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "snapshots_are_annual_envelope": false,
+  "transport_ledger_file": "research/source-data/mediterranean-boundary-interval-depth-sections-v1/transport-ledger.json",
+  "transport_ledger_sha256": "fc41400a14c2e29d63f72f2825b3f62705501d00f9712d7672035a906cd25e4d",
+  "transport_summary": {
+    "schema": "osw.bounded-hycom-component-reads.v1",
+    "planned_successful_component_values": 162560,
+    "additional_retry_component_values_reserved": 0,
+    "actual_requested_component_values": 162560,
+    "successfully_returned_component_values": 162560,
+    "maximum_requested_component_values": 500000,
+    "conservative_all_target_plus_retries_decoded_byte_bound": 1300480,
+    "maximum_decoded_byte_bound": 7000000,
+    "maximum_attempts_per_component": 3,
+    "failed_request_wire_bytes_instrumented": false,
+    "source_wire_hash_claimed": false,
+    "counter_scope": "Requested values refer to exact requested hyperslab shapes,including failed reads. Buffer bound reserves all future first-attempt target reads plus allowed retries at8bytes/value;it is not observed wiretraffic or physical uncertainty."
+  }
+}

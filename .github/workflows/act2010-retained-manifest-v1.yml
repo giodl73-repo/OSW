@@ -1,0 +1,68 @@
+name: Agulhas ACT retained checksum manifest index v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/act2010-retained-manifest-v1.yml
+      - research/act2010-retained-manifest-operator-v1.json
+      - analysis/index_act2010_retained_manifest_v1.py
+      - analysis/test_act2010_retained_manifest_v1.py
+      - plans/act2010-retained-manifest-index-protocol-v1.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/act2010-instrument-metadata-v1.yml
+            .github/workflows/act2010-retained-manifest-v1.yml
+            .github/workflows/act2010-version-metadata-v2.yml
+            analysis/discover_act2010_instrument_metadata_v1.py
+            analysis/discover_act2010_version_metadata_v2.py
+            analysis/index_act2010_retained_manifest_v1.py
+            analysis/test_act2010_instrument_metadata_v1.py
+            analysis/test_act2010_retained_manifest_v1.py
+            analysis/test_act2010_version_metadata_v2.py
+            plans/act2010-instrument-metadata-protocol-v1.md
+            plans/act2010-retained-manifest-index-protocol-v1.md
+            plans/act2010-version-metadata-continuation-protocol-v2.md
+            research/act2010-instrument-depth-source-context-v1.json
+            research/act2010-instrument-metadata-operator-v1.json
+            research/act2010-retained-manifest-operator-v1.json
+            research/act2010-version-metadata-operator-v2.json
+            research/current-depth-act2010-instrument-metadata-source-review-v1.json
+            research/current-depth-act2010-version-metadata-source-review-v2.json
+            research/source-data/act2010-instrument-metadata-v1/journal.json
+            research/source-data/act2010-instrument-metadata-v1/listing-01.raw
+            research/source-data/act2010-instrument-metadata-v1/report.json
+            research/source-data/act2010-version-metadata-v2/journal.json
+            research/source-data/act2010-version-metadata-v2/phase2-data-list.raw
+            research/source-data/act2010-version-metadata-v2/phase2-provider-xml.raw
+            research/source-data/act2010-version-metadata-v2/phase2-version-list.raw
+            research/source-data/act2010-version-metadata-v2/report.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify manifest provenance, paths, hashes and no field promotion
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_act2010_retained_manifest_v1.py' -v
+      - name: Index retained original manifest without provider access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/index_act2010_retained_manifest_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: act2010-retained-manifest-v1
+          path: act2010-retained-manifest-v1/
+          retention-days: 7
+          if-no-files-found: error

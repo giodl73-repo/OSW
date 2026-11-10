@@ -1,0 +1,84 @@
+name: Check dedicated local extent evidence UI v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-local-extent-ui-request-v1.json
+      - .github/workflows/current-local-extent-ui-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  evidence-browser-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read committed UI-only request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/current-local-extent-ui-request-v1.json').read_bytes())
+          assert request['schema']=='osw.current-local-extent-ui-request.v1'
+          assert type(request['execution_permitted']) is bool
+          assert request['ui_verification_only'] is True
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Verify unchanged scientific inputs and exact UI assets
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -c "import sys; sys.path.insert(0,'analysis'); from check_current_local_extent_ui_v1 import verify_sources; verify_sources()"
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Check UI script syntax
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 node --check almanac/local-extents-worker.js
+          taskset -c "$cpu" nice -n 15 node --check almanac/local-extents.js
+      - name: Install pinned browser checker
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+      - name: Install one cloud Chromium
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify actual scoped UI and failure recovery
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_local_extent_ui_v1.py
+      - name: Retain compact UI result and two screenshots
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-local-extent-ui-v1
+          path: .pytest_cache/current-local-extent-ui-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

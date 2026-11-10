@@ -1,0 +1,109 @@
+{
+  "schema": "osw.current-depth-source-facts.v30",
+  "review_date": "2026-11-02",
+  "status": "REGIONAL_SPITSBERGEN_REACH_AND_MEMBER_DEPTH_DISCOVERY",
+  "previous_register_file": "research/current-depth-register-v29.json",
+  "previous_register_sha256": "a83c928954097fa3ad0528e571335a35019664452110313d67b0c8978efa49c3",
+  "source_input_sha256": {
+    "research/current-length-family-conventions-v1.json": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086"
+  },
+  "source_reviews": [
+    {
+      "url": "https://www.pnra.aq/en/project/410/deep-flow-regime-spitsbergen",
+      "review_mode": "Primary institutional report, vmADCP subsection and S1 mooring coordinate paragraph.2016 sampling support and depth-dependent NW-flow statement read separately from2017 and deep mooring/cascading descriptions. No raw profiles or original figure pixels processed.",
+      "actual_original_pixels_viewed": false
+    },
+    {
+      "url": "https://tidesandcurrents.noaa.gov/glossary.html",
+      "review_mode": "Primary NOAA Spitsbergen Atlantic Current entry inspected: NW flow off southwest Spitsbergen. Regional name mapping only, not full WSC alias. Gulf Stream System entry also checked for strict Florida/Gulf Stream/North Atlantic composition.",
+      "actual_original_pixels_viewed": false
+    }
+  ],
+  "member_index_policy": {
+    "mapping_file": "research/current-length-family-conventions-v1.json",
+    "mapping_sha256": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086",
+    "scope": "Existing eight family memberships and strict three-member Gulf Stream System convention; no new identities or aliases.",
+    "aggregation_operator": null,
+    "new_depth_measurements_added_by_member_links": 0,
+    "parent_scalar_depth_allowed": false,
+    "member_missing_evidence_retained": true
+  },
+  "references": [
+    {
+      "id": "spitsbergen-atlantic-defrost-2016-s1-regional-reach",
+      "entity_id": "current:spitsbergen-atlantic",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": null,
+      "range_m": null,
+      "lower_bound_m": 50,
+      "lower_bound_exclusive": true,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": "boreal_summer",
+      "calendar_months": null,
+      "geographic_scope": "S1 survey neighborhood southwest of Spitsbergen, anchored near76deg26.288minN,13deg56.907minE. Conditional mapping of the reported regional NW Atlantic-Water flow to NOAA Spitsbergen Atlantic usage, not the entire West Spitsbergen Current.",
+      "temporal_scope": "PS99-DEFROST June2016 ship survey21June15:00UTC–23June02:00UTC. Window covers the regional survey, not exact S1 profile occupations;20-minute means.",
+      "source_definition": "OSW inferred strict reach beyond50m from source report of roughly depth-constant NW-directed flow below50m in the sampled S1 neighborhood.",
+      "evidence_kind": "institutional_observed_survey_summary",
+      "source_url": "https://www.pnra.aq/en/project/410/deep-flow-regime-spitsbergen",
+      "source_citation": "PNRA/OGS DEFROST project report, Currents from ADCP to hull section,2016 PS99 survey; NOAA Tides and Currents Glossary, Spitsbergen Atlantic Current entry for regional name scope.",
+      "source_locator": "vmADCP subsection paragraphs for2016 survey window,23–300m averaging domain and4m spacing, S1 depth behavior and concluding regional NW-flow association with WSC; mooring S1 paragraph for geographic anchor.",
+      "qualification": "Conservative regional bound only.23–300m is sampling/averaging support, not a full current layer or a300m detected bottom. Source association with WSC is conditional and does not synonymize the full modern WSC with the narrower NOAA name. S1 coordinates locate the survey neighborhood, not an exact velocity profile. Do not inherit2017 28–550m support,400–600m bathymetry,1000m deep mooring currents or dense cascading flow. No route projection, annual extrema, exact section timestamp, full thickness or stored volume.",
+      "observed_period": null,
+      "source_case_id": "spitsbergen-atlantic-defrost-2016-s1-NW-survey",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "lower_bound_operator": ">",
+      "depth_basis": "source_reported_flow_behavior_below_depth_within_sampling_domain",
+      "source_current_name": "regional_NW_flow_associated_with_West_Spitsbergen_Current",
+      "current_identity_assignment": "conditional_regional_NOAA_name_mapping_not_global_synonym",
+      "identity_definition_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+      "source_site_id": "S1_neighborhood",
+      "source_site_coordinates_degrees_minutes": {
+        "latitude_north": [
+          76,
+          26.288
+        ],
+        "longitude_east": [
+          13,
+          56.907
+        ]
+      },
+      "site_coordinate_role": "mooring_anchor_for_survey_neighborhood",
+      "survey_window": {
+        "start": "2016-06-21T15:00:00Z",
+        "end": "2016-06-23T02:00:00Z"
+      },
+      "temporal_operator": "source_twenty_minute_profile_means_during_regional_survey",
+      "reported_velocity_sampling_domain_m": [
+        23,
+        300
+      ],
+      "source_depth_bin_spacing_m": 4,
+      "profile_averaging_minutes": 20,
+      "source_speed_description_cm_s": [
+        10,
+        20
+      ],
+      "branch_section_scope": "southwest_Spitsbergen_S1_regional_NW_flow",
+      "reference_route_projection_eligible": false,
+      "source_access_scope": "primary_institutional_project_report_HTML"
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "osw.malvinas-adcp-depth-audit-source-review.v1",
+  "status": "PASS_BOUNDED_NATIVE_PROFILE_AUDIT_NOT_CANONICAL_CORE_OR_BOTTOM_MEASUREMENTS",
+  "cloud_reviews": [
+    {
+      "run_id": 41443564833,
+      "tests_passed": 6,
+      "source_commit": "6d345033d787ef7ab69e04aa54532b47276a7d9b",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41443564833"
+    },
+    {
+      "run_id": 41443564811,
+      "tests_passed": 6,
+      "source_commit": "6d345033d787ef7ab69e04aa54532b47276a7d9b",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41443564811"
+    }
+  ],
+  "cloud_tests_passed": 12,
+  "input_sha256": {
+    "analysis/audit_malvinas_adcp_depth_v1.py": "430b93ddbddd19aa2d52cebc8ec6ce3b4c2f944380397ad939762f9fc5a41c43",
+    "analysis/test_malvinas_adcp_depth_audit_v1.py": "0d6bbeaedb590bab7bbf798565a3a7ab409e38f3a9bd5714d8d835d4c17539e7",
+    ".github/workflows/malvinas-adcp-depth-audit-v1.yml": "d8c7f956b84a9e72ae337db6324c805882f144be61b46134580265705b4daffb",
+    "research/malvinas-adcp-depth-audit-operator-v1.json": "a92c829f6e4e11f6c8fb9aa59df47432e1cd9c3452887396fa5619eb2c10d510",
+    "research/source-data/malvinas-adcp-depth-audit-v1/audit.json": "5c1fbc4530fbd19a8ebcb8abbed39fa040a8d7e1290d073105013fae6bb3d4ea"
+  },
+  "source_data": {
+    "source_doi": "10.1594/PANGAEA.925245",
+    "source_citation": "Frey, Gladyshev, Morozov, Tarakanov, Krechik and Fofanov(2020), Shipborne Acoustic Current Profiler measurements on2020-01-12(cruise AMK79), PANGAEA, doi:10.1594/PANGAEA.925245.",
+    "raw_bytes": 1805378,
+    "raw_sha256": "6d5bf9f8b594bab3117002c9bd09c93bd9779772255b2feb28dd89bb309bc82a",
+    "native_rows": 21756,
+    "ensembles": 407,
+    "native_depth_domain_m": [
+      24.44,
+      720.44
+    ]
+  },
+  "quality_scenario_summary": [
+    {
+      "quality_pg_min_percent": 50,
+      "ensembles": 407,
+      "ensembles_with_positive_v_maximum": 407,
+      "maximum_at_shallowest_valid_level": 18,
+      "maximum_at_deepest_valid_level": 12,
+      "ensembles_with_valid_support_at_or_below600m": 60
+    },
+    {
+      "quality_pg_min_percent": 70,
+      "ensembles": 407,
+      "ensembles_with_positive_v_maximum": 407,
+      "maximum_at_shallowest_valid_level": 21,
+      "maximum_at_deepest_valid_level": 16,
+      "ensembles_with_valid_support_at_or_below600m": 20
+    },
+    {
+      "quality_pg_min_percent": 90,
+      "ensembles": 407,
+      "ensembles_with_positive_v_maximum": 407,
+      "maximum_at_shallowest_valid_level": 32,
+      "maximum_at_deepest_valid_level": 13,
+      "ensembles_with_valid_support_at_or_below600m": 4
+    }
+  ],
+  "ensembles_with_maximum_depth_selection_changed_by_quality_scenario": 99,
+  "scientific_review": [
+    "One PANGAEA crossing925245 retrieved and processed only in cloud; source data21,756 rows in407 native ensembles, native depth24.44–720.44m. Download bound8MiB, actual1,805,378bytes; raw SHA retained. Raw file itself not retained in the repository.",
+    "Audit uses native northward V in cm/s, matching the declared nominal east-west transect normal for diagnostics. It does not reproduce the paper projected/tide-corrected/25km-smoothed analysis and cannot yet assign samples to main/inshore branch or transient flow.",
+    "Three PG selections50/70/90 are audit sensitivities, not recovered author QC policies or uncertainty estimates. Missing/flagged/nonfinite velocity or missing PG cannot become a valid zero. Native depth gaps, maximum ties and valid-domain edge flags are retained.",
+    "Deepest positive sample is sampled support only, not a terminal depth or a current bottom. A maximum at the shallowest retained sample does not resolve the unsampled surface. No vertical interpolation, missing-value fill, physical boundary or volume inference was performed.",
+    "Six cloud tests validate sign-specific maxima and ties, PG sensitivity/missing values, unknown all-nonpositive maxima, gaps and duplicate depths, strict native units/quality, and prevention of promotion. Six baseline checks also passed.",
+    "Published source descriptions remain in canonical registerv42 at354 references; this audit adds zero canonical depth references. Future admission needs branch geography, processing/QC and dated-profile review."
+  ],
+  "canonical_depth_references_added": 0,
+  "canonical_register_file": "research/current-depth-register-v42.json",
+  "canonical_register_sha256": "915dc18d0b979936e2dc660b3cf2b2bf6c95f2eaa8f651bfa900ea4484bd2cf9",
+  "runtime_changed": false,
+  "main_changed": false,
+  "full_goal_complete": false
+}

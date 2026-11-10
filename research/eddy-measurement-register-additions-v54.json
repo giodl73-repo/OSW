@@ -1,0 +1,148 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 439,
+  "baseline_evidence_sha256": "c85a2e676b6761239b7cff7c9dd2f71005739a123ffb8c2dabd8f5960aa690e9",
+  "baseline_measurement_csv_sha256": "7363bf9a599b57164bc21c8b78f4b0e13dee5355f165a9f8a6ff8bbe91aa1f9c",
+  "sources": {
+    "rowe-kennicutt-2009-qe2-isoline": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-525d286afa5ddb6f922c65254a711651/pdf/GOVPUB-I-525d286afa5ddb6f922c65254a711651.pdf",
+      "citation": "Rowe and Kennicutt (2009), Northern Gulf of Mexico Continental Slope Habitats and Benthic Ecology Study, Final Report, MMS 2009-039, July 2009.",
+      "original": {
+        "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-525d286afa5ddb6f922c65254a711651/pdf/GOVPUB-I-525d286afa5ddb6f922c65254a711651.pdf",
+        "bytes": 14471783,
+        "sha256": "87242ed9c88aa27f209c0e3994483af94d48af7ed9253b54ce7020aa29a70286",
+        "pages": 417
+      },
+      "access": "Original report and native 971 × 950 chart verified by SHA-256. Figure 8-5 and its eastern split-feature identification on the following page were visually reviewed. Four visible extrema of the plotted 5 cm SSH isoline are read manually; closed topology and physical boundary are unverified.",
+      "source_review_file": "research/eddy-qe2-manual-isoline-source-review-v1.json",
+      "source_review_sha256": "fb7e1d3cf123046f671d10492bb0b98608403997068a79257a59ff5a1b0117c4",
+      "original_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "id": "qe2-2002-08-08-plotted-5cm-isoline-east-west",
+      "entity_id": "eddy:horizon:loop-40-secondary",
+      "source_id": "rowe-kennicutt-2009-qe2-isoline",
+      "category": "size",
+      "metric": "source_manual_ssh_isoline_east_west_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        150,
+        225
+      ],
+      "range_kind": "manual_isoline_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": "2002-08-08",
+      "period_end": "2002-08-08",
+      "period_precision": "source_map_label_not_simultaneous_observation",
+      "period_label": "Chart labeled August 8, 2002; exact simultaneous observation time unspecified.",
+      "case_label": "QE2 eastern split feature; plotted 5 cm SSH isoline, physical identity unverified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Figure 8-5, printed page 82 / PDF page 104; named Quick-west/QE2-east split description on printed page 83 / PDF page 105.",
+      "definition": "Geographic east–west bounding span read manually from the visible extrema of the plotted 5 cm SSH isoline around the eastern QE2 source feature.",
+      "scope": "Specified chart-isoline extent, not full physical eddy size or a speed-core estimate. The source SSH reference is unspecified.",
+      "qualification": "The unlabeled 5 cm line is identified between the labeled 0 and 10 cm contours using the 5 cm color-key intervals. Four extrema are read manually. Six native pixels per extremum and ±2 pixels on six axis anchors across 64 scenarios, with outward 25 km reporting, describe reading sensitivity only. Source analysis error, line interpretation, raster/axis distortion and physical uncertainty remain unquantified. The 10 cm text-covered inner contour, outer 0 cm contour, Quick to the west, northern highs and main Loop Current are excluded. Punctuation-normalized QE2/QE-2 association is qualified source context, not a verified physical crosswalk. The earlier multiple-peak speed-core and closed-ink rejections remain unchanged. No closure, repaired line, footprint, radius, diameter, principal width, state containment, ranking, annual range or seasonal playback inferred.",
+      "calculation": {
+        "method": "source_manual_qe2_5cm_isoline_spans_v1",
+        "component": "east_west",
+        "source_case_name": "QE2",
+        "source_map_date": "2002-08-08",
+        "observation_date": null,
+        "source_ssh_contour_cm": 5,
+        "source_ssh_reference": "unspecified in reviewed source",
+        "audit_visible_isoline_span_km": 184.189519,
+        "audit_reading_interval_km": [
+          151.385835,
+          219.132701
+        ],
+        "range_km": [
+          150,
+          225
+        ],
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "axis_shift_scenarios": 64,
+        "round_outward_km": 25,
+        "manual_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "source_operator_equated_to_osw_speed_core": false,
+        "report_file": "research/eddy-qe2-manual-isoline-source-review-v1.json",
+        "report_sha256": "fb7e1d3cf123046f671d10492bb0b98608403997068a79257a59ff5a1b0117c4"
+      },
+      "independent_named_case": {
+        "source_name": "QE-2",
+        "source_case_id": "QE2 eastern split feature, Figure 8-5, 2002-08-08",
+        "published_name": "QE2",
+        "name_normalization": "hyphen insertion only",
+        "association_is_verified": false,
+        "primary_values_inherited": false
+      }
+    },
+    {
+      "id": "qe2-2002-08-08-plotted-5cm-isoline-north-south",
+      "entity_id": "eddy:horizon:loop-40-secondary",
+      "source_id": "rowe-kennicutt-2009-qe2-isoline",
+      "category": "size",
+      "metric": "source_manual_ssh_isoline_north_south_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        125,
+        200
+      ],
+      "range_kind": "manual_isoline_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": "2002-08-08",
+      "period_end": "2002-08-08",
+      "period_precision": "source_map_label_not_simultaneous_observation",
+      "period_label": "Chart labeled August 8, 2002; exact simultaneous observation time unspecified.",
+      "case_label": "QE2 eastern split feature; plotted 5 cm SSH isoline, physical identity unverified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Figure 8-5, printed page 82 / PDF page 104; named Quick-west/QE2-east split description on printed page 83 / PDF page 105.",
+      "definition": "Geographic north–south bounding span read manually from the visible extrema of the plotted 5 cm SSH isoline around the eastern QE2 source feature.",
+      "scope": "Specified chart-isoline extent, not full physical eddy size or a speed-core estimate. The source SSH reference is unspecified.",
+      "qualification": "The unlabeled 5 cm line is identified between the labeled 0 and 10 cm contours using the 5 cm color-key intervals. Four extrema are read manually. Six native pixels per extremum and ±2 pixels on six axis anchors across 64 scenarios, with outward 25 km reporting, describe reading sensitivity only. Source analysis error, line interpretation, raster/axis distortion and physical uncertainty remain unquantified. The 10 cm text-covered inner contour, outer 0 cm contour, Quick to the west, northern highs and main Loop Current are excluded. Punctuation-normalized QE2/QE-2 association is qualified source context, not a verified physical crosswalk. The earlier multiple-peak speed-core and closed-ink rejections remain unchanged. No closure, repaired line, footprint, radius, diameter, principal width, state containment, ranking, annual range or seasonal playback inferred.",
+      "calculation": {
+        "method": "source_manual_qe2_5cm_isoline_spans_v1",
+        "component": "north_south",
+        "source_case_name": "QE2",
+        "source_map_date": "2002-08-08",
+        "observation_date": null,
+        "source_ssh_contour_cm": 5,
+        "source_ssh_reference": "unspecified in reviewed source",
+        "audit_visible_isoline_span_km": 157.850141,
+        "audit_reading_interval_km": [
+          126.91827,
+          189.498495
+        ],
+        "range_km": [
+          125,
+          200
+        ],
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "axis_shift_scenarios": 64,
+        "round_outward_km": 25,
+        "manual_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "source_operator_equated_to_osw_speed_core": false,
+        "report_file": "research/eddy-qe2-manual-isoline-source-review-v1.json",
+        "report_sha256": "fb7e1d3cf123046f671d10492bb0b98608403997068a79257a59ff5a1b0117c4"
+      },
+      "independent_named_case": {
+        "source_name": "QE-2",
+        "source_case_id": "QE2 eastern split feature, Figure 8-5, 2002-08-08",
+        "published_name": "QE2",
+        "name_normalization": "hyphen insertion only",
+        "association_is_verified": false,
+        "primary_values_inherited": false
+      }
+    }
+  ]
+}

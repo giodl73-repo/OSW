@@ -13,7 +13,7 @@ def main():
     assert row['capabilities']['reference_route']==0
     assert row['latest_observation_date']=='2017-03-03'
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000})
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=indian-equatorial-undercurrent',wait_until='networkidle')

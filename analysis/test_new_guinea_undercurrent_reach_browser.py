@@ -1,4 +1,5 @@
 """Keep NGCU reach, source season labels and local depth support distinct."""
+import os
 import json,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -11,7 +12,7 @@ def main():
     assert r['reported_scenario_range_km']==[500,700] and r['whole_system_length'] is False
     assert r['source_season_convention']['months_by_label']=={'winter':[1,2,3],'summer':[7,8,9],'fall':[10,11,12]}
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Anew-guinea-coastal-undercurrent#route-atlas',wait_until='networkidle')

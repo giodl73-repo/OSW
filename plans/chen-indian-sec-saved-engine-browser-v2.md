@@ -1,0 +1,5 @@
+# Saved Indian SEC engine browser review v2
+
+Resume the complete v1 browser scope against the exact same saved engine artifact12893571805 and navigation manifest overlay. Run40867594700 passed three pure preparation tests but failed before downloading the engine or starting a browser because ubuntu-latest resolved to26.04, unsupported by pinned Playwright1.58.0. No browser cases or screenshots exist from that run. Preserve the failed logs and executed request; disable v1.
+
+Pin both workflow jobs to ubuntu-24.04 and assert VERSION_ID24.04 before browser installation. The official Playwright1.58.0 nativeDeps.ts defines ubuntu24.04-x64 Chromium dependencies. Keep Playwright1.58.0, one CPU, nice15, one renderer/page, shared non-cancelling group and every desktop1100/narrow320 case unchanged. Prove AST identity of browser_review and extract_saved between the versioned drivers. No native/WASM rebuild, scientific changes, source-field processing, installation or main update. The full v1 plan remains the required observation scope; actual screenshots still need individual inspection.

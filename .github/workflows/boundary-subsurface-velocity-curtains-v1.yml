@@ -1,0 +1,158 @@
+name: Boundary and northern subsurface depth contours v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/boundary-subsurface-velocity-curtains-v1.yml
+      - analysis/derive_boundary_subsurface_velocity_curtains_v1.py
+      - analysis/test_boundary_subsurface_velocity_curtains_v1.py
+      - plans/boundary-subsurface-velocity-curtains-protocol-v1.md
+      - research/boundary-subsurface-velocity-curtains-operator-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  derive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/mauritania-baffin-interval-depth-sections-v1.yml
+            .github/workflows/northern-interval-depth-sections-v1.yml
+            analysis/acquire_latitude_depth_sections_v2.py
+            analysis/acquire_mauritania_baffin_interval_depth_sections_v1.py
+            analysis/acquire_north_brazil_depth_sections_v1.py
+            analysis/acquire_northern_interval_depth_sections_v1.py
+            analysis/acquire_three_current_depth_sections_v1.py
+            analysis/acquire_transverse_depth_sections_v2.py
+            analysis/acquire_zonal_current_depth_sections_v1.py
+            analysis/bounded_hycom_component_reads_v1.py
+            analysis/bounded_hycom_latitude_reads_v1.py
+            analysis/derive_barents_makassar_velocity_curtains_v1.py
+            analysis/derive_boundary_subsurface_velocity_curtains_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/derive_surface_regional_velocity_curtains_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/interval_transverse_section_audit_v1.py
+            analysis/latitude_depth_section_geometry_v1.py
+            analysis/latitude_interval_section_audit_v1.py
+            analysis/mixed_interval_section_geometry_v1.py
+            analysis/native_velocity_depth_curtain_v2.py
+            analysis/sample_atlantic_current_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v1.py
+            analysis/sample_eac_hycom_route_depth_v2.py
+            analysis/sample_kuroshio_hycom_depth_v1.py
+            analysis/test_boundary_subsurface_velocity_curtains_v1.py
+            analysis/test_bounded_hycom_component_reads_v1.py
+            analysis/test_bounded_hycom_latitude_reads_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_interval_depth_diagnostic_v1.py
+            analysis/test_latitude_depth_section_geometry_v1.py
+            analysis/test_mauritania_baffin_interval_depth_sections_v1.py
+            analysis/test_northern_interval_depth_sections_v1.py
+            analysis/test_zonal_current_depth_sections_v1.py
+            plans/boundary-subsurface-velocity-curtains-protocol-v1.md
+            plans/mauritania-baffin-interval-depth-sections-protocol-v1.md
+            plans/northern-interval-depth-sections-protocol-v1.md
+            research/baffin-reach-reference-path-input.json
+            research/boundary-subsurface-velocity-curtains-operator-v1.json
+            research/current-depth-reference-inventory-v18.json
+            research/current-depth-source-facts-v15.json
+            research/current-depth-source-facts-v2.json
+            research/greenland-depth-sections-operator-v1.json
+            research/mauritania-baffin-interval-depth-sections-operator-v1.json
+            research/mauritania-baffin-interval-depth-sections-source-facts-v1.json
+            research/mauritania-baffin-interval-depth-sections-source-review-v1.json
+            research/mauritanian-summer-reach-reference-path-input.json
+            research/mauritanian-summer-reach-scope-audit.json
+            research/northern-interval-depth-sections-operator-v1.json
+            research/northern-interval-depth-sections-source-facts-v1.json
+            research/northern-interval-depth-sections-source-review-v1.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-baffin-section-68p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-baffin-section-70n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-baffin-section-71p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-baffin-section-73n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-baffin-section-74p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-mauritanian-section-17n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-mauritanian-section-17p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-mauritanian-section-18n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-mauritanian-section-18p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-03-15-mauritanian-section-19n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-baffin-section-68p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-baffin-section-70n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-baffin-section-71p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-baffin-section-73n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-baffin-section-74p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-mauritanian-section-17n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-mauritanian-section-17p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-mauritanian-section-18n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-mauritanian-section-18p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-06-15-mauritanian-section-19n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-baffin-section-68p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-baffin-section-70n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-baffin-section-71p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-baffin-section-73n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-baffin-section-74p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-mauritanian-section-17n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-mauritanian-section-17p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-mauritanian-section-18n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-mauritanian-section-18p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-09-15-mauritanian-section-19n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-baffin-section-68p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-baffin-section-70n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-baffin-section-71p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-baffin-section-73n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-baffin-section-74p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-mauritanian-section-17n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-mauritanian-section-17p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-mauritanian-section-18n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-mauritanian-section-18p5n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/2022-12-15-mauritanian-section-19n.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/manifest.json
+            research/source-data/mauritania-baffin-interval-depth-sections-v1/transport-ledger.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-atlantic-north-equatorial-undercurrent-section-30w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-atlantic-north-equatorial-undercurrent-section-32p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-atlantic-north-equatorial-undercurrent-section-35w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-atlantic-north-equatorial-undercurrent-section-37p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-atlantic-north-equatorial-undercurrent-section-40w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-pacific-north-subsurface-countercurrent-section-125w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-pacific-north-subsurface-countercurrent-section-132p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-pacific-north-subsurface-countercurrent-section-140w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-pacific-north-subsurface-countercurrent-section-147p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-01-15-pacific-north-subsurface-countercurrent-section-155w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-atlantic-north-equatorial-undercurrent-section-30w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-atlantic-north-equatorial-undercurrent-section-32p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-atlantic-north-equatorial-undercurrent-section-35w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-atlantic-north-equatorial-undercurrent-section-37p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-atlantic-north-equatorial-undercurrent-section-40w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-pacific-north-subsurface-countercurrent-section-125w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-pacific-north-subsurface-countercurrent-section-132p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-pacific-north-subsurface-countercurrent-section-140w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-pacific-north-subsurface-countercurrent-section-147p5w.json
+            research/source-data/northern-interval-depth-sections-v1/2022-07-15-pacific-north-subsurface-countercurrent-section-155w.json
+            research/source-data/northern-interval-depth-sections-v1/manifest.json
+            research/source-data/northern-interval-depth-sections-v1/transport-ledger.json
+            research/zonal-current-depth-sections-operator-v1.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reproduce every original case and derive native depth variation without retrieval
+        timeout-minutes: 5
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.4.1 netCDF4==1.7.4 pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_mauritania_baffin_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_northern_interval_depth_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_boundary_subsurface_velocity_curtains_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/derive_boundary_subsurface_velocity_curtains_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: boundary-subsurface-velocity-curtains-v1
+          path: boundary-subsurface-velocity-curtains-v1/
+          retention-days: 7

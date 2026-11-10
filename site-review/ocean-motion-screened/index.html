@@ -13,9 +13,24 @@
   <a class="skip" href="#main">Skip to atlas</a>
   <header class="site-head"><strong>OSW</strong><nav aria-label="Atlas sections"><a href="#objects">Objects</a><a href="#lengths">Lengths</a><a href="#states">OSW states</a><a href="#movies">NASA movies</a><a href="data/README.md">Data scope</a></nav></header>
   <main id="main" tabindex="-1">
-    <p class="eyebrow">Ocean States of the World · source-set review</p>
-    <h1>Ocean motion atlas</h1>
-    <p class="lead">Find a named current or eddy, inspect what a source actually supports, and jump to NASA's geographic movie views. The map points are editorial locators, not measured flow paths or eddy footprints.</p>
+    <p class="eyebrow">Ocean States of the World · research preview</p>
+    <h1>Get to know the moving ocean</h1>
+    <p class="lead">Currents carry water across ocean basins. Eddies are rotating patches of water. OSW brings their names, places, and measurement evidence together so you can explore the ocean as an atlas.</p>
+    <section class="start-here" aria-labelledby="start-title">
+      <h2 id="start-title">First visit? Start here</h2>
+      <p>You do not need to know oceanography or use the query tools. Choose something to explore, then follow its sources when you want more detail.</p>
+      <nav class="start-options" aria-label="Ways to start exploring">
+        <a href="#objects"><strong>Find a current or eddy</strong><span>Search a familiar name, such as Gulf Stream, or choose a point on the map.</span></a>
+        <a href="#movies"><strong>See the ocean move</strong><span>Find a regional view and follow its link to NASA's animation.</span></a>
+        <a href="#lengths"><strong>Compare current lengths</strong><span>Explore reported estimates and see which part of a current each number describes.</span></a>
+      </nav>
+      <details class="map-explainer"><summary>What am I looking at?</summary>
+        <p><strong>OSW states</strong> are editorial ocean regions used to organize this atlas. They are not political territories or fixed current boundaries.</p>
+        <p><strong>Map points</strong> show where to start reading about a feature. They do not trace its path, width, or footprint. Use the named directory below the map as an alternative.</p>
+        <p><strong>Measurements</strong> describe a particular source, place, period, and method. A missing value means unknown or unassessed, not zero. NASA animations show modeled motion; they do not measure the atlas features.</p>
+      </details>
+    </section>
+    <noscript><p class="status">The searchable map and records need JavaScript. You can still read the <a href="data/README.md">data scope</a> and <a href="data/RANKED-LENGTH-EVIDENCE-AUDIT.md">length evidence audit</a>.</p></noscript>
     <aside class="status" aria-labelledby="status-title"><h2 id="status-title">Screened review data</h2><p id="coverage">Loading coverage…</p><p>This portable copy excludes source records with unresolved public reuse terms. Missing records mean excluded or unassessed, not observed absence. Scientific claim reviews and dataset publication are still pending. <a href="data/README.md">Read the source-set limits</a> and <a href="data/RANKED-LENGTH-EVIDENCE-AUDIT.md">length audit</a>.</p></aside>
 
     <section id="objects" aria-labelledby="objects-title"><div class="section-head"><h2 id="objects-title">Find an ocean motion record</h2><span id="object-count" role="status" aria-live="polite">Loading…</span></div>
@@ -23,7 +38,7 @@
       <p class="small">Select a map point or table row to inspect the same stable record. The OSW state ground and coastline are geographic context; point links are approximate editorial locators. The matching text directory follows the map.</p>
       <div class="map-wrap"><svg id="map" viewBox="40 70 1520 800" role="group" aria-label="OSW 56-state equirectangular map with approximate editorial locator links for selected ocean motion records"><image href="osw-province-atlas-interactive.svg" width="1600" height="1050" aria-hidden="true"></image><g id="markers"></g></svg></div>
       <p class="small">Map ground: OSW's approximate 56-state geometry with Natural Earth 1:110m public-domain land, projected equirectangular. State boundaries are editorial atlas regions, not current or eddy footprints.</p>
-      <div class="table-wrap"><table><caption>Source-set object directory</caption><thead><tr><th scope="col">Object</th><th scope="col">Kind</th><th scope="col">Basin</th><th scope="col">Evidence address</th></tr></thead><tbody id="object-rows"></tbody></table></div>
+      <div class="table-wrap"><table class="object-directory" role="table"><caption>Source-set object directory</caption><thead><tr><th scope="col">Object</th><th scope="col">Kind</th><th scope="col">Basin</th><th scope="col">Evidence address</th></tr></thead><tbody id="object-rows"></tbody></table></div>
     </section>
 
     <section id="record" aria-labelledby="record-title"><h2 id="record-title" tabindex="-1">Choose a record</h2><p id="selection-status" class="visually-hidden" role="status" aria-live="polite"></p><div id="record-body"><p>Use the search, map, or directory above.</p></div></section>

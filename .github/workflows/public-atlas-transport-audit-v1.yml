@@ -1,0 +1,47 @@
+name: Public atlas transport byte audit v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/public-atlas-transport-audit-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_PUBLIC_ATLAS_TRANSPORT_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            almanac
+            analysis/audit_public_atlas_transport_v1.mjs
+            analysis/run_public_atlas_transport_audit_v1.py
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Inspect existing UI exports without rebuilding or requesting source data
+        run: |
+          cpu=$(python -c 'import os; print(min(os.sched_getaffinity(0)))')
+          timeout --kill-after=1s 60s taskset -c "$cpu" nice -n 15 python analysis/run_public_atlas_transport_audit_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-atlas-transport-v1
+          path: .pytest_cache/public-atlas-transport-v1/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,62 @@
+{
+  "schema": "osw.current-depth-register-source-review.v46",
+  "status": "PASS14_FIXED_STATION_DAILY_COMPONENT_DEPTH_CROSSINGS",
+  "cloud_reviews": [
+    {
+      "run_id": 41456735363,
+      "tests_passed": 70,
+      "source_commit": "5414db50e8945ddfa2e3d05112e7aab89c395595",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41456735363"
+    },
+    {
+      "run_id": 41456735122,
+      "tests_passed": 6,
+      "source_commit": "5414db50e8945ddfa2e3d05112e7aab89c395595",
+      "run_conclusion": "success",
+      "cloud_url": "https://github.com/giodl73-repo/OSW/actions/runs/41456735122"
+    }
+  ],
+  "cloud_tests_passed": 76,
+  "counts": {
+    "identities": 111,
+    "depth_references": 453,
+    "identities_with_scoped_depth_reference": 101,
+    "identities_not_yet_assessed": 10,
+    "whole_route_depth_profiles": 0,
+    "volume_estimates": 0
+  },
+  "input_sha256": {
+    "analysis/build_current_depth_register_v46.py": "36e135618d42b4c571db90f57c10e8f3d692aef44c3250922937a877ad155183",
+    "analysis/test_current_depth_register_v46.py": "4b5712804d32168ded4bf8fb4cd10b1ea8401764a577f0f753e1f11a526ae982",
+    "research/current-depth-rules-v46.json": "bcfe65fdf0608e9f00ce043bcc1402651c5a870c9c25c55004ce2fbaa31cda5c",
+    "research/current-depth-source-facts-v46.json": "3b53b5352844f9ba9bbadf2a9e3d552af7119061f22f6b764edfd11a00385ce6",
+    "research/current-depth-register-v46.json": "e01b8c6b1d04a587791d4d7db9c6dd88338a671d91f8942861672fd38c621afc",
+    "research/current-depth-register-v46.csv": "6a4f9279bf32421dcfc9e3be49f2f17d6e0ad06fb9260b2c1fbd09a22db2ea08",
+    ".github/workflows/current-depth-register-source-v46.yml": "f0aa51116d323a36dd128d9ad2b2ec3e4446be7e6a727b4fe45b9e376bdffbef",
+    "research/eac-mooring-depth-benchmark-operator-v1.json": "eb341711de0d6b057c3cb620d4aaa25ea563594f1091222c38168b0e0440c9cb",
+    "research/eac-mooring-depth-benchmark-source-review-v1.json": "1e9ee38d9be25be3208b14c806c8d3b0564147063698f433857c6d7c4db4ad6e",
+    "research/source-data/eac-mooring-depth-benchmark-v1/candidate.json": "16ebb8434cb613b95b71762d326dce84ee2df415b93739ea6f66f5d3cebfa24e",
+    "analysis/acquire_eac_mooring_depth_benchmark_v1.py": "86ec0139f17ef2236786b05678c071c31f6b1bcfbc4aae35f36a59490b0b8bd2",
+    "analysis/derive_eac_connected_layer_thickness_v1.py": "5d84fba1cddfbb8881bcb62e44ad2387284073ac0dbfd6b3734833121488cab7",
+    "research/current-depth-member-index-v6.json": "ea0ace6fe42a58d0f74c8825b6afd9cd035de31a464f2eb4855a9bc8378e350e",
+    "research/current-depth-route-projections-v10.json": "63ecd9fae0c1dae581fca57375bfb92f459156f5a8ac9e003881c555f0abd33c"
+  },
+  "scientific_review": [
+    "All439 preceding evidence rows and previous CSV cells remain exact. Fourteen fixed-station component isotach depths are added across six daily profiles at EAC0500/2000/3200/4200. They are typed separately from moving-axis climatological crossings and are not14 independent observations.",
+    "The complete source benchmark retains seven prescribed stations on two fixed2022 dates, including missing profiles and unresolved boundaries. Only resolved inshore/slope lower crossings are admitted. Far-offshore4700/4800 and coastal NRSNSI profiles are excluded from this main-current regional descriptor set; no offshore resolved thickness is inherited by the EAC jet.",
+    "Source velocities are daily unfilled processed observations with5-day filtering and linear gridding. Actual UTC source timestamps and native time indices are retained. They are not instantaneous model values or calendar-month climatologies, and *_FILLED velocity or spatially mapped no-slip boundaries are not substituted.",
+    "Each quantity is the first descending poleward-meridional component threshold crossing below a qualifying0-200m native core at a fixed station. Native adjacent finite brackets and unrounded computed depths remain available; display rounding to10m is not physical accuracy. Negative true-north VCUR is not horizontal speed magnitude.",
+    "Upper support remains censored at all14 admitted crossings. Lower threshold depth is not current thickness or a physical full-flow bottom. Source component uncertainty arrays remain distinct from propagated depth uncertainty. No uncertainty interval, annual extrema, full-route depth, current-axis validation, compatible width join, state passage or volume is inferred.",
+    "Seventy source checks plus six baseline checks pass on the exact source commit. Source checks comprise nine new admission tests, twelve frozen connected-layer tests, seven mooring acquisition tests, nine EAC seasonal tests, eleven Agulhas seasonal tests, five Agulhas distribution tests, eleven Kuroshio tests and six Canary conversion tests. They verify source pins, native brackets/sign, missing/censored support, station/date filtering, estimator roles, mutation rejection, exact JSON/CSV and all prior cells.",
+    "Tests ran only in cloud on one idle CPU. Local work generated small metadata/register documents from retained derived descriptors, verified input hashes and retained proof. Existing length/width/depth products and the102 eddy size references remain preserved. No runtime, query UI or WASM changes are included."
+  ],
+  "new_derived_descriptors": 14,
+  "shared_profile_groups": 6,
+  "new_independent_observations": 0,
+  "query_ui_integration_performed": false,
+  "runtime_changed": false,
+  "main_changed": false,
+  "depth_program_complete": false,
+  "full_goal_complete": false
+}

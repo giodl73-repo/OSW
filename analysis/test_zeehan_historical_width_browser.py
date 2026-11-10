@@ -1,4 +1,5 @@
 """Historical regional width and two qualitative occupations retain separate supports."""
+from query_packet import read_bundle_bytes
 import copy,gzip,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -39,7 +40,7 @@ def main():
             assert page.locator('#season-section-locator').is_hidden()
             assert not errors,errors
             browser.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for key,value in [('approximate_width_km',80),('calendar_months',[3,12]),('fixed_layer_bounds_m',[0,300]),('seasonal_playback_eligible',True),('original_regional_context',{})]:
             bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
             next(r for r in doc['measurements'] if r['current_id']=='zeehan')[key]=value

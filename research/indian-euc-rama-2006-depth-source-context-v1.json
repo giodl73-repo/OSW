@@ -1,0 +1,86 @@
+{
+  "schema": "osw.indian-euc-rama2006-depth-source-context.v1",
+  "entity_id": "current:indian-equatorial-undercurrent",
+  "source_dataset": "pmelTaoDyAdcp",
+  "direct_source_root": "https://coastwatch.pfeg.noaa.gov/erddap/",
+  "primary_context_review": [
+    {
+      "doi": "10.1029/2008JC005188",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005188",
+      "locator": "Section2 paragraph7 and Table1; Section3 paragraph17; Figure6 caption.",
+      "reviewed_fact": "Equatorial90E ADCP record includes2005. Study uses40-300m to avoid near-surface backscatter and gappy deeper levels. Its Figure6 and reported maxima use31day smoothing, not individual daily observations."
+    },
+    {
+      "doi": "10.1175/JPO-D-18-0151.1",
+      "url": "https://journals.ametsoc.org/view/journals/phoc/49/1/jpo-d-18-0151.1.xml",
+      "locator": "Section2a Data and methods.",
+      "reviewed_fact": "Daily records span2005 at90E and80.5E. EUC definition includes a thermocline core60-160m beneath weaker or westward surface flow and duration at least one month."
+    },
+    {
+      "doi": "10.1175/JPO-D-14-0225.1",
+      "url": "https://journals.ametsoc.org/view/journals/phoc/45/6/jpo-d-14-0225.1.xml",
+      "locator": "Discussion of late-summer/fall reappearance during positive-IOD years, including2006; EUC definition and Wyrtki-jet extensions.",
+      "reviewed_fact": "Positive-IOD2006 is among the late-summer/fall EUC reappearance years. Eastward subsurface flow alone does not establish an undercurrent; subsurface maximum and persistence matter."
+    }
+  ],
+  "source_access": "Primary publisher text reviewed through web indexed/full-text results. No original figure digitization, raw instrument reconstruction or publication PDF redistribution.",
+  "year": 2006,
+  "months": [
+    8,
+    9,
+    10
+  ],
+  "continuous_nominal_site": {
+    "latitude_degrees_north": 0,
+    "longitude_degrees_east": 80.5
+  },
+  "source_query_depth_interval_m": [
+    40,
+    300
+  ],
+  "source_row_selection": "orderByClosest(station,time,depth/10)",
+  "core_search_depth_interval_m": [
+    60,
+    160
+  ],
+  "thresholds_m_s": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "primary_threshold_m_s": 0.1,
+  "maximum_contiguous_returned_depth_gap_m": 15,
+  "quality_flags_accepted": [
+    1,
+    2
+  ],
+  "observed_upper_reference_depths_m": [
+    40,
+    50
+  ],
+  "operational_core_upper_reference_contrast_m_s": 0.1,
+  "operational_minimum_consecutive_daily_profiles": 31,
+  "operational_context_definition": "Same frozen daily core/upper-reference contrast gate. Require31consecutive candidate daily labels at80.5E in this continuous90day cohort only; no gaps/month reset. Operational daily-mean context is not proof of uninterrupted hourly flow or physical current identity.",
+  "true_surface_current_comparison_verified": false,
+  "thermocline_membership_independently_verified": false,
+  "physical_current_identity_independently_verified": false,
+  "sparse_site_persistence_may_be_borrowed_from_continuous_site": false,
+  "source_daily_numeric_coverage_independently_verified": false,
+  "qualifications": [
+    "New independent Indian Ocean source programme, disjoint from the exhausted Pacific programme. Reuse retained metadata bytes only; no prior provider target is repeated.",
+    "Core window60-160m and reliable source interval40-300m follow independent Indian regional priors. Core selection, quality, threshold, tied-maximum, gap and censoring rules are fixed before field values.",
+    "A failed operational context gate is not evidence that the Indian EUC is absent. No temperature or true surface data are acquired;40-50m is an observed upper reference only.",
+    "Daily mean-field contours and31day sequences are not mean instantaneous depths, proof of continuous hourly flow, seasonal climatology or annual ranges.",
+    "Retain all planned profiles, weak/reverse/missing/QC-rejected cases and unresolved boundaries. Threshold spans and resolution brackets are not physical thickness or uncertainty. No width/volume/whole-route inference.",
+    "Continuous80.5E cohort must qualify on its own; no borrowing from sparse2005profiles or failed90E requests.",
+    "All new URL and nominal point/date keys must be disjoint from both prior Indian and Pacific scopes. The original Indian eight-attempt programme remains closed.",
+    "The2005pilot is reconstructed from retained bytes and independently checked here without any provider request; its120failed90E outcomes remain unassessable."
+  ],
+  "runtime_changed": false,
+  "full_goal_complete": false,
+  "sampling_interval_inclusive": [
+    "2006-08-01",
+    "2006-10-29"
+  ],
+  "scientific_case": "Separately specified2006positive-IOD late-summer/fall event, not a reattempt or expansion of the2005winter/spring pilot."
+}

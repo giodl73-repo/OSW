@@ -1,0 +1,22 @@
+{
+  "schema": "osw.pacific-secc-reference.upload-failure-review.v1",
+  "run_id": 40525071416,
+  "run_attempt": 1,
+  "job_id": 122262372146,
+  "control_commit": "b6749a8d0b7da22ad535c62b34aefc1cd4bc1aff",
+  "status": "PREFLIGHT_CONTAINER_UPLOAD_BYTE_NORMALIZATION_FAILURE",
+  "expected_preflight_sha256": "5245bf5d898833a317acafb47e56d7f44fcb24c7c889d38074881c337c737cc2",
+  "uploaded_preflight_sha256": "8942707a667a8b22aecf8a3d0d1a12162bde7e8947df267436f091b0259173d8",
+  "same_text_after_line_ending_normalization": true,
+  "all_17_frozen_dependency_blobs_match_remote_exactly": true,
+  "checker_code_changed": false,
+  "method_or_source_parameters_changed": false,
+  "geographic_dependencies_installed": false,
+  "actual_geographic_candidate_executed": false,
+  "coast_package_downloaded": false,
+  "scientific_records_added": 0,
+  "uploaded_preflight_archive": "research/pacific-secc-reference-upload-history-v1/preflight-uploaded-lf.json.source",
+  "root_cause": "The final display-preparation upload used read_text(), normalizing the preflight container's CRLF bytes to LF. Its request correctly retained the hash of the original frozen CRLF bytes, so the first guard refused execution.",
+  "correction": "Restore the exact already-frozen preflight bytes using read_bytes().decode('utf8') in the Git Tree transfer. Preserve the failed uploaded bytes and this control commit. No checker code, geographic scenario, scope or guard is changed.",
+  "retry_rule": "Only enable a new control commit after exact remote blob/byte verification. Do not rerun the old head containing the wrong container bytes. The first actual geographic calculation is still pending."
+}

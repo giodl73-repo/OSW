@@ -1,0 +1,66 @@
+{
+  "schema": "osw.pacific-madagascar-paired-depth-operator.v1",
+  "input_sha256": {
+    "analysis/derive_pacific_madagascar_paired_depth_v1.py": "348062a9655448ed7b3cccfc4a7451da0a2074a93f851a96c666a890757540ca",
+    "analysis/test_pacific_madagascar_paired_depth_v1.py": "a5c4f1dacd3a0e4829ffc05082546a2de349111f1fd1e3ad9204458fefe592f5",
+    "plans/pacific-madagascar-paired-depth-v1.md": "b98f1b7adad560ebb74406d682f9117f3291dc9238c4b5953c1d28a54a90f8d5",
+    ".github/workflows/pacific-madagascar-paired-depth-v1.yml": "07220197626d73dcf201da7d841192bc0bec8f440ac1533cf73aad11aef98623",
+    "analysis/compiled_depth_catalog_query_guard_v3.py": "423aec7b2ccda1092ef2cce28f043304230a197db32c5de8e986f74f86cc7b03",
+    "research/pacific-madagascar-velocity-depth-curtains-v1.json": "10ac67028ed01404146d8b2959ce624ca4976b30ea5eeb498de8f66fee56c5cd",
+    "research/current-depth-pacific-madagascar-velocity-curtains-source-review-v1.json": "1ae90305006900342a0a8a36889b1c07884f4a052c1c747d2b8c12cd9dec44e8",
+    "research/pacific-madagascar-depth-sections-operator-v1.json": "d28e11851b9022d2fc7045f33c17943122513724eba833feb7975f8f8cfbdecb"
+  },
+  "source_cases": 40,
+  "original_supported_cases": 37,
+  "original_axis_gap_cases": 3,
+  "source_owner_case_counts": {
+    "current:california": 16,
+    "current:alaska": 12,
+    "current:southern-east-madagascar": 12
+  },
+  "primary_thresholds_m_s": {
+    "current:california": 0.05,
+    "current:alaska": 0.05,
+    "current:southern-east-madagascar": 0.1
+  },
+  "surface_selection_gates_m_s": {
+    "current:california": 0.02,
+    "current:alaska": 0.02,
+    "current:southern-east-madagascar": 0.05
+  },
+  "source_integral_core_window_m": [
+    0,
+    200
+  ],
+  "original_pre_tag_fixed_latitude_tolerance_km": 3,
+  "case_storage": "ordered-object-tables.v1 exact ordered keys/list tags/string interning;no numeric rounding or removed values",
+  "full_scientific_json_bytes_and_both_csv_roundtrips_required": true,
+  "invariant_functions_ast_identical": [
+    "finite",
+    "encode",
+    "sha",
+    "boundary",
+    "run_geometry",
+    "separation",
+    "strip",
+    "run_support",
+    "counts",
+    "all_report_runs"
+  ],
+  "encoding_ast_identical_except_cohort_schema_names": [
+    "compact_report",
+    "expand_report"
+  ],
+  "descriptor_query_prior_numeric": 0,
+  "descriptor_query_prior_bytes": 0,
+  "numeric_token_cap": 250000,
+  "unique_json_byte_cap": 32000000,
+  "maximum_packet_bytes": 2500000,
+  "maximum_output_bytes": 2400000,
+  "shared_absolute_seconds_including_tests": 60,
+  "outer_timeout_wraps_tests_and_producer": true,
+  "native_case_reopened": false,
+  "new_provider_requests": 0,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

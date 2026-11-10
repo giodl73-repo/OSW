@@ -1,0 +1,52 @@
+{
+  "schema": "osw.atlantic-nsec-reference-browser-width-inventory-failure-review.v1",
+  "status": "COLD_ATLAS_READY_LEGACY_WIDTH_FORMATTER_FAILED",
+  "source_commit": "8a6d5e9d7860d918b60c34dff12fb1ada13efe34",
+  "run_id": 41084877366,
+  "run_attempt": 1,
+  "artifact": {
+    "id": 12991980657,
+    "bytes": 328870,
+    "sha256": "12b87c07ceca0a6addc0e0e8ab8700536968066dc12cf7c9c940cd11d132023a"
+  },
+  "observed_cold_load": {
+    "phase": "ready",
+    "started_at_ms": 159.60000000000582,
+    "phase_started_at_ms": 50220.90000000002,
+    "completed_phases": [
+      {
+        "phase": "load",
+        "elapsed_ms": 50061.30000000002
+      },
+      {
+        "phase": "atlas",
+        "elapsed_ms": 13493.5
+      }
+    ],
+    "settled": true,
+    "elapsed_ms": 63555.00000000003
+  },
+  "observed_width_status": "Width evidence unavailable: Cannot read properties of null (reading 'map')",
+  "identified_failure": "The cited East African Coastal Current exclusive lower bound has null central width and null finite range. Legacy formatters called map on that null range and disabled the inventory.",
+  "changes": [
+    "Share strict exclusive-lower-bound formatting across the inventory and atlas width panel.",
+    "Retain >160 km with central width and upper limit unknown; do not invent a finite interval.",
+    "Include the five accepted basin-qualified identities in the legacy inventory, deriving owned evidence IDs and mutually exclusive status counts from actual records.",
+    "Require 190 width records,94 owners and111 identity decisions in both desktop and narrow browser checks."
+  ],
+  "time_budget_relaxed": false,
+  "expected_browser_check_groups": 19,
+  "expected_actual_screenshots": 21,
+  "native_or_wasm_rebuild": false,
+  "source_data_changed": false,
+  "actual_failure_image": {
+    "path": "browser-failure.png",
+    "sha256": "f3bcfde4ed3c5c457108583ada1343b4cb11e97f8af8ab3f1a5d276000325942",
+    "actually_viewed_individually": true,
+    "visual_observation": "Atlas rendered with Atlantic SEC selected, two route cards available and mapped regional lines; browser diagnostic independently records width inventory failure."
+  },
+  "browser_review_complete": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

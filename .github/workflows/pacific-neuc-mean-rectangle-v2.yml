@@ -1,0 +1,86 @@
+name: Pacific NEUC provider mean rectangle v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/pacific-neuc-mean-rectangle-v2.yml
+      - analysis/pacific_neuc_mean_rectangle_v2.py
+      - analysis/test_pacific_neuc_mean_rectangle_v2.py
+      - plans/pacific-neuc-mean-rectangle-access-v2.md
+      - research/pacific-neuc-mean-rectangle-operator-v2.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/pacific-neuc-mean-coordinate-access-v1.yml
+            .github/workflows/pacific-neuc-mean-sections-v1.yml
+            analysis/acquire_neuc_mean_coordinates_v1.py
+            analysis/bounded_hycom_http_ranges_v1.py
+            analysis/derive_eac_connected_layer_thickness_v1.py
+            analysis/inspect_hycom_mean_header_v1.py
+            analysis/interval_depth_diagnostic_v1.py
+            analysis/pacific_neuc_mean_rectangle_v2.py
+            analysis/pacific_neuc_mean_sections_v1.py
+            analysis/test_bounded_hycom_http_ranges_v1.py
+            analysis/test_eac_connected_layer_thickness_v1.py
+            analysis/test_hycom_mean_header_inspection_v1.py
+            analysis/test_pacific_neuc_mean_rectangle_v2.py
+            analysis/test_pacific_neuc_mean_sections_v1.py
+            plans/pacific-neuc-mean-coordinate-access-v1.md
+            plans/pacific-neuc-mean-rectangle-access-v2.md
+            plans/pacific-neuc-precomputed-mean-header-inspection-v1.md
+            plans/pacific-neuc-provider-mean-section-diagnostic-v1.md
+            research/current-depth-register-v48.json
+            research/current-depth-route-projection-inventory-v42.json
+            research/eddy-measurement-register-v1.csv
+            research/eddy-measurement-register-v1.json
+            research/pacific-neuc-depth-method-prerequisites-v1.json
+            research/pacific-neuc-mean-coordinate-access-operator-v1.json
+            research/pacific-neuc-mean-coordinate-source-review-v1.json
+            research/pacific-neuc-mean-header-inspection-operator-v1.json
+            research/pacific-neuc-mean-header-source-review-v1.json
+            research/pacific-neuc-mean-rectangle-operator-v2.json
+            research/pacific-neuc-mean-sections-access-failure-review-v1.json
+            research/pacific-neuc-mean-sections-operator-v1.json
+            research/pacific-neuc-nscc-distinction-scope-audit.json
+            research/pacific-neuc-precomputed-mean-source-assessment-v1.json
+            research/pacific-neuc-southern-reach-scope-audit.json
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/.gitattributes
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/access.json
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/native-grid-mean-index.html
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/reanalysis-catalog.xml
+            research/source-data/pacific-neuc-mean-catalog-metadata-v1/uniform-grid-mean-index.html
+            research/source-data/pacific-neuc-mean-coordinate-access-v1/coordinates.json
+            research/source-data/pacific-neuc-mean-coordinate-access-v1/transport-ledger.json
+            research/source-data/pacific-neuc-mean-header-inspection-v1/header-inspection.json
+            research/source-data/pacific-neuc-mean-sections-failed-v1/transport-ledger.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify exact rectangle rows then acquire bounded regional fields
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_bounded_hycom_http_ranges_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_eac_connected_layer_thickness_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pacific_neuc_mean_sections_v1.py' -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_pacific_neuc_mean_rectangle_v2.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/pacific_neuc_mean_rectangle_v2.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pacific-neuc-mean-rectangle-v2
+          path: pacific-neuc-mean-rectangle-v2/
+          retention-days: 7

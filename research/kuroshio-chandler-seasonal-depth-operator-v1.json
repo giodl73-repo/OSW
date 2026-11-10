@@ -1,0 +1,29 @@
+{
+  "schema": "osw.kuroshio-chandler-seasonal-depth-operator.v1",
+  "source_download_url": "https://zenodo.org/api/records/5851312/files/px40_velocity.nc/content",
+  "expected_source_bytes": 149581182,
+  "expected_source_md5": "397ce0a92ca7b5be20dc32d80920d1da",
+  "maximum_source_bytes": 150000000,
+  "source_record_doi": "10.5281/zenodo.5851312",
+  "source_concept_doi": "10.5281/zenodo.5851311",
+  "source_license": "CC-BY-4.0",
+  "source_citation": "Chandler, Zilberman and Sprintall(2022), Seasonal to Decadal Western Boundary Current Variability From Sustained Ocean Observations, doi:10.1029/2022GL097834.",
+  "source_paper_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL097834",
+  "author_code_commit": "a97de9420285f5d4e63e00b91b8fa518ace06529",
+  "author_code_url": "https://github.com/mlchandler/wbc_sustained_obs/blob/a97de9420285f5d4e63e00b91b8fa518ace06529/XAA_px40.m",
+  "axis_method": "Author midpoint depth integration and five-point triangular smoothing weights1,2,3,2,1 divided by9; reject two longitudinal edge points. First identify the minimum integrated northward velocity west of150E; then choose maximum northward integrated velocity strictly west of that minimum, as the source PX40 code does. Do not select the strongest offshore Kuroshio Extension meander or copy a southward minimum selector.",
+  "axis_gate_interpretation": "Additional OSW identity plausibility check138–145E after the source separator-based selector; outside-gate months remain unknown, with no forced relocation. Preserve source Kuroshio segment east of Izu Ridge, distinct from offshore KE meanders.",
+  "vertical_method": "At each monthly horizontal axis retain all native depths of maximum positive northward poleward speed. Diagnose first descending0/0.05/0.1m/s crossings below the deepest tied maximum only between adjacent finite native levels. Missing samples stop diagnosis; no extrapolation to seabed or1975m terminal depth.",
+  "seasonal_method": "For each calendar month combine16 year-specific current-following axis profiles. A mean value at a native level requires all16 profiles finite at that level, keeping contributors fixed. Diagnose the mean profile separately from individual monthly-profile crossings. No3month smoothing and no averaging of diagnosed depths is substituted for a velocity-profile mean.",
+  "reconstruction_scope": "Monthly sections2004–2019 combine HR-XBT, Argo and SLA; they are reconstructed estimates, not192 independent direct sections. PX40 HR-XBT occupations cover2012–2019 and SLA reconstruction extends the monthly product to2004. Hydrographic structure is statistically extended below600m. Reference velocities near1000m are time-invariant means;1975m is a product limit, not current bottom.",
+  "velocity_uncertainty_scope": "Source vel_err is the standard error of Argo reference velocity, not depth uncertainty. Retain variable metadata but do not manufacture depth confidence intervals or transfer transport standard errors.",
+  "geometry_scope": "One nominal PX40 Yokohama–Honolulu transect. Source-selected Kuroshio segment downstream of Izu Ridge is distinct from farther-offshore KE meanders. No assignment of this descriptor to the full Kuroshio route, KE or North Pacific Current; no thickness, physical width or volume inferred.",
+  "canonical_admission_eligible": false,
+  "physical_depth_uncertainty_m": null,
+  "volume_eligible": false,
+  "author_code_review_sha256": "947638788f960ac566a41d5f2e0424f57283f840711ef700eb805f5d39333f68",
+  "KUROSHIO_axis_longitude_gate_degrees_east": [
+    138,
+    145
+  ]
+}

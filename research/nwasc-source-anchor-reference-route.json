@@ -1,0 +1,805 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "norwegian-atlantic-slope",
+  "name": "Norwegian Atlantic Slope Current",
+  "status": "editorial_source_anchor_reference_connection_not_physical_axis",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2011JC007375",
+  "source_locator": "Paragraph10; original PDF page3; P1,P2,S1 geographic reference coordinates; paragraph9/Figure2 mean-period context",
+  "coordinates_lon_lat": [
+    [
+      -0.5,
+      62
+    ],
+    [
+      3,
+      62.666666666666664
+    ],
+    [
+      4.25,
+      62.8
+    ]
+  ],
+  "source_anchor_ids": [
+    "P1",
+    "P2",
+    "S1"
+  ],
+  "reference_period": {
+    "start_month": "2007-08",
+    "end_month": "2010-07",
+    "interpretation": "Source mean-field context; no exact route occupation dates or dated current axis."
+  },
+  "bend_probe_offsets_km": [
+    -10,
+    0,
+    10
+  ],
+  "report_rounding_km": 10,
+  "land_region_lon_lat": [
+    -4,
+    58,
+    10,
+    66
+  ],
+  "route_extent_kind": "P1-P2-S1 regional source-reference connection",
+  "scope": "Geodesic connection through three author-provided NwASC reference points. Connecting legs are an OSW editorial construction; source nominal positions are not independently measured current-core endpoints. Regional source-reference span, distinct from the broad historical3500km reported extent. No500m bathymetric contour or velocity axis reconstructed.",
+  "layer": "Mean radar surface-scattering-current context. No fixed depth slab or depth-integrated route.",
+  "time_convention": "Undated editorial connection between source reference coordinates in a multiyear mean-field discussion; no instantaneous or seasonal geometry.",
+  "physical_current_axis_admitted": false,
+  "physical_current_edges_admitted": false,
+  "physical_state_join_eligible": false,
+  "seasonal_playback_eligible": false,
+  "rank_eligible": false,
+  "route_id": "norwegian-atlantic-slope-asar-regional-reference-route",
+  "input_file": "research/nwasc-source-anchor-reference-route-input.json",
+  "input_sha256": "29cbb1b5d267642b54b89037e6ab41714f5dcbb132017b83b3b7697ba86beaa6",
+  "generator_file": "analysis/nwasc_source_anchor_route.py",
+  "generator_sha256": "199237e539f42c96ddf04fa9c6dd998f38b2f3fcffa8167a6c0585c0345df289",
+  "input_dependencies_sha256": {
+    "research/nwasc-source-anchor-reference-route-input.json": "29cbb1b5d267642b54b89037e6ab41714f5dcbb132017b83b3b7697ba86beaa6",
+    "plans/nwasc-source-anchor-route-protocol-v1.md": "9414f4dcf4c5f4084b55a03cb14287727baed63e2e7aa97cf8650a03bea6331b",
+    "analysis/nwasc_source_anchor_route.py": "199237e539f42c96ddf04fa9c6dd998f38b2f3fcffa8167a6c0585c0345df289",
+    "research/hansen-2011-asar-surface-width-admissions.json": "cef13daa2ec66cc97cf5214fd0a75f5e48f6a965d493f24df958a2ec0ac791ae",
+    "research/source-data/hansen-asar-2011/acquisition.json": "748d29a8b20b2683a08b2d4b9cd42ba04f0416f85361cc2e100d8f56e43fdcd9",
+    "research/ocean-current-working-reference-routes.json": "51ec7c8070e52e04550810abae212f1e0978da35eea4886fa577bf79339146da",
+    "research/source-data/natural-earth-land-10m-5.1.1/ne_10m_land.zip": "e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc",
+    "research/source-data/natural-earth-land-10m-5.1.1/acquisition.json": "4de004f15c27c98658e9f11d02a8f958261282889606b1a669c4a6ee63cd6089",
+    "analysis/build_current_reference_path_candidate.py": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+    "analysis/build_cartographic_current_state_join.py": "8dfdb98c0d0bbf20f44d5ba7941f9a0a08ce6cefbdeb5bf0a518077368310bb2",
+    "analysis/build_motion_state_join.py": "0475251f24400222534363ccfee5f06073194cb5cc9c7b7795e25f981e3cc244",
+    "figures/osw-province-atlas-interactive.svg": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+    "almanac/release/v0.1.0/tiles.json": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+    "research/norwegian-atlantic-slope-working-admission.json": "a07fbdc1d7cc7b43bf5f89d5e275282bce68fd922edfcf3bfe4d371032aad4ea",
+    "requirements-geography.txt": "ce3628224554b251eca3be64c9c26042262bc9bec2ac3f958681727858680532",
+    "requirements-test.txt": "78c44043345533a400e3f1c9ddbedf1f2471b913e3e2eec99cdb6434640dcb04"
+  },
+  "figure_aspect_ratio": 0.66,
+  "map_view_box": [
+    0,
+    0,
+    1000,
+    660
+  ],
+  "coordinate_selection": "Three unchanged author-provided nominal reference points. OSW connects them with geodesics; no current-core endpoints or500m bathymetric contour inferred.",
+  "scenario_rule": "Nine finite fixed-anchor bend probes of-10,0,+10km on each leg; geometry sensitivity only, not positional error or seasonal variability.",
+  "source_citation": "Hansen etal(2011), Monitoring the surface inflow of Atlantic Water to the Norwegian Sea using Envisat ASAR,doi:10.1029/2011JC007375.",
+  "source_reference_anchors": [
+    {
+      "id": "P1",
+      "coordinates_lon_lat": [
+        -0.5,
+        62
+      ],
+      "source_notation": "62N,0deg30minW"
+    },
+    {
+      "id": "P2",
+      "coordinates_lon_lat": [
+        3,
+        62.666666666666664
+      ],
+      "source_notation": "62deg40minN,3E"
+    },
+    {
+      "id": "S1",
+      "coordinates_lon_lat": [
+        4.25,
+        62.8
+      ],
+      "source_notation": "62deg48minN,4deg15minE"
+    }
+  ],
+  "method": "Sum of two shortest WGS84 legs through unchanged source reference points; no current axis or bathymetric contour reconstructed.",
+  "nominal_reference_path_km": 261.604991,
+  "reported_approximate_reference_path_km": 260,
+  "scenario_range_km": [
+    261.604991,
+    265.602838
+  ],
+  "reported_scenario_range_km": [
+    260,
+    270
+  ],
+  "scenario_count": 9,
+  "scenarios": [
+    {
+      "id": "bends:-10:-10",
+      "bend_offsets_km": [
+        -10,
+        -10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.15719004,
+          62.4273486
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.57916736,
+          62.82210537
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 265.602838,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:-10:0",
+      "bend_offsets_km": [
+        -10,
+        0
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.15719004,
+          62.4273486
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.62359096,
+          62.73472379
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 262.622764,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:-10:10",
+      "bend_offsets_km": [
+        -10,
+        10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.15719004,
+          62.4273486
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.66775276,
+          62.64732714
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 265.602838,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:0:-10",
+      "bend_offsets_km": [
+        0,
+        -10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.23060236,
+          62.34434671
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.57916736,
+          62.82210537
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 264.585065,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:0:0",
+      "bend_offsets_km": [
+        0,
+        0
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.23060236,
+          62.34434671
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.62359096,
+          62.73472379
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 261.604991,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:0:10",
+      "bend_offsets_km": [
+        0,
+        10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.23060236,
+          62.34434671
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.66775276,
+          62.64732714
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 264.585065,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:10:-10",
+      "bend_offsets_km": [
+        10,
+        -10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.3036104,
+          62.26130531
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.57916736,
+          62.82210537
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 265.602838,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:10:0",
+      "bend_offsets_km": [
+        10,
+        0
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.3036104,
+          62.26130531
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.62359096,
+          62.73472379
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 262.622764,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    },
+    {
+      "id": "bends:10:10",
+      "bend_offsets_km": [
+        10,
+        10
+      ],
+      "coordinates_lon_lat": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          1.3036104,
+          62.26130531
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          3.66775276,
+          62.64732714
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ],
+      "length_km": 265.602838,
+      "atlas_state_crossings": [
+        "NECS"
+      ],
+      "finer_land_contact": false,
+      "coarse_land_contact": false,
+      "rounded_geometry_land_contacts": {
+        "finer_land_contact": false,
+        "coarse_land_contact": false
+      }
+    }
+  ],
+  "figure": "figures/nwasc-source-anchor-reference-route.svg",
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_source_anchor_connections",
+  "canonical_spatial_geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        -0.5,
+        62.0
+      ],
+      [
+        -0.32871649,
+        62.03540311
+      ],
+      [
+        -0.15703561,
+        62.07059316
+      ],
+      [
+        0.01504173,
+        62.10556933
+      ],
+      [
+        0.1875146,
+        62.14033083
+      ],
+      [
+        0.36038205,
+        62.17487686
+      ],
+      [
+        0.5336431,
+        62.2092066
+      ],
+      [
+        0.70729671,
+        62.24331925
+      ],
+      [
+        0.88134185,
+        62.27721402
+      ],
+      [
+        1.05577744,
+        62.31089011
+      ],
+      [
+        1.23060236,
+        62.34434671
+      ],
+      [
+        1.4058155,
+        62.37758304
+      ],
+      [
+        1.58141566,
+        62.41059829
+      ],
+      [
+        1.75740167,
+        62.44339167
+      ],
+      [
+        1.93377228,
+        62.47596239
+      ],
+      [
+        2.11052625,
+        62.50830966
+      ],
+      [
+        2.28766227,
+        62.54043268
+      ],
+      [
+        2.46517902,
+        62.57233068
+      ],
+      [
+        2.64307516,
+        62.60400287
+      ],
+      [
+        2.82134929,
+        62.63544846
+      ],
+      [
+        3.0,
+        62.66666667
+      ],
+      [
+        3.17787568,
+        62.68639413
+      ],
+      [
+        3.355987,
+        62.70589577
+      ],
+      [
+        3.53433175,
+        62.72517112
+      ],
+      [
+        3.71290769,
+        62.74421969
+      ],
+      [
+        3.89171257,
+        62.76304101
+      ],
+      [
+        4.07074411,
+        62.7816346
+      ],
+      [
+        4.25,
+        62.8
+      ]
+    ]
+  },
+  "nominal_atlas_state_crossings": [
+    "NECS"
+  ],
+  "state_semantic_exclusions": [],
+  "map_land_check": "Nine retained bend probes and rounded exports avoid coarse OSW and Natural Earth1:10M5.1.1 land masks; no surveyed, bathymetric or navigation clearance.",
+  "state_relation_role": "Editorial source-reference connection/display-state crossings; physical passage unresolved.",
+  "atlas_map_sha256": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+  "nasa_movie_context": [
+    {
+      "tile_id": "level2_C_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level2_C_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level2_D_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level2_D_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level1_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level1_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    },
+    {
+      "tile_id": "level0_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1,
+        1
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Equirectangular reference-line/crop display overlap only; no physical current or dated movie identification."
+    }
+  ],
+  "nasa_tiles_sha256": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+  "recommended_nasa_tile_id": "level2_C_1",
+  "route_record": {
+    "id": "norwegian-atlantic-slope-asar-regional-reference-route",
+    "current_id": "norwegian-atlantic-slope",
+    "name": "Norwegian Atlantic Slope Current",
+    "status": "editorial_source_anchor_reference_connection_not_physical_axis",
+    "comparison_group": "osw_source_anchor_connections",
+    "scope": "Geodesic connection through three author-provided NwASC reference points. Connecting legs are an OSW editorial construction; source nominal positions are not independently measured current-core endpoints. Regional source-reference span, distinct from the broad historical3500km reported extent. No500m bathymetric contour or velocity axis reconstructed.",
+    "route_extent_kind": "P1-P2-S1 regional source-reference connection",
+    "approximate_reference_path_km": 260,
+    "scenario_range_km": [
+      260,
+      270
+    ],
+    "scenario_count": 9,
+    "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2011JC007375",
+    "source_locator": "Paragraph10; original PDF page3; P1,P2,S1 geographic reference coordinates; paragraph9/Figure2 mean-period context",
+    "supporting_sources": [],
+    "candidate_file": "research/nwasc-source-anchor-reference-route.json",
+    "generator_sha256": "199237e539f42c96ddf04fa9c6dd998f38b2f3fcffa8167a6c0585c0345df289",
+    "figure": "figures/nwasc-source-anchor-reference-route.svg",
+    "nominal_atlas_state_crossings": [
+      "NECS"
+    ],
+    "recommended_nasa_tile_id": "level2_C_1",
+    "remaining_gates": [
+      "Recover a verified current axis, bathymetric contour and dated geometry beyond the regional P1-P2-S1 connection.",
+      "No observed axis, physical state passage, seasonal geometry or uncertainty envelope admitted."
+    ],
+    "parent_current_id": null,
+    "parent_scope_note": "Regional reference only; no reassignment to an ambiguous Norwegian Current family.",
+    "physical_state_join_eligible": false,
+    "physical_current_axis_admitted": false,
+    "seasonal_playback_eligible": false,
+    "reference_period": {
+      "start_month": "2007-08",
+      "end_month": "2010-07",
+      "interpretation": "Source mean-field context; no exact route occupation dates or dated current axis."
+    },
+    "ordering_sensitivity": null,
+    "source_ids": [
+      "source:hansen-asar-2011",
+      "source:nwasc-source-anchor-route-v1"
+    ],
+    "rank_eligible": false,
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          -0.5,
+          62
+        ],
+        [
+          3,
+          62.666666666666664
+        ],
+        [
+          4.25,
+          62.8
+        ]
+      ]
+    },
+    "geometry_role": "editorial_reference_route",
+    "role": "editorial_reference_route"
+  },
+  "planning_decision": {
+    "current_id": "norwegian-atlantic-slope",
+    "name": "Norwegian Atlantic Slope Current",
+    "candidate_ids": [
+      "norwegian-atlantic-slope-asar-regional-reference-route"
+    ],
+    "published_length_rank_eligible": true,
+    "route_strategy_id": "source_gated_boundary_current",
+    "route_strategy_label": "Source-gated slope-current route",
+    "reference_path_decision": "regional_source_anchor_connection_constructed",
+    "next_action": "Recover a verified current axis, bathymetric contour and dated geometry beyond the regional P1-P2-S1 connection.",
+    "existing_scope": "Geodesic connection through three author-provided NwASC reference points. Connecting legs are an OSW editorial construction; source nominal positions are not independently measured current-core endpoints. Regional source-reference span, distinct from the broad historical3500km reported extent. No500m bathymetric contour or velocity axis reconstructed.",
+    "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
+    "name_source_url": "https://os.copernicus.org/articles/22/17/2026/",
+    "existing_length_evidence_status": "published_estimate",
+    "ledger_kind": "current",
+    "planning_basis": "Three source-provided reference coordinates support a regional editorial geodesic connection.",
+    "strategy_next_action": "Keep the source anchors fixed; recover independent current geometry before any whole-current or seasonal-axis claim.",
+    "known_component_currents": [],
+    "component_inventory_status": "parent_and_downstream_name_boundaries_retained"
+  },
+  "method_source": {
+    "id": "source:nwasc-source-anchor-route-v1",
+    "kind": "internal",
+    "label": "OSW NwASC source-anchor regional reference protocol v1",
+    "url": "../plans/nwasc-source-anchor-route-protocol-v1.md",
+    "repository_path": "plans/nwasc-source-anchor-route-protocol-v1.md",
+    "path": "plans/nwasc-source-anchor-route-protocol-v1.md",
+    "used_in_collections": [
+      "reference_routes",
+      "route_decisions",
+      "objects"
+    ],
+    "material_use_class": "internal_calculation_method",
+    "provider_asset_redistributed": false
+  },
+  "bend_sensitivity_is_uncertainty": false,
+  "source_coordinate_uncertainty_km": null,
+  "whole_current_length_km": null,
+  "annual_length_range_km": null
+}

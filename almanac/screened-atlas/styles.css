@@ -64,3 +64,24 @@ footer { background: #113b4a; color: white; padding: 1.2rem; text-align: center;
   .state-evidence-overview tbody td:last-child { grid-column: 1 / -1; padding-top: 0; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* First-visit choices remain ordinary links and wrap to one column on small screens. */
+.start-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .8rem; margin: 1rem 0; }
+.start-options a { display: block; padding: 1rem; border: 1px solid #668a94; border-radius: .4rem; text-decoration: none; }
+.start-options a:hover { background: #e7f0f1; }
+.start-options strong { display: block; text-decoration: underline; text-underline-offset: .2em; }
+.start-options span { display: block; color: #34505a; margin-top: .5rem; }
+.map-explainer { margin-top: 1rem; }
+.map-explainer summary { cursor: pointer; font-weight: 650; padding: .6rem 0; }
+
+@media (max-width: 40rem) {
+  .object-directory { display: block; min-width: 0; }
+  .object-directory thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .object-directory tbody { display: grid; gap: .75rem; }
+  .object-directory tbody tr { display: grid; border: 1px solid #a7c5cf; border-radius: .4rem; padding: .6rem; }
+  .object-directory td { display: block; border: 0; padding: .25rem; overflow-wrap: anywhere; }
+  .object-directory td:first-child a { display: block; min-height: 44px; padding: .55rem 0; font-weight: 750; }
+  .object-directory td:nth-child(2)::before { content: 'Type: '; font-weight: 650; }
+  .object-directory td:nth-child(3)::before { content: 'Basin: '; font-weight: 650; }
+  .object-directory td:nth-child(4)::before { content: 'Context: '; font-weight: 650; }
+}

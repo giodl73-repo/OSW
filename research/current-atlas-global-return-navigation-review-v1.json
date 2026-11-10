@@ -1,0 +1,39 @@
+{
+  "schema": "osw.current-atlas-global-return-navigation-review.v1",
+  "status": "SOURCE_CONFIRMED_GLOBAL_RESET_EXPECTATION_CORRECTED_BEFORE_REPLAY",
+  "cancelled_run": 41108341752,
+  "cancelled_source": "9e21ed7a31b1a3558fab4cb450736e1d184e9b90",
+  "cancelled_run_conclusion": "cancelled",
+  "cancellation_reason": "Source inspection established a deterministic harness error: the Back to global current map link calls reset(), which clears the selection and hides the pane. Stop the just-started replay before continuing an invalid expectation. This was not an observation timeout.",
+  "observed_source_contract": {
+    "sources_sha256": {
+      "almanac/reference-route-atlas.js": "b34a307dfa19896a0516d8602edf67c6108adb5c3997e9cd4f5dce40d6d93760",
+      "almanac/reference-routes.js": "b4d016d4b4f9364b443bf317d9d9a160b3feed0868e2e9273c273aeafffb49a2",
+      "almanac/atlas-presentation.js": "0491cd3236a02121d7ecbd8ea85f4d102e4d6c5787a7c521c82e8c4195c50d39"
+    },
+    "global_view_box": [
+      60,
+      90,
+      1480,
+      740
+    ],
+    "current_selector_after_reset": "",
+    "current_preview_after_reset": "hidden"
+  },
+  "corrected_browser_sequence": [
+    "Click the actual full-card Back to global current map link.",
+    "Require the preview hidden, selector empty and global view restored.",
+    "Capture the actual global map once per viewport.",
+    "Select Atlantic South Equatorial Current through its actual dropdown before opening the other source-phase route."
+  ],
+  "width_inventory_sequence": "Open the actual Full almanac control to inspect the width row, then use Map-first view before selected-map checks.",
+  "expected_browser_check_groups": 19,
+  "expected_actual_screenshots": 23,
+  "product_assets_changed": false,
+  "scientific_records_changed": 0,
+  "native_or_wasm_rebuild": false,
+  "browser_review_complete": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

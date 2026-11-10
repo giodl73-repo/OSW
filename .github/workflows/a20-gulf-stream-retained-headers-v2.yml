@@ -1,0 +1,54 @@
+name: A20 retained Gulf Stream native cast headers v2
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - .github/workflows/a20-gulf-stream-retained-headers-v2.yml
+      - analysis/inspect_retained_a20_gulf_stream_headers_v2.py
+      - analysis/test_retained_a20_gulf_stream_headers_v2.py
+      - research/a20-gulf-stream-retained-header-operator-v2.json
+      - plans/a20-gulf-stream-retained-header-protocol-v2.md
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/a20-gulf-stream-retained-headers-v2.yml
+            analysis/inspect_retained_a20_gulf_stream_headers_v2.py
+            analysis/test_retained_a20_gulf_stream_headers_v2.py
+            plans/a20-gulf-stream-retained-header-protocol-v2.md
+            research/a20-gulf-stream-retained-header-operator-v2.json
+            research/a20-gulf-stream-cast-acquisition-operator-v1.json
+            research/source-data/a20-gulf-stream-native-casts-v1/
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install bounded offline metadata reader dependencies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install numpy==2.3.4 netCDF4==1.7.4
+      - name: Check and inspect original retained native cast headers without networking
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          export OSW_A20_HEADER_PHASE_START=$(python -c "import time;print(time.monotonic())")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_retained_a20_gulf_stream_headers_v2.py' -v
+          taskset -c "$cpu" nice -n 15 python analysis/inspect_retained_a20_gulf_stream_headers_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a20-gulf-stream-retained-headers-v2
+          path: a20-gulf-stream-retained-headers-v2/
+          retention-days: 7
+          if-no-files-found: error

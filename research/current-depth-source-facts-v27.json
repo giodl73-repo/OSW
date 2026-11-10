@@ -1,0 +1,125 @@
+{
+  "schema": "osw.current-depth-source-facts.v27",
+  "review_date": "2026-11-02",
+  "status": "ATLANTIC_NEC_NORTHERN_BAND_THRESHOLD_REACH",
+  "previous_register_file": "research/current-depth-register-v26.json",
+  "previous_register_sha256": "fc729a4bbf75846ce4d2b94cc7f04eaea9d73d7a9282cfc256c65639ec783685",
+  "source_input_sha256": {
+    "research/current-length-reference-extents-v1.json": "2f6254b67287a589eebfba0914e23874dbe5c767f51e27f7e80c79b96432d87b"
+  },
+  "reference_route_scope_audit": {
+    "source_file": "research/current-length-reference-extents-v1.json",
+    "source_sha256": "2f6254b67287a589eebfba0914e23874dbe5c767f51e27f7e80c79b96432d87b",
+    "route_id": "atlantic-nec-basin-reference-extent-v1",
+    "coordinates_lon_lat": [
+      [
+        -18,
+        16
+      ],
+      [
+        -25,
+        15
+      ],
+      [
+        -35,
+        15
+      ],
+      [
+        -45,
+        15
+      ],
+      [
+        -55,
+        14
+      ],
+      [
+        -59,
+        14
+      ]
+    ],
+    "route_selection": "One principal editorial streamline, excludes other parallel NEC streamlines.",
+    "source_band": "North of22N near27W, distinct from the selected reference vertices14–16N.",
+    "projection_eligible": false
+  },
+  "source_reviews": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2005JC002939",
+      "review_mode": "Primary publisher full HTML Section5.3 paragraph51, Figure8 caption and Section2 paragraphs9,12. Values transcribed from prose; no original PDF pixels, figure digitization or direct velocity processing.",
+      "actual_original_pixels_viewed": false
+    }
+  ],
+  "deferred_candidates": [
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "source_url": "https://elischolar.library.yale.edu/journal_of_marine_research/1732/",
+      "reason": "Stramma1984 upper200m versus200–800m layer comparison and1200–1500m no-motion reference do not independently establish NEC thickness or endpoint."
+    }
+  ],
+  "references": [
+    {
+      "id": "atlantic-nec-stramma-2005-northern-band-reach",
+      "entity_id": "current:atlantic-north-equatorial",
+      "metric": "reported_vertical_extent",
+      "approximate_value_m": null,
+      "range_m": null,
+      "lower_bound_m": 100,
+      "lower_bound_exclusive": true,
+      "upper_bound_m": null,
+      "upper_bound_exclusive": false,
+      "range_interpretation": null,
+      "unit": "m",
+      "vertical_datum": "local_sea_surface_positive_down",
+      "upper_boundary_m": null,
+      "lower_boundary_m": null,
+      "thickness_m": null,
+      "uncertainty_m": null,
+      "annual_range_m": null,
+      "phase_label": null,
+      "calendar_months": null,
+      "geographic_scope": "Northern Atlantic NEC band north of22N at about27W; conditional regional context north of the selected atlas15N reference corridor.",
+      "temporal_scope": "Source joint discussion of July/August2003 Ron Brown ADCP section and July FLAME month from elapsed model year9; no exact observing days or annual envelope.",
+      "source_definition": "Source states westward northern NEC band with speeds above10cm/s reaches deeper than100m; strict lower bound on reach, not terminal depth.",
+      "evidence_kind": "published_observation_model_comparison",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2005JC002939",
+      "source_citation": "Stramma, Huttl and Schafstall(2005), Water masses and currents in the upper tropical northeast Atlantic off northwest Africa, doi:10.1029/2005JC002939.",
+      "source_locator": "Section5.3 paragraph51; Figure8 caption separates observed upper300m panel(a) and July model upper700m panel(b); Section2 paragraphs9,12 for observing months and elapsed model year.",
+      "qualification": "Regional threshold-qualified lower bound only. No100m bottom, uniform layer or route projection. Southern16–22N observed band,14–20N modeled band and its300m transport integration limit are separate. Gyre-wide800m layer and model700m display are not NEC flow boundaries. Joint prose comparison is not two independent repeats; model July is not a2003 simulation date.",
+      "observed_period": null,
+      "source_case_id": "atlantic-nec-stramma-2005-northern-band-comparison",
+      "same_source_width_reference_id": null,
+      "independent_observation_count_claimed": false,
+      "whole_current_representative": false,
+      "volume_eligible": false,
+      "physical_state_join_eligible": false,
+      "seasonal_playback_eligible": false,
+      "annual_extrema_eligible": false,
+      "lower_bound_operator": ">",
+      "depth_basis": "source_strict_threshold_qualified_reach_statement",
+      "source_current_branch": "northern_NEC_band",
+      "section_longitude_degrees_east": -27,
+      "section_latitude_lower_exclusive_degrees_north": 22,
+      "section_latitude_degrees_north": null,
+      "source_speed_condition": {
+        "component": "westward_zonal_speed",
+        "operator": ">",
+        "value": 0.1,
+        "unit": "m_s-1"
+      },
+      "observational_section_window": {
+        "start_month": "2003-07",
+        "end_month": "2003-08"
+      },
+      "model_phase_label": "July",
+      "model_elapsed_year": 9,
+      "branch_section_scope": "northern_NEC_band_north_of_22N",
+      "temporal_operator": "source_observed_section_and_model_month_comparison",
+      "reference_route_id": "atlantic-nec-basin-reference-extent-v1",
+      "reference_route_projection_eligible": false,
+      "route_scope_relationship": "regional_northern_band_outside_selected_southern_reference_route",
+      "source_access_scope": "primary_publisher_full_HTML_prose"
+    }
+  ],
+  "new_ocean_field_processing": false,
+  "runtime_changed": false,
+  "full_goal_complete": false
+}

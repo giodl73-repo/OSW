@@ -1,4 +1,7 @@
 """Check dashboard coverage, filtering and content-based update indicators."""
+from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT, MAPPED_MOTION_COUNT
+
+from query_packet import read_bundle_bytes
 import json
 import hashlib
 import os
@@ -35,7 +38,9 @@ def check_selection_oracles(rows):
             and (not query.get('changed_only') or r['id'] in query['changed_ids'])}
         assert set(result['ids'])==expected,query
         assert result['map_scene']['matching_objects']==len(expected)
-        assert result['map_scene']['mapped_objects']==len(expected)
+        mapped=sum(bool(r['map_features']) for r in rows if r['id'] in expected)
+        assert result['map_scene']['mapped_objects']==mapped
+        assert result['map_scene']['unmapped_objects']==len(expected)-mapped
     for query in [{'metric':'invented'},{'metric':'geometry','record_type':'invented'},
                   {'metric':'geometry','changed_ids':['missing']},
                   {'metric':'geometry','changed_ids':[rows[0]['id']]*2},
@@ -50,8 +55,8 @@ def check_selection_oracles(rows):
 
 
 
-def route_snapshot(page, data):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+def route_snapshot(page, data, fixture_folder):
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     receipt=json.dumps(data,ensure_ascii=False);digest=hashlib.sha256(receipt.encode()).hexdigest()
     bundle['manifest']['dashboard_receipt'].update(source_json=receipt,source_sha256=digest)
     bundle['manifest']['input_sha256']['research/ocean-motion-dashboard.json']=digest
@@ -59,17 +64,24 @@ def route_snapshot(page, data):
     for row in bundle['collections']['objects']:
         row['fingerprint']=source[row['id']]['fingerprint']
         row['section_fingerprints']=source[row['id']]['section_fingerprints']
-    raw=json.dumps(bundle,ensure_ascii=False).encode()
+    raw=json.dumps(bundle,ensure_ascii=False,separators=(',',':')).encode()
+    folder=Path(fixture_folder).resolve()
+    assert folder.is_relative_to(ROOT.resolve())
+    target=folder/f'snapshot-{len(list(folder.glob("snapshot-*.json")))}.json'
+    with target.open('xb') as stream:stream.write(raw)
+    fixture_url='http://127.0.0.1:8788/'+target.relative_to(ROOT).as_posix()
     manifest=json.loads((ROOT/'almanac/query-engine.manifest.json').read_bytes())
     manifest['sha256']['almanac/query-data.json']=hashlib.sha256(raw).hexdigest()
     page.route('**/query-engine.manifest.json',lambda route:route.fulfill(json=manifest))
-    page.route('**/query-data.json',lambda route:route.fulfill(body=raw,content_type='application/json'))
+    # Transfer the complete packet over HTTP. Base64 CDP fulfillment exceeds
+    # Chromium's100MiB control-message cap for the real atlas packet.
+    page.route('**/query-data.json',lambda route:route.continue_(url=fixture_url))
 
 
 def main():
     data = json.loads((ROOT / 'research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))
     check_selection_oracles(data['entries'])
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     result=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--dashboard'],encoding='utf-8'))
     assert result['ok'] and json.loads(result['snapshot_json'])==data
     # A valid receipt cannot hide disagreement with the shared inventory.
@@ -86,7 +98,8 @@ def main():
             path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8')
             rejected=subprocess.run([str(CLI),str(path),'--dashboard'],capture_output=True,text=True)
             assert rejected.returncode==2 and not rejected.stdout and 'dashboard' in rejected.stderr.lower(),mutation
-    with sync_playwright() as p:
+    fixture_root=ROOT/'.pytest_cache/motion-dashboard-browser-fixtures';fixture_root.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=fixture_root) as fixture_folder,sync_playwright() as p:
         browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1440,'height':1000})
         errors = []
@@ -101,20 +114,21 @@ def main():
         selection=page.evaluate('window.oswDashboardSelection')
         assert selection['result']==native_selection(selection['request'])
         scene=selection['result']['map_scene']
-        assert scene['mapped_objects']==240
+        assert scene['mapped_objects']==MAPPED_MOTION_COUNT
+        assert scene['unmapped_objects']==MOTION_COUNT-MAPPED_MOTION_COUNT
         assert not scene['omitted_features']
         grouped=[f for f in scene['features'] if f['kind']=='marker' and f['group']]
         assert len(grouped)==1
         assert set(grouped[0]['entity_ids'])=={r['id'] for r in data['entries'] if any(f.get('group')=='Gulf of Mexico regional gateway' for f in r['map_features'])}
         beck=selection['result']['beck_scene']
         currents=[r for r in data['entries'] if r['type']=='named_current']
-        assert [r['id'] for r in beck['stations']]==[r['id'] for r in currents]
+        assert [r['id'] for r in beck['stations']]==[r['id'] for r in currents if r['map_features']]
         assert {r['id'] for panel in beck['panels'] for r in panel['rows']}=={r['id'] for r in currents}
         assert {c['id'] for c in beck['connections']}=={c['id'] for c in data['connections']}
         assert sum(len(g['ids']) for g in beck['eddy_groups'])==140
         assert page.locator('#dashboard-schematic').is_visible()
-        assert page.locator('.beck-station').count() == 100
-        assert '100 / 100 current stations in view' in page.locator('#dashboard-station-count').inner_text()
+        assert page.locator('.beck-station').count() == CURRENT_COUNT
+        assert f'{CURRENT_COUNT} / {CURRENT_COUNT} current stations in view' in page.locator('#dashboard-station-count').inner_text()
         page.locator('#dashboard-search').fill('Portugal Current')
         settle(page)
         page.locator('#dashboard-covered').check()
@@ -124,10 +138,10 @@ def main():
         assert page.locator('.beck-station').count() == 1
         page.locator('#dashboard-show-all').click()
         settle(page)
-        assert page.locator('.beck-station').count() == 100
+        assert page.locator('.beck-station').count() == CURRENT_COUNT
         assert page.locator('#dashboard-region').input_value() == 'world'
         assert not page.locator('#dashboard-covered').is_checked()
-        assert page.locator('.beck-station .beck-name').count() == 100
+        assert page.locator('.beck-station .beck-name').count() == CURRENT_COUNT
         station=page.locator('.beck-station').first
         assert station.locator('.beck-name').evaluate('(el)=>getComputedStyle(el).opacity') == '0'
         station.locator('circle').hover()
@@ -137,7 +151,7 @@ def main():
         station.focus()
         assert station.locator('.beck-name').evaluate('(el)=>getComputedStyle(el).opacity') == '1'
         stations=page.locator('.beck-station').evaluate_all('(els)=>els.map(e=>({n:Number(e.dataset.stationNumber),x:Number(e.dataset.worldX),y:Number(e.dataset.worldY)}))')
-        assert sorted(s['n'] for s in stations) == list(range(1,101))
+        assert sorted(s['n'] for s in stations) == [i+1 for i,r in enumerate(currents) if r['map_features']]
         assert all(74<=s['x']<=1526 and 104<=s['y']<=816 for s in stations)
         assert all(((a['x']-b['x'])**2+(a['y']-b['y'])**2)**.5>=30 for i,a in enumerate(stations) for b in stations[i+1:])
         assert page.locator('.beck-eddy-gateway').count() > 10
@@ -145,8 +159,8 @@ def main():
         page.locator('.beck-connection').first.focus()
         page.keyboard.press('Enter')
         assert 'Read the source' in page.locator('#dashboard-schematic-detail').inner_text()
-        assert page.locator('.schematic-station').count() == 100
-        assert page.locator('.schematic-station text').count() == 100
+        assert page.locator('.schematic-station').count() == CURRENT_COUNT
+        assert page.locator('.schematic-station text').count() == CURRENT_COUNT
         page.locator('.schematic-station').first.focus()
         page.keyboard.press('Enter')
         assert page.locator('#dashboard-schematic-detail').is_visible()
@@ -194,7 +208,7 @@ def main():
         page.locator('#dashboard-atlas').screenshot(path=str(ROOT / 'figures/motion-dashboard-atlas-review.png'))
         page.locator('#dashboard-card-view').click()
         settle(page)
-        assert page.locator('.motion-card').count() == 240
+        assert page.locator('.motion-card').count() == MOTION_COUNT
         assert page.locator('.motion-card.updated').count() == 0
         gulf=page.locator('[data-id="current:gulf-stream-system"]')
         gulf.locator('summary').click()
@@ -203,6 +217,9 @@ def main():
         coastal.locator('summary').click()
         assert '2024-12-15' in coastal.inner_text()
         assert 'not individually reviewed' in coastal.inner_text()
+        aleutian=page.locator('[data-id="current:aleutian"]')
+        aleutian.locator('summary').click()
+        assert '1993-07-18' in aleutian.inner_text()
         for metric in ['reference_route','reported_length','scoped_width','geometry','time_samples','source_connectivity','scope_notes','dated_diagnostics','flow_network','passage_transport']:
             page.locator('#dashboard-metric').select_option(metric)
             settle(page)
@@ -235,7 +252,7 @@ def main():
         changed=json.loads(json.dumps(data))
         changed['entries'][0]['fingerprint']='test-new-record-content'
         changed['entries'][0]['section_fingerprints']['sources']='test-source-change'
-        route_snapshot(page,changed)
+        route_snapshot(page,changed,fixture_folder)
         page.locator('#dashboard-refresh').click()
         page.wait_for_function("document.querySelectorAll('.motion-card.updated').length === 1")
         assert '1 changed since marked seen' in page.locator('#dashboard-status').inner_text()
@@ -260,7 +277,7 @@ def main():
         page.route('**/query-data.json',lambda route:route.fulfill(status=503,body='unavailable'))
         page.locator('#dashboard-refresh').click()
         page.wait_for_function("document.getElementById('dashboard-status').textContent.includes('previously loaded')")
-        assert page.locator('.motion-card').count() == 240
+        assert page.locator('.motion-card').count() == MOTION_COUNT
         page.emulate_media(reduced_motion='reduce')
         page.set_viewport_size({'width':320,'height':900})
         page.locator('#dashboard-map-view').click()
@@ -276,7 +293,7 @@ def main():
         assert blocked.locator('.beck-station').count()==0
         assert blocked.evaluate('window.oswDashboardSnapshot===undefined')
         browser.close()
-    print('OK: native/WASM dashboard parity, four receipt/projection rejections, atlas routes, keyboard selection, 240 records, coverage lights, updates, outage retention and mobile layout')
+    print('OK: native/WASM dashboard parity, four receipt/projection rejections, atlas routes, keyboard selection, 241 records, coverage lights, updates, outage retention and mobile layout')
 
 
 if __name__ == '__main__': main()

@@ -1,0 +1,348 @@
+{
+  "schema": "osw.source-current-naming-and-dimension-review.v1",
+  "source": "research/source-data/nga-bowditch-2024-volume2/acquisition.json",
+  "source_sha256": "d3c5979f526b545831f9544ae3d91f7c2ebdf692338239585c121f4e95b32575",
+  "reviewed_on": "2026-10-22",
+  "status": "verified_source_specific_facts_and_inventory_leads_not_catalogue_or_measurement_admission",
+  "review_method": "Title and selected glossary entries visually read in original-page renders, with extracted text checked for column/entry boundaries. Automated heading search is candidate discovery only.",
+  "reviewed_pdf_indices": [
+    0,
+    409,
+    459,
+    469,
+    476,
+    477,
+    510
+  ],
+  "reviewed_printed_pages": [
+    396,
+    446,
+    456,
+    463,
+    464,
+    497
+  ],
+  "automated_heading_candidates": 75,
+  "all75_candidates_visually_reviewed": false,
+  "automated_boundary_warning": "Heading scan can include a following non-current entry: algae length after Aleutian Current and binary-code timing after Chile Current are excluded. No automatic dimension admission.",
+  "basis_sha256": {
+    "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
+    "research/ocean-current-inventory-expansion-candidates.json": "0d0c4b707c70a50494151ca6c2d672eec7711bf7ea273d5f56df6849ee56893c",
+    "research/ocean-current-effective-catalogue.json": "1c3a2059665b71d12f1a4ebae616393006193e58ac528ce7bd7392b5b414a52f",
+    "almanac/release/v0.1.0/entities.json": "aa2e66c1c344b67ba53c6b5735740de9c1e9888587f72a95842a3a53487f9d59"
+  },
+  "source_conventions": [
+    {
+      "id": "nga2024:norway-current",
+      "source_name": "Norway Current",
+      "source_aliases": [
+        "Norwegian Current"
+      ],
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Current; Norwegian Current"
+      },
+      "related_osw_id": "current:norwegian",
+      "facts": [
+        "Source defines an Atlantic continuation northeastward along northwest Norway.",
+        "Source describes branches continuing as North Cape Current and Spitzbergen Atlantic Current."
+      ],
+      "numeric_width_in_this_entry": false,
+      "coastal_widths_belong_to_this_entry": false
+    },
+    {
+      "id": "nga2024:norway-coastal-current",
+      "source_name": "Norway Coastal Current",
+      "source_aliases": [],
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Coastal Current"
+      },
+      "related_osw_id": "current:norwegian-coastal",
+      "facts": [
+        "Source supplies freshwater/coastal origins near Skagerrak and approximately59N10E.",
+        "The coastal entry joins the separately named Norway Current near63N."
+      ],
+      "modern_extent_or_alias_equivalence_admitted": false
+    },
+    {
+      "id": "nga2024:spitzbergen-atlantic-current",
+      "source_name": "Spitzbergen Atlantic Current",
+      "source_aliases": [
+        "Spitzbergen Current"
+      ],
+      "locator": {
+        "pdf_index": 510,
+        "pdf_page": 511,
+        "printed_page": 497,
+        "entry": "Spitzbergen Atlantic Current; Spitzbergen Current"
+      },
+      "related_osw_id": "current:spitsbergen-atlantic",
+      "facts": [
+        "Source defines northward then westward flow south of Spitzbergen into the Greenland Sea.",
+        "It continues the northwest branch of Norway Current and gradually joins East Greenland Current."
+      ],
+      "modern_west_spitsbergen_equivalence_admitted": false,
+      "note": "Source spelling and source-defined circulation are retained; modern Fram Strait/Arctic-inflow measurements are not transferred."
+    }
+  ],
+  "source_connections": [
+    {
+      "from": "North Atlantic Current",
+      "to": "Norway Current",
+      "relation": "northern_branch_continues_as",
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Current"
+      }
+    },
+    {
+      "from": "Norway Coastal Current",
+      "to": "Norway Current",
+      "relation": "joins_near_63N",
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Coastal Current"
+      }
+    },
+    {
+      "from": "Norway Current",
+      "to": "North Cape Current",
+      "relation": "northeastern_branch_continues_as",
+      "locator": {
+        "pdf_index": 476,
+        "pdf_page": 477,
+        "printed_page": 463,
+        "entry": "North Cape Current"
+      }
+    },
+    {
+      "from": "Norway Current",
+      "to": "Spitzbergen Atlantic Current",
+      "relation": "northwestern_branch_continues_as",
+      "locator": {
+        "pdf_index": 510,
+        "pdf_page": 511,
+        "printed_page": 497,
+        "entry": "Spitzbergen Atlantic Current"
+      }
+    },
+    {
+      "from": "Spitzbergen Atlantic Current",
+      "to": "East Greenland Current",
+      "relation": "gradually_merges_with_in_Greenland_Sea",
+      "locator": {
+        "pdf_index": 510,
+        "pdf_page": 511,
+        "printed_page": 497,
+        "entry": "Spitzbergen Atlantic Current"
+      }
+    }
+  ],
+  "additional_name_leads": [
+    {
+      "source_name": "Mentor Current",
+      "source_aliases": [
+        "Peru Oceanic Current"
+      ],
+      "locator": {
+        "pdf_index": 469,
+        "pdf_page": 470,
+        "printed_page": 456,
+        "entry": "Mentor Current"
+      },
+      "name_not_found_in_checked_catalogue_files": true,
+      "related_existing_ids": [
+        "current:peru-humboldt"
+      ],
+      "facts": [
+        "Broad wind-sensitive drift from the eastern South Pacific Current near40S90W, flowing north then northwest.",
+        "Source describes joining the Pacific South Equatorial Current."
+      ],
+      "alias_to_existing_peru_humboldt_admitted": false,
+      "whole_current_length_km": null
+    },
+    {
+      "source_name": "Cape Horn Current",
+      "source_aliases": [],
+      "locator": {
+        "pdf_index": 409,
+        "pdf_page": 410,
+        "printed_page": 396,
+        "entry": "Cape Horn Current"
+      },
+      "name_not_found_in_checked_catalogue_files": true,
+      "related_existing_ids": [
+        "current:falkland",
+        "current:acc"
+      ],
+      "facts": [
+        "Source describes eastward flow near the southern South American tip into Drake Passage.",
+        "Flow turns north-northeast and continues under the Falkland Current name."
+      ],
+      "widths_transferred_to_falkland_or_acc": false
+    },
+    {
+      "source_name": "Labrador Current Extension",
+      "source_aliases": [],
+      "locator": {
+        "pdf_index": 459,
+        "pdf_page": 460,
+        "printed_page": 446,
+        "entry": "Labrador Current Extension"
+      },
+      "name_not_found_in_checked_catalogue_files": true,
+      "related_existing_ids": [
+        "current:labrador",
+        "current:greenland-middle-atlantic-shelf-hypothesis"
+      ],
+      "facts": [
+        "Source uses this label for southwestward coastal flow along northeastern North America.",
+        "It describes a continuation around southeastern Newfoundland.",
+        "Qualitative width changes differ by region: winter broadening Newfoundland–Cape Cod, little seasonal change Cape Cod–Cape Hatteras, summer coastal confinement near Cape Sable and Cape Cod–Long Island."
+      ],
+      "numeric_width_or_annual_range_given": false,
+      "physical_continuity_hypothesis_admitted": false
+    },
+    {
+      "source_name": "North Africa Coast Current",
+      "source_aliases": [],
+      "locator": {
+        "pdf_index": 476,
+        "pdf_page": 477,
+        "printed_page": 463,
+        "entry": "North Africa Coast Current"
+      },
+      "name_not_found_in_checked_catalogue_files": true,
+      "related_existing_ids": [
+        "current:algerian"
+      ],
+      "facts": [
+        "Source describes eastward Mediterranean coastal flow from Gibraltar toward the Strait of Sicily.",
+        "Source distinguishes stronger western and weaker eastern regional flow."
+      ],
+      "modern_algerian_alias_admitted": false
+    }
+  ],
+  "dimension_candidates": [
+    {
+      "id": "nga2024-norway-coastal-typical-width",
+      "source_name": "Norway Coastal Current",
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Coastal Current"
+      },
+      "quantity": "reported_coastal_width",
+      "value": 20,
+      "qualifier": "about",
+      "unit_as_printed": "mile",
+      "kilometers": null,
+      "source_observation_date": null
+    },
+    {
+      "id": "nga2024-norway-coastal-63n-width",
+      "source_name": "Norway Coastal Current",
+      "locator": {
+        "pdf_index": 477,
+        "pdf_page": 478,
+        "printed_page": 464,
+        "entry": "Norway Coastal Current"
+      },
+      "quantity": "reported_local_possible_widening",
+      "value": 30,
+      "qualifier": "may widen to almost",
+      "latitude_about_deg_n": 63,
+      "unit_as_printed": "mile",
+      "kilometers": null,
+      "source_observation_date": null
+    },
+    {
+      "id": "nga2024-cape-horn-70w-band",
+      "source_name": "Cape Horn Current",
+      "locator": {
+        "pdf_index": 409,
+        "pdf_page": 410,
+        "printed_page": 396,
+        "entry": "Cape Horn Current"
+      },
+      "quantity": "reported_band_width",
+      "value": 150,
+      "qualifier": "descriptive nominal band",
+      "longitude_about_deg_east": -70,
+      "unit_as_printed": "mile",
+      "kilometers": null,
+      "source_observation_date": null
+    },
+    {
+      "id": "nga2024-cape-horn-65w-band",
+      "source_name": "Cape Horn Current",
+      "locator": {
+        "pdf_index": 409,
+        "pdf_page": 410,
+        "printed_page": 396,
+        "entry": "Cape Horn Current"
+      },
+      "quantity": "reported_local_width",
+      "value": 85,
+      "qualifier": "about",
+      "longitude_deg_east": -65,
+      "unit_as_printed": "mile",
+      "kilometers": null,
+      "source_observation_date": null
+    },
+    {
+      "id": "nga2024-mentor-zonal-span",
+      "source_name": "Mentor Current",
+      "locator": {
+        "pdf_index": 469,
+        "pdf_page": 470,
+        "printed_page": 456,
+        "entry": "Mentor Current"
+      },
+      "quantity": "reported_westward_extent_at_widest_section",
+      "value": 900,
+      "qualifier": "about",
+      "unit_as_printed": "mile",
+      "latitude_of_span": null,
+      "western_longitude_about_deg_east": -90,
+      "kilometers": null,
+      "along_current_length": false,
+      "flow_normal_width_verified": false,
+      "source_observation_date": null
+    }
+  ],
+  "measurement_limits": {
+    "unqualified_mile_conversion_verified_for_these_entries": false,
+    "raw_units_retained": true,
+    "twenty_or_thirty_mile_values_transferable_to_norwegian_current": false,
+    "cape_horn_spatial_difference_is_seasonal_range": false,
+    "mentor_westward_span_is_rankable_along_current_length": false,
+    "publication_year_is_observation_year": false,
+    "unknown_fields": "Observation interval, depth support, boundary operator, statistical uncertainty and observed edge geometry remain unprovided."
+  },
+  "next_actions": [
+    "Resolve source-wide mile convention before kilometre conversion.",
+    "Assess source-specific names against modern physical classifications before admitting inventory identities.",
+    "Review remaining source current entries manually; heading discovery is not complete inventory verification.",
+    "Preserve local spatial/seasonal qualifiers and original metric direction before any numeric admission."
+  ],
+  "figure": "figures/nga-2024-nordic-current-names.svg",
+  "canonical_identity_admitted": false,
+  "name_equivalence_between_modern_currents_admitted": false,
+  "new_width_record_admitted": false,
+  "new_length_record_admitted": false,
+  "physical_geometry_admitted": false,
+  "annual_extrema_admitted": false,
+  "review_protocol": "plans/current-prose-extraction-boundary-rule-v1.md",
+  "review_protocol_sha256": "3b254a6d412b2b80ad9812ec06ddba0eb051b1514d126844414cbdc0166904b5"
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "osw.regional-seasonal-speed-source-facts.v1",
+  "status": "SOURCE_REVIEWED_PENDING_RUNTIME_INTEGRATION",
+  "entity_id": "current:east-african-coastal",
+  "scope": "Pemba Channel regional near-surface drifter speeds; not whole-current dimensions",
+  "source": {
+    "doi": "10.1371/journal.pone.0210303",
+    "title": "Seasonal and spatial variation of surface current in the Pemba Channel, Tanzania",
+    "authors": ["Masumbuko Semba", "Rick Lumpkin", "Ismael Kimirei", "Yohanna Shaghude", "Ntahondi Nyandwi"],
+    "published": "2019-01-07",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210303",
+    "review_date": "2026-10-27",
+    "locators": ["Materials and methods: Study area; Drifter data; Gridding and surface current estimation", "Results: Table 2 and seasonal drifter paragraph"],
+    "html_sha256": "41f6a073aa2a78f2af10874c2a21b86fddd2cde72db89659e7d42fdf80a7bcd0",
+    "html_bytes": 238368,
+    "local_ignored_html": ".pytest_cache/semba-2019-original.html",
+    "table_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0210303.t002",
+    "table_image_visually_reviewed": true,
+    "license": "CC0, as stated by publisher",
+    "monthly_table_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0210303.t004",
+    "monthly_table_image_visually_reviewed": true,
+    "full_paper_reviewed": false
+  },
+  "method": {
+    "dataset": "Global Drifter Program",
+    "window": "1986 through September 2017; uneven temporal coverage",
+    "observations": 328,
+    "unique_drifters": 45,
+    "cadence_hours": 6,
+    "quantity": "speed magnitude from horizontal velocity components",
+    "unit": "m/s",
+    "vertical_scope": "near-surface drifters; mixed drogued and corrected undrogued records",
+    "fixed_depth_m": null,
+    "undrogued_fraction_reported_percent": 55,
+    "wind_correction_reported_percent": 1.28,
+    "sampling_uncertainty": "Repeated observations are not independent drifters; unequal seasonal sampling",
+    "map_aggregation": "Separate 4km mapped product pools NE and IN; Table 2 keeps three seasons"
+  },
+  "regional_selection_context": {
+    "longitude_degrees_east": [39.0, 39.7],
+    "latitude_degrees_north": [-5.5, -4.8],
+    "geometry_role": "Study-area bounds only; not current edges, axis, footprint or state intersection"
+  },
+  "records": [
+    {"id": "eacc-pemba-semba-2019-se-speed", "season": "SE", "months": [5,6,7,8,9], "observation_count": 197, "minimum": 0.04, "maximum": 1.73, "mean": 0.83, "median": 0.84, "standard_deviation": 0.44},
+    {"id": "eacc-pemba-semba-2019-in-speed", "season": "IN", "months": [4,10], "observation_count": 80, "minimum": 0.06, "maximum": 1.57, "mean": 0.67, "median": 0.61, "standard_deviation": 0.38},
+    {"id": "eacc-pemba-semba-2019-ne-speed", "season": "NE", "months": [11,12,1,2,3], "observation_count": 51, "minimum": 0.05, "maximum": 1.34, "mean": 0.56, "median": 0.57, "standard_deviation": 0.31}
+  ],
+  "monthly_records": [
+    {"id":"eacc-pemba-semba-2019-month-01-speed","month":1,"observation_count":12,"minimum":0.05,"maximum":0.94,"mean":0.30,"standard_deviation":0.30,"median":0.18},
+    {"id":"eacc-pemba-semba-2019-month-02-speed","month":2,"observation_count":8,"minimum":0.35,"maximum":0.57,"mean":0.49,"standard_deviation":0.08,"median":0.54},
+    {"id":"eacc-pemba-semba-2019-month-03-speed","month":3,"observation_count":14,"minimum":0.26,"maximum":1.34,"mean":0.82,"standard_deviation":0.35,"median":0.83},
+    {"id":"eacc-pemba-semba-2019-month-04-speed","month":4,"observation_count":12,"minimum":0.80,"maximum":1.57,"mean":1.17,"standard_deviation":0.30,"median":1.13},
+    {"id":"eacc-pemba-semba-2019-month-05-speed","month":5,"observation_count":34,"minimum":0.33,"maximum":1.44,"mean":0.92,"standard_deviation":0.32,"median":0.92},
+    {"id":"eacc-pemba-semba-2019-month-06-speed","month":6,"observation_count":46,"minimum":0.04,"maximum":1.73,"mean":0.93,"standard_deviation":0.53,"median":1.04},
+    {"id":"eacc-pemba-semba-2019-month-07-speed","month":7,"observation_count":37,"minimum":0.08,"maximum":1.54,"mean":0.92,"standard_deviation":0.47,"median":0.97},
+    {"id":"eacc-pemba-semba-2019-month-08-speed","month":8,"observation_count":49,"minimum":0.06,"maximum":1.31,"mean":0.64,"standard_deviation":0.34,"median":0.67},
+    {"id":"eacc-pemba-semba-2019-month-09-speed","month":9,"observation_count":31,"minimum":0.14,"maximum":1.46,"mean":0.79,"standard_deviation":0.40,"median":0.76},
+    {"id":"eacc-pemba-semba-2019-month-10-speed","month":10,"observation_count":68,"minimum":0.06,"maximum":1.33,"mean":0.58,"standard_deviation":0.32,"median":0.54},
+    {"id":"eacc-pemba-semba-2019-month-11-speed","month":11,"observation_count":7,"minimum":0.57,"maximum":0.64,"mean":0.60,"standard_deviation":0.03,"median":0.60},
+    {"id":"eacc-pemba-semba-2019-month-12-speed","month":12,"observation_count":10,"minimum":0.23,"maximum":0.70,"mean":0.50,"standard_deviation":0.21,"median":0.65}
+  ],
+  "source_conflicts": [
+    "NE minimum is0.05m/s in Table2 and0.04m/s in Results prose; preserve Table2 transcription with conflict unresolved.",
+    "Abstract describes24years while methods window spans1986-2017; do not manufacture24continuousyears.",
+    "Results calls seasonal counts drifters; dataset description gives328observations from45unique drifters. Counts retained as observations."
+  ],
+  "admission": {
+    "source_facts_prepared": 15,
+    "runtime_records_added": 0,
+    "whole_current_length_km": null,
+    "physical_width_km": null,
+    "vertical_thickness_m": null,
+    "annual_dimension_range": null,
+    "confidence_interval": null,
+    "range_meaning": "Observed pooled sample extrema, not annual physical envelope or confidence bounds",
+    "monthly_speed_statistics_playback_eligible": true,
+    "monthly_geometry_animation_eligible": false,
+    "monthly_animation_eligible": false,
+    "next_action": "Batch source-linked regional speed records and chart into the existing query and atlas delivery after schema review; preserve installed dimensional coverage totals."
+  }
+}
