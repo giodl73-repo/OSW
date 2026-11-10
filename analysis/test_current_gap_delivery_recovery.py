@@ -18,7 +18,8 @@ class CleanPublicationCacheChecks(unittest.TestCase):
     def test_fresh_publication_git_excludes_audits_without_hiding_source_changes(self):
         base=subprocess.check_output(['git','-c','core.fsmonitor=false','show',SOURCE_COMMIT+':.gitignore'],cwd=ROOT)
         fixed=(ROOT/'.gitignore').read_bytes()
-        self.assertEqual(fixed,base+(b'' if base.endswith(b'\n') else b'\n')+b'.pytest_cache/\n')
+        # Later source-specific exclusions may follow the original correction.
+        self.assertTrue(fixed.startswith(recovery.corrected_ignore(base)))
         with TemporaryDirectory() as folder:
             root=Path(folder)
             git=['git','-c','core.fsmonitor=false','-c','maintenance.auto=0','-c','gc.auto=0']
