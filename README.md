@@ -30,7 +30,7 @@ ladder, motion almanac, [ocean depths](column/), and [exchange comparisons](exch
 Views identify their source, dates, and limitations. Dated datasets and model
 examples are not a live feed, a forecast, or a complete heat budget.
 
-These pages remain a working preview rather than a promoted scientific release.
+These pages retain their working-preview status. Scientific-release decisions remain separate.
 Some motion data remains subject to source-use review, as stated on its pages.
 [About this build](about.html#status) explains the distinction between this
 checkout and historical release records in [PREVIEW-STATUS.md](PREVIEW-STATUS.md).

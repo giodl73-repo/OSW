@@ -108,7 +108,7 @@ class AtlasTests(unittest.TestCase):
         status = (ROOT / "PREVIEW-STATUS.md").read_text(encoding="utf-8")
         checklist = (ROOT / "PUBLICATION-CHECKLIST.md").read_text(encoding="utf-8")
         self.assertIn("working atlas preview", readme)
-        self.assertIn("has not been deployed", readme)
+        self.assertIn("Scientific-release decisions remain separate.", readme)
         self.assertIn("PREVIEW-STATUS.md", readme)
         for token in ("visible on the pushed", "have not replaced the released Atlas 07", "Still not present", "Decisions deliberately still open"):
             self.assertIn(token, status)
