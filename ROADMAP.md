@@ -1,23 +1,49 @@
 # OSW Roadmap
 
-Status: active planning baseline, 2026-09-09
+Status: active planning baseline, 2026-09-09; focus priority added 2026-11-11
 
 Applies to: `main` and the next public-site cycle
 
 ## North star
 
-OSW should become an ocean-first atlas in which a visitor can move through one
-continuous chain:
+OSW should make the ocean understandable as a connected world with its own
+places, movement, and change. Visitors can explore its geography, follow its
+currents, or inspect how it changes, with explanations and sources available
+where they help. These are equal ways into the existing body of work.
 
-`place -> ocean object -> motion -> heat budget -> evidence receipt`
-
-The site succeeds when an interested reader can begin with a recognizable map,
-ask what the water is doing, see how that conclusion was measured, and reach
-the source and limitations without reading the repository in file order.
+Places, ocean objects, motion, heat budgets, and evidence remain connected;
+they do not prescribe one sequence for every visitor. The site succeeds when
+a reader understands the whole project, chooses a useful starting point, and
+can move between its areas without reading the repository in file order.
 
 Heat is the first worked property, not the definition of the ocean. Provinces,
 water masses, currents, fronts, eddies, gates, events, vertical layers, and
 budgets remain distinct object types with distinct identity tests.
+
+## Current focus — explain and organize the whole project
+
+The [messaging and navigation plan](plans/project-messaging-and-navigation.md)
+leads with **Discover the world within the ocean** and three entrances:
+**Explore the ocean**, **Follow the currents**, and **See what's changing**.
+Explanations sit beside the content, with guides under **Learn more** and
+project/source details in supporting navigation.
+The local implementation now supplies a clear project introduction, a coherent
+homepage, consistent global navigation, and a recognizable home for the existing
+body of work. It also aligns visitor-facing status on the touched pages; the
+plan's delivery record lists validation and remaining limits. No deployment is
+included. Originality research,
+independent scientific validation, and broader technical simplification remain
+separate work; they are not claimed as outcomes of navigation cleanup.
+
+This replaces the withdrawn proposal to focus on a Drake Passage journey.
+Existing examples remain available throughout the atlas; no single example
+defines the project. No new evidence infrastructure or scientific campaign is
+a prerequisite for this editorial and navigation work. Existing scientific
+qualifications and publication controls remain in force.
+
+The [eight-role review](signals/roles/check/project-messaging-and-navigation-roles-check-2026-11-11.md)
+assesses this revised direction. Older work/status tables below retain their
+dated context; they are not fresh verification of implementation or hosting.
 
 ## Operating rules
 

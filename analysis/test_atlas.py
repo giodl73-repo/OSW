@@ -40,7 +40,7 @@ class AtlasTests(unittest.TestCase):
     def test_readme_and_atlas_expose_clear_entry_routes(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         html = HTML.read_text(encoding="utf-8")
-        for token in ("## Enter the Ocean States", "Ocean States of the World", "Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder", "Open the full annotated map", "Read the field guide", "Open the research note", "Check every source"):
+        for token in ("## Three ways in", "Ocean States of the World", "Discover the world within the ocean", "Explore the ocean", "Follow the currents", "See what's changing", "Sources & research"):
             self.assertIn(token, readme)
         for target in ("../figures/osw-fluid-geography.svg", "../HEATMASS.md", "../research/", "README.md", "../SOURCE-REGISTER.md"):
             self.assertIn(f'href="{target}"', html)
@@ -107,9 +107,9 @@ class AtlasTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         status = (ROOT / "PREVIEW-STATUS.md").read_text(encoding="utf-8")
         checklist = (ROOT / "PUBLICATION-CHECKLIST.md").read_text(encoding="utf-8")
-        self.assertIn("released Atlas 07", readme)
-        self.assertIn("publicly visible review branch", readme)
-        self.assertIn("APPROVED REVIEW PREVIEW; NOT RELEASED", readme)
+        self.assertIn("working atlas preview", readme)
+        self.assertIn("has not been deployed", readme)
+        self.assertIn("PREVIEW-STATUS.md", readme)
         for token in ("visible on the pushed", "have not replaced the released Atlas 07", "Still not present", "Decisions deliberately still open"):
             self.assertIn(token, status)
         self.assertIn("- [ ] Obtain owner visual approval", checklist)
@@ -128,7 +128,7 @@ class AtlasTests(unittest.TestCase):
             self.assertIn(token, html)
         for token in ("list.append(item)", "scrollIntoView"):
             self.assertIn(token, app)
-        self.assertIn("OSW Atlas 10 Preview", html)
+        self.assertIn("Explore the ocean — OSW Atlas", html)
         self.assertIn("zoneMatches", app)
         self.assertIn(".atlas-shell.observed-mode .zone-panel", css)
 
@@ -484,7 +484,7 @@ class AtlasTests(unittest.TestCase):
             self.assertIn(token, history)
         for token in ("One ocean. 56 provinces. Two truths.", "varied puzzle cartogram", "8–12%", "legally compatible"):
             self.assertIn(token, plan)
-        self.assertIn("Read the project history", readme)
+        self.assertIn("[project history](HISTORY.md)", readme)
 
     def test_observed_layer_is_explicitly_surface_only(self):
         html = HTML.read_text(encoding="utf-8")
@@ -604,7 +604,7 @@ class AtlasTests(unittest.TestCase):
     def test_local_links_resolve(self):
         source = HTML.read_text(encoding="utf-8")
         for target in re.findall(r'(?:href|src)="(\.\.?/[^"#]+)"', source):
-            self.assertTrue((HTML.parent / target).resolve().exists(), target)
+            self.assertTrue((HTML.parent / target.split("?", 1)[0]).resolve().exists(), target)
 
 if __name__ == "__main__":
     unittest.main()
