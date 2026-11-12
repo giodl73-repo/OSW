@@ -2,7 +2,7 @@
 
 Date: 2026-11-11
 
-Status: implemented in the local checkout; not deployed
+Status: implemented as a working preview; integration and hosting tracked separately
 
 Source baseline: `19148702de6433253dbf412a0a28c0cb4f8e409e`
 
@@ -260,3 +260,19 @@ Frozen screened/release snapshots retain their own navigation and manifests;
 the new global navigation covers the working site. Formal user studies,
 screen-reader certification, independent scientific review, and an originality
 comparison were not performed or claimed by this editorial change.
+
+## Integration handoff — 2026-11-12
+
+The owner requested push and merge through [PR #84](https://github.com/giodl73-repo/OSW/pull/84).
+That PR and [GitHub deployments](https://github.com/giodl73-repo/OSW/deployments)
+track integration and hosting; the dated local delivery record above is not a
+live deployment report. Scientific-release and source-use classifications remain
+unchanged.
+
+Required CI exposed the pre-existing SOEST TLS-chain failure while acquiring the
+pinned Qiu/Chen paper. A fingerprint-verified public root certificate is now
+loaded only for that exact fixture name, original URL, and PDF hash. Certificate
+and hostname validation stay enabled, the system trust store is untouched, and
+the original 3,012,493-byte PDF still matches its existing SHA-256. Acquisition
+and editorial checks pass locally: 86 tests, including rejection of altered or
+appended CA certificates and out-of-scope fixture identities.

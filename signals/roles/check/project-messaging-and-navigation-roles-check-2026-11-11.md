@@ -162,3 +162,29 @@ LOGBOOK: About copy now describes historical branch records without hardcoding
 the current branch into the visitor-facing explanation. Local source delivery
 and publication remain distinct. These refinements preserve the existing verdict
 and its source-use/release conditions.
+
+## Required-CI integration repair — 2026-11-12
+
+The owner subsequently requested push and merge via
+[PR #84](https://github.com/giodl73-repo/OSW/pull/84). The earlier no-push/no-deployment
+statements describe the 11 November local review, not the later integration.
+Visitor-facing status now links to deployment records instead of hardcoding a
+not-deployed assertion that would become stale after integration.
+
+SOUNDER: the SOEST author PDF retains its original URL and SHA-256
+`b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987`.
+A live verified download is still 3,012,493 bytes. No paper bytes, extraction
+calibration, or scientific result changed.
+
+KEEL: the university's newer chain requires emSign Root TLS CA - G1 on Linux.
+The bundled certificate comes from the [issuer repository](https://repository.emsign.com/certs/roottlscag1.crt);
+its DER fingerprint `cef71e70b7c29addf6c30cd19e614b38fd5f02a435a0eeddd0087e183d101a51`
+matches the [Microsoft CCADB included-CA report](https://ccadb.my.salesforce-sites.com/microsoft/includedcacertificatereportformsft).
+It is applied only to the exact fixture name/primary URL/PDF pin. The context
+retains `CERT_REQUIRED` and hostname checks, and does not alter the system store.
+Changed or appended certificates fail before network access; unrelated fixtures,
+URLs, and PDF pins receive no extra trust. All 86 acquisition/editorial tests pass.
+
+LOGBOOK: this repairs an existing required-CI acquisition failure also observed
+on the parent `main` run; it does not waive branch protection or relax source
+checksum checks. Integration remains governed by the PR's required checks.

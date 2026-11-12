@@ -8,6 +8,7 @@ import http.client
 import json
 import os
 import re
+import ssl
 from pathlib import Path
 import tempfile
 import time
@@ -31,6 +32,36 @@ PINNED_MIRRORS = {
      'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987'):
     ('https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',),
 }
+
+# SOEST's 2026 certificate chains to this Microsoft-trusted root, which is not
+# yet in the Linux runner's trust store. Add it only for the exact pinned author
+# PDF; never disable certificate/hostname checks or change the system store.
+# Issuer download: https://repository.emsign.com/certs/roottlscag1.crt
+# Fingerprint independently listed by Microsoft's CCADB included-CA report:
+# https://ccadb.my.salesforce-sites.com/microsoft/includedcacertificatereportformsft
+PINNED_SOURCE_CA = {
+    ('qiu-chen-nec-2010', 'https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
+     'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987'):
+    (ROOT / 'analysis/fixtures/emsign-root-tls-g1.pem',
+     'cef71e70b7c29addf6c30cd19e614b38fd5f02a435a0eeddd0087e183d101a51'),
+}
+
+
+def source_tls_context(name, manifest, source_url):
+    identity = (name, manifest['source_url'], manifest['sha256'])
+    rule = PINNED_SOURCE_CA.get(identity)
+    if rule is None or source_url != identity[1]:
+        return None
+    path, expected_sha256 = rule
+    certificate = path.read_text(encoding='ascii')
+    if certificate.count('-----BEGIN CERTIFICATE-----') != 1 or certificate.count('-----END CERTIFICATE-----') != 1:
+        raise ValueError('Pinned source CA must contain exactly one certificate')
+    der = ssl.PEM_cert_to_DER_cert(certificate)
+    if hashlib.sha256(der).hexdigest() != expected_sha256:
+        raise ValueError('Pinned source CA fingerprint mismatch')
+    context = ssl.create_default_context()
+    context.load_verify_locations(cadata=certificate)
+    return context
 
 
 def normalize_transport_identity(name, manifest, data):
@@ -67,10 +98,14 @@ def download_url(name, manifest, source_url):
         source_url += '?download=1'
     headers = {} if name == 'florida-archer-2017' else {'User-Agent': 'OSW-source-validation/1.0'}
     request = urllib.request.Request(source_url, headers=headers)
+    options = {'timeout': 60}
+    context = source_tls_context(name, manifest, source_url)
+    if context is not None:
+        options['context'] = context
     maximum = {'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000,'tomczak-regional-2005':40_000_000}.get(name,20_000_000)
     for attempt in range(len(RETRY_DELAYS) + 1):
         try:
-            with urllib.request.urlopen(request, timeout=60) as response:
+            with urllib.request.urlopen(request, **options) as response:
                 data = response.read(maximum + 1)
             return verify(name, manifest, data)
         except urllib.error.HTTPError as error:
