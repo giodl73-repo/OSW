@@ -1,11 +1,12 @@
 """Render the retained experiment, with failed paths and a text alternative."""
 import html
+from project_navigation import with_project_navigation
 import json
 from build_loop_current_dated_streamline import ROOT, OUTPUT
 from build_cartographic_current_state_join import project
 from build_loop_current_adt_contours import OUTPUT as ADT_OUTPUT
 
-def build():
+def _build_content():
     result=json.loads(OUTPUT.read_text(encoding='utf-8'))
     adt=json.loads(ADT_OUTPUT.read_text(encoding='utf-8'))
     adt_display=f"{adt['approximate_diagnostic_path_km']:,}" if adt['approximate_diagnostic_path_km'] is not None else 'unresolved'
@@ -39,6 +40,10 @@ body{{margin:0;background:#092b39;color:#e3f1f4;font:16px/1.5 system-ui,sans-ser
 <h2>Same-day product and method comparison</h2><p>DUACS ADT contour search: <strong>{adt_display} km</strong>; NOAA velocity integration: <strong>{result['approximate_diagnostic_path_km']:,} km</strong>. The raw difference is {difference_display}. These products can share satellite inputs; this is not independent observational confirmation or an uncertainty interval.</p><p>The finite search scans 146 ADT levels from 0.05 to 1.50 m, retains {adt['eligible_count']} eligible connected contours, and selects the greatest length-weighted mean speed. Missing velocity anywhere rejects a candidate. Scanned contours are not a physical width or annual range. Gates, effective resolution and original method details remain under review.</p><p><a href="{html.escape(adt['dataset_page'])}">GCOOS / Copernicus DUACS dataset</a> · <a href="../plans/loop-current-adt-contour-protocol-v1.md">Contour search rules</a> · <a href="../research/loop-current-adt-contours-20260925.json">All contour candidates and receipts</a></p>
 <h2>Retained scenario outcomes</h2><p>“Travelled” includes the portion traced before a failure. It is not an open-path length. Successful integration-step tests stay within 12 km of the nominal result; that numerical agreement does not remove the seed failures.</p><div class="table-wrap"><table><caption>Frozen-time surface geostrophic diagnostic; km values at 0.1 km are calculation readback, not measurement accuracy.</caption><thead><tr><th scope="col">Test</th><th scope="col">Seed longitude</th><th scope="col">Step km</th><th scope="col">Stop speed m/s</th><th scope="col">Outcome</th><th scope="col">Connected km</th><th scope="col">Travelled km</th></tr></thead><tbody>{''.join(table)}</tbody></table></div>
 <h2>Source and method</h2><p>NOAA LSA / CoastWatch, RADS 4.8.1, Experimental daily absolute surface geostrophic velocity, 0.25-degree analysis grid. UTC interval: 25 September to 26 September 2026, end excluded. Missing cells stop tracing. Effective resolution, endpoint conventions and source-use review remain open.</p><p><a href="{html.escape(result['source_url'])}">NOAA source file</a> · <a href="../plans/loop-current-dated-streamline-protocol-v1.md">Measurement protocol</a> · <a href="../research/loop-current-dated-streamline-20260925.json">Complete diagnostic and provenance</a> · <a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1156159/full">Published method comparison</a></p><p>The source sea-level anomaly field is not absolute dynamic topography. This velocity integration is an OSW experiment, distinct from the published maximum-velocity contour algorithm. The existing ranked inventory and canonical release are unchanged.</p></main></body></html>'''
+
+def build():
+    return with_project_navigation(_build_content())
+
 
 if __name__=='__main__':
     path=ROOT/'almanac/loop-current-experiment.html';path.write_text(build(),encoding='utf-8');print(path)

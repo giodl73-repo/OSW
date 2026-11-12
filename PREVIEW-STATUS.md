@@ -1,5 +1,12 @@
 # Atlas 08–10 and later review-work status
 
+> **Historical release and review record.** The branch and hosting statements
+> below describe the earlier Atlas review stages. The current checkout is on
+> `main` and includes later work. For the visitor-facing description of this
+> build, see [About this build](about.html#status). The messaging/navigation
+> update retains the working-preview status. Current hosting activity is tracked
+> separately in [GitHub deployments](https://github.com/giodl73-repo/OSW/deployments).
+
 Atlas 08–10 are now visible on the pushed `atlas-08-private-preview` review
 branch. They have not replaced the released Atlas 07 on `main` or GitHub Pages
 and are not represented as a new version in `CITATION.cff`. The branch name and

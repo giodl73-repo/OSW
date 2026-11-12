@@ -1,14 +1,54 @@
 """Transport retries cannot bypass source pins or leave partial local originals."""
-import hashlib, io, json, tempfile, unittest
+import hashlib, io, json, ssl, tempfile, unittest
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError, URLError
-from acquire_local_paper_fixtures import acquire, download, verify, PINNED_MIRRORS
+from acquire_local_paper_fixtures import acquire, download, verify, source_tls_context, PINNED_MIRRORS, PINNED_SOURCE_CA
 
 DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_exact_source_ca_keeps_certificate_and_hostname_verification(self):
+        (name, url, pin), (_, ca_pin) = next(iter(PINNED_SOURCE_CA.items()))
+        context = source_tls_context(name, {'source_url': url, 'sha256': pin}, url)
+        self.assertEqual(context.verify_mode, ssl.CERT_REQUIRED)
+        self.assertTrue(context.check_hostname)
+        self.assertIn(ca_pin, {hashlib.sha256(cert).hexdigest() for cert in context.get_ca_certs(binary_form=True)})
+
+    def test_source_ca_cannot_expand_to_other_fixtures_urls_or_pdf_pins(self):
+        (name, url, pin), _ = next(iter(PINNED_SOURCE_CA.items()))
+        manifest = {'source_url': url, 'sha256': pin}
+        for fixture, receipt, actual in [
+            ('other-paper', manifest, url),
+            (name, dict(manifest, sha256='0'*64), url),
+            (name, dict(manifest, source_url='https://example.invalid/paper.pdf'), url),
+            (name, manifest, 'https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf'),
+        ]:
+            with self.subTest(fixture=fixture, receipt=receipt, actual=actual):
+                self.assertIsNone(source_tls_context(fixture, receipt, actual))
+
+    def test_changed_or_appended_source_ca_fails_before_network(self):
+        (name, url, pin), (path, _) = next(iter(PINNED_SOURCE_CA.items()))
+        manifest = {'source_url': url, 'sha256': pin}
+        certificate = path.read_text(encoding='ascii')
+        changed = certificate.replace('MIIFeD', 'MIIFeE', 1)
+        self.assertNotEqual(changed, certificate)
+        for content, message in [(changed, 'fingerprint'), (certificate+certificate, 'exactly one')]:
+            with self.subTest(content=message), patch('pathlib.Path.read_text', return_value=content), patch('urllib.request.urlopen') as opener, patch('time.sleep') as sleep:
+                with self.assertRaisesRegex(ValueError, message):
+                    download(name, manifest)
+                opener.assert_not_called()
+                sleep.assert_not_called()
+
+    def test_exact_source_request_receives_only_the_verified_tls_context(self):
+        (name, url, pin), _ = next(iter(PINNED_SOURCE_CA.items()))
+        with patch('urllib.request.urlopen', return_value=io.BytesIO(DATA)) as opener, patch('acquire_local_paper_fixtures.verify', return_value=DATA):
+            self.assertEqual(download(name, {'source_url': url, 'sha256': pin}), DATA)
+        self.assertEqual(opener.call_args.kwargs['timeout'], 60)
+        self.assertEqual(opener.call_args.kwargs['context'].verify_mode, ssl.CERT_REQUIRED)
+        self.assertTrue(opener.call_args.kwargs['context'].check_hostname)
+
     def qiu_mirror_case(self):
         key=('qiu-chen-nec-2010','https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
              'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987')

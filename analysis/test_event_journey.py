@@ -97,13 +97,13 @@ def test_headline_numbers_are_not_copied_into_interface_sources() -> None:
 
 def test_readme_exposes_three_primary_entrances() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "| Explore the ocean | Follow heat | Inspect evidence |" in readme
-    assert "[Follow one warm event →](event/)" in readme
+    assert "| Explore the ocean | Follow the currents | See what's changing |" in readme
+    assert "[Temperature, heat, and events](event/)" in readme
 
 
 def test_atlas_exposes_event_journey_in_one_action() -> None:
     atlas = (ROOT / "atlas" / "index.html").read_text(encoding="utf-8")
-    assert '<a href="../event/">Follow heat</a>' in atlas
+    assert '<a href="../event/">See what\'s changing</a>' in atlas
     workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
     assert "node --check event/scenes.js" in workflow
     assert "node --check event/app.js" in workflow

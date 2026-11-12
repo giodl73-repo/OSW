@@ -1,0 +1,61 @@
+/* Shared project orientation. Scientific views retain their own styles. */
+.osw-global, .osw-global *, .osw-support, .osw-support * { box-sizing: border-box; }
+.osw-global { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; width: 100%; max-width: none; margin: 0; padding: 20px clamp(18px,4vw,64px); border: 0; border-bottom: 1px solid #34545d; background: #081e27; color: #edf5ef; font: 16px/1.45 system-ui,sans-serif; }
+.osw-global .osw-brand { display: flex; align-items: center; gap: 13px; flex: 0 0 auto; padding: 0; border: 0; color: #edf5ef; text-decoration: none; text-transform: none; }
+.osw-global .osw-brand b { font-size: 25px; letter-spacing: -.04em; }
+.osw-global .osw-brand span { max-width: 145px; font-size: 12px; line-height: 1.35; color: #b7cbc9; }
+.osw-global .osw-primary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; margin: 0; padding: 0; border: 0; flex: 1; }
+.osw-global .osw-primary a { display: inline-flex; align-items: center; min-height: 44px; margin: 0; padding: 6px 0; border: 0; border-bottom: 2px solid transparent; color: #e5efeb; background: transparent; font: 600 14px/1.35 system-ui,sans-serif; text-decoration: none; text-transform: none; letter-spacing: 0; }
+.osw-global .osw-primary a:hover, .osw-global .osw-primary a[aria-current] { color: #8ce2d0; border-bottom-color: #8ce2d0; }
+.osw-global .osw-primary .osw-learn { margin-left: auto; color: #b7cbc9; font-weight: 400; }
+.osw-global a:focus-visible, .osw-support a:focus-visible, .osw-area-links a:focus-visible { outline: 3px solid #ffdb8a; outline-offset: 4px; }
+.osw-skip { position: absolute; top: -100px; left: 16px; z-index: 1000; padding: 12px 18px; background: #ffdb8a; color: #081e27; font: 700 16px system-ui; }
+.osw-skip:focus { top: 10px; }
+.osw-support { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; max-width: none; width: 100%; margin: 32px 0 0; padding: 24px clamp(18px,4vw,64px); border-top: 1px solid #34545d; background: #081e27; color: #b7cbc9; font: 14px/1.6 system-ui,sans-serif; }
+.osw-support p { margin: 0; color: inherit; }
+.osw-support nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font: inherit; text-transform: none; letter-spacing: 0; }
+.osw-support a { display: inline-flex; align-items: center; min-height: 44px; color: #d6e9e2; text-decoration: underline; text-underline-offset: 4px; }
+.osw-area-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 18px 0; padding: 16px 0; border-block: 1px solid #34545d; font: 500 15px/1.5 system-ui,sans-serif; }
+.osw-area-links a { display: inline-flex; align-items: center; min-height: 44px; color: #8ce2d0; }
+.osw-area-intro { margin: 0 0 24px; max-width: 850px; color: #bed0cf; font: 16px/1.65 system-ui,sans-serif; }
+.osw-local-label { color: #9fb9bb; font: 600 12px/1.4 system-ui,sans-serif; }
+@media(max-width:700px) { .osw-global { display: block; padding-block: 16px 10px; } .osw-global .osw-brand { margin-bottom: 12px; } .osw-global .osw-primary { gap: 0 18px; } .osw-global .osw-primary a { font-size: 13px; } .osw-global .osw-primary .osw-learn { margin-left: 0; } }
+
+/* Project homepage and supporting editorial pages. */
+.osw-page, .osw-page * { box-sizing: border-box; }
+.osw-page { margin: 0; background: #071b23; color: #edf5ef; font: 17px/1.65 system-ui,sans-serif; }
+.osw-page main { width: min(1200px,100%); margin: auto; padding: 0 clamp(20px,5vw,64px) 50px; }
+.osw-page a { color: #9de2d2; }
+.osw-page h1,.osw-page h2,.osw-page h3 { color: #edf5ef; line-height: 1.12; font-weight: 550; letter-spacing: -.035em; }
+.osw-page h1 { max-width: 950px; font-size: clamp(44px,7.8vw,92px); margin: 20px 0 26px; }
+.osw-page h2 { font-size: clamp(28px,4vw,42px); }
+.osw-page h3 { font-size: 25px; }
+.osw-page .osw-hero { padding: clamp(48px,8vw,100px) 0 40px; }
+.osw-page .osw-eyebrow { color: #9de2d2; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+.osw-page .osw-dek { max-width: 660px; font-size: clamp(19px,2.5vw,25px); color: #bed0cf; }
+.osw-entrances { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin: 12px 0 60px; }
+.osw-entrances a { display: flex; flex-direction: column; align-items: flex-start; min-height: 225px; padding: 28px 24px; border: 1px solid #3a5960; border-top: 3px solid #8ccebd; border-radius: 4px; background: #0c2832; color: #edf5ef; text-decoration: none; }
+.osw-entrances a:nth-child(2) { border-top-color: #85bce1; } .osw-entrances a:nth-child(3) { border-top-color: #e8c083; }
+.osw-entrances a:hover { background: #143640; border-color: #b1d6cb; }
+.osw-entrances a:focus-visible { outline: 3px solid #ffdb8a; outline-offset: 5px; }
+.osw-entrances h2 { font-size: 26px; margin: 0 0 16px; }
+.osw-entrances p { color: #bed0cf; margin: 0 0 20px; }
+.osw-entrances span { margin-top: auto; color: #9de2d2; font-size: 23px; }
+.osw-overview { margin: 0; border: 1px solid #34545d; padding: 12px; background: #0c2832; }
+.osw-overview img { display: block; width: 100%; height: auto; }
+.osw-overview figcaption { padding: 14px 10px 6px; color: #bed0cf; font-size: 14px; }
+.osw-connected { max-width: 760px; padding: 42px 0 12px; }
+.osw-note { border-left: 3px solid #d9b777; padding: 10px 18px; color: #bed0cf; font-size: 14px; }
+.osw-page .osw-reading { max-width: 800px; }
+.osw-page .osw-reading section { padding: 12px 0 28px; }
+.osw-page .osw-reading li { margin: 12px 0; }
+@media(max-width:700px) { .osw-entrances { grid-template-columns: 1fr; gap: 12px; margin-bottom: 35px; } .osw-entrances a { min-height: 160px; padding: 22px; } .osw-page h1 { font-size: clamp(40px,10vw,62px); } }
+
+.osw-local-resources { margin: 28px clamp(18px,4vw,64px); padding: 16px 0; border-top: 1px solid #34545d; color: #bed0cf; font: 14px/1.6 system-ui,sans-serif; }
+.osw-local-resources summary { display: list-item; cursor: pointer; min-height: 44px; }
+.osw-local-resources nav { display: flex; flex-wrap: wrap; gap: 6px 22px; padding: 14px 0; }
+.osw-local-resources a { display: inline-flex; align-items: center; min-height: 44px; color: #9de2d2; }
+.osw-local-resources :focus-visible { outline: 3px solid #ffdb8a; outline-offset: 4px; }
+.osw-area-links { text-transform: none; letter-spacing: 0; }
+.osw-local-label { padding-inline: clamp(18px,4vw,64px); }
+.osw-local-header .osw-local-label { padding: 0; }
